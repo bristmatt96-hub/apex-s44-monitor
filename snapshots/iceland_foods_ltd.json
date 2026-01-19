@@ -1,0 +1,121 @@
+{
+  "company_name": "Iceland Bondco plc",
+  "ticker": "",
+  "sector": "Consumer & Retail",
+  "last_updated": "2026-01-19",
+  "overview": {
+    "business_description": "Food retailing, manufacturing and hospitality.",
+    "business_positives": [],
+    "fatal_flaw": "",
+    "ownership": "Private",
+    "public_private": "private",
+    "recent_news": "Lifecycle: Performing credit"
+  },
+  "ratings": {
+    "moodys": {
+      "rating": "",
+      "outlook": "",
+      "date": ""
+    },
+    "sp": {
+      "rating": "",
+      "outlook": "",
+      "date": ""
+    },
+    "fitch": {
+      "rating": "",
+      "outlook": "",
+      "date": ""
+    }
+  },
+  "quick_assessment": {
+    "period_end": "",
+    "cffo": null,
+    "total_debt": 1462.0,
+    "interest_expense": null,
+    "capex": null,
+    "debt_due_one_year": null,
+    "cash_on_hand": null,
+    "revolver_available": null
+  },
+  "key_ratios": {
+    "debt_to_ebitda": null,
+    "ebitda_minus_capex_to_interest": null,
+    "fcf_to_debt": null,
+    "net_debt_to_ebitda": null
+  },
+  "trend_analysis": {
+    "years": [],
+    "revenue": [],
+    "ebitda": [],
+    "ebitda_margin": [],
+    "total_debt": []
+  },
+  "debt_capitalization": [
+    {
+      "instrument": "GBP 265m Sr Secd Notes",
+      "amount": 265.0,
+      "maturity": "2027",
+      "coupon": "",
+      "price": 106.14,
+      "ytw": null,
+      "stw": null,
+      "rating": ""
+    },
+    {
+      "instrument": "EUR 250m Sr Secd Notes",
+      "amount": 250.0,
+      "maturity": "2027",
+      "coupon": "",
+      "price": null,
+      "ytw": null,
+      "stw": null,
+      "rating": ""
+    },
+    {
+      "instrument": "GBP 684m Lease Facility",
+      "amount": 684.0,
+      "maturity": "",
+      "coupon": "",
+      "price": null,
+      "ytw": null,
+      "stw": null,
+      "rating": ""
+    },
+    {
+      "instrument": "GBP 14m Term Loan",
+      "amount": 13.0,
+      "maturity": "",
+      "coupon": "",
+      "price": null,
+      "ytw": null,
+      "stw": null,
+      "rating": ""
+    },
+    {
+      "instrument": "GBP 250m Sr Secd Notes",
+      "amount": 250.0,
+      "maturity": "2028",
+      "coupon": "",
+      "price": null,
+      "ytw": null,
+      "stw": null,
+      "rating": ""
+    }
+  ],
+  "maturity_schedule": {
+    "year_1": null,
+    "year_2": null,
+    "year_3": null,
+    "year_4": null,
+    "year_5": null,
+    "thereafter": null
+  },
+  "equity_market_value": {},
+  "credit_opinion": {
+    "summary": "",
+    "key_risks": [],
+    "key_catalysts": [],
+    "recommendation": ""
+  }
+}

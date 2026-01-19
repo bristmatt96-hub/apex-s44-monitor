@@ -1,0 +1,171 @@
+{
+  "company_name": "Samhallsbyggnadsbolaget i Norden AB (SBB)",
+  "ticker": "",
+  "sector": "Real Estate",
+  "last_updated": "2026-01-19",
+  "overview": {
+    "business_description": "Real estate company leases, manages, and develops residential and social infrastructure properties primarily for public sector clients. It operates through direct ownership and long-term property management, focusing on residential housing and community-related buildings. The business model includes property development and asset management with a strategic emphasis on social infrastructure across Sweden and the Nordic region. The company recently engaged in significant portfolio transactions to",
+    "business_positives": [],
+    "fatal_flaw": "",
+    "ownership": "Public",
+    "public_private": "public",
+    "recent_news": "Lifecycle: Distressed"
+  },
+  "ratings": {
+    "moodys": {
+      "rating": "",
+      "outlook": "",
+      "date": ""
+    },
+    "sp": {
+      "rating": "",
+      "outlook": "",
+      "date": ""
+    },
+    "fitch": {
+      "rating": "",
+      "outlook": "",
+      "date": ""
+    }
+  },
+  "quick_assessment": {
+    "period_end": "",
+    "cffo": null,
+    "total_debt": 8838.0,
+    "interest_expense": null,
+    "capex": null,
+    "debt_due_one_year": null,
+    "cash_on_hand": null,
+    "revolver_available": null
+  },
+  "key_ratios": {
+    "debt_to_ebitda": null,
+    "ebitda_minus_capex_to_interest": null,
+    "fcf_to_debt": null,
+    "net_debt_to_ebitda": null
+  },
+  "trend_analysis": {
+    "years": [],
+    "revenue": [],
+    "ebitda": [],
+    "ebitda_margin": [],
+    "total_debt": []
+  },
+  "debt_capitalization": [
+    {
+      "instrument": "EUR 663m Sr Unsecd Notes",
+      "amount": 663.0,
+      "maturity": "2028",
+      "coupon": "",
+      "price": 83.05,
+      "ytw": null,
+      "stw": null,
+      "rating": ""
+    },
+    {
+      "instrument": "EUR 154m Sr Unsecd Notes",
+      "amount": 154.0,
+      "maturity": "2029",
+      "coupon": "",
+      "price": null,
+      "ytw": null,
+      "stw": null,
+      "rating": ""
+    },
+    {
+      "instrument": "EUR 773m Sr Unsecd Notes",
+      "amount": 773.0,
+      "maturity": "2029",
+      "coupon": "",
+      "price": null,
+      "ytw": null,
+      "stw": null,
+      "rating": ""
+    },
+    {
+      "instrument": "EUR 508m Sr Unsecd Notes",
+      "amount": 508.0,
+      "maturity": "2026",
+      "coupon": "",
+      "price": null,
+      "ytw": null,
+      "stw": null,
+      "rating": ""
+    },
+    {
+      "instrument": "EUR 683m Sr Unsecd Notes",
+      "amount": 683.0,
+      "maturity": "2027",
+      "coupon": "",
+      "price": null,
+      "ytw": null,
+      "stw": null,
+      "rating": ""
+    },
+    {
+      "instrument": "SEK 413m Sr Unsecd Notes",
+      "amount": 413.0,
+      "maturity": "2027",
+      "coupon": "",
+      "price": null,
+      "ytw": null,
+      "stw": null,
+      "rating": ""
+    },
+    {
+      "instrument": "EUR 111m Sr Unsecd Notes",
+      "amount": 111.0,
+      "maturity": "2027",
+      "coupon": "",
+      "price": null,
+      "ytw": null,
+      "stw": null,
+      "rating": ""
+    },
+    {
+      "instrument": "EUR 200m Sr Notes",
+      "amount": 167.0,
+      "maturity": "2029",
+      "coupon": "",
+      "price": null,
+      "ytw": null,
+      "stw": null,
+      "rating": ""
+    },
+    {
+      "instrument": "EUR 500m Subordinated Bank Notes",
+      "amount": 224.0,
+      "maturity": "",
+      "coupon": "",
+      "price": null,
+      "ytw": null,
+      "stw": null,
+      "rating": ""
+    },
+    {
+      "instrument": "EUR 750m Sr Unsecd Notes",
+      "amount": 628.0,
+      "maturity": "2029",
+      "coupon": "",
+      "price": null,
+      "ytw": null,
+      "stw": null,
+      "rating": ""
+    }
+  ],
+  "maturity_schedule": {
+    "year_1": null,
+    "year_2": null,
+    "year_3": null,
+    "year_4": null,
+    "year_5": null,
+    "thereafter": null
+  },
+  "equity_market_value": {},
+  "credit_opinion": {
+    "summary": "",
+    "key_risks": [],
+    "key_catalysts": [],
+    "recommendation": ""
+  }
+}

@@ -1,0 +1,171 @@
+{
+  "company_name": "Bellis Acquisition Company plc (Asda)",
+  "ticker": "",
+  "sector": "Consumer & Retail",
+  "last_updated": "2026-01-19",
+  "overview": {
+    "business_description": "Supermarket retailer supplies grocery and general merchandise primarily to consumers in the United Kingdom. It operates through a network of large-format stores, smaller supermarkets, and petrol stations, offering in-store dining and fuel services. The business model includes direct retail sales supported by proprietary store formats differentiated by size and service offerings. Its operations focus on the UK market with a broad geographic footprint across the country.",
+    "business_positives": [],
+    "fatal_flaw": "",
+    "ownership": "TDR Capital LLP",
+    "public_private": "private",
+    "recent_news": "Lifecycle: Performing credit"
+  },
+  "ratings": {
+    "moodys": {
+      "rating": "",
+      "outlook": "",
+      "date": ""
+    },
+    "sp": {
+      "rating": "",
+      "outlook": "",
+      "date": ""
+    },
+    "fitch": {
+      "rating": "",
+      "outlook": "",
+      "date": ""
+    }
+  },
+  "quick_assessment": {
+    "period_end": "",
+    "cffo": null,
+    "total_debt": 10396.0,
+    "interest_expense": null,
+    "capex": null,
+    "debt_due_one_year": null,
+    "cash_on_hand": null,
+    "revolver_available": null
+  },
+  "key_ratios": {
+    "debt_to_ebitda": null,
+    "ebitda_minus_capex_to_interest": null,
+    "fcf_to_debt": null,
+    "net_debt_to_ebitda": null
+  },
+  "trend_analysis": {
+    "years": [],
+    "revenue": [],
+    "ebitda": [],
+    "ebitda_margin": [],
+    "total_debt": []
+  },
+  "debt_capitalization": [
+    {
+      "instrument": "EUR 700m Sr Secd Notes",
+      "amount": 700.0,
+      "maturity": "2031",
+      "coupon": "",
+      "price": 94.43,
+      "ytw": null,
+      "stw": null,
+      "rating": ""
+    },
+    {
+      "instrument": "GBP 162m Term Loan  A",
+      "amount": 161.0,
+      "maturity": "2028",
+      "coupon": "",
+      "price": null,
+      "ytw": null,
+      "stw": null,
+      "rating": ""
+    },
+    {
+      "instrument": "GBP 3790m Lease Facility",
+      "amount": 3790.0,
+      "maturity": "",
+      "coupon": "",
+      "price": null,
+      "ytw": null,
+      "stw": null,
+      "rating": ""
+    },
+    {
+      "instrument": "GBP 1750m Sr Secd Notes",
+      "amount": 1750.0,
+      "maturity": "2030",
+      "coupon": "",
+      "price": null,
+      "ytw": null,
+      "stw": null,
+      "rating": ""
+    },
+    {
+      "instrument": "GBP 684m Credit Facility",
+      "amount": 626.0,
+      "maturity": "2029",
+      "coupon": "",
+      "price": null,
+      "ytw": null,
+      "stw": null,
+      "rating": ""
+    },
+    {
+      "instrument": "GBP 400m Credit Facility",
+      "amount": 384.0,
+      "maturity": "2073",
+      "coupon": "",
+      "price": null,
+      "ytw": null,
+      "stw": null,
+      "rating": ""
+    },
+    {
+      "instrument": "GBP 445m Shareholder loan",
+      "amount": 445.0,
+      "maturity": "2033",
+      "coupon": "",
+      "price": null,
+      "ytw": null,
+      "stw": null,
+      "rating": ""
+    },
+    {
+      "instrument": "GBP 770m Term Loan",
+      "amount": 770.0,
+      "maturity": "2029",
+      "coupon": "",
+      "price": null,
+      "ytw": null,
+      "stw": null,
+      "rating": ""
+    },
+    {
+      "instrument": "GBP 500m Sr Secd Notes",
+      "amount": 40.0,
+      "maturity": "2026",
+      "coupon": "",
+      "price": null,
+      "ytw": null,
+      "stw": null,
+      "rating": ""
+    },
+    {
+      "instrument": "GBP 2250m Sr Secd Notes",
+      "amount": 260.0,
+      "maturity": "2026",
+      "coupon": "",
+      "price": null,
+      "ytw": null,
+      "stw": null,
+      "rating": ""
+    }
+  ],
+  "maturity_schedule": {
+    "year_1": null,
+    "year_2": null,
+    "year_3": null,
+    "year_4": null,
+    "year_5": null,
+    "thereafter": null
+  },
+  "equity_market_value": {},
+  "credit_opinion": {
+    "summary": "",
+    "key_risks": [],
+    "key_catalysts": [],
+    "recommendation": ""
+  }
+}
