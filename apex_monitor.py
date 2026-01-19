@@ -4,6 +4,8 @@ from threading import Thread
 import time
 import requests
 import os
+import json
+from pathlib import Path
 
 # Load secrets from Streamlit Cloud or environment variables (for local dev)
 TELEGRAM_BOT_TOKEN = st.secrets.get("TELEGRAM_BOT_TOKEN", os.environ.get("TELEGRAM_BOT_TOKEN", ""))
@@ -29,118 +31,201 @@ def send_telegram_message(message):
 def test_telegram():
     """Manual test - call this to verify Telegram is working"""
     print("Sending test message to Telegram...")
-    success = send_telegram_message("🔔 *Apex Monitor Test*\nIf you see this, Telegram alerts are working!")
+    success = send_telegram_message("*Apex Monitor Test*\nIf you see this, Telegram alerts are working!")
     if success:
-        print("✓ Test message sent successfully!")
+        print("Test message sent successfully!")
     else:
-        print("✗ Failed to send test message - check bot token and chat ID")
+        print("Failed to send test message - check bot token and chat ID")
     return success
 
-# Twitter/X API Bearer Token loaded from secrets above
+def load_index(index_file):
+    """Load index constituents from JSON config file"""
+    indices_dir = Path(__file__).parent / "indices"
+    with open(indices_dir / index_file, "r", encoding="utf-8") as f:
+        return json.load(f)
 
-S44_AUTOS = [
-    'Renault',
-    'Valeo',
-    'Forvia',
-    'Jaguar Land Rover Automotive PLC',
-    'Volvo Car AB',
-    'Schaeffler AG'
-]
+def get_available_indices():
+    """Get list of available index config files"""
+    indices_dir = Path(__file__).parent / "indices"
+    if not indices_dir.exists():
+        return []
+    return [f.stem for f in indices_dir.glob("*.json")]
 
-S44_TELECOMS = [
-    'Telecom Italia Spa',
-    'Virgin Media Finance PLC',
-    'Iliad Holding',
-    'Nokia Oyj',
-    'Eutelsat S.A.',
-    'Matterhorn Telecom S.A.',
-    'Sunrise HoldCo IV B.V.',
-    'Ziggo Bond Company B.V.',
-    'United Group B.V.',
-    'Kaixo Bondco Telecom S.A.U.',
-    'FiberCop S.p.A.',
-    'SES',
-    'Telefonaktiebolaget L M Ericsson'
-]
+def get_search_terms(name, aliases):
+    """Get search terms for a company including aliases"""
+    terms = [name]
+    if name in aliases:
+        terms.extend(aliases[name])
+    return terms
+
+# Credit-relevant keywords by category
+CREDIT_KEYWORDS = {
+    "spread_moving": ["CDS", "downgrade", "upgrade", "outlook", "rating", "leverage", "debt", "default"],
+    "corporate_events": ["restructuring", "refinancing", "M&A", "acquisition", "merger", "takeover", "buyout"],
+    "regulatory": ["antitrust", "regulatory", "clearance", "approval", "investigation"],
+    "earnings": ["earnings", "EBITDA", "revenue", "profit", "loss", "guidance"],
+    "sector_specific": ["tariff", "EV", "supply chain", "strike", "bankruptcy"]
+}
 
 class NewsHound:
-    def __init__(self):
+    def __init__(self, index_data):
         self.client = tweepy.Client(bearer_token=TWITTER_BEARER_TOKEN)
         self.alerts = {}
-        print("=== Apex Credit Monitor Started (Bearer Token mode) ===")
-        print("Pro tip: Set a $50/month spend cap in X Portal > Billing")
-        print("Queries optimised: lang:en, since:2026-01-01, min_faves:1, no noise")
+        self.index_data = index_data
+        self.aliases = index_data.get("search_aliases", {})
+        print(f"=== Apex Credit Monitor Started ===")
+        print(f"Monitoring: {index_data['name']} ({index_data['total_names']} names)")
 
-    def scour(self, name, is_telecom=False):
+    def scour(self, name, sector):
+        """Search for credit-relevant news on X/Twitter"""
+        search_terms = get_search_terms(name, self.aliases)
+        # Use the first/primary term for the query
+        primary_term = search_terms[0]
+        short_name = search_terms[1] if len(search_terms) > 1 else primary_term.split()[0]
+
+        # Build query with credit-relevant keywords
+        keywords = " OR ".join(CREDIT_KEYWORDS["spread_moving"][:4] + CREDIT_KEYWORDS["corporate_events"][:3])
         query = (
-            f'"{name}" (CDS OR downgrade OR leverage OR restructuring OR tariff OR EV OR supply OR debt OR earnings) '
-            f'lang:en since:2026-01-01 min_faves:1 -filter:replies -is:retweet'
+            f'("{short_name}" OR "{primary_term}") ({keywords}) '
+            f'lang:en -filter:replies -is:retweet'
         )
-        if is_telecom:
-            query = (
-                f'("{name}" OR "Telecom Italia" OR TI) (antitrust OR KKR OR accordo OR chiusura OR deleveraging OR debito OR ristrutturazione OR clearance OR review) '
-                f'since:2026-01-01 min_faves:0 -filter:replies -is:retweet'
-            )
+
+        # Truncate query if too long (Twitter limit is 512 chars)
+        if len(query) > 500:
+            query = f'"{short_name}" (CDS OR debt OR rating OR restructuring) lang:en -filter:replies -is:retweet'
+
         try:
             tweets = self.client.search_recent_tweets(
                 query=query,
-                max_results=5,
+                max_results=10,
                 tweet_fields=['created_at', 'public_metrics', 'lang']
             )
             new_alerts = []
             if tweets.data:
                 for tweet in tweets.data:
-                    impact = self.spot_pattern(name, tweet.text, tweet.lang)
+                    impact = self.spot_pattern(name, tweet.text, sector)
                     likes = tweet.public_metrics.get('like_count', 0)
-                    lang_note = f" ({tweet.lang.upper()})" if tweet.lang != 'en' else ""
                     new_alerts.append(
-                        f"X Hit ({tweet.created_at.date()} | {likes} likes{lang_note}): "
-                        f"{tweet.text[:140]}... – {impact}"
+                        f"X ({tweet.created_at.date()} | {likes} likes): "
+                        f"{tweet.text[:140]}... | {impact}"
                     )
-                    if "antitrust" in tweet.text.lower() or "kkr" in tweet.text.lower() or "clearance" in tweet.text.lower():
-                        alert_text = f"**HIGH PRIORITY ALERT**\n{name}: {tweet.text[:200]}...\nImpact: {impact}\nLink: https://x.com/status/{tweet.id}"
+                    # High-priority alert triggers
+                    txt_lower = tweet.text.lower()
+                    if any(kw in txt_lower for kw in ["downgrade", "default", "restructuring", "antitrust", "takeover"]):
+                        alert_text = (
+                            f"*HIGH PRIORITY ALERT*\n"
+                            f"*{name}* ({sector})\n"
+                            f"{tweet.text[:200]}...\n"
+                            f"Impact: {impact}\n"
+                            f"Link: https://x.com/i/status/{tweet.id}"
+                        )
                         send_telegram_message(alert_text)
             else:
-                new_alerts.append("Quiet on X / Italian sources (Il Sole 24 Ore etc.)")
+                new_alerts.append("No recent X activity matching credit keywords")
             self.alerts[name] = new_alerts
         except Exception as e:
-            self.alerts[name] = [f"API error: {str(e)} (check token / $50 balance)"]
+            self.alerts[name] = [f"API error: {str(e)}"]
 
-    def spot_pattern(self, name, text, lang='en'):
+    def spot_pattern(self, name, text, sector):
+        """Analyze tweet for credit impact"""
         txt = text.lower()
-        if lang != 'en' or 'antitrust' in txt or 'kkr' in txt or 'chiusura' in txt:
-            if 'antitrust' in txt or 'kkr' in txt or 'accordo' in txt or 'chiusura' in txt:
-                return "Italian antitrust clearance signal – e.g., KKR deal for Telecom Italia; potential close Q1 2026, CDS tighten 15-20bps; RV long Telecom Italia / short Virgin Media (UK lag)"
-        if any(w in txt for w in ['ev', 'tariff', 'supply', 'china', 'hybrid']):
-            return f"EV/tariff/supply risk → potential widen vs peers. RV idea: short {name} CDS / long Volvo Car AB"
-        if any(w in txt for w in ['debt', 'leverage', 'restructuring', 'deleveraging']):
-            return "Leverage/debt signal – monitor for 10-20 bps CDS move; check correlations to peers like Telecom Italia"
-        if 'reg' in txt or 'antitrust' in txt or 'ofcom' in txt:
-            return "Reg risk – e.g., EU/Ofcom fiber deal delay; ripple to Virgin Media leverage; RV short Virgin Media / long Telecom Italia"
-        return "Watch item – volume building"
+
+        # Rating/spread signals
+        if any(w in txt for w in ['downgrade', 'negative outlook', 'rating cut']):
+            return "NEGATIVE: Rating pressure - expect CDS widening 10-30bps"
+        if any(w in txt for w in ['upgrade', 'positive outlook', 'rating raise']):
+            return "POSITIVE: Rating improvement - expect CDS tightening"
+
+        # Corporate events
+        if any(w in txt for w in ['restructuring', 'bankruptcy', 'default']):
+            return "HIGH RISK: Restructuring signal - significant spread impact likely"
+        if any(w in txt for w in ['acquisition', 'takeover', 'buyout', 'm&a']):
+            return "EVENT: M&A activity - monitor for leverage impact"
+        if any(w in txt for w in ['refinancing', 'bond issue', 'new debt']):
+            return "NEUTRAL: Refinancing activity - monitor terms"
+
+        # Regulatory
+        if any(w in txt for w in ['antitrust', 'regulatory', 'investigation']):
+            return "RISK: Regulatory scrutiny - potential headline risk"
+
+        # Sector-specific (Autos & Industrials)
+        if sector == "Autos & Industrials":
+            if any(w in txt for w in ['tariff', 'ev', 'supply chain', 'chip shortage']):
+                return f"SECTOR: Auto/Industrial headwind - compare to sector peers"
+
+        # TMT specific
+        if sector == "TMT":
+            if any(w in txt for w in ['spectrum', 'fiber', '5g', 'subscriber']):
+                return "SECTOR: TMT operational signal"
+
+        return "MONITOR: Potential credit signal - requires analysis"
 
     def constant_scour(self):
+        """Background thread for continuous monitoring"""
         while True:
-            for name in S44_AUTOS:
-                self.scour(name)
-            for name in S44_TELECOMS:
-                self.scour(name, is_telecom=True)
-            time.sleep(600)  # 10 minutes
+            for sector, names in self.index_data["sectors"].items():
+                for name in names:
+                    self.scour(name, sector)
+                    time.sleep(2)  # Rate limiting between API calls
+            time.sleep(600)  # 10 minutes between full scans
 
-# Dashboard
-st.title("Apex Credit Monitor – iTraxx XO S44")
-hound = NewsHound()
-Thread(target=hound.constant_scour, daemon=True).start()
+# ============== STREAMLIT DASHBOARD ==============
 
-sector = st.selectbox("Select Sector", ["Autos", "Telecoms"])
+st.set_page_config(page_title="Apex Credit Monitor", layout="wide")
+st.title("Apex Credit Monitor")
 
-if sector == "Autos":
-    names = S44_AUTOS
-elif sector == "Telecoms":
-    names = S44_TELECOMS
+# Get available indices
+available_indices = get_available_indices()
 
-selected = st.selectbox("Select Name", names)
-st.subheader(f"Latest on {selected}")
-alerts = hound.alerts.get(selected, ["Scanning..."])
-for alert in alerts[-3:]:
-    st.info(alert)
+if not available_indices:
+    st.error("No index configuration files found in /indices folder")
+    st.stop()
+
+# Index selector
+selected_index = st.sidebar.selectbox(
+    "Select Index",
+    available_indices,
+    format_func=lambda x: x.replace("_", " ").upper()
+)
+
+# Load selected index
+index_data = load_index(f"{selected_index}.json")
+st.sidebar.markdown(f"**{index_data['name']}**")
+st.sidebar.markdown(f"Names: {index_data['total_names']}")
+
+# Initialize NewsHound with selected index
+@st.cache_resource
+def get_hound(index_name):
+    index_data = load_index(f"{index_name}.json")
+    hound = NewsHound(index_data)
+    Thread(target=hound.constant_scour, daemon=True).start()
+    return hound
+
+hound = get_hound(selected_index)
+
+# Sector selector
+sectors = list(index_data["sectors"].keys())
+selected_sector = st.selectbox("Select Sector", sectors)
+
+# Company selector
+companies = index_data["sectors"][selected_sector]
+selected_company = st.selectbox("Select Company", companies)
+
+# Display alerts
+st.subheader(f"{selected_company}")
+st.caption(f"Sector: {selected_sector}")
+
+alerts = hound.alerts.get(selected_company, ["Scanning... (may take a few minutes on first load)"])
+for alert in alerts[-5:]:
+    if "HIGH PRIORITY" in alert or "NEGATIVE" in alert or "HIGH RISK" in alert:
+        st.error(alert)
+    elif "POSITIVE" in alert:
+        st.success(alert)
+    else:
+        st.info(alert)
+
+# Sidebar stats
+st.sidebar.markdown("---")
+st.sidebar.markdown("### Sector Breakdown")
+for sector, names in index_data["sectors"].items():
+    st.sidebar.markdown(f"- {sector}: {len(names)} names")
