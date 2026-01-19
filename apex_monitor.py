@@ -15,7 +15,24 @@ def send_telegram_message(message):
         "text": message,
         "parse_mode": "Markdown"
     }
-    requests.post(url, json=payload)
+    try:
+        resp = requests.post(url, json=payload, timeout=10)
+        if not resp.ok:
+            print(f"[Telegram Error] {resp.status_code}: {resp.text}")
+        return resp.ok
+    except Exception as e:
+        print(f"[Telegram Exception] {e}")
+        return False
+
+def test_telegram():
+    """Manual test - call this to verify Telegram is working"""
+    print("Sending test message to Telegram...")
+    success = send_telegram_message("🔔 *Apex Monitor Test*\nIf you see this, Telegram alerts are working!")
+    if success:
+        print("✓ Test message sent successfully!")
+    else:
+        print("✗ Failed to send test message - check bot token and chat ID")
+    return success
 
 # Bearer Token (replace with your real token)
 bearer_token = 'AAAAAAAAAAAAAAAAAAAAAIEy7AEAAAAA7i6Z0oDKcaAhoci%2BxCdDCcMu%2F24%3D81cP7z0fjD4152R1jkVQVrwzpoRftg5bFershoYXzMefyzMzZc'
