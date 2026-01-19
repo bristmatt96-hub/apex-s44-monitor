@@ -2,11 +2,13 @@ import streamlit as st
 import tweepy
 from threading import Thread
 import time
-import requests  # For Telegram
+import requests
+import os
 
-# Telegram settings (replace with your real values)
-TELEGRAM_BOT_TOKEN = '8502961004:AAFQoeJcpAf63gT_G4npP_5csigQ-g3vo6I'  # From BotFather
-TELEGRAM_CHAT_ID = '7281424114'  # From userinfobot
+# Load secrets from Streamlit Cloud or environment variables (for local dev)
+TELEGRAM_BOT_TOKEN = st.secrets.get("TELEGRAM_BOT_TOKEN", os.environ.get("TELEGRAM_BOT_TOKEN", ""))
+TELEGRAM_CHAT_ID = st.secrets.get("TELEGRAM_CHAT_ID", os.environ.get("TELEGRAM_CHAT_ID", ""))
+TWITTER_BEARER_TOKEN = st.secrets.get("TWITTER_BEARER_TOKEN", os.environ.get("TWITTER_BEARER_TOKEN", ""))
 
 def send_telegram_message(message):
     url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
@@ -34,8 +36,7 @@ def test_telegram():
         print("✗ Failed to send test message - check bot token and chat ID")
     return success
 
-# Bearer Token (replace with your real token)
-bearer_token = 'AAAAAAAAAAAAAAAAAAAAAIEy7AEAAAAA7i6Z0oDKcaAhoci%2BxCdDCcMu%2F24%3D81cP7z0fjD4152R1jkVQVrwzpoRftg5bFershoYXzMefyzMzZc'
+# Twitter/X API Bearer Token loaded from secrets above
 
 S44_AUTOS = [
     'Renault',
@@ -64,7 +65,7 @@ S44_TELECOMS = [
 
 class NewsHound:
     def __init__(self):
-        self.client = tweepy.Client(bearer_token=bearer_token)
+        self.client = tweepy.Client(bearer_token=TWITTER_BEARER_TOKEN)
         self.alerts = {}
         print("=== Apex Credit Monitor Started (Bearer Token mode) ===")
         print("Pro tip: Set a $50/month spend cap in X Portal > Billing")
