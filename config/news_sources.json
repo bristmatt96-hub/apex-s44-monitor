@@ -1,0 +1,36 @@
+{
+  "rss_feeds": {
+    "general_credit": [
+      {"name": "Reuters Business", "url": "https://feeds.reuters.com/reuters/businessNews", "region": "Global"},
+      {"name": "FT Companies", "url": "https://www.ft.com/companies?format=rss", "region": "Global"},
+      {"name": "Bloomberg Markets", "url": "https://feeds.bloomberg.com/markets/news.rss", "region": "Global"}
+    ],
+    "european": [
+      {"name": "Il Sole 24 Ore", "url": "https://www.ilsole24ore.com/rss/finanza.xml", "region": "Italy"},
+      {"name": "Handelsblatt", "url": "https://www.handelsblatt.com/contentexport/feed/unternehmen", "region": "Germany"},
+      {"name": "Les Echos", "url": "https://www.lesechos.fr/rss/rss_une_finance.xml", "region": "France"},
+      {"name": "Expansion", "url": "https://e00-expansion.uecdn.es/rss/empresas.xml", "region": "Spain"}
+    ],
+    "sector_autos": [
+      {"name": "Automotive News Europe", "url": "https://europe.autonews.com/rss.xml", "region": "Europe"},
+      {"name": "Just Auto", "url": "https://www.just-auto.com/feed/", "region": "Global"}
+    ],
+    "sector_tmt": [
+      {"name": "Telecoms.com", "url": "https://telecoms.com/feed/", "region": "Global"},
+      {"name": "Light Reading", "url": "https://www.lightreading.com/rss_simple.asp", "region": "Global"},
+      {"name": "Capacity Media", "url": "https://www.capacitymedia.com/rss", "region": "Global"}
+    ],
+    "sector_retail": [
+      {"name": "Retail Gazette", "url": "https://www.retailgazette.co.uk/feed/", "region": "UK"},
+      {"name": "The Grocer", "url": "https://www.thegrocer.co.uk/rss", "region": "UK"}
+    ],
+    "distressed": [
+      {"name": "Reorg Research", "url": "https://reorg.com/feed/", "region": "Global"},
+      {"name": "Debtwire (Public)", "url": "https://debtwire.com/feed/", "region": "Global"}
+    ]
+  },
+  "newsapi_keywords": {
+    "credit_terms": ["bond", "debt", "leverage", "refinancing", "default", "restructuring", "downgrade", "upgrade"],
+    "event_terms": ["acquisition", "merger", "takeover", "bankruptcy", "IPO", "dividend"]
+  }
+}
