@@ -1,0 +1,134 @@
+{
+  "company_name": "Telecom Italia S.p.A.",
+  "ticker": "TIT",
+  "sector": "TMT",
+  "last_updated": "2026-01-15",
+
+  "overview": {
+    "business_description": "Leading Italian integrated telecom operator providing fixed, mobile, and broadband services. Operates domestic (TIM) and international (Sparkle) networks.",
+    "business_positives": [
+      "Dominant market position in Italian fixed-line",
+      "Extensive fiber network (FiberCop JV)",
+      "Recurring revenue from enterprise segment",
+      "Strategic asset value (NetCo separation)"
+    ],
+    "fatal_flaw": "High leverage; execution risk on NetCo/ServCo separation; regulatory uncertainty on network access pricing",
+    "ownership": "Vivendi 23.75%, CDP 9.81%, institutional investors",
+    "public_private": "public",
+    "recent_news": "KKR NetCo acquisition progressing; antitrust clearance expected Q1 2026"
+  },
+
+  "ratings": {
+    "moodys": {"rating": "B1", "outlook": "Positive", "date": "2025-09-15"},
+    "sp": {"rating": "B+", "outlook": "Stable", "date": "2025-10-01"},
+    "fitch": {"rating": "B+", "outlook": "Positive", "date": "2025-08-20"}
+  },
+
+  "quick_assessment": {
+    "period_end": "Q3 2025",
+    "cffo": 2100,
+    "total_debt": 25400,
+    "interest_expense": 1450,
+    "capex": 2800,
+    "debt_due_one_year": 3200,
+    "cash_on_hand": 4100,
+    "revolver_available": 3000
+  },
+
+  "key_ratios": {
+    "debt_to_ebitda": 4.2,
+    "ebitda_minus_capex_to_interest": 2.1,
+    "fcf_to_debt": 0.03,
+    "net_debt_to_ebitda": 3.5
+  },
+
+  "trend_analysis": {
+    "years": ["FY2023", "FY2024", "LTM Q3-25"],
+    "revenue": [15800, 14200, 13900],
+    "revenue_growth": [null, -10.1, -2.1],
+    "ebitda": [6200, 5900, 6050],
+    "ebitda_growth": [null, -4.8, 2.5],
+    "ebitda_margin": [39.2, 41.5, 43.5],
+    "interest_expense": [1580, 1520, 1450],
+    "capex": [3100, 2900, 2800],
+    "simple_fcf": [520, 480, 450],
+    "total_debt": [26800, 26100, 25400]
+  },
+
+  "debt_capitalization": [
+    {
+      "instrument": "EUR Senior Secured TL",
+      "amount": 5000,
+      "maturity": "2028",
+      "coupon": "E+375",
+      "price": 99.5,
+      "ytw": 4.8,
+      "stw": 385,
+      "rating": "BB-"
+    },
+    {
+      "instrument": "EUR 4.0% Senior Notes",
+      "amount": 1000,
+      "maturity": "2027",
+      "coupon": "4.000%",
+      "price": 97.25,
+      "ytw": 5.2,
+      "stw": 420,
+      "rating": "B+"
+    },
+    {
+      "instrument": "EUR 6.875% Senior Notes",
+      "amount": 750,
+      "maturity": "2028",
+      "coupon": "6.875%",
+      "price": 102.5,
+      "ytw": 5.8,
+      "stw": 480,
+      "rating": "B+"
+    },
+    {
+      "instrument": "EUR 7.875% Senior Notes",
+      "amount": 1250,
+      "maturity": "2030",
+      "coupon": "7.875%",
+      "price": 104.0,
+      "ytw": 6.5,
+      "stw": 540,
+      "rating": "B+"
+    }
+  ],
+
+  "maturity_schedule": {
+    "year_1": 3200,
+    "year_2": 4100,
+    "year_3": 5500,
+    "year_4": 3800,
+    "year_5": 4200,
+    "thereafter": 4600
+  },
+
+  "equity_market_value": {
+    "shares_outstanding_mm": 21900,
+    "avg_stock_price_3m": 0.28,
+    "equity_market_value": 6132,
+    "total_enterprise_value": 27432,
+    "tev_to_ebitda": 4.5
+  },
+
+  "credit_opinion": {
+    "summary": "TIM remains a deleveraging story contingent on successful NetCo sale to KKR. Post-separation, ServCo will be a lighter, service-focused entity with lower capex needs but also reduced asset backing. Near-term catalysts favor spread tightening.",
+    "key_risks": [
+      "NetCo sale delay or repricing",
+      "Italian regulatory changes on network access",
+      "Mobile market share pressure from Iliad",
+      "Execution risk on cost cutting targets"
+    ],
+    "key_catalysts": [
+      "KKR deal closure (Q1 2026 expected)",
+      "Deleveraging below 3.5x post-transaction",
+      "Rating upgrades post-separation",
+      "FiberCop synergies realization"
+    ],
+    "recommendation": "OVERWEIGHT vs index - attractive risk/reward on NetCo catalyst"
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "_template_description": "Copy this template and rename to {company_ticker}.json",
+  "company_name": "",
+  "ticker": "",
+  "sector": "",
+  "last_updated": "",
+
+  "overview": {
+    "business_description": "",
+    "business_positives": [],
+    "fatal_flaw": "",
+    "ownership": "",
+    "public_private": "private",
+    "recent_news": ""
+  },
+
+  "ratings": {
+    "moodys": {"rating": "", "outlook": "", "date": ""},
+    "sp": {"rating": "", "outlook": "", "date": ""},
+    "fitch": {"rating": "", "outlook": "", "date": ""}
+  },
+
+  "quick_assessment": {
+    "period_end": "",
+    "cffo": null,
+    "total_debt": null,
+    "interest_expense": null,
+    "capex": null,
+    "debt_due_one_year": null,
+    "cash_on_hand": null,
+    "revolver_available": null
+  },
+
+  "key_ratios": {
+    "debt_to_ebitda": null,
+    "ebitda_minus_capex_to_interest": null,
+    "fcf_to_debt": null,
+    "net_debt_to_ebitda": null
+  },
+
+  "trend_analysis": {
+    "years": ["FY-2", "FY-1", "LTM"],
+    "revenue": [],
+    "revenue_growth": [],
+    "ebitda": [],
+    "ebitda_growth": [],
+    "ebitda_margin": [],
+    "interest_expense": [],
+    "capex": [],
+    "simple_fcf": [],
+    "total_debt": []
+  },
+
+  "debt_capitalization": [
+    {
+      "instrument": "",
+      "amount": null,
+      "maturity": "",
+      "coupon": "",
+      "price": null,
+      "ytw": null,
+      "stw": null,
+      "rating": ""
+    }
+  ],
+
+  "maturity_schedule": {
+    "year_1": null,
+    "year_2": null,
+    "year_3": null,
+    "year_4": null,
+    "year_5": null,
+    "thereafter": null
+  },
+
+  "equity_market_value": {
+    "shares_outstanding_mm": null,
+    "avg_stock_price_3m": null,
+    "equity_market_value": null,
+    "total_enterprise_value": null,
+    "tev_to_ebitda": null
+  },
+
+  "credit_opinion": {
+    "summary": "",
+    "key_risks": [],
+    "key_catalysts": [],
+    "recommendation": ""
+  }
+}
