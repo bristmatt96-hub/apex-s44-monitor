@@ -282,13 +282,7 @@ def run_scanner():
         print("\n⚠️  Telegram not configured - running in test mode")
         print("Alerts will be printed to console only\n")
     else:
-        send_telegram_alert({
-            "company": "System",
-            "account": "@ApexMonitor",
-            "news": "Twitter Alpha Scanner started. Monitoring XO S44 credits for alpha.",
-            "sentiment": "NEUTRAL",
-            "urgency": "LOW"
-        })
+        print("Telegram configured - alerts will be sent when alpha is found\n")
 
     sent_alerts = load_sent_alerts()
     batch_index = 0
