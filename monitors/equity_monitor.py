@@ -198,7 +198,96 @@ def get_movers(threshold_pct: float = 3.0) -> Dict[str, List[Dict]]:
 
 # ============== NEWS SEARCH FOR "WHY MOVED?" ==============
 
-def search_news_for_company(company_name: str, ticker: str = None) -> List[Dict]:
+# Curated list of HY/Credit-focused Twitter accounts
+# These accounts often break stories before mainstream media
+CREDIT_TWITTER_ACCOUNTS = [
+    # Credit/HY Specialists
+    "CreditSights",      # Credit research
+    "LevFinInsights",    # Leveraged finance news
+    "ResijsMarc",        # European credit analyst
+    "Creditflux",        # CLO/leveraged loan news
+    "LCD_News",          # Leveraged Commentary & Data
+    "CapitalStructure",  # Restructuring news
+    "9finHQ",            # European leveraged finance
+    "DebtwireEurope",    # European debt news
+    "SophieKL_FT",       # FT distressed debt reporter
+
+    # Market Movers & Breaking News
+    "DeItaone",          # Fast market news
+    "FirstSquawk",       # Breaking financial news
+    "Faboratory",        # European markets
+    "zaborowskibond",    # Bond market coverage
+    "bondstrategist",    # Fixed income analysis
+
+    # Sector Specialists
+    "aviaborenstein",    # Telecom/media credit
+    "RobinWigg",         # European distressed
+    "PriapusIQ",         # Event-driven situations
+]
+
+def search_twitter_for_company(company_name: str, ticker: str, bearer_token: str = None) -> List[Dict]:
+    """
+    Search Twitter for mentions of a company from credit-focused accounts
+    Only called when user clicks "Why?" - preserves API quota
+    """
+    if not bearer_token:
+        bearer_token = os.environ.get("TWITTER_BEARER_TOKEN", "")
+
+    if not bearer_token:
+        return []
+
+    results = []
+
+    # Clean company name for search
+    search_name = company_name.replace("S.A.", "").replace("AG", "").replace("plc", "").replace("B.V.", "").strip()
+    short_name = search_name.split()[0] if search_name else company_name
+
+    # Build query: search for company mentions from credit accounts
+    accounts_query = " OR ".join([f"from:{acc}" for acc in CREDIT_TWITTER_ACCOUNTS[:10]])  # Limit to avoid query length issues
+
+    query = f'("{short_name}" OR "{ticker}") ({accounts_query})'
+
+    # Fallback to simpler query if too long
+    if len(query) > 500:
+        query = f'"{short_name}" (credit OR bond OR debt OR CDS OR restructuring)'
+
+    try:
+        import tweepy
+        client = tweepy.Client(bearer_token=bearer_token)
+
+        tweets = client.search_recent_tweets(
+            query=query,
+            max_results=10,
+            tweet_fields=['created_at', 'public_metrics', 'author_id'],
+            user_fields=['username', 'name'],
+            expansions=['author_id']
+        )
+
+        if tweets.data:
+            # Build user lookup
+            users = {u.id: u for u in (tweets.includes.get('users', []) or [])}
+
+            for tweet in tweets.data:
+                author = users.get(tweet.author_id)
+                username = author.username if author else "unknown"
+
+                results.append({
+                    'title': tweet.text[:200] + "..." if len(tweet.text) > 200 else tweet.text,
+                    'link': f"https://twitter.com/{username}/status/{tweet.id}",
+                    'source': f"@{username}",
+                    'date': tweet.created_at.strftime('%Y-%m-%d %H:%M') if tweet.created_at else '',
+                    'type': 'twitter',
+                    'likes': tweet.public_metrics.get('like_count', 0) if tweet.public_metrics else 0,
+                    'retweets': tweet.public_metrics.get('retweet_count', 0) if tweet.public_metrics else 0
+                })
+
+    except Exception as e:
+        print(f"Twitter search error: {e}")
+
+    return results
+
+
+def search_news_for_company(company_name: str, ticker: str = None, include_twitter: bool = True) -> List[Dict]:
     """
     Search for recent news about a company to explain price moves
     Uses multiple sources - returns ACTUAL headlines, no AI interpretation
@@ -273,6 +362,13 @@ def search_news_for_company(company_name: str, ticker: str = None) -> List[Dict]
         except Exception as e:
             print(f"Yahoo Finance error: {e}")
 
+    # Source 4: Twitter/X - Credit-focused accounts (only if enabled)
+    if include_twitter:
+        twitter_results = search_twitter_for_company(company_name, ticker or "")
+        # Add Twitter results at the TOP (often fastest)
+        for tr in twitter_results:
+            results.insert(0, tr)
+
     # Deduplicate by title similarity
     seen_titles = set()
     unique_results = []
@@ -282,7 +378,7 @@ def search_news_for_company(company_name: str, ticker: str = None) -> List[Dict]
             seen_titles.add(title_key)
             unique_results.append(r)
 
-    return unique_results[:10]
+    return unique_results[:15]  # Return more results now that we have Twitter
 
 
 def analyze_price_move(company_name: str, ticker: str, change_pct: float) -> Dict:
@@ -491,12 +587,26 @@ def render_equity_dashboard(st):
 
             st.markdown("#### 📰 Recent News (Real Headlines)")
             if analysis['news']:
-                for article in analysis['news']:
-                    st.markdown(f"- **[{article['title']}]({article['link']})** - *{article['source']}* ({article.get('date', '')})")
+                # Separate Twitter from other sources
+                twitter_news = [a for a in analysis['news'] if a.get('type') == 'twitter']
+                other_news = [a for a in analysis['news'] if a.get('type') != 'twitter']
+
+                if twitter_news:
+                    st.markdown("**🐦 Twitter/X (Credit Accounts):**")
+                    for article in twitter_news[:5]:
+                        likes = article.get('likes', 0)
+                        rts = article.get('retweets', 0)
+                        engagement = f"❤️{likes} 🔄{rts}" if likes or rts else ""
+                        st.markdown(f"- [{article['title']}]({article['link']}) - *{article['source']}* {engagement}")
+
+                if other_news:
+                    st.markdown("**📰 News Sources:**")
+                    for article in other_news[:10]:
+                        st.markdown(f"- **[{article['title']}]({article['link']})** - *{article['source']}* ({article.get('date', '')})")
             else:
                 st.warning("No recent news found. Check Bloomberg/Reuters terminals for more coverage.")
 
-            st.caption("*These are actual news headlines, not AI-generated content.*")
+            st.caption("*These are actual headlines from Twitter credit accounts and news sources, not AI-generated.*")
 
     # Individual company lookup
     st.markdown("---")
