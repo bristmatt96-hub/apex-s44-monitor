@@ -35,6 +35,14 @@ try:
 except ImportError:
     pass
 
+# Try to import equity monitor
+EQUITY_MONITOR_AVAILABLE = False
+try:
+    from monitors import render_equity_dashboard, YFINANCE_AVAILABLE
+    EQUITY_MONITOR_AVAILABLE = True
+except ImportError:
+    YFINANCE_AVAILABLE = False
+
 # ============== TELEGRAM FUNCTIONS ==============
 
 def send_telegram_message(message):
@@ -808,9 +816,11 @@ if DB_AVAILABLE:
     st.sidebar.markdown("- PostgreSQL Database")
 if TEARSHEET_AVAILABLE:
     st.sidebar.markdown("- Tear Sheet Generator")
+if EQUITY_MONITOR_AVAILABLE:
+    st.sidebar.markdown("- Equity Monitor (yfinance)" if YFINANCE_AVAILABLE else "- Equity Monitor (no yfinance)")
 
 # Main content tabs
-tab1, tab2, tab3, tab4 = st.tabs(["Trading Signals", "News Monitor", "RSS & News", "Credit Snapshot"])
+tab1, tab2, tab3, tab4, tab5 = st.tabs(["Trading Signals", "Equity Monitor", "News Monitor", "RSS & News", "Credit Snapshot"])
 
 # Initialize NewsHound with selected index
 @st.cache_resource
@@ -836,7 +846,14 @@ with tab1:
     render_trading_signals(signals, hound)
 
 with tab2:
-    st.markdown("### X/Twitter Monitor")
+    if EQUITY_MONITOR_AVAILABLE:
+        render_equity_dashboard(st)
+    else:
+        st.warning("Equity Monitor not available. Check monitors/ module.")
+        st.info("Install yfinance for live prices: `pip install yfinance`")
+
+with tab3:
+    st.markdown("### X/Twitter Monitor (News)")
 
     # Sector selector
     sectors = list(index_data["sectors"].keys())
@@ -870,7 +887,7 @@ with tab2:
             else:
                 st.info(str(alert))
 
-with tab3:
+with tab4:
     st.markdown("### RSS Feeds & NewsAPI")
     st.caption("Trade journals, local newspapers, and news aggregators")
 
@@ -905,7 +922,7 @@ with tab3:
                         st.markdown(article['summary'] + "...")
                 st.markdown("---")
 
-with tab4:
+with tab5:
     st.markdown("### Credit Snapshot")
 
     # Get all companies across sectors
