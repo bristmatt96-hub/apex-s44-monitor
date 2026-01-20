@@ -34,57 +34,55 @@ chg19 = getChange("XETR:LXS")         // Lanxess
 chg20 = getChange("OMXHEX:METSB")     // Metsä Board
 chg21 = getChange("NYSE:OI")          // O-I Glass
 
-// Ticker names
+// Ticker names and symbols
 var string[] names = array.from("Air France", "Ceconomy", "Avolta", "Grifols", "IGT", "Lagardere", "Lottomatica", "Ontex", "Playtech", "Premier Foods", "Recordati", "TUI", "Wizz Air", "Constellium", "Crown", "Forvia", "Hapag-Lloyd", "Tata/JLR", "Lanxess", "Metsa Board", "OI Glass")
-
 var string[] tickers = array.from("AF", "CEC", "AVOL", "GRF", "IGT", "MMB", "LTMC", "ONTEX", "PTEC", "PFD", "REC", "TUI", "WIZZ", "CSTM", "CCK", "FRVIA", "HLAG", "TATAMOTORS", "LXS", "METSB", "OI")
 
-// Check for alerts - triggers on BOTH +1% and -1% moves
-checkAlert(chg, idx) =>
-    if not na(chg) and math.abs(chg) >= threshold
-        name = array.get(names, idx)
-        tick = array.get(tickers, idx)
-        str.format('\{"ticker":"{0}","company":"{1}","price":0,"change":{2,number,#.##}\}', tick, name, chg)
-    else
-        ""
+// Check if triggered
+isTriggered(chg) => not na(chg) and math.abs(chg) >= threshold
 
-// Build alert messages
-msg01 = checkAlert(chg01, 0)
-msg02 = checkAlert(chg02, 1)
-msg03 = checkAlert(chg03, 2)
-msg04 = checkAlert(chg04, 3)
-msg05 = checkAlert(chg05, 4)
-msg06 = checkAlert(chg06, 5)
-msg07 = checkAlert(chg07, 6)
-msg08 = checkAlert(chg08, 7)
-msg09 = checkAlert(chg09, 8)
-msg10 = checkAlert(chg10, 9)
-msg11 = checkAlert(chg11, 10)
-msg12 = checkAlert(chg12, 11)
-msg13 = checkAlert(chg13, 12)
-msg14 = checkAlert(chg14, 13)
-msg15 = checkAlert(chg15, 14)
-msg16 = checkAlert(chg16, 15)
-msg17 = checkAlert(chg17, 16)
-msg18 = checkAlert(chg18, 17)
-msg19 = checkAlert(chg19, 18)
-msg20 = checkAlert(chg20, 19)
-msg21 = checkAlert(chg21, 20)
+// Check triggers
+t01 = isTriggered(chg01)
+t02 = isTriggered(chg02)
+t03 = isTriggered(chg03)
+t04 = isTriggered(chg04)
+t05 = isTriggered(chg05)
+t06 = isTriggered(chg06)
+t07 = isTriggered(chg07)
+t08 = isTriggered(chg08)
+t09 = isTriggered(chg09)
+t10 = isTriggered(chg10)
+t11 = isTriggered(chg11)
+t12 = isTriggered(chg12)
+t13 = isTriggered(chg13)
+t14 = isTriggered(chg14)
+t15 = isTriggered(chg15)
+t16 = isTriggered(chg16)
+t17 = isTriggered(chg17)
+t18 = isTriggered(chg18)
+t19 = isTriggered(chg19)
+t20 = isTriggered(chg20)
+t21 = isTriggered(chg21)
 
-// Combine alerts
-anyAlert = msg01 != "" or msg02 != "" or msg03 != "" or msg04 != "" or msg05 != "" or msg06 != "" or msg07 != "" or msg08 != "" or msg09 != "" or msg10 != "" or msg11 != "" or msg12 != "" or msg13 != "" or msg14 != "" or msg15 != "" or msg16 != "" or msg17 != "" or msg18 != "" or msg19 != "" or msg20 != "" or msg21 != ""
+// Count triggers
+triggerCount = (t01 ? 1 : 0) + (t02 ? 1 : 0) + (t03 ? 1 : 0) + (t04 ? 1 : 0) + (t05 ? 1 : 0) + (t06 ? 1 : 0) + (t07 ? 1 : 0) + (t08 ? 1 : 0) + (t09 ? 1 : 0) + (t10 ? 1 : 0) + (t11 ? 1 : 0) + (t12 ? 1 : 0) + (t13 ? 1 : 0) + (t14 ? 1 : 0) + (t15 ? 1 : 0) + (t16 ? 1 : 0) + (t17 ? 1 : 0) + (t18 ? 1 : 0) + (t19 ? 1 : 0) + (t20 ? 1 : 0) + (t21 ? 1 : 0)
 
-// Get first non-empty message for webhook
-firstMsg = msg01 != "" ? msg01 : msg02 != "" ? msg02 : msg03 != "" ? msg03 : msg04 != "" ? msg04 : msg05 != "" ? msg05 : msg06 != "" ? msg06 : msg07 != "" ? msg07 : msg08 != "" ? msg08 : msg09 != "" ? msg09 : msg10 != "" ? msg10 : msg11 != "" ? msg11 : msg12 != "" ? msg12 : msg13 != "" ? msg13 : msg14 != "" ? msg14 : msg15 != "" ? msg15 : msg16 != "" ? msg16 : msg17 != "" ? msg17 : msg18 != "" ? msg18 : msg19 != "" ? msg19 : msg20 != "" ? msg20 : msg21
+anyAlert = triggerCount > 0
 
-// Count how many triggered
-triggerCount = (msg01 != "" ? 1 : 0) + (msg02 != "" ? 1 : 0) + (msg03 != "" ? 1 : 0) + (msg04 != "" ? 1 : 0) + (msg05 != "" ? 1 : 0) + (msg06 != "" ? 1 : 0) + (msg07 != "" ? 1 : 0) + (msg08 != "" ? 1 : 0) + (msg09 != "" ? 1 : 0) + (msg10 != "" ? 1 : 0) + (msg11 != "" ? 1 : 0) + (msg12 != "" ? 1 : 0) + (msg13 != "" ? 1 : 0) + (msg14 != "" ? 1 : 0) + (msg15 != "" ? 1 : 0) + (msg16 != "" ? 1 : 0) + (msg17 != "" ? 1 : 0) + (msg18 != "" ? 1 : 0) + (msg19 != "" ? 1 : 0) + (msg20 != "" ? 1 : 0) + (msg21 != "" ? 1 : 0)
+// Build alert message
+getMsg(triggered, chg, idx) =>
+    triggered ? str.format('\{"ticker":"{0}","company":"{1}","price":0,"change":{2,number,#.##}\}', array.get(tickers, idx), array.get(names, idx), chg) : ""
 
-// Plot trigger count
+firstMsg = t01 ? getMsg(t01, chg01, 0) : t02 ? getMsg(t02, chg02, 1) : t03 ? getMsg(t03, chg03, 2) : t04 ? getMsg(t04, chg04, 3) : t05 ? getMsg(t05, chg05, 4) : t06 ? getMsg(t06, chg06, 5) : t07 ? getMsg(t07, chg07, 6) : t08 ? getMsg(t08, chg08, 7) : t09 ? getMsg(t09, chg09, 8) : t10 ? getMsg(t10, chg10, 9) : t11 ? getMsg(t11, chg11, 10) : t12 ? getMsg(t12, chg12, 11) : t13 ? getMsg(t13, chg13, 12) : t14 ? getMsg(t14, chg14, 13) : t15 ? getMsg(t15, chg15, 14) : t16 ? getMsg(t16, chg16, 15) : t17 ? getMsg(t17, chg17, 16) : t18 ? getMsg(t18, chg18, 17) : t19 ? getMsg(t19, chg19, 18) : t20 ? getMsg(t20, chg20, 19) : t21 ? getMsg(t21, chg21, 20) : ""
+
+// REQUIRED: Plot and hline at top level
 plot(triggerCount, "Triggers", color=triggerCount > 0 ? color.red : color.green, linewidth=2)
 hline(0, "Zero", color=color.gray)
 
-// Alert condition - fires once per 2-min bar when triggered
+// Alert condition
+alertcondition(anyAlert, title="XO S44 Alert", message="{{plot_0}}")
+
+// Alternative alert method
 if anyAlert
     alert(firstMsg, alert.freq_once_per_bar)
 
@@ -94,29 +92,8 @@ if barstate.islast
     table.cell(infoTable, 0, 0, "XO S44 Part 1 (2m)", text_color=color.white, text_size=size.small)
     table.cell(infoTable, 1, 0, "2m Chg %", text_color=color.white, text_size=size.small)
 
-    showRow(row, name, chg) =>
-        c = na(chg) ? color.gray : math.abs(chg) >= threshold ? color.red : chg < 0 ? color.orange : color.green
-        table.cell(infoTable, 0, row, name, text_color=c, text_size=size.tiny)
-        table.cell(infoTable, 1, row, na(chg) ? "N/A" : str.tostring(chg, "#.##") + "%", text_color=c, text_size=size.tiny)
-
-    showRow(1, "Air France", chg01)
-    showRow(2, "Ceconomy", chg02)
-    showRow(3, "Avolta", chg03)
-    showRow(4, "Grifols", chg04)
-    showRow(5, "IGT", chg05)
-    showRow(6, "Lagardere", chg06)
-    showRow(7, "Lottomatica", chg07)
-    showRow(8, "Ontex", chg08)
-    showRow(9, "Playtech", chg09)
-    showRow(10, "Premier Foods", chg10)
-    showRow(11, "Recordati", chg11)
-    showRow(12, "TUI", chg12)
-    showRow(13, "Wizz Air", chg13)
-    showRow(14, "Constellium", chg14)
-    showRow(15, "Crown", chg15)
-    showRow(16, "Forvia", chg16)
-    showRow(17, "Hapag-Lloyd", chg17)
-    showRow(18, "Tata/JLR", chg18)
-    showRow(19, "Lanxess", chg19)
-    showRow(20, "Metsa Board", chg20)
-    showRow(21, "OI Glass", chg21)
+    for i = 0 to 20
+        chgVal = i == 0 ? chg01 : i == 1 ? chg02 : i == 2 ? chg03 : i == 3 ? chg04 : i == 4 ? chg05 : i == 5 ? chg06 : i == 6 ? chg07 : i == 7 ? chg08 : i == 8 ? chg09 : i == 9 ? chg10 : i == 10 ? chg11 : i == 11 ? chg12 : i == 12 ? chg13 : i == 13 ? chg14 : i == 14 ? chg15 : i == 15 ? chg16 : i == 16 ? chg17 : i == 17 ? chg18 : i == 18 ? chg19 : i == 19 ? chg20 : chg21
+        c = na(chgVal) ? color.gray : math.abs(chgVal) >= threshold ? color.red : chgVal < 0 ? color.orange : color.green
+        table.cell(infoTable, 0, i + 1, array.get(names, i), text_color=c, text_size=size.tiny)
+        table.cell(infoTable, 1, i + 1, na(chgVal) ? "N/A" : str.tostring(chgVal, "#.##") + "%", text_color=c, text_size=size.tiny)

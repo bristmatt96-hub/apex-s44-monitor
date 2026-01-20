@@ -10,10 +10,12 @@ Supports:
 
 import json
 import os
+import re
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Dict, List, Optional, Any
 import requests
+from urllib.parse import quote_plus
 
 # Try to import yfinance for price data
 try:
@@ -194,6 +196,132 @@ def get_movers(threshold_pct: float = 3.0) -> Dict[str, List[Dict]]:
     }
 
 
+# ============== NEWS SEARCH FOR "WHY MOVED?" ==============
+
+def search_news_for_company(company_name: str, ticker: str = None) -> List[Dict]:
+    """
+    Search for recent news about a company to explain price moves
+    Uses multiple sources - returns ACTUAL headlines, no AI interpretation
+    """
+    results = []
+
+    # Clean company name for search
+    search_name = company_name.replace("S.A.", "").replace("AG", "").replace("plc", "").strip()
+    short_name = search_name.split()[0] if search_name else company_name
+
+    # Source 1: Google News RSS (no API key needed)
+    try:
+        google_news_url = f"https://news.google.com/rss/search?q={quote_plus(short_name + ' stock')}&hl=en&gl=US&ceid=US:en"
+        response = requests.get(google_news_url, timeout=10)
+        if response.status_code == 200:
+            # Parse RSS XML
+            from xml.etree import ElementTree as ET
+            root = ET.fromstring(response.content)
+            for item in root.findall('.//item')[:5]:
+                title = item.find('title')
+                link = item.find('link')
+                pub_date = item.find('pubDate')
+                source = item.find('source')
+                if title is not None:
+                    results.append({
+                        'title': title.text,
+                        'link': link.text if link is not None else '',
+                        'source': source.text if source is not None else 'Google News',
+                        'date': pub_date.text if pub_date is not None else '',
+                        'type': 'news'
+                    })
+    except Exception as e:
+        print(f"Google News error: {e}")
+
+    # Source 2: DuckDuckGo News (no API key needed)
+    try:
+        ddg_url = f"https://duckduckgo.com/news.js?q={quote_plus(short_name)}&df=d"
+        headers = {'User-Agent': 'Mozilla/5.0'}
+        response = requests.get(ddg_url, headers=headers, timeout=10)
+        if response.status_code == 200 and response.text:
+            # Try to parse JSON response
+            try:
+                data = response.json()
+                for item in data.get('results', [])[:5]:
+                    results.append({
+                        'title': item.get('title', ''),
+                        'link': item.get('url', ''),
+                        'source': item.get('source', 'DuckDuckGo News'),
+                        'date': item.get('date', ''),
+                        'type': 'news'
+                    })
+            except:
+                pass
+    except Exception as e:
+        print(f"DuckDuckGo error: {e}")
+
+    # Source 3: Yahoo Finance news for ticker
+    if ticker and ticker != "Private":
+        try:
+            yahoo_url = f"https://query1.finance.yahoo.com/v1/finance/search?q={ticker}&newsCount=5"
+            response = requests.get(yahoo_url, timeout=10)
+            if response.status_code == 200:
+                data = response.json()
+                for item in data.get('news', [])[:5]:
+                    results.append({
+                        'title': item.get('title', ''),
+                        'link': item.get('link', ''),
+                        'source': item.get('publisher', 'Yahoo Finance'),
+                        'date': datetime.fromtimestamp(item.get('providerPublishTime', 0)).strftime('%Y-%m-%d %H:%M') if item.get('providerPublishTime') else '',
+                        'type': 'financial'
+                    })
+        except Exception as e:
+            print(f"Yahoo Finance error: {e}")
+
+    # Deduplicate by title similarity
+    seen_titles = set()
+    unique_results = []
+    for r in results:
+        title_key = r['title'].lower()[:50] if r.get('title') else ''
+        if title_key and title_key not in seen_titles:
+            seen_titles.add(title_key)
+            unique_results.append(r)
+
+    return unique_results[:10]
+
+
+def analyze_price_move(company_name: str, ticker: str, change_pct: float) -> Dict:
+    """
+    Analyze why a stock moved - returns real news, not AI speculation
+    """
+    news = search_news_for_company(company_name, ticker)
+
+    # Categorize the move
+    if change_pct <= -10:
+        severity = "SEVERE DROP"
+        credit_impact = "Expect significant spread widening (20-50bps+). Check for: rating action, earnings miss, guidance cut, regulatory issue, or sector news."
+    elif change_pct <= -5:
+        severity = "SIGNIFICANT DROP"
+        credit_impact = "Expect spread widening (10-20bps). Monitor CDS and bond prices."
+    elif change_pct <= -3:
+        severity = "NOTABLE DROP"
+        credit_impact = "Moderate credit impact. Watch for follow-through."
+    elif change_pct >= 5:
+        severity = "SIGNIFICANT GAIN"
+        credit_impact = "Potential spread tightening. Could indicate positive catalyst."
+    elif change_pct >= 3:
+        severity = "NOTABLE GAIN"
+        credit_impact = "Mildly positive for credit."
+    else:
+        severity = "NORMAL MOVE"
+        credit_impact = "Limited credit impact expected."
+
+    return {
+        'company': company_name,
+        'ticker': ticker,
+        'change_pct': change_pct,
+        'severity': severity,
+        'credit_impact': credit_impact,
+        'news': news,
+        'analyzed_at': datetime.now().isoformat()
+    }
+
+
 # ============== TRADINGVIEW WEBHOOK HANDLER ==============
 
 class TradingViewWebhookHandler:
@@ -287,41 +415,88 @@ def render_equity_dashboard(st):
     import pandas as pd
 
     st.markdown("### Equity Price Monitor")
-    st.caption("Equity moves often lead credit by 1-2 days")
+    st.caption("Equity moves often lead credit by 1-2 days. Click 'Why?' to see real news.")
 
     if not YFINANCE_AVAILABLE:
         st.warning("Install yfinance for live prices: `pip install yfinance`")
         st.info("You can still use TradingView webhook alerts without yfinance")
         return
 
+    # Initialize session state for storing movers and analysis
+    if 'equity_movers' not in st.session_state:
+        st.session_state.equity_movers = None
+    if 'why_analysis' not in st.session_state:
+        st.session_state.why_analysis = None
+
     # Scan button
     if st.button("Scan All Equities"):
         with st.spinner("Fetching prices..."):
-            movers = get_movers(threshold_pct=2.0)
+            st.session_state.equity_movers = get_movers(threshold_pct=2.0)
+            st.session_state.why_analysis = None
 
+    movers = st.session_state.equity_movers
+
+    if movers:
         col1, col2 = st.columns(2)
 
         with col1:
-            st.markdown("#### Losers (Credit Risk)")
+            st.markdown("#### 📉 Losers (Credit Risk)")
             if movers["losers"]:
-                for m in movers["losers"][:10]:
+                for i, m in enumerate(movers["losers"][:10]):
                     price_data = m.get("price_data", {})
                     change = price_data.get("daily_change_pct", 0)
-                    st.error(f"**{m['company']}** ({m['ticker']}): {change:.1f}%")
+
+                    cols = st.columns([3, 1])
+                    with cols[0]:
+                        st.error(f"**{m['company']}** ({m['ticker']}): {change:.1f}%")
+                    with cols[1]:
+                        if st.button("Why?", key=f"why_loser_{i}"):
+                            with st.spinner(f"Searching news for {m['company']}..."):
+                                st.session_state.why_analysis = analyze_price_move(
+                                    m['company'], m['ticker'], change
+                                )
+
                     for reason in m.get("reasons", []):
                         st.caption(f"  • {reason}")
             else:
                 st.info("No significant losers today")
 
         with col2:
-            st.markdown("#### Gainers")
+            st.markdown("#### 📈 Gainers")
             if movers["gainers"]:
-                for m in movers["gainers"][:10]:
+                for i, m in enumerate(movers["gainers"][:10]):
                     price_data = m.get("price_data", {})
                     change = price_data.get("daily_change_pct", 0)
-                    st.success(f"**{m['company']}** ({m['ticker']}): +{change:.1f}%")
+
+                    cols = st.columns([3, 1])
+                    with cols[0]:
+                        st.success(f"**{m['company']}** ({m['ticker']}): +{change:.1f}%")
+                    with cols[1]:
+                        if st.button("Why?", key=f"why_gainer_{i}"):
+                            with st.spinner(f"Searching news for {m['company']}..."):
+                                st.session_state.why_analysis = analyze_price_move(
+                                    m['company'], m['ticker'], change
+                                )
             else:
                 st.info("No significant gainers today")
+
+        # Display analysis if available
+        if st.session_state.why_analysis:
+            st.markdown("---")
+            analysis = st.session_state.why_analysis
+
+            st.markdown(f"### Why did {analysis['company']} move {analysis['change_pct']:.1f}%?")
+            st.markdown(f"**Severity:** {analysis['severity']}")
+            st.markdown(f"**Credit Impact:** {analysis['credit_impact']}")
+
+            st.markdown("#### 📰 Recent News (Real Headlines)")
+            if analysis['news']:
+                for article in analysis['news']:
+                    st.markdown(f"- **[{article['title']}]({article['link']})** - *{article['source']}* ({article.get('date', '')})")
+            else:
+                st.warning("No recent news found. Check Bloomberg/Reuters terminals for more coverage.")
+
+            st.caption("*These are actual news headlines, not AI-generated content.*")
 
     # Individual company lookup
     st.markdown("---")
