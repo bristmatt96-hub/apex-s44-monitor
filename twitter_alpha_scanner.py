@@ -97,7 +97,7 @@ Only include posts that could be market-moving or provide genuine insight. Skip 
         }
 
         payload = {
-            "model": "grok-beta",
+            "model": "grok-4-1-fast-reasoning",  # Fast, cheap, 2M context
             "messages": [
                 {
                     "role": "system",
@@ -115,7 +115,7 @@ Only include posts that could be market-moving or provide genuine insight. Skip 
             content = data.get("choices", [{}])[0].get("message", {}).get("content", "")
             return parse_grok_findings(content)
         else:
-            print(f"Grok API error: {response.status_code}")
+            print(f"Grok API error: {response.status_code} - {response.text[:200]}")
             return None
 
     except Exception as e:
