@@ -1,0 +1,78 @@
+{
+  "company_name": "Nokia Oyj",
+  "ticker": "NOKIA FH",
+  "sector": "TMT",
+  "last_updated": "2025-01-20",
+  "overview": {
+    "business_description": "Finnish multinational telecom, IT, and consumer electronics company. Leading provider of network infrastructure equipment (5G, 6G). Segments: Mobile Networks, Network Infrastructure, Cloud and Network Services, Nokia Technologies.",
+    "business_positives": [
+      "Investment grade rating (BBB-) from S&P and Fitch",
+      "Technology leader in 5G/6G infrastructure",
+      "Strong patent portfolio (Nokia Technologies)",
+      "Net cash position"
+    ],
+    "fatal_flaw": "Telecom capex cycles; competitive pressure from Ericsson, Huawei; customer concentration in mobile networks",
+    "ownership": "Public (widely held)",
+    "public_private": "public",
+    "recent_news": "Ratings affirmed at BBB- stable by both S&P and Fitch. Signed €250m NIB loan for 5G/6G R&D (Oct 2024)."
+  },
+  "ratings": {
+    "moodys": {"rating": "", "outlook": "", "date": ""},
+    "sp": {"rating": "BBB-", "outlook": "Stable", "date": "2024-07"},
+    "fitch": {"rating": "BBB-", "outlook": "Stable", "date": "2024-09"}
+  },
+  "quick_assessment": {
+    "period_end": "2024",
+    "cffo": null,
+    "total_debt": null,
+    "interest_expense": null,
+    "capex": null,
+    "debt_due_one_year": null,
+    "cash_on_hand": null,
+    "revolver_available": null
+  },
+  "key_ratios": {
+    "debt_to_ebitda": null,
+    "ebitda_minus_capex_to_interest": null,
+    "fcf_to_debt": null,
+    "net_debt_to_ebitda": null
+  },
+  "trend_analysis": {
+    "years": [],
+    "revenue": [],
+    "ebitda": [],
+    "ebitda_margin": [],
+    "total_debt": []
+  },
+  "debt_capitalization": [
+    {"instrument": "4.375% Sustainability-Linked Notes", "amount": null, "maturity": "2031", "coupon": "4.375%", "price": null, "ytw": null, "stw": null, "rating": "BBB-"},
+    {"instrument": "3.125% Senior Notes", "amount": null, "maturity": "2028", "coupon": "3.125%", "price": null, "ytw": null, "stw": null, "rating": "BBB-"},
+    {"instrument": "2.00% Senior Notes", "amount": null, "maturity": "2026", "coupon": "2.00%", "price": null, "ytw": null, "stw": null, "rating": "BBB-"},
+    {"instrument": "NIB Loan (5G/6G R&D)", "amount": 250, "maturity": "2031/32", "coupon": "", "price": null, "ytw": null, "stw": null, "rating": ""}
+  ],
+  "maturity_schedule": {
+    "year_1": null,
+    "year_2": null,
+    "year_3": null,
+    "year_4": null,
+    "year_5": null,
+    "thereafter": null
+  },
+  "equity_market_value": {},
+  "credit_opinion": {
+    "summary": "Nokia maintains solid investment grade ratings with stable outlooks. The company benefits from its leading position in telecom infrastructure and strong patent licensing revenues. Conservative financial policy supports credit quality.",
+    "key_risks": [
+      "Telecom operator capex cycles",
+      "Competitive pressure from Ericsson and Chinese vendors",
+      "Mobile Networks margin pressure",
+      "Technology transition risk"
+    ],
+    "key_catalysts": [
+      "5G network buildout acceleration",
+      "6G technology leadership",
+      "Patent licensing renewal success",
+      "Enterprise market expansion"
+    ],
+    "recommendation": "NEUTRAL - Stable investment grade credit"
+  }
+}

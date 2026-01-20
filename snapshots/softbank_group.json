@@ -1,0 +1,73 @@
+{
+  "company_name": "SoftBank Group Corp.",
+  "ticker": "9984 JP",
+  "sector": "TMT",
+  "last_updated": "2025-01-20",
+  "overview": {
+    "business_description": "Japanese multinational conglomerate holding company. Major assets include Vision Fund investments, Arm Holdings, SoftBank Corp (telecom), and T-Mobile US stake. Known for large tech investments.",
+    "business_positives": [
+      "Arm Holdings successful IPO and strong performance",
+      "Significant liquid asset portfolio",
+      "Deleveraging progress recognized by rating upgrades",
+      "T-Mobile and SoftBank Corp provide stable cash flows"
+    ],
+    "fatal_flaw": "Concentrated bets on tech investments; Vision Fund volatility; aggressive financial policy historically",
+    "ownership": "Masayoshi Son (controlling stake), Public",
+    "public_private": "public",
+    "recent_news": "Moody's upgraded to Ba2 from Ba3 (Sep 2025) citing sustained leverage reduction and asset divestments. Focus on AI investments increasing."
+  },
+  "ratings": {
+    "moodys": {"rating": "Ba2", "outlook": "Stable", "date": "2025-09"},
+    "sp": {"rating": "BB+", "outlook": "Stable", "date": ""},
+    "fitch": {"rating": "", "outlook": "", "date": ""}
+  },
+  "quick_assessment": {
+    "period_end": "2024",
+    "cffo": null,
+    "total_debt": null,
+    "interest_expense": null,
+    "capex": null,
+    "debt_due_one_year": null,
+    "cash_on_hand": null,
+    "revolver_available": null
+  },
+  "key_ratios": {
+    "debt_to_ebitda": null,
+    "ebitda_minus_capex_to_interest": null,
+    "fcf_to_debt": null,
+    "net_debt_to_ebitda": null
+  },
+  "trend_analysis": {
+    "years": [],
+    "revenue": [],
+    "ebitda": [],
+    "ebitda_margin": [],
+    "total_debt": []
+  },
+  "debt_capitalization": [],
+  "maturity_schedule": {
+    "year_1": null,
+    "year_2": null,
+    "year_3": null,
+    "year_4": null,
+    "year_5": null,
+    "thereafter": null
+  },
+  "equity_market_value": {},
+  "credit_opinion": {
+    "summary": "SoftBank Group has improved its credit profile through deleveraging and asset divestments. The Moody's upgrade to Ba2 reflects sustained discipline. Listed assets (Arm, SoftBank Corp, T-Mobile) provide liquidity and stability.",
+    "key_risks": [
+      "Vision Fund investment volatility",
+      "Concentrated tech sector exposure",
+      "Aggressive M&A/investment history",
+      "Masayoshi Son key man risk"
+    ],
+    "key_catalysts": [
+      "Arm Holdings continued success",
+      "AI investment portfolio gains",
+      "Further deleveraging toward investment grade",
+      "Vision Fund 2 portfolio recovery"
+    ],
+    "recommendation": "NEUTRAL - Improving but volatility risk remains"
+  }
+}

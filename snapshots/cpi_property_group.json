@@ -1,0 +1,73 @@
+{
+  "company_name": "CPI Property Group",
+  "ticker": "CPI GR",
+  "sector": "Financials",
+  "last_updated": "2025-01-20",
+  "overview": {
+    "business_description": "Luxembourg-based real estate company focused on Central and Eastern Europe. Portfolio includes office, retail, and residential properties primarily in Czech Republic, Germany, and Poland.",
+    "business_positives": [
+      "Diversified CEE real estate portfolio",
+      "Significant German office exposure",
+      "Long-term lease structures",
+      "Controlled by experienced owner (Radovan Vitek)"
+    ],
+    "fatal_flaw": "Real estate sector under pressure from rising rates; CEE market concerns; governance/disclosure questions",
+    "ownership": "Radovan Vitek (controlling stake)",
+    "public_private": "public",
+    "recent_news": "Under pressure with rising rates affecting valuations. Focus on asset sales and deleveraging."
+  },
+  "ratings": {
+    "moodys": {"rating": "", "outlook": "", "date": ""},
+    "sp": {"rating": "", "outlook": "", "date": ""},
+    "fitch": {"rating": "", "outlook": "", "date": ""}
+  },
+  "quick_assessment": {
+    "period_end": "2024",
+    "cffo": null,
+    "total_debt": null,
+    "interest_expense": null,
+    "capex": null,
+    "debt_due_one_year": null,
+    "cash_on_hand": null,
+    "revolver_available": null
+  },
+  "key_ratios": {
+    "debt_to_ebitda": null,
+    "ebitda_minus_capex_to_interest": null,
+    "fcf_to_debt": null,
+    "net_debt_to_ebitda": null
+  },
+  "trend_analysis": {
+    "years": [],
+    "revenue": [],
+    "ebitda": [],
+    "ebitda_margin": [],
+    "total_debt": []
+  },
+  "debt_capitalization": [],
+  "maturity_schedule": {
+    "year_1": null,
+    "year_2": null,
+    "year_3": null,
+    "year_4": null,
+    "year_5": null,
+    "thereafter": null
+  },
+  "equity_market_value": {},
+  "credit_opinion": {
+    "summary": "CPI Property Group faces headwinds from the higher rate environment impacting real estate valuations. CEE exposure adds complexity. Deleveraging and asset sales are key to stabilizing the credit.",
+    "key_risks": [
+      "Real estate valuations under pressure",
+      "Higher rates increase funding costs",
+      "CEE market uncertainty",
+      "Asset sale execution risk"
+    ],
+    "key_catalysts": [
+      "Successful asset disposals",
+      "Rate cuts improving valuations",
+      "Rent indexation benefits",
+      "German office market stabilization"
+    ],
+    "recommendation": "UNDERWEIGHT - Real estate sector headwinds"
+  }
+}

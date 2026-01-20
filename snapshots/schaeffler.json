@@ -1,0 +1,73 @@
+{
+  "company_name": "Schaeffler AG",
+  "ticker": "SHA GY",
+  "sector": "Autos & Industrials",
+  "last_updated": "2025-01-20",
+  "overview": {
+    "business_description": "German automotive and industrial supplier. Products include rolling bearings, linear guides, and automotive components. Recently acquired Vitesco Technologies (powertrain) in 2024.",
+    "business_positives": [
+      "Diversified industrial exposure (automotive + industrial)",
+      "Technology leader in bearings and precision",
+      "Vitesco acquisition expands EV capabilities",
+      "Family ownership provides stability"
+    ],
+    "fatal_flaw": "High leverage post-Vitesco acquisition; European auto exposure; integration execution risk",
+    "ownership": "Schaeffler family (via IHO Holding), Public",
+    "public_private": "public",
+    "recent_news": "Completed Vitesco Technologies acquisition. Focused on deleveraging post-merger integration."
+  },
+  "ratings": {
+    "moodys": {"rating": "Ba1", "outlook": "Stable", "date": ""},
+    "sp": {"rating": "BB+", "outlook": "Stable", "date": ""},
+    "fitch": {"rating": "", "outlook": "", "date": ""}
+  },
+  "quick_assessment": {
+    "period_end": "2024",
+    "cffo": null,
+    "total_debt": null,
+    "interest_expense": null,
+    "capex": null,
+    "debt_due_one_year": null,
+    "cash_on_hand": null,
+    "revolver_available": null
+  },
+  "key_ratios": {
+    "debt_to_ebitda": null,
+    "ebitda_minus_capex_to_interest": null,
+    "fcf_to_debt": null,
+    "net_debt_to_ebitda": null
+  },
+  "trend_analysis": {
+    "years": [],
+    "revenue": [],
+    "ebitda": [],
+    "ebitda_margin": [],
+    "total_debt": []
+  },
+  "debt_capitalization": [],
+  "maturity_schedule": {
+    "year_1": null,
+    "year_2": null,
+    "year_3": null,
+    "year_4": null,
+    "year_5": null,
+    "thereafter": null
+  },
+  "equity_market_value": {},
+  "credit_opinion": {
+    "summary": "Schaeffler's credit profile is evolving post-Vitesco acquisition. The combined company has broader EV exposure but elevated leverage. Execution on integration and synergies is critical.",
+    "key_risks": [
+      "Post-acquisition leverage",
+      "European auto production weakness",
+      "Vitesco integration execution",
+      "ICE to EV transition managing decline"
+    ],
+    "key_catalysts": [
+      "Synergy realization from Vitesco",
+      "Industrial segment resilience",
+      "EV content growth per vehicle",
+      "Deleveraging progress"
+    ],
+    "recommendation": "NEUTRAL - M&A integration phase"
+  }
+}

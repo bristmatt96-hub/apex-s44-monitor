@@ -1,0 +1,75 @@
+{
+  "company_name": "Grifols, S.A.",
+  "ticker": "GRF SM",
+  "sector": "Consumers",
+  "last_updated": "2025-01-20",
+  "overview": {
+    "business_description": "Spanish multinational pharmaceutical and chemical company. Global leader in plasma-derived medicines. Operations include Biopharma (plasma products), Diagnostic, Bio Supplies, and Hospital divisions.",
+    "business_positives": [
+      "Global leader in plasma derivatives",
+      "Essential medicines with stable demand",
+      "Positive rating outlooks from Moody's and Fitch",
+      "Q1 2025: Revenue +7.4%, EBITDA +14.2%"
+    ],
+    "fatal_flaw": "Very high leverage (6.8x per credit facility); governance concerns from 2024; plasma collection costs",
+    "ownership": "Grifols family (significant stake), Public",
+    "public_private": "public",
+    "recent_news": "Moody's upgraded to B2 positive outlook (May 2025). SRAAS transaction raised €1.6bn (20% stake sale). Target: €10bn revenue, €2.9bn EBITDA by 2029."
+  },
+  "ratings": {
+    "moodys": {"rating": "B2", "outlook": "Positive", "date": "2025-05"},
+    "sp": {"rating": "BB-", "outlook": "Stable", "date": "2024-12"},
+    "fitch": {"rating": "B+", "outlook": "Positive", "date": "2024-11"}
+  },
+  "quick_assessment": {
+    "period_end": "2024",
+    "cffo": null,
+    "total_debt": null,
+    "interest_expense": null,
+    "capex": null,
+    "debt_due_one_year": null,
+    "cash_on_hand": null,
+    "revolver_available": null
+  },
+  "key_ratios": {
+    "debt_to_ebitda": 6.8,
+    "ebitda_minus_capex_to_interest": null,
+    "fcf_to_debt": null,
+    "net_debt_to_ebitda": null
+  },
+  "trend_analysis": {
+    "years": ["2024E", "2029E"],
+    "revenue": [7000, 10000],
+    "ebitda": [1800, 2900],
+    "ebitda_margin": [],
+    "total_debt": []
+  },
+  "debt_capitalization": [
+    {"instrument": "Private Placement", "amount": 1000, "maturity": "2024", "coupon": "", "price": null, "ytw": null, "stw": null, "rating": ""}
+  ],
+  "maturity_schedule": {
+    "year_1": null,
+    "year_2": null,
+    "year_3": null,
+    "year_4": null,
+    "year_5": null,
+    "thereafter": null
+  },
+  "equity_market_value": {},
+  "credit_opinion": {
+    "summary": "Grifols is a highly leveraged but improving credit. The company addressed 2025 maturities through private placement and SRAAS stake sale. Positive outlooks from Moody's and Fitch suggest upgrade potential if deleveraging continues.",
+    "key_risks": [
+      "Very high leverage (6.8x) limits flexibility",
+      "Governance concerns after 2024 short-seller report",
+      "Plasma collection cost inflation",
+      "Deleveraging path execution risk"
+    ],
+    "key_catalysts": [
+      "Continued revenue and EBITDA growth",
+      "Leverage reduction toward 4x target",
+      "Further asset monetization options",
+      "Rating upgrades with positive outlooks"
+    ],
+    "recommendation": "NEUTRAL - Improving but still highly leveraged"
+  }
+}
