@@ -260,7 +260,7 @@ Be specific and cite your sources. If you can't find anything, say so."""
         }
 
         payload = {
-            "model": "grok-beta",  # Try beta model
+            "model": "grok-4-1-fast-reasoning",  # Fast, cheap, 2M context
             "messages": [
                 {"role": "system", "content": "You are a helpful credit analyst with access to real-time Twitter/X data. Always cite sources and be specific about what you find."},
                 {"role": "user", "content": prompt}
@@ -276,7 +276,7 @@ Be specific and cite your sources. If you can't find anything, say so."""
             return {
                 "source": "Grok (xAI)",
                 "analysis": answer,
-                "model": "grok-beta",
+                "model": "grok-4-1-fast-reasoning",
                 "has_twitter_access": True
             }
         else:

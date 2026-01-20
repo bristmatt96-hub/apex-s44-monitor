@@ -97,7 +97,7 @@ Only include posts that could be market-moving or provide genuine insight. Skip 
         }
 
         payload = {
-            "model": "grok-beta",  # Try beta model
+            "model": "grok-4-1-fast-reasoning",  # Fast, cheap, 2M context
             "messages": [
                 {
                     "role": "system",
