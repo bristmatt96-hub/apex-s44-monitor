@@ -24,6 +24,40 @@ try:
 except ImportError:
     YFINANCE_AVAILABLE = False
 
+# Try to import knowledge base for credit context
+try:
+    from knowledge.pdf_processor import KnowledgeBase
+    _kb = KnowledgeBase()
+    KNOWLEDGE_BASE_AVAILABLE = True
+except ImportError:
+    _kb = None
+    KNOWLEDGE_BASE_AVAILABLE = False
+
+
+def get_knowledge_context(query: str, top_k: int = 3) -> str:
+    """
+    Search the knowledge base for relevant credit concepts
+    Returns formatted context string for AI prompts
+    """
+    if not KNOWLEDGE_BASE_AVAILABLE or not _kb:
+        return ""
+
+    try:
+        results = _kb.search(query, top_k=top_k)
+        if not results:
+            return ""
+
+        context_parts = []
+        for r in results:
+            # Truncate long chunks
+            text = r['text'][:500] + "..." if len(r['text']) > 500 else r['text']
+            context_parts.append(f"[From: {r['doc_title']}]\n{text}")
+
+        return "\n\n".join(context_parts)
+    except Exception as e:
+        print(f"Knowledge base error: {e}")
+        return ""
+
 
 def load_ticker_config() -> Dict:
     """Load equity ticker configuration"""
@@ -230,6 +264,7 @@ def ask_grok_why_moved(company_name: str, ticker: str, change_pct: float, api_ke
     """
     Ask Grok (xAI) why a stock moved - Grok has live Twitter/X access
     Returns grounded analysis with sources, minimal hallucination
+    Augments analysis with knowledge from indexed credit books
     """
     if not api_key:
         api_key = os.environ.get("XAI_API_KEY", "") or os.environ.get("GROK_API_KEY", "")
@@ -243,6 +278,18 @@ def ask_grok_why_moved(company_name: str, ticker: str, change_pct: float, api_ke
 
         direction = "dropped" if change_pct < 0 else "jumped"
 
+        # Get relevant knowledge base context
+        kb_query = f"{company_name} credit analysis leverage debt"
+        if change_pct < -5:
+            kb_query += " distressed restructuring default"
+        elif change_pct < -3:
+            kb_query += " downgrade risk spread widening"
+        elif change_pct > 5:
+            kb_query += " upgrade tightening deleveraging"
+
+        kb_context = get_knowledge_context(kb_query, top_k=3)
+
+        # Build prompt with knowledge context
         prompt = f"""You are a credit analyst assistant. {company_name} ({ticker}) stock {direction} {abs(change_pct):.1f}% today.
 
 Search Twitter/X for recent posts about {company_name} and tell me:
@@ -253,6 +300,17 @@ Search Twitter/X for recent posts about {company_name} and tell me:
 Focus on posts from financial accounts like @DeItaone, @FirstSquawk, @9finHQ, @Creditflux, @DebtwireEurope.
 
 Be specific and cite your sources. If you can't find anything, say so."""
+
+        # Add knowledge base context if available
+        if kb_context:
+            prompt += f"""
+
+REFERENCE MATERIAL FROM CREDIT BOOKS:
+Use this knowledge to inform your credit analysis:
+
+{kb_context}
+
+Apply these concepts when explaining the credit implications of the move."""
 
         headers = {
             "Authorization": f"Bearer {api_key}",
@@ -447,12 +505,36 @@ def search_news_for_company(company_name: str, ticker: str = None, include_twitt
 def analyze_price_move(company_name: str, ticker: str, change_pct: float) -> Dict:
     """
     Analyze why a stock moved - uses Grok for Twitter analysis + real news
+    Augmented with knowledge from indexed credit books
     """
-    # Try Grok first (has live Twitter access)
+    # Try Grok first (has live Twitter access + knowledge base context)
     grok_analysis = ask_grok_why_moved(company_name, ticker, change_pct)
 
     # Also get traditional news sources
     news = search_news_for_company(company_name, ticker, include_twitter=False)  # Skip Twitter API since we have Grok
+
+    # Get relevant knowledge base excerpts for display
+    kb_references = []
+    if KNOWLEDGE_BASE_AVAILABLE and _kb:
+        try:
+            # Search for relevant credit concepts based on move type
+            if change_pct <= -5:
+                kb_results = _kb.search("distressed credit restructuring default spread widening", top_k=3)
+            elif change_pct <= -3:
+                kb_results = _kb.search("credit deterioration downgrade leverage risk", top_k=3)
+            elif change_pct >= 5:
+                kb_results = _kb.search("credit improvement upgrade deleveraging", top_k=3)
+            else:
+                kb_results = _kb.search("credit analysis bond valuation", top_k=2)
+
+            for r in kb_results:
+                kb_references.append({
+                    'source': r['doc_title'],
+                    'text': r['text'][:300] + "..." if len(r['text']) > 300 else r['text'],
+                    'relevance': r['score']
+                })
+        except Exception as e:
+            print(f"KB search error: {e}")
 
     # Categorize the move
     if change_pct <= -10:
@@ -482,6 +564,7 @@ def analyze_price_move(company_name: str, ticker: str, change_pct: float) -> Dic
         'credit_impact': credit_impact,
         'news': news,
         'grok_analysis': grok_analysis,
+        'kb_references': kb_references,
         'analyzed_at': datetime.now().isoformat()
     }
 
@@ -667,6 +750,15 @@ def render_equity_dashboard(st):
                     st.markdown(f"- **[{article['title']}]({article['link']})** - *{article['source']}* ({article.get('date', '')})")
             else:
                 st.warning("No recent news found in traditional sources.")
+
+            # Knowledge Base References (from indexed credit books)
+            kb_refs = analysis.get('kb_references', [])
+            if kb_refs:
+                st.markdown("#### 📚 Credit Knowledge Reference")
+                st.caption("Relevant excerpts from your indexed credit books:")
+                for ref in kb_refs:
+                    with st.expander(f"From: {ref['source']}"):
+                        st.markdown(ref['text'])
 
             if not grok and not analysis['news']:
                 st.warning("No information found. Check Bloomberg/Reuters terminals for more coverage.")
