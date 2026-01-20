@@ -43,6 +43,14 @@ try:
 except ImportError:
     YFINANCE_AVAILABLE = False
 
+# Try to import knowledge base
+KNOWLEDGE_BASE_AVAILABLE = False
+try:
+    from knowledge.pdf_processor import KnowledgeBase, render_knowledge_base_ui
+    KNOWLEDGE_BASE_AVAILABLE = True
+except ImportError:
+    pass
+
 # ============== TELEGRAM FUNCTIONS ==============
 
 def send_telegram_message(message):
@@ -818,9 +826,11 @@ if TEARSHEET_AVAILABLE:
     st.sidebar.markdown("- Tear Sheet Generator")
 if EQUITY_MONITOR_AVAILABLE:
     st.sidebar.markdown("- Equity Monitor (yfinance)" if YFINANCE_AVAILABLE else "- Equity Monitor (no yfinance)")
+if KNOWLEDGE_BASE_AVAILABLE:
+    st.sidebar.markdown("- PDF Knowledge Base")
 
 # Main content tabs
-tab1, tab2, tab3, tab4, tab5 = st.tabs(["Trading Signals", "Equity Monitor", "News Monitor", "RSS & News", "Credit Snapshot"])
+tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["Trading Signals", "Equity Monitor", "News Monitor", "RSS & News", "Credit Snapshot", "Knowledge Base"])
 
 # Initialize NewsHound with selected index
 @st.cache_resource
@@ -940,3 +950,16 @@ with tab5:
     # Load and display snapshot
     snapshot = load_snapshot(selected_snapshot_company)
     render_snapshot(snapshot)
+
+with tab6:
+    if KNOWLEDGE_BASE_AVAILABLE:
+        # Initialize knowledge base
+        @st.cache_resource
+        def get_knowledge_base():
+            return KnowledgeBase()
+
+        kb = get_knowledge_base()
+        render_knowledge_base_ui(st, kb)
+    else:
+        st.warning("Knowledge Base not available.")
+        st.info("Install pypdf to enable: `pip install pypdf`")
