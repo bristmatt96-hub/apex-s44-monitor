@@ -97,7 +97,7 @@ Only include posts that could be market-moving or provide genuine insight. Skip 
         }
 
         payload = {
-            "model": "grok-2-latest",  # Use latest Grok model
+            "model": "grok-beta",  # Try beta model
             "messages": [
                 {
                     "role": "system",

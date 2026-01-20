@@ -260,7 +260,7 @@ Be specific and cite your sources. If you can't find anything, say so."""
         }
 
         payload = {
-            "model": "grok-2-latest",  # Use latest Grok model
+            "model": "grok-beta",  # Try beta model
             "messages": [
                 {"role": "system", "content": "You are a helpful credit analyst with access to real-time Twitter/X data. Always cite sources and be specific about what you find."},
                 {"role": "user", "content": prompt}
