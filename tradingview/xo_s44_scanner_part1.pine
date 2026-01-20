@@ -1,13 +1,14 @@
 // XO S44 Credit Monitor - Scanner Part 1 (21 tickers)
+// Alerts on +/- 1% move in 2 minutes
 // @version=5
 indicator("XO S44 Scanner Part 1", overlay=false)
 
 // Settings
-threshold = input.float(-1.0, "Alert Threshold %", minval=-10, maxval=0, step=0.5)
+threshold = input.float(1.0, "Alert Threshold % (absolute)", minval=0.1, maxval=10, step=0.1)
 
-// Function to get daily change %
+// Function to get 2-minute change %
 getChange(sym) =>
-    [c, pc] = request.security(sym, "D", [close, close[1]], ignore_invalid_symbol=true)
+    [c, pc] = request.security(sym, "2", [close, close[1]], ignore_invalid_symbol=true)
     na(c) or na(pc) ? na : ((c - pc) / pc) * 100
 
 // XO S44 Tickers - Part 1 (European focus)
@@ -38,12 +39,9 @@ var string[] names = array.from("Air France", "Ceconomy", "Avolta", "Grifols", "
 
 var string[] tickers = array.from("AF", "CEC", "AVOL", "GRF", "IGT", "MMB", "LTMC", "ONTEX", "PTEC", "PFD", "REC", "TUI", "WIZZ", "CSTM", "CCK", "FRVIA", "HLAG", "TATAMOTORS", "LXS", "METSB", "OI")
 
-// Check for alerts
-var string alertMsg = ""
-alertMsg := ""
-
+// Check for alerts - triggers on BOTH +1% and -1% moves
 checkAlert(chg, idx) =>
-    if not na(chg) and chg <= threshold
+    if not na(chg) and math.abs(chg) >= threshold
         name = array.get(names, idx)
         tick = array.get(tickers, idx)
         str.format('\{"ticker":"{0}","company":"{1}","price":0,"change":{2,number,#.##}\}', tick, name, chg)
@@ -86,18 +84,18 @@ triggerCount = (msg01 != "" ? 1 : 0) + (msg02 != "" ? 1 : 0) + (msg03 != "" ? 1 
 plot(triggerCount, "Triggers", color=triggerCount > 0 ? color.red : color.green, linewidth=2)
 hline(0, "Zero", color=color.gray)
 
-// Alert condition
+// Alert condition - fires once per 2-min bar when triggered
 if anyAlert
     alert(firstMsg, alert.freq_once_per_bar)
 
 // Table display
 var table infoTable = table.new(position.top_right, 2, 22, bgcolor=color.new(color.black, 80))
 if barstate.islast
-    table.cell(infoTable, 0, 0, "XO S44 Part 1", text_color=color.white, text_size=size.small)
-    table.cell(infoTable, 1, 0, "Change %", text_color=color.white, text_size=size.small)
+    table.cell(infoTable, 0, 0, "XO S44 Part 1 (2m)", text_color=color.white, text_size=size.small)
+    table.cell(infoTable, 1, 0, "2m Chg %", text_color=color.white, text_size=size.small)
 
     showRow(row, name, chg) =>
-        c = na(chg) ? color.gray : chg <= threshold ? color.red : chg < 0 ? color.orange : color.green
+        c = na(chg) ? color.gray : math.abs(chg) >= threshold ? color.red : chg < 0 ? color.orange : color.green
         table.cell(infoTable, 0, row, name, text_color=c, text_size=size.tiny)
         table.cell(infoTable, 1, row, na(chg) ? "N/A" : str.tostring(chg, "#.##") + "%", text_color=c, text_size=size.tiny)
 
