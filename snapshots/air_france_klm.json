@@ -22,20 +22,20 @@
     "fitch": {"rating": "BBB-", "outlook": "Stable", "date": "2025-05"}
   },
   "quick_assessment": {
-    "period_end": "Q2 2025",
+    "period_end": "Q3 2025",
     "cffo": null,
-    "total_debt": 7100,
+    "total_debt": null,
     "interest_expense": null,
-    "capex": null,
+    "capex": 3300,
     "debt_due_one_year": null,
-    "cash_on_hand": 9400,
+    "cash_on_hand": 9500,
     "revolver_available": null
   },
   "key_ratios": {
-    "debt_to_ebitda": 1.5,
+    "debt_to_ebitda": 1.6,
     "ebitda_minus_capex_to_interest": null,
     "fcf_to_debt": null,
-    "net_debt_to_ebitda": 1.5
+    "net_debt_to_ebitda": 1.6
   },
   "trend_analysis": {
     "years": [],

@@ -14,7 +14,7 @@
     "fatal_flaw": "Very high leverage (6.8x per credit facility); governance concerns from 2024; plasma collection costs",
     "ownership": "Grifols family (significant stake), Public",
     "public_private": "public",
-    "recent_news": "Moody's upgraded to B2 positive outlook (May 2025). SRAAS transaction raised €1.6bn (20% stake sale). Target: €10bn revenue, €2.9bn EBITDA by 2029."
+    "recent_news": "S&P upgraded to BB- (Dec 2025). Completed €5.8bn refinancing. €1.3bn new Sr Sec Notes. Brookfield dropped takeover bid Nov 2024. SRAAS sale raised €1.6bn."
   },
   "ratings": {
     "moodys": {"rating": "B2", "outlook": "Positive", "date": "2025-05"},
@@ -22,12 +22,12 @@
     "fitch": {"rating": "B+", "outlook": "Positive", "date": "2024-11"}
   },
   "quick_assessment": {
-    "period_end": "2024",
+    "period_end": "Q3 2024",
     "cffo": null,
-    "total_debt": null,
+    "total_debt": 9200,
     "interest_expense": null,
     "capex": null,
-    "debt_due_one_year": null,
+    "debt_due_one_year": 343,
     "cash_on_hand": null,
     "revolver_available": null
   },
@@ -45,7 +45,10 @@
     "total_debt": []
   },
   "debt_capitalization": [
-    {"instrument": "Private Placement", "amount": 1000, "maturity": "2024", "coupon": "", "price": null, "ytw": null, "stw": null, "rating": ""}
+    {"instrument": "7.125% Sr Sec Notes", "amount": 1300, "maturity": "May 2030", "coupon": "7.125%", "price": null, "ytw": null, "stw": null, "rating": "B1/BB-/BB"},
+    {"instrument": "Sr Sec Notes (Apr 2024)", "amount": 1000, "maturity": "2029", "coupon": "", "price": null, "ytw": null, "stw": null, "rating": "B1/BB-/BB"},
+    {"instrument": "Revolving Credit Facility", "amount": null, "maturity": "May 2027", "coupon": "", "price": null, "ytw": null, "stw": null, "rating": ""},
+    {"instrument": "Sr Unsecured Notes", "amount": null, "maturity": "Various", "coupon": "", "price": null, "ytw": null, "stw": null, "rating": "Caa1/B/B-"}
   ],
   "maturity_schedule": {
     "year_1": null,

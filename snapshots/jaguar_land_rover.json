@@ -14,7 +14,7 @@
     "fatal_flaw": "Concentration in premium segment vulnerable to economic cycles; EV transition execution risk",
     "ownership": "Tata Motors (100%)",
     "public_private": "private subsidiary",
-    "recent_news": "Upgraded to investment grade by S&P (Aug 2024). Moody's upgraded to Ba1 with positive outlook. Seeking $500m offshore loan (Jan 2025)."
+    "recent_news": "IG from S&P (BBB-). Moody's Ba1 positive. Repaid £1.2bn debt in FY25. Net cash positive. Gross debt £4.4bn, cash £4.6bn. Liquidity £6.3bn incl RCF."
   },
   "ratings": {
     "moodys": {"rating": "Ba1", "outlook": "Positive", "date": "2024-08"},
@@ -22,14 +22,14 @@
     "fitch": {"rating": "", "outlook": "", "date": ""}
   },
   "quick_assessment": {
-    "period_end": "FY24/25",
+    "period_end": "FY24/25 (Mar 2025)",
     "cffo": null,
-    "total_debt": null,
+    "total_debt": 4400,
     "interest_expense": null,
     "capex": null,
     "debt_due_one_year": null,
     "cash_on_hand": 4600,
-    "revolver_available": 1700
+    "revolver_available": 1660
   },
   "key_ratios": {
     "debt_to_ebitda": 2.0,
@@ -45,7 +45,13 @@
     "total_debt": []
   },
   "debt_capitalization": [
-    {"instrument": "GBP 1.7bn RCF", "amount": 1700, "maturity": "", "coupon": "", "price": null, "ytw": null, "stw": null, "rating": ""}
+    {"instrument": "GBP 1.66bn RCF (undrawn)", "amount": 1660, "maturity": "2028", "coupon": "SOFR+", "price": null, "ytw": null, "stw": null, "rating": ""},
+    {"instrument": "6.875% Senior Notes", "amount": null, "maturity": "Nov 2026", "coupon": "6.875%", "price": null, "ytw": null, "stw": null, "rating": "Ba1/BBB-"},
+    {"instrument": "4.5% Senior Notes (EUR)", "amount": null, "maturity": "Oct 2027", "coupon": "4.5%", "price": null, "ytw": null, "stw": null, "rating": "Ba1/BBB-"},
+    {"instrument": "5.875% Senior Notes (USD)", "amount": null, "maturity": "Jan 2028", "coupon": "5.875%", "price": null, "ytw": null, "stw": null, "rating": "Ba1/BBB-"},
+    {"instrument": "4.5% Senior Notes (EUR)", "amount": null, "maturity": "Jul 2028", "coupon": "4.5%", "price": null, "ytw": null, "stw": null, "rating": "Ba1/BBB-"},
+    {"instrument": "5.5% Senior Notes (USD)", "amount": null, "maturity": "Jul 2029", "coupon": "5.5%", "price": null, "ytw": null, "stw": null, "rating": "Ba1/BBB-"},
+    {"instrument": "Term Loan (USD)", "amount": 650, "maturity": "2025", "coupon": "SOFR+", "price": null, "ytw": null, "stw": null, "rating": ""}
   ],
   "maturity_schedule": {
     "year_1": null,

@@ -1,40 +1,33 @@
 {
   "company_name": "Samhallsbyggnadsbolaget i Norden AB (SBB)",
-  "ticker": "",
-  "sector": "Real Estate",
-  "last_updated": "2026-01-19",
+  "ticker": "SBB SS",
+  "sector": "Financials",
+  "last_updated": "2025-01-20",
   "overview": {
-    "business_description": "Real estate company leases, manages, and develops residential and social infrastructure properties primarily for public sector clients. It operates through direct ownership and long-term property management, focusing on residential housing and community-related buildings. The business model includes property development and asset management with a strategic emphasis on social infrastructure across Sweden and the Nordic region. The company recently engaged in significant portfolio transactions to",
-    "business_positives": [],
-    "fatal_flaw": "",
+    "business_description": "Swedish real estate company focused on social infrastructure properties (residential, community buildings) for public sector tenants. One of largest Nordic landlords. Underwent significant restructuring in 2024 including asset transfers to subsidiary holding company.",
+    "business_positives": [
+      "Public sector tenants provide stable rental income",
+      "Sveafastigheter IPO provided liquidity",
+      "95% debt exchange completed reducing near-term default risk",
+      "Next major maturity not until Aug 2026"
+    ],
+    "fatal_flaw": "CCC rating; insufficient liquidity for maturities; asset sales dependency; complex restructuring; EUR interest rate exposure",
     "ownership": "Public",
     "public_private": "public",
-    "recent_news": "Lifecycle: Distressed"
+    "recent_news": "S&P cut to selective default on bond buyback, now CCC+. Scope CCC stable. 95% debt exchange completed Dec 2024. Sveafastigheter IPO Oct 2024. SEK 38.1bn total debt."
   },
   "ratings": {
-    "moodys": {
-      "rating": "",
-      "outlook": "",
-      "date": ""
-    },
-    "sp": {
-      "rating": "",
-      "outlook": "",
-      "date": ""
-    },
-    "fitch": {
-      "rating": "",
-      "outlook": "",
-      "date": ""
-    }
+    "moodys": {"rating": "", "outlook": "", "date": ""},
+    "sp": {"rating": "CCC+", "outlook": "Negative", "date": "2024-12"},
+    "fitch": {"rating": "CCC+", "outlook": "", "date": "2024"}
   },
   "quick_assessment": {
-    "period_end": "",
+    "period_end": "Dec 2024",
     "cffo": null,
-    "total_debt": 8838.0,
+    "total_debt": 38100,
     "interest_expense": null,
     "capex": null,
-    "debt_due_one_year": null,
+    "debt_due_one_year": 13000,
     "cash_on_hand": null,
     "revolver_available": null
   },
@@ -52,109 +45,15 @@
     "total_debt": []
   },
   "debt_capitalization": [
-    {
-      "instrument": "EUR 663m Sr Unsecd Notes",
-      "amount": 663.0,
-      "maturity": "2028",
-      "coupon": "",
-      "price": 83.05,
-      "ytw": null,
-      "stw": null,
-      "rating": ""
-    },
-    {
-      "instrument": "EUR 154m Sr Unsecd Notes",
-      "amount": 154.0,
-      "maturity": "2029",
-      "coupon": "",
-      "price": null,
-      "ytw": null,
-      "stw": null,
-      "rating": ""
-    },
-    {
-      "instrument": "EUR 773m Sr Unsecd Notes",
-      "amount": 773.0,
-      "maturity": "2029",
-      "coupon": "",
-      "price": null,
-      "ytw": null,
-      "stw": null,
-      "rating": ""
-    },
-    {
-      "instrument": "EUR 508m Sr Unsecd Notes",
-      "amount": 508.0,
-      "maturity": "2026",
-      "coupon": "",
-      "price": null,
-      "ytw": null,
-      "stw": null,
-      "rating": ""
-    },
-    {
-      "instrument": "EUR 683m Sr Unsecd Notes",
-      "amount": 683.0,
-      "maturity": "2027",
-      "coupon": "",
-      "price": null,
-      "ytw": null,
-      "stw": null,
-      "rating": ""
-    },
-    {
-      "instrument": "SEK 413m Sr Unsecd Notes",
-      "amount": 413.0,
-      "maturity": "2027",
-      "coupon": "",
-      "price": null,
-      "ytw": null,
-      "stw": null,
-      "rating": ""
-    },
-    {
-      "instrument": "EUR 111m Sr Unsecd Notes",
-      "amount": 111.0,
-      "maturity": "2027",
-      "coupon": "",
-      "price": null,
-      "ytw": null,
-      "stw": null,
-      "rating": ""
-    },
-    {
-      "instrument": "EUR 200m Sr Notes",
-      "amount": 167.0,
-      "maturity": "2029",
-      "coupon": "",
-      "price": null,
-      "ytw": null,
-      "stw": null,
-      "rating": ""
-    },
-    {
-      "instrument": "EUR 500m Subordinated Bank Notes",
-      "amount": 224.0,
-      "maturity": "",
-      "coupon": "",
-      "price": null,
-      "ytw": null,
-      "stw": null,
-      "rating": ""
-    },
-    {
-      "instrument": "EUR 750m Sr Unsecd Notes",
-      "amount": 628.0,
-      "maturity": "2029",
-      "coupon": "",
-      "price": null,
-      "ytw": null,
-      "stw": null,
-      "rating": ""
-    }
+    {"instrument": "Sr Unsecd Notes (Parent)", "amount": 6200, "maturity": "Various", "coupon": "", "price": null, "ytw": null, "stw": null, "rating": "CCC"},
+    {"instrument": "Sr Unsecd Notes (Subsidiary)", "amount": 31900, "maturity": "Various", "coupon": "", "price": null, "ytw": null, "stw": null, "rating": "CCC"},
+    {"instrument": "EUR 508m Sr Unsecd Notes", "amount": 508, "maturity": "Aug 2026", "coupon": "", "price": null, "ytw": null, "stw": null, "rating": "CCC"},
+    {"instrument": "EUR 683m Sr Unsecd Notes", "amount": 683, "maturity": "2027", "coupon": "", "price": null, "ytw": null, "stw": null, "rating": "CCC"},
+    {"instrument": "EUR 663m Sr Unsecd Notes", "amount": 663, "maturity": "2028", "coupon": "", "price": 83, "ytw": null, "stw": null, "rating": "CCC"},
+    {"instrument": "Subordinated Hybrids", "amount": null, "maturity": "Perpetual", "coupon": "", "price": null, "ytw": null, "stw": null, "rating": "C"}
   ],
   "maturity_schedule": {
-    "year_1": null,
+    "year_1": 13000,
     "year_2": null,
     "year_3": null,
     "year_4": null,
@@ -163,9 +62,20 @@
   },
   "equity_market_value": {},
   "credit_opinion": {
-    "summary": "",
-    "key_risks": [],
-    "key_catalysts": [],
-    "recommendation": ""
+    "summary": "SBB is a distressed credit that has avoided near-term default through debt exchanges and asset sales (Sveafastigheter IPO). The company has bought time but fundamental challenges remain with insufficient liquidity to cover maturities without continued asset sales.",
+    "key_risks": [
+      "CCC rating - very high default probability",
+      "Liquidity insufficient for 12-month maturities (SEK 13bn)",
+      "Dependent on continued asset sales and refinancing",
+      "Complex corporate structure post-restructuring",
+      "EUR debt creates FX mismatch with SEK assets"
+    ],
+    "key_catalysts": [
+      "Successful asset sales to address maturities",
+      "Swedish rate cuts supporting property values",
+      "Public Property Invest listing",
+      "Potential M&A interest in assets"
+    ],
+    "recommendation": "UNDERWEIGHT - Distressed credit, high default risk"
   }
 }
