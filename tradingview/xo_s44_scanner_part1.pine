@@ -1,0 +1,124 @@
+// XO S44 Credit Monitor - Scanner Part 1 (21 tickers)
+// @version=5
+indicator("XO S44 Scanner Part 1", overlay=false)
+
+// Settings
+threshold = input.float(-1.0, "Alert Threshold %", minval=-10, maxval=0, step=0.5)
+
+// Function to get daily change %
+getChange(sym) =>
+    [c, pc] = request.security(sym, "D", [close, close[1]], ignore_invalid_symbol=true)
+    na(c) or na(pc) ? na : ((c - pc) / pc) * 100
+
+// XO S44 Tickers - Part 1 (European focus)
+chg01 = getChange("EURONEXT:AF")      // Air France-KLM
+chg02 = getChange("XETR:CEC")         // Ceconomy
+chg03 = getChange("SIX:AVOL")         // Avolta
+chg04 = getChange("BME:GRF")          // Grifols
+chg05 = getChange("NYSE:IGT")         // IGT
+chg06 = getChange("EURONEXT:MMB")     // Lagardère
+chg07 = getChange("MIL:LTMC")         // Lottomatica
+chg08 = getChange("EURONEXT:ONTEX")   // Ontex
+chg09 = getChange("LSE:PTEC")         // Playtech
+chg10 = getChange("LSE:PFD")          // Premier Foods
+chg11 = getChange("MIL:REC")          // Recordati
+chg12 = getChange("LSE:TUI")          // TUI
+chg13 = getChange("LSE:WIZZ")         // Wizz Air
+chg14 = getChange("NYSE:CSTM")        // Constellium
+chg15 = getChange("NYSE:CCK")         // Crown Holdings
+chg16 = getChange("EURONEXT:FRVIA")   // Forvia
+chg17 = getChange("XETR:HLAG")        // Hapag-Lloyd
+chg18 = getChange("NSE:TATAMOTORS")   // Tata Motors (JLR)
+chg19 = getChange("XETR:LXS")         // Lanxess
+chg20 = getChange("OMXHEX:METSB")     // Metsä Board
+chg21 = getChange("NYSE:OI")          // O-I Glass
+
+// Ticker names
+var string[] names = array.from("Air France", "Ceconomy", "Avolta", "Grifols", "IGT", "Lagardere", "Lottomatica", "Ontex", "Playtech", "Premier Foods", "Recordati", "TUI", "Wizz Air", "Constellium", "Crown", "Forvia", "Hapag-Lloyd", "Tata/JLR", "Lanxess", "Metsa Board", "OI Glass")
+
+var string[] tickers = array.from("AF", "CEC", "AVOL", "GRF", "IGT", "MMB", "LTMC", "ONTEX", "PTEC", "PFD", "REC", "TUI", "WIZZ", "CSTM", "CCK", "FRVIA", "HLAG", "TATAMOTORS", "LXS", "METSB", "OI")
+
+// Check for alerts
+var string alertMsg = ""
+alertMsg := ""
+
+checkAlert(chg, idx) =>
+    if not na(chg) and chg <= threshold
+        name = array.get(names, idx)
+        tick = array.get(tickers, idx)
+        str.format('\{"ticker":"{0}","company":"{1}","price":0,"change":{2,number,#.##}\}', tick, name, chg)
+    else
+        ""
+
+// Build alert messages
+msg01 = checkAlert(chg01, 0)
+msg02 = checkAlert(chg02, 1)
+msg03 = checkAlert(chg03, 2)
+msg04 = checkAlert(chg04, 3)
+msg05 = checkAlert(chg05, 4)
+msg06 = checkAlert(chg06, 5)
+msg07 = checkAlert(chg07, 6)
+msg08 = checkAlert(chg08, 7)
+msg09 = checkAlert(chg09, 8)
+msg10 = checkAlert(chg10, 9)
+msg11 = checkAlert(chg11, 10)
+msg12 = checkAlert(chg12, 11)
+msg13 = checkAlert(chg13, 12)
+msg14 = checkAlert(chg14, 13)
+msg15 = checkAlert(chg15, 14)
+msg16 = checkAlert(chg16, 15)
+msg17 = checkAlert(chg17, 16)
+msg18 = checkAlert(chg18, 17)
+msg19 = checkAlert(chg19, 18)
+msg20 = checkAlert(chg20, 19)
+msg21 = checkAlert(chg21, 20)
+
+// Combine alerts
+anyAlert = msg01 != "" or msg02 != "" or msg03 != "" or msg04 != "" or msg05 != "" or msg06 != "" or msg07 != "" or msg08 != "" or msg09 != "" or msg10 != "" or msg11 != "" or msg12 != "" or msg13 != "" or msg14 != "" or msg15 != "" or msg16 != "" or msg17 != "" or msg18 != "" or msg19 != "" or msg20 != "" or msg21 != ""
+
+// Get first non-empty message for webhook
+firstMsg = msg01 != "" ? msg01 : msg02 != "" ? msg02 : msg03 != "" ? msg03 : msg04 != "" ? msg04 : msg05 != "" ? msg05 : msg06 != "" ? msg06 : msg07 != "" ? msg07 : msg08 != "" ? msg08 : msg09 != "" ? msg09 : msg10 != "" ? msg10 : msg11 != "" ? msg11 : msg12 != "" ? msg12 : msg13 != "" ? msg13 : msg14 != "" ? msg14 : msg15 != "" ? msg15 : msg16 != "" ? msg16 : msg17 != "" ? msg17 : msg18 != "" ? msg18 : msg19 != "" ? msg19 : msg20 != "" ? msg20 : msg21
+
+// Count how many triggered
+triggerCount = (msg01 != "" ? 1 : 0) + (msg02 != "" ? 1 : 0) + (msg03 != "" ? 1 : 0) + (msg04 != "" ? 1 : 0) + (msg05 != "" ? 1 : 0) + (msg06 != "" ? 1 : 0) + (msg07 != "" ? 1 : 0) + (msg08 != "" ? 1 : 0) + (msg09 != "" ? 1 : 0) + (msg10 != "" ? 1 : 0) + (msg11 != "" ? 1 : 0) + (msg12 != "" ? 1 : 0) + (msg13 != "" ? 1 : 0) + (msg14 != "" ? 1 : 0) + (msg15 != "" ? 1 : 0) + (msg16 != "" ? 1 : 0) + (msg17 != "" ? 1 : 0) + (msg18 != "" ? 1 : 0) + (msg19 != "" ? 1 : 0) + (msg20 != "" ? 1 : 0) + (msg21 != "" ? 1 : 0)
+
+// Plot trigger count
+plot(triggerCount, "Triggers", color=triggerCount > 0 ? color.red : color.green, linewidth=2)
+hline(0, "Zero", color=color.gray)
+
+// Alert condition
+if anyAlert
+    alert(firstMsg, alert.freq_once_per_bar)
+
+// Table display
+var table infoTable = table.new(position.top_right, 2, 22, bgcolor=color.new(color.black, 80))
+if barstate.islast
+    table.cell(infoTable, 0, 0, "XO S44 Part 1", text_color=color.white, text_size=size.small)
+    table.cell(infoTable, 1, 0, "Change %", text_color=color.white, text_size=size.small)
+
+    showRow(row, name, chg) =>
+        c = na(chg) ? color.gray : chg <= threshold ? color.red : chg < 0 ? color.orange : color.green
+        table.cell(infoTable, 0, row, name, text_color=c, text_size=size.tiny)
+        table.cell(infoTable, 1, row, na(chg) ? "N/A" : str.tostring(chg, "#.##") + "%", text_color=c, text_size=size.tiny)
+
+    showRow(1, "Air France", chg01)
+    showRow(2, "Ceconomy", chg02)
+    showRow(3, "Avolta", chg03)
+    showRow(4, "Grifols", chg04)
+    showRow(5, "IGT", chg05)
+    showRow(6, "Lagardere", chg06)
+    showRow(7, "Lottomatica", chg07)
+    showRow(8, "Ontex", chg08)
+    showRow(9, "Playtech", chg09)
+    showRow(10, "Premier Foods", chg10)
+    showRow(11, "Recordati", chg11)
+    showRow(12, "TUI", chg12)
+    showRow(13, "Wizz Air", chg13)
+    showRow(14, "Constellium", chg14)
+    showRow(15, "Crown", chg15)
+    showRow(16, "Forvia", chg16)
+    showRow(17, "Hapag-Lloyd", chg17)
+    showRow(18, "Tata/JLR", chg18)
+    showRow(19, "Lanxess", chg19)
+    showRow(20, "Metsa Board", chg20)
+    showRow(21, "OI Glass", chg21)

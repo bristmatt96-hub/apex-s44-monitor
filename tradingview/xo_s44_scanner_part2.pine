@@ -1,0 +1,121 @@
+// XO S44 Credit Monitor - Scanner Part 2 (21 tickers)
+// @version=5
+indicator("XO S44 Scanner Part 2", overlay=false)
+
+// Settings
+threshold = input.float(-1.0, "Alert Threshold %", minval=-10, maxval=0, step=0.5)
+
+// Function to get daily change %
+getChange(sym) =>
+    [c, pc] = request.security(sym, "D", [close, close[1]], ignore_invalid_symbol=true)
+    na(c) or na(pc) ? na : ((c - pc) / pc) * 100
+
+// XO S44 Tickers - Part 2 (Mixed)
+chg01 = getChange("EURONEXT:RNO")      // Renault
+chg02 = getChange("EURONEXT:RXL")      // Rexel
+chg03 = getChange("XETR:SHA")          // Schaeffler
+chg04 = getChange("XETR:TKA")          // ThyssenKrupp
+chg05 = getChange("EURONEXT:FR")       // Valeo
+chg06 = getChange("OMXSTO:VOLCAR_B")   // Volvo Car
+chg07 = getChange("MIL:WBD")           // Webuild
+chg08 = getChange("EURONEXT:ETL")      // Eutelsat
+chg09 = getChange("EURONEXT:ILD")      // Iliad
+chg10 = getChange("MIL:NEXI")          // Nexi
+chg11 = getChange("OMXHEX:NOKIA")      // Nokia
+chg12 = getChange("EURONEXT:SESG")     // SES
+chg13 = getChange("TSE:9984")          // SoftBank
+chg14 = getChange("MIL:TIT")           // Telecom Italia
+chg15 = getChange("NASDAQ:LBTYA")      // Liberty Global (Virgin Media)
+chg16 = getChange("EURONEXT:WLN")      // Worldline
+chg17 = getChange("LSE:ZEG")           // Zegona
+chg18 = getChange("PSE:CPI")           // CPI Property
+chg19 = getChange("OMXSTO:SBB_B")      // SBB
+chg20 = getChange("ATHEX:PPC")         // PPC Greece
+chg21 = getChange("MIL:SPM")           // Saipem
+
+// Ticker names
+var string[] names = array.from("Renault", "Rexel", "Schaeffler", "ThyssenKrupp", "Valeo", "Volvo Car", "Webuild", "Eutelsat", "Iliad", "Nexi", "Nokia", "SES", "SoftBank", "Telecom Italia", "Liberty Global", "Worldline", "Zegona", "CPI Property", "SBB", "PPC Greece", "Saipem")
+
+var string[] tickers = array.from("RNO", "RXL", "SHA", "TKA", "FR", "VOLCAR", "WBD", "ETL", "ILD", "NEXI", "NOKIA", "SESG", "9984", "TIT", "LBTYA", "WLN", "ZEG", "CPI", "SBB", "PPC", "SPM")
+
+// Check for alerts
+checkAlert(chg, idx) =>
+    if not na(chg) and chg <= threshold
+        name = array.get(names, idx)
+        tick = array.get(tickers, idx)
+        str.format('\{"ticker":"{0}","company":"{1}","price":0,"change":{2,number,#.##}\}', tick, name, chg)
+    else
+        ""
+
+// Build alert messages
+msg01 = checkAlert(chg01, 0)
+msg02 = checkAlert(chg02, 1)
+msg03 = checkAlert(chg03, 2)
+msg04 = checkAlert(chg04, 3)
+msg05 = checkAlert(chg05, 4)
+msg06 = checkAlert(chg06, 5)
+msg07 = checkAlert(chg07, 6)
+msg08 = checkAlert(chg08, 7)
+msg09 = checkAlert(chg09, 8)
+msg10 = checkAlert(chg10, 9)
+msg11 = checkAlert(chg11, 10)
+msg12 = checkAlert(chg12, 11)
+msg13 = checkAlert(chg13, 12)
+msg14 = checkAlert(chg14, 13)
+msg15 = checkAlert(chg15, 14)
+msg16 = checkAlert(chg16, 15)
+msg17 = checkAlert(chg17, 16)
+msg18 = checkAlert(chg18, 17)
+msg19 = checkAlert(chg19, 18)
+msg20 = checkAlert(chg20, 19)
+msg21 = checkAlert(chg21, 20)
+
+// Combine alerts
+anyAlert = msg01 != "" or msg02 != "" or msg03 != "" or msg04 != "" or msg05 != "" or msg06 != "" or msg07 != "" or msg08 != "" or msg09 != "" or msg10 != "" or msg11 != "" or msg12 != "" or msg13 != "" or msg14 != "" or msg15 != "" or msg16 != "" or msg17 != "" or msg18 != "" or msg19 != "" or msg20 != "" or msg21 != ""
+
+// Get first non-empty message for webhook
+firstMsg = msg01 != "" ? msg01 : msg02 != "" ? msg02 : msg03 != "" ? msg03 : msg04 != "" ? msg04 : msg05 != "" ? msg05 : msg06 != "" ? msg06 : msg07 != "" ? msg07 : msg08 != "" ? msg08 : msg09 != "" ? msg09 : msg10 != "" ? msg10 : msg11 != "" ? msg11 : msg12 != "" ? msg12 : msg13 != "" ? msg13 : msg14 != "" ? msg14 : msg15 != "" ? msg15 : msg16 != "" ? msg16 : msg17 != "" ? msg17 : msg18 != "" ? msg18 : msg19 != "" ? msg19 : msg20 != "" ? msg20 : msg21
+
+// Count how many triggered
+triggerCount = (msg01 != "" ? 1 : 0) + (msg02 != "" ? 1 : 0) + (msg03 != "" ? 1 : 0) + (msg04 != "" ? 1 : 0) + (msg05 != "" ? 1 : 0) + (msg06 != "" ? 1 : 0) + (msg07 != "" ? 1 : 0) + (msg08 != "" ? 1 : 0) + (msg09 != "" ? 1 : 0) + (msg10 != "" ? 1 : 0) + (msg11 != "" ? 1 : 0) + (msg12 != "" ? 1 : 0) + (msg13 != "" ? 1 : 0) + (msg14 != "" ? 1 : 0) + (msg15 != "" ? 1 : 0) + (msg16 != "" ? 1 : 0) + (msg17 != "" ? 1 : 0) + (msg18 != "" ? 1 : 0) + (msg19 != "" ? 1 : 0) + (msg20 != "" ? 1 : 0) + (msg21 != "" ? 1 : 0)
+
+// Plot trigger count
+plot(triggerCount, "Triggers", color=triggerCount > 0 ? color.red : color.green, linewidth=2)
+hline(0, "Zero", color=color.gray)
+
+// Alert condition
+if anyAlert
+    alert(firstMsg, alert.freq_once_per_bar)
+
+// Table display
+var table infoTable = table.new(position.top_right, 2, 22, bgcolor=color.new(color.black, 80))
+if barstate.islast
+    table.cell(infoTable, 0, 0, "XO S44 Part 2", text_color=color.white, text_size=size.small)
+    table.cell(infoTable, 1, 0, "Change %", text_color=color.white, text_size=size.small)
+
+    showRow(row, name, chg) =>
+        c = na(chg) ? color.gray : chg <= threshold ? color.red : chg < 0 ? color.orange : color.green
+        table.cell(infoTable, 0, row, name, text_color=c, text_size=size.tiny)
+        table.cell(infoTable, 1, row, na(chg) ? "N/A" : str.tostring(chg, "#.##") + "%", text_color=c, text_size=size.tiny)
+
+    showRow(1, "Renault", chg01)
+    showRow(2, "Rexel", chg02)
+    showRow(3, "Schaeffler", chg03)
+    showRow(4, "ThyssenKrupp", chg04)
+    showRow(5, "Valeo", chg05)
+    showRow(6, "Volvo Car", chg06)
+    showRow(7, "Webuild", chg07)
+    showRow(8, "Eutelsat", chg08)
+    showRow(9, "Iliad", chg09)
+    showRow(10, "Nexi", chg10)
+    showRow(11, "Nokia", chg11)
+    showRow(12, "SES", chg12)
+    showRow(13, "SoftBank", chg13)
+    showRow(14, "Telecom Italia", chg14)
+    showRow(15, "Liberty Global", chg15)
+    showRow(16, "Worldline", chg16)
+    showRow(17, "Zegona", chg17)
+    showRow(18, "CPI Property", chg18)
+    showRow(19, "SBB", chg19)
+    showRow(20, "PPC Greece", chg20)
+    showRow(21, "Saipem", chg21)
