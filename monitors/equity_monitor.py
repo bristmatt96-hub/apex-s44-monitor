@@ -10,10 +10,12 @@ Supports:
 
 import json
 import os
+import re
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Dict, List, Optional, Any
 import requests
+from urllib.parse import quote_plus
 
 # Try to import yfinance for price data
 try:
@@ -194,6 +196,296 @@ def get_movers(threshold_pct: float = 3.0) -> Dict[str, List[Dict]]:
     }
 
 
+# ============== NEWS SEARCH FOR "WHY MOVED?" ==============
+
+# Curated list of HY/Credit-focused Twitter accounts
+# These accounts often break stories before mainstream media
+CREDIT_TWITTER_ACCOUNTS = [
+    # Credit/HY Specialists
+    "CreditSights",      # Credit research
+    "LevFinInsights",    # Leveraged finance news
+    "ResijsMarc",        # European credit analyst
+    "Creditflux",        # CLO/leveraged loan news
+    "LCD_News",          # Leveraged Commentary & Data
+    "CapitalStructure",  # Restructuring news
+    "9finHQ",            # European leveraged finance
+    "DebtwireEurope",    # European debt news
+    "SophieKL_FT",       # FT distressed debt reporter
+
+    # Market Movers & Breaking News
+    "DeItaone",          # Fast market news
+    "FirstSquawk",       # Breaking financial news
+    "Faboratory",        # European markets
+    "zaborowskibond",    # Bond market coverage
+    "bondstrategist",    # Fixed income analysis
+
+    # Sector Specialists
+    "aviaborenstein",    # Telecom/media credit
+    "RobinWigg",         # European distressed
+    "PriapusIQ",         # Event-driven situations
+]
+
+
+def ask_grok_why_moved(company_name: str, ticker: str, change_pct: float, api_key: str = None) -> Dict:
+    """
+    Ask Grok (xAI) why a stock moved - Grok has live Twitter/X access
+    Returns grounded analysis with sources, minimal hallucination
+    """
+    if not api_key:
+        api_key = os.environ.get("XAI_API_KEY", "") or os.environ.get("GROK_API_KEY", "")
+
+    if not api_key:
+        return None
+
+    try:
+        # xAI/Grok API endpoint
+        url = "https://api.x.ai/v1/chat/completions"
+
+        direction = "dropped" if change_pct < 0 else "jumped"
+
+        prompt = f"""You are a credit analyst assistant. {company_name} ({ticker}) stock {direction} {abs(change_pct):.1f}% today.
+
+Search Twitter/X for recent posts about {company_name} and tell me:
+1. What news or event caused this move?
+2. Which Twitter accounts are discussing it?
+3. What's the credit/bond market implication?
+
+Focus on posts from financial accounts like @DeItaone, @FirstSquawk, @9finHQ, @Creditflux, @DebtwireEurope.
+
+Be specific and cite your sources. If you can't find anything, say so."""
+
+        headers = {
+            "Authorization": f"Bearer {api_key}",
+            "Content-Type": "application/json"
+        }
+
+        payload = {
+            "model": "grok-4-1-fast-reasoning",  # Fast, cheap, 2M context
+            "messages": [
+                {"role": "system", "content": "You are a helpful credit analyst with access to real-time Twitter/X data. Always cite sources and be specific about what you find."},
+                {"role": "user", "content": prompt}
+            ],
+            "temperature": 0.3  # Lower temperature for more factual responses
+        }
+
+        response = requests.post(url, headers=headers, json=payload, timeout=30)
+
+        if response.status_code == 200:
+            data = response.json()
+            answer = data.get("choices", [{}])[0].get("message", {}).get("content", "")
+            return {
+                "source": "Grok (xAI)",
+                "analysis": answer,
+                "model": "grok-4-1-fast-reasoning",
+                "has_twitter_access": True
+            }
+        else:
+            print(f"Grok API error: {response.status_code} - {response.text}")
+            return None
+
+    except Exception as e:
+        print(f"Grok API error: {e}")
+        return None
+
+
+def search_twitter_for_company(company_name: str, ticker: str, bearer_token: str = None) -> List[Dict]:
+    """
+    Search Twitter for mentions of a company from credit-focused accounts
+    Only called when user clicks "Why?" - preserves API quota
+    """
+    if not bearer_token:
+        bearer_token = os.environ.get("TWITTER_BEARER_TOKEN", "")
+
+    if not bearer_token:
+        return []
+
+    results = []
+
+    # Clean company name for search
+    search_name = company_name.replace("S.A.", "").replace("AG", "").replace("plc", "").replace("B.V.", "").strip()
+    short_name = search_name.split()[0] if search_name else company_name
+
+    # Build query: search for company mentions from credit accounts
+    accounts_query = " OR ".join([f"from:{acc}" for acc in CREDIT_TWITTER_ACCOUNTS[:10]])  # Limit to avoid query length issues
+
+    query = f'("{short_name}" OR "{ticker}") ({accounts_query})'
+
+    # Fallback to simpler query if too long
+    if len(query) > 500:
+        query = f'"{short_name}" (credit OR bond OR debt OR CDS OR restructuring)'
+
+    try:
+        import tweepy
+        client = tweepy.Client(bearer_token=bearer_token)
+
+        tweets = client.search_recent_tweets(
+            query=query,
+            max_results=10,
+            tweet_fields=['created_at', 'public_metrics', 'author_id'],
+            user_fields=['username', 'name'],
+            expansions=['author_id']
+        )
+
+        if tweets.data:
+            # Build user lookup
+            users = {u.id: u for u in (tweets.includes.get('users', []) or [])}
+
+            for tweet in tweets.data:
+                author = users.get(tweet.author_id)
+                username = author.username if author else "unknown"
+
+                results.append({
+                    'title': tweet.text[:200] + "..." if len(tweet.text) > 200 else tweet.text,
+                    'link': f"https://twitter.com/{username}/status/{tweet.id}",
+                    'source': f"@{username}",
+                    'date': tweet.created_at.strftime('%Y-%m-%d %H:%M') if tweet.created_at else '',
+                    'type': 'twitter',
+                    'likes': tweet.public_metrics.get('like_count', 0) if tweet.public_metrics else 0,
+                    'retweets': tweet.public_metrics.get('retweet_count', 0) if tweet.public_metrics else 0
+                })
+
+    except Exception as e:
+        print(f"Twitter search error: {e}")
+
+    return results
+
+
+def search_news_for_company(company_name: str, ticker: str = None, include_twitter: bool = True) -> List[Dict]:
+    """
+    Search for recent news about a company to explain price moves
+    Uses multiple sources - returns ACTUAL headlines, no AI interpretation
+    """
+    results = []
+
+    # Clean company name for search
+    search_name = company_name.replace("S.A.", "").replace("AG", "").replace("plc", "").strip()
+    short_name = search_name.split()[0] if search_name else company_name
+
+    # Source 1: Google News RSS (no API key needed)
+    try:
+        google_news_url = f"https://news.google.com/rss/search?q={quote_plus(short_name + ' stock')}&hl=en&gl=US&ceid=US:en"
+        response = requests.get(google_news_url, timeout=10)
+        if response.status_code == 200:
+            # Parse RSS XML
+            from xml.etree import ElementTree as ET
+            root = ET.fromstring(response.content)
+            for item in root.findall('.//item')[:5]:
+                title = item.find('title')
+                link = item.find('link')
+                pub_date = item.find('pubDate')
+                source = item.find('source')
+                if title is not None:
+                    results.append({
+                        'title': title.text,
+                        'link': link.text if link is not None else '',
+                        'source': source.text if source is not None else 'Google News',
+                        'date': pub_date.text if pub_date is not None else '',
+                        'type': 'news'
+                    })
+    except Exception as e:
+        print(f"Google News error: {e}")
+
+    # Source 2: DuckDuckGo News (no API key needed)
+    try:
+        ddg_url = f"https://duckduckgo.com/news.js?q={quote_plus(short_name)}&df=d"
+        headers = {'User-Agent': 'Mozilla/5.0'}
+        response = requests.get(ddg_url, headers=headers, timeout=10)
+        if response.status_code == 200 and response.text:
+            # Try to parse JSON response
+            try:
+                data = response.json()
+                for item in data.get('results', [])[:5]:
+                    results.append({
+                        'title': item.get('title', ''),
+                        'link': item.get('url', ''),
+                        'source': item.get('source', 'DuckDuckGo News'),
+                        'date': item.get('date', ''),
+                        'type': 'news'
+                    })
+            except:
+                pass
+    except Exception as e:
+        print(f"DuckDuckGo error: {e}")
+
+    # Source 3: Yahoo Finance news for ticker
+    if ticker and ticker != "Private":
+        try:
+            yahoo_url = f"https://query1.finance.yahoo.com/v1/finance/search?q={ticker}&newsCount=5"
+            response = requests.get(yahoo_url, timeout=10)
+            if response.status_code == 200:
+                data = response.json()
+                for item in data.get('news', [])[:5]:
+                    results.append({
+                        'title': item.get('title', ''),
+                        'link': item.get('link', ''),
+                        'source': item.get('publisher', 'Yahoo Finance'),
+                        'date': datetime.fromtimestamp(item.get('providerPublishTime', 0)).strftime('%Y-%m-%d %H:%M') if item.get('providerPublishTime') else '',
+                        'type': 'financial'
+                    })
+        except Exception as e:
+            print(f"Yahoo Finance error: {e}")
+
+    # Source 4: Twitter/X - Credit-focused accounts (only if enabled)
+    if include_twitter:
+        twitter_results = search_twitter_for_company(company_name, ticker or "")
+        # Add Twitter results at the TOP (often fastest)
+        for tr in twitter_results:
+            results.insert(0, tr)
+
+    # Deduplicate by title similarity
+    seen_titles = set()
+    unique_results = []
+    for r in results:
+        title_key = r['title'].lower()[:50] if r.get('title') else ''
+        if title_key and title_key not in seen_titles:
+            seen_titles.add(title_key)
+            unique_results.append(r)
+
+    return unique_results[:15]  # Return more results now that we have Twitter
+
+
+def analyze_price_move(company_name: str, ticker: str, change_pct: float) -> Dict:
+    """
+    Analyze why a stock moved - uses Grok for Twitter analysis + real news
+    """
+    # Try Grok first (has live Twitter access)
+    grok_analysis = ask_grok_why_moved(company_name, ticker, change_pct)
+
+    # Also get traditional news sources
+    news = search_news_for_company(company_name, ticker, include_twitter=False)  # Skip Twitter API since we have Grok
+
+    # Categorize the move
+    if change_pct <= -10:
+        severity = "SEVERE DROP"
+        credit_impact = "Expect significant spread widening (20-50bps+). Check for: rating action, earnings miss, guidance cut, regulatory issue, or sector news."
+    elif change_pct <= -5:
+        severity = "SIGNIFICANT DROP"
+        credit_impact = "Expect spread widening (10-20bps). Monitor CDS and bond prices."
+    elif change_pct <= -3:
+        severity = "NOTABLE DROP"
+        credit_impact = "Moderate credit impact. Watch for follow-through."
+    elif change_pct >= 5:
+        severity = "SIGNIFICANT GAIN"
+        credit_impact = "Potential spread tightening. Could indicate positive catalyst."
+    elif change_pct >= 3:
+        severity = "NOTABLE GAIN"
+        credit_impact = "Mildly positive for credit."
+    else:
+        severity = "NORMAL MOVE"
+        credit_impact = "Limited credit impact expected."
+
+    return {
+        'company': company_name,
+        'ticker': ticker,
+        'change_pct': change_pct,
+        'severity': severity,
+        'credit_impact': credit_impact,
+        'news': news,
+        'grok_analysis': grok_analysis,
+        'analyzed_at': datetime.now().isoformat()
+    }
+
+
 # ============== TRADINGVIEW WEBHOOK HANDLER ==============
 
 class TradingViewWebhookHandler:
@@ -287,41 +579,97 @@ def render_equity_dashboard(st):
     import pandas as pd
 
     st.markdown("### Equity Price Monitor")
-    st.caption("Equity moves often lead credit by 1-2 days")
+    st.caption("Equity moves often lead credit by 1-2 days. Click 'Why?' to see real news.")
 
     if not YFINANCE_AVAILABLE:
         st.warning("Install yfinance for live prices: `pip install yfinance`")
         st.info("You can still use TradingView webhook alerts without yfinance")
         return
 
+    # Initialize session state for storing movers and analysis
+    if 'equity_movers' not in st.session_state:
+        st.session_state.equity_movers = None
+    if 'why_analysis' not in st.session_state:
+        st.session_state.why_analysis = None
+
     # Scan button
     if st.button("Scan All Equities"):
         with st.spinner("Fetching prices..."):
-            movers = get_movers(threshold_pct=2.0)
+            st.session_state.equity_movers = get_movers(threshold_pct=2.0)
+            st.session_state.why_analysis = None
 
+    movers = st.session_state.equity_movers
+
+    if movers:
         col1, col2 = st.columns(2)
 
         with col1:
-            st.markdown("#### Losers (Credit Risk)")
+            st.markdown("#### 📉 Losers (Credit Risk)")
             if movers["losers"]:
-                for m in movers["losers"][:10]:
+                for i, m in enumerate(movers["losers"][:10]):
                     price_data = m.get("price_data", {})
                     change = price_data.get("daily_change_pct", 0)
-                    st.error(f"**{m['company']}** ({m['ticker']}): {change:.1f}%")
+
+                    cols = st.columns([3, 1])
+                    with cols[0]:
+                        st.error(f"**{m['company']}** ({m['ticker']}): {change:.1f}%")
+                    with cols[1]:
+                        if st.button("Why?", key=f"why_loser_{i}"):
+                            with st.spinner(f"Searching news for {m['company']}..."):
+                                st.session_state.why_analysis = analyze_price_move(
+                                    m['company'], m['ticker'], change
+                                )
+
                     for reason in m.get("reasons", []):
                         st.caption(f"  • {reason}")
             else:
                 st.info("No significant losers today")
 
         with col2:
-            st.markdown("#### Gainers")
+            st.markdown("#### 📈 Gainers")
             if movers["gainers"]:
-                for m in movers["gainers"][:10]:
+                for i, m in enumerate(movers["gainers"][:10]):
                     price_data = m.get("price_data", {})
                     change = price_data.get("daily_change_pct", 0)
-                    st.success(f"**{m['company']}** ({m['ticker']}): +{change:.1f}%")
+
+                    cols = st.columns([3, 1])
+                    with cols[0]:
+                        st.success(f"**{m['company']}** ({m['ticker']}): +{change:.1f}%")
+                    with cols[1]:
+                        if st.button("Why?", key=f"why_gainer_{i}"):
+                            with st.spinner(f"Searching news for {m['company']}..."):
+                                st.session_state.why_analysis = analyze_price_move(
+                                    m['company'], m['ticker'], change
+                                )
             else:
                 st.info("No significant gainers today")
+
+        # Display analysis if available
+        if st.session_state.why_analysis:
+            st.markdown("---")
+            analysis = st.session_state.why_analysis
+
+            st.markdown(f"### Why did {analysis['company']} move {analysis['change_pct']:.1f}%?")
+            st.markdown(f"**Severity:** {analysis['severity']}")
+            st.markdown(f"**Credit Impact:** {analysis['credit_impact']}")
+
+            # Grok Analysis (AI with live Twitter access)
+            grok = analysis.get('grok_analysis')
+            if grok and grok.get('analysis'):
+                st.markdown("#### 🤖 Grok Analysis (Live Twitter/X Search)")
+                st.info(grok['analysis'])
+                st.caption("*Grok has real-time Twitter/X access - this is based on actual posts.*")
+
+            # Traditional news sources
+            st.markdown("#### 📰 News Headlines")
+            if analysis['news']:
+                for article in analysis['news'][:10]:
+                    st.markdown(f"- **[{article['title']}]({article['link']})** - *{article['source']}* ({article.get('date', '')})")
+            else:
+                st.warning("No recent news found in traditional sources.")
+
+            if not grok and not analysis['news']:
+                st.warning("No information found. Check Bloomberg/Reuters terminals for more coverage.")
 
     # Individual company lookup
     st.markdown("---")
