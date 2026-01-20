@@ -16,10 +16,32 @@ from pathlib import Path
 
 # ============== CONFIGURATION ==============
 
-# API Keys - set these or use environment variables
-XAI_API_KEY = os.environ.get("XAI_API_KEY", "YOUR_XAI_API_KEY")
-TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "YOUR_BOT_TOKEN")
-TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID", "YOUR_CHAT_ID")
+def load_secrets():
+    """Load secrets from .streamlit/secrets.toml or environment variables"""
+    secrets = {}
+
+    # Try to load from secrets.toml first
+    secrets_path = Path(__file__).parent / ".streamlit" / "secrets.toml"
+    if secrets_path.exists():
+        try:
+            with open(secrets_path, "r") as f:
+                for line in f:
+                    line = line.strip()
+                    if "=" in line and not line.startswith("#"):
+                        key, value = line.split("=", 1)
+                        key = key.strip()
+                        value = value.strip().strip('"').strip("'")
+                        secrets[key] = value
+        except Exception as e:
+            print(f"Warning: Could not read secrets.toml: {e}")
+
+    return secrets
+
+# Load from secrets.toml, fall back to environment variables
+_secrets = load_secrets()
+XAI_API_KEY = _secrets.get("XAI_API_KEY") or os.environ.get("XAI_API_KEY", "YOUR_XAI_API_KEY")
+TELEGRAM_BOT_TOKEN = _secrets.get("TELEGRAM_BOT_TOKEN") or os.environ.get("TELEGRAM_BOT_TOKEN", "YOUR_BOT_TOKEN")
+TELEGRAM_CHAT_ID = _secrets.get("TELEGRAM_CHAT_ID") or os.environ.get("TELEGRAM_CHAT_ID", "YOUR_CHAT_ID")
 
 # Scanning settings
 SCAN_INTERVAL = 900  # 15 minutes (in seconds)
