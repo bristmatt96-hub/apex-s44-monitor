@@ -1,0 +1,72 @@
+{
+  "company_name": "CMA CGM",
+  "ticker": "Private",
+  "sector": "Autos & Industrials",
+  "last_updated": "2025-01-20",
+  "overview": {
+    "business_description": "French shipping company, third-largest container shipping company globally with ~13% market share. Also one of the largest 3PL providers. Family-owned by the Saadé family.",
+    "business_positives": [
+      "Global scale - #3 container shipping",
+      "Diversified into logistics (3PL)",
+      "Strong cash flow reinvestment discipline",
+      "Low leverage maintained through cycles"
+    ],
+    "fatal_flaw": "Highly cyclical shipping industry; family ownership limits governance; large fleet orderbook increases capex",
+    "ownership": "Saadé family (private)",
+    "public_private": "private",
+    "recent_news": "Upgraded to Ba1 by Moody's (stable outlook). Strong earnings from Red Sea disruptions. Continued logistics M&A activity."
+  },
+  "ratings": {
+    "moodys": {"rating": "Ba1", "outlook": "Stable", "date": "2024"},
+    "sp": {"rating": "", "outlook": "", "date": ""},
+    "fitch": {"rating": "", "outlook": "", "date": ""}
+  },
+  "quick_assessment": {
+    "period_end": "2024",
+    "cffo": null,
+    "total_debt": null,
+    "interest_expense": null,
+    "capex": null,
+    "debt_due_one_year": null,
+    "cash_on_hand": null,
+    "revolver_available": null
+  },
+  "key_ratios": {
+    "debt_to_ebitda": 2.5,
+    "ebitda_minus_capex_to_interest": 4.5,
+    "fcf_to_debt": null,
+    "net_debt_to_ebitda": null
+  },
+  "trend_analysis": {
+    "years": [],
+    "revenue": [],
+    "ebitda": [],
+    "ebitda_margin": [],
+    "total_debt": []
+  },
+  "debt_capitalization": [],
+  "maturity_schedule": {
+    "year_1": null,
+    "year_2": null,
+    "year_3": null,
+    "year_4": null,
+    "year_5": null,
+    "thereafter": null
+  },
+  "equity_market_value": {},
+  "credit_opinion": {
+    "summary": "CMA CGM has maintained credit discipline despite strong cash flows, reinvesting in fleet and logistics acquisitions rather than paying large dividends. Ba1 rating reflects scale and low leverage.",
+    "key_risks": [
+      "Container shipping rate normalization post-Red Sea",
+      "Fleet orderbook increases capex requirements",
+      "Family ownership - limited disclosure",
+      "Cyclical industry exposure"
+    ],
+    "key_catalysts": [
+      "Sustained strong freight rates",
+      "Logistics diversification reduces cyclicality",
+      "Potential for investment grade if leverage stays low"
+    ],
+    "recommendation": "NEUTRAL - Strong fundamentals but shipping cycle risk"
+  }
+}

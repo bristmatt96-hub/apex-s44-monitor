@@ -1,36 +1,144 @@
 {
+  "description": "Off-the-run news sources for alpha generation - get news before the crowd",
+  "last_updated": "2025-01-20",
   "rss_feeds": {
     "general_credit": [
       {"name": "Reuters Business", "url": "https://feeds.reuters.com/reuters/businessNews", "region": "Global"},
       {"name": "FT Companies", "url": "https://www.ft.com/companies?format=rss", "region": "Global"},
-      {"name": "Bloomberg Markets", "url": "https://feeds.bloomberg.com/markets/news.rss", "region": "Global"}
+      {"name": "Bloomberg Markets", "url": "https://feeds.bloomberg.com/markets/news.rss", "region": "Global"},
+      {"name": "WSJ Business", "url": "https://feeds.a.dj.com/rss/WSJcomUSBusiness.xml", "region": "US/Global"}
     ],
-    "european": [
-      {"name": "Il Sole 24 Ore", "url": "https://www.ilsole24ore.com/rss/finanza.xml", "region": "Italy"},
-      {"name": "Handelsblatt", "url": "https://www.handelsblatt.com/contentexport/feed/unternehmen", "region": "Germany"},
-      {"name": "Les Echos", "url": "https://www.lesechos.fr/rss/rss_une_finance.xml", "region": "France"},
-      {"name": "Expansion", "url": "https://e00-expansion.uecdn.es/rss/empresas.xml", "region": "Spain"}
+    "european_local": [
+      {"name": "Il Sole 24 Ore", "url": "https://www.ilsole24ore.com/rss/finanza.xml", "region": "Italy", "priority": "high"},
+      {"name": "Corriere della Sera Economia", "url": "https://xml2.corriereobjects.it/rss/economia.xml", "region": "Italy"},
+      {"name": "La Repubblica Economia", "url": "https://www.repubblica.it/rss/economia/rss2.0.xml", "region": "Italy"},
+      {"name": "Handelsblatt", "url": "https://www.handelsblatt.com/contentexport/feed/unternehmen", "region": "Germany", "priority": "high"},
+      {"name": "Manager Magazin", "url": "https://www.manager-magazin.de/unternehmen/index.rss", "region": "Germany"},
+      {"name": "Wirtschaftswoche", "url": "https://www.wiwo.de/rss/finanzen.rss", "region": "Germany"},
+      {"name": "Les Echos", "url": "https://www.lesechos.fr/rss/rss_une_finance.xml", "region": "France", "priority": "high"},
+      {"name": "La Tribune", "url": "https://www.latribune.fr/rss/rubriques/entreprises.html", "region": "France"},
+      {"name": "BFM Business", "url": "https://www.bfmtv.com/rss/economie/", "region": "France"},
+      {"name": "Expansion", "url": "https://e00-expansion.uecdn.es/rss/empresas.xml", "region": "Spain", "priority": "high"},
+      {"name": "Cinco Dias", "url": "https://cincodias.elpais.com/rss/feed.html", "region": "Spain"},
+      {"name": "Het Financieele Dagblad", "url": "https://fd.nl/rss", "region": "Netherlands", "priority": "high"},
+      {"name": "De Tijd", "url": "https://www.tijd.be/rss/nieuws.xml", "region": "Belgium"},
+      {"name": "Dagens Industri", "url": "https://www.di.se/rss", "region": "Sweden", "priority": "high"},
+      {"name": "Borsen", "url": "https://borsen.dk/rss", "region": "Denmark"},
+      {"name": "Kauppalehti", "url": "https://www.kauppalehti.fi/rss/main.rss", "region": "Finland"},
+      {"name": "Dagens Naeringsliv", "url": "https://www.dn.no/rss", "region": "Norway"}
+    ],
+    "uk_local": [
+      {"name": "City AM", "url": "https://www.cityam.com/feed/", "region": "UK", "priority": "high"},
+      {"name": "This is Money", "url": "https://www.thisismoney.co.uk/money/markets/index.rss", "region": "UK"},
+      {"name": "The Times Business", "url": "https://www.thetimes.co.uk/rss", "region": "UK"},
+      {"name": "Telegraph Business", "url": "https://www.telegraph.co.uk/business/rss.xml", "region": "UK"},
+      {"name": "Sky News Business", "url": "https://feeds.skynews.com/feeds/rss/business.xml", "region": "UK"}
     ],
     "sector_autos": [
-      {"name": "Automotive News Europe", "url": "https://europe.autonews.com/rss.xml", "region": "Europe"},
-      {"name": "Just Auto", "url": "https://www.just-auto.com/feed/", "region": "Global"}
+      {"name": "Automotive News Europe", "url": "https://europe.autonews.com/rss.xml", "region": "Europe", "priority": "high"},
+      {"name": "Just Auto", "url": "https://www.just-auto.com/feed/", "region": "Global"},
+      {"name": "Autocar Pro", "url": "https://www.autocarpro.in/rss", "region": "Global"},
+      {"name": "Motor Authority", "url": "https://www.motorauthority.com/rss/news/", "region": "US/Global"},
+      {"name": "Car Magazine UK", "url": "https://www.carmagazine.co.uk/rss/", "region": "UK"},
+      {"name": "Automobilwoche", "url": "https://www.automobilwoche.de/rss", "region": "Germany", "priority": "high"}
     ],
     "sector_tmt": [
-      {"name": "Telecoms.com", "url": "https://telecoms.com/feed/", "region": "Global"},
+      {"name": "Telecoms.com", "url": "https://telecoms.com/feed/", "region": "Global", "priority": "high"},
       {"name": "Light Reading", "url": "https://www.lightreading.com/rss_simple.asp", "region": "Global"},
-      {"name": "Capacity Media", "url": "https://www.capacitymedia.com/rss", "region": "Global"}
+      {"name": "Capacity Media", "url": "https://www.capacitymedia.com/rss", "region": "Global"},
+      {"name": "Total Telecom", "url": "https://www.totaltele.com/rss", "region": "Global"},
+      {"name": "Mobile World Live", "url": "https://www.mobileworldlive.com/feed/", "region": "Global"},
+      {"name": "Fierce Telecom", "url": "https://www.fiercetelecom.com/rss/xml", "region": "US/Global"},
+      {"name": "Telecompaper", "url": "https://www.telecompaper.com/rss", "region": "Europe", "priority": "high"},
+      {"name": "Digitimes", "url": "https://www.digitimes.com/rss/daily.xml", "region": "Asia/Global"}
     ],
     "sector_retail": [
-      {"name": "Retail Gazette", "url": "https://www.retailgazette.co.uk/feed/", "region": "UK"},
-      {"name": "The Grocer", "url": "https://www.thegrocer.co.uk/rss", "region": "UK"}
+      {"name": "Retail Gazette", "url": "https://www.retailgazette.co.uk/feed/", "region": "UK", "priority": "high"},
+      {"name": "The Grocer", "url": "https://www.thegrocer.co.uk/rss", "region": "UK", "priority": "high"},
+      {"name": "Retail Week", "url": "https://www.retail-week.com/rss", "region": "UK"},
+      {"name": "Just Style", "url": "https://www.just-style.com/feed/", "region": "Global"},
+      {"name": "Retail Dive", "url": "https://www.retaildive.com/feeds/news/", "region": "US/Global"},
+      {"name": "Inside Retail", "url": "https://insideretail.com.au/feed/", "region": "Australia/Global"},
+      {"name": "Fashion United", "url": "https://fashionunited.com/rss", "region": "Global"}
     ],
-    "distressed": [
-      {"name": "Reorg Research", "url": "https://reorg.com/feed/", "region": "Global"},
-      {"name": "Debtwire (Public)", "url": "https://debtwire.com/feed/", "region": "Global"}
+    "sector_travel_leisure": [
+      {"name": "Travel Weekly UK", "url": "https://www.travelweekly.co.uk/rss", "region": "UK", "priority": "high"},
+      {"name": "TTG", "url": "https://www.ttgmedia.com/rss", "region": "UK"},
+      {"name": "Airline Weekly", "url": "https://airlineweekly.com/feed/", "region": "Global"},
+      {"name": "CAPA Aviation", "url": "https://centreforaviation.com/analysis/rss", "region": "Global", "priority": "high"},
+      {"name": "Skift", "url": "https://skift.com/feed/", "region": "Global"},
+      {"name": "Hotel News Now", "url": "https://www.hotelnewsnow.com/rss", "region": "Global"}
+    ],
+    "sector_industrials": [
+      {"name": "Just Auto Supply Chain", "url": "https://www.just-auto.com/supply-chain/feed/", "region": "Global"},
+      {"name": "Supply Chain Dive", "url": "https://www.supplychaindive.com/feeds/news/", "region": "Global"},
+      {"name": "Logistics Manager", "url": "https://www.logisticsmanager.com/feed/", "region": "UK/Europe"},
+      {"name": "Shipping Watch", "url": "https://shippingwatch.com/rss", "region": "Global", "priority": "high"},
+      {"name": "Lloyd's List", "url": "https://lloydslist.maritimeintelligence.informa.com/rss", "region": "Global", "priority": "high"},
+      {"name": "TradeWinds", "url": "https://www.tradewindsnews.com/rss", "region": "Global"}
+    ],
+    "sector_healthcare_pharma": [
+      {"name": "Pharma Times", "url": "https://www.pharmatimes.com/rss", "region": "UK/Global"},
+      {"name": "Fierce Pharma", "url": "https://www.fiercepharma.com/rss/xml", "region": "Global", "priority": "high"},
+      {"name": "Endpoints News", "url": "https://endpts.com/feed/", "region": "Global"},
+      {"name": "Scrip", "url": "https://scrip.pharmaintelligence.informa.com/rss", "region": "Global"},
+      {"name": "European Pharmaceutical Review", "url": "https://www.europeanpharmaceuticalreview.com/feed/", "region": "Europe"}
+    ],
+    "sector_real_estate": [
+      {"name": "Property Week", "url": "https://www.propertyweek.com/rss", "region": "UK", "priority": "high"},
+      {"name": "CoStar News", "url": "https://www.costar.com/rss", "region": "UK/Europe"},
+      {"name": "Property EU", "url": "https://propertyeu.info/rss", "region": "Europe", "priority": "high"},
+      {"name": "React News", "url": "https://reactnews.com/feed/", "region": "UK"},
+      {"name": "Fastighetstidningen", "url": "https://www.fastighetstidningen.se/rss", "region": "Sweden", "priority": "high"}
+    ],
+    "sector_gaming_leisure": [
+      {"name": "iGaming Business", "url": "https://www.igamingbusiness.com/feed/", "region": "Global", "priority": "high"},
+      {"name": "Gaming Intelligence", "url": "https://gamingintelligence.com/feed/", "region": "Global"},
+      {"name": "CDC Gaming Reports", "url": "https://www.cdcgamingreports.com/feed/", "region": "Global"},
+      {"name": "SBC News", "url": "https://sbcnews.co.uk/feed/", "region": "Global"},
+      {"name": "EGR Intel", "url": "https://egr.global/intel/feed/", "region": "Global"}
+    ],
+    "distressed_restructuring": [
+      {"name": "Reorg Research", "url": "https://reorg.com/feed/", "region": "Global", "priority": "high"},
+      {"name": "Debtwire (Public)", "url": "https://debtwire.com/feed/", "region": "Global", "priority": "high"},
+      {"name": "Global Restructuring Review", "url": "https://globalrestructuringreview.com/rss", "region": "Global"},
+      {"name": "Turnarounds & Workouts", "url": "https://www.turnarounds.com/rss", "region": "US/Global"}
+    ],
+    "regulatory_filings": [
+      {"name": "UK Regulatory News", "url": "https://www.investegate.co.uk/rss/investegate.xml", "region": "UK", "priority": "high"},
+      {"name": "DGAP News (Germany)", "url": "https://www.dgap.de/rss", "region": "Germany"},
+      {"name": "AFM Netherlands", "url": "https://www.afm.nl/rss", "region": "Netherlands"}
+    ],
+    "wire_services": [
+      {"name": "PR Newswire UK", "url": "https://www.prnewswire.co.uk/rss/", "region": "UK/Europe"},
+      {"name": "Business Wire Europe", "url": "https://www.businesswire.com/portal/site/home/rss", "region": "Europe"},
+      {"name": "GlobeNewswire", "url": "https://www.globenewswire.com/rss", "region": "Global"}
     ]
   },
   "newsapi_keywords": {
-    "credit_terms": ["bond", "debt", "leverage", "refinancing", "default", "restructuring", "downgrade", "upgrade"],
-    "event_terms": ["acquisition", "merger", "takeover", "bankruptcy", "IPO", "dividend"]
+    "credit_terms": ["bond", "debt", "leverage", "refinancing", "default", "restructuring", "downgrade", "upgrade", "covenant", "maturity"],
+    "event_terms": ["acquisition", "merger", "takeover", "bankruptcy", "IPO", "dividend", "rights issue", "capital increase", "layoffs", "profit warning"],
+    "distressed_terms": ["restructuring", "distressed", "troubled", "debt exchange", "haircut", "creditor", "bondholder", "covenant breach"]
+  },
+  "search_priority_by_sector": {
+    "Consumers": ["sector_retail", "sector_travel_leisure", "sector_gaming_leisure", "sector_healthcare_pharma", "european_local", "uk_local"],
+    "Autos & Industrials": ["sector_autos", "sector_industrials", "european_local"],
+    "TMT": ["sector_tmt", "european_local"],
+    "Financials": ["sector_real_estate", "european_local", "uk_local"],
+    "Energy": ["sector_industrials", "european_local"]
+  },
+  "total_feeds": 85,
+  "alpha_sources": {
+    "description": "These sources often break news before mainstream media",
+    "sources": [
+      "Telecompaper (telecom deals)",
+      "Automotive News Europe (auto supplier issues)",
+      "Shipping Watch / Lloyd's List (shipping)",
+      "Property EU / Fastighetstidningen (Nordic RE)",
+      "Investegate UK (regulatory filings)",
+      "Reorg / Debtwire (restructuring)",
+      "iGaming Business (gaming sector)",
+      "Local newspapers (Il Sole, Handelsblatt, Les Echos)"
+    ]
   }
 }

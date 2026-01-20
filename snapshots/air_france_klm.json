@@ -1,0 +1,78 @@
+{
+  "company_name": "Air France - KLM",
+  "ticker": "AF FP",
+  "sector": "Consumers",
+  "last_updated": "2025-01-20",
+  "overview": {
+    "business_description": "Franco-Dutch airline group formed through merger. One of the world's largest airline groups. Operations include passenger transport (Air France, KLM, Transavia), cargo, and maintenance. Hub at Paris CDG and Amsterdam Schiphol.",
+    "business_positives": [
+      "Split rating: Fitch BBB- (IG) vs S&P BB+ (HY)",
+      "Strong liquidity (€9.4bn cash, target €6-8bn)",
+      "Leverage at 1.5x within target range",
+      "Lowest credit margin in history on recent bond"
+    ],
+    "fatal_flaw": "Airline industry structural challenges; high fixed costs; fuel price exposure; labor relations",
+    "ownership": "French State (~29%), Dutch State (~9%), Public",
+    "public_private": "public",
+    "recent_news": "Fitch affirmed BBB- stable (May 2025). Issued €650m bonds (Jan 2025) at lowest ever spread. Net debt €7.1bn. Issued €500m perpetual hybrid (May 2025)."
+  },
+  "ratings": {
+    "moodys": {"rating": "", "outlook": "", "date": ""},
+    "sp": {"rating": "BB+", "outlook": "Stable", "date": "2024-07"},
+    "fitch": {"rating": "BBB-", "outlook": "Stable", "date": "2025-05"}
+  },
+  "quick_assessment": {
+    "period_end": "Q3 2025",
+    "cffo": null,
+    "total_debt": null,
+    "interest_expense": null,
+    "capex": 3300,
+    "debt_due_one_year": null,
+    "cash_on_hand": 9500,
+    "revolver_available": null
+  },
+  "key_ratios": {
+    "debt_to_ebitda": 1.6,
+    "ebitda_minus_capex_to_interest": null,
+    "fcf_to_debt": null,
+    "net_debt_to_ebitda": 1.6
+  },
+  "trend_analysis": {
+    "years": [],
+    "revenue": [],
+    "ebitda": [],
+    "ebitda_margin": [],
+    "total_debt": []
+  },
+  "debt_capitalization": [
+    {"instrument": "3.75% Bonds", "amount": 500, "maturity": "2030", "coupon": "3.75%", "price": null, "ytw": null, "stw": null, "rating": "BBB-"},
+    {"instrument": "8.125% Bonds", "amount": 500, "maturity": "2028", "coupon": "8.125%", "price": null, "ytw": null, "stw": null, "rating": ""},
+    {"instrument": "7.25% SLB (repaid)", "amount": 500, "maturity": "2026", "coupon": "7.25%", "price": null, "ytw": null, "stw": null, "rating": ""},
+    {"instrument": "Perpetual Hybrid", "amount": 500, "maturity": "Perpetual", "coupon": "", "price": null, "ytw": null, "stw": null, "rating": "BB"}
+  ],
+  "maturity_schedule": {
+    "year_1": null,
+    "year_2": null,
+    "year_3": null,
+    "year_4": null,
+    "year_5": null,
+    "thereafter": null
+  },
+  "equity_market_value": {},
+  "credit_opinion": {
+    "summary": "Air France-KLM has achieved investment grade from Fitch while S&P remains at BB+. Strong liquidity and low leverage support the credit. The split rating creates potential for spread compression if S&P upgrades.",
+    "key_risks": [
+      "Airline industry cyclicality",
+      "Fuel price volatility",
+      "Labor cost inflation and strike risk",
+      "Fleet renewal capex requirements"
+    ],
+    "key_catalysts": [
+      "S&P upgrade to investment grade",
+      "Continued strong travel demand",
+      "Further debt reduction",
+      "Transavia low-cost growth"
+    ],
+    "recommendation": "OVERWEIGHT - Split rating opportunity, strong liquidity"
+  }
+}

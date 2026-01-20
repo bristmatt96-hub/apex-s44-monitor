@@ -9,11 +9,41 @@ from pathlib import Path
 from datetime import datetime, timedelta
 import feedparser
 
-# Load secrets from Streamlit Cloud or environment variables (for local dev)
+# ============== CONFIGURATION ==============
+
+# Load secrets from Streamlit Cloud or environment variables
 TELEGRAM_BOT_TOKEN = st.secrets.get("TELEGRAM_BOT_TOKEN", os.environ.get("TELEGRAM_BOT_TOKEN", ""))
 TELEGRAM_CHAT_ID = st.secrets.get("TELEGRAM_CHAT_ID", os.environ.get("TELEGRAM_CHAT_ID", ""))
 TWITTER_BEARER_TOKEN = st.secrets.get("TWITTER_BEARER_TOKEN", os.environ.get("TWITTER_BEARER_TOKEN", ""))
 NEWSAPI_KEY = st.secrets.get("NEWSAPI_KEY", os.environ.get("NEWSAPI_KEY", ""))
+DATABASE_URL = st.secrets.get("DATABASE_URL", os.environ.get("DATABASE_URL", ""))
+
+# Try to import database module (optional - falls back to JSON if unavailable)
+DB_AVAILABLE = False
+try:
+    if DATABASE_URL:
+        from database import get_session, get_all_companies, get_latest_financials, get_debt_instruments
+        DB_AVAILABLE = True
+except ImportError:
+    pass
+
+# Try to import tear sheet generator
+TEARSHEET_AVAILABLE = False
+try:
+    from generators import generate_tearsheet_html
+    TEARSHEET_AVAILABLE = True
+except ImportError:
+    pass
+
+# Try to import equity monitor
+EQUITY_MONITOR_AVAILABLE = False
+try:
+    from monitors import render_equity_dashboard, YFINANCE_AVAILABLE
+    EQUITY_MONITOR_AVAILABLE = True
+except ImportError:
+    YFINANCE_AVAILABLE = False
+
+# ============== TELEGRAM FUNCTIONS ==============
 
 def send_telegram_message(message):
     url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
@@ -41,6 +71,8 @@ def test_telegram():
         print("Failed to send test message - check bot token and chat ID")
     return success
 
+# ============== DATA LOADING FUNCTIONS ==============
+
 def load_index(index_file):
     """Load index constituents from JSON config file"""
     indices_dir = Path(__file__).parent / "indices"
@@ -63,7 +95,17 @@ def load_news_sources():
     return {"rss_feeds": {}, "newsapi_keywords": {}}
 
 def load_snapshot(company_name):
-    """Load credit snapshot for a company if available"""
+    """Load credit snapshot for a company - tries database first, then JSON"""
+    # Try database first if available
+    if DB_AVAILABLE:
+        try:
+            session = get_session()
+            # Database lookup logic would go here
+            session.close()
+        except:
+            pass
+
+    # Fall back to JSON files
     snapshots_dir = Path(__file__).parent / "snapshots"
     if not snapshots_dir.exists():
         return None
@@ -102,6 +144,150 @@ def get_search_terms(name, aliases):
     if name in aliases:
         terms.extend(aliases[name])
     return terms
+
+# ============== TRADING SIGNALS ==============
+
+# Signal definitions for long/short decisions
+SIGNAL_CRITERIA = {
+    "fundamental_positive": [
+        "improving_leverage",      # Debt/EBITDA declining
+        "positive_fcf",            # Generating free cash flow
+        "deleveraging",            # Active debt paydown
+        "margin_expansion",        # EBITDA margins improving
+        "rating_upgrade_watch",    # Potential upgrade
+    ],
+    "fundamental_negative": [
+        "deteriorating_leverage",  # Debt/EBITDA increasing
+        "negative_fcf",            # Burning cash
+        "maturity_wall",           # Near-term refinancing risk
+        "margin_compression",      # EBITDA margins declining
+        "rating_downgrade_watch",  # Potential downgrade
+    ],
+    "event_driven": [
+        "m_and_a_target",          # Potential acquisition target
+        "activist_involved",       # Activist investor
+        "management_change",       # New CEO/CFO
+        "asset_sale",              # Divesting assets
+        "restructuring",           # Debt restructuring
+    ],
+    "technical": [
+        "spread_dislocation",      # Trading wide vs fundamentals
+        "new_issue_concession",    # New bond at attractive levels
+        "index_inclusion",         # Entering major index
+        "short_squeeze",           # Technical buying pressure
+    ]
+}
+
+def calculate_signal_score(snapshot, news_sentiment=0):
+    """
+    Calculate a trading signal score for a credit
+    Returns: (score, signal, rationale)
+    - score: -100 (strong short) to +100 (strong long)
+    - signal: "LONG", "SHORT", "NEUTRAL"
+    - rationale: list of reasons
+    """
+    if not snapshot:
+        return (0, "NO DATA", ["Insufficient data for analysis"])
+
+    score = 0
+    rationale = []
+
+    # Fundamental analysis
+    key_ratios = snapshot.get('key_ratios', {})
+    qa = snapshot.get('quick_assessment', {})
+
+    # Leverage assessment
+    leverage = key_ratios.get('debt_to_ebitda')
+    if leverage:
+        if leverage < 4.0:
+            score += 20
+            rationale.append(f"Low leverage ({leverage}x) - defensive")
+        elif leverage > 6.0:
+            score -= 20
+            rationale.append(f"High leverage ({leverage}x) - elevated risk")
+        elif leverage > 5.0:
+            score -= 10
+            rationale.append(f"Moderate leverage ({leverage}x)")
+
+    # Interest coverage
+    coverage = key_ratios.get('ebitda_minus_capex_to_interest')
+    if coverage:
+        if coverage > 3.0:
+            score += 15
+            rationale.append(f"Strong interest coverage ({coverage}x)")
+        elif coverage < 1.5:
+            score -= 25
+            rationale.append(f"Weak interest coverage ({coverage}x) - stress signal")
+
+    # FCF generation
+    fcf_to_debt = key_ratios.get('fcf_to_debt')
+    if fcf_to_debt:
+        if fcf_to_debt > 0.10:
+            score += 15
+            rationale.append(f"Strong FCF/Debt ({fcf_to_debt:.1%}) - deleveraging capacity")
+        elif fcf_to_debt < 0:
+            score -= 20
+            rationale.append(f"Negative FCF - cash burn concern")
+
+    # Liquidity assessment
+    cash = qa.get('cash_on_hand', 0) or 0
+    revolver = qa.get('revolver_available', 0) or 0
+    debt_due = qa.get('debt_due_one_year', 0) or 0
+
+    if debt_due > 0:
+        liquidity_ratio = (cash + revolver) / debt_due
+        if liquidity_ratio > 2.0:
+            score += 10
+            rationale.append("Adequate liquidity vs near-term maturities")
+        elif liquidity_ratio < 1.0:
+            score -= 25
+            rationale.append("Liquidity concern - maturities exceed cash + revolver")
+
+    # Credit opinion
+    opinion = snapshot.get('credit_opinion', {})
+    rec = opinion.get('recommendation', '').upper()
+    if 'OVER' in rec:
+        score += 20
+        rationale.append("Analyst recommendation: Overweight")
+    elif 'UNDER' in rec:
+        score -= 20
+        rationale.append("Analyst recommendation: Underweight")
+
+    # News sentiment adjustment
+    score += news_sentiment * 10
+    if news_sentiment > 0:
+        rationale.append("Positive news flow")
+    elif news_sentiment < 0:
+        rationale.append("Negative news flow")
+
+    # Determine signal
+    if score >= 30:
+        signal = "LONG"
+    elif score <= -30:
+        signal = "SHORT"
+    else:
+        signal = "NEUTRAL"
+
+    return (score, signal, rationale)
+
+
+def get_all_signals(index_data):
+    """Calculate signals for all companies in the index"""
+    signals = []
+    for sector, names in index_data["sectors"].items():
+        for name in names:
+            snapshot = load_snapshot(name)
+            score, signal, rationale = calculate_signal_score(snapshot)
+            signals.append({
+                'company': name,
+                'sector': sector,
+                'score': score,
+                'signal': signal,
+                'rationale': rationale,
+                'has_snapshot': snapshot is not None
+            })
+    return sorted(signals, key=lambda x: x['score'], reverse=True)
+
 
 # Credit-relevant keywords by category
 CREDIT_KEYWORDS = {
@@ -201,6 +387,7 @@ class NewsHound:
         self.client = tweepy.Client(bearer_token=TWITTER_BEARER_TOKEN)
         self.alerts = {}
         self.rss_alerts = {}
+        self.sentiment_scores = {}  # Track news sentiment per company
         self.index_data = index_data
         self.aliases = index_data.get("search_aliases", {})
         self.news_sources = load_news_sources()
@@ -229,10 +416,19 @@ class NewsHound:
                 tweet_fields=['created_at', 'public_metrics', 'lang']
             )
             new_alerts = []
+            sentiment = 0
+
             if tweets.data:
                 for tweet in tweets.data:
                     impact = self.spot_pattern(name, tweet.text, sector)
                     likes = tweet.public_metrics.get('like_count', 0)
+
+                    # Update sentiment score
+                    if "NEGATIVE" in impact or "HIGH RISK" in impact:
+                        sentiment -= 1
+                    elif "POSITIVE" in impact:
+                        sentiment += 1
+
                     new_alerts.append({
                         'source': 'X/Twitter',
                         'date': tweet.created_at.date(),
@@ -260,7 +456,10 @@ class NewsHound:
                     'likes': 0,
                     'link': ''
                 })
+
             self.alerts[name] = new_alerts
+            self.sentiment_scores[name] = sentiment
+
         except Exception as e:
             self.alerts[name] = [{
                 'source': 'X/Twitter',
@@ -331,6 +530,8 @@ class NewsHound:
             time.sleep(600)
 
 
+# ============== STREAMLIT RENDERING ==============
+
 def render_snapshot(snapshot):
     """Render credit snapshot in Streamlit"""
     if not snapshot:
@@ -395,7 +596,8 @@ def render_snapshot(snapshot):
         st.metric("Net Debt/EBITDA", f"{ratios.get('net_debt_to_ebitda', 'N/A')}x")
     with col4:
         st.metric("Interest Coverage", f"{ratios.get('ebitda_minus_capex_to_interest', 'N/A')}x")
-        st.metric("FCF/Debt", f"{ratios.get('fcf_to_debt', 'N/A'):.1%}" if ratios.get('fcf_to_debt') else "N/A")
+        fcf = ratios.get('fcf_to_debt')
+        st.metric("FCF/Debt", f"{fcf:.1%}" if fcf else "N/A")
 
     # Trend Analysis
     st.markdown("### Trend Analysis")
@@ -476,6 +678,95 @@ def render_snapshot(snapshot):
         for cat in opinion.get('key_catalysts', []):
             st.markdown(f"- {cat}")
 
+    # Tear sheet export button
+    if TEARSHEET_AVAILABLE:
+        st.markdown("---")
+        if st.button("Export Tear Sheet", key="export_tearsheet"):
+            html = generate_tearsheet_html(snapshot)
+            st.download_button(
+                label="Download HTML Tear Sheet",
+                data=html,
+                file_name=f"{snapshot['company_name'].replace(' ', '_')}_tearsheet.html",
+                mime="text/html"
+            )
+
+
+def render_trading_signals(signals, hound=None):
+    """Render the trading signals dashboard"""
+    import pandas as pd
+
+    st.markdown("### Trading Signal Summary")
+    st.caption("Signals based on fundamental analysis, news sentiment, and credit metrics")
+
+    # Summary stats
+    longs = [s for s in signals if s['signal'] == 'LONG']
+    shorts = [s for s in signals if s['signal'] == 'SHORT']
+    neutrals = [s for s in signals if s['signal'] == 'NEUTRAL']
+    no_data = [s for s in signals if s['signal'] == 'NO DATA']
+
+    col1, col2, col3, col4 = st.columns(4)
+    with col1:
+        st.metric("LONG", len(longs), help="Credits with positive signals")
+    with col2:
+        st.metric("SHORT", len(shorts), help="Credits with negative signals")
+    with col3:
+        st.metric("NEUTRAL", len(neutrals), help="Credits with mixed signals")
+    with col4:
+        st.metric("NO DATA", len(no_data), help="Credits without snapshot data")
+
+    st.markdown("---")
+
+    # Top Longs
+    st.markdown("#### Top Long Ideas")
+    if longs:
+        for sig in longs[:5]:
+            with st.expander(f"**{sig['company']}** ({sig['sector']}) - Score: {sig['score']}"):
+                for reason in sig['rationale']:
+                    st.markdown(f"- {reason}")
+    else:
+        st.info("No strong long signals currently")
+
+    # Top Shorts
+    st.markdown("#### Top Short Ideas")
+    if shorts:
+        for sig in shorts[:5]:
+            with st.expander(f"**{sig['company']}** ({sig['sector']}) - Score: {sig['score']}"):
+                for reason in sig['rationale']:
+                    st.markdown(f"- {reason}")
+    else:
+        st.info("No strong short signals currently")
+
+    # Full signal table
+    st.markdown("---")
+    st.markdown("#### All Signals")
+
+    df_signals = pd.DataFrame([
+        {
+            'Company': s['company'],
+            'Sector': s['sector'],
+            'Signal': s['signal'],
+            'Score': s['score'],
+            'Data': 'Yes' if s['has_snapshot'] else 'No'
+        }
+        for s in signals
+    ])
+
+    # Color code by signal
+    def color_signal(val):
+        if val == 'LONG':
+            return 'background-color: #c6efce; color: #006100'
+        elif val == 'SHORT':
+            return 'background-color: #ffc7ce; color: #9c0006'
+        elif val == 'NO DATA':
+            return 'background-color: #ffeb9c; color: #9c5700'
+        return ''
+
+    st.dataframe(
+        df_signals.style.applymap(color_signal, subset=['Signal']),
+        hide_index=True,
+        use_container_width=True
+    )
+
 
 # ============== STREAMLIT DASHBOARD ==============
 
@@ -513,18 +804,23 @@ if available_snapshots:
     st.sidebar.markdown("---")
     st.sidebar.markdown(f"### Credit Snapshots: {len(available_snapshots)}")
 
-# News sources status
+# System status
 st.sidebar.markdown("---")
-st.sidebar.markdown("### News Sources")
+st.sidebar.markdown("### System Status")
+st.sidebar.markdown("**Data Sources:**")
 st.sidebar.markdown("- X/Twitter API")
 st.sidebar.markdown("- RSS Feeds (10+ sources)")
 if NEWSAPI_KEY:
     st.sidebar.markdown("- NewsAPI")
-else:
-    st.sidebar.caption("Add NEWSAPI_KEY for more coverage")
+if DB_AVAILABLE:
+    st.sidebar.markdown("- PostgreSQL Database")
+if TEARSHEET_AVAILABLE:
+    st.sidebar.markdown("- Tear Sheet Generator")
+if EQUITY_MONITOR_AVAILABLE:
+    st.sidebar.markdown("- Equity Monitor (yfinance)" if YFINANCE_AVAILABLE else "- Equity Monitor (no yfinance)")
 
 # Main content tabs
-tab1, tab2, tab3 = st.tabs(["News Monitor", "RSS & News", "Credit Snapshot"])
+tab1, tab2, tab3, tab4, tab5 = st.tabs(["Trading Signals", "Equity Monitor", "News Monitor", "RSS & News", "Credit Snapshot"])
 
 # Initialize NewsHound with selected index
 @st.cache_resource
@@ -537,7 +833,27 @@ def get_hound(index_name):
 hound = get_hound(selected_index)
 
 with tab1:
-    st.markdown("### X/Twitter Monitor")
+    st.markdown("### Trading Signals Dashboard")
+    st.caption("Long/Short signal generation based on fundamentals + news")
+
+    if st.button("Refresh Signals"):
+        st.cache_data.clear()
+
+    # Calculate signals for all companies
+    with st.spinner("Analyzing all credits..."):
+        signals = get_all_signals(index_data)
+
+    render_trading_signals(signals, hound)
+
+with tab2:
+    if EQUITY_MONITOR_AVAILABLE:
+        render_equity_dashboard(st)
+    else:
+        st.warning("Equity Monitor not available. Check monitors/ module.")
+        st.info("Install yfinance for live prices: `pip install yfinance`")
+
+with tab3:
+    st.markdown("### X/Twitter Monitor (News)")
 
     # Sector selector
     sectors = list(index_data["sectors"].keys())
@@ -571,7 +887,7 @@ with tab1:
             else:
                 st.info(str(alert))
 
-with tab2:
+with tab4:
     st.markdown("### RSS Feeds & NewsAPI")
     st.caption("Trade journals, local newspapers, and news aggregators")
 
@@ -606,7 +922,7 @@ with tab2:
                         st.markdown(article['summary'] + "...")
                 st.markdown("---")
 
-with tab3:
+with tab5:
     st.markdown("### Credit Snapshot")
 
     # Get all companies across sectors

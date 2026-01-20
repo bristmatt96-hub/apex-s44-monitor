@@ -1,0 +1,72 @@
+{
+  "company_name": "ThyssenKrupp AG",
+  "ticker": "TKA GY",
+  "sector": "Autos & Industrials",
+  "last_updated": "2025-01-20",
+  "overview": {
+    "business_description": "German diversified industrial conglomerate. Segments include Steel Europe, Materials Services, Industrial Components, Automotive Technology. Undergoing strategic transformation and portfolio optimization.",
+    "business_positives": [
+      "Strong liquidity position (€5bn cash, €3.5bn net cash)",
+      "Diversified industrial portfolio",
+      "Strategic transformation in progress",
+      "Materials Services and Marine Systems stable"
+    ],
+    "fatal_flaw": "Steel Europe structural challenges; weak auto demand hurting multiple segments; transformation execution risk",
+    "ownership": "Krupp Foundation (21%), Public",
+    "public_private": "public",
+    "recent_news": "FY24 EBITDA declined to €0.9bn from €1.6bn. Moody's Ba3 positive outlook. Potential Steel Europe separation discussions."
+  },
+  "ratings": {
+    "moodys": {"rating": "Ba3", "outlook": "Positive", "date": "2024"},
+    "sp": {"rating": "BB", "outlook": "Stable", "date": "2024-12"},
+    "fitch": {"rating": "BB-", "outlook": "Withdrawn", "date": "2024-01"}
+  },
+  "quick_assessment": {
+    "period_end": "FY24 (Sep)",
+    "cffo": null,
+    "total_debt": 1900,
+    "interest_expense": null,
+    "capex": null,
+    "debt_due_one_year": null,
+    "cash_on_hand": 5000,
+    "revolver_available": null
+  },
+  "key_ratios": {
+    "debt_to_ebitda": 2.1,
+    "ebitda_minus_capex_to_interest": null,
+    "fcf_to_debt": null,
+    "net_debt_to_ebitda": null
+  },
+  "trend_analysis": {
+    "years": ["FY23", "FY24", "FY25E"],
+    "revenue": [37500, 35000, null],
+    "ebitda": [1600, 895, 1500],
+    "ebitda_margin": [4.2, 2.6, 4.2],
+    "total_debt": []
+  },
+  "debt_capitalization": [],
+  "maturity_schedule": {
+    "year_1": null,
+    "year_2": null,
+    "year_3": null,
+    "year_4": null,
+    "year_5": null,
+    "thereafter": null
+  },
+  "equity_market_value": {},
+  "credit_opinion": {
+    "summary": "ThyssenKrupp faces near-term operational headwinds but maintains a strong liquidity position. FY24 was weak but S&P expects recovery in FY25-26. Steel Europe remains the key structural challenge.",
+    "key_risks": [
+      "Steel Europe losses and potential separation costs",
+      "European auto sector weakness affecting components",
+      "Execution risk on transformation",
+      "Cyclical exposure to industrial demand"
+    ],
+    "key_catalysts": [
+      "Steel Europe resolution/separation",
+      "Auto sector recovery benefiting components",
+      "Marine Systems order book strength"
+    ],
+    "recommendation": "NEUTRAL - Strong liquidity offsets operational weakness"
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "company_name": "Renault",
+  "ticker": "RNO FP",
+  "sector": "Autos & Industrials",
+  "last_updated": "2025-01-20",
+  "overview": {
+    "business_description": "French multinational automobile manufacturer. Third-largest European automaker. Brands include Renault, Dacia, Alpine. Strong presence in EV market with Zoe and Megane E-Tech.",
+    "business_positives": [
+      "Recently upgraded to investment grade (BBB-) by S&P",
+      "Strong cost discipline under Renaulution strategy",
+      "Dacia brand performing well in value segment",
+      "Partnership synergies with Nissan/Mitsubishi"
+    ],
+    "fatal_flaw": "European auto market structural challenges; EV pricing pressure; Nissan stake uncertainty",
+    "ownership": "French State (15%), Nissan (15%), Public",
+    "public_private": "public",
+    "recent_news": "S&P upgraded to investment grade BBB- (Mar 2025). Successfully issued first green bonds for EUR850m."
+  },
+  "ratings": {
+    "moodys": {"rating": "Ba1", "outlook": "Positive", "date": "2024"},
+    "sp": {"rating": "BBB-", "outlook": "Stable", "date": "2025-03"},
+    "fitch": {"rating": "BB+", "outlook": "Stable", "date": "2023"}
+  },
+  "quick_assessment": {
+    "period_end": "2024",
+    "cffo": null,
+    "total_debt": null,
+    "interest_expense": null,
+    "capex": null,
+    "debt_due_one_year": null,
+    "cash_on_hand": null,
+    "revolver_available": null
+  },
+  "key_ratios": {
+    "debt_to_ebitda": null,
+    "ebitda_minus_capex_to_interest": null,
+    "fcf_to_debt": null,
+    "net_debt_to_ebitda": null
+  },
+  "trend_analysis": {
+    "years": [],
+    "revenue": [],
+    "ebitda": [],
+    "ebitda_margin": [],
+    "total_debt": []
+  },
+  "debt_capitalization": [
+    {"instrument": "EMTN Programme", "amount": null, "maturity": "Various", "coupon": "", "price": null, "ytw": null, "stw": null, "rating": "BBB-"},
+    {"instrument": "Green Bond", "amount": 850, "maturity": "2030-09", "coupon": "", "price": null, "ytw": null, "stw": null, "rating": "BBB-"}
+  ],
+  "maturity_schedule": {
+    "year_1": null,
+    "year_2": null,
+    "year_3": null,
+    "year_4": null,
+    "year_5": null,
+    "thereafter": null
+  },
+  "equity_market_value": {},
+  "credit_opinion": {
+    "summary": "Renault has achieved a significant milestone with investment grade status from S&P. The Renaulution strategy has delivered improved margins and cost efficiency. Rating trajectory remains positive.",
+    "key_risks": [
+      "European auto demand weakness",
+      "EV transition costs and competitive pressure",
+      "Nissan relationship evolution",
+      "Ampere IPO uncertainty"
+    ],
+    "key_catalysts": [
+      "Continued margin improvement",
+      "Dacia volume growth",
+      "Further rating upgrades possible"
+    ],
+    "recommendation": "OVERWEIGHT - Investment grade achieved, momentum positive"
+  }
+}

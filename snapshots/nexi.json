@@ -1,0 +1,76 @@
+{
+  "company_name": "Nexi S.p.A.",
+  "ticker": "NEXI IM",
+  "sector": "TMT",
+  "last_updated": "2025-01-20",
+  "overview": {
+    "business_description": "Italian fintech company and PayTech leader. Provides payment solutions, digital banking, and merchant services. Formed through merger of Nexi, Nets, and SIA.",
+    "business_positives": [
+      "Recently upgraded to investment grade (BBB-) by Fitch",
+      "Market leader in Italian payments",
+      "Strong EBITDA margin (53%)",
+      "Active deleveraging - leverage at 2.7x"
+    ],
+    "fatal_flaw": "Significant debt from M&A consolidation; competition from global payment players; regulatory risk",
+    "ownership": "Public (PE sponsors have exited)",
+    "public_private": "public",
+    "recent_news": "Fitch upgraded to BBB- investment grade (Dec 2024). S&P upgrade to BBB- also achieved. Net debt €4.97bn, leverage 2.7x. €500m buyback completed."
+  },
+  "ratings": {
+    "moodys": {"rating": "", "outlook": "", "date": ""},
+    "sp": {"rating": "BBB-", "outlook": "Stable", "date": "2024"},
+    "fitch": {"rating": "BBB-", "outlook": "Stable", "date": "2024-12"}
+  },
+  "quick_assessment": {
+    "period_end": "FY24",
+    "cffo": null,
+    "total_debt": 4971,
+    "interest_expense": null,
+    "capex": null,
+    "debt_due_one_year": 507,
+    "cash_on_hand": null,
+    "revolver_available": null
+  },
+  "key_ratios": {
+    "debt_to_ebitda": 2.7,
+    "ebitda_minus_capex_to_interest": null,
+    "fcf_to_debt": null,
+    "net_debt_to_ebitda": 2.7
+  },
+  "trend_analysis": {
+    "years": ["FY23", "FY24", "FY25E"],
+    "revenue": [],
+    "ebitda": [1740, 1863, 2020],
+    "ebitda_margin": [52, 53, null],
+    "total_debt": []
+  },
+  "debt_capitalization": [
+    {"instrument": "Term Loan", "amount": 1000, "maturity": "2026", "coupon": "", "price": null, "ytw": null, "stw": null, "rating": "BBB-"},
+    {"instrument": "RCF", "amount": 1000, "maturity": "2030", "coupon": "", "price": null, "ytw": null, "stw": null, "rating": ""}
+  ],
+  "maturity_schedule": {
+    "year_1": 507,
+    "year_2": null,
+    "year_3": null,
+    "year_4": null,
+    "year_5": null,
+    "thereafter": null
+  },
+  "equity_market_value": {},
+  "credit_opinion": {
+    "summary": "Nexi has achieved investment grade status from both Fitch and S&P following consistent deleveraging. Strong EBITDA growth and margin expansion support the credit profile. Leverage expected to fall below 3x.",
+    "key_risks": [
+      "Competition from global payment players (Stripe, Adyen)",
+      "Italian economic exposure",
+      "Integration execution risk post-mergers",
+      "Regulatory scrutiny on interchange fees"
+    ],
+    "key_catalysts": [
+      "Continued deleveraging trajectory",
+      "EBITDA growth 8-9% expected",
+      "Digital payments secular growth",
+      "Potential further rating upgrades"
+    ],
+    "recommendation": "OVERWEIGHT - Investment grade momentum, strong margins"
+  }
+}

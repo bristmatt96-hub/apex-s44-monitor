@@ -1,0 +1,82 @@
+{
+  "company_name": "Forvia",
+  "ticker": "FRVIA FP",
+  "sector": "Autos & Industrials",
+  "last_updated": "2025-01-20",
+  "overview": {
+    "business_description": "French global automotive supplier (formerly Faurecia). #7 largest international auto parts manufacturer. #1 for vehicle interiors and emission control. Acquired 82% of Hella in 2022 for €5.4bn.",
+    "business_positives": [
+      "Global scale - €27bn revenue",
+      "Leading positions in interiors and emissions",
+      "Hella integration progressing",
+      "Deleveraging trajectory on track"
+    ],
+    "fatal_flaw": "High leverage from Hella acquisition; auto production volatility; Hella minority stake complexity",
+    "ownership": "Peugeot Invest (7%), Public",
+    "public_private": "public",
+    "recent_news": "FY24 net debt €6.6bn (down €0.4bn YoY). Leverage ratio 1.97x. Fitch outlook revised to Stable from Negative (Mar 2025)."
+  },
+  "ratings": {
+    "moodys": {"rating": "Ba2", "outlook": "Stable", "date": "2024"},
+    "sp": {"rating": "BB", "outlook": "Negative", "date": "2024-11"},
+    "fitch": {"rating": "BB+", "outlook": "Stable", "date": "2025-03"}
+  },
+  "quick_assessment": {
+    "period_end": "FY24",
+    "cffo": null,
+    "total_debt": null,
+    "interest_expense": null,
+    "capex": null,
+    "debt_due_one_year": null,
+    "cash_on_hand": 4500,
+    "revolver_available": 2000
+  },
+  "key_ratios": {
+    "debt_to_ebitda": 1.97,
+    "ebitda_minus_capex_to_interest": null,
+    "fcf_to_debt": null,
+    "net_debt_to_ebitda": 1.97
+  },
+  "trend_analysis": {
+    "years": ["FY23", "FY24", "FY25E"],
+    "revenue": [27200, 27000, null],
+    "ebitda": [],
+    "ebitda_margin": [5.3, 5.2, null],
+    "total_debt": []
+  },
+  "debt_capitalization": [
+    {"instrument": "Senior Credit Facility", "amount": 1500, "maturity": "", "coupon": "", "price": null, "ytw": null, "stw": null, "rating": ""},
+    {"instrument": "HELLA Senior Credit Facility", "amount": 450, "maturity": "", "coupon": "", "price": null, "ytw": null, "stw": null, "rating": ""},
+    {"instrument": "5.500% Senior Notes", "amount": 700, "maturity": "2031", "coupon": "5.50%", "price": null, "ytw": null, "stw": null, "rating": ""}
+  ],
+  "maturity_schedule": {
+    "year_1": null,
+    "year_2": null,
+    "year_3": null,
+    "year_4": null,
+    "year_5": null,
+    "thereafter": null
+  },
+  "equity_market_value": {
+    "equity_market_value": null,
+    "avg_stock_price_3m": null,
+    "total_enterprise_value": null,
+    "tev_to_ebitda": null
+  },
+  "credit_opinion": {
+    "summary": "Forvia is executing on deleveraging post-Hella acquisition. Leverage at 1.97x is within targets. Fitch stabilizing outlook is positive. S&P negative outlook remains a concern but manageable.",
+    "key_risks": [
+      "European auto production weakness",
+      "S&P negative outlook - potential downgrade risk",
+      "Hella minority squeeze-out costs",
+      "EV transition impacting legacy products"
+    ],
+    "key_catalysts": [
+      "Continued deleveraging toward <1.5x target",
+      "Hella synergy realization",
+      "Disposals to accelerate debt reduction",
+      "S&P outlook stabilization"
+    ],
+    "recommendation": "NEUTRAL - Deleveraging on track but auto headwinds persist"
+  }
+}

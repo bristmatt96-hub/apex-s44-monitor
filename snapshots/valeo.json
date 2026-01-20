@@ -1,0 +1,74 @@
+{
+  "company_name": "Valeo",
+  "ticker": "FR FP",
+  "sector": "Autos & Industrials",
+  "last_updated": "2025-01-20",
+  "overview": {
+    "business_description": "French global automotive supplier. Focus on electrification, ADAS, lighting systems, and thermal management. Operations across 33 countries.",
+    "business_positives": [
+      "Technology leadership in ADAS and electrification",
+      "Diversified customer base",
+      "Improving leverage ratio (1.3x)",
+      "Strong position in EV thermal management"
+    ],
+    "fatal_flaw": "Lost investment grade status (Moody's downgrade Sep 2024); European auto weakness; customer concentration",
+    "ownership": "Public",
+    "public_private": "public",
+    "recent_news": "Moody's downgraded to Ba1 from Baa3 (Sep 2024) - fallen angel. Net debt reduced €215m to €3.8bn. Issued €850m green bond (Apr 2024)."
+  },
+  "ratings": {
+    "moodys": {"rating": "Ba1", "outlook": "Negative", "date": "2024-09"},
+    "sp": {"rating": "BB+", "outlook": "Negative", "date": "2024-04"},
+    "fitch": {"rating": "", "outlook": "", "date": ""}
+  },
+  "quick_assessment": {
+    "period_end": "FY24",
+    "cffo": null,
+    "total_debt": null,
+    "interest_expense": 251,
+    "capex": null,
+    "debt_due_one_year": null,
+    "cash_on_hand": null,
+    "revolver_available": null
+  },
+  "key_ratios": {
+    "debt_to_ebitda": 1.3,
+    "ebitda_minus_capex_to_interest": null,
+    "fcf_to_debt": null,
+    "net_debt_to_ebitda": 1.3
+  },
+  "trend_analysis": {
+    "years": ["FY23", "FY24"],
+    "revenue": [],
+    "ebitda": [],
+    "ebitda_margin": [],
+    "total_debt": [4028, 3813]
+  },
+  "debt_capitalization": [
+    {"instrument": "Green Bond", "amount": 850, "maturity": "2030-04", "coupon": "", "price": null, "ytw": null, "stw": null, "rating": "BB+"}
+  ],
+  "maturity_schedule": {
+    "year_1": null,
+    "year_2": null,
+    "year_3": null,
+    "year_4": null,
+    "year_5": null,
+    "thereafter": null
+  },
+  "equity_market_value": {},
+  "credit_opinion": {
+    "summary": "Valeo is a fallen angel after Moody's downgrade in Sep 2024. Despite low leverage (1.3x), auto sector headwinds and margin pressure drove the downgrade. Both agencies maintain negative outlooks.",
+    "key_risks": [
+      "Further downgrades possible with negative outlooks",
+      "European auto production decline",
+      "Customer pricing pressure",
+      "High R&D costs for technology leadership"
+    ],
+    "key_catalysts": [
+      "Auto production recovery would stabilize ratings",
+      "ADAS content growth per vehicle",
+      "EV thermal management market share gains"
+    ],
+    "recommendation": "UNDERWEIGHT - Fallen angel with negative momentum"
+  }
+}

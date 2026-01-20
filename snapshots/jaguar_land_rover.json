@@ -1,0 +1,80 @@
+{
+  "company_name": "Jaguar Land Rover Automotive plc",
+  "ticker": "JLR",
+  "sector": "Autos & Industrials",
+  "last_updated": "2025-01-20",
+  "overview": {
+    "business_description": "British multinational automotive company, subsidiary of Tata Motors. Designs, manufactures and sells luxury vehicles under the Jaguar and Land Rover brands. Key models include Range Rover, Defender, and Discovery.",
+    "business_positives": [
+      "Strong brand equity in premium/luxury segment",
+      "Record revenue and EBIT margins in FY24/25",
+      "Net debt zero target achieved",
+      "Investment grade rating from S&P (BBB-)"
+    ],
+    "fatal_flaw": "Concentration in premium segment vulnerable to economic cycles; EV transition execution risk",
+    "ownership": "Tata Motors (100%)",
+    "public_private": "private subsidiary",
+    "recent_news": "IG from S&P (BBB-). Moody's Ba1 positive. Repaid £1.2bn debt in FY25. Net cash positive. Gross debt £4.4bn, cash £4.6bn. Liquidity £6.3bn incl RCF."
+  },
+  "ratings": {
+    "moodys": {"rating": "Ba1", "outlook": "Positive", "date": "2024-08"},
+    "sp": {"rating": "BBB-", "outlook": "Positive", "date": "2024-08"},
+    "fitch": {"rating": "", "outlook": "", "date": ""}
+  },
+  "quick_assessment": {
+    "period_end": "FY24/25 (Mar 2025)",
+    "cffo": null,
+    "total_debt": 4400,
+    "interest_expense": null,
+    "capex": null,
+    "debt_due_one_year": null,
+    "cash_on_hand": 4600,
+    "revolver_available": 1660
+  },
+  "key_ratios": {
+    "debt_to_ebitda": 2.0,
+    "ebitda_minus_capex_to_interest": null,
+    "fcf_to_debt": null,
+    "net_debt_to_ebitda": 0.0
+  },
+  "trend_analysis": {
+    "years": ["FY23", "FY24", "FY25"],
+    "revenue": [22800, 29000, 29000],
+    "ebitda": [],
+    "ebitda_margin": [],
+    "total_debt": []
+  },
+  "debt_capitalization": [
+    {"instrument": "GBP 1.66bn RCF (undrawn)", "amount": 1660, "maturity": "2028", "coupon": "SOFR+", "price": null, "ytw": null, "stw": null, "rating": ""},
+    {"instrument": "6.875% Senior Notes", "amount": null, "maturity": "Nov 2026", "coupon": "6.875%", "price": null, "ytw": null, "stw": null, "rating": "Ba1/BBB-"},
+    {"instrument": "4.5% Senior Notes (EUR)", "amount": null, "maturity": "Oct 2027", "coupon": "4.5%", "price": null, "ytw": null, "stw": null, "rating": "Ba1/BBB-"},
+    {"instrument": "5.875% Senior Notes (USD)", "amount": null, "maturity": "Jan 2028", "coupon": "5.875%", "price": null, "ytw": null, "stw": null, "rating": "Ba1/BBB-"},
+    {"instrument": "4.5% Senior Notes (EUR)", "amount": null, "maturity": "Jul 2028", "coupon": "4.5%", "price": null, "ytw": null, "stw": null, "rating": "Ba1/BBB-"},
+    {"instrument": "5.5% Senior Notes (USD)", "amount": null, "maturity": "Jul 2029", "coupon": "5.5%", "price": null, "ytw": null, "stw": null, "rating": "Ba1/BBB-"},
+    {"instrument": "Term Loan (USD)", "amount": 650, "maturity": "2025", "coupon": "SOFR+", "price": null, "ytw": null, "stw": null, "rating": ""}
+  ],
+  "maturity_schedule": {
+    "year_1": null,
+    "year_2": null,
+    "year_3": null,
+    "year_4": null,
+    "year_5": null,
+    "thereafter": null
+  },
+  "equity_market_value": {},
+  "credit_opinion": {
+    "summary": "JLR has significantly improved its credit profile, achieving net debt zero and investment grade status from S&P. Strong operational execution with record margins. Rating momentum is positive with both Moody's and S&P maintaining positive outlooks.",
+    "key_risks": [
+      "EV transition execution and capex requirements",
+      "Premium segment exposure to economic downturns",
+      "Jaguar brand repositioning risk",
+      "Geographic concentration in China"
+    ],
+    "key_catalysts": [
+      "Continued deleveraging could drive further upgrades",
+      "Successful EV launches (electric Jaguar)",
+      "Defender and Range Rover demand resilience"
+    ],
+    "recommendation": "OVERWEIGHT - Strong momentum, investment grade trajectory"
+  }
+}

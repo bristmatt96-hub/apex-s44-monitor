@@ -1,0 +1,73 @@
+{
+  "company_name": "Verisure Midholding AB",
+  "ticker": "Private",
+  "sector": "Consumers",
+  "last_updated": "2025-01-20",
+  "overview": {
+    "business_description": "European market leader in professionally monitored home security. Operations across 17 European and Latin American countries. Recurring subscription revenue model with 5m+ customers.",
+    "business_positives": [
+      "Market leader with scale advantages",
+      "Highly recurring subscription revenue",
+      "Strong customer retention (low churn)",
+      "PE ownership (Hellman & Friedman) focused on growth"
+    ],
+    "fatal_flaw": "High leverage from PE ownership; capex-intensive customer acquisition; competition from DIY security",
+    "ownership": "Hellman & Friedman (majority), Founders",
+    "public_private": "private (PE-backed)",
+    "recent_news": "Continued subscriber growth. Potential IPO candidate but timing uncertain."
+  },
+  "ratings": {
+    "moodys": {"rating": "B2", "outlook": "Stable", "date": ""},
+    "sp": {"rating": "B", "outlook": "Stable", "date": ""},
+    "fitch": {"rating": "", "outlook": "", "date": ""}
+  },
+  "quick_assessment": {
+    "period_end": "2024",
+    "cffo": null,
+    "total_debt": null,
+    "interest_expense": null,
+    "capex": null,
+    "debt_due_one_year": null,
+    "cash_on_hand": null,
+    "revolver_available": null
+  },
+  "key_ratios": {
+    "debt_to_ebitda": null,
+    "ebitda_minus_capex_to_interest": null,
+    "fcf_to_debt": null,
+    "net_debt_to_ebitda": null
+  },
+  "trend_analysis": {
+    "years": [],
+    "revenue": [],
+    "ebitda": [],
+    "ebitda_margin": [],
+    "total_debt": []
+  },
+  "debt_capitalization": [],
+  "maturity_schedule": {
+    "year_1": null,
+    "year_2": null,
+    "year_3": null,
+    "year_4": null,
+    "year_5": null,
+    "thereafter": null
+  },
+  "equity_market_value": {},
+  "credit_opinion": {
+    "summary": "Verisure has a strong market position with recurring revenues but carries elevated leverage typical of PE ownership. The subscription model provides stability. IPO or refinancing could be catalysts.",
+    "key_risks": [
+      "High leverage limits financial flexibility",
+      "Customer acquisition costs (SAC) high",
+      "DIY security competition (Ring, etc.)",
+      "Economic sensitivity of discretionary security spend"
+    ],
+    "key_catalysts": [
+      "IPO would provide deleveraging option",
+      "Subscriber growth in newer markets",
+      "ARPU expansion through additional services",
+      "Potential refinancing at lower rates"
+    ],
+    "recommendation": "NEUTRAL - Stable business but PE leverage"
+  }
+}

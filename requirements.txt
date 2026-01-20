@@ -2,3 +2,9 @@ streamlit
 tweepy
 requests
 feedparser
+sqlalchemy
+psycopg2-binary
+pandas
+openpyxl
+yfinance
+pypdf
