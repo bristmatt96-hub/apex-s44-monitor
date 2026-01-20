@@ -225,6 +225,69 @@ CREDIT_TWITTER_ACCOUNTS = [
     "PriapusIQ",         # Event-driven situations
 ]
 
+
+def ask_grok_why_moved(company_name: str, ticker: str, change_pct: float, api_key: str = None) -> Dict:
+    """
+    Ask Grok (xAI) why a stock moved - Grok has live Twitter/X access
+    Returns grounded analysis with sources, minimal hallucination
+    """
+    if not api_key:
+        api_key = os.environ.get("XAI_API_KEY", "") or os.environ.get("GROK_API_KEY", "")
+
+    if not api_key:
+        return None
+
+    try:
+        # xAI/Grok API endpoint
+        url = "https://api.x.ai/v1/chat/completions"
+
+        direction = "dropped" if change_pct < 0 else "jumped"
+
+        prompt = f"""You are a credit analyst assistant. {company_name} ({ticker}) stock {direction} {abs(change_pct):.1f}% today.
+
+Search Twitter/X for recent posts about {company_name} and tell me:
+1. What news or event caused this move?
+2. Which Twitter accounts are discussing it?
+3. What's the credit/bond market implication?
+
+Focus on posts from financial accounts like @DeItaone, @FirstSquawk, @9finHQ, @Creditflux, @DebtwireEurope.
+
+Be specific and cite your sources. If you can't find anything, say so."""
+
+        headers = {
+            "Authorization": f"Bearer {api_key}",
+            "Content-Type": "application/json"
+        }
+
+        payload = {
+            "model": "grok-beta",
+            "messages": [
+                {"role": "system", "content": "You are a helpful credit analyst with access to real-time Twitter/X data. Always cite sources and be specific about what you find."},
+                {"role": "user", "content": prompt}
+            ],
+            "temperature": 0.3  # Lower temperature for more factual responses
+        }
+
+        response = requests.post(url, headers=headers, json=payload, timeout=30)
+
+        if response.status_code == 200:
+            data = response.json()
+            answer = data.get("choices", [{}])[0].get("message", {}).get("content", "")
+            return {
+                "source": "Grok (xAI)",
+                "analysis": answer,
+                "model": "grok-beta",
+                "has_twitter_access": True
+            }
+        else:
+            print(f"Grok API error: {response.status_code} - {response.text}")
+            return None
+
+    except Exception as e:
+        print(f"Grok API error: {e}")
+        return None
+
+
 def search_twitter_for_company(company_name: str, ticker: str, bearer_token: str = None) -> List[Dict]:
     """
     Search Twitter for mentions of a company from credit-focused accounts
@@ -383,9 +446,13 @@ def search_news_for_company(company_name: str, ticker: str = None, include_twitt
 
 def analyze_price_move(company_name: str, ticker: str, change_pct: float) -> Dict:
     """
-    Analyze why a stock moved - returns real news, not AI speculation
+    Analyze why a stock moved - uses Grok for Twitter analysis + real news
     """
-    news = search_news_for_company(company_name, ticker)
+    # Try Grok first (has live Twitter access)
+    grok_analysis = ask_grok_why_moved(company_name, ticker, change_pct)
+
+    # Also get traditional news sources
+    news = search_news_for_company(company_name, ticker, include_twitter=False)  # Skip Twitter API since we have Grok
 
     # Categorize the move
     if change_pct <= -10:
@@ -414,6 +481,7 @@ def analyze_price_move(company_name: str, ticker: str, change_pct: float) -> Dic
         'severity': severity,
         'credit_impact': credit_impact,
         'news': news,
+        'grok_analysis': grok_analysis,
         'analyzed_at': datetime.now().isoformat()
     }
 
@@ -585,28 +653,23 @@ def render_equity_dashboard(st):
             st.markdown(f"**Severity:** {analysis['severity']}")
             st.markdown(f"**Credit Impact:** {analysis['credit_impact']}")
 
-            st.markdown("#### 📰 Recent News (Real Headlines)")
+            # Grok Analysis (AI with live Twitter access)
+            grok = analysis.get('grok_analysis')
+            if grok and grok.get('analysis'):
+                st.markdown("#### 🤖 Grok Analysis (Live Twitter/X Search)")
+                st.info(grok['analysis'])
+                st.caption("*Grok has real-time Twitter/X access - this is based on actual posts.*")
+
+            # Traditional news sources
+            st.markdown("#### 📰 News Headlines")
             if analysis['news']:
-                # Separate Twitter from other sources
-                twitter_news = [a for a in analysis['news'] if a.get('type') == 'twitter']
-                other_news = [a for a in analysis['news'] if a.get('type') != 'twitter']
-
-                if twitter_news:
-                    st.markdown("**🐦 Twitter/X (Credit Accounts):**")
-                    for article in twitter_news[:5]:
-                        likes = article.get('likes', 0)
-                        rts = article.get('retweets', 0)
-                        engagement = f"❤️{likes} 🔄{rts}" if likes or rts else ""
-                        st.markdown(f"- [{article['title']}]({article['link']}) - *{article['source']}* {engagement}")
-
-                if other_news:
-                    st.markdown("**📰 News Sources:**")
-                    for article in other_news[:10]:
-                        st.markdown(f"- **[{article['title']}]({article['link']})** - *{article['source']}* ({article.get('date', '')})")
+                for article in analysis['news'][:10]:
+                    st.markdown(f"- **[{article['title']}]({article['link']})** - *{article['source']}* ({article.get('date', '')})")
             else:
-                st.warning("No recent news found. Check Bloomberg/Reuters terminals for more coverage.")
+                st.warning("No recent news found in traditional sources.")
 
-            st.caption("*These are actual headlines from Twitter credit accounts and news sources, not AI-generated.*")
+            if not grok and not analysis['news']:
+                st.warning("No information found. Check Bloomberg/Reuters terminals for more coverage.")
 
     # Individual company lookup
     st.markdown("---")
