@@ -123,5 +123,49 @@
     "trading_signals": "MAXIMUM distress score of 100. Restructuring completed Jan 2025. Carlyle selling 2 months after acquisition. Revenue declining. Management changes. AVOID."
   },
 
-  "watchlist_priority": "CRITICAL - RESTRUCTURING credit. Monitor sale process and Feb 2026 maturity."
+  "watchlist_priority": "CRITICAL - RESTRUCTURING credit. Monitor sale process and Feb 2026 maturity.",
+
+  "lme_risk_proxy": {
+    "doc_vintage": "2025 (post-restructuring)",
+    "pe_backed": true,
+    "sponsor": "Carlyle Group",
+    "holding_period_years": 0.2,
+    "sponsor_behavior": "AGGRESSIVE - selling 2 months after acquisition",
+    "complex_structure": false,
+    "multi_entity_issuer": false,
+    "dividend_recap_history": false,
+    "recent_restructuring": true,
+    "restructuring_date": "Jan 2025",
+    "restructuring_type": "Out-of-Court",
+    "bonds_below_90": null,
+    "bonds_below_80": null,
+    "advisor_hired": true,
+    "asset_sales_announced": true,
+    "distress_score": 100,
+    "lifecycle_status": "RESTRUCTURING",
+    "inferred_lme_risk": "CRITICAL",
+    "lme_warning_flags": [
+      "MAXIMUM distress score of 100",
+      "RESTRUCTURING lifecycle status",
+      "Just completed restructuring Jan 2025",
+      "Carlyle selling 2 months after acquisition - extreme red flag",
+      "Feb 2026 term loan maturity imminent",
+      "Interim CFO - management instability",
+      "Revenue declining",
+      "Post-restructuring docs - unknown covenant quality"
+    ],
+    "monitoring_triggers": [
+      "Sale process outcome",
+      "Feb 2026 refinancing",
+      "New buyer identity and intentions",
+      "Any exchange offers on post-reorg debt",
+      "Management changes",
+      "Further revenue deterioration"
+    ],
+    "cds_considerations": {
+      "reference_entity": "Very Group Ltd",
+      "credit_event_risk": "ELEVATED - already restructured once",
+      "note": "Prior restructuring may have triggered Credit Event. Check if new CDS contracts reference post-reorg entity."
+    }
+  }
 }

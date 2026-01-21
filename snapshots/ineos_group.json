@@ -153,5 +153,54 @@
     "trading_signals": "SEVERELY DISTRESSED: All bonds at 79-86 (deeply below par). Yields 15-21%. TLB at 79 with 21% yield. Rating downgraded. Outlook Negative. Leverage 9.0x unsustainable. Capital structure stress evident."
   },
 
-  "watchlist_priority": "CRITICAL - Monitor for restructuring/liability management"
+  "watchlist_priority": "CRITICAL - Monitor for restructuring/liability management",
+
+  "lme_risk_proxy": {
+    "doc_vintage": "2019-2021",
+    "pe_backed": false,
+    "sponsor": "Jim Ratcliffe / INEOS",
+    "holding_period_years": null,
+    "complex_structure": true,
+    "multi_entity_issuer": true,
+    "related_entities": ["INEOS Quattro", "INEOS Enterprises", "Other INEOS subs"],
+    "dividend_recap_history": true,
+    "dividend_note": "Historically aggressive capital returns to Ratcliffe",
+    "recent_restructuring": false,
+    "bonds_below_90": true,
+    "bonds_below_80": true,
+    "bonds_below_70": false,
+    "yields_above_15pct": true,
+    "advisor_hired": false,
+    "asset_sales_announced": false,
+    "distress_score": 44,
+    "lifecycle_status": "Performing (but severely stressed)",
+    "inferred_lme_risk": "HIGH",
+    "lme_warning_flags": [
+      "All bonds at 79-86 - deeply below par",
+      "Yields 15-21% - distressed territory",
+      "Complex INEOS empire structure - intercompany risk",
+      "Doc vintage 2019-2021 - ZIRP era, likely covenant-lite",
+      "Historical dividend recaps to Ratcliffe",
+      "Net leverage 9.0x unsustainable",
+      "Moody's downgraded to B2",
+      "S&P Negative outlook",
+      "EBITDA collapsed -49%",
+      "Separate credit pools within INEOS create complexity"
+    ],
+    "monitoring_triggers": [
+      "Advisor appointment",
+      "Intercompany transactions with INEOS Quattro or other subs",
+      "Asset transfers between INEOS entities",
+      "Exchange offer or consent solicitation",
+      "Any unrestricted subsidiary designation",
+      "Ratcliffe equity support announcement",
+      "Project ONE progress and funding"
+    ],
+    "cds_considerations": {
+      "reference_entity": "Ineos Group Holdings SA",
+      "restructuring_type": "Likely Mod-Mod-R",
+      "credit_event_risk": "HIGH - distressed trading levels",
+      "note": "Separate from INEOS Quattro CDS. Watch for intercompany complexity affecting deliverables."
+    }
+  }
 }

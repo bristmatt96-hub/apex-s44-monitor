@@ -193,5 +193,53 @@
     "trading_signals": "DEEPLY DISTRESSED: Long-dated bonds at 67-75 with yields 17-33%. 2031 TLBs at 67-69 with 31-33% yields. Jan 2027 maturity trades at 95-96 on refinancing hopes. STRESSED status. Equity eroding. Capital structure unsustainable without intervention."
   },
 
-  "watchlist_priority": "CRITICAL - Monitor Jan 2027 refinancing and potential restructuring"
+  "watchlist_priority": "CRITICAL - Monitor Jan 2027 refinancing and potential restructuring",
+
+  "lme_risk_proxy": {
+    "doc_vintage": "2021-2023",
+    "pe_backed": false,
+    "sponsor": "Jim Ratcliffe / INEOS",
+    "holding_period_years": null,
+    "complex_structure": true,
+    "multi_entity_issuer": true,
+    "separate_from_ineos_group": true,
+    "dividend_recap_history": false,
+    "recent_restructuring": false,
+    "bonds_below_90": true,
+    "bonds_below_80": true,
+    "bonds_below_70": true,
+    "yields_above_15pct": true,
+    "advisor_hired": false,
+    "asset_sales_announced": false,
+    "site_closures": false,
+    "distress_score": 87,
+    "lifecycle_status": "STRESSED",
+    "inferred_lme_risk": "CRITICAL",
+    "lme_warning_flags": [
+      "STRESSED lifecycle status - highest Debtwire risk category",
+      "All long-dated bonds at 67-75 - deeply distressed",
+      "Yields 17-33% indicate market expects restructuring",
+      "Complex multi-entity INEOS structure",
+      "Separate credit from INEOS Group - potential intercompany complexity",
+      "Jan 2027 maturity wall ($1.2bn) - refinancing uncertain",
+      "Net leverage 8.4x unsustainable",
+      "EBITDA collapsed -69%",
+      "Doc vintage 2021-2023 likely covenant-lite"
+    ],
+    "monitoring_triggers": [
+      "Advisor appointment (Houlihan, Evercore, etc)",
+      "Jan 2027 refinancing announcement",
+      "Intercompany transactions with INEOS Group",
+      "Exchange offer or consent solicitation",
+      "Ratcliffe equity injection announcement",
+      "Asset sale announcements",
+      "Any unrestricted subsidiary activity"
+    ],
+    "cds_considerations": {
+      "reference_entity": "INEOS Quattro Holdings Ltd",
+      "restructuring_type": "Likely Mod-Mod-R for European HY",
+      "credit_event_risk": "HIGH - STRESSED status suggests restructuring likely",
+      "note": "Watch for binding amendments vs voluntary exchange. Separate from INEOS Group CDS."
+    }
+  }
 }

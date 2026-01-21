@@ -166,5 +166,57 @@
     "trading_signals": "Two bonds BELOW PAR (98.74, 99.69). One bond above par (105.74 - high coupon). Leverage 7.6x is very high. Rating downgrades. Negative FCF. Preparing forced asset sales. Prior restructuring Jan 2024."
   },
 
-  "watchlist_priority": "HIGH - Monitor asset sales and deleveraging progress"
+  "watchlist_priority": "HIGH - Monitor asset sales and deleveraging progress",
+
+  "lme_risk_proxy": {
+    "doc_vintage": "2019-2024",
+    "pe_backed": true,
+    "sponsor": "TDR Capital",
+    "sponsor_entry": "Jul 2024",
+    "holding_period_years": 1.5,
+    "prior_sponsor": "Unknown (pre-TDR)",
+    "complex_structure": false,
+    "multi_entity_issuer": true,
+    "financing_entity": "Stonegate Pub Co Financing 2019 plc",
+    "dividend_recap_history": false,
+    "recent_restructuring": true,
+    "restructuring_date": "Jan 2024",
+    "restructuring_type": "Out-of-Court",
+    "bonds_below_90": false,
+    "bonds_below_80": false,
+    "two_tranches_below_par": true,
+    "advisor_hired": false,
+    "asset_sales_announced": true,
+    "asset_sale_size": "GBP 1bn pub portfolio",
+    "site_closures": false,
+    "distress_score": 20,
+    "lifecycle_status": "Performing",
+    "inferred_lme_risk": "HIGH",
+    "lme_warning_flags": [
+      "Prior out-of-court restructuring Jan 2024",
+      "Very high leverage 7.6x net",
+      "Net income NEGATIVE every year",
+      "Free cash flow NEGATIVE per credit reports",
+      "Rating downgrades in 2025",
+      "Forced asset sales (GBP 1bn) to deleverage",
+      "Doc vintage 2019 - ZIRP era",
+      "PE-backed (TDR Capital)",
+      "Two bond tranches below par",
+      "9M EBITDA declining (-4% YoY)"
+    ],
+    "monitoring_triggers": [
+      "GBP 1bn pub sale progress",
+      "Further rating downgrades",
+      "Advisor appointment",
+      "Any exchange offers",
+      "Further EBITDA deterioration",
+      "TDR Capital actions (dividend, asset transfers)",
+      "Additional restructuring news"
+    ],
+    "cds_considerations": {
+      "reference_entity": "Stonegate Pub Co Ltd",
+      "credit_event_risk": "MEDIUM-HIGH",
+      "note": "Prior restructuring Jan 2024 - check if triggered Credit Event. Property-backed credit may have different recovery dynamics."
+    }
+  }
 }

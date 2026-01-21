@@ -148,5 +148,58 @@
     "debtwire_distress_score": 15,
     "lifecycle_status": "Performing credit",
     "trading_signals": "All bonds at 100-104 (above par). Recent TLB at par shows market support. BUT S&P outlook Negative and distress score elevated. Watch for rating action."
+  },
+
+  "lme_risk_proxy": {
+    "doc_vintage": "2021-2026",
+    "pe_backed": true,
+    "sponsors": ["TDR Capital", "I Squared Capital", "Brookfield Oaktree"],
+    "holding_period_years": 4.5,
+    "lbo_date": "Aug 2021",
+    "complex_structure": true,
+    "holding_company": "Albion Financing 1 Sarl",
+    "multi_entity_issuer": true,
+    "dividend_recap_history": false,
+    "recent_restructuring": false,
+    "bonds_below_90": false,
+    "bonds_above_par": true,
+    "advisor_hired": false,
+    "asset_sales_announced": false,
+    "stake_sale_process": true,
+    "stake_sale_buyers": ["ADIA", "KKR", "CVC"],
+    "distress_score": 15,
+    "lifecycle_status": "Performing",
+    "inferred_lme_risk": "MEDIUM",
+    "lme_warning_flags": [
+      "S&P outlook Negative (Jan 2026)",
+      "Distress score 15 - elevated for 'performing' credit",
+      "Large debt quantum (~$5.5bn)",
+      "Triple PE sponsor - 4.5 year hold, exit pressure building",
+      "Recent TLB add-on increases leverage",
+      "Albion Sarl holdco structure",
+      "Multiple acquisitions increasing complexity",
+      "LBO structure from 2021"
+    ],
+    "positive_signals": [
+      "All bonds above par (100-104)",
+      "Recent issuance at par shows market access",
+      "Strong strategic interest (ADIA, KKR, CVC)",
+      "Global market leader position",
+      "Essential infrastructure services"
+    ],
+    "monitoring_triggers": [
+      "Stake sale outcome",
+      "S&P rating action",
+      "Further leveraging transactions",
+      "Sponsor dividend or distribution",
+      "Intercompany transactions via Albion structure",
+      "Debt maturity refinancing (2026 notes)",
+      "Any advisor appointments"
+    ],
+    "cds_considerations": {
+      "reference_entity": "Aggreko Ltd or Albion entity",
+      "credit_event_risk": "LOW-MEDIUM",
+      "note": "Bonds above par indicates low near-term restructuring risk. Watch S&P for rating trajectory."
+    }
   }
 }

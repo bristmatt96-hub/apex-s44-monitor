@@ -147,5 +147,57 @@
     "trading_signals": "Bonds at 99-100 (near par) but yields elevated at 7.9-8.8%. PERSISTENT CASH BURN noted. Asset sales and site closures indicate operational stress. B3/B rating is deep single-B. Permira 10+ year hold suggests exit difficulty."
   },
 
-  "watchlist_priority": "ELEVATED - Monitor cash burn, asset sale completion, and operational turnaround"
+  "watchlist_priority": "ELEVATED - Monitor cash burn, asset sale completion, and operational turnaround",
+
+  "lme_risk_proxy": {
+    "doc_vintage": "2023",
+    "pe_backed": true,
+    "sponsor": "Permira",
+    "fund": "Permira V",
+    "holding_period_years": 11,
+    "holding_period_note": "10+ year hold is EXTREME for PE - typical is 4-6 years",
+    "complex_structure": true,
+    "holding_company": "Monitchem Holdco 3 SA",
+    "multi_entity_issuer": true,
+    "dividend_recap_history": false,
+    "recent_restructuring": false,
+    "operational_restructuring": true,
+    "bonds_below_90": false,
+    "bonds_below_80": false,
+    "bonds_near_par": true,
+    "advisor_hired": false,
+    "asset_sales_announced": true,
+    "asset_sale_detail": "Jayhawk for $150m to Anupam Rasayan",
+    "site_closures": true,
+    "site_closure_detail": "Knapsack site closure announced Dec 2025",
+    "distress_score": 15,
+    "lifecycle_status": "Performing",
+    "inferred_lme_risk": "MEDIUM-HIGH",
+    "lme_warning_flags": [
+      "Permira 10+ year hold - suggests exit difficulty",
+      "PERSISTENT CASH BURN explicitly noted in credit reports",
+      "Forced asset sale (Jayhawk $150m)",
+      "Site closure (Knapsack) - operational distress",
+      "Complex holdco structure (Monitchem)",
+      "B3/B deep single-B rating",
+      "Soft end-market demand",
+      "Pricing pressures",
+      "Chemicals sector cyclical exposure"
+    ],
+    "monitoring_triggers": [
+      "Jayhawk sale completion",
+      "Further asset sales",
+      "Additional site closures",
+      "Cash burn trajectory",
+      "Permira exit attempts (sale process, IPO)",
+      "Advisor appointment",
+      "Any intercompany transactions via Monitchem holdco",
+      "May 2028 refinancing preparations"
+    ],
+    "cds_considerations": {
+      "reference_entity": "Check if CABB GmbH or Monitchem",
+      "credit_event_risk": "MEDIUM",
+      "note": "Holdco structure (Monitchem) may create reference entity complexity. Asset sales unlikely to trigger Credit Event."
+    }
+  }
 }

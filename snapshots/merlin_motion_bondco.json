@@ -113,5 +113,53 @@
     "trading_signals": "Bonds at 95-97 (BELOW PAR) - market pricing significant distress. Evaluating liquidity options is warning language. Refinancing risk for Nov 2027 maturities."
   },
 
-  "watchlist_priority": "HIGH - Monitor closely for restructuring news"
+  "watchlist_priority": "HIGH - Monitor closely for restructuring news",
+
+  "lme_risk_proxy": {
+    "doc_vintage": "Unknown (LBO structure)",
+    "pe_backed": true,
+    "sponsors": ["Blackstone", "KIRKBI (Lego family)", "CPPIB"],
+    "holding_period_years": 5,
+    "lbo_date": "2019",
+    "complex_structure": true,
+    "acquisition_vehicle": "Motion Bondco dac",
+    "multi_entity_issuer": true,
+    "dividend_recap_history": false,
+    "recent_restructuring": false,
+    "bonds_below_90": false,
+    "bonds_below_par": true,
+    "bonds_at_95_97": true,
+    "advisor_hired": false,
+    "evaluating_liquidity_options": true,
+    "asset_sales_announced": false,
+    "distress_score": 53,
+    "lifecycle_status": "STRESSED",
+    "inferred_lme_risk": "HIGH",
+    "lme_warning_flags": [
+      "STRESSED lifecycle status - Debtwire highest risk tier",
+      "Distress score 53 - very elevated",
+      "Bonds below par (95-97) - market pricing risk",
+      "Company 'evaluating liquidity options' - restructuring language",
+      "Nov 2027 maturity wall ($818m) - refinancing risk",
+      "PE-backed (Blackstone, KIRKBI, CPPIB) - 5 year hold",
+      "Margin pressure mounting",
+      "Motion Bondco acquisition vehicle structure",
+      "Private company - limited transparency"
+    ],
+    "monitoring_triggers": [
+      "Advisor appointment (Houlihan, Evercore, etc)",
+      "Exchange offer or consent solicitation",
+      "Asset sale announcements (park/attraction sales)",
+      "Sponsor support or equity injection",
+      "Refinancing attempts for Nov 2027",
+      "Any unrestricted subsidiary activity",
+      "Intercompany transfers within holdco structure",
+      "Strategic sale process news"
+    ],
+    "cds_considerations": {
+      "reference_entity": "Motion Bondco dac or Merlin Entertainments",
+      "credit_event_risk": "HIGH - STRESSED status",
+      "note": "Evaluating liquidity options suggests potential restructuring. Watch for binding vs voluntary transactions."
+    }
+  }
 }
