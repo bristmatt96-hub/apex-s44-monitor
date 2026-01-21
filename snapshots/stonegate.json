@@ -1,0 +1,170 @@
+{
+  "company_name": "Stonegate Pub Co",
+  "legal_entity": "Stonegate Pub Co Ltd",
+  "alternate_names": ["Stonegate", "Stonegate Pub Co Financing 2019 plc", "Ei Group"],
+  "sector": "Consumer & Retail - Pubs/Hospitality",
+  "geography": "United Kingdom",
+  "last_updated": "2026-01-21",
+  "data_source": "Debtwire",
+
+  "ratings": {
+    "moodys": {"rating": "NR", "outlook": null},
+    "sp": {"rating": "NR", "outlook": null},
+    "note": "Ratings downgrades in 2025. CFO targeting 'another B rating' with deleveraging."
+  },
+
+  "overview": {
+    "business_description": "UK's largest pub operator managing a portfolio of leased, tenanted, and managed pub sites across the United Kingdom. Delivers food and drink services through traditional pubs, bars, and late-night venues. Portfolio includes approximately 4,500 pubs.",
+    "business_positives": [
+      "UK's largest pub operator by site count (~4,500 pubs)",
+      "Significant property value backing debt",
+      "Strong CFFO of $667m in FY24",
+      "EBITDA margins of ~24%",
+      "TDR Capital sponsorship",
+      "GBP 190m 2032 notes at 105.74 (above par)",
+      "High coupon bonds attractive to investors"
+    ],
+    "fatal_flaw": "VERY HIGH LEVERAGE of 7.6x net debt/EBITDA. NEGATIVE NET INCOME every year. NEGATIVE FREE CASH FLOW noted. Recent EBITDA decline (-4% YoY in 9M24-25). Rating downgrades in 2025. Preparing GBP 1bn pub sale - forced asset disposals to deleverage. Out-of-court restructuring in Jan 2024. Distress score elevated at 20.",
+    "ownership": "Private - PE-owned. TDR Capital since July 2024.",
+    "recent_news": "Property valuation and high coupon temptations despite NEGATIVE cashflow (Jan 2026). FY25 EBITDA GBP 372m (Jan 2026). Prepares potential GBP 1bn sale of pubs (Nov 2025). Accelerate asset disposals following ratings downgrades (Nov 2025). 9M24-25 EBITDA falls 4% YoY (Sep 2025). Out-of-court restructuring completed Jan 2024."
+  },
+
+  "quick_assessment": {
+    "total_debt": 4415,
+    "cash_on_hand": 229,
+    "revolver_available": 318,
+    "debt_due_one_year": 187,
+    "cffo": 667,
+    "interest_expense": null,
+    "ebitda": 554,
+    "note": "Very high leverage. CFFO positive but net income negative. Free cash flow negative per credit reports."
+  },
+
+  "key_ratios": {
+    "debt_to_ebitda": 8.0,
+    "net_debt_to_ebitda": 7.6,
+    "ebitda_margin": 23.7,
+    "note": "VERY HIGH LEVERAGE - 7.6x net. Rating agencies downgraded. Deleveraging needed."
+  },
+
+  "trend_analysis": {
+    "years": ["FY Sep 2022", "FY Sep 2023", "FY Sep 2024"],
+    "revenue": [1747, 2104, 2336],
+    "ebitda": [447, 480, 554],
+    "ebitda_margin": [25.6, 22.8, 23.7],
+    "total_debt": [3501, 3932, 4415],
+    "net_debt": [3357, 3819, 4186],
+    "gross_leverage": [7.8, 8.2, 8.0],
+    "net_leverage": [7.5, 8.0, 7.6],
+    "net_income": [-138, -190, -214],
+    "trend_summary": "Leverage persistently HIGH at 7.5-8x. EBITDA growing but debt growing faster. Net income NEGATIVE every year and worsening. 9M24-25 EBITDA declined 4% YoY."
+  },
+
+  "debt_capitalization": [
+    {
+      "instrument": "RCF",
+      "amount": 318,
+      "maturity": "Jan 2029",
+      "coupon": null,
+      "price": null,
+      "ytw": null,
+      "stw": null,
+      "rating": null,
+      "seniority": "Senior Secured"
+    },
+    {
+      "instrument": "EUR 470m Sr Secd Notes",
+      "amount": 517,
+      "maturity": "2029",
+      "coupon": null,
+      "price": 98.74,
+      "ytw": null,
+      "stw": null,
+      "rating": null,
+      "seniority": "Senior Secured",
+      "trading_signal": "BELOW PAR"
+    },
+    {
+      "instrument": "GBP 2bn Sr Secd Notes",
+      "amount": 2520,
+      "maturity": "2029",
+      "coupon": null,
+      "price": 99.69,
+      "ytw": null,
+      "stw": null,
+      "rating": null,
+      "seniority": "Senior Secured",
+      "trading_signal": "BELOW PAR"
+    },
+    {
+      "instrument": "GBP 190m Sr Secd Notes",
+      "amount": 239,
+      "maturity": "2032",
+      "coupon": null,
+      "price": 105.74,
+      "ytw": null,
+      "stw": null,
+      "rating": null,
+      "seniority": "Senior Secured",
+      "note": "Above par - likely high coupon"
+    }
+  ],
+
+  "maturity_schedule": {
+    "year_1": 187,
+    "year_2": 0,
+    "year_3": 0,
+    "year_4": 3037,
+    "year_5": 0,
+    "year_6": 0,
+    "thereafter": 239,
+    "note": "Bulk of maturities in 2029 (~$3bn)"
+  },
+
+  "restructuring_history": {
+    "date": "Jan 2024",
+    "type": "Out-of-Court",
+    "status": "Closed",
+    "note": "Successfully completed restructuring"
+  },
+
+  "asset_disposal_program": {
+    "target": "GBP 1bn pub sale planned",
+    "purpose": "Deleveraging to address high leverage",
+    "status": "In preparation (Nov 2025)"
+  },
+
+  "credit_opinion": {
+    "recommendation": "UNDERWEIGHT",
+    "summary": "Stonegate is a CHALLENGED credit despite 'performing' lifecycle status. Net leverage of 7.6x is very high. Net income is NEGATIVE every year and worsening. Credit reports note NEGATIVE free cash flow. Rating downgrades in 2025 prompted accelerated asset disposal plans (GBP 1bn pub sale). The company had an out-of-court restructuring in Jan 2024. Two of three bond tranches trading BELOW PAR (98.74, 99.69). Distress score of 20 is elevated. While property values provide some comfort and CFFO is positive, the capital structure is unsustainable without significant deleveraging from asset sales.",
+    "key_risks": [
+      "VERY HIGH LEVERAGE of 7.6x net debt/EBITDA",
+      "NEGATIVE net income every year",
+      "NEGATIVE free cash flow per credit reports",
+      "Ratings downgrades in 2025",
+      "Two bonds trading BELOW PAR",
+      "Forced asset sales to deleverage",
+      "Recent 9M EBITDA decline (-4% YoY)",
+      "Prior restructuring (Jan 2024)",
+      "UK consumer spending pressure",
+      "High interest costs on ~$4.4bn debt",
+      "Distress score elevated at 20"
+    ],
+    "key_catalysts": [
+      "Successful GBP 1bn pub sale",
+      "Deleveraging below 6x",
+      "EBITDA recovery",
+      "Rating stabilization",
+      "UK consumer spending recovery",
+      "TDR Capital support/injection"
+    ]
+  },
+
+  "distress_indicators": {
+    "debtwire_distress_score": 20,
+    "lifecycle_status": "Performing credit",
+    "trading_signals": "Two bonds BELOW PAR (98.74, 99.69). One bond above par (105.74 - high coupon). Leverage 7.6x is very high. Rating downgrades. Negative FCF. Preparing forced asset sales. Prior restructuring Jan 2024."
+  },
+
+  "watchlist_priority": "HIGH - Monitor asset sales and deleveraging progress"
+}
