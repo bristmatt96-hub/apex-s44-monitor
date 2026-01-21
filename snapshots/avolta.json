@@ -1,0 +1,198 @@
+{
+  "company_name": "Avolta",
+  "legal_entity": "Avolta AG",
+  "alternate_names": ["Dufry", "Autogrill", "Dufry-Autogrill"],
+  "sector": "Consumer & Retail - Travel Retail",
+  "geography": "Switzerland",
+  "last_updated": "2026-01-21",
+  "data_source": "Debtwire",
+
+  "ratings": {
+    "moodys": {"rating": "Ba2", "outlook": null},
+    "sp": {"rating": "BB+", "outlook": null}
+  },
+
+  "overview": {
+    "business_description": "Global travel retail and F&B group formed from Dufry-Autogrill merger (Jul 2022). Operates duty-free shops, convenience stores, and food & beverage concessions in airports, motorways, and railway stations worldwide. Sells perfumes, cosmetics, food, confectionery, wines, spirits, tobacco, watches, jewelry, electronics.",
+    "business_positives": [
+      "LOWEST distress score of 9 - healthiest credit in portfolio",
+      "Very low leverage - 1.6x net debt/EBITDA",
+      "Ba2/BB+ ratings - high end of HY, near investment grade",
+      "All bonds trading near/above par (99-104)",
+      "$8.8bn market cap equity cushion",
+      "Strong CFFO of $3.5bn LTM - highly cash generative",
+      "Benefits from global air travel recovery post-COVID",
+      "Scale leader in travel retail globally",
+      "Edizione SpA (Benetton) 22% anchor shareholder"
+    ],
+    "fatal_flaw": "Large lease liabilities (~$10bn) typical for sector but increase total obligations. Air travel sensitive to economic downturns, pandemics, and geopolitical events. Mar 2026 convertible ($628m) is nearest maturity.",
+    "ownership": "Public (SIX: AVOL). Edizione SpA (Benetton family) owns 21.86%.",
+    "recent_news": "EUR 500m Sr Unsecd Notes issued May 2025 at 4.50%. EUR 2.4bn RCF signed Oct 2024. Follow-on equity offering Jun 2025 ($216m)."
+  },
+
+  "quick_assessment": {
+    "total_debt": 4581,
+    "total_debt_inc_leases": 14708,
+    "cash_on_hand": 1174,
+    "revolver_drawn": 954,
+    "revolver_capacity": 2400,
+    "debt_due_one_year": 41,
+    "cffo": 3552,
+    "interest_expense": null,
+    "enterprise_value": 22520,
+    "ebitda": 2102,
+    "market_cap": 8795
+  },
+
+  "key_ratios": {
+    "debt_to_ebitda": 2.2,
+    "net_debt_to_ebitda": 1.6,
+    "debt_inc_leases_to_ebitda": 7.0,
+    "ev_to_ebitda": 10.7,
+    "ebitda_margin": 12.0
+  },
+
+  "trend_analysis": {
+    "years": ["FY 2022", "FY 2023", "FY 2024", "LTM Jun 2025"],
+    "revenue": [7439, 15198, 15166, 17574],
+    "ebitda": [777, 1697, 1782, 2102],
+    "ebitda_margin": [10.4, 11.2, 11.8, 12.0],
+    "total_debt": [3867, 3969, 3745, 4581],
+    "net_debt": [2942, 3119, 2909, 3407],
+    "gross_leverage": [5.0, 2.3, 2.1, 2.2],
+    "net_leverage": [3.8, 1.8, 1.6, 1.6],
+    "note": "2023 onwards includes Autogrill merger"
+  },
+
+  "debt_capitalization": [
+    {
+      "instrument": "EUR 2332m Revolving Credit",
+      "amount": 927,
+      "maturity": "Oct 2029",
+      "coupon": null,
+      "price": null,
+      "ytw": null,
+      "stw": null,
+      "rating": null,
+      "seniority": "Senior Secured"
+    },
+    {
+      "instrument": "CHF 500m Convertible Debt",
+      "amount": 628,
+      "maturity": "Mar 2026",
+      "coupon": "0.75%",
+      "price": 99.98,
+      "ytw": null,
+      "stw": null,
+      "rating": null,
+      "seniority": "Senior Unsecured"
+    },
+    {
+      "instrument": "EUR 750m Sr Notes",
+      "amount": 881,
+      "maturity": "Feb 2027",
+      "coupon": "2.00%",
+      "price": 99.24,
+      "ytw": 2.73,
+      "stw": null,
+      "rating": "Ba2/BB+",
+      "seniority": "Senior Unsecured"
+    },
+    {
+      "instrument": "EUR 725m Sr Notes",
+      "amount": 851,
+      "maturity": "Apr 2028",
+      "coupon": "3.375%",
+      "price": 100.18,
+      "ytw": 3.29,
+      "stw": null,
+      "rating": "Ba2/BB+",
+      "seniority": "Senior Unsecured"
+    },
+    {
+      "instrument": "EUR 500m Sr Unsecd Notes",
+      "amount": 587,
+      "maturity": "Apr 2031",
+      "coupon": "4.75%",
+      "price": 103.62,
+      "ytw": 3.98,
+      "stw": null,
+      "rating": "Ba2",
+      "seniority": "Senior Unsecured"
+    },
+    {
+      "instrument": "EUR 500m Sr Unsecd Notes (May 2025)",
+      "amount": 587,
+      "maturity": "May 2032",
+      "coupon": "4.50%",
+      "price": 102.75,
+      "ytw": 4.00,
+      "stw": null,
+      "rating": "Ba2/BB+",
+      "seniority": "Senior Unsecured"
+    },
+    {
+      "instrument": "CHF 8091m Lease Facility",
+      "amount": 10127,
+      "maturity": "Various",
+      "coupon": null,
+      "price": null,
+      "ytw": null,
+      "stw": null,
+      "rating": null,
+      "seniority": "Finance Lease"
+    }
+  ],
+
+  "maturity_schedule": {
+    "year_1": 628,
+    "year_2": 881,
+    "year_3": 851,
+    "year_4": 0,
+    "year_5": 0,
+    "thereafter": 1174
+  },
+
+  "maturity_detail": {
+    "2026": "CHF 500m Convertible (~$628m)",
+    "2027": "EUR 750m notes (~$881m)",
+    "2028": "EUR 725m notes (~$851m)",
+    "2029": "RCF maturity",
+    "2031": "EUR 500m notes (~$587m)",
+    "2032": "EUR 500m notes (~$587m)"
+  },
+
+  "equity_market_value": {
+    "ticker": "AVOL.SW",
+    "exchange": "SIX Swiss Exchange",
+    "equity_market_value": 8795,
+    "total_enterprise_value": 22520,
+    "tev_to_ebitda": 10.7
+  },
+
+  "credit_opinion": {
+    "recommendation": "OVERWEIGHT",
+    "summary": "Avolta is a HIGH QUALITY Ba2/BB+ credit - one of the strongest in European HY. Net leverage at just 1.6x is exceptional for the rating. Distress score of 9 is the lowest in your portfolio. All bonds trading near/above par with tight yields (2.7-4.0%) reflect near-IG quality. The $8.8bn market cap provides massive equity cushion. Strong CFFO of $3.5bn demonstrates cash generation. Main risk is Mar 2026 convertible ($628m) maturity and large lease liabilities (~$10bn) which are typical for travel retail.",
+    "key_risks": [
+      "Mar 2026 convertible maturity (~$628m) - nearest refinancing need",
+      "Large lease liabilities (~$10bn) inflate total obligations",
+      "Air travel sensitivity to economic cycles, pandemics, geopolitics",
+      "Competition from online duty-free shopping",
+      "Airport concession renewal risk",
+      "Currency exposure across global operations"
+    ],
+    "key_catalysts": [
+      "Rating upgrade to investment grade (BBB-/Baa3) if leverage sustained",
+      "Continued air travel recovery driving revenue growth",
+      "EBITDA margin expansion from merger synergies",
+      "Successful refinancing of Mar 2026 convertible",
+      "Further spread tightening toward IG levels"
+    ]
+  },
+
+  "distress_indicators": {
+    "debtwire_distress_score": 9,
+    "lifecycle_status": "Performing credit",
+    "trading_signals": "Bonds at 99-104 (near/above par). Yields 2.7-4.0% - trading like crossover/near-IG credit. Lowest distress score in portfolio. Strong candidate for upgrade to investment grade."
+  }
+}
