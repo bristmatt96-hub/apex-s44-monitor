@@ -1,20 +1,21 @@
 {
   "company_name": "Air France - KLM",
   "ticker": "AF FP",
-  "sector": "Consumers",
-  "last_updated": "2025-01-20",
+  "sector": "Transportation - Airlines",
+  "last_updated": "2026-01-21",
   "overview": {
-    "business_description": "Franco-Dutch airline group formed through merger. One of the world's largest airline groups. Operations include passenger transport (Air France, KLM, Transavia), cargo, and maintenance. Hub at Paris CDG and Amsterdam Schiphol.",
+    "business_description": "Franco-Dutch airline group formed through merger. One of the world's largest airline groups. Operations include passenger transport (Air France, KLM, Transavia), cargo, and maintenance (MRO). Hubs at Paris CDG and Amsterdam Schiphol.",
     "business_positives": [
       "Split rating: Fitch BBB- (IG) vs S&P BB+ (HY)",
-      "Strong liquidity (€9.4bn cash, target €6-8bn)",
-      "Leverage at 1.5x within target range",
-      "Lowest credit margin in history on recent bond"
+      "Strong liquidity ($5.9bn cash, revolvers undrawn)",
+      "Leverage at 1.3x gross, net cash position",
+      "EBITDA margin improved to 11%",
+      "Lowest credit spreads in history"
     ],
     "fatal_flaw": "Airline industry structural challenges; high fixed costs; fuel price exposure; labor relations",
-    "ownership": "French State (~29%), Dutch State (~9%), Public",
+    "ownership": "French State (~29%), Dutch State (~9%), CMA CGM (9%), Public",
     "public_private": "public",
-    "recent_news": "Fitch affirmed BBB- stable (May 2025). Issued €650m bonds (Jan 2025) at lowest ever spread. Net debt €7.1bn. Issued €500m perpetual hybrid (May 2025)."
+    "recent_news": "Issued EUR 650m senior unsecured notes Jan 2026 at MS+150bps. Exploring TAP stake acquisition. SAS investment ongoing."
   },
   "ratings": {
     "moodys": {"rating": "", "outlook": "", "date": ""},
@@ -22,57 +23,85 @@
     "fitch": {"rating": "BBB-", "outlook": "Stable", "date": "2025-05"}
   },
   "quick_assessment": {
-    "period_end": "Q3 2025",
-    "cffo": null,
-    "total_debt": null,
+    "period_end": "LTM Sep 2025",
+    "revenue": 38377,
+    "ebitda": 4228,
+    "cffo": 5832,
+    "total_debt": 5611,
     "interest_expense": null,
-    "capex": 3300,
-    "debt_due_one_year": null,
-    "cash_on_hand": 9500,
-    "revolver_available": null
+    "capex": 3235,
+    "debt_due_one_year": 568,
+    "cash_on_hand": 5878,
+    "revolver_available": 2405
   },
   "key_ratios": {
-    "debt_to_ebitda": 1.6,
-    "ebitda_minus_capex_to_interest": null,
-    "fcf_to_debt": null,
-    "net_debt_to_ebitda": 1.6
+    "debt_to_ebitda": 1.3,
+    "net_debt_to_ebitda": -0.06,
+    "ebitda_margin": 11.0,
+    "ev_to_ebitda": 4.14
   },
   "trend_analysis": {
-    "years": [],
-    "revenue": [],
-    "ebitda": [],
-    "ebitda_margin": [],
-    "total_debt": []
+    "years": ["2022", "2023", "2024", "LTM Sep 2025"],
+    "revenue": [28251, 33132, 32678, 38377],
+    "ebitda": [2533, 3240, 3092, 4228],
+    "ebitda_margin": [9.0, 9.8, 9.5, 11.0],
+    "total_debt": [7384, 5889, 4984, 5611],
+    "net_debt": [291, -947, -32, -266],
+    "gross_leverage": [2.9, 1.8, 1.6, 1.3]
   },
   "debt_capitalization": [
-    {"instrument": "3.75% Bonds", "amount": 500, "maturity": "2030", "coupon": "3.75%", "price": null, "ytw": null, "stw": null, "rating": "BBB-"},
-    {"instrument": "8.125% Bonds", "amount": 500, "maturity": "2028", "coupon": "8.125%", "price": null, "ytw": null, "stw": null, "rating": ""},
-    {"instrument": "7.25% SLB (repaid)", "amount": 500, "maturity": "2026", "coupon": "7.25%", "price": null, "ytw": null, "stw": null, "rating": ""},
-    {"instrument": "Perpetual Hybrid", "amount": 500, "maturity": "Perpetual", "coupon": "", "price": null, "ytw": null, "stw": null, "rating": "BB"}
+    {"instrument": "EUR 650m Sr Unsecd Notes", "amount": 760, "maturity": "2031", "coupon": "3.88%", "price": 99.21, "ytw": 4.05, "rating": "BB+"},
+    {"instrument": "EUR 500m Sr Unsecd Notes", "amount": 581, "maturity": "2030", "coupon": "3.75%", "price": 99.33, "ytw": 3.91, "rating": "BB+"},
+    {"instrument": "EUR 500m Subordinated Perpetual", "amount": 560, "maturity": "Perpetual", "coupon": "5.75%", "price": 101.25, "ytw": 5.42, "rating": "B+"},
+    {"instrument": "EUR 650m Sr Unsecd Notes", "amount": 700, "maturity": "2029", "coupon": "4.63%", "price": 103.91, "ytw": 3.36, "rating": "BB+"},
+    {"instrument": "EUR 500m Sr Unsecd Notes", "amount": 532, "maturity": "2028", "coupon": "8.25%", "price": 110.44, "ytw": 3.42, "rating": "BB+"},
+    {"instrument": "EUR 500m Sr Unsecd Notes", "amount": 597, "maturity": "2026", "coupon": "3.88%", "price": 100.20, "ytw": 3.33, "rating": "BB+"},
+    {"instrument": "EUR 500m Sr Unsecd Notes", "amount": 532, "maturity": "2026", "coupon": "7.25%", "price": 101.23, "ytw": 3.57, "rating": "BB+"},
+    {"instrument": "EUR 1405m Revolving Credit", "amount": 0, "maturity": "2028", "coupon": "-", "price": null, "ytw": null, "rating": "-"},
+    {"instrument": "EUR 1000m Revolving Credit", "amount": 0, "maturity": "2027", "coupon": "-", "price": null, "ytw": null, "rating": "-"},
+    {"instrument": "Convertible Debt", "amount": 568, "maturity": "Mar 2026", "coupon": "-", "price": null, "ytw": null, "rating": "-"}
   ],
   "maturity_schedule": {
-    "year_1": null,
-    "year_2": null,
-    "year_3": null,
-    "year_4": null,
-    "year_5": null,
-    "thereafter": null
+    "2026": 1697,
+    "2027": 0,
+    "2028": 532,
+    "2029": 700,
+    "2030": 581,
+    "2031": 760,
+    "perpetual": 560
   },
-  "equity_market_value": {},
+  "equity_market_value": {
+    "price_eur": 10.585,
+    "market_cap_usd": 3250,
+    "enterprise_value_usd": 17480
+  },
+  "top_investors": [
+    {"name": "Vanguard Group", "type": "Investment Advisor", "value_usd": 47.97},
+    {"name": "Norges Bank Investment Management", "type": "Sovereign Wealth Fund", "value_usd": 42.58},
+    {"name": "Government Pension Fund", "type": "Pension", "value_usd": 28.22},
+    {"name": "BlackRock Advisors", "type": "Investment Advisor", "value_usd": 21.53},
+    {"name": "AQR Capital Management", "type": "Hedge Fund", "value_usd": 15.58}
+  ],
+  "key_deals": [
+    {"date": "Oct 2025", "deal": "WestJet Airlines 2.3% stake acquired from Delta"},
+    {"date": "Jul 2025", "deal": "SAS 60.5% stake acquisition (preliminary)"},
+    {"date": "May 2022", "deal": "CMA CGM acquired 9% stake for $241m"}
+  ],
   "credit_opinion": {
-    "summary": "Air France-KLM has achieved investment grade from Fitch while S&P remains at BB+. Strong liquidity and low leverage support the credit. The split rating creates potential for spread compression if S&P upgrades.",
+    "summary": "Air France-KLM has achieved investment grade from Fitch while S&P remains at BB+. Net cash position with strong liquidity and deleveraging trend. Split rating creates potential for spread compression if S&P upgrades. Pursuing M&A (SAS, TAP) could impact credit metrics.",
     "key_risks": [
       "Airline industry cyclicality",
       "Fuel price volatility",
       "Labor cost inflation and strike risk",
+      "M&A execution risk (SAS, TAP)",
       "Fleet renewal capex requirements"
     ],
     "key_catalysts": [
       "S&P upgrade to investment grade",
       "Continued strong travel demand",
-      "Further debt reduction",
-      "Transavia low-cost growth"
+      "Successful SAS integration",
+      "TAP stake acquisition"
     ],
-    "recommendation": "OVERWEIGHT - Split rating opportunity, strong liquidity"
+    "recommendation": "OVERWEIGHT - Split rating opportunity, net cash position, strong liquidity"
   }
 }
