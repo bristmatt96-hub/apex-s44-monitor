@@ -1,0 +1,149 @@
+{
+  "company_name": "Playtech",
+  "legal_entity": "Playtech plc",
+  "alternate_names": ["PTEC"],
+  "sector": "Technology - Gaming Software",
+  "geography": "Isle of Man",
+  "last_updated": "2026-01-21",
+  "data_source": "Debtwire",
+
+  "ratings": {
+    "moodys": {"rating": "NR", "outlook": null},
+    "sp": {"rating": "NR", "outlook": null},
+    "note": "Publicly traded with strong liquidity but operational challenges"
+  },
+
+  "overview": {
+    "business_description": "Gaming technology provider delivering software platforms and services for online casino, sports betting, bingo, and poker verticals to licensed operators in regulated markets globally. B2B software/platform provider to gaming operators.",
+    "business_positives": [
+      "NET CASH position of $200m - strong liquidity",
+      "Publicly traded with $1.1bn market cap equity cushion",
+      "Low total debt of just $350m",
+      "Bond trading above par (100.96)",
+      "Strong institutional shareholder base (Vanguard, Schroders, Norway SWF)",
+      "Credit report notes 'sum-of-parts valuation offers comfort'",
+      "CFFO of $269m LTM despite EBITDA challenges",
+      "Leading gaming software platform globally"
+    ],
+    "fatal_flaw": "EBITDA COLLAPSED 87% YoY to EUR 12.9m (1H25) - now NEGATIVE at -$11m LTM. Mar 2026 maturity approaching ($398m). Legal risk from Evolution defamation lawsuit. LatAm regulatory headwinds. Revenue down 50% from 2022 peak. Distress score elevated at 17.",
+    "ownership": "Public (LSE: PTEC). Strong institutional shareholder base including Smallcap World Fund, Vanguard, Schroders, Norway Government Pension Fund.",
+    "recent_news": "1H25 EBITDA drops 87% YoY to EUR 12.9m (Sep 2025). Evolution to add Playtech as defendant in NJ defamation suit (Oct 2025). Bonds slide on legal news. Credit report notes 'strong liquidity and low leverage help mitigate cloud of legal proceedings' (Nov 2025). LatAm regulatory headwinds."
+  },
+
+  "quick_assessment": {
+    "total_debt": 350,
+    "cash_on_hand": 551,
+    "revolver_available": null,
+    "debt_due_one_year": 398,
+    "cffo": 269,
+    "interest_expense": null,
+    "enterprise_value": 953,
+    "ebitda": -11,
+    "market_cap": 1110,
+    "net_cash": 200
+  },
+
+  "key_ratios": {
+    "debt_to_ebitda": "NM",
+    "net_debt_to_ebitda": "NM",
+    "ev_to_ebitda": "NM",
+    "note": "Leverage ratios not meaningful due to negative LTM EBITDA. Company has NET CASH of $200m."
+  },
+
+  "trend_analysis": {
+    "years": ["FY 2022", "FY 2023", "FY 2024", "LTM Jun 2025"],
+    "revenue": [1715, 852, 881, 946],
+    "ebitda": [311, 182, 140, -11],
+    "ebitda_margin": [18.2, 21.4, 15.8, -1.2],
+    "total_debt": [586, 713, 465, 350],
+    "cash": [457, 570, 279, 551],
+    "net_debt": [130, 143, 187, -200],
+    "gross_leverage": [1.9, 3.9, 3.3, "NM"],
+    "net_leverage": [0.4, 0.8, 1.3, "NM"],
+    "trend_summary": "EBITDA collapsed from $311m (2022) to NEGATIVE $11m (LTM). Revenue down 50% from peak. However, deleveraged to NET CASH position through debt repayment and asset sales."
+  },
+
+  "debt_capitalization": [
+    {
+      "instrument": "EUR 362m Sr Secd Notes",
+      "amount": 398,
+      "maturity": "Mar 2026",
+      "coupon": null,
+      "price": null,
+      "ytw": null,
+      "stw": null,
+      "rating": null,
+      "seniority": "Senior Secured",
+      "note": "NEAR-TERM MATURITY - needs refinancing"
+    },
+    {
+      "instrument": "EUR 300m Sr Secd Notes",
+      "amount": 330,
+      "maturity": "2028",
+      "coupon": null,
+      "price": 100.96,
+      "ytw": null,
+      "stw": null,
+      "rating": null,
+      "seniority": "Senior Secured"
+    }
+  ],
+
+  "maturity_schedule": {
+    "year_1": 398,
+    "year_2": 0,
+    "year_3": 330,
+    "year_4": 0,
+    "year_5": 0,
+    "thereafter": 0,
+    "maturity_wall": "Mar 2026 - $398m needs refinancing"
+  },
+
+  "equity_market_value": {
+    "ticker": "PTEC.L",
+    "exchange": "London Stock Exchange",
+    "share_price": "GBP 2.705",
+    "equity_market_value": 1110,
+    "total_enterprise_value": 953,
+    "key_shareholders": ["Smallcap World Fund ($58m)", "Vanguard ($48m)", "Schroders ($39m)", "Dimensional ($37m)", "Norway SWF ($34m)"]
+  },
+
+  "legal_proceedings": {
+    "evolution_lawsuit": {
+      "status": "Pending",
+      "description": "Evolution to add Playtech as defendant in New Jersey defamation suit",
+      "impact": "Credit report notes legal risk overhangs but sum-of-parts offers comfort"
+    }
+  },
+
+  "credit_opinion": {
+    "recommendation": "NEUTRAL",
+    "summary": "Playtech presents a complex credit picture. On the positive side: NET CASH of $200m, low total debt ($350m), bond above par (100.96), $1.1bn market cap equity cushion, and strong CFFO ($269m). However, EBITDA has collapsed 87% YoY and is now NEGATIVE at -$11m LTM - a dramatic deterioration from $311m in 2022. The Mar 2026 maturity ($398m) is approaching and will need refinancing despite negative EBITDA. Evolution lawsuit adds legal risk. LatAm regulatory headwinds. The elevated distress score of 17 reflects these operational challenges despite strong liquidity.",
+    "key_risks": [
+      "EBITDA collapsed to NEGATIVE -$11m LTM (was $311m in 2022)",
+      "Mar 2026 maturity ($398m) approaching",
+      "Evolution defamation lawsuit - legal risk",
+      "LatAm regulatory headwinds",
+      "Revenue down 50% from 2022 peak",
+      "Refinancing with negative EBITDA challenging",
+      "Gaming software competition",
+      "Distress score elevated at 17"
+    ],
+    "key_catalysts": [
+      "EBITDA recovery from operational turnaround",
+      "Successful Mar 2026 refinancing",
+      "Resolution of Evolution lawsuit",
+      "Sum-of-parts value realization (asset sales)",
+      "New contract wins improving revenue",
+      "LatAm regulatory clarity"
+    ]
+  },
+
+  "distress_indicators": {
+    "debtwire_distress_score": 17,
+    "lifecycle_status": "Performing credit",
+    "trading_signals": "Bond at 100.96 (above par) is positive. NET CASH position provides liquidity buffer. However, EBITDA -87% YoY and now negative. Mar 2026 maturity needs addressing. Legal risk from Evolution suit."
+  },
+
+  "watchlist_priority": "MEDIUM-HIGH - Monitor Mar 2026 refinancing and EBITDA trajectory"
+}
