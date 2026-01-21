@@ -1,0 +1,127 @@
+{
+  "company_name": "Very Group (Summer BidCo)",
+  "legal_entity": "Very Group Ltd",
+  "alternate_names": ["Very Group Funding plc", "Summer BidCo", "Shop Direct"],
+  "sector": "Consumer & Retail - Online Retail",
+  "geography": "United Kingdom",
+  "last_updated": "2026-01-21",
+  "data_source": "Debtwire",
+
+  "ratings": {
+    "moodys": {"rating": "NR", "outlook": null},
+    "sp": {"rating": "NR", "outlook": null},
+    "note": "RESTRUCTURING credit - distress score 100 (maximum)"
+  },
+
+  "overview": {
+    "business_description": "UK online retailer serving families and individual consumers across fashion, electricals, home goods, and related categories (excluding food). Products sold directly through digital platforms. Offers 'buy now pay later' consumer credit financing.",
+    "business_positives": [
+      "New Carlyle ownership (Nov 2025) provides fresh capital",
+      "Restructuring completed (Jan 2025)",
+      "Strong digital-only business model",
+      "Consumer credit platform embedded in retail",
+      "GBP 2bn potential sale value indicates some residual value"
+    ],
+    "fatal_flaw": "DISTRESS SCORE 100 - MAXIMUM. RESTRUCTURING credit. Out-of-court restructuring Jan 2025. Revenue declining (-1.8% YoY). Christmas sales declined (-0.4% YoY). Carlyle already looking to sell just 2 months after acquisition (Jan 2026 - GBP 2bn sale launched). Feb 2026 term loan maturity approaching ($158m). Interim CFO appointment signals instability.",
+    "ownership": "Private - PE-owned. Carlyle Group acquired Nov 2025 through restructuring. Now looking to sell Jan 2026.",
+    "recent_news": "Carlyle to launch GBP 2bn sale of Very Group just months after acquisition (Jan 2026). Christmas retail sales decline 0.4% YoY (Jan 2026). FY25 revenue falls 1.8% YoY to GBP 2.09bn (Oct 2025). Sold to Carlyle (Nov 2025). Interim CFO appointed (Sep 2025). Out-of-court restructuring completed (Jan 2025)."
+  },
+
+  "quick_assessment": {
+    "total_debt": null,
+    "cash_on_hand": null,
+    "revolver_available": null,
+    "debt_due_one_year": 158,
+    "cffo": null,
+    "interest_expense": null,
+    "ebitda": null,
+    "note": "RESTRUCTURING credit. Limited financial disclosure. Feb 2026 TL maturity imminent."
+  },
+
+  "key_ratios": {
+    "debt_to_ebitda": null,
+    "net_debt_to_ebitda": null,
+    "note": "Financial ratios not meaningful - restructuring situation"
+  },
+
+  "debt_capitalization": [
+    {
+      "instrument": "Term Loan",
+      "amount": 158,
+      "maturity": "Feb 2026",
+      "coupon": null,
+      "price": null,
+      "ytw": null,
+      "stw": null,
+      "rating": null,
+      "seniority": "Senior Secured",
+      "note": "IMMINENT MATURITY"
+    },
+    {
+      "instrument": "GBP 600m+ HY Bonds",
+      "amount": 766,
+      "maturity": null,
+      "coupon": null,
+      "price": null,
+      "ytw": null,
+      "stw": null,
+      "rating": null,
+      "seniority": "Senior Secured",
+      "note": "Apr 2025 issuance post-restructuring"
+    }
+  ],
+
+  "maturity_schedule": {
+    "year_1": 158,
+    "note": "Feb 2026 term loan maturity imminent. Post-restructuring capital structure."
+  },
+
+  "restructuring_history": {
+    "date": "Jan 2025",
+    "type": "Out-of-Court",
+    "status": "Completed",
+    "outcome": "Carlyle acquired controlling stake Nov 2025",
+    "note": "Restructuring just completed, now Carlyle already seeking to exit"
+  },
+
+  "recent_events_timeline": [
+    {"date": "Jan 2025", "event": "Out-of-court restructuring completed"},
+    {"date": "Sep 2025", "event": "Interim CFO appointed"},
+    {"date": "Oct 2025", "event": "FY25 revenue falls 1.8% YoY to GBP 2.09bn"},
+    {"date": "Nov 2025", "event": "Sold to Carlyle Group"},
+    {"date": "Jan 2026", "event": "Christmas sales decline 0.4% YoY"},
+    {"date": "Jan 2026", "event": "Carlyle launches GBP 2bn sale process"}
+  ],
+
+  "credit_opinion": {
+    "recommendation": "AVOID",
+    "summary": "Very Group is a RESTRUCTURING credit with MAXIMUM distress score of 100. The company completed an out-of-court restructuring in Jan 2025 and was acquired by Carlyle in Nov 2025. Remarkably, Carlyle is already launching a GBP 2bn sale process just 2 months after acquisition (Jan 2026) - a clear sign of distress or opportunistic flip. Revenue declining (-1.8% YoY), Christmas sales weak (-0.4%). Feb 2026 term loan maturity ($158m) imminent. Interim CFO appointment signals management instability. UK online retail is highly competitive. This is the MOST DISTRESSED credit in the XO S44 portfolio.",
+    "key_risks": [
+      "DISTRESS SCORE 100 - MAXIMUM",
+      "RESTRUCTURING lifecycle status",
+      "Feb 2026 term loan maturity imminent ($158m)",
+      "Carlyle selling just 2 months after acquisition",
+      "Revenue declining (-1.8% YoY)",
+      "Christmas sales weak (-0.4% YoY)",
+      "Interim CFO - management instability",
+      "UK online retail highly competitive (Amazon, ASOS, etc)",
+      "Consumer credit exposure - bad debt risk",
+      "Post-restructuring capital structure uncertainty"
+    ],
+    "key_catalysts": [
+      "Successful sale to new buyer",
+      "Revenue stabilization",
+      "New permanent management",
+      "Successful Feb 2026 refinancing",
+      "UK consumer spending recovery"
+    ]
+  },
+
+  "distress_indicators": {
+    "debtwire_distress_score": 100,
+    "lifecycle_status": "RESTRUCTURING",
+    "trading_signals": "MAXIMUM distress score of 100. Restructuring completed Jan 2025. Carlyle selling 2 months after acquisition. Revenue declining. Management changes. AVOID."
+  },
+
+  "watchlist_priority": "CRITICAL - RESTRUCTURING credit. Monitor sale process and Feb 2026 maturity."
+}
