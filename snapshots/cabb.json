@@ -1,0 +1,151 @@
+{
+  "company_name": "CABB",
+  "legal_entity": "CABB GmbH",
+  "holding_company": "Monitchem Holdco 3 SA",
+  "alternate_names": ["Monitchem", "CABB Chemicals"],
+  "sector": "Industrials - Specialty Chemicals",
+  "geography": "Germany",
+  "last_updated": "2026-01-21",
+  "data_source": "Debtwire",
+
+  "ratings": {
+    "moodys": {"rating": "B3", "outlook": null},
+    "sp": {"rating": "B", "outlook": null},
+    "note": "B3/B rated - deep single-B credit. Challenged chemicals business."
+  },
+
+  "overview": {
+    "business_description": "Specialty chemical producer supplying chlorine- and acetic-acid-based building blocks primarily for agrochemical, pharmaceutical, and performance material industries. Operations in Germany and internationally.",
+    "business_positives": [
+      "Liquidity provides near-term buffer",
+      "Jayhawk sale for USD 150m improves liquidity (Dec 2025)",
+      "Knapsack site closure to improve EBITDA by low double-digit millions",
+      "Bonds trading near par (99-100)",
+      "EUR 110m undrawn RCF provides liquidity",
+      "Specialty chemicals focus - defensible positions",
+      "Permira sponsorship (100%)",
+      "May 2028 maturities provide runway"
+    ],
+    "fatal_flaw": "PERSISTENT CASH BURN noted in credit reports. Soft end-market demand and pricing pressures. Forced to close Knapsack site (restructuring). Selling assets (Jayhawk for $150m) to shore up liquidity. Permira has owned since 2014 - 10+ year hold suggests difficulty exiting. B3/B rating is deep single-B. Distress score elevated at 15.",
+    "ownership": "Private - PE-owned. Permira (100%) via Permira V fund since June 2014. Very long PE hold (10+ years) suggests exit challenges.",
+    "recent_news": "Liquidity provides near-term buffer against persistent cash burn, soft end-market demand and pricing pressures (Jan 2026 credit report). Decides to close Knapsack site; expects EBITDA improvement up to low double-digit millions (Dec 2025). Signs agreement with Anupam Rasayan to sell Jayhawk for USD 150m (Dec 2025)."
+  },
+
+  "quick_assessment": {
+    "total_debt": 738,
+    "cash_on_hand": null,
+    "revolver_available": 121,
+    "debt_due_one_year": 0,
+    "cffo": null,
+    "interest_expense": null,
+    "ebitda": null,
+    "note": "CASH BURN noted. Asset sale ($150m Jayhawk) to improve liquidity. Site closure underway."
+  },
+
+  "key_ratios": {
+    "debt_to_ebitda": null,
+    "net_debt_to_ebitda": null,
+    "note": "Detailed financials not provided. Credit reports note persistent cash burn and liquidity challenges."
+  },
+
+  "debt_capitalization": [
+    {
+      "instrument": "EUR 110m Revolving Credit",
+      "amount": 0,
+      "available": 121,
+      "maturity": "Apr 2027",
+      "coupon": "E+3.50%",
+      "seniority": "Senior Secured",
+      "note": "Undrawn - provides liquidity buffer"
+    },
+    {
+      "instrument": "EUR 250m Sr Secd FRN",
+      "amount": 275,
+      "maturity": "May 2028",
+      "coupon": "E+5.25%",
+      "price": 98.94,
+      "ytw": "7.89%",
+      "rating": "B3/B",
+      "seniority": "Senior Secured",
+      "trading_signal": "SLIGHTLY BELOW PAR"
+    },
+    {
+      "instrument": "EUR 420m Sr Secd Notes",
+      "amount": 463,
+      "maturity": "May 2028",
+      "coupon": "8.75%",
+      "price": 99.89,
+      "ytw": "8.80%",
+      "rating": "B3/B",
+      "seniority": "Senior Secured",
+      "note": "Fixed rate tranche"
+    }
+  ],
+
+  "maturity_schedule": {
+    "year_1": 0,
+    "year_2": 121,
+    "year_3": 738,
+    "year_4": 0,
+    "year_5": 0,
+    "thereafter": 0,
+    "note": "Apr 2027 RCF maturity. May 2028 bond wall ($738m). Manageable near-term."
+  },
+
+  "asset_disposals": {
+    "jayhawk_sale": {
+      "buyer": "Anupam Rasayan",
+      "price": 150,
+      "status": "Agreement signed (Dec 2025)",
+      "purpose": "Liquidity improvement"
+    },
+    "knapsack_closure": {
+      "status": "Announced (Dec 2025)",
+      "expected_benefit": "EBITDA improvement up to low double-digit millions",
+      "note": "Site closure - operational restructuring"
+    }
+  },
+
+  "pe_ownership": {
+    "sponsor": "Permira",
+    "fund": "Permira V",
+    "stake": "100%",
+    "entry_date": "Jun 2014",
+    "holding_period": "10+ years",
+    "note": "Very long PE hold suggests exit challenges. Typical PE hold is 4-6 years."
+  },
+
+  "credit_opinion": {
+    "recommendation": "UNDERWEIGHT",
+    "summary": "CABB is a CHALLENGED B3/B rated specialty chemicals credit with elevated distress score (15). Credit reports explicitly note 'persistent cash burn, soft end-market demand and pricing pressures.' The company is in operational restructuring mode - closing Knapsack site and selling Jayhawk business for $150m to shore up liquidity. While bonds trade near par (99-100) and May 2028 maturities provide runway, the fundamental trajectory is concerning. Permira has owned since 2014 - a 10+ year hold that suggests significant exit challenges. Yields of 7.9-8.8% reflect B-rated risk premium.",
+    "key_risks": [
+      "PERSISTENT CASH BURN explicitly noted",
+      "Soft end-market demand",
+      "Pricing pressures",
+      "Forced asset sales (Jayhawk $150m)",
+      "Site closure (Knapsack restructuring)",
+      "Permira 10+ year hold - exit challenges",
+      "B3/B deep single-B rating",
+      "May 2028 maturity wall ($738m)",
+      "Chemicals sector cyclical exposure",
+      "Distress score elevated at 15"
+    ],
+    "key_catalysts": [
+      "Jayhawk sale completion ($150m)",
+      "Knapsack closure EBITDA benefit",
+      "Cash burn stabilization",
+      "End-market demand recovery",
+      "Pricing improvement",
+      "Permira exit/recapitalization",
+      "Successful 2028 refinancing"
+    ]
+  },
+
+  "distress_indicators": {
+    "debtwire_distress_score": 15,
+    "lifecycle_status": "Performing credit",
+    "trading_signals": "Bonds at 99-100 (near par) but yields elevated at 7.9-8.8%. PERSISTENT CASH BURN noted. Asset sales and site closures indicate operational stress. B3/B rating is deep single-B. Permira 10+ year hold suggests exit difficulty."
+  },
+
+  "watchlist_priority": "ELEVATED - Monitor cash burn, asset sale completion, and operational turnaround"
+}
