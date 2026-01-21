@@ -51,6 +51,14 @@ try:
 except ImportError:
     pass
 
+# Try to import credit events monitor
+CREDIT_EVENTS_AVAILABLE = False
+try:
+    from monitors.credit_events_monitor import render_credit_events_dashboard
+    CREDIT_EVENTS_AVAILABLE = True
+except ImportError:
+    pass
+
 # ============== TELEGRAM FUNCTIONS ==============
 
 def send_telegram_message(message):
@@ -828,9 +836,11 @@ if EQUITY_MONITOR_AVAILABLE:
     st.sidebar.markdown("- Equity Monitor (yfinance)" if YFINANCE_AVAILABLE else "- Equity Monitor (no yfinance)")
 if KNOWLEDGE_BASE_AVAILABLE:
     st.sidebar.markdown("- PDF Knowledge Base")
+if CREDIT_EVENTS_AVAILABLE:
+    st.sidebar.markdown("- Credit Events Monitor")
 
 # Main content tabs
-tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["Trading Signals", "Equity Monitor", "News Monitor", "RSS & News", "Credit Snapshot", "Knowledge Base"])
+tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs(["Trading Signals", "Equity Monitor", "Credit Events", "News Monitor", "RSS & News", "Credit Snapshot", "Knowledge Base"])
 
 # Initialize NewsHound with selected index
 @st.cache_resource
@@ -863,6 +873,13 @@ with tab2:
         st.info("Install yfinance for live prices: `pip install yfinance`")
 
 with tab3:
+    if CREDIT_EVENTS_AVAILABLE:
+        render_credit_events_dashboard(st)
+    else:
+        st.warning("Credit Events Monitor not available.")
+        st.info("Check monitors/credit_events_monitor.py")
+
+with tab4:
     st.markdown("### X/Twitter Monitor (News)")
 
     # Sector selector
@@ -897,7 +914,7 @@ with tab3:
             else:
                 st.info(str(alert))
 
-with tab4:
+with tab5:
     st.markdown("### RSS Feeds & NewsAPI")
     st.caption("Trade journals, local newspapers, and news aggregators")
 
@@ -932,7 +949,7 @@ with tab4:
                         st.markdown(article['summary'] + "...")
                 st.markdown("---")
 
-with tab5:
+with tab6:
     st.markdown("### Credit Snapshot")
 
     # Get all companies across sectors
@@ -951,7 +968,7 @@ with tab5:
     snapshot = load_snapshot(selected_snapshot_company)
     render_snapshot(snapshot)
 
-with tab6:
+with tab7:
     if KNOWLEDGE_BASE_AVAILABLE:
         # Initialize knowledge base
         @st.cache_resource
