@@ -1,0 +1,181 @@
+{
+  "company_name": "Ardagh Group SA",
+  "legal_entity": "Ardagh Group SA",
+  "holding_company": "ARD Finance SA",
+  "alternate_names": ["Ardagh Metal Packaging", "AMP", "ARD Holdings"],
+  "sector": "Industrials - Packaging",
+  "geography": "Luxembourg / Ireland",
+  "last_updated": "2026-01-21",
+  "data_source": "Debtwire",
+
+  "ratings": {
+    "moodys": {"rating": "Caa1", "outlook": "Negative"},
+    "sp": {"rating": "CCC+", "outlook": "Negative"},
+    "note": "DEEP DISTRESS ratings. Senior Unsecured at Caa2/CCC. Active restructuring underway."
+  },
+
+  "overview": {
+    "business_description": "Global supplier of metal and glass packaging products. Operations span beverage cans, food cans, and glass containers across Americas, Europe, and Africa. Spun off Ardagh Metal Packaging (AMP) in 2021 but retained significant stake. Complex corporate structure with multiple issuing entities.",
+    "business_positives": [
+      "Global scale in packaging - essential products",
+      "Beverage can demand remains solid",
+      "AMP stake provides potential value",
+      "Cash position provides near-term runway",
+      "Some secured bonds trading near par (95-102)"
+    ],
+    "fatal_flaw": "ACTIVE RESTRUCTURING - Distress score 52. Chapter 15 filed for ARD Finance (holdco). CDS deliverables being challenged in court (Arini vs Tresidor/Laurion). Houlihan Lokey hired. Net leverage 9.0x. NEGATIVE equity (-$3.4bn). Net income NEGATIVE ($466m loss). Senior Unsecured bonds Caa2/CCC rated. Complex multi-entity structure creates intercompany risk. Creditor disputes active.",
+    "ownership": "Public - listed (NYSE: ARD). Paul Coulson founder/chairman controls via voting shares. Complex structure with AMP spin-off.",
+    "recent_news": "Chapter 15 filed for ARD Finance SA (Jan 2026). CDS deliverables litigation - Arini challenging Tresidor/Laurion (Jan 2026). Houlihan Lokey engaged as restructuring advisor. Creditor groups forming. AMP stake valuation uncertainty. Senior Unsecured bonds under pressure."
+  },
+
+  "quick_assessment": {
+    "total_debt": 10270,
+    "cash_on_hand": null,
+    "revolver_available": null,
+    "debt_due_one_year": null,
+    "cffo": null,
+    "interest_expense": null,
+    "ebitda": 1080,
+    "net_income": -466,
+    "equity": -3400,
+    "note": "NEGATIVE EQUITY (-$3.4bn). Net income negative. Leverage 9.0x. Active restructuring."
+  },
+
+  "key_ratios": {
+    "debt_to_ebitda": 9.5,
+    "net_debt_to_ebitda": 9.0,
+    "note": "CRITICAL: Leverage ~9x is unsustainable. Negative equity indicates balance sheet insolvency."
+  },
+
+  "debt_capitalization": [
+    {
+      "instrument": "Senior Secured Notes (various)",
+      "amount": null,
+      "maturity": "2027-2029",
+      "price_range": "95-102",
+      "seniority": "Senior Secured",
+      "trading_signal": "NEAR PAR - recovery expectation",
+      "note": "Secured debt trading near par suggests full recovery expected"
+    },
+    {
+      "instrument": "Senior Unsecured Notes",
+      "amount": null,
+      "maturity": "Various",
+      "price_range": "94-95",
+      "rating": "Caa2/CCC",
+      "seniority": "Senior Unsecured",
+      "trading_signal": "BELOW PAR - impairment expected",
+      "note": "Unsecured facing material haircut in restructuring"
+    },
+    {
+      "instrument": "ARD Finance SA Notes (Holdco)",
+      "amount": null,
+      "maturity": "Various",
+      "seniority": "Holdco - Structurally Subordinated",
+      "note": "Chapter 15 filed. CDS deliverables disputed."
+    }
+  ],
+
+  "restructuring_status": {
+    "chapter_15_filed": true,
+    "entity": "ARD Finance SA",
+    "filing_date": "Jan 2026",
+    "advisor": "Houlihan Lokey",
+    "creditor_groups_forming": true,
+    "cds_litigation": {
+      "status": "Active",
+      "parties": "Arini vs Tresidor/Laurion",
+      "issue": "CDS deliverables challenge",
+      "note": "Dispute over what bonds qualify as deliverables into CDS auction"
+    },
+    "expected_outcome": "Secured likely par or near-par, Unsecured facing haircut, Holdco (ARD Finance) significant impairment"
+  },
+
+  "credit_opinion": {
+    "recommendation": "AVOID",
+    "summary": "Ardagh is in ACTIVE RESTRUCTURING with distress score of 52 - among highest in portfolio. Chapter 15 filed for ARD Finance holdco. Houlihan Lokey engaged. CDS deliverables being litigated (Arini vs Tresidor/Laurion) creating additional complexity. Net leverage 9.0x with NEGATIVE equity (-$3.4bn) indicates balance sheet insolvency. Senior Secured bonds at 95-102 suggest near-full recovery, but Senior Unsecured at 94-95 facing haircut. Complex multi-entity structure (Ardagh Group, ARD Finance, AMP) creates significant intercompany and structural subordination risk. This is a WORKOUT situation - not a performing credit.",
+    "key_risks": [
+      "ACTIVE RESTRUCTURING - Chapter 15 filed",
+      "Houlihan Lokey engaged",
+      "CDS deliverables litigation ongoing",
+      "Distress score 52 - severe distress",
+      "Net leverage 9.0x unsustainable",
+      "NEGATIVE equity (-$3.4bn)",
+      "Net income NEGATIVE ($466m loss)",
+      "Senior Unsecured Caa2/CCC rated",
+      "Complex multi-entity structure",
+      "Creditor disputes active",
+      "AMP stake valuation uncertainty",
+      "Structural subordination at holdco"
+    ],
+    "key_catalysts": [
+      "Chapter 15 recognition outcome",
+      "CDS litigation resolution",
+      "Creditor agreement on restructuring terms",
+      "AMP stake monetization",
+      "Emergence from restructuring",
+      "New money injection"
+    ]
+  },
+
+  "distress_indicators": {
+    "debtwire_distress_score": 52,
+    "lifecycle_status": "STRESSED - Active Restructuring",
+    "trading_signals": "ACTIVE WORKOUT: Secured at 95-102 (near par - full recovery), Unsecured at 94-95 (haircut expected). Chapter 15 filed. Advisor engaged. CDS litigation adds complexity. Leverage 9.0x, negative equity. Not a performing credit."
+  },
+
+  "watchlist_priority": "CRITICAL - Active restructuring situation",
+
+  "lme_risk_proxy": {
+    "doc_vintage": "2017-2021",
+    "pe_backed": false,
+    "sponsor": "Founder controlled (Paul Coulson)",
+    "complex_structure": true,
+    "holding_company": "ARD Finance SA",
+    "multi_entity_issuer": true,
+    "related_entities": ["Ardagh Group SA", "ARD Finance SA", "Ardagh Metal Packaging (AMP)", "Ardagh Packaging Holdings"],
+    "dividend_recap_history": true,
+    "recent_restructuring": true,
+    "restructuring_type": "Chapter 15 + out-of-court negotiations",
+    "bonds_below_90": false,
+    "bonds_below_80": false,
+    "bonds_near_par": true,
+    "yields_above_15pct": false,
+    "advisor_hired": true,
+    "advisor": "Houlihan Lokey",
+    "asset_sales_announced": false,
+    "distress_score": 52,
+    "lifecycle_status": "STRESSED - Restructuring",
+    "inferred_lme_risk": "REALIZED - IN PROGRESS",
+    "lme_status": "ACTIVE RESTRUCTURING",
+    "lme_warning_flags": [
+      "Chapter 15 FILED for ARD Finance SA",
+      "Houlihan Lokey ENGAGED",
+      "CDS deliverables LITIGATION active",
+      "Creditor groups FORMING",
+      "Net leverage 9.0x",
+      "NEGATIVE equity (-$3.4bn)",
+      "Complex multi-entity structure",
+      "Structural subordination layers",
+      "Historical aggressive capital returns"
+    ],
+    "monitoring_triggers": [
+      "Chapter 15 recognition hearing",
+      "CDS auction/settlement",
+      "Creditor support agreement",
+      "Plan support agreement (PSA)",
+      "Intercompany transfers to AMP",
+      "DIP financing",
+      "New money terms",
+      "Emergence timeline"
+    ],
+    "cds_considerations": {
+      "reference_entity": "ARD Finance SA / Ardagh Group SA",
+      "restructuring_type": "Mod-Mod-R likely",
+      "credit_event_risk": "TRIGGERED - Chapter 15 filed",
+      "deliverables_issue": "ACTIVE LITIGATION - Arini challenging Tresidor/Laurion on what bonds qualify",
+      "note": "CDS deliverables dispute is LIVE. Complex structure means reference entity and deliverables selection is contentious. Watch auction mechanics closely."
+    },
+    "case_study_relevance": "ARDAGH IS A KEY LME CASE STUDY demonstrating: (1) holdco structural subordination risk, (2) CDS deliverables manipulation concerns, (3) multi-entity complexity, (4) creditor-on-creditor disputes. Study this case for lessons applicable to other complex structures."
+  }
+}
