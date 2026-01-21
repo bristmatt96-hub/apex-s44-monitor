@@ -1,0 +1,157 @@
+{
+  "company_name": "INEOS Group",
+  "legal_entity": "Ineos Group Holdings SA",
+  "alternate_names": ["INEOS Finance plc", "INEOS"],
+  "sector": "Industrials - Specialty Chemicals",
+  "geography": "United Kingdom",
+  "last_updated": "2026-01-21",
+  "data_source": "Debtwire",
+
+  "ratings": {
+    "moodys": {"rating": "B2", "outlook": null},
+    "sp": {"rating": "B+", "outlook": "Negative"},
+    "note": "Moody's DOWNGRADED to B2 from B1 (Dec 2025). S&P outlook Negative (Nov 2025). Deteriorating credit profile."
+  },
+
+  "overview": {
+    "business_description": "Holding company for major UK-based chemicals conglomerate involved in intermediate and specialty chemicals manufacturing. One of the world's largest privately-owned chemicals groups. Owned by billionaire Jim Ratcliffe. Operations include petrochemicals, specialty chemicals, and oil & gas.",
+    "business_positives": [
+      "Large scale - one of world's biggest chemicals groups",
+      "Diversified chemicals portfolio",
+      "Jim Ratcliffe ownership - billionaire backing",
+      "Strong cash position ($3.1bn)",
+      "Project ONE investments for future growth"
+    ],
+    "fatal_flaw": "SEVERELY DISTRESSED - Distress score 44. ALL bonds trading DEEPLY BELOW PAR (79-86) with yields of 15-21%. Net leverage EXPLODED from 2.3x to 9.0x in 3 years. EBITDA collapsed -49% from $2.8bn to $1.4bn. Debt increased from $9.4bn to $16.1bn. Net income -$798m (loss). Downgraded by Moody's to B2. S&P Negative outlook. 2027 maturity wall concerns.",
+    "ownership": "Private - owned by Jim Ratcliffe (UK billionaire). No PE sponsor - family/founder controlled.",
+    "recent_news": "Downgraded to B2 from B1 by Moody's (Dec 2025). S&P outlook Negative on weak earnings, high leverage (Nov 2025). INEOS Quattro concerns over 2027 maturity wall (Nov 2025). Entering cyclically weaker period as Project ONE investments continue (Dec 2025). Bonds and loans dropped following downgrades (Dec 2025)."
+  },
+
+  "quick_assessment": {
+    "total_debt": 16128,
+    "cash_on_hand": 3094,
+    "revolver_available": null,
+    "debt_due_one_year": 349,
+    "cffo": 1914,
+    "interest_expense": null,
+    "ebitda": 1441,
+    "net_income": -798
+  },
+
+  "key_ratios": {
+    "debt_to_ebitda": 11.2,
+    "net_debt_to_ebitda": 9.0,
+    "ebitda_margin": 8.1,
+    "note": "CRITICAL: Leverage EXPLODED from 2.3x (2022) to 9.0x (LTM). EBITDA collapsed. Unsustainable capital structure."
+  },
+
+  "trend_analysis": {
+    "years": ["FY 2022", "FY 2023", "FY 2024", "LTM Sep 2025"],
+    "revenue": [22400, 16429, 16807, 17799],
+    "ebitda": [2843, 1664, 1890, 1441],
+    "ebitda_margin": [12.7, 10.1, 11.2, 8.1],
+    "total_debt": [9370, 11074, 13356, 16128],
+    "net_debt": [6545, 9116, 10783, 13034],
+    "gross_leverage": [3.3, 6.7, 7.1, 11.2],
+    "net_leverage": [2.3, 5.5, 5.7, 9.0],
+    "net_income": [2141, 341, -156, -798],
+    "trend_summary": "DETERIORATING RAPIDLY: EBITDA -49% from peak. Debt +72%. Leverage 2.3x→9.0x. Net income now NEGATIVE. Margins compressed from 12.7% to 8.1%."
+  },
+
+  "debt_capitalization": [
+    {
+      "instrument": "Term Loan A",
+      "amount": 349,
+      "maturity": "Nov 2026",
+      "seniority": "Senior Secured First Lien",
+      "note": "Near-term maturity"
+    },
+    {
+      "instrument": "USD 425m Sr Secd Notes",
+      "amount": 425,
+      "maturity": "2028",
+      "price": 86.10,
+      "ytw": "14.77%",
+      "seniority": "Senior Secured",
+      "trading_signal": "DEEPLY BELOW PAR"
+    },
+    {
+      "instrument": "EUR 850m Sr Secd Notes",
+      "amount": 935,
+      "maturity": "2029",
+      "price": 83.54,
+      "ytw": "19.08%",
+      "seniority": "Senior Secured",
+      "trading_signal": "DEEPLY BELOW PAR"
+    },
+    {
+      "instrument": "EUR 400m Sr Secd Notes",
+      "amount": 440,
+      "maturity": "2030",
+      "price": 80.53,
+      "seniority": "Senior Secured",
+      "trading_signal": "DEEPLY BELOW PAR"
+    },
+    {
+      "instrument": "EUR 2bn Term Loan B",
+      "amount": 2200,
+      "maturity": "2031",
+      "price": 79.39,
+      "ytw": "20.75%",
+      "seniority": "Senior Secured First Lien",
+      "trading_signal": "DEEPLY BELOW PAR - 20%+ YIELD"
+    },
+    {
+      "instrument": "EUR 800m Sr Secd Notes",
+      "amount": 880,
+      "maturity": "2031",
+      "price": 82.06,
+      "seniority": "Senior Secured",
+      "trading_signal": "DEEPLY BELOW PAR"
+    }
+  ],
+
+  "maturity_schedule": {
+    "year_1": 349,
+    "year_2": 0,
+    "year_3": 425,
+    "year_4": 935,
+    "year_5": 440,
+    "thereafter": 3080,
+    "maturity_wall": "2027-2029 maturities a concern given current leverage"
+  },
+
+  "credit_opinion": {
+    "recommendation": "UNDERWEIGHT",
+    "summary": "INEOS Group is a SEVERELY DISTRESSED credit with distress score of 44 - second highest in portfolio after Very Group. ALL bonds trading DEEPLY BELOW PAR at 79-86 with yields of 15-21% signaling market expects restructuring or significant haircut. Net leverage has EXPLODED from 2.3x (2022) to 9.0x (LTM) as EBITDA collapsed -49% while debt increased +72%. Net income is negative ($798m loss). Moody's downgraded to B2 (Dec 2025) and S&P has Negative outlook. 2027 maturity wall raises concerns about refinancing ability at current leverage. While Jim Ratcliffe ownership provides potential support, the capital structure appears unsustainable without significant EBITDA recovery or restructuring.",
+    "key_risks": [
+      "ALL bonds DEEPLY BELOW PAR (79-86)",
+      "Yields 15-21% - distressed levels",
+      "Leverage EXPLODED to 9.0x net",
+      "EBITDA collapsed -49% from peak",
+      "Moody's downgraded to B2",
+      "S&P outlook Negative",
+      "Net income NEGATIVE ($798m loss)",
+      "2027 maturity wall concerns",
+      "Chemicals sector cyclicality",
+      "Project ONE investment drain on cash",
+      "Debt increased +72% in 3 years"
+    ],
+    "key_catalysts": [
+      "Chemicals cycle recovery",
+      "EBITDA stabilization/growth",
+      "Project ONE completion benefits",
+      "Asset sales to reduce debt",
+      "Jim Ratcliffe equity injection",
+      "Liability management/restructuring"
+    ]
+  },
+
+  "distress_indicators": {
+    "debtwire_distress_score": 44,
+    "lifecycle_status": "Performing credit (but STRESSED)",
+    "trading_signals": "SEVERELY DISTRESSED: All bonds at 79-86 (deeply below par). Yields 15-21%. TLB at 79 with 21% yield. Rating downgraded. Outlook Negative. Leverage 9.0x unsustainable. Capital structure stress evident."
+  },
+
+  "watchlist_priority": "CRITICAL - Monitor for restructuring/liability management"
+}
