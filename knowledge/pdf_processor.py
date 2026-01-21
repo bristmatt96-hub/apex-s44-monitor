@@ -359,10 +359,32 @@ def list_credit_concepts() -> List[str]:
 
 # ============== STREAMLIT INTEGRATION ==============
 
+def index_books_folder(kb: 'KnowledgeBase') -> List[str]:
+    """Index all PDFs in the knowledge/books folder"""
+    books_dir = Path(__file__).parent / "books"
+    if not books_dir.exists():
+        return []
+
+    indexed = []
+    for pdf_file in books_dir.glob("*.pdf"):
+        try:
+            # Check if already indexed
+            existing_docs = kb.list_documents()
+            if any(d['filename'] == pdf_file.name for d in existing_docs):
+                continue
+
+            doc_id = kb.add_document(str(pdf_file), "credit_analysis")
+            indexed.append(pdf_file.name)
+        except Exception as e:
+            print(f"Error indexing {pdf_file.name}: {e}")
+
+    return indexed
+
+
 def render_knowledge_base_ui(st, kb: KnowledgeBase):
     """Render knowledge base interface in Streamlit"""
     st.markdown("### Knowledge Base")
-    st.caption("Upload credit books and search for concepts")
+    st.caption("Search your indexed credit books for concepts and analysis")
 
     # Stats
     stats = kb.get_stats()
@@ -374,30 +396,28 @@ def render_knowledge_base_ui(st, kb: KnowledgeBase):
     with col3:
         st.metric("Categories", len(stats.get('categories', {})))
 
-    # Upload section
+    # Scan books folder button
+    books_dir = Path(__file__).parent / "books"
+    if books_dir.exists():
+        pdf_count = len(list(books_dir.glob("*.pdf")))
+        indexed_count = stats['total_documents']
+
+        if pdf_count > indexed_count:
+            st.warning(f"Found {pdf_count} PDFs in books folder, only {indexed_count} indexed.")
+            if st.button("Index All Books", key="index_books"):
+                with st.spinner("Indexing PDFs... this may take a few minutes"):
+                    indexed = index_books_folder(kb)
+                    if indexed:
+                        st.success(f"Indexed {len(indexed)} new documents: {', '.join(indexed[:5])}{'...' if len(indexed) > 5 else ''}")
+                        st.rerun()
+                    else:
+                        st.info("All books already indexed")
+
+    # Search section - MOVED UP for prominence
     st.markdown("---")
-    st.markdown("#### Add Document")
+    st.markdown("#### 🔍 Search Your Credit Books")
 
-    uploaded_file = st.file_uploader("Upload PDF", type=['pdf'])
-    category = st.selectbox("Category", ["credit_analysis", "sector_report", "company_report", "general"])
-
-    if uploaded_file and st.button("Index Document"):
-        # Save uploaded file temporarily
-        temp_path = Path(f"/tmp/{uploaded_file.name}")
-        with open(temp_path, 'wb') as f:
-            f.write(uploaded_file.getbuffer())
-
-        try:
-            doc_id = kb.add_document(str(temp_path), category)
-            st.success(f"Indexed: {uploaded_file.name} (ID: {doc_id})")
-        except Exception as e:
-            st.error(f"Error indexing: {e}")
-
-    # Search section
-    st.markdown("---")
-    st.markdown("#### Search Knowledge")
-
-    search_query = st.text_input("Search query", placeholder="e.g., leverage ratio calculation")
+    search_query = st.text_input("Search query", placeholder="e.g., covenant lite, leverage ratio, distressed exchange")
 
     if search_query:
         results = kb.search(search_query, top_k=5)
@@ -405,13 +425,41 @@ def render_knowledge_base_ui(st, kb: KnowledgeBase):
         if results:
             for i, result in enumerate(results):
                 with st.expander(f"{i+1}. {result['doc_title']} (Score: {result['score']})"):
-                    st.markdown(result['text'][:500] + "..." if len(result['text']) > 500 else result['text'])
+                    st.markdown(result['text'][:800] + "..." if len(result['text']) > 800 else result['text'])
         else:
-            st.info("No results found")
+            st.info("No results found. Try different keywords.")
+
+    # Document list
+    st.markdown("---")
+    st.markdown("#### 📚 Indexed Documents")
+
+    docs = kb.list_documents()
+    if docs:
+        for doc in docs:
+            st.markdown(f"- **{doc['filename']}** ({doc['pages']} pages, {doc['chunks']} chunks)")
+    else:
+        st.info("No documents indexed yet. Click 'Index All Books' above or upload a PDF below.")
+
+    # Upload section - moved down
+    with st.expander("Upload New PDF"):
+        uploaded_file = st.file_uploader("Upload PDF", type=['pdf'])
+        category = st.selectbox("Category", ["credit_analysis", "sector_report", "company_report", "general"])
+
+        if uploaded_file and st.button("Index Document"):
+            # Save uploaded file temporarily
+            temp_path = Path(f"/tmp/{uploaded_file.name}")
+            with open(temp_path, 'wb') as f:
+                f.write(uploaded_file.getbuffer())
+
+            try:
+                doc_id = kb.add_document(str(temp_path), category)
+                st.success(f"Indexed: {uploaded_file.name} (ID: {doc_id})")
+            except Exception as e:
+                st.error(f"Error indexing: {e}")
 
     # Quick credit concepts
     st.markdown("---")
-    st.markdown("#### Quick Credit Concepts")
+    st.markdown("#### 📖 Quick Credit Concepts")
 
     concept = st.selectbox("Select concept", list_credit_concepts())
     concept_data = get_credit_concept(concept)
@@ -428,17 +476,6 @@ def render_knowledge_base_ui(st, kb: KnowledgeBase):
             st.markdown("**Thresholds:**")
             for level, value in concept_data['thresholds'].items():
                 st.markdown(f"- {level.replace('_', ' ').title()}: {value}")
-
-    # Document list
-    st.markdown("---")
-    st.markdown("#### Indexed Documents")
-
-    docs = kb.list_documents()
-    if docs:
-        for doc in docs:
-            st.markdown(f"- **{doc['filename']}** ({doc['pages']} pages, {doc['chunks']} chunks) - {doc['category']}")
-    else:
-        st.info("No documents indexed yet. Upload a PDF to get started.")
 
 
 if __name__ == "__main__":
