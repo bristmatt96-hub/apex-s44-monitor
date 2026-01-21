@@ -1,3 +1,6 @@
 __pycache__/
 *.pyc
 .env
+
+# PDF books (index locally)
+knowledge/books/*.pdf
