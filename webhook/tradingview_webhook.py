@@ -60,7 +60,7 @@ def health():
     """Health check endpoint"""
     return jsonify({
         "status": "ok",
-        "service": "Apex Credit Monitor - TradingView Webhook",
+        "service": "XO S44 Credit Monitor - TradingView Webhook",
         "telegram_configured": bool(TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID)
     })
 
@@ -142,7 +142,7 @@ _TradingView Alert • {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}_
 @app.route("/test", methods=["GET"])
 def test_telegram():
     """Test endpoint to verify Telegram is working"""
-    message = "🧪 *Test Alert*\n\nYour TradingView → Telegram webhook is working!\n\n_Apex Credit Monitor_"
+    message = "🧪 *Test Alert*\n\nYour TradingView → Telegram webhook is working!\n\n_XO S44 Credit Monitor_"
     success = send_telegram_message(message)
 
     return jsonify({

@@ -80,7 +80,7 @@ def send_telegram_message(message):
 def test_telegram():
     """Manual test - call this to verify Telegram is working"""
     print("Sending test message to Telegram...")
-    success = send_telegram_message("*Apex Monitor Test*\nIf you see this, Telegram alerts are working!")
+    success = send_telegram_message("*XO S44 Monitor Test*\nIf you see this, Telegram alerts are working!")
     if success:
         print("Test message sent successfully!")
     else:
@@ -407,7 +407,7 @@ class NewsHound:
         self.index_data = index_data
         self.aliases = index_data.get("search_aliases", {})
         self.news_sources = load_news_sources()
-        print(f"=== Apex Credit Monitor Started ===")
+        print(f"=== XO S44 Credit Monitor Started ===")
         print(f"Monitoring: {index_data['name']} ({index_data['total_names']} names)")
 
     def scour(self, name, sector):
@@ -786,8 +786,8 @@ def render_trading_signals(signals, hound=None):
 
 # ============== STREAMLIT DASHBOARD ==============
 
-st.set_page_config(page_title="Apex Credit Monitor", layout="wide")
-st.title("Apex Credit Monitor")
+st.set_page_config(page_title="XO S44 Credit Monitor", layout="wide")
+st.title("XO S44 Credit Monitor")
 
 # Get available indices
 available_indices = get_available_indices()
