@@ -1,0 +1,197 @@
+{
+  "company_name": "INEOS Quattro",
+  "legal_entity": "INEOS Quattro Holdings Ltd",
+  "alternate_names": ["INEOS Styrolution", "Ineos Quattro Finance 2 plc"],
+  "sector": "Industrials - Diversified Chemicals",
+  "geography": "United Kingdom",
+  "last_updated": "2026-01-21",
+  "data_source": "Debtwire",
+
+  "ratings": {
+    "moodys": {"rating": "B3", "outlook": null},
+    "sp": {"rating": "BB/BB-", "outlook": null},
+    "note": "Part of INEOS empire but separate credit. Deeply distressed with STRESSED lifecycle status."
+  },
+
+  "overview": {
+    "business_description": "Holding company for chemicals group engaged in manufacturing and distribution of intermediate and specialty chemicals, petrochemicals and oil products. Includes INEOS Styrolution (styrenics) and other chemicals businesses. Part of broader INEOS empire owned by Jim Ratcliffe.",
+    "business_positives": [
+      "Inventory financing close to finalisation (Jan 2026)",
+      "Shareholder equity offers support (Ratcliffe backing)",
+      "Jan 2027 near-term notes trade at 95 (better than longer maturities)",
+      "Considering refi plan for 2027 maturities",
+      "Cash position of $2.1bn provides some buffer"
+    ],
+    "fatal_flaw": "EXTREMELY DISTRESSED - Distress score 87, Lifecycle: STRESSED. ALL long-dated bonds trading at 67-75 with yields of 28-33%. EBITDA collapsed -69% from $2.4bn to $750m. Leverage EXPLODED from 2.1x to 8.4x. Net income -$941m (massive loss). Jan 2027 maturity wall ($666m) approaching. EBITDA margin halved from 12% to 6%. Worse than INEOS Group.",
+    "ownership": "Private - part of INEOS empire, owned by Jim Ratcliffe (UK billionaire). Separate credit from INEOS Group Holdings.",
+    "recent_news": "Inventory financing close to finalisation, shareholder equity offers support (Jan 2026). Considers refi plan for INEOS Styrolution Jan 2027 maturities (Jan 2026). Near cyclical troughs ahead of refinancing (Jan 2026). TLBs and bonds dropping (Dec-Jan 2025/26)."
+  },
+
+  "quick_assessment": {
+    "total_debt": 8400,
+    "cash_on_hand": 2116,
+    "revolver_available": null,
+    "debt_due_one_year": 666,
+    "cffo": 1084,
+    "interest_expense": null,
+    "ebitda": 750,
+    "net_income": -941
+  },
+
+  "key_ratios": {
+    "debt_to_ebitda": 11.2,
+    "net_debt_to_ebitda": 8.4,
+    "ebitda_margin": 5.6,
+    "note": "CRITICAL: Leverage EXPLODED from 2.1x (2022) to 8.4x (LTM). EBITDA collapsed -69%. Margin halved."
+  },
+
+  "trend_analysis": {
+    "years": ["FY 2022", "FY 2023", "FY 2024", "LTM Sep 2025"],
+    "revenue": [19451, 13737, 13136, 13338],
+    "ebitda": [2405, 811, 730, 750],
+    "ebitda_margin": [12.4, 5.9, 5.6, 5.6],
+    "total_debt": [6787, 8135, 8029, 8400],
+    "net_debt": [5150, 5999, 5807, 6284],
+    "gross_leverage": [2.8, 10.0, 11.0, 11.2],
+    "net_leverage": [2.1, 7.4, 8.0, 8.4],
+    "net_income": [2055, -230, -760, -941],
+    "trend_summary": "CATASTROPHIC DETERIORATION: EBITDA -69% from $2.4bn to $750m. Margins halved 12%→6%. Leverage 2.1x→8.4x. Net income now -$941m loss. Revenue -31%."
+  },
+
+  "debt_capitalization": [
+    {
+      "instrument": "EUR 600m Sr Secd Notes (Styrolution)",
+      "amount": 666,
+      "maturity": "Jan 2027",
+      "coupon": "2.25%",
+      "price": 95.30,
+      "ytw": "7.28%",
+      "rating": "B3/BB",
+      "seniority": "Senior Secured",
+      "note": "NEAR-TERM MATURITY - refinancing key focus"
+    },
+    {
+      "instrument": "EUR 450m Term Loan B",
+      "amount": 499,
+      "maturity": "Jan 2027",
+      "price": 96.17,
+      "seniority": "Senior Secured",
+      "note": "Near-term maturity"
+    },
+    {
+      "instrument": "EUR 250m Sr Secd Notes",
+      "amount": 273,
+      "maturity": "Mar 2029",
+      "coupon": "8.50%",
+      "price": 74.60,
+      "ytw": "19.70%",
+      "rating": "B3/BB",
+      "seniority": "Senior Secured",
+      "trading_signal": "SEVERELY BELOW PAR"
+    },
+    {
+      "instrument": "EUR 525m Sr Secd Notes",
+      "amount": 561,
+      "maturity": "Mar 2029",
+      "coupon": "8.50%",
+      "price": 74.60,
+      "ytw": "19.70%",
+      "rating": "B3/BB",
+      "seniority": "Senior Secured",
+      "trading_signal": "SEVERELY BELOW PAR"
+    },
+    {
+      "instrument": "USD 400m Sr Secd Notes",
+      "amount": 400,
+      "maturity": "Mar 2029",
+      "coupon": "9.63%",
+      "price": 70.41,
+      "ytw": "23.41%",
+      "rating": "B3/BB-",
+      "seniority": "Senior Secured",
+      "trading_signal": "SEVERELY BELOW PAR"
+    },
+    {
+      "instrument": "USD 1bn Term Loan B",
+      "amount": 1000,
+      "maturity": "2029",
+      "price": 71.75,
+      "ytw": "28.58%",
+      "seniority": "Senior Secured First Lien",
+      "trading_signal": "SEVERELY BELOW PAR"
+    },
+    {
+      "instrument": "EUR 675m Sr Secd Notes",
+      "amount": 754,
+      "maturity": "Apr 2030",
+      "coupon": "6.75%",
+      "price": 70.93,
+      "ytw": "16.57%",
+      "rating": "B3/BB",
+      "seniority": "Senior Secured",
+      "trading_signal": "SEVERELY BELOW PAR"
+    },
+    {
+      "instrument": "EUR 435m Term Loan B",
+      "amount": 483,
+      "maturity": "Oct 2031",
+      "price": 69.25,
+      "ytw": "31.07%",
+      "seniority": "Senior Secured First Lien",
+      "trading_signal": "DEEPLY DISTRESSED"
+    },
+    {
+      "instrument": "USD 575m Term Loan B",
+      "amount": 575,
+      "maturity": "Oct 2031",
+      "price": 67.50,
+      "ytw": "33.00%",
+      "seniority": "Senior Secured First Lien",
+      "trading_signal": "DEEPLY DISTRESSED - 33% YIELD"
+    }
+  ],
+
+  "maturity_schedule": {
+    "year_1": 0,
+    "year_2": 1165,
+    "year_3": 0,
+    "year_4": 2234,
+    "year_5": 754,
+    "thereafter": 1058,
+    "maturity_wall": "Jan 2027: $1.2bn (Styrolution notes + TLB). Market concern about refinancing ability."
+  },
+
+  "credit_opinion": {
+    "recommendation": "UNDERWEIGHT",
+    "summary": "INEOS Quattro is EXTREMELY DISTRESSED with distress score of 87 and official STRESSED lifecycle status - among the worst credits in the XO S44 portfolio. ALL long-dated bonds trading at 67-75 with yields of 17-33% - deeply distressed levels. EBITDA has collapsed -69% from $2.4bn (2022) to $750m (LTM) while leverage exploded from 2.1x to 8.4x. Net income is -$941m (massive loss). Jan 2027 maturity wall ($1.2bn) is imminent with refinancing concerns. While inventory financing is being finalised and Ratcliffe may provide equity support, the capital structure appears unsustainable. Even worse than INEOS Group given lifecycle status and bond pricing.",
+    "key_risks": [
+      "Distress score 87 - EXTREMELY HIGH",
+      "Lifecycle status: STRESSED",
+      "ALL long-dated bonds at 67-75 (deeply below par)",
+      "Yields 17-33% - distressed levels",
+      "Jan 2027 maturity wall ($1.2bn)",
+      "EBITDA collapsed -69%",
+      "Net leverage 8.4x - unsustainable",
+      "Net income -$941m (massive loss)",
+      "EBITDA margin halved (12%→6%)",
+      "Chemicals cycle at trough",
+      "Equity eroding ($5.0bn→$2.3bn)"
+    ],
+    "key_catalysts": [
+      "Successful Jan 2027 refinancing",
+      "Inventory financing completion",
+      "Ratcliffe equity injection",
+      "Chemicals cycle recovery",
+      "Asset sales/liability management",
+      "Restructuring if needed"
+    ]
+  },
+
+  "distress_indicators": {
+    "debtwire_distress_score": 87,
+    "lifecycle_status": "STRESSED",
+    "trading_signals": "DEEPLY DISTRESSED: Long-dated bonds at 67-75 with yields 17-33%. 2031 TLBs at 67-69 with 31-33% yields. Jan 2027 maturity trades at 95-96 on refinancing hopes. STRESSED status. Equity eroding. Capital structure unsustainable without intervention."
+  },
+
+  "watchlist_priority": "CRITICAL - Monitor Jan 2027 refinancing and potential restructuring"
+}
