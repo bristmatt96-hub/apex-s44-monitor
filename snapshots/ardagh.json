@@ -171,11 +171,63 @@
     ],
     "cds_considerations": {
       "reference_entity": "ARD Finance SA / Ardagh Group SA",
-      "restructuring_type": "Mod-Mod-R likely",
-      "credit_event_risk": "TRIGGERED - Chapter 15 filed",
-      "deliverables_issue": "ACTIVE LITIGATION - Arini challenging Tresidor/Laurion on what bonds qualify",
-      "note": "CDS deliverables dispute is LIVE. Complex structure means reference entity and deliverables selection is contentious. Watch auction mechanics closely."
+      "restructuring_type": "Mod-Mod-R",
+      "credit_event_risk": "TRIGGERED - Restructuring credit event",
+      "deliverables_issue": "ACTIVE LITIGATION - Arini vs Tresidor over SUN deliverability",
+      "note": "Landmark CDS deliverables dispute. Outcome affects future restructuring CDS settlements."
     },
-    "case_study_relevance": "ARDAGH IS A KEY LME CASE STUDY demonstrating: (1) holdco structural subordination risk, (2) CDS deliverables manipulation concerns, (3) multi-entity complexity, (4) creditor-on-creditor disputes. Study this case for lessons applicable to other complex structures."
+    "cds_litigation_detail": {
+      "status": "ACTIVE - EMEA Determinations Committee",
+      "parties": {
+        "challenger": "Arini Capital Management",
+        "defender": "Tresidor Investment Management (with Laurion)"
+      },
+      "instrument_disputed": "Senior Unsecured Notes (SUNs)",
+      "arini_position": {
+        "argument": "SUNs should be EXCLUDED from deliverables",
+        "rationale": "Outstanding principal balance (OPB) was already ZERO when restructuring credit event triggered",
+        "theory": "TSA and consent solicitation bound SUNs to equitization before credit event determination"
+      },
+      "tresidor_position": {
+        "argument": "SUNs should be INCLUDED in deliverables",
+        "rationale": "Article IV (credit events) and Article III (deliverables/OPB) are SEPARATE in ISDA architecture",
+        "accusations": "Arini contains 'logical non-sequiturs', 'quotes selectively', makes 'dangerous attempt to collapse distinct parts of CDS architecture'"
+      },
+      "key_isda_distinction": {
+        "article_iv": "Governs CREDIT EVENTS - timing of when event occurred",
+        "article_iii": "Governs DELIVERABLE OBLIGATIONS and Outstanding Principal Balance (OPB)",
+        "tresidor_argument": "External review panel only ruled on WHEN credit event occurred (Article IV), NOT whether SUNs have OPB for settlement (Article III)"
+      },
+      "schrodingers_obligation_paradox": {
+        "description": "Can SUNs be both bound to equitization for credit-event purposes AND still outstanding for settlement?",
+        "arini_view": "No - creates incoherent paradox",
+        "tresidor_view": "Yes - Article IV and III serve different functions, asymmetry is a feature not a bug"
+      },
+      "cac_argument": {
+        "arini_position": "CACs meant SUNs already subject to binding principal reduction",
+        "tresidor_rebuttal": "CACs are 'amendment machinery, not self-executing principal-reducing provisions' - TSA and consent solicitation drove restructuring, not CAC terms alone"
+      },
+      "permitted_contingency_defense": {
+        "isda_section": "3.11(b)",
+        "rule": "Reductions in OPB from actions 'within control of holders' are EXCLUDED from calculation",
+        "application": "SUN holders led, negotiated, and agreed the restructuring - principal changes from collective voting should be ignored"
+      },
+      "key_dates": {
+        "tsa_date": "2025-09-29",
+        "supplemental_indenture": "2025-11",
+        "credit_event_determination": "Post-TSA"
+      },
+      "counterfactual_argument": "If Ardagh entered insolvency before supplemental indenture executed, TSA would have terminated and SUNs would remain valid claims at full face value - proves principal not yet reduced",
+      "settlement_mechanics": {
+        "tresidor_position": "Delivering post-reorganization instruments is allowed and necessary for representative auction",
+        "warning": "Denying delivery flexibility would create artificial distinctions between bankruptcy and restructuring credit events"
+      },
+      "market_implications": {
+        "if_arini_wins": "CDS protection buyers lose - SUNs excluded, auction recovery artificially high",
+        "if_tresidor_wins": "CDS protection buyers win - SUNs deliverable, auction reflects true restructuring impairment",
+        "precedent_impact": "Outcome will define how Article III vs Article IV interact in future restructurings"
+      }
+    },
+    "case_study_relevance": "ARDAGH IS A LANDMARK CDS CASE STUDY demonstrating: (1) holdco structural subordination risk, (2) CDS deliverables disputes between Article III and IV, (3) Schrödinger's obligation paradox, (4) permitted contingency defenses, (5) creditor-on-creditor warfare. This case will set precedent for future restructuring CDS settlements."
   }
 }

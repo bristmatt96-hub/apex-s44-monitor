@@ -179,6 +179,78 @@ If Credit Event triggered, CDS settlement requires delivery of qualifying obliga
 
 ---
 
+## Article III vs Article IV: The Deliverables Trap (Ardagh Precedent)
+
+### The Critical Distinction
+
+| ISDA Article | Governs | Question Answered |
+|--------------|---------|-------------------|
+| **Article IV** | Credit Events | WHEN did the credit event occur? |
+| **Article III** | Deliverable Obligations & OPB | WHAT can be delivered into auction? |
+
+**Key Insight:** These articles serve **different functions** in the ISDA architecture. A determination under Article IV does NOT automatically resolve questions under Article III.
+
+### Outstanding Principal Balance (OPB)
+
+**Definition:** The amount of principal outstanding as of the Event Determination Date.
+
+**Why It Matters:** If an obligation has OPB = 0, it may be excluded from deliverables even if a credit event occurred.
+
+**Ardagh Dispute:** Arini argued that Senior Unsecured Notes (SUNs) had OPB = 0 because they were bound to equitization when the restructuring credit event was triggered. Tresidor countered that:
+1. The panel ruled on credit event TIMING (Article IV)
+2. OPB determination (Article III) is a separate question
+3. The asymmetry is a feature, not a bug
+
+### The Schrödinger's Obligation Paradox
+
+Can an obligation simultaneously be:
+- **Bound to impairment** for credit event timing purposes
+- **Still outstanding** for settlement/deliverables purposes?
+
+**Answer (per Tresidor):** Yes - Article IV and Article III serve different functions.
+
+### Section 3.11(b): Permitted Contingency Exception
+
+**Rule:** Reductions in OPB arising from actions **within the control of the holders** are **EXCLUDED** from calculation.
+
+**Application:** If bondholders negotiated, agreed, and voted for a restructuring, any principal changes from that collective action should be ignored when determining OPB.
+
+**Implication:** Creditor-led restructurings may preserve OPB even when agreements are in place.
+
+### Practical Monitoring Points
+
+When assessing CDS positions on restructuring credits:
+
+1. **Separate the questions:**
+   - Has a credit event occurred? (Article IV)
+   - What obligations are deliverable? (Article III)
+
+2. **Check for TSA/Lock-up timing:**
+   - When was agreement reached?
+   - When was it implemented?
+   - A credit event can occur BEFORE implementation
+
+3. **Watch for deliverables challenges:**
+   - Parties may dispute what qualifies
+   - Complex structures create ambiguity
+   - Holdco vs OpCo issues
+
+4. **Consider the counterfactual:**
+   - If restructuring failed before implementation, would bonds still be valid claims?
+   - If yes, principal may not have been reduced yet
+
+### Warning: Settlement Can Be Litigated
+
+Even after a Credit Event is confirmed, CDS settlement can be contested:
+- Deliverables challenges (what bonds qualify)
+- OPB disputes (what principal amount)
+- Reference entity issues (which entity)
+- Asset Package Delivery mechanics
+
+**See:** `docs/case_studies/ardagh_cds_deliverables.md` for detailed analysis.
+
+---
+
 ## ISDA Determinations Committee (DC)
 
 The DC decides:
