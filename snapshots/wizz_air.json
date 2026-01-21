@@ -1,0 +1,141 @@
+{
+  "company_name": "Wizz Air",
+  "legal_entity": "Wizz Air Holdings plc",
+  "alternate_names": ["Wizz Air Finance Co BV", "WIZZ"],
+  "sector": "Transportation - Airlines (ULCC)",
+  "geography": "Hungary (HQ), Pan-European operations",
+  "last_updated": "2026-01-21",
+  "data_source": "Debtwire",
+
+  "ratings": {
+    "moodys": {"rating": "Ba2", "outlook": "Negative"},
+    "sp": {"rating": "NR", "outlook": null},
+    "fitch": {"rating": "BB", "outlook": null},
+    "note": "Downgraded by both Moody's (Jun 2025) and Fitch (Jul 2025). Still solid BB-category ratings."
+  },
+
+  "overview": {
+    "business_description": "Ultra low-cost carrier (ULCC) providing passenger air transportation primarily across Europe, North Africa, Middle East, and parts of Asia. One of Europe's largest LCCs by fleet size. Operates Airbus A320/A321neo fleet.",
+    "business_positives": [
+      "LOWEST distress score of 7 - tied for best in portfolio",
+      "NET CASH position of $156m",
+      "Very low leverage at 1.3x gross",
+      "EBITDA surging +42% (FY25 to LTM) to $789m",
+      "EBITDA margin expanding from 9.7% to 12.1%",
+      "Strong CFFO of $1.16bn LTM",
+      "Bond at par (100.00)",
+      "Plans to repay 2026 bonds without refinancing",
+      "Europe's fastest growing ULCC",
+      "Publicly traded with $1.73bn market cap"
+    ],
+    "fatal_flaw": "Rating downgrades in 2025 (Moody's Ba1→Ba2, Fitch →BB). Pratt & Whitney engine issues affecting fleet availability. Airline sector volatility. Fuel cost exposure. Central/Eastern European geopolitical risk (Ukraine proximity).",
+    "ownership": "Public (LSE: WIZZ). Strong institutional shareholder base including Capital World, Comgest, Artisan, Fidelity, Norway SWF, BlackRock.",
+    "recent_news": "Plans to repay 1% 2026 bonds without refinancing (Sep 2025). Downgraded to BB by Fitch (Jul 2025). Downgraded to Ba2 negative by Moody's (Jun 2025). Pending Pratt & Whitney agreement on engine issues."
+  },
+
+  "quick_assessment": {
+    "total_debt": 998,
+    "cash_on_hand": 1154,
+    "revolver_available": null,
+    "debt_due_one_year": 969,
+    "cffo": 1158,
+    "interest_expense": null,
+    "enterprise_value": 8470,
+    "ebitda": 789,
+    "market_cap": 1730,
+    "net_cash": 156
+  },
+
+  "key_ratios": {
+    "debt_to_ebitda": 1.3,
+    "net_debt_to_ebitda": "NM (net cash)",
+    "ev_to_ebitda": 10.8,
+    "ebitda_margin": 12.1,
+    "note": "Excellent leverage metrics - NET CASH position. Very strong cash generation."
+  },
+
+  "trend_analysis": {
+    "years": ["FY Mar 2022", "FY Mar 2023", "FY Mar 2024", "FY Mar 2025", "LTM Sep 2025"],
+    "revenue": [1849, 4238, 5475, 5700, 6506],
+    "ebitda": [-439, -421, 501, 554, 789],
+    "ebitda_margin": [-23.8, -9.9, 9.1, 9.7, 12.1],
+    "total_debt": [1154, 1409, 1095, 887, 998],
+    "cash": [852, 1532, 786, 647, 1154],
+    "net_debt": [301, -123, 309, 240, -156],
+    "gross_leverage": ["NM", "NM", 2.2, 1.6, 1.3],
+    "net_leverage": ["NM", 0.3, 0.6, 0.4, "NM"],
+    "trend_summary": "Remarkable turnaround from COVID losses. EBITDA from -$439m (2022) to +$789m (LTM). Now NET CASH with 1.3x gross leverage. Margin expansion to 12%."
+  },
+
+  "debt_capitalization": [
+    {
+      "instrument": "EUR 500m Sr Unsecd Notes",
+      "amount": 550,
+      "maturity": "2026",
+      "coupon": "1%",
+      "price": 100.00,
+      "seniority": "Senior Unsecured",
+      "note": "Plans to repay without refinancing"
+    },
+    {
+      "instrument": "Term Loan",
+      "amount": 108,
+      "maturity": "Mar 2032",
+      "seniority": "Senior Secured"
+    },
+    {
+      "instrument": "Lease Obligations",
+      "amount": 6902,
+      "note": "Operating leases - typical for airlines"
+    }
+  ],
+
+  "maturity_schedule": {
+    "year_1": 969,
+    "year_2": 0,
+    "year_3": 0,
+    "year_4": 0,
+    "year_5": 0,
+    "year_6": 0,
+    "thereafter": 108,
+    "note": "2026 bonds to be repaid from cash - no refinancing needed"
+  },
+
+  "equity_market_value": {
+    "ticker": "WIZZ.L",
+    "exchange": "London Stock Exchange",
+    "share_price": "GBP 12.47",
+    "equity_market_value": 1730,
+    "total_enterprise_value": 8470,
+    "tev_to_ebitda": 10.8,
+    "key_shareholders": ["Capital World ($55m)", "Comgest ($54m)", "Artisan ($39m)", "Fidelity ($39m)", "Cobas ($34m)", "Norway SWF ($30m)"]
+  },
+
+  "credit_opinion": {
+    "recommendation": "OVERWEIGHT",
+    "summary": "Wizz Air has the LOWEST distress score (7) in the XO S44 portfolio despite recent rating downgrades. The company has a NET CASH position of $156m and very low gross leverage of just 1.3x. EBITDA has surged 42% to $789m with margins expanding to 12%. Strong CFFO of $1.16bn provides ample liquidity. The company plans to repay 2026 bonds from cash without refinancing - a sign of financial strength. While rating downgrades (Moody's Ba2 neg, Fitch BB) reflect P&W engine issues and airline volatility, the underlying credit metrics are excellent. Europe's fastest growing ULCC with strong market position.",
+    "key_risks": [
+      "Recent rating downgrades (Moody's, Fitch)",
+      "Pratt & Whitney engine issues affecting fleet",
+      "Airline sector cyclicality and volatility",
+      "Fuel cost exposure",
+      "Central/Eastern European geopolitical risk",
+      "Competition from Ryanair, easyJet",
+      "Labor cost inflation"
+    ],
+    "key_catalysts": [
+      "P&W engine issue resolution",
+      "Rating outlook stabilization",
+      "Continued EBITDA growth",
+      "Successful 2026 bond repayment",
+      "Fleet expansion",
+      "Market share gains"
+    ]
+  },
+
+  "distress_indicators": {
+    "debtwire_distress_score": 7,
+    "lifecycle_status": "Performing credit",
+    "trading_signals": "Bond at par (100.00). NET CASH position. LOWEST distress score in portfolio. Plans cash repayment of 2026 bonds. Rating downgrades reflect sector issues not credit weakness."
+  }
+}
