@@ -1,0 +1,133 @@
+{
+  "company_name": "Ontex",
+  "legal_entity": "Ontex Group SA/NV",
+  "alternate_names": ["Ontex Group", "Ontex NV"],
+  "sector": "Consumer & Retail - Personal Hygiene Products",
+  "geography": "Belgium",
+  "last_updated": "2026-01-21",
+  "data_source": "Debtwire",
+
+  "ratings": {
+    "moodys": {"rating": "NR", "outlook": null},
+    "sp": {"rating": "B+", "outlook": "Stable"},
+    "note": "S&P revised outlook to Stable from Positive (Jan 2025) after FY25 guidance cut"
+  },
+
+  "overview": {
+    "business_description": "Belgian manufacturer of personal hygiene products including baby diapers, feminine care products, and adult incontinence products. Sells through retail private label and healthcare channels across Europe and emerging markets.",
+    "business_positives": [
+      "Low distress score of 8 - performing credit",
+      "Conservative leverage at 2.77x Net Debt/EBITDA",
+      "Stable end markets (essential consumer products)",
+      "Strong CFFO of $107m LTM",
+      "Publicly traded with $493m market cap equity cushion",
+      "European market leader in private label hygiene"
+    ],
+    "fatal_flaw": "EBITDA declining (-17% FY24). FY25 outlook cut - now expecting further EBITDA decline. CEO transition and strategic review create uncertainty. Jul 2026 maturity approaching ($692m). Bond trading BELOW PAR at 98.34. Competitive market with P&G/Kimberly-Clark.",
+    "ownership": "Public (Euronext Brussels: ONTEX). Diversified shareholder base.",
+    "recent_news": "Cut FY25 EBITDA outlook (Jan 2025) - outlook revised to Stable from Positive. New CEO transition. Strategic review ongoing. Bond trading below par ahead of Jul 2026 maturity."
+  },
+
+  "quick_assessment": {
+    "total_debt": 634,
+    "cash_on_hand": 59,
+    "revolver_available": null,
+    "debt_due_one_year": 692,
+    "cffo": 107,
+    "interest_expense": null,
+    "enterprise_value": 1128,
+    "ebitda": 208,
+    "market_cap": 493
+  },
+
+  "key_ratios": {
+    "debt_to_ebitda": 3.05,
+    "net_debt_to_ebitda": 2.77,
+    "ev_to_ebitda": 5.4,
+    "ebitda_margin": null,
+    "ebitda_minus_capex_to_interest": null
+  },
+
+  "trend_analysis": {
+    "years": ["FY 2022", "FY 2023", "FY 2024", "LTM Sep 2025"],
+    "ebitda": [182, 251, 208, 208],
+    "total_debt": [794, 628, 635, 634],
+    "gross_leverage": [4.4, 2.5, 3.1, 3.1],
+    "net_leverage": [3.8, 2.1, 2.8, 2.8],
+    "trend_summary": "EBITDA improved in 2023 but declined -17% in 2024. FY25 guidance cut signals further weakness. Leverage deteriorating from 2.5x back to 3.1x."
+  },
+
+  "debt_capitalization": [
+    {
+      "instrument": "EUR 400m Sr Secd Notes",
+      "amount": 440,
+      "maturity": "Jul 2026",
+      "coupon": null,
+      "price": 98.34,
+      "ytw": null,
+      "stw": null,
+      "rating": "B+",
+      "seniority": "Senior Secured",
+      "trading_signal": "BELOW PAR - refinancing uncertainty"
+    },
+    {
+      "instrument": "Other Secured Debt",
+      "amount": 194,
+      "maturity": null,
+      "coupon": null,
+      "price": null,
+      "ytw": null,
+      "stw": null,
+      "rating": null,
+      "seniority": "Senior Secured"
+    }
+  ],
+
+  "maturity_schedule": {
+    "year_1": 692,
+    "year_2": 0,
+    "year_3": 0,
+    "year_4": 0,
+    "year_5": 0,
+    "thereafter": 0,
+    "maturity_wall": "Jul 2026 - $692m needs refinancing"
+  },
+
+  "equity_market_value": {
+    "ticker": "ONTEX.BR",
+    "exchange": "Euronext Brussels",
+    "equity_market_value": 493,
+    "total_enterprise_value": 1128,
+    "tev_to_ebitda": 5.4
+  },
+
+  "credit_opinion": {
+    "recommendation": "NEUTRAL",
+    "summary": "Ontex is a performing credit with low distress score (8) but faces near-term challenges. The Jul 2026 maturity wall ($692m) is approaching with bond trading below par (98.34), suggesting market concern about refinancing. EBITDA declined -17% in FY24 and FY25 guidance was cut, prompting S&P to revise outlook to Stable from Positive. CEO transition and strategic review add uncertainty. However, leverage at 2.77x is manageable and $493m market cap provides equity cushion. Essential consumer products provide stability but competitive pressure from P&G/Kimberly-Clark limits pricing power.",
+    "key_risks": [
+      "Jul 2026 maturity wall ($692m) - refinancing risk",
+      "Bond below par (98.34) - market pricing uncertainty",
+      "EBITDA declining - FY24 -17%, FY25 guidance cut",
+      "CEO transition and strategic review uncertainty",
+      "S&P outlook revised to Stable from Positive",
+      "Competitive pressure from P&G, Kimberly-Clark",
+      "Private label margin pressure",
+      "Raw material cost volatility"
+    ],
+    "key_catalysts": [
+      "Successful Jul 2026 refinancing",
+      "EBITDA stabilization/recovery",
+      "Strategic review outcome (asset sales, M&A)",
+      "New CEO execution",
+      "Rating upgrade if leverage maintained below 3.0x"
+    ]
+  },
+
+  "distress_indicators": {
+    "debtwire_distress_score": 8,
+    "lifecycle_status": "Performing credit",
+    "trading_signals": "Bond at 98.34 (BELOW PAR) despite low distress score. Market pricing Jul 2026 refinancing uncertainty. EBITDA declining. Watch for refinancing developments."
+  },
+
+  "watchlist_priority": "MEDIUM - Monitor Jul 2026 refinancing progress"
+}

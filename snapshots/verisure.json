@@ -1,73 +1,141 @@
 {
-  "company_name": "Verisure Midholding AB",
-  "ticker": "Private",
-  "sector": "Consumers",
-  "last_updated": "2025-01-20",
-  "overview": {
-    "business_description": "European market leader in professionally monitored home security. Operations across 17 European and Latin American countries. Recurring subscription revenue model with 5m+ customers.",
-    "business_positives": [
-      "Market leader with scale advantages",
-      "Highly recurring subscription revenue",
-      "Strong customer retention (low churn)",
-      "PE ownership (Hellman & Friedman) focused on growth"
-    ],
-    "fatal_flaw": "High leverage from PE ownership; capex-intensive customer acquisition; competition from DIY security",
-    "ownership": "Hellman & Friedman (majority), Founders",
-    "public_private": "private (PE-backed)",
-    "recent_news": "Continued subscriber growth. Potential IPO candidate but timing uncertain."
-  },
+  "company_name": "Verisure",
+  "legal_entity": "Verisure plc",
+  "holding_company": "Verisure Holding AB",
+  "alternate_names": ["Securitas Direct", "Aegis Lux 2 Sarl"],
+  "sector": "Business Services - Security/Protection",
+  "geography": "Switzerland (HQ), Pan-European operations",
+  "last_updated": "2026-01-21",
+  "data_source": "Debtwire",
+
   "ratings": {
-    "moodys": {"rating": "B2", "outlook": "Stable", "date": ""},
-    "sp": {"rating": "B", "outlook": "Stable", "date": ""},
-    "fitch": {"rating": "", "outlook": "", "date": ""}
+    "moodys": {"rating": "NR", "outlook": null},
+    "sp": {"rating": "NR", "outlook": null},
+    "note": "Large publicly traded company with ~$18bn market cap. Investment-grade adjacent credit quality."
   },
+
+  "overview": {
+    "business_description": "European security services provider delivering professionally monitored alarm systems and smart security solutions for residential and small business customers. Operates subscription-based recurring revenue model across 17 European countries plus Latin America. Market leader in monitored home security.",
+    "business_positives": [
+      "Low distress score of 8 - performing credit",
+      "ALL bonds trading at or ABOVE PAR (100-103)",
+      "VERY LARGE market cap of $17.9bn - significant equity cushion",
+      "Recent EUR 1.25bn TLB at E+225bps - VERY TIGHT pricing",
+      "Recent EUR 1bn notes at 5.625% - tight HY spreads",
+      "Subscription-based recurring revenue model",
+      "European market leader in monitored security",
+      "Strong Hellman & Friedman sponsorship (45.9%)",
+      "Publicly traded - strong transparency",
+      "17 European countries + LatAm expansion"
+    ],
+    "fatal_flaw": "Jul 2026 maturity approaching ($903m). Large debt quantum across multiple tranches. PE sponsor still owns significant stake (potential exit overhang). Competition from DIY smart home security.",
+    "ownership": "Public (Stockholm: VSURE). Hellman & Friedman LLC owns 45.9% stake. Large institutional shareholder base including Vanguard, Fidelity, BlackRock.",
+    "recent_news": "Priced EUR 1.25bn TLB at E+225bps and par (Oct 2025). Priced EUR 1bn senior secured PIK toggle notes at 5.625% (Oct 2025). Large-cap European IPO pipe mentioned (Jan 2026). Robust 2025 HY performance despite tight spreads."
+  },
+
   "quick_assessment": {
-    "period_end": "2024",
-    "cffo": null,
-    "total_debt": null,
-    "interest_expense": null,
-    "capex": null,
-    "debt_due_one_year": null,
+    "total_debt": 5000,
     "cash_on_hand": null,
-    "revolver_available": null
+    "revolver_available": 1045,
+    "debt_due_one_year": 903,
+    "market_cap": 17930,
+    "note": "Very large market cap provides substantial equity cushion. Strong market access demonstrated by recent issuances."
   },
-  "key_ratios": {
-    "debt_to_ebitda": null,
-    "ebitda_minus_capex_to_interest": null,
-    "fcf_to_debt": null,
-    "net_debt_to_ebitda": null
-  },
-  "trend_analysis": {
-    "years": [],
-    "revenue": [],
-    "ebitda": [],
-    "ebitda_margin": [],
-    "total_debt": []
-  },
-  "debt_capitalization": [],
+
+  "debt_capitalization": [
+    {
+      "instrument": "EUR 903m Sr Secd Notes",
+      "amount": 903,
+      "maturity": "Jul 2026",
+      "seniority": "Senior Secured",
+      "note": "Near-term maturity"
+    },
+    {
+      "instrument": "EUR 950m Revolving Credit",
+      "amount": 1045,
+      "maturity": "2031",
+      "price": 99.77,
+      "seniority": "Senior Secured"
+    },
+    {
+      "instrument": "EUR 450m Sr Secd Notes",
+      "amount": 495,
+      "maturity": "2028",
+      "price": 102.36,
+      "seniority": "Senior Secured"
+    },
+    {
+      "instrument": "EUR 1bn Sr Unsecd Notes",
+      "amount": 1100,
+      "maturity": "2029",
+      "price": 100.22,
+      "seniority": "Senior Unsecured"
+    },
+    {
+      "instrument": "EUR 525m Sr Secd Notes",
+      "amount": 578,
+      "maturity": "2030",
+      "price": 103.48,
+      "seniority": "Senior Secured"
+    },
+    {
+      "instrument": "EUR 1bn Term Loan B",
+      "amount": 1100,
+      "maturity": "2032",
+      "coupon": "E+225bps",
+      "price": 100.68,
+      "seniority": "Senior Secured First Lien",
+      "note": "Oct 2025 issuance - very tight pricing"
+    },
+    {
+      "instrument": "EUR 1bn Sr Secd PIK Toggle Notes",
+      "amount": 1100,
+      "coupon": "5.625%",
+      "seniority": "Senior Secured",
+      "note": "Oct 2025 issuance"
+    }
+  ],
+
   "maturity_schedule": {
-    "year_1": null,
-    "year_2": null,
-    "year_3": null,
-    "year_4": null,
-    "year_5": null,
-    "thereafter": null
+    "year_1": 903,
+    "year_2": 0,
+    "year_3": 495,
+    "year_4": 1100,
+    "year_5": 578,
+    "thereafter": 2145,
+    "note": "Well-laddered maturity profile. Jul 2026 maturity easily refinanceable."
   },
-  "equity_market_value": {},
+
+  "equity_market_value": {
+    "ticker": "VSURE.SK",
+    "exchange": "Stockholm",
+    "share_price": "EUR 14.73",
+    "equity_market_value": 17930,
+    "key_shareholders": ["Hellman & Friedman (45.9%)", "Vanguard", "Fidelity", "BlackRock"]
+  },
+
   "credit_opinion": {
-    "summary": "Verisure has a strong market position with recurring revenues but carries elevated leverage typical of PE ownership. The subscription model provides stability. IPO or refinancing could be catalysts.",
+    "recommendation": "OVERWEIGHT",
+    "summary": "Verisure is a strong performing credit with low distress score (8) and all bonds trading at or above par (100-103). The company has a massive $17.9bn market cap providing substantial equity cushion against ~$5bn debt. Recent financing at E+225bps and 5.625% demonstrates excellent market access at tight spreads - investment-grade adjacent pricing. Subscription-based recurring revenue model is highly attractive. European market leader in monitored home security with 17 country footprint. Strong H&F sponsorship (45.9%) with public listing providing liquidity. Jul 2026 maturity ($903m) should be easily refinanced.",
     "key_risks": [
-      "High leverage limits financial flexibility",
-      "Customer acquisition costs (SAC) high",
-      "DIY security competition (Ring, etc.)",
-      "Economic sensitivity of discretionary security spend"
+      "Jul 2026 maturity ($903m) approaching",
+      "H&F potential exit overhang (45.9% stake)",
+      "DIY smart home security competition (Ring, Nest)",
+      "Large debt quantum (~$5bn)",
+      "European consumer spending sensitivity"
     ],
     "key_catalysts": [
-      "IPO would provide deleveraging option",
-      "Subscriber growth in newer markets",
-      "ARPU expansion through additional services",
-      "Potential refinancing at lower rates"
-    ],
-    "recommendation": "NEUTRAL - Stable business but PE leverage"
+      "Successful Jul 2026 refinancing",
+      "H&F stake reduction without disruption",
+      "Continued subscriber growth",
+      "Rating assignment (likely BB+/BBB-)",
+      "Further spread tightening"
+    ]
+  },
+
+  "distress_indicators": {
+    "debtwire_distress_score": 8,
+    "lifecycle_status": "Performing credit",
+    "trading_signals": "All bonds at 100-103 (at/above par). Recent TLB at E+225bps is VERY tight - IG-adjacent. $18bn market cap provides massive equity cushion. Strong market access. Low distress."
   }
 }

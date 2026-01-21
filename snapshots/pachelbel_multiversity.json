@@ -1,0 +1,159 @@
+{
+  "company_name": "Pachelbel BidCo (Multiversity)",
+  "legal_entity": "Pachelbel BidCo SpA",
+  "operating_company": "Multiversity SpA",
+  "alternate_names": ["Multiversity", "Pachelbel", "Paganini BidCo"],
+  "sector": "Business Services - Education/Universities",
+  "geography": "Italy",
+  "last_updated": "2026-01-21",
+  "data_source": "Debtwire",
+
+  "ratings": {
+    "moodys": {"rating": "B2", "outlook": "Negative"},
+    "sp": {"rating": "B", "outlook": null},
+    "note": "S&P downgraded to B from B+ (Apr 2024). Moody's assigned B2 negative outlook (May 2024)."
+  },
+
+  "overview": {
+    "business_description": "Digital education provider delivering online university programs and specialized training through a network of digital universities and certification centers in Italy. Serves students, professionals, and corporate clients with accredited degree programs and professional certifications.",
+    "business_positives": [
+      "Low distress score of 8 - performing credit",
+      "Bond trading above par (100.91)",
+      "Strong CVC sponsorship (100% ownership)",
+      "Leading Italian online university platform",
+      "Structural growth in digital education sector",
+      "Recurring revenue from tuition fees",
+      "Asset-light business model with high margins",
+      "Demographic tailwinds for lifelong learning"
+    ],
+    "fatal_flaw": "Downgraded by both agencies in 2024 - Moody's negative outlook. Italian regulatory risk for online universities. Concentrated in single market. Competition from traditional universities expanding online. High leverage from LBO structure.",
+    "ownership": "Private - PE-owned. CVC Capital Partners VII owns 100% stake since August 2019.",
+    "recent_news": "Issued EUR 1.1bn fixed/floating 2031 notes at 7.125%/E+425bps (May 2024). Downgraded by S&P to B from B+ and Moody's assigned B2 negative (Apr-May 2024). Active M&A - acquiring training/certification businesses."
+  },
+
+  "quick_assessment": {
+    "total_debt": 1320,
+    "cash_on_hand": null,
+    "revolver_available": 116,
+    "debt_due_one_year": 0,
+    "cffo": null,
+    "interest_expense": null,
+    "ebitda": null,
+    "note": "Private PE-owned - limited financial disclosure"
+  },
+
+  "key_ratios": {
+    "debt_to_ebitda": null,
+    "net_debt_to_ebitda": null,
+    "note": "Financials not publicly disclosed. Rating downgrades suggest leverage concerns."
+  },
+
+  "debt_capitalization": [
+    {
+      "instrument": "EUR 116m Revolving Credit",
+      "amount": 116,
+      "maturity": "Apr 2028",
+      "coupon": null,
+      "price": null,
+      "ytw": null,
+      "stw": null,
+      "rating": "B2/B",
+      "seniority": "Senior Secured"
+    },
+    {
+      "instrument": "EUR 765m Sr Secd Notes",
+      "amount": 842,
+      "maturity": "2028",
+      "coupon": null,
+      "price": 100.91,
+      "ytw": null,
+      "stw": null,
+      "rating": "B2/B",
+      "seniority": "Senior Secured",
+      "note": "Original Oct 2021 issuance"
+    },
+    {
+      "instrument": "EUR 500m Sr Secd Fixed Notes",
+      "amount": 550,
+      "maturity": "2031",
+      "coupon": "7.125%",
+      "price": null,
+      "ytw": null,
+      "stw": null,
+      "rating": "B2/B",
+      "seniority": "Senior Secured",
+      "note": "May 2024 issuance"
+    },
+    {
+      "instrument": "EUR 600m Sr Secd FRN",
+      "amount": 660,
+      "maturity": "2031",
+      "coupon": "E+425bps",
+      "price": null,
+      "ytw": null,
+      "stw": null,
+      "rating": "B2/B",
+      "seniority": "Senior Secured",
+      "note": "May 2024 issuance"
+    }
+  ],
+
+  "maturity_schedule": {
+    "year_1": 0,
+    "year_2": 0,
+    "year_3": 958,
+    "year_4": 0,
+    "year_5": 0,
+    "year_6": 1210,
+    "thereafter": 0,
+    "note": "RCF and 2028 notes mature in 2028, 2031 notes thereafter"
+  },
+
+  "recent_issuance": [
+    {"date": "May 2024", "instrument": "EUR 500m Fixed + EUR 600m FRN 2031", "pricing": "7.125% / E+425bps at par"},
+    {"date": "Oct 2021", "instrument": "EUR 890m Sr Secd Notes", "pricing": "HY bond"}
+  ],
+
+  "business_segments": {
+    "digital_universities": {
+      "description": "Online accredited university degree programs",
+      "brands": ["Pegaso", "Mercatorum", "San Raffaele"],
+      "note": "Leading Italian online university network"
+    },
+    "professional_training": {
+      "description": "Certification and professional development",
+      "markets": "Italy, expanding internationally"
+    }
+  },
+
+  "credit_opinion": {
+    "recommendation": "NEUTRAL",
+    "summary": "Pachelbel/Multiversity is a performing credit with low distress score (8) and bonds trading above par (100.91). However, the dual rating downgrades in 2024 (S&P B+ to B, Moody's B2 negative outlook) signal deteriorating credit fundamentals - likely due to leverage or growth concerns. CVC has owned since 2019 - may be approaching exit timeline. The digital education sector has structural tailwinds but faces Italian regulatory scrutiny of online universities. Asset-light model with recurring tuition revenue is positive, but single-market concentration is a risk.",
+    "key_risks": [
+      "Rating downgrades in 2024 - Moody's negative outlook",
+      "Italian regulatory risk for online universities",
+      "Single market concentration (Italy)",
+      "High LBO leverage (details undisclosed)",
+      "Competition from traditional universities going online",
+      "CVC exit timing uncertainty",
+      "2028 maturity wall (~$958m)",
+      "Economic sensitivity of education spending"
+    ],
+    "key_catalysts": [
+      "Outlook stabilization from Moody's",
+      "Deleveraging from organic growth",
+      "International expansion",
+      "CVC IPO exit could improve transparency",
+      "Successful 2028 refinancing",
+      "Continued digital education adoption"
+    ]
+  },
+
+  "distress_indicators": {
+    "debtwire_distress_score": 8,
+    "lifecycle_status": "Performing credit",
+    "trading_signals": "Bond at 100.91 (above par) is positive. However, dual downgrades in 2024 warrant monitoring. Moody's negative outlook suggests potential further action."
+  },
+
+  "watchlist_priority": "MEDIUM - Monitor for rating changes given negative outlook"
+}

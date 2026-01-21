@@ -1,0 +1,165 @@
+{
+  "company_name": "Merlin (Motion Bondco)",
+  "legal_entity": "Motion Bondco dac",
+  "alternate_names": ["Merlin Entertainments", "Merlin"],
+  "sector": "Consumer & Retail - Theme Parks/Attractions",
+  "geography": "United Kingdom",
+  "last_updated": "2026-01-21",
+  "data_source": "Debtwire",
+
+  "ratings": {
+    "moodys": {"rating": "NR", "outlook": null},
+    "sp": {"rating": "NR", "outlook": null},
+    "note": "Likely sub-investment grade given distress score"
+  },
+
+  "overview": {
+    "business_description": "Acquisition vehicle for Merlin Entertainments. Merlin is a major theme park and attractions operator running Legoland parks, Alton Towers, Madame Tussauds, Sea Life aquariums, The Dungeons, London Eye, and other attractions globally.",
+    "business_positives": [
+      "Iconic global attraction brands (Legoland, Madame Tussauds)",
+      "Diversified geographic footprint",
+      "Recovery potential from leisure/tourism sector"
+    ],
+    "fatal_flaw": "HIGHEST DISTRESS SCORE of 53 - officially STRESSED credit. Bonds trading BELOW PAR (95-97). Margin pressure and refinancing risk mounting. Nov 2027 maturity wall (~$818m). Evaluating liquidity options - potential restructuring.",
+    "ownership": "Private - LBO structure (acquisition vehicle). Backed by Blackstone, KIRKBI, CPPIB.",
+    "recent_news": "Merlin moves past organic growth, evaluates liquidity options to sustain capital structure amid sector pressures (Dec 2025). Faces headwinds as margin pressure and refinancing risk mount (Jul 2025)."
+  },
+
+  "quick_assessment": {
+    "total_debt": 818,
+    "cash_on_hand": null,
+    "revolver_available": null,
+    "debt_due_one_year": 0,
+    "cffo": null,
+    "interest_expense": null,
+    "ebitda": null,
+    "note": "Limited financial data - private LBO structure"
+  },
+
+  "key_ratios": {
+    "debt_to_ebitda": null,
+    "net_debt_to_ebitda": null,
+    "note": "Financial ratios not disclosed"
+  },
+
+  "debt_capitalization": [
+    {
+      "instrument": "EUR 370m Sr Unsecd Notes",
+      "amount": 407,
+      "maturity": "Nov 2027",
+      "coupon": null,
+      "price": 95.67,
+      "ytw": null,
+      "stw": null,
+      "rating": null,
+      "seniority": "Senior Unsecured",
+      "trading_signal": "BELOW PAR - distress pricing"
+    },
+    {
+      "instrument": "USD 410m Sr Unsecd Notes",
+      "amount": 410,
+      "maturity": "Nov 2027",
+      "coupon": null,
+      "price": 96.89,
+      "ytw": null,
+      "stw": null,
+      "rating": null,
+      "seniority": "Senior Unsecured",
+      "trading_signal": "BELOW PAR - distress pricing"
+    }
+  ],
+
+  "maturity_schedule": {
+    "year_1": 0,
+    "year_2": 818,
+    "year_3": 0,
+    "year_4": 0,
+    "year_5": 0,
+    "thereafter": 0,
+    "maturity_wall": "Nov 2027 - ~$818m needs refinancing"
+  },
+
+  "attractions_portfolio": {
+    "theme_parks": ["Legoland (8 parks)", "Alton Towers", "Thorpe Park", "Chessington", "Gardaland", "Heide Park"],
+    "attractions": ["Madame Tussauds", "London Eye", "The Dungeons", "Sea Life aquariums"],
+    "geographic_exposure": "UK, Europe, US, Asia"
+  },
+
+  "credit_opinion": {
+    "recommendation": "UNDERWEIGHT",
+    "summary": "Motion Bondco/Merlin is a STRESSED credit with the HIGHEST distress score (53) in your portfolio - now officially in 'Stressed' lifecycle status. Bonds trading below par (95-97) reflect market pricing of refinancing risk. The company is 'evaluating liquidity options' which is warning language for potential restructuring. Nov 2027 maturity wall (~$818m) is approaching with margin pressure mounting. This is the most distressed credit in XO S44 based on Debtwire's scoring.",
+    "key_risks": [
+      "HIGHEST distress score of 53 - STRESSED status",
+      "Bonds BELOW PAR (95-97) - market pricing distress",
+      "Nov 2027 maturity wall (~$818m) - refinancing risk",
+      "Company evaluating 'liquidity options' - restructuring risk",
+      "Margin pressure mounting",
+      "Theme parks sensitive to economic cycles",
+      "Private PE ownership - limited transparency",
+      "Capital intensive business model"
+    ],
+    "key_catalysts": [
+      "Successful refinancing of Nov 2027 maturities",
+      "PE sponsor support injection",
+      "Asset sales to reduce debt",
+      "Operational turnaround improving margins",
+      "Potential strategic sale of company"
+    ]
+  },
+
+  "distress_indicators": {
+    "debtwire_distress_score": 53,
+    "lifecycle_status": "STRESSED",
+    "trading_signals": "Bonds at 95-97 (BELOW PAR) - market pricing significant distress. Evaluating liquidity options is warning language. Refinancing risk for Nov 2027 maturities."
+  },
+
+  "watchlist_priority": "HIGH - Monitor closely for restructuring news",
+
+  "lme_risk_proxy": {
+    "doc_vintage": "Unknown (LBO structure)",
+    "pe_backed": true,
+    "sponsors": ["Blackstone", "KIRKBI (Lego family)", "CPPIB"],
+    "holding_period_years": 5,
+    "lbo_date": "2019",
+    "complex_structure": true,
+    "acquisition_vehicle": "Motion Bondco dac",
+    "multi_entity_issuer": true,
+    "dividend_recap_history": false,
+    "recent_restructuring": false,
+    "bonds_below_90": false,
+    "bonds_below_par": true,
+    "bonds_at_95_97": true,
+    "advisor_hired": false,
+    "evaluating_liquidity_options": true,
+    "asset_sales_announced": false,
+    "distress_score": 53,
+    "lifecycle_status": "STRESSED",
+    "inferred_lme_risk": "HIGH",
+    "lme_warning_flags": [
+      "STRESSED lifecycle status - Debtwire highest risk tier",
+      "Distress score 53 - very elevated",
+      "Bonds below par (95-97) - market pricing risk",
+      "Company 'evaluating liquidity options' - restructuring language",
+      "Nov 2027 maturity wall ($818m) - refinancing risk",
+      "PE-backed (Blackstone, KIRKBI, CPPIB) - 5 year hold",
+      "Margin pressure mounting",
+      "Motion Bondco acquisition vehicle structure",
+      "Private company - limited transparency"
+    ],
+    "monitoring_triggers": [
+      "Advisor appointment (Houlihan, Evercore, etc)",
+      "Exchange offer or consent solicitation",
+      "Asset sale announcements (park/attraction sales)",
+      "Sponsor support or equity injection",
+      "Refinancing attempts for Nov 2027",
+      "Any unrestricted subsidiary activity",
+      "Intercompany transfers within holdco structure",
+      "Strategic sale process news"
+    ],
+    "cds_considerations": {
+      "reference_entity": "Motion Bondco dac or Merlin Entertainments",
+      "credit_event_risk": "HIGH - STRESSED status",
+      "note": "Evaluating liquidity options suggests potential restructuring. Watch for binding vs voluntary transactions."
+    }
+  }
+}

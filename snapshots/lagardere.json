@@ -1,0 +1,170 @@
+{
+  "company_name": "Lagardère",
+  "legal_entity": "Lagardere SA",
+  "alternate_names": ["Lagardère Travel Retail", "Hachette Livre"],
+  "sector": "Media & Entertainment - Publishing/Travel Retail",
+  "geography": "France",
+  "last_updated": "2026-01-21",
+  "data_source": "Debtwire",
+
+  "ratings": {
+    "moodys": {"rating": "NR", "outlook": null},
+    "sp": {"rating": "NR", "outlook": null},
+    "note": "Bonds described as IG in loan documents. Vivendi parent provides support."
+  },
+
+  "overview": {
+    "business_description": "International media and retail group with two main divisions: Hachette Livre (leading global book publisher) and Lagardère Travel Retail (travel retail/duty-free in airports, train stations). Acquired by Vivendi in 2022-2023.",
+    "business_positives": [
+      "Very low distress score of 6 - strong performing credit",
+      "STRONG deleveraging: 4.4x → 2.7x gross leverage",
+      "EBITDA growth +71% from 2022 ($625m → $1.07bn)",
+      "EBITDA margin expanding (8.4% → 9.9%)",
+      "Strong CFFO of $1.5bn LTM",
+      "Vivendi ownership provides strategic support",
+      "Hachette Livre is #3 global book publisher",
+      "Travel retail benefits from air travel recovery",
+      "Net leverage at just 2.3x - conservative"
+    ],
+    "fatal_flaw": "Structural challenges in traditional publishing. Travel retail competitive with Avolta/Dufry. Vivendi may monetize assets. EUR 500m Oct 2026 maturity approaching.",
+    "ownership": "Vivendi (French media conglomerate). Public equity (Paris: MMB) with $3.1bn market cap.",
+    "recent_news": "EUR 500m five-year bond launched Jun 2025. Vivendi acquired Lagardère (2022-23). EUR 2.2bn IG loan facility signed Jun 2024."
+  },
+
+  "quick_assessment": {
+    "total_debt": 2892,
+    "cash_on_hand": 465,
+    "revolver_available": null,
+    "debt_due_one_year": 247,
+    "cffo": 1509,
+    "interest_expense": null,
+    "enterprise_value": 8750,
+    "ebitda": 1070,
+    "market_cap": 3100
+  },
+
+  "key_ratios": {
+    "debt_to_ebitda": 2.7,
+    "net_debt_to_ebitda": 2.3,
+    "ev_to_ebitda": 8.2,
+    "ebitda_margin": 9.9,
+    "ebitda_minus_capex_to_interest": null
+  },
+
+  "trend_analysis": {
+    "years": ["FY 2022", "FY 2023", "FY 2024", "LTM Jun 2025"],
+    "revenue": [7468, 8974, 9348, 10769],
+    "ebitda": [625, 825, 918, 1070],
+    "ebitda_margin": [8.4, 9.2, 9.8, 9.9],
+    "total_debt": [2748, 2840, 2396, 2892],
+    "net_debt": [1837, 2324, 1988, 2427],
+    "gross_leverage": [4.4, 3.4, 2.6, 2.7],
+    "net_leverage": [2.9, 2.8, 2.2, 2.3],
+    "trend_summary": "Strong EBITDA growth and deleveraging. Leverage down from 4.4x to 2.7x."
+  },
+
+  "debt_capitalization": [
+    {
+      "instrument": "EUR 500m Sr Unsecd Notes",
+      "amount": 549,
+      "maturity": "Oct 2026",
+      "coupon": null,
+      "price": 98.69,
+      "ytw": null,
+      "stw": null,
+      "rating": null,
+      "seniority": "Senior Unsecured"
+    },
+    {
+      "instrument": "EUR 500m Sr Unsecd Notes",
+      "amount": 549,
+      "maturity": "2027",
+      "coupon": null,
+      "price": 97.11,
+      "ytw": null,
+      "stw": null,
+      "rating": null,
+      "seniority": "Senior Unsecured"
+    },
+    {
+      "instrument": "EUR 500m Sr Unsecd Notes (Jun 2025)",
+      "amount": 570,
+      "maturity": "2030",
+      "coupon": null,
+      "price": 103.04,
+      "ytw": null,
+      "stw": null,
+      "rating": null,
+      "seniority": "Senior Unsecured"
+    },
+    {
+      "instrument": "EUR 2.2bn IG Loan Facility",
+      "amount": null,
+      "maturity": null,
+      "coupon": null,
+      "price": null,
+      "ytw": null,
+      "stw": null,
+      "rating": "Investment Grade",
+      "seniority": "Senior",
+      "signed": "Jun 2024",
+      "lead_banks": ["BNP Paribas", "Credit Agricole", "Natixis", "SocGen"]
+    }
+  ],
+
+  "maturity_schedule": {
+    "year_1": 549,
+    "year_2": 549,
+    "year_3": 0,
+    "year_4": 0,
+    "year_5": 570,
+    "thereafter": 0
+  },
+
+  "business_segments": {
+    "hachette_livre": {
+      "description": "3rd largest global book publisher",
+      "brands": ["Hachette Book Group", "Little Brown", "Orion", "Hodder"],
+      "markets": "US, UK, France, Spain, Australia"
+    },
+    "lagardere_travel_retail": {
+      "description": "Travel retail in airports/stations",
+      "brands": ["Relay", "duty-free shops", "food service"],
+      "markets": "Global presence in 45+ countries"
+    }
+  },
+
+  "equity_market_value": {
+    "ticker": "MMB.PA",
+    "exchange": "Euronext Paris",
+    "equity_market_value": 3100,
+    "total_enterprise_value": 8750,
+    "tev_to_ebitda": 8.2
+  },
+
+  "credit_opinion": {
+    "recommendation": "OVERWEIGHT",
+    "summary": "Lagardère is a strong performing credit with very low distress score (6). Excellent deleveraging from 4.4x to 2.7x gross leverage. EBITDA has grown 71% since 2022 with margin expansion. Strong CFFO of $1.5bn. Vivendi ownership provides strategic support. Net leverage at just 2.3x is conservative. Bonds trading near par (97-103). The combination of leading publishing (Hachette) and travel retail creates a diversified media group.",
+    "key_risks": [
+      "Structural challenges in traditional book publishing",
+      "Travel retail competition (Avolta, Dufry)",
+      "Oct 2026 bond maturity ($549m) approaching",
+      "Vivendi may pursue asset sales/spin-offs",
+      "Digital disruption in publishing",
+      "Economic sensitivity in travel retail"
+    ],
+    "key_catalysts": [
+      "Continued EBITDA growth from travel retail recovery",
+      "Further deleveraging toward 2.0x",
+      "Successful Oct 2026 refinancing",
+      "Rating upgrade if leverage sustains below 2.5x",
+      "Vivendi synergies and support"
+    ]
+  },
+
+  "distress_indicators": {
+    "debtwire_distress_score": 6,
+    "lifecycle_status": "Performing credit",
+    "trading_signals": "Bonds at 97-103 (near/above par). IG loan facility. Very low distress score. Strong Vivendi backing."
+  }
+}

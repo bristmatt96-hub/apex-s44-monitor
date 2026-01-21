@@ -1,0 +1,175 @@
+{
+  "company_name": "Nidda (Stada)",
+  "legal_entity": "Nidda Healthcare Holding GmbH",
+  "alternate_names": ["Stada", "Stada Arzneimittel", "Nidda Healthcare"],
+  "sector": "Healthcare - Generic Pharma",
+  "geography": "Germany",
+  "last_updated": "2026-01-21",
+  "data_source": "Debtwire",
+
+  "ratings": {
+    "moodys": {"rating": "NR", "outlook": null},
+    "sp": {"rating": "NR", "outlook": null},
+    "note": "Bonds described as HY. Strong market access suggests solid BB-range credit."
+  },
+
+  "overview": {
+    "business_description": "Healthcare holding company for Stada, a leading German generic pharmaceuticals and branded products company. Stada manufactures and distributes generic drugs, branded generics, and consumer healthcare products across Europe and globally.",
+    "business_positives": [
+      "Very low distress score of 8 - performing credit",
+      "ALL bonds trading ABOVE PAR (100-104)",
+      "Strong primary market access - multiple recent issuances",
+      "Leading European generics/branded pharma platform",
+      "Recurring revenue from established drug portfolio",
+      "Recent TLB A&E at E+350bps - tight pricing for HY",
+      "Diversified product portfolio and geographic reach"
+    ],
+    "fatal_flaw": "Private PE-owned with limited transparency. Generics face pricing pressure. May 2026 RCF maturity approaching. Leverage likely elevated from LBO structure.",
+    "ownership": "Private - PE-owned (Bain Capital, Cinven consortium). LBO structure.",
+    "recent_news": "Priced EUR 2.263bn/GBP 170m TLB A&E at E+350bps/S+450bps (Dec 2025). Issued EUR 1.15bn Sr Secd Notes 2032 (Oct 2025). Strong M&A activity in pharma sector."
+  },
+
+  "quick_assessment": {
+    "total_debt": null,
+    "cash_on_hand": null,
+    "revolver_available": 390,
+    "debt_due_one_year": null,
+    "cffo": null,
+    "interest_expense": null,
+    "ebitda": null,
+    "note": "Limited financial data - private LBO structure"
+  },
+
+  "key_ratios": {
+    "debt_to_ebitda": null,
+    "net_debt_to_ebitda": null,
+    "note": "Financial ratios not publicly disclosed"
+  },
+
+  "debt_capitalization": [
+    {
+      "instrument": "EUR 350m Revolving Credit",
+      "amount": 390,
+      "maturity": "May 2026",
+      "coupon": null,
+      "price": null,
+      "ytw": null,
+      "stw": null,
+      "rating": null,
+      "seniority": "Senior Secured"
+    },
+    {
+      "instrument": "EUR 2.263bn TLB (Dec 2025 A&E)",
+      "amount": 2490,
+      "maturity": null,
+      "coupon": "E+350bps",
+      "price": null,
+      "ytw": null,
+      "stw": null,
+      "rating": null,
+      "seniority": "Senior Secured"
+    },
+    {
+      "instrument": "GBP 170m TLB (Dec 2025 A&E)",
+      "amount": 215,
+      "maturity": null,
+      "coupon": "S+450bps",
+      "price": null,
+      "ytw": null,
+      "stw": null,
+      "rating": null,
+      "seniority": "Senior Secured"
+    },
+    {
+      "instrument": "EUR 1bn Sr Secd Notes",
+      "amount": 1100,
+      "maturity": "2032",
+      "coupon": null,
+      "price": 100.87,
+      "ytw": null,
+      "stw": null,
+      "rating": null,
+      "seniority": "Senior Secured"
+    },
+    {
+      "instrument": "EUR 570m Sr Secd Notes",
+      "amount": 627,
+      "maturity": "2030",
+      "coupon": null,
+      "price": 102.97,
+      "ytw": null,
+      "stw": null,
+      "rating": null,
+      "seniority": "Senior Secured"
+    },
+    {
+      "instrument": "EUR 650m Sr Secd Notes",
+      "amount": 715,
+      "maturity": "2030",
+      "coupon": null,
+      "price": 102.98,
+      "ytw": null,
+      "stw": null,
+      "rating": null,
+      "seniority": "Senior Secured"
+    },
+    {
+      "instrument": "EUR 350m Sr Secd Notes",
+      "amount": 385,
+      "maturity": "2030",
+      "coupon": null,
+      "price": 103.78,
+      "ytw": null,
+      "stw": null,
+      "rating": null,
+      "seniority": "Senior Secured"
+    }
+  ],
+
+  "maturity_schedule": {
+    "year_1": 390,
+    "year_2": 0,
+    "year_3": 0,
+    "year_4": 0,
+    "year_5": 1727,
+    "thereafter": 3590,
+    "note": "May 2026 RCF maturity, bulk of notes 2030-2032"
+  },
+
+  "recent_issuance": [
+    {"date": "Dec 2025", "instrument": "EUR 2.263bn + GBP 170m TLB A&E", "pricing": "E+350bps / S+450bps"},
+    {"date": "Oct 2025", "instrument": "EUR 1.15bn Sr Secd Notes 2032", "pricing": "Market"},
+    {"date": "May 2025", "instrument": "EUR 1.3bn", "pricing": "HY bond"},
+    {"date": "Oct 2024", "instrument": "EUR 1.4bn", "pricing": "HY bond"}
+  ],
+
+  "credit_opinion": {
+    "recommendation": "OVERWEIGHT",
+    "summary": "Nidda/Stada is a strong performing credit with very low distress score (8). All bonds trading above par (100-104) with recent TLB pricing at tight E+350bps - indicating solid BB-range credit quality. Strong primary market access with multiple successful issuances. Stada is a leading European generics platform with established products. Compare favorably to Cheplapharm (distress 28) in same sector - Stada is healthier.",
+    "key_risks": [
+      "Private PE-owned - limited financial transparency",
+      "Generics face ongoing pricing pressure",
+      "May 2026 RCF maturity needs addressing",
+      "LBO leverage likely elevated",
+      "Healthcare regulatory/reimbursement risk",
+      "Competition from Asian generics manufacturers"
+    ],
+    "key_catalysts": [
+      "Continued strong market access for refinancing",
+      "EBITDA growth from acquisitions",
+      "Potential IPO exit for PE sponsors",
+      "Further spread tightening",
+      "Rating assignment could boost trading"
+    ]
+  },
+
+  "distress_indicators": {
+    "debtwire_distress_score": 8,
+    "lifecycle_status": "Performing credit",
+    "trading_signals": "All bonds at 100-104 (above par). TLB at E+350bps - tight for HY. Strong market access. Very healthy credit."
+  },
+
+  "peer_comparison": {
+    "vs_cheplapharm": "Nidda/Stada distress 8 vs Cheplapharm 28 - significantly healthier despite same sector"
+  }
+}

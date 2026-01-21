@@ -1,0 +1,175 @@
+{
+  "company_name": "Constellium",
+  "legal_entity": "Constellium SE",
+  "alternate_names": ["CSTM"],
+  "sector": "Industrials - Aluminum Products",
+  "geography": "France",
+  "last_updated": "2026-01-21",
+  "data_source": "Debtwire",
+
+  "ratings": {
+    "moodys": {"rating": "NR", "outlook": null},
+    "sp": {"rating": "NR", "outlook": null},
+    "note": "Publicly traded with strong institutional ownership. BB-range implied from bond spreads."
+  },
+
+  "overview": {
+    "business_description": "Global aluminum products manufacturer supplying aerospace, automotive, and packaging sectors with rolled, extruded, and structural aluminum solutions. Key supplier to Airbus and major automakers. Operations in France, Germany, US.",
+    "business_positives": [
+      "Publicly traded with $3.03bn market cap equity cushion",
+      "Net leverage moderate at 2.8x",
+      "Strategic French state backing - Bpifrance owns ~9%",
+      "Strong institutional shareholder base (Fidelity, BlackRock)",
+      "Key aerospace supplier (Airbus relationship)",
+      "2032 bonds trading above par (103-105)",
+      "Automotive lightweighting structural trend"
+    ],
+    "fatal_flaw": "CYCLICAL DOWNTURN: 2Q25 EBITDA -35% YoY. EBITDA declined -16.5% in FY24. Two bonds BELOW PAR (96.37, 99.00). Tariff exposure risk. Leverage increased to 3.3x in 1Q25. Revenue declining for 2 consecutive years. Jan 2026 factoring facility maturity approaching.",
+    "ownership": "Public (NYSE: CSTM). Key shareholders: Bpifrance (French state, ~9%), Fidelity ($166m), BlackRock ($119m), Millennium ($103m).",
+    "recent_news": "2Q25 EBITDA declines 35% YoY to $146m (Jul 2025). 1Q25 leverage reaches 3.3x (Apr 2025). European tariff impacts assessed (Apr 2025). Credit metrics deteriorate as cyclical downturn bites (Feb 2025)."
+  },
+
+  "quick_assessment": {
+    "total_debt": 1958,
+    "cash_on_hand": 122,
+    "revolver_available": null,
+    "debt_due_one_year": 276,
+    "cffo": 332,
+    "interest_expense": null,
+    "enterprise_value": 5060,
+    "ebitda": 657,
+    "market_cap": 3030
+  },
+
+  "key_ratios": {
+    "debt_to_ebitda": 3.0,
+    "net_debt_to_ebitda": 2.8,
+    "ev_to_ebitda": 7.7,
+    "ebitda_margin": 8.2,
+    "note": "Leverage elevated vs historical (was 2.4x in 2023). Cyclical pressure on EBITDA."
+  },
+
+  "trend_analysis": {
+    "years": ["FY 2022", "FY 2023", "FY 2024", "LTM Sep 2025"],
+    "revenue": [8532, 7826, 7335, 7969],
+    "ebitda": [634, 692, 578, 657],
+    "ebitda_margin": [7.4, 8.8, 7.9, 8.2],
+    "total_debt": [2018, 1895, 1888, 1958],
+    "net_debt": [1840, 1672, 1747, 1836],
+    "gross_leverage": [3.2, 2.7, 3.3, 3.0],
+    "net_leverage": [2.9, 2.4, 3.0, 2.8],
+    "trend_summary": "EBITDA declined -16.5% in FY24 and -35% YoY in 2Q25. Revenue down for 2 consecutive years. Leverage increased from 2.4x trough to 3.0x. Cyclical downturn impacting credit metrics."
+  },
+
+  "debt_capitalization": [
+    {
+      "instrument": "Factoring Facility",
+      "amount": 276,
+      "maturity": "Jan 2026",
+      "seniority": "Secured",
+      "note": "Near-term maturity"
+    },
+    {
+      "instrument": "USD 325m Notes",
+      "amount": 325,
+      "maturity": "2028",
+      "price": 100.14,
+      "seniority": "Senior Notes"
+    },
+    {
+      "instrument": "USD 500m Notes",
+      "amount": 500,
+      "maturity": "2029",
+      "price": 96.37,
+      "seniority": "Senior Notes",
+      "trading_signal": "BELOW PAR - cyclical concerns"
+    },
+    {
+      "instrument": "EUR 300m Notes",
+      "amount": 330,
+      "maturity": "2029",
+      "price": 99.00,
+      "seniority": "Senior Notes",
+      "trading_signal": "Below par"
+    },
+    {
+      "instrument": "USD 350m Notes",
+      "amount": 350,
+      "maturity": "2032",
+      "price": 103.12,
+      "seniority": "Senior Notes"
+    },
+    {
+      "instrument": "EUR 300m Sr Unsecd Notes",
+      "amount": 330,
+      "maturity": "2032",
+      "price": 104.87,
+      "seniority": "Senior Unsecured"
+    }
+  ],
+
+  "maturity_schedule": {
+    "year_1": 276,
+    "year_2": 0,
+    "year_3": 325,
+    "year_4": 830,
+    "year_5": 0,
+    "year_6": 0,
+    "thereafter": 680,
+    "note": "Jan 2026 factoring facility maturity. 2028-2032 bonds well-laddered."
+  },
+
+  "equity_market_value": {
+    "ticker": "CSTM",
+    "exchange": "NYSE",
+    "share_price": "USD 21.98",
+    "equity_market_value": 3030,
+    "total_enterprise_value": 5060,
+    "tev_to_ebitda": 7.7,
+    "key_shareholders": ["Bpifrance (~9%)", "Fidelity ($166m)", "BlackRock ($119m)", "Millennium ($103m)"]
+  },
+
+  "end_markets": {
+    "aerospace": {
+      "key_customers": ["Airbus", "Boeing suppliers"],
+      "trend": "Recovery from COVID, new aircraft builds"
+    },
+    "automotive": {
+      "key_customers": "European OEMs",
+      "trend": "Lightweighting demand but EV transition uncertainty"
+    },
+    "packaging": {
+      "products": "Beverage can sheet",
+      "trend": "Sustainability-driven aluminum demand"
+    }
+  },
+
+  "credit_opinion": {
+    "recommendation": "NEUTRAL",
+    "summary": "Constellium is experiencing a cyclical downturn with 2Q25 EBITDA -35% YoY and FY24 EBITDA -16.5%. Two bonds trading below par (96.37, 99.00) reflecting market concern. However, the company has a $3bn market cap equity cushion and strategic French state backing through Bpifrance (~9%). Net leverage at 2.8x is manageable. 2032 bonds above par (103-105) suggest long-term confidence. Key risks are tariff exposure, cyclical end-markets, and near-term EBITDA pressure. Aerospace recovery and automotive lightweighting provide structural support.",
+    "key_risks": [
+      "EBITDA declining sharply (-35% YoY in 2Q25)",
+      "Two bonds BELOW PAR (96.37, 99.00)",
+      "Cyclical industrial exposure",
+      "Tariff/trade war risk (aluminum)",
+      "Leverage increased from 2.4x to 3.0x",
+      "Automotive EV transition uncertainty",
+      "Jan 2026 factoring facility maturity",
+      "Revenue declining for 2 years"
+    ],
+    "key_catalysts": [
+      "Aerospace production ramp (Airbus)",
+      "EBITDA recovery from cyclical trough",
+      "Bond price recovery toward par",
+      "Deleveraging below 2.5x",
+      "Automotive lightweighting adoption",
+      "Tariff resolution/clarity"
+    ]
+  },
+
+  "distress_indicators": {
+    "debtwire_distress_score": 12,
+    "lifecycle_status": "Performing credit",
+    "trading_signals": "Mixed - 2029 bonds BELOW PAR (96.37, 99.00) but 2032 bonds above par (103-105). EBITDA declining sharply. Cyclical downturn. $3bn equity cushion provides support."
+  }
+}

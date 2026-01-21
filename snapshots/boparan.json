@@ -1,0 +1,110 @@
+{
+  "company_name": "Boparan",
+  "legal_entity": "Boparan Holdco Ltd",
+  "alternate_names": ["2 Sisters Food Group", "2SFG"],
+  "sector": "Consumer & Retail - Food & Beverage (Poultry/Meat)",
+  "geography": "United Kingdom",
+  "last_updated": "2025-01-21",
+  "data_source": "Debtwire",
+
+  "ratings": {
+    "moodys": {"rating": "B3", "outlook": null},
+    "sp": {"rating": "B", "outlook": null}
+  },
+
+  "overview": {
+    "business_description": "UK food manufacturing holding company. Supplies poultry, ready meals, chilled products, and bakery items to retail and food service customers. One of the largest poultry producers in the UK.",
+    "business_positives": [
+      "EBITDA up 45-66% YoY - strong operational turnaround",
+      "Bonds trading at 107 (above par) - market confidence",
+      "Modest debt stack (~$620m) for a company this size",
+      "Essential food products with resilient demand",
+      "Diversified customer base (retail + food service)"
+    ],
+    "fatal_flaw": "Historically volatile business with thin margins. UK food sector faces labor costs, energy inflation, and retailer pricing pressure. Distress score of 23 reflects past challenges.",
+    "ownership": "Boparan Private Office Ltd (family-owned)",
+    "recent_news": "1Q25-26 LFL adjusted EBITDA rises 45.3% YoY to GBP 46.5m. 4Q24-25 EBITDA up 66.5% YoY to GBP 53.1m. Strong operational turnaround underway."
+  },
+
+  "quick_assessment": {
+    "total_debt": 623,
+    "cash_on_hand": null,
+    "revolver_available": null,
+    "debt_due_one_year": 0,
+    "cffo": null,
+    "interest_expense": 49
+  },
+
+  "key_ratios": {
+    "debt_to_ebitda": null,
+    "net_debt_to_ebitda": null,
+    "ebitda_minus_capex_to_interest": null,
+    "fcf_to_debt": null
+  },
+
+  "debt_capitalization": [
+    {
+      "instrument": "GBP RCF (Super Senior)",
+      "amount": 0,
+      "maturity": "May 2029",
+      "coupon": "SONIA+300bps",
+      "price": null,
+      "ytw": null,
+      "stw": null,
+      "rating": null
+    },
+    {
+      "instrument": "GBP 390m Sr Secd Notes",
+      "amount": 507,
+      "maturity": "Nov 2029",
+      "coupon": "9.38%",
+      "price": 106.92,
+      "ytw": 7.25,
+      "stw": null,
+      "rating": "B3/B"
+    },
+    {
+      "instrument": "GBP 90m Credit Facility (Sr Unsecured)",
+      "amount": 116,
+      "maturity": "May 2029",
+      "coupon": null,
+      "price": null,
+      "ytw": null,
+      "stw": null,
+      "rating": null
+    }
+  ],
+
+  "maturity_schedule": {
+    "year_1": 0,
+    "year_2": 0,
+    "year_3": 0,
+    "year_4": 623,
+    "year_5": 0,
+    "thereafter": 0
+  },
+
+  "credit_opinion": {
+    "recommendation": "OVERWEIGHT",
+    "summary": "Boparan is a turnaround story with improving fundamentals. EBITDA growth of 45-66% YoY demonstrates successful operational improvements. Bonds at 107 (above par) with 7.25% YTW indicate market confidence. Modest $620m debt stack with no near-term maturities (2029) provides runway. The historical distress score of 23 reflects past challenges, but current trajectory is positive.",
+    "key_risks": [
+      "UK food sector structural challenges (labor costs, retailer pressure)",
+      "Thin margin business vulnerable to input cost inflation",
+      "Customer concentration risk with major UK retailers",
+      "Private family ownership - limited transparency",
+      "Historical volatility in earnings"
+    ],
+    "key_catalysts": [
+      "Continued EBITDA improvement driving deleveraging",
+      "Potential rating upgrade if turnaround sustains",
+      "Further spread tightening as market recognizes improvement",
+      "Bolt-on acquisitions (e.g., ForFarmers feed mills)"
+    ]
+  },
+
+  "distress_indicators": {
+    "debtwire_distress_score": 23,
+    "lifecycle_status": "Performing credit - turnaround",
+    "trading_signals": "Bonds at 107 (above par) with 7.25% YTW - market pricing significant improvement. Distress score likely historical."
+  }
+}

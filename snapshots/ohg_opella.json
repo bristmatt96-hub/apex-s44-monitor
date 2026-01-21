@@ -1,0 +1,165 @@
+{
+  "company_name": "OHG (Opella)",
+  "legal_entity": "Opal Bidco SAS",
+  "alternate_names": ["Opella", "Sanofi Consumer Health", "OHG"],
+  "sector": "Healthcare - OTC Pharmaceuticals",
+  "geography": "France",
+  "last_updated": "2026-01-21",
+  "data_source": "Debtwire",
+
+  "ratings": {
+    "moodys": {"rating": "NR", "outlook": null},
+    "sp": {"rating": "NR", "outlook": null},
+    "note": "New LBO - ratings likely to be assigned. TLB repriced to E+325bps suggests BB-range credit"
+  },
+
+  "overview": {
+    "business_description": "Over-the-counter pharmaceutical manufacturer producing and distributing self-care products across 100+ consumer health brands globally. Carved out from Sanofi and acquired by CD&R in April 2025. Brands include Dulcolax, Allegra, Essentiale, and other OTC medicines.",
+    "business_positives": [
+      "Very low distress score of 7 - performing credit",
+      "ALL debt trading ABOVE PAR (100-103)",
+      "Strong CD&R sponsorship (50% stake)",
+      "Successfully repriced TLB to E+325bps/S+300bps (Oct 2025)",
+      "Leading global OTC/consumer health platform",
+      "100+ established consumer health brands",
+      "Recurring revenue from essential healthcare products",
+      "Large scale - ~$9bn acquisition value",
+      "Former Sanofi division with proven track record"
+    ],
+    "fatal_flaw": "New LBO with significant leverage (~$8.4bn debt). Limited standalone track record post-separation. OTC market competitive with J&J, GSK, Haleon. Integration/carve-out execution risk.",
+    "ownership": "Private - PE-owned. Clayton Dubilier & Rice (CD&R) Fund XII owns 50% stake since April 2025.",
+    "recent_news": "Repriced EUR 1.7bn and USD 3.8bn TLB to E+325bps/S+300bps at par (Oct 2025). Original TLB priced at E+350bps/S+325bps and SSN at 5.5%/6.5% (Mar-Apr 2025). $9.07bn acquisition completed Apr 2025."
+  },
+
+  "quick_assessment": {
+    "total_debt": 8400,
+    "cash_on_hand": null,
+    "revolver_available": 1100,
+    "debt_due_one_year": 0,
+    "cffo": null,
+    "interest_expense": null,
+    "ebitda": null,
+    "note": "New LBO - limited standalone financials. Large debt quantum for carve-out."
+  },
+
+  "key_ratios": {
+    "debt_to_ebitda": null,
+    "net_debt_to_ebitda": null,
+    "note": "Financials not yet publicly reported post-separation. Leverage likely 5-6x based on LBO sizing."
+  },
+
+  "debt_capitalization": [
+    {
+      "instrument": "EUR 1bn Revolving Credit",
+      "amount": 1100,
+      "maturity": "Oct 2031",
+      "coupon": null,
+      "price": 99.94,
+      "ytw": null,
+      "stw": null,
+      "rating": null,
+      "seniority": "Senior Secured"
+    },
+    {
+      "instrument": "USD 4bn Term Loan B",
+      "amount": 4000,
+      "maturity": "2032",
+      "coupon": "S+300bps",
+      "price": 100.81,
+      "ytw": null,
+      "stw": null,
+      "rating": null,
+      "seniority": "Senior Secured First Lien",
+      "note": "Repriced Oct 2025 from S+325bps"
+    },
+    {
+      "instrument": "EUR 2bn Term Loan B",
+      "amount": 2200,
+      "maturity": "2032",
+      "coupon": "E+325bps",
+      "price": 101.13,
+      "ytw": null,
+      "stw": null,
+      "rating": null,
+      "seniority": "Senior Secured First Lien",
+      "note": "Repriced Oct 2025 from E+350bps"
+    },
+    {
+      "instrument": "USD 1bn Sr Secd Notes",
+      "amount": 1000,
+      "maturity": "2032",
+      "coupon": "6.5%",
+      "price": 102.56,
+      "ytw": null,
+      "stw": null,
+      "rating": null,
+      "seniority": "Senior Secured"
+    },
+    {
+      "instrument": "EUR 1bn Sr Secd Notes",
+      "amount": 1100,
+      "maturity": "2032",
+      "coupon": "5.5%",
+      "price": 102.89,
+      "ytw": null,
+      "stw": null,
+      "rating": null,
+      "seniority": "Senior Secured"
+    }
+  ],
+
+  "maturity_schedule": {
+    "year_1": 0,
+    "year_2": 0,
+    "year_3": 0,
+    "year_4": 0,
+    "year_5": 0,
+    "year_6": 1100,
+    "thereafter": 8300,
+    "note": "Well-termed maturity profile - RCF 2031, TLB/Notes 2032. No near-term maturities."
+  },
+
+  "recent_issuance": [
+    {"date": "Oct 2025", "instrument": "TLB Repricing", "pricing": "E+325bps / S+300bps (from E+350bps / S+325bps)"},
+    {"date": "Apr 2025", "instrument": "EUR 5.2bn TLB (euro/dollar)", "pricing": "E+350bps / S+325bps"},
+    {"date": "Apr 2025", "instrument": "EUR 2.25bn SSN (euro/dollar)", "pricing": "5.5% / 6.5%"}
+  ],
+
+  "transaction_overview": {
+    "deal_value": 9070,
+    "acquirer": "Clayton Dubilier & Rice (CD&R)",
+    "seller": "Sanofi",
+    "completion_date": "Apr 2025",
+    "lead_banks": ["Mizuho", "BNP Paribas", "Credit Agricole", "Goldman Sachs", "JP Morgan"],
+    "legal_advisors": ["DLA Piper", "Pinheiro Neto"]
+  },
+
+  "credit_opinion": {
+    "recommendation": "OVERWEIGHT",
+    "summary": "OHG/Opella is a strong performing credit with very low distress score (7). This is CD&R's carve-out of Sanofi's consumer health division - a leading global OTC pharma platform with 100+ established brands. All debt trading above par (100-103) with successful TLB repricing to E+325bps/S+300bps in Oct 2025 demonstrating strong market confidence. While leverage is elevated for a new LBO (~$8.4bn debt), the business has stable recurring revenue from essential healthcare products. Well-termed maturity profile with no maturities until 2031-2032. Strong sponsor backing from CD&R.",
+    "key_risks": [
+      "New LBO with elevated leverage (~5-6x estimated)",
+      "Carve-out/separation execution risk",
+      "Limited standalone financial track record",
+      "OTC market competition (J&J, GSK/Haleon, Reckitt)",
+      "Private PE ownership - limited transparency",
+      "Large debt quantum ($8.4bn)",
+      "Healthcare regulatory risk",
+      "Generic/private label competition in OTC"
+    ],
+    "key_catalysts": [
+      "Rating assignment - likely BB-range given pricing",
+      "First standalone financial reporting",
+      "EBITDA growth from synergies/optimization",
+      "Further TLB repricing if spreads tighten",
+      "Deleveraging from cash flow generation",
+      "Bolt-on M&A to expand brand portfolio"
+    ]
+  },
+
+  "distress_indicators": {
+    "debtwire_distress_score": 7,
+    "lifecycle_status": "Performing credit",
+    "trading_signals": "All debt at 100-103 (above par). Successful repricing to E+325bps/S+300bps shows strong market support. Very low distress score for new LBO."
+  }
+}

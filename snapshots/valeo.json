@@ -1,74 +1,215 @@
 {
   "company_name": "Valeo",
-  "ticker": "FR FP",
-  "sector": "Autos & Industrials",
-  "last_updated": "2025-01-20",
-  "overview": {
-    "business_description": "French global automotive supplier. Focus on electrification, ADAS, lighting systems, and thermal management. Operations across 33 countries.",
-    "business_positives": [
-      "Technology leadership in ADAS and electrification",
-      "Diversified customer base",
-      "Improving leverage ratio (1.3x)",
-      "Strong position in EV thermal management"
-    ],
-    "fatal_flaw": "Lost investment grade status (Moody's downgrade Sep 2024); European auto weakness; customer concentration",
-    "ownership": "Public",
-    "public_private": "public",
-    "recent_news": "Moody's downgraded to Ba1 from Baa3 (Sep 2024) - fallen angel. Net debt reduced €215m to €3.8bn. Issued €850m green bond (Apr 2024)."
-  },
+  "legal_entity": "Valeo SE",
+  "alternate_names": ["Valeo SA"],
+  "sector": "Industrials - Auto Parts & Equipment",
+  "geography": "France",
+  "last_updated": "2026-01-21",
+  "data_source": "Debtwire",
+
   "ratings": {
-    "moodys": {"rating": "Ba1", "outlook": "Negative", "date": "2024-09"},
-    "sp": {"rating": "BB+", "outlook": "Negative", "date": "2024-04"},
-    "fitch": {"rating": "", "outlook": "", "date": ""}
+    "moodys": {"rating": "Ba1", "outlook": null},
+    "sp": {"rating": "BB", "outlook": null},
+    "note": "CROSSOVER credit (Ba1/BB) - one notch below investment grade. Withdrawn rating on 2026 notes."
   },
+
+  "overview": {
+    "business_description": "Automotive supplier developing comfort, driving assistance, powertrain, and thermal systems for vehicles. Products serve OEMs and independent aftermarket globally. Major Tier 1 supplier with exposure to EV transition.",
+    "business_positives": [
+      "LOW LEVERAGE - only 1.8x net debt/EBITDA",
+      "Crossover rating (Ba1/BB) - near investment grade",
+      "Most bonds trading ABOVE PAR (100-107)",
+      "Strong EBITDA of $2.35bn",
+      "Strong CFFO of $2.95bn",
+      "Publicly traded with institutional ownership",
+      "Active portfolio management (divestitures)",
+      "Recent issuances at reasonable spreads",
+      "EV/EBITDA only 3.9x - cheap valuation",
+      "Diversified customer base"
+    ],
+    "fatal_flaw": "AUTOMOTIVE SECTOR HEADWINDS. FCF weak due to high capex and cash interest. Cut FY25 sales guidance to EUR 20.5bn (Jul 2025). Distress score 19 despite low leverage. Mar 2026 maturity ($659m) approaching. EV transition uncertainty. Net income declining ($246m→$147m). 2028 notes trading below par (95.37) due to low coupon.",
+    "ownership": "Public - Euronext Paris (FR). Major shareholders: Norges Bank, Capital World Investors, Vanguard, Dimensional.",
+    "recent_news": "FCF to remain weak amid automotive sector weakness, high capex and cash interest costs (Aug 2025 credit report). Cut FY25 sales guidance to EUR 20.5bn (Jul 2025). 1H25 EBITDA rises by 6% YoY to $1.47bn (Jul 2025). Priced EUR 500m senior unsecured 2032 note at 4.625% (Sep 2025). Completed divestiture of powertrain division to Shanghai Sinotec (Jul 2025)."
+  },
+
   "quick_assessment": {
-    "period_end": "FY24",
-    "cffo": null,
-    "total_debt": null,
-    "interest_expense": 251,
-    "capex": null,
-    "debt_due_one_year": null,
-    "cash_on_hand": null,
-    "revolver_available": null
+    "total_debt": 6972,
+    "cash_on_hand": 2836,
+    "revolver_available": null,
+    "debt_due_one_year": 659,
+    "cffo": 2945,
+    "interest_expense": null,
+    "ebitda": 2349,
+    "net_income": 147,
+    "enterprise_value": 9080,
+    "market_cap": 3280,
+    "note": "LOW LEVERAGE despite auto sector challenges. Near-IG credit."
   },
+
   "key_ratios": {
-    "debt_to_ebitda": 1.3,
-    "ebitda_minus_capex_to_interest": null,
-    "fcf_to_debt": null,
-    "net_debt_to_ebitda": 1.3
+    "debt_to_ebitda": 3.0,
+    "net_debt_to_ebitda": 1.8,
+    "ebitda_margin": 9.5,
+    "ev_to_ebitda": 3.9,
+    "note": "Very low leverage for HY credit. Valuation compressed due to auto sector concerns."
   },
+
   "trend_analysis": {
-    "years": ["FY23", "FY24"],
-    "revenue": [],
-    "ebitda": [],
-    "ebitda_margin": [],
-    "total_debt": [4028, 3813]
+    "years": ["FY 2022", "FY 2023", "FY 2024", "LTM Jun 2025"],
+    "revenue": [21447, 24330, 22325, 24702],
+    "ebitda": [1861, 2161, 2064, 2349],
+    "ebitda_margin": [8.7, 8.9, 9.2, 9.5],
+    "total_debt": [7211, 7163, 6660, 6972],
+    "net_debt": [3648, 3824, 3385, 4136],
+    "gross_leverage": [3.9, 3.3, 3.2, 3.0],
+    "net_leverage": [2.0, 1.8, 1.6, 1.8],
+    "net_income": [246, 244, 168, 147],
+    "cffo": [2042, 2717, 2791, 2945],
+    "trend_summary": "STABLE leverage profile. EBITDA improving slightly. Margins expanding (8.7%→9.5%). But net income DECLINING and FCF weak after capex. Revenue volatile with auto cycle."
   },
+
   "debt_capitalization": [
-    {"instrument": "Green Bond", "amount": 850, "maturity": "2030-04", "coupon": "", "price": null, "ytw": null, "stw": null, "rating": "BB+"}
+    {
+      "instrument": "EUR 600m Sr Unsecd Notes",
+      "amount": 659,
+      "maturity": "Mar 2026",
+      "coupon": "1.63%",
+      "rating": "WR/BB",
+      "seniority": "Senior Unsecured",
+      "note": "Near-term maturity - key refinancing"
+    },
+    {
+      "instrument": "EUR 750m Sr Unsecd Notes",
+      "amount": 769,
+      "maturity": "May 2027",
+      "coupon": "5.38%",
+      "price": 102.72,
+      "ytw": "3.26%",
+      "rating": "Ba1/BB",
+      "seniority": "Senior Unsecured"
+    },
+    {
+      "instrument": "EUR 700m Sr Unsecd Notes",
+      "amount": 825,
+      "maturity": "Aug 2028",
+      "coupon": "1.00%",
+      "price": 95.37,
+      "ytw": "2.93%",
+      "rating": "Ba1/BB",
+      "seniority": "Senior Unsecured",
+      "trading_signal": "BELOW PAR - low coupon issue"
+    },
+    {
+      "instrument": "EUR 600m Sr Unsecd Notes",
+      "amount": 630,
+      "maturity": "Apr 2029",
+      "coupon": "5.88%",
+      "price": 107.39,
+      "ytw": "3.41%",
+      "rating": "Ba1/BB",
+      "seniority": "Senior Unsecured"
+    },
+    {
+      "instrument": "EUR 850m Sr Unsecd Notes",
+      "amount": 918,
+      "maturity": "Apr 2030",
+      "coupon": "4.50%",
+      "price": 102.33,
+      "ytw": "3.89%",
+      "rating": "Ba1/BB",
+      "seniority": "Senior Unsecured"
+    },
+    {
+      "instrument": "EUR 650m Sr Unsecd Notes",
+      "amount": 724,
+      "maturity": "May 2031",
+      "coupon": "5.13%",
+      "price": 103.65,
+      "ytw": "4.34%",
+      "rating": "Ba1/BB",
+      "seniority": "Senior Unsecured",
+      "note": "May 2025 issuance"
+    },
+    {
+      "instrument": "EUR 500m Sr Unsecd Notes",
+      "amount": 588,
+      "maturity": "Mar 2032",
+      "coupon": "4.63%",
+      "price": 100.67,
+      "ytw": "4.50%",
+      "rating": "Ba1/BB",
+      "seniority": "Senior Unsecured",
+      "note": "Sep 2025 issuance"
+    }
   ],
+
   "maturity_schedule": {
-    "year_1": null,
-    "year_2": null,
-    "year_3": null,
-    "year_4": null,
-    "year_5": null,
-    "thereafter": null
+    "year_1": 659,
+    "year_2": 769,
+    "year_3": 825,
+    "year_4": 630,
+    "year_5": 918,
+    "thereafter": 1312,
+    "note": "Mar 2026 maturity ($659m) near-term focus. Well-laddered otherwise."
   },
-  "equity_market_value": {},
+
+  "recent_transactions": {
+    "divestitures": [
+      {"asset": "Powertrain division", "buyer": "Shanghai Sinotec", "date": "Jul 2025"},
+      {"asset": "Spheros (HVAC)", "buyer": "HIG Capital", "price": 344, "date": "Mar 2024"},
+      {"asset": "Malaysia CDA", "buyer": "Nationgate", "price": 15, "date": "Dec 2025"},
+      {"asset": "Lighting India", "buyer": "Ichikoh", "status": "Pending", "date": "Aug 2025"}
+    ],
+    "issuances": [
+      {"date": "Sep 2025", "instrument": "EUR 500m Sr Unsecd 2032", "coupon": "4.625%"},
+      {"date": "May 2025", "instrument": "EUR 650m Sr Unsecd 2031", "coupon": "5.125%"}
+    ],
+    "note": "Active portfolio management - divesting non-core to focus and delever"
+  },
+
+  "equity_market_value": {
+    "ticker": "FR",
+    "exchange": "Euronext Paris",
+    "share_price": "EUR 11.41",
+    "equity_market_value": 3280,
+    "key_shareholders": ["Norges Bank", "Capital World Investors", "Vanguard", "Dimensional", "Government Pension Fund"]
+  },
+
   "credit_opinion": {
-    "summary": "Valeo is a fallen angel after Moody's downgrade in Sep 2024. Despite low leverage (1.3x), auto sector headwinds and margin pressure drove the downgrade. Both agencies maintain negative outlooks.",
+    "recommendation": "NEUTRAL",
+    "summary": "Valeo is a CROSSOVER credit (Ba1/BB) with LOW LEVERAGE of only 1.8x net despite automotive sector headwinds. Most bonds trade above par (100-107) with IG-tight yields (3-4.5%). The company generates strong EBITDA ($2.35bn) and CFFO ($2.95bn). However, the auto sector faces structural challenges (EV transition, OEM pricing pressure), FCF is weak after high capex, and net income is declining. Cut FY25 sales guidance in Jul 2025. Mar 2026 maturity ($659m) needs refinancing. Active portfolio management through divestitures is positive. Distress score of 19 is elevated for a credit with such low leverage - reflects sector concerns rather than balance sheet issues.",
     "key_risks": [
-      "Further downgrades possible with negative outlooks",
-      "European auto production decline",
-      "Customer pricing pressure",
-      "High R&D costs for technology leadership"
+      "Automotive sector structural headwinds",
+      "FCF weak after capex investment",
+      "Net income declining ($246m→$147m)",
+      "Cut FY25 sales guidance",
+      "Mar 2026 maturity ($659m) approaching",
+      "EV transition uncertainty",
+      "OEM pricing pressure",
+      "2028 notes below par (low coupon)",
+      "Distress score 19 despite low leverage"
     ],
     "key_catalysts": [
-      "Auto production recovery would stabilize ratings",
-      "ADAS content growth per vehicle",
-      "EV thermal management market share gains"
-    ],
-    "recommendation": "UNDERWEIGHT - Fallen angel with negative momentum"
+      "Mar 2026 refinancing completion",
+      "Auto sector recovery",
+      "Divestiture proceeds to delever",
+      "EBITDA margin expansion continuation",
+      "Rating upgrade to IG",
+      "FCF improvement",
+      "EV market share gains"
+    ]
+  },
+
+  "distress_indicators": {
+    "debtwire_distress_score": 19,
+    "lifecycle_status": "Performing credit",
+    "trading_signals": "Most bonds at 100-107 (above par). Yields 3-4.5% are IG-tight for Ba1/BB credit. 2028 notes at 95 (below par) due to 1% coupon - technical not fundamental. LOW LEVERAGE (1.8x) belies distress score of 19 - sector concern, not balance sheet."
+  },
+
+  "sector_analysis": {
+    "sector": "Auto Parts/Tier 1 Suppliers",
+    "headwinds": ["OEM pricing pressure", "EV transition capex", "Volume volatility", "China competition"],
+    "tailwinds": ["ADAS growth", "Electrification content", "Thermal management"],
+    "peer_comparison": "Better leverage than most auto suppliers. Forvia more levered."
   }
 }

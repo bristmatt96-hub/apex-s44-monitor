@@ -1,0 +1,183 @@
+{
+  "company_name": "Cirsa",
+  "legal_entity": "Cirsa Enterprises SA",
+  "operating_entity": "Cirsa Gaming Corp SA",
+  "alternate_names": ["Cirsa Gaming", "Cirsa Group"],
+  "sector": "Consumer & Retail - Gaming/Leisure",
+  "geography": "Spain",
+  "last_updated": "2026-01-21",
+  "data_source": "Debtwire",
+
+  "ratings": {
+    "moodys": {"rating": "B1", "outlook": null},
+    "sp": {"rating": "BB-", "outlook": null}
+  },
+
+  "overview": {
+    "business_description": "Gaming and entertainment group operating casinos, slot machines, bingo, gaming halls, and online betting services in regulated markets across Spain, Italy, Latin America (Peru, Colombia, Mexico), and Portugal.",
+    "business_positives": [
+      "LOW distress score of 10 - very healthy performing credit",
+      "All bonds trading ABOVE PAR (101-104) - market confidence",
+      "Strong leverage metrics - 3.2x net debt/EBITDA",
+      "Recently IPO'd (Jul 2025) - public equity provides transparency and cushion",
+      "$3bn market cap equity beneath the debt",
+      "Diversified geography across Spain, Italy, LatAm, Portugal",
+      "Strong CFFO generation ($800m LTM)",
+      "Active M&A building scale in gaming"
+    ],
+    "fatal_flaw": "EM exposure (LatAm) adds FX and political risk. Gaming regulation can change unexpectedly. EBITDA margin compressed to 26.8% from 28.7%.",
+    "ownership": "Public (MA: CIRSA on Madrid Stock Exchange). IPO completed Jul 2025.",
+    "recent_news": "IPO completed Jul 2025. Issued EUR 1bn Sr Secd Notes Oct 2025 (EUR 575m at 4.875% + EUR 425m FRN at E+300bps). Active M&A in Portugal (Casino da Figueira pending), Peru, Colombia, Italy."
+  },
+
+  "quick_assessment": {
+    "total_debt": 2613,
+    "cash_on_hand": 333,
+    "revolver_available": 275,
+    "debt_due_one_year": 56,
+    "cffo": 800,
+    "interest_expense": null,
+    "enterprise_value": 5780,
+    "ebitda": 715,
+    "market_cap": 3040
+  },
+
+  "key_ratios": {
+    "debt_to_ebitda": 3.7,
+    "net_debt_to_ebitda": 3.2,
+    "ev_to_ebitda": 8.1,
+    "ebitda_minus_capex_to_interest": null,
+    "fcf_to_debt": null
+  },
+
+  "trend_analysis": {
+    "years": ["FY 2022", "FY 2023", "FY 2024", "LTM Jun 2025"],
+    "revenue": [1821, 2197, 2234, 2669],
+    "ebitda": [525, 622, 642, 715],
+    "ebitda_margin": [28.8, 28.3, 28.7, 26.8],
+    "total_debt": [2358, 2429, 2518, 2613],
+    "net_debt": [2130, 2152, 2252, 2280],
+    "gross_leverage": [4.5, 3.9, 3.9, 3.7],
+    "net_leverage": [4.1, 3.5, 3.5, 3.2]
+  },
+
+  "debt_capitalization": [
+    {
+      "instrument": "EUR 575m Sr Secd Notes (Oct 2025)",
+      "amount": 666,
+      "maturity": "Oct 2031",
+      "coupon": "4.875%",
+      "price": 102.35,
+      "ytw": 4.41,
+      "stw": null,
+      "rating": "B1/BB-",
+      "seniority": "Senior Secured"
+    },
+    {
+      "instrument": "EUR 425m Sr Secd Notes FRN (Oct 2025)",
+      "amount": 493,
+      "maturity": "Oct 2032",
+      "coupon": "E+300bps",
+      "price": 101.21,
+      "ytw": 5.29,
+      "stw": null,
+      "rating": "B1/BB-",
+      "seniority": "Senior Secured"
+    },
+    {
+      "instrument": "EUR 275m Revolving Credit",
+      "amount": 0,
+      "maturity": "Dec 2029",
+      "coupon": null,
+      "price": null,
+      "ytw": null,
+      "stw": null,
+      "rating": null,
+      "seniority": "Senior Secured"
+    },
+    {
+      "instrument": "EUR 450m Sr Secd Notes",
+      "amount": 488,
+      "maturity": "Mar 2029",
+      "coupon": "6.50%",
+      "price": 103.83,
+      "ytw": 5.16,
+      "stw": null,
+      "rating": "B1/BB-",
+      "seniority": "Senior Secured"
+    },
+    {
+      "instrument": "EUR 200m Sr Secd Notes FRN",
+      "amount": 217,
+      "maturity": "Jul 2028",
+      "coupon": "E+450bps",
+      "price": null,
+      "ytw": null,
+      "stw": null,
+      "rating": "BB-",
+      "seniority": "Senior Secured"
+    },
+    {
+      "instrument": "Other facilities (Credit, Lease, Promissory)",
+      "amount": 108,
+      "maturity": "Various",
+      "coupon": null,
+      "price": null,
+      "ytw": null,
+      "stw": null,
+      "rating": null,
+      "seniority": "Various"
+    }
+  ],
+
+  "maturity_schedule": {
+    "year_1": 56,
+    "year_2": 0,
+    "year_3": 217,
+    "year_4": 488,
+    "year_5": 0,
+    "thereafter": 1159
+  },
+
+  "equity_market_value": {
+    "ticker": "CIRSA.MC",
+    "exchange": "Madrid Stock Exchange",
+    "equity_market_value": 3040,
+    "total_enterprise_value": 5780,
+    "tev_to_ebitda": 8.1,
+    "ipo_date": "Jul 2025"
+  },
+
+  "geographic_exposure": {
+    "spain": "Core market - casinos, slots, bingo",
+    "italy": "Growing presence - slots, online betting (SportItaliaBet, Eplay24)",
+    "latin_america": "Peru, Colombia, Mexico - casinos, online gaming",
+    "portugal": "Expanding - CasinoPortugal (68%), Casino da Figueira (pending)"
+  },
+
+  "credit_opinion": {
+    "recommendation": "OVERWEIGHT",
+    "summary": "Cirsa is a strong B1/BB- gaming credit with improving fundamentals. Net leverage at 3.2x is solid for the sector. All bonds trading above par (101-104) with tight yields (4.4-5.3%) reflects market confidence. Very low distress score of 10. Recent IPO provides transparency and $3bn equity cushion. Active M&A building scale across Europe and LatAm. The main risks are EM exposure (FX, political) and gaming regulation changes.",
+    "key_risks": [
+      "EM exposure in LatAm adds FX and political risk",
+      "Gaming regulation can change unexpectedly",
+      "EBITDA margin compression (28.7% to 26.8%)",
+      "M&A integration execution risk",
+      "Competition from online gaming operators",
+      "Cyclical consumer spending sensitivity"
+    ],
+    "key_catalysts": [
+      "Continued deleveraging from strong CFFO",
+      "Rating upgrade potential if leverage drops below 3.0x",
+      "Successful integration of recent acquisitions",
+      "Online gaming growth driving revenue mix improvement",
+      "Further spread tightening as post-IPO track record builds"
+    ]
+  },
+
+  "distress_indicators": {
+    "debtwire_distress_score": 10,
+    "lifecycle_status": "Performing credit",
+    "trading_signals": "All bonds above par (101-104). Yields 4.4-5.3% - trading like solid BB. Very low distress score. Post-IPO equity cushion provides downside protection."
+  }
+}
