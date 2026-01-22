@@ -59,6 +59,14 @@ try:
 except ImportError:
     pass
 
+# Try to import morning brief
+MORNING_BRIEF_AVAILABLE = False
+try:
+    from monitors.morning_brief import send_morning_brief, start_scheduler
+    MORNING_BRIEF_AVAILABLE = True
+except ImportError:
+    pass
+
 # ============== TELEGRAM FUNCTIONS ==============
 
 def send_telegram_message(message):
@@ -844,13 +852,30 @@ st.sidebar.markdown("---")
 st.sidebar.markdown("### Telegram Alerts")
 if TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID:
     st.sidebar.markdown("✅ Configured")
-    if st.sidebar.button("🔔 Test Alert"):
-        if send_telegram_message("✅ *XO S44 Monitor Connected!*\n\nTelegram alerts are working."):
-            st.sidebar.success("Alert sent!")
-        else:
-            st.sidebar.error("Failed to send")
+    col1, col2 = st.sidebar.columns(2)
+    with col1:
+        if st.button("🔔 Test", key="test_tg"):
+            if send_telegram_message("✅ *XO S44 Monitor Connected!*\n\nTelegram alerts are working."):
+                st.sidebar.success("Sent!")
+            else:
+                st.sidebar.error("Failed")
+    with col2:
+        if MORNING_BRIEF_AVAILABLE:
+            if st.button("☀️ Brief", key="send_brief"):
+                if send_morning_brief():
+                    st.sidebar.success("Sent!")
+                else:
+                    st.sidebar.error("Failed")
 else:
     st.sidebar.markdown("❌ Not configured")
+
+# Start morning brief scheduler (7am UK daily)
+if MORNING_BRIEF_AVAILABLE and TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID:
+    @st.cache_resource
+    def init_morning_scheduler():
+        start_scheduler()
+        return True
+    init_morning_scheduler()
 
 # Main content tabs
 tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs(["Trading Signals", "Equity Monitor", "Credit Events", "News Monitor", "RSS & News", "Credit Snapshot", "Knowledge Base"])
