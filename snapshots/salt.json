@@ -1,0 +1,91 @@
+{
+  "company_name": "Salt Mobile SA",
+  "ticker": "SALT",
+  "sector": "TMT - Telecommunications/Wireless",
+  "last_updated": "2026-01-22",
+  "overview": {
+    "business_description": "Swiss mobile telecommunications operator providing wireless services to consumers and businesses. Third-largest mobile operator in Switzerland behind Swisscom and Sunrise. Known for competitive pricing and challenger positioning in the Swiss market.",
+    "business_positives": [
+      "Strong Swiss market with high ARPU",
+      "Challenger positioning driving market share gains",
+      "Xavier Niel/NJJ Capital ownership - experienced telecom investor",
+      "Recent rating upgrade (B2 to B1) reflects improving credit",
+      "Stable Swiss regulatory environment"
+    ],
+    "fatal_flaw": "Smaller scale vs Swisscom and Sunrise; B1 rating still sub-investment grade; private ownership limits transparency",
+    "ownership": "NJJ Capital SAS (Xavier Niel family office)",
+    "public_private": "private",
+    "recent_news": "May 2025: Moody's upgraded CFR to B1 from B2 (stable outlook). May 2025: EUR 200m TLB add-on at 98.5-98.75. Jan 2025: Priced EUR 420m SSN at 4.5% and EUR 430m TLB at E+275bps."
+  },
+  "ratings": {
+    "moodys": {"rating": "B1", "outlook": "Stable", "date": "2025-05"},
+    "sp": {"rating": "", "outlook": "", "date": ""},
+    "fitch": {"rating": "", "outlook": "", "date": ""}
+  },
+  "quick_assessment": {
+    "period_end": "2025",
+    "revenue": null,
+    "ebitda": null,
+    "cffo": null,
+    "total_debt": null,
+    "interest_expense": null,
+    "capex": null,
+    "debt_due_one_year": null,
+    "cash_on_hand": null,
+    "revolver_available": null
+  },
+  "key_ratios": {
+    "debt_to_ebitda": null,
+    "net_debt_to_ebitda": null,
+    "ebitda_margin": null,
+    "ev_to_ebitda": null
+  },
+  "trend_analysis": {
+    "years": [],
+    "revenue": [],
+    "ebitda": [],
+    "ebitda_margin": [],
+    "total_debt": []
+  },
+  "debt_capitalization": [
+    {"instrument": "EUR 420m Sr Secd Notes", "amount": 458, "maturity": "2030", "coupon": "4.50%", "price": 100, "ytw": 4.50, "rating": "B1"},
+    {"instrument": "EUR 630m+ Term Loan B", "amount": 687, "maturity": "2032", "coupon": "E+2.75%", "price": 98.63, "ytw": null, "rating": "B1"}
+  ],
+  "maturity_schedule": {
+    "2030": 458,
+    "2032": 687
+  },
+  "equity_market_value": {
+    "note": "Private - owned by NJJ Capital SAS (Xavier Niel)"
+  },
+  "top_lenders": [
+    {"name": "Goldman Sachs", "role": "Arranger", "deals": 8},
+    {"name": "BofA Securities", "role": "Arranger", "deals": 7},
+    {"name": "BNP Paribas", "role": "Arranger", "deals": 6},
+    {"name": "JP Morgan", "role": "Arranger", "deals": 5},
+    {"name": "UBS", "role": "Arranger", "deals": 5}
+  ],
+  "key_deals": [
+    {"date": "May 2025", "deal": "EUR 200m fungible TLB add-on at 98.5-98.75"},
+    {"date": "Mar 2025", "deal": "EUR 25m privately placed TLB add-on"},
+    {"date": "Jan 2025", "deal": "EUR 420m SSN at 4.5% and EUR 430m TLB at E+275bps"}
+  ],
+  "credit_opinion": {
+    "summary": "Salt is Switzerland's third-largest mobile operator, owned by Xavier Niel's NJJ Capital. Recent upgrade to B1 (from B2) reflects improving fundamentals. Swiss market offers high ARPUs and stable regulatory environment. Challenger positioning vs Swisscom and Sunrise. Limited financial disclosure as private company.",
+    "key_risks": [
+      "Smaller scale vs Swiss incumbents",
+      "Private ownership limits transparency",
+      "Sub-investment grade rating",
+      "Swiss market saturation",
+      "5G capex requirements"
+    ],
+    "key_catalysts": [
+      "Continued rating upgrades",
+      "Swiss market consolidation",
+      "ARPU stability in premium market",
+      "Potential IPO or strategic sale",
+      "Deleveraging from cash flow"
+    ],
+    "recommendation": "NEUTRAL - Improving credit in stable Swiss market; B1 rating upgrade positive"
+  }
+}
