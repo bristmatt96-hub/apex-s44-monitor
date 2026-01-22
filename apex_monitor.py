@@ -246,6 +246,11 @@ def calculate_signal_score(snapshot, news_sentiment=0):
 
     # Leverage assessment
     leverage = key_ratios.get('debt_to_ebitda')
+    if leverage is not None:
+        try:
+            leverage = float(leverage)
+        except (TypeError, ValueError):
+            leverage = None
     if leverage:
         if leverage < 4.0:
             score += 20
@@ -259,6 +264,11 @@ def calculate_signal_score(snapshot, news_sentiment=0):
 
     # Interest coverage
     coverage = key_ratios.get('ebitda_minus_capex_to_interest')
+    if coverage is not None:
+        try:
+            coverage = float(coverage)
+        except (TypeError, ValueError):
+            coverage = None
     if coverage:
         if coverage > 3.0:
             score += 15
@@ -269,6 +279,11 @@ def calculate_signal_score(snapshot, news_sentiment=0):
 
     # FCF generation
     fcf_to_debt = key_ratios.get('fcf_to_debt')
+    if fcf_to_debt is not None:
+        try:
+            fcf_to_debt = float(fcf_to_debt)
+        except (TypeError, ValueError):
+            fcf_to_debt = None
     if fcf_to_debt:
         if fcf_to_debt > 0.10:
             score += 15
@@ -278,9 +293,18 @@ def calculate_signal_score(snapshot, news_sentiment=0):
             rationale.append(f"Negative FCF - cash burn concern")
 
     # Liquidity assessment
-    cash = qa.get('cash_on_hand', 0) or 0
-    revolver = qa.get('revolver_available', 0) or 0
-    debt_due = qa.get('debt_due_one_year', 0) or 0
+    try:
+        cash = float(qa.get('cash_on_hand', 0) or 0)
+    except (TypeError, ValueError):
+        cash = 0
+    try:
+        revolver = float(qa.get('revolver_available', 0) or 0)
+    except (TypeError, ValueError):
+        revolver = 0
+    try:
+        debt_due = float(qa.get('debt_due_one_year', 0) or 0)
+    except (TypeError, ValueError):
+        debt_due = 0
 
     if debt_due > 0:
         liquidity_ratio = (cash + revolver) / debt_due
