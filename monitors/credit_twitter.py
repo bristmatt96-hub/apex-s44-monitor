@@ -1,18 +1,175 @@
 """
 Credit Twitter - Curated X/Twitter Feed for Credit Professionals
 Monitors trusted accounts for credit-relevant signals
+Sends Telegram alerts for high-priority credit tweets
 """
 
 import streamlit as st
 import tweepy
 import os
 import json
+import requests
+import time
+from threading import Thread
 from datetime import datetime, timedelta
 from pathlib import Path
-from typing import List, Dict, Optional
+from typing import List, Dict, Optional, Set
 
-# Load bearer token
+# Load secrets
 TWITTER_BEARER_TOKEN = st.secrets.get("TWITTER_BEARER_TOKEN", st.secrets.get("Bearer token", os.environ.get("TWITTER_BEARER_TOKEN", "")))
+TELEGRAM_BOT_TOKEN = st.secrets.get("TELEGRAM_BOT_TOKEN", os.environ.get("TELEGRAM_BOT_TOKEN", ""))
+TELEGRAM_CHAT_ID = st.secrets.get("TELEGRAM_CHAT_ID", os.environ.get("TELEGRAM_CHAT_ID", ""))
+
+# Config directory
+CONFIG_DIR = Path(__file__).parent.parent / "config"
+SEEN_TWEETS_FILE = CONFIG_DIR / "seen_tweets.json"
+CUSTOM_ACCOUNTS_FILE = CONFIG_DIR / "credit_twitter_accounts.json"
+
+# ============== TELEGRAM ALERTS ==============
+
+def send_telegram_alert(message: str) -> bool:
+    """Send alert to Telegram"""
+    if not TELEGRAM_BOT_TOKEN or not TELEGRAM_CHAT_ID:
+        return False
+
+    url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
+    payload = {
+        "chat_id": TELEGRAM_CHAT_ID,
+        "text": message,
+        "parse_mode": "Markdown",
+        "disable_web_page_preview": True
+    }
+    try:
+        resp = requests.post(url, json=payload, timeout=10)
+        return resp.ok
+    except:
+        return False
+
+
+def load_seen_tweets() -> Set[str]:
+    """Load set of already-seen tweet IDs"""
+    if SEEN_TWEETS_FILE.exists():
+        try:
+            with open(SEEN_TWEETS_FILE, "r") as f:
+                data = json.load(f)
+                return set(data.get("seen_ids", []))
+        except:
+            pass
+    return set()
+
+
+def save_seen_tweets(seen_ids: Set[str]):
+    """Save seen tweet IDs (keep only last 1000)"""
+    CONFIG_DIR.mkdir(exist_ok=True)
+    # Keep only most recent 1000 to avoid file bloat
+    recent = list(seen_ids)[-1000:]
+    with open(SEEN_TWEETS_FILE, "w") as f:
+        json.dump({"seen_ids": recent, "updated": datetime.now().isoformat()}, f)
+
+
+def format_tweet_alert(tweet: Dict) -> str:
+    """Format a tweet as a Telegram alert message"""
+    keywords = tweet.get('keywords', [])
+    keywords_str = ", ".join(keywords[:5]) if keywords else "credit"
+
+    msg = (
+        f"*Credit Alert* ({keywords_str})\n\n"
+        f"@{tweet.get('username', 'unknown')} ({tweet.get('category', '')})\n\n"
+        f"{tweet.get('text', '')[:500]}\n\n"
+        f"[View on X]({tweet.get('link', '')})"
+    )
+    return msg
+
+
+# ============== BACKGROUND MONITOR ==============
+
+_monitor_running = False
+
+def monitor_curated_accounts(interval_minutes: int = 5):
+    """
+    Background thread that monitors curated accounts for new credit-relevant tweets.
+    Sends Telegram alerts for new tweets.
+    """
+    global _monitor_running
+
+    if not TWITTER_BEARER_TOKEN:
+        print("[CreditTwitter] No Twitter token - monitor disabled")
+        return
+
+    if not TELEGRAM_BOT_TOKEN or not TELEGRAM_CHAT_ID:
+        print("[CreditTwitter] No Telegram config - monitor disabled")
+        return
+
+    print(f"[CreditTwitter] Starting monitor (checking every {interval_minutes} min)")
+    _monitor_running = True
+
+    client = tweepy.Client(bearer_token=TWITTER_BEARER_TOKEN)
+    seen_ids = load_seen_tweets()
+
+    while _monitor_running:
+        try:
+            accounts = get_all_accounts()
+            new_alerts = 0
+
+            for account in accounts:
+                handle = account.get('handle', '')
+                if not handle:
+                    continue
+
+                try:
+                    tweets = get_account_tweets(client, handle, max_results=5)
+
+                    for tweet in tweets:
+                        if 'error' in tweet:
+                            continue
+
+                        tweet_id = str(tweet.get('id', ''))
+
+                        # Skip if already seen
+                        if tweet_id in seen_ids:
+                            continue
+
+                        # Mark as seen
+                        seen_ids.add(tweet_id)
+
+                        # Only alert for credit-relevant tweets
+                        if tweet.get('is_credit_relevant'):
+                            tweet['category'] = account.get('category', 'Unknown')
+                            msg = format_tweet_alert(tweet)
+                            if send_telegram_alert(msg):
+                                new_alerts += 1
+                                print(f"[CreditTwitter] Alert sent: @{handle}")
+
+                    time.sleep(1)  # Rate limiting between accounts
+
+                except Exception as e:
+                    print(f"[CreditTwitter] Error checking @{handle}: {e}")
+                    continue
+
+            # Save seen IDs periodically
+            save_seen_tweets(seen_ids)
+
+            if new_alerts > 0:
+                print(f"[CreditTwitter] Sent {new_alerts} alerts")
+
+        except Exception as e:
+            print(f"[CreditTwitter] Monitor error: {e}")
+
+        # Wait before next check
+        time.sleep(interval_minutes * 60)
+
+
+def start_credit_twitter_monitor():
+    """Start the background monitor thread"""
+    global _monitor_running
+
+    if _monitor_running:
+        return  # Already running
+
+    thread = Thread(target=monitor_curated_accounts, daemon=True)
+    thread.start()
+    return thread
+
 
 # ============== CURATED ACCOUNT LISTS ==============
 
@@ -69,11 +226,6 @@ CREDIT_KEYWORDS = [
     "cds", "spread", "basis points", "bps wider", "bps tighter",
     "trading at", "bid wanted", "distressed",
 ]
-
-# Config file path for user's custom accounts
-CONFIG_DIR = Path(__file__).parent.parent / "config"
-CUSTOM_ACCOUNTS_FILE = CONFIG_DIR / "credit_twitter_accounts.json"
-
 
 def load_custom_accounts() -> List[Dict]:
     """Load user's custom account list"""
