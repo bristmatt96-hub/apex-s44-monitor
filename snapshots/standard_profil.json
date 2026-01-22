@@ -1,0 +1,91 @@
+{
+  "company_name": "Standard Profil Automotive GmbH",
+  "ticker": "STAPRO",
+  "sector": "Autos & Industrials - Auto Supplier",
+  "last_updated": "2026-01-22",
+  "overview": {
+    "business_description": "Automotive sealing systems manufacturer supplying technologically advanced products to global carmakers, focusing on sound, dust, water, and heat insulation. Delivers tailored solutions through engineering expertise in rubber and polymer-based sealing systems.",
+    "business_positives": [
+      "Technical expertise in automotive sealing",
+      "Relationships with major OEMs",
+      "Restructuring process underway"
+    ],
+    "fatal_flaw": "DISTRESSED - Bonds trading at 15 cents; CCC- rating; active restructuring with creditors; PE sponsor Actera ceding control to creditors",
+    "ownership": "Actera Group (PE) - transferring to creditors",
+    "public_private": "private",
+    "recent_news": "RESTRUCTURING IN PROGRESS. Mar 2025: Debt talks ongoing as RCF maturity nears. Jan 2025: Ad hoc bondholder group formed (Bluebay, Tresidor, Shiprock). Dec 2024: S&P downgraded to CCC- on high restructuring risk. Jul 2025: Creditors acquiring 100% from Actera."
+  },
+  "ratings": {
+    "moodys": {"rating": "WR", "outlook": "", "date": ""},
+    "sp": {"rating": "CCC-", "outlook": "Negative", "date": "2024-12"},
+    "fitch": {"rating": "", "outlook": "", "date": ""}
+  },
+  "quick_assessment": {
+    "period_end": "Q3 2025",
+    "revenue": null,
+    "ebitda": null,
+    "cffo": null,
+    "total_debt": 599,
+    "interest_expense": null,
+    "capex": null,
+    "debt_due_one_year": 416,
+    "cash_on_hand": null,
+    "revolver_available": 0
+  },
+  "key_ratios": {
+    "debt_to_ebitda": null,
+    "net_debt_to_ebitda": null,
+    "ebitda_margin": null,
+    "ev_to_ebitda": null
+  },
+  "trend_analysis": {
+    "years": [],
+    "revenue": [],
+    "ebitda": [],
+    "ebitda_margin": [],
+    "total_debt": []
+  },
+  "debt_capitalization": [
+    {"instrument": "EUR 30m Super Senior Term Loan", "amount": 34, "maturity": "Sep 2025", "coupon": "E+8.25%", "price": null, "ytw": null, "rating": "-"},
+    {"instrument": "EUR 44m Bridge Facility", "amount": 49, "maturity": "Sep 2025", "coupon": "15.00%", "price": null, "ytw": null, "rating": "-"},
+    {"instrument": "EUR 30m Revolving Credit", "amount": 0, "maturity": "Sep 2025", "coupon": "-", "price": null, "ytw": null, "rating": "-"},
+    {"instrument": "EUR 275m Sr Secd Notes", "amount": 323, "maturity": "Apr 2026", "coupon": "6.25%", "price": 15.25, "ytw": 1921.91, "rating": "CCC-"},
+    {"instrument": "EUR 50m Factoring Facility", "amount": 1, "maturity": "-", "coupon": "-", "price": null, "ytw": null, "rating": "-"},
+    {"instrument": "EUR 112m Credit Facility", "amount": 131, "maturity": "-", "coupon": "-", "price": null, "ytw": null, "rating": "-"},
+    {"instrument": "EUR 17m Shareholder Loan", "amount": 19, "maturity": "-", "coupon": "-", "price": null, "ytw": null, "rating": "-"},
+    {"instrument": "EUR 36m Lease Facility", "amount": 42, "maturity": "-", "coupon": "-", "price": null, "ytw": null, "rating": "-"}
+  ],
+  "maturity_schedule": {
+    "2025": 83,
+    "2026": 323
+  },
+  "equity_market_value": {
+    "note": "Distressed - equity likely worthless; creditors taking control"
+  },
+  "bondholder_group": [
+    {"name": "Bluebay Asset Management", "role": "Ad Hoc Group"},
+    {"name": "Tresidor", "role": "Ad Hoc Group"},
+    {"name": "Shiprock Capital", "role": "Ad Hoc Group"}
+  ],
+  "key_deals": [
+    {"date": "Jul 2025", "deal": "PENDING: Creditors acquiring 100% from Actera Group (debt-for-equity)"},
+    {"date": "Jan 2025", "deal": "Ad hoc bondholder group formed; Alcentra exited"}
+  ],
+  "credit_opinion": {
+    "summary": "DISTRESSED RESTRUCTURING. Standard Profil bonds trading at 15 cents on the dollar (~1,922% yield). Creditors forming ad hoc group to negotiate debt-for-equity swap, with PE sponsor Actera ceding control. Super senior facilities and bridge loans indicate acute liquidity stress. This is an active workout situation.",
+    "key_risks": [
+      "RESTRUCTURING IN PROGRESS",
+      "Bonds trading at 15 cents (85% loss)",
+      "Super senior priming existing debt",
+      "Automotive sector headwinds",
+      "Liquidity crisis"
+    ],
+    "key_catalysts": [
+      "Restructuring completion",
+      "Debt-for-equity conversion",
+      "New money injection",
+      "Operational turnaround post-restructuring"
+    ],
+    "recommendation": "DISTRESSED SITUATION - Only for specialist distressed investors"
+  }
+}
