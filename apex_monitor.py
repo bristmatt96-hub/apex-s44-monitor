@@ -839,6 +839,19 @@ if KNOWLEDGE_BASE_AVAILABLE:
 if CREDIT_EVENTS_AVAILABLE:
     st.sidebar.markdown("- Credit Events Monitor")
 
+# Telegram test button
+st.sidebar.markdown("---")
+st.sidebar.markdown("### Telegram Alerts")
+if TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID:
+    st.sidebar.markdown("✅ Configured")
+    if st.sidebar.button("🔔 Test Alert"):
+        if send_telegram_message("✅ *XO S44 Monitor Connected!*\n\nTelegram alerts are working."):
+            st.sidebar.success("Alert sent!")
+        else:
+            st.sidebar.error("Failed to send")
+else:
+    st.sidebar.markdown("❌ Not configured")
+
 # Main content tabs
 tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs(["Trading Signals", "Equity Monitor", "Credit Events", "News Monitor", "RSS & News", "Credit Snapshot", "Knowledge Base"])
 
