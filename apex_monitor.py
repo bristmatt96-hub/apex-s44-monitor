@@ -83,6 +83,14 @@ try:
 except ImportError:
     pass
 
+# Try to import trade workbench
+TRADE_WORKBENCH_AVAILABLE = False
+try:
+    from monitors.trade_workbench import render_trade_workbench
+    TRADE_WORKBENCH_AVAILABLE = True
+except ImportError:
+    pass
+
 # ============== TELEGRAM FUNCTIONS ==============
 
 def send_telegram_message(message):
@@ -864,6 +872,8 @@ if CREDIT_EVENTS_AVAILABLE:
     st.sidebar.markdown("- Credit Events Monitor")
 if CREDIT_TWITTER_AVAILABLE:
     st.sidebar.markdown("- Credit Twitter Feed")
+if TRADE_WORKBENCH_AVAILABLE:
+    st.sidebar.markdown("- Trade Workbench")
 
 # Telegram test button
 st.sidebar.markdown("---")
@@ -896,7 +906,7 @@ if MORNING_BRIEF_AVAILABLE and TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID:
     init_morning_scheduler()
 
 # Main content tabs
-tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9 = st.tabs(["Trading Signals", "Equity Monitor", "Credit Events", "News Monitor", "RSS & News", "Credit Snapshot", "Knowledge Base", "Trading Tools", "Credit Twitter"])
+tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9, tab10 = st.tabs(["Trading Signals", "Equity Monitor", "Credit Events", "News Monitor", "RSS & News", "Credit Snapshot", "Knowledge Base", "Trading Tools", "Credit Twitter", "Trade Workbench"])
 
 # Initialize NewsHound with selected index
 @st.cache_resource
@@ -1050,3 +1060,10 @@ with tab9:
     else:
         st.warning("Credit Twitter not available.")
         st.info("Check monitors/credit_twitter.py")
+
+with tab10:
+    if TRADE_WORKBENCH_AVAILABLE:
+        render_trade_workbench()
+    else:
+        st.warning("Trade Workbench not available.")
+        st.info("Check monitors/trade_workbench.py")
