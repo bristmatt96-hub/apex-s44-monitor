@@ -180,16 +180,24 @@ DEFAULT_ACCOUNTS = {
         {"handle": "SPGlobal", "name": "S&P Global", "category": "Rating Agency"},
         {"handle": "FitchRatings", "name": "Fitch Ratings", "category": "Rating Agency"},
     ],
+    "major_news": [
+        {"handle": "Reuters", "name": "Reuters", "category": "News Wire"},
+        {"handle": "ReutersBiz", "name": "Reuters Business", "category": "News Wire"},
+        {"handle": "business", "name": "Bloomberg", "category": "News Wire"},
+        {"handle": "markets", "name": "Bloomberg Markets", "category": "News Wire"},
+        {"handle": "FT", "name": "Financial Times", "category": "News Wire"},
+        {"handle": "ftmarkets", "name": "FT Markets", "category": "News Wire"},
+        {"handle": "WSJ", "name": "Wall Street Journal", "category": "News Wire"},
+        {"handle": "WSJmarkets", "name": "WSJ Markets", "category": "News Wire"},
+    ],
     "credit_news": [
-        {"handle": "Aborosglobal", "name": "Aboros Global", "category": "Credit News"},
-        {"handle": "9aborosglobal", "name": "9Aboros", "category": "Credit News"},
         {"handle": "FinancialJuice", "name": "Financial Juice", "category": "News"},
         {"handle": "Newsquawk", "name": "Newsquawk", "category": "News"},
         {"handle": "DeItaone", "name": "Walter Bloomberg", "category": "News"},
+        {"handle": "IGaborosglobal", "name": "IG Markets", "category": "News"},
     ],
     "analysts_traders": [
         {"handle": "CreditSights", "name": "CreditSights", "category": "Research"},
-        {"handle": "bondaborosglobal", "name": "Bond News", "category": "Fixed Income"},
     ],
     "restructuring": [
         # Add restructuring lawyers/advisors as you find good ones
@@ -371,8 +379,8 @@ def render_credit_twitter():
     with col2:
         show_categories = st.multiselect(
             "Categories",
-            ["Rating Agency", "Credit News", "Research", "News", "Fixed Income", "Custom"],
-            default=["Rating Agency", "Credit News", "Research", "News"]
+            ["Rating Agency", "News Wire", "News", "Research", "Custom"],
+            default=["Rating Agency", "News Wire", "News", "Research"]
         )
 
     with col3:
