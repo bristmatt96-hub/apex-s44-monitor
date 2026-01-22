@@ -1,0 +1,109 @@
+{
+  "company_name": "FiberCop SpA",
+  "ticker": "FIBCOP",
+  "sector": "TMT - Telecommunications Infrastructure",
+  "last_updated": "2026-01-22",
+  "overview": {
+    "business_description": "Italian telecommunications infrastructure provider delivering passive fiber optic access and advanced network services primarily to operators in the fixed broadband sector. Operates through a co-investment model facilitating Italy's fiber network rollout.",
+    "business_positives": [
+      "Critical infrastructure for Italy's fiber broadband",
+      "Strong consortium backing (KKR 52.5%, ADIA 20%, CPP, F2i)",
+      "Monopolistic position in Italian fiber network",
+      "Co-investment model reduces capex burden",
+      "Long-term contracted revenues with operators"
+    ],
+    "fatal_flaw": "Very high leverage (6.0x net, 8.0x gross); heavy capex requirements (~$3bn/year) exceed operating cash flow; negative rating outlooks from Moody's and S&P",
+    "ownership": "KKR (52.5%), ADIA (20%), CPP Investments, F2i SGR",
+    "public_private": "private",
+    "recent_news": "Jun 2025: Issued EUR 2.8bn triple-tranche senior secured bonds. Jun 2025: S&P and Moody's revised outlook to negative on capex-driven releveraging. Jun 2025: Fitch assigned first-time BB rating (stable). Nov 2023: KKR consortium acquired from TIM SpA for EUR 23.3bn."
+  },
+  "ratings": {
+    "moodys": {"rating": "Ba1", "outlook": "Negative", "date": "2025-06"},
+    "sp": {"rating": "BB+", "outlook": "Negative", "date": "2025-06"},
+    "fitch": {"rating": "BB", "outlook": "Stable", "date": "2025-06"}
+  },
+  "quick_assessment": {
+    "period_end": "LTM Jun 2025",
+    "revenue": 4467,
+    "ebitda": 2042,
+    "cffo": 2447,
+    "total_debt": 16326,
+    "interest_expense": null,
+    "capex": 3065,
+    "debt_due_one_year": 940,
+    "cash_on_hand": 4166,
+    "revolver_available": 2180
+  },
+  "key_ratios": {
+    "debt_to_ebitda": 8.0,
+    "net_debt_to_ebitda": 6.0,
+    "ebitda_margin": 45.7,
+    "ev_to_ebitda": null
+  },
+  "trend_analysis": {
+    "years": ["2023", "2024", "LTM Jun 2025"],
+    "revenue": [1601, 2677, 4467],
+    "ebitda": [1370, 1508, 2042],
+    "ebitda_margin": [85.6, 56.3, 45.7],
+    "total_debt": [3944, 10846, 16326],
+    "net_debt": [3777, 9810, 12160],
+    "gross_leverage": [2.9, 7.2, 8.0],
+    "net_leverage": [2.8, 6.5, 6.0]
+  },
+  "debt_capitalization": [
+    {"instrument": "EUR 375m Sr Unsecd Notes", "amount": 404, "maturity": "Jan 2026", "coupon": "2.88%", "price": null, "ytw": null, "rating": "WR/BB+"},
+    {"instrument": "EUR 322m Sr Unsecd Notes", "amount": 347, "maturity": "May 2026", "coupon": "3.62%", "price": null, "ytw": null, "rating": "WR/BB+"},
+    {"instrument": "EUR 508m Sr Unsecd Notes", "amount": 546, "maturity": "Oct 2027", "coupon": "2.38%", "price": null, "ytw": null, "rating": "WR/BB+"},
+    {"instrument": "EUR 625m Sr Unsecd Notes", "amount": 673, "maturity": "Feb 2028", "coupon": "6.88%", "price": null, "ytw": null, "rating": "WR/BB+"},
+    {"instrument": "EUR 750m Sr Unsecd Notes", "amount": 807, "maturity": "Jul 2028", "coupon": "7.88%", "price": null, "ytw": null, "rating": "WR/BB+"},
+    {"instrument": "EUR 2000m Revolving Credit", "amount": 0, "maturity": "Jun 2029", "coupon": "-", "price": null, "ytw": null, "rating": "-"},
+    {"instrument": "EUR 4719m Term Loan", "amount": 5095, "maturity": "Jun 2029", "coupon": "-", "price": null, "ytw": null, "rating": "-"},
+    {"instrument": "EUR 1200m Sr Secd Notes", "amount": 1384, "maturity": "Jun 2030", "coupon": "4.75%", "price": 102.26, "ytw": 4.19, "rating": "Ba1/BB+"},
+    {"instrument": "EUR 700m Sr Secd Notes (FRN)", "amount": 807, "maturity": "Jun 2031", "coupon": "E+3.00%", "price": 101.09, "ytw": 5.20, "rating": "Ba1/BB+"},
+    {"instrument": "EUR 900m Sr Secd Notes", "amount": 1038, "maturity": "Jun 2032", "coupon": "5.13%", "price": 102.13, "ytw": 4.74, "rating": "Ba1/BB+"}
+  ],
+  "maturity_schedule": {
+    "2026": 751,
+    "2027": 546,
+    "2028": 1480,
+    "2029": 5095,
+    "2030": 1384,
+    "2031": 807,
+    "2032": 1038
+  },
+  "equity_market_value": {
+    "note": "Private - KKR consortium acquired from TIM SpA for EUR 23.3bn (Nov 2023)"
+  },
+  "top_lenders": [
+    {"name": "JP Morgan", "role": "Arranger", "deals": 3},
+    {"name": "BNP Paribas", "role": "Arranger", "deals": 3},
+    {"name": "SMFG", "role": "Arranger", "deals": 3},
+    {"name": "Mediobanca", "role": "Arranger", "deals": 3},
+    {"name": "MUFG", "role": "Arranger", "deals": 3}
+  ],
+  "key_deals": [
+    {"date": "Jun 2025", "deal": "EUR 2.8bn triple-tranche senior secured bonds (4.75% 2030, FRN 2031, 5.13% 2032)"},
+    {"date": "Jun 2024", "deal": "EUR 6.7bn financing (EUR 4.7bn TL + EUR 2bn RCF)"},
+    {"date": "Jun 2024", "deal": "Swisscom sold 4.5% to KKR for $477m"},
+    {"date": "Nov 2023", "deal": "KKR consortium acquired 100% from TIM SpA for EUR 23.3bn"},
+    {"date": "Aug 2020", "deal": "KKR acquired initial 42% from TIM for EUR 2.3bn"}
+  ],
+  "credit_opinion": {
+    "summary": "FiberCop is Italy's dominant fiber infrastructure provider carved out of TIM SpA in 2023. KKR-led consortium paid EUR 23.3bn reflecting strategic value of Italy's fiber network. Very high leverage (6.0x net, 8.0x gross) and capex-intensive rollout (~$3bn/year) result in negative free cash flow. Rating outlooks turned negative in Jun 2025 on releveraging concerns. Secured bonds yield 4.2-5.2% reflecting infrastructure quality.",
+    "key_risks": [
+      "Very high leverage (6.0x net, 8.0x gross)",
+      "Capex exceeds operating cash flow",
+      "Negative rating outlooks (S&P, Moody's)",
+      "Execution risk on fiber rollout",
+      "Italian regulatory/political risk"
+    ],
+    "key_catalysts": [
+      "Completion of fiber rollout reducing capex",
+      "Subscriber ramp-up driving revenue growth",
+      "Potential consolidation with Open Fiber",
+      "Deleveraging once capex peak passes",
+      "Long-term strategic asset for Italy"
+    ],
+    "recommendation": "UNDERWEIGHT - Critical infrastructure but leverage too high and negative FCF; wait for capex peak to pass"
+  }
+}
