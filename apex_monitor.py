@@ -67,6 +67,14 @@ try:
 except ImportError:
     pass
 
+# Try to import trading tools
+TRADING_TOOLS_AVAILABLE = False
+try:
+    from monitors.trading_tools import render_trading_tools
+    TRADING_TOOLS_AVAILABLE = True
+except ImportError:
+    pass
+
 # ============== TELEGRAM FUNCTIONS ==============
 
 def send_telegram_message(message):
@@ -878,7 +886,7 @@ if MORNING_BRIEF_AVAILABLE and TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID:
     init_morning_scheduler()
 
 # Main content tabs
-tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs(["Trading Signals", "Equity Monitor", "Credit Events", "News Monitor", "RSS & News", "Credit Snapshot", "Knowledge Base"])
+tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8 = st.tabs(["Trading Signals", "Equity Monitor", "Credit Events", "News Monitor", "RSS & News", "Credit Snapshot", "Knowledge Base", "Trading Tools"])
 
 # Initialize NewsHound with selected index
 @st.cache_resource
@@ -1018,3 +1026,10 @@ with tab7:
     else:
         st.warning("Knowledge Base not available.")
         st.info("Install pypdf to enable: `pip install pypdf`")
+
+with tab8:
+    if TRADING_TOOLS_AVAILABLE:
+        render_trading_tools()
+    else:
+        st.warning("Trading Tools not available.")
+        st.info("Check monitors/trading_tools.py")
