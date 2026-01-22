@@ -810,8 +810,8 @@ def render_trading_signals(signals, hound=None):
 
 # ============== STREAMLIT DASHBOARD ==============
 
-st.set_page_config(page_title="XO S44 Credit Monitor", layout="wide")
-st.title("XO S44 Credit Monitor")
+st.set_page_config(page_title="Trading Analysis Tool", layout="wide")
+st.title("Trading Analysis Tool")
 
 # Get available indices
 available_indices = get_available_indices()
