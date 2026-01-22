@@ -1,0 +1,94 @@
+{
+  "company_name": "Stena AB",
+  "ticker": "STENA",
+  "sector": "Transportation - Shipping/Ferries",
+  "last_updated": "2026-01-22",
+  "overview": {
+    "business_description": "Diversified Swedish maritime and industrial conglomerate operating ferry services (Stena Line), offshore drilling, shipping, and property. Ferry operations primarily serve freight and passenger markets across Northern Europe (UK-Ireland, Scandinavia, Baltic).",
+    "business_positives": [
+      "Diversified business across ferries, drilling, property",
+      "Strong market position in North European ferry routes",
+      "Substantial asset base (vessels, property)",
+      "Family-owned provides long-term stability",
+      "Ample liquidity with undrawn revolvers"
+    ],
+    "fatal_flaw": "High leverage (6.0x net); EBITDA declining (down 9.5% YoY); capex-intensive fleet renewal; offshore drilling cyclicality",
+    "ownership": "Stena Sphere (Olsson family - private)",
+    "public_private": "private",
+    "recent_news": "EBITDA weakening: Q3 2025 down 2.3% YoY, Q2 down 15%, Q1 down 24.6%. FY24 EBITDA ex asset sales dropped 9.5%. Strong liquidity buffer but earnings under pressure."
+  },
+  "ratings": {
+    "moodys": {"rating": "Ba3", "outlook": "", "date": ""},
+    "sp": {"rating": "BB+", "outlook": "", "date": ""},
+    "fitch": {"rating": "", "outlook": "", "date": ""}
+  },
+  "quick_assessment": {
+    "period_end": "LTM Sep 2025",
+    "revenue": 5464,
+    "ebitda": 1215,
+    "cffo": 970,
+    "total_debt": 7569,
+    "interest_expense": null,
+    "capex": 1263,
+    "debt_due_one_year": 121,
+    "cash_on_hand": 337,
+    "revolver_available": 1071
+  },
+  "key_ratios": {
+    "debt_to_ebitda": 6.2,
+    "net_debt_to_ebitda": 6.0,
+    "ebitda_margin": 22.2,
+    "ev_to_ebitda": null
+  },
+  "trend_analysis": {
+    "years": ["2022", "2023", "2024", "LTM Sep 2025"],
+    "revenue": [4989, 5429, 4910, 5464],
+    "ebitda": [1191, 1385, 1151, 1215],
+    "ebitda_margin": [23.9, 25.5, 23.4, 22.2],
+    "total_debt": [6510, 6697, 6725, 7569],
+    "net_debt": [6303, 6324, 6324, 7232],
+    "gross_leverage": [5.5, 4.8, 5.8, 6.2]
+  },
+  "debt_capitalization": [
+    {"instrument": "SEK 800m Notes (Fixed)", "amount": 75, "maturity": "Jan 2027", "coupon": "6.00%", "price": null, "ytw": null, "rating": "-"},
+    {"instrument": "SEK 800m Notes (FRN)", "amount": 75, "maturity": "Jan 2027", "coupon": "STIBOR+2.00%", "price": null, "ytw": null, "rating": "-"},
+    {"instrument": "EUR 325m Sr Secd Notes", "amount": 353, "maturity": "Feb 2028", "coupon": "7.50%", "price": 103.76, "ytw": null, "rating": "BB+"},
+    {"instrument": "EUR 93m Revolving Credit", "amount": 0, "maturity": "Mar 2028", "coupon": "-", "price": null, "ytw": null, "rating": "-"},
+    {"instrument": "EUR 240m Revolving Credit", "amount": 0, "maturity": "May 2029", "coupon": "-", "price": null, "ytw": null, "rating": "-"},
+    {"instrument": "EUR 650m Revolving Credit", "amount": 0, "maturity": "Dec 2030", "coupon": "-", "price": null, "ytw": null, "rating": "-"},
+    {"instrument": "EUR 88m Revolving Credit", "amount": 0, "maturity": "Dec 2030", "coupon": "-", "price": null, "ytw": null, "rating": "-"},
+    {"instrument": "USD 700m Sr Secd Notes", "amount": 700, "maturity": "Jan 2031", "coupon": "7.25%", "price": 102.66, "ytw": 6.61, "rating": "Ba3/BB+"},
+    {"instrument": "USD 400m Sr Secd Notes", "amount": 400, "maturity": "Feb 2031", "coupon": "7.63%", "price": 103.55, "ytw": 6.78, "rating": "Ba3/BB+"},
+    {"instrument": "USD 150m Sr Secd Notes", "amount": 150, "maturity": "Jan 2031", "coupon": "7.25%", "price": 102.66, "ytw": 6.61, "rating": "Ba3/BB+"}
+  ],
+  "maturity_schedule": {
+    "2027": 150,
+    "2028": 353,
+    "2031": 1250
+  },
+  "equity_market_value": {
+    "note": "Private - Stena Sphere (Olsson family)"
+  },
+  "key_deals": [
+    {"date": "Apr 2025", "deal": "Acquired Baltreiss (Latvia transportation, 55%)"},
+    {"date": "Sep 2024", "deal": "Acquired Ntex (Swedish trailer operator)"},
+    {"date": "Mar 2025", "deal": "USD 160m tap of 7.25% senior secured notes"}
+  ],
+  "credit_opinion": {
+    "summary": "Stena is a highly leveraged Swedish shipping/ferry conglomerate with EBITDA under pressure (down 9.5% in FY24, quarterly declines continuing). Leverage has increased from 4.8x to 6.2x. Strong asset backing (vessels, property) provides downside protection but earnings trajectory is concerning. Bonds yield 6.6-6.8% reflecting elevated risk.",
+    "key_risks": [
+      "High leverage (6.0x net, increasing)",
+      "EBITDA declining (Q1: -24.6%, Q2: -15%, Q3: -2.3%)",
+      "Capex-intensive fleet renewal",
+      "Offshore drilling cyclicality",
+      "Brexit impact on UK-Ireland routes"
+    ],
+    "key_catalysts": [
+      "EBITDA stabilization",
+      "Property asset sales for deleveraging",
+      "Offshore drilling recovery",
+      "Ferry volume recovery"
+    ],
+    "recommendation": "UNDERWEIGHT - High leverage, weakening earnings, negative trajectory"
+  }
+}
