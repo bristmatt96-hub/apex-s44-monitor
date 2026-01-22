@@ -1,19 +1,26 @@
 {
-  "company_name": "Verisure",
+  "company_name": "Verisure Midholding AB",
   "legal_entity": "Verisure plc",
   "holding_company": "Verisure Holding AB",
-  "alternate_names": ["Securitas Direct", "Aegis Lux 2 Sarl"],
+  "alternate_names": [
+    "Securitas Direct",
+    "Aegis Lux 2 Sarl"
+  ],
   "sector": "Business Services - Security/Protection",
   "geography": "Switzerland (HQ), Pan-European operations",
   "last_updated": "2026-01-21",
   "data_source": "Debtwire",
-
   "ratings": {
-    "moodys": {"rating": "NR", "outlook": null},
-    "sp": {"rating": "NR", "outlook": null},
+    "moodys": {
+      "rating": "NR",
+      "outlook": null
+    },
+    "sp": {
+      "rating": "NR",
+      "outlook": null
+    },
     "note": "Large publicly traded company with ~$18bn market cap. Investment-grade adjacent credit quality."
   },
-
   "overview": {
     "business_description": "European security services provider delivering professionally monitored alarm systems and smart security solutions for residential and small business customers. Operates subscription-based recurring revenue model across 17 European countries plus Latin America. Market leader in monitored home security.",
     "business_positives": [
@@ -32,7 +39,6 @@
     "ownership": "Public (Stockholm: VSURE). Hellman & Friedman LLC owns 45.9% stake. Large institutional shareholder base including Vanguard, Fidelity, BlackRock.",
     "recent_news": "Priced EUR 1.25bn TLB at E+225bps and par (Oct 2025). Priced EUR 1bn senior secured PIK toggle notes at 5.625% (Oct 2025). Large-cap European IPO pipe mentioned (Jan 2026). Robust 2025 HY performance despite tight spreads."
   },
-
   "quick_assessment": {
     "total_debt": 5000,
     "cash_on_hand": null,
@@ -41,7 +47,6 @@
     "market_cap": 17930,
     "note": "Very large market cap provides substantial equity cushion. Strong market access demonstrated by recent issuances."
   },
-
   "debt_capitalization": [
     {
       "instrument": "EUR 903m Sr Secd Notes",
@@ -95,7 +100,6 @@
       "note": "Oct 2025 issuance"
     }
   ],
-
   "maturity_schedule": {
     "year_1": 903,
     "year_2": 0,
@@ -105,15 +109,18 @@
     "thereafter": 2145,
     "note": "Well-laddered maturity profile. Jul 2026 maturity easily refinanceable."
   },
-
   "equity_market_value": {
     "ticker": "VSURE.SK",
     "exchange": "Stockholm",
     "share_price": "EUR 14.73",
     "equity_market_value": 17930,
-    "key_shareholders": ["Hellman & Friedman (45.9%)", "Vanguard", "Fidelity", "BlackRock"]
+    "key_shareholders": [
+      "Hellman & Friedman (45.9%)",
+      "Vanguard",
+      "Fidelity",
+      "BlackRock"
+    ]
   },
-
   "credit_opinion": {
     "recommendation": "OVERWEIGHT",
     "summary": "Verisure is a strong performing credit with low distress score (8) and all bonds trading at or above par (100-103). The company has a massive $17.9bn market cap providing substantial equity cushion against ~$5bn debt. Recent financing at E+225bps and 5.625% demonstrates excellent market access at tight spreads - investment-grade adjacent pricing. Subscription-based recurring revenue model is highly attractive. European market leader in monitored home security with 17 country footprint. Strong H&F sponsorship (45.9%) with public listing providing liquidity. Jul 2026 maturity ($903m) should be easily refinanced.",
@@ -132,7 +139,6 @@
       "Further spread tightening"
     ]
   },
-
   "distress_indicators": {
     "debtwire_distress_score": 8,
     "lifecycle_status": "Performing credit",

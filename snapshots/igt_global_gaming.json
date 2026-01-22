@@ -1,19 +1,27 @@
 {
-  "company_name": "IGT Global Gaming",
+  "company_name": "International Game Technology plc",
   "legal_entity": "International Game Technology (Global Gaming)",
   "parent_company": "IGT PLC",
-  "alternate_names": ["IGT", "International Game Technology", "Everi/IGT"],
+  "alternate_names": [
+    "IGT",
+    "International Game Technology",
+    "Everi/IGT"
+  ],
   "sector": "Technology - Gaming/Lottery Software",
   "geography": "United Kingdom",
   "last_updated": "2026-01-21",
   "data_source": "Debtwire",
-
   "ratings": {
-    "moodys": {"rating": "NR", "outlook": null},
-    "sp": {"rating": "NR", "outlook": null},
+    "moodys": {
+      "rating": "NR",
+      "outlook": null
+    },
+    "sp": {
+      "rating": "NR",
+      "outlook": null
+    },
     "note": "Parent IGT PLC is rated. This is the carve-out gaming unit."
   },
-
   "overview": {
     "business_description": "Global Gaming unit of International Game Technology (IGT). IGT is a leading gaming and lottery technology company providing slot machines, gaming systems, and digital gaming solutions. The Global Gaming and PlayDigital units are being separated from the lottery business.",
     "business_positives": [
@@ -29,7 +37,6 @@
     "ownership": "Private unit - being carved out from IGT PLC. Everi merger in progress.",
     "recent_news": "IGT exploring strategic alternatives for Global Gaming and PlayDigital units (Jun 2023). $3.2bn leveraged loan signed Jul 2025 related to Everi transaction."
   },
-
   "quick_assessment": {
     "total_debt": 3200,
     "cash_on_hand": null,
@@ -40,13 +47,11 @@
     "ebitda": null,
     "note": "Limited data - carve-out unit"
   },
-
   "key_ratios": {
     "debt_to_ebitda": null,
     "net_debt_to_ebitda": null,
     "note": "Financials not separately reported for carve-out unit"
   },
-
   "debt_capitalization": [
     {
       "instrument": "$3.2bn Leveraged Loan (Everi/IGT)",
@@ -58,15 +63,21 @@
       "stw": null,
       "rating": null,
       "seniority": "Senior Secured",
-      "lead_banks": ["Barclays", "Goldman Sachs", "Deutsche Bank", "Morgan Stanley", "Citi", "BNP Paribas", "Wells Fargo"],
+      "lead_banks": [
+        "Barclays",
+        "Goldman Sachs",
+        "Deutsche Bank",
+        "Morgan Stanley",
+        "Citi",
+        "BNP Paribas",
+        "Wells Fargo"
+      ],
       "signed_date": "Jul 2025"
     }
   ],
-
   "maturity_schedule": {
     "note": "Maturity details not available for new facility"
   },
-
   "strategic_situation": {
     "status": "Carve-out/spin-off in progress",
     "transaction": "Everi merger - combined gaming technology company",
@@ -74,7 +85,6 @@
     "banks_involved": 16,
     "implication": "Strong bank support for combined entity"
   },
-
   "credit_opinion": {
     "recommendation": "OVERWEIGHT",
     "summary": "IGT Global Gaming has the LOWEST distress score (4) in your entire portfolio, indicating exceptional credit quality. While detailed financials are limited for this carve-out unit, the $3.2bn loan facility signed in Jul 2025 with 16 major banks demonstrates strong market confidence. IGT is a leader in gaming and lottery technology. The Everi merger creates a combined gaming technology champion. Parent IGT PLC provides transparency through public filings.",
@@ -94,7 +104,6 @@
       "Digital gaming growth opportunity"
     ]
   },
-
   "distress_indicators": {
     "debtwire_distress_score": 4,
     "lifecycle_status": "Performing credit",

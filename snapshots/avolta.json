@@ -1,17 +1,25 @@
 {
-  "company_name": "Avolta",
+  "company_name": "Dufry One B.V. (Avolta)",
   "legal_entity": "Avolta AG",
-  "alternate_names": ["Dufry", "Autogrill", "Dufry-Autogrill"],
+  "alternate_names": [
+    "Dufry",
+    "Autogrill",
+    "Dufry-Autogrill"
+  ],
   "sector": "Consumer & Retail - Travel Retail",
   "geography": "Switzerland",
   "last_updated": "2026-01-21",
   "data_source": "Debtwire",
-
   "ratings": {
-    "moodys": {"rating": "Ba2", "outlook": null},
-    "sp": {"rating": "BB+", "outlook": null}
+    "moodys": {
+      "rating": "Ba2",
+      "outlook": null
+    },
+    "sp": {
+      "rating": "BB+",
+      "outlook": null
+    }
   },
-
   "overview": {
     "business_description": "Global travel retail and F&B group formed from Dufry-Autogrill merger (Jul 2022). Operates duty-free shops, convenience stores, and food & beverage concessions in airports, motorways, and railway stations worldwide. Sells perfumes, cosmetics, food, confectionery, wines, spirits, tobacco, watches, jewelry, electronics.",
     "business_positives": [
@@ -29,7 +37,6 @@
     "ownership": "Public (SIX: AVOL). Edizione SpA (Benetton family) owns 21.86%.",
     "recent_news": "EUR 500m Sr Unsecd Notes issued May 2025 at 4.50%. EUR 2.4bn RCF signed Oct 2024. Follow-on equity offering Jun 2025 ($216m)."
   },
-
   "quick_assessment": {
     "total_debt": 4581,
     "total_debt_inc_leases": 14708,
@@ -43,7 +50,6 @@
     "ebitda": 2102,
     "market_cap": 8795
   },
-
   "key_ratios": {
     "debt_to_ebitda": 2.2,
     "net_debt_to_ebitda": 1.6,
@@ -51,19 +57,57 @@
     "ev_to_ebitda": 10.7,
     "ebitda_margin": 12.0
   },
-
   "trend_analysis": {
-    "years": ["FY 2022", "FY 2023", "FY 2024", "LTM Jun 2025"],
-    "revenue": [7439, 15198, 15166, 17574],
-    "ebitda": [777, 1697, 1782, 2102],
-    "ebitda_margin": [10.4, 11.2, 11.8, 12.0],
-    "total_debt": [3867, 3969, 3745, 4581],
-    "net_debt": [2942, 3119, 2909, 3407],
-    "gross_leverage": [5.0, 2.3, 2.1, 2.2],
-    "net_leverage": [3.8, 1.8, 1.6, 1.6],
+    "years": [
+      "FY 2022",
+      "FY 2023",
+      "FY 2024",
+      "LTM Jun 2025"
+    ],
+    "revenue": [
+      7439,
+      15198,
+      15166,
+      17574
+    ],
+    "ebitda": [
+      777,
+      1697,
+      1782,
+      2102
+    ],
+    "ebitda_margin": [
+      10.4,
+      11.2,
+      11.8,
+      12.0
+    ],
+    "total_debt": [
+      3867,
+      3969,
+      3745,
+      4581
+    ],
+    "net_debt": [
+      2942,
+      3119,
+      2909,
+      3407
+    ],
+    "gross_leverage": [
+      5.0,
+      2.3,
+      2.1,
+      2.2
+    ],
+    "net_leverage": [
+      3.8,
+      1.8,
+      1.6,
+      1.6
+    ],
     "note": "2023 onwards includes Autogrill merger"
   },
-
   "debt_capitalization": [
     {
       "instrument": "EUR 2332m Revolving Credit",
@@ -126,7 +170,7 @@
       "maturity": "May 2032",
       "coupon": "4.50%",
       "price": 102.75,
-      "ytw": 4.00,
+      "ytw": 4.0,
       "stw": null,
       "rating": "Ba2/BB+",
       "seniority": "Senior Unsecured"
@@ -143,7 +187,6 @@
       "seniority": "Finance Lease"
     }
   ],
-
   "maturity_schedule": {
     "year_1": 628,
     "year_2": 881,
@@ -152,7 +195,6 @@
     "year_5": 0,
     "thereafter": 1174
   },
-
   "maturity_detail": {
     "2026": "CHF 500m Convertible (~$628m)",
     "2027": "EUR 750m notes (~$881m)",
@@ -161,7 +203,6 @@
     "2031": "EUR 500m notes (~$587m)",
     "2032": "EUR 500m notes (~$587m)"
   },
-
   "equity_market_value": {
     "ticker": "AVOL.SW",
     "exchange": "SIX Swiss Exchange",
@@ -169,7 +210,6 @@
     "total_enterprise_value": 22520,
     "tev_to_ebitda": 10.7
   },
-
   "credit_opinion": {
     "recommendation": "OVERWEIGHT",
     "summary": "Avolta is a HIGH QUALITY Ba2/BB+ credit - one of the strongest in European HY. Net leverage at just 1.6x is exceptional for the rating. Distress score of 9 is the lowest in your portfolio. All bonds trading near/above par with tight yields (2.7-4.0%) reflect near-IG quality. The $8.8bn market cap provides massive equity cushion. Strong CFFO of $3.5bn demonstrates cash generation. Main risk is Mar 2026 convertible ($628m) maturity and large lease liabilities (~$10bn) which are typical for travel retail.",
@@ -189,7 +229,6 @@
       "Further spread tightening toward IG levels"
     ]
   },
-
   "distress_indicators": {
     "debtwire_distress_score": 9,
     "lifecycle_status": "Performing credit",

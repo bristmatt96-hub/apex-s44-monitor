@@ -1,19 +1,26 @@
 {
-  "company_name": "Rossini (Recordati)",
+  "company_name": "Rossini S.\u00e0 r.l. (Recordati)",
   "legal_entity": "Rossini SARL",
   "operating_company": "Recordati SpA",
-  "alternate_names": ["Rossini Investment SARL", "Recordati"],
+  "alternate_names": [
+    "Rossini Investment SARL",
+    "Recordati"
+  ],
   "sector": "Healthcare - Specialty Pharmaceuticals",
   "geography": "Italy",
   "last_updated": "2026-01-21",
   "data_source": "Debtwire",
-
   "ratings": {
-    "moodys": {"rating": "B2", "outlook": "Stable"},
-    "sp": {"rating": "NR", "outlook": null},
+    "moodys": {
+      "rating": "B2",
+      "outlook": "Stable"
+    },
+    "sp": {
+      "rating": "NR",
+      "outlook": null
+    },
     "note": "B2 stable assigned Oct 2018 for acquisition financing. Underlying Recordati is higher quality."
   },
-
   "overview": {
     "business_description": "Pharmaceutical holding company managing majority stake in Recordati SpA, an Italy-based international specialty pharmaceutical firm. Recordati develops and markets pharmaceuticals for rare diseases and specialty/primary care across Europe and globally. Publicly traded on Milan exchange.",
     "business_positives": [
@@ -30,7 +37,6 @@
     "ownership": "Private - PE-owned. CVC Capital Partners acquired Recordati via Rossini in 2018 for ~$6bn. Recordati remains publicly traded on Milan exchange.",
     "recent_news": "Priced EUR 2bn Sr Secd Notes (Jul 2024). Credit report notes 'complex corporate structure partially mitigated by Recordati's strong margins and cash generation' (Jul 2024)."
   },
-
   "quick_assessment": {
     "total_debt": 2050,
     "cash_on_hand": null,
@@ -41,13 +47,11 @@
     "ebitda": null,
     "note": "Holdco structure - financials at Recordati level. Strong underlying cash generation."
   },
-
   "key_ratios": {
     "debt_to_ebitda": null,
     "net_debt_to_ebitda": null,
     "note": "Leverage at Recordati level is conservative. Holdco debt serviced by Recordati dividends."
   },
-
   "debt_capitalization": [
     {
       "instrument": "Term Loan",
@@ -84,7 +88,6 @@
       "seniority": "Senior Secured"
     }
   ],
-
   "maturity_schedule": {
     "year_1": 47,
     "year_2": 0,
@@ -94,14 +97,28 @@
     "thereafter": 0,
     "note": "Small Mar 2026 TL maturity, bulk matures 2029"
   },
-
   "recent_issuance": [
-    {"date": "Jul 2024", "instrument": "EUR 2bn Sr Secd Notes 2029", "pricing": "Market"},
-    {"date": "Oct 2019", "instrument": "EUR 650m Sr Secd Notes", "pricing": "Market"},
-    {"date": "Dec 2018", "instrument": "EUR 850m Sr Secd Notes", "pricing": "Market"},
-    {"date": "Oct 2018", "instrument": "EUR 1.5bn Sr Secd Notes", "pricing": "LBO financing"}
+    {
+      "date": "Jul 2024",
+      "instrument": "EUR 2bn Sr Secd Notes 2029",
+      "pricing": "Market"
+    },
+    {
+      "date": "Oct 2019",
+      "instrument": "EUR 650m Sr Secd Notes",
+      "pricing": "Market"
+    },
+    {
+      "date": "Dec 2018",
+      "instrument": "EUR 850m Sr Secd Notes",
+      "pricing": "Market"
+    },
+    {
+      "date": "Oct 2018",
+      "instrument": "EUR 1.5bn Sr Secd Notes",
+      "pricing": "LBO financing"
+    }
   ],
-
   "underlying_asset": {
     "company": "Recordati SpA",
     "ticker": "REC.MI",
@@ -110,14 +127,12 @@
     "geographic_focus": "Europe, with international expansion",
     "strengths": "High margins, strong cash generation, defensive healthcare"
   },
-
   "transaction_history": {
     "acquisition_date": "2018",
     "acquirer": "CVC Capital Partners",
     "deal_value": 6000,
     "structure": "Holdco LBO - debt at Rossini, equity in Recordati"
   },
-
   "credit_opinion": {
     "recommendation": "OVERWEIGHT",
     "summary": "Rossini/Recordati is a strong performing credit with low distress score (8) and both bonds trading above par (101-105). While the B2 rating reflects holdco structural subordination, the underlying Recordati is a high-quality specialty pharma with strong margins and cash generation. Credit report specifically notes this mitigates the complex structure. CVC has owned since 2018 - approaching typical PE holding period but no immediate exit pressure given market conditions. Small Mar 2026 TL maturity ($47m) is easily addressable. Healthcare is defensive sector with recurring revenue.",
@@ -138,7 +153,6 @@
       "M&A upside from Recordati acquisitions"
     ]
   },
-
   "distress_indicators": {
     "debtwire_distress_score": 8,
     "lifecycle_status": "Performing credit",

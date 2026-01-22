@@ -1,17 +1,21 @@
 {
-  "company_name": "Cheplapharm",
+  "company_name": "Cheplapharm Arzneimittel GmbH",
   "legal_entity": "Cheplapharm SE",
   "operating_entity": "CHEPLAPHARM Arzneimittel GmbH",
   "sector": "Healthcare - Specialty Pharma",
   "geography": "Germany",
   "last_updated": "2026-01-21",
   "data_source": "Debtwire",
-
   "ratings": {
-    "moodys": {"rating": "B3", "outlook": null},
-    "sp": {"rating": "B", "outlook": null}
+    "moodys": {
+      "rating": "B3",
+      "outlook": null
+    },
+    "sp": {
+      "rating": "B",
+      "outlook": null
+    }
   },
-
   "overview": {
     "business_description": "Specialty pharma platform acquiring and managing established pharmaceutical brands globally. Serial acquirer of off-patent/mature drugs from big pharma companies including Eli Lilly, Bristol-Myers, AstraZeneca, Takeda, Sanofi, and others.",
     "business_positives": [
@@ -26,7 +30,6 @@
     "ownership": "Private - Atlantic Park Strategic Capital (minority stake acquired Oct 2022 at $545m)",
     "recent_news": "1H25 EBITDA declines 13.9% YoY to EUR 337.6m. Issued EUR 750m Sr Secd Notes at 7.125% (Jun 2025). Pending acquisition of Eli Lilly's Gemzar worldwide rights."
   },
-
   "quick_assessment": {
     "total_debt": 4835,
     "cash_on_hand": null,
@@ -37,14 +40,12 @@
     "interest_expense": null,
     "ebitda_1h25_annualized": 675
   },
-
   "key_ratios": {
     "debt_to_ebitda": null,
     "net_debt_to_ebitda": null,
     "ebitda_minus_capex_to_interest": null,
     "fcf_to_debt": null
   },
-
   "debt_capitalization": [
     {
       "instrument": "EUR 695m Revolving Credit",
@@ -62,7 +63,7 @@
       "amount": 1682,
       "maturity": "Feb 2029",
       "coupon": "E+400bps",
-      "price": 100.40,
+      "price": 100.4,
       "ytw": null,
       "stw": null,
       "rating": null,
@@ -85,7 +86,7 @@
       "maturity": "May 2030",
       "coupon": "7.50%",
       "price": 103.32,
-      "ytw": 6.60,
+      "ytw": 6.6,
       "stw": null,
       "rating": "B3/B",
       "seniority": "Senior Secured"
@@ -96,7 +97,7 @@
       "maturity": "May 2030",
       "coupon": "7.50%",
       "price": 103.32,
-      "ytw": 6.60,
+      "ytw": 6.6,
       "stw": null,
       "rating": "B3/B",
       "seniority": "Senior Secured"
@@ -106,7 +107,7 @@
       "amount": 865,
       "maturity": "Jun 2031",
       "coupon": "7.125%",
-      "price": 101.80,
+      "price": 101.8,
       "ytw": 6.72,
       "stw": null,
       "rating": "B3",
@@ -135,7 +136,6 @@
       "seniority": "Senior Unsecured"
     }
   ],
-
   "maturity_schedule": {
     "year_1": 0,
     "year_2": 0,
@@ -144,25 +144,54 @@
     "year_5": 1124,
     "thereafter": 865
   },
-
   "maturity_detail": {
     "2028": "EUR 575m + USD 500m unsecured notes (~$890m) + RCF (~$273m)",
     "2029": "EUR 1480m TLB (~$1.68bn)",
     "2030": "EUR 1050m secured notes (~$1.12bn)",
     "2031": "EUR 750m secured notes (~$865m)"
   },
-
   "acquisition_history": [
-    {"date": "Oct 2024", "target": "Eli Lilly - Gemzar worldwide rights", "status": "Pending"},
-    {"date": "Nov 2023", "target": "Chugai - Xeloda Japan", "value": null},
-    {"date": "Apr 2023", "target": "Eli Lilly - Zyprexa", "value": 1400},
-    {"date": "Mar 2022", "target": "Bristol-Myers - Oncology drugs (Hydrea, Paraplatin, Taxol)", "value": null},
-    {"date": "Jun 2021", "target": "Astellas - Infectious disease drugs", "value": 115},
-    {"date": "Jan 2021", "target": "AstraZeneca - Atacand", "value": 400},
-    {"date": "Sep 2020", "target": "Takeda - Non-core assets Europe/Canada", "value": 562},
-    {"date": "Aug 2020", "target": "Leo Pharma - One-Alpha, Locoid, Pimafucin, Zineryt", "value": 358}
+    {
+      "date": "Oct 2024",
+      "target": "Eli Lilly - Gemzar worldwide rights",
+      "status": "Pending"
+    },
+    {
+      "date": "Nov 2023",
+      "target": "Chugai - Xeloda Japan",
+      "value": null
+    },
+    {
+      "date": "Apr 2023",
+      "target": "Eli Lilly - Zyprexa",
+      "value": 1400
+    },
+    {
+      "date": "Mar 2022",
+      "target": "Bristol-Myers - Oncology drugs (Hydrea, Paraplatin, Taxol)",
+      "value": null
+    },
+    {
+      "date": "Jun 2021",
+      "target": "Astellas - Infectious disease drugs",
+      "value": 115
+    },
+    {
+      "date": "Jan 2021",
+      "target": "AstraZeneca - Atacand",
+      "value": 400
+    },
+    {
+      "date": "Sep 2020",
+      "target": "Takeda - Non-core assets Europe/Canada",
+      "value": 562
+    },
+    {
+      "date": "Aug 2020",
+      "target": "Leo Pharma - One-Alpha, Locoid, Pimafucin, Zineryt",
+      "value": 358
+    }
   ],
-
   "credit_opinion": {
     "recommendation": "NEUTRAL",
     "summary": "Cheplapharm is a B3/B rated specialty pharma with an elevated distress score of 28. The 1H25 EBITDA decline of 13.9% YoY is concerning and warrants monitoring. However, bonds are trading near/above par (secured at 100-103, unsecured at 98-99) suggesting market is comfortable. The acquisition-dependent model requires constant execution. No near-term maturities until Jan 2028 (~$890m unsecured) provides some runway. Total debt of ~$4.8bn is substantial.",
@@ -183,7 +212,6 @@
       "Potential rating upgrade if leverage improves"
     ]
   },
-
   "distress_indicators": {
     "debtwire_distress_score": 28,
     "lifecycle_status": "Performing credit",

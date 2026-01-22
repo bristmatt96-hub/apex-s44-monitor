@@ -1,19 +1,29 @@
 {
-  "company_name": "Webuild",
+  "company_name": "Webuild S.p.A.",
   "legal_entity": "Webuild SpA",
-  "alternate_names": ["Salini Impregilo (former)", "WBD"],
+  "alternate_names": [
+    "Salini Impregilo (former)",
+    "WBD"
+  ],
   "sector": "Industrials - Construction/Infrastructure",
   "geography": "Italy",
   "last_updated": "2026-01-21",
   "data_source": "Debtwire",
-
   "ratings": {
-    "moodys": {"rating": "NR", "outlook": null},
-    "sp": {"rating": "BB", "outlook": null},
-    "sp_recent": {"rating": "BB+", "note": "On Jun 2031 notes"},
+    "moodys": {
+      "rating": "NR",
+      "outlook": null
+    },
+    "sp": {
+      "rating": "BB",
+      "outlook": null
+    },
+    "sp_recent": {
+      "rating": "BB+",
+      "note": "On Jun 2031 notes"
+    },
     "note": "BB/BB+ rated. Italian state-backed infrastructure contractor."
   },
-
   "overview": {
     "business_description": "Global infrastructure group designing and constructing large-scale projects for sustainable mobility, clean hydro energy, clean water, and green buildings. Serves public and private clients worldwide. Major projects include railways, metros, dams, and tunnels. Former Salini Impregilo.",
     "business_positives": [
@@ -22,7 +32,7 @@
       "All bonds trading ABOVE PAR (100-109)",
       "IG-tight yields (2.6-3.8%)",
       "STRONG revenue growth (25%/21%/19% YoY)",
-      "Net income growing ($11m→$291m)",
+      "Net income growing ($11m\u2192$291m)",
       "Italian state backing via CDP (major shareholder)",
       "Strong infrastructure order backlog",
       "EUR 880m undrawn RCF (Nov 2025)",
@@ -33,7 +43,6 @@
     "ownership": "Public - Milan Stock Exchange (MTA: WBD). Major shareholder: Cassa Depositi e Prestiti SpA (Italian state investment bank) with 211m shares. Strong institutional ownership.",
     "recent_news": "Priced upsized EUR 450m senior unsecured 2031 note at 4.125% yield (Jun 2025). Completed EUR 880m Revolving Credit facility (Nov 2025). Acquired Clough Ltd from Murray & Roberts (Feb 2023). Active in Australian infrastructure market."
   },
-
   "quick_assessment": {
     "total_debt": 3202,
     "cash_on_hand": 2496,
@@ -47,7 +56,6 @@
     "market_cap": 4060,
     "note": "Low net leverage despite high gross leverage. Construction industry dynamics."
   },
-
   "key_ratios": {
     "debt_to_ebitda": 8.1,
     "net_debt_to_ebitda": 1.8,
@@ -55,21 +63,69 @@
     "ev_to_ebitda": 13.3,
     "note": "High gross leverage (8.1x) but low net leverage (1.8x). Low margins typical for construction."
   },
-
   "trend_analysis": {
-    "years": ["FY 2022", "FY 2023", "FY 2024", "LTM Jun 2025"],
-    "revenue": [8195, 10253, 11455, 14267],
-    "ebitda": [257, 280, 292, 395],
-    "ebitda_margin": [3.1, 2.7, 2.6, 2.8],
-    "total_debt": [2653, 2716, 2845, 3202],
-    "net_debt": [597, -662, -494, 706],
-    "gross_leverage": [10.3, 9.7, 9.7, 8.1],
-    "net_leverage": [2.3, "Net Cash", "Net Cash", 1.8],
-    "net_income": [11, 137, 202, 291],
-    "cffo": [28, 2089, 1159, 83],
+    "years": [
+      "FY 2022",
+      "FY 2023",
+      "FY 2024",
+      "LTM Jun 2025"
+    ],
+    "revenue": [
+      8195,
+      10253,
+      11455,
+      14267
+    ],
+    "ebitda": [
+      257,
+      280,
+      292,
+      395
+    ],
+    "ebitda_margin": [
+      3.1,
+      2.7,
+      2.6,
+      2.8
+    ],
+    "total_debt": [
+      2653,
+      2716,
+      2845,
+      3202
+    ],
+    "net_debt": [
+      597,
+      -662,
+      -494,
+      706
+    ],
+    "gross_leverage": [
+      10.3,
+      9.7,
+      9.7,
+      8.1
+    ],
+    "net_leverage": [
+      2.3,
+      "Net Cash",
+      "Net Cash",
+      1.8
+    ],
+    "net_income": [
+      11,
+      137,
+      202,
+      291
+    ],
+    "cffo": [
+      28,
+      2089,
+      1159,
+      83
+    ],
     "trend_summary": "STRONG GROWTH: Revenue up 74% in 3 years. Net income up 27x. Was NET CASH in 2023-2024. Working capital swing caused cash burn in LTM. EBITDA improving but margins remain thin."
   },
-
   "debt_capitalization": [
     {
       "instrument": "EUR 880m Revolving Credit",
@@ -157,7 +213,6 @@
       "note": "Jun 2025 issuance - upsized"
     }
   ],
-
   "maturity_schedule": {
     "year_1": 455,
     "year_2": 279,
@@ -167,22 +222,25 @@
     "thereafter": 518,
     "note": "Jul 2026 ($455m) near-term. Well-laddered otherwise through 2031."
   },
-
   "equity_market_value": {
     "ticker": "WBD",
     "exchange": "Milan Stock Exchange (MTA)",
     "share_price": "EUR 3.408",
     "equity_market_value": 4060,
-    "key_shareholders": ["Cassa Depositi e Prestiti SpA (Italian state)", "American Century", "Avantis", "Vanguard", "Dimensional"]
+    "key_shareholders": [
+      "Cassa Depositi e Prestiti SpA (Italian state)",
+      "American Century",
+      "Avantis",
+      "Vanguard",
+      "Dimensional"
+    ]
   },
-
   "state_support": {
     "shareholder": "Cassa Depositi e Prestiti SpA (CDP)",
     "shares": 211398301,
     "description": "Italian state investment bank - provides implicit support",
     "significance": "Major shareholder with strategic interest in Italian infrastructure champion"
   },
-
   "credit_opinion": {
     "recommendation": "OVERWEIGHT",
     "summary": "Webuild is a STRONG performing credit with distress score of just 8 - among the lowest in the XO S44 portfolio. All bonds trade above par (100-109) with IG-tight yields (2.6-3.8%). Net leverage is low at 1.8x despite high gross leverage (construction industry dynamics with high cash/working capital). Revenue growth has been exceptional (74% over 3 years) and net income grew from $11m to $291m. The Italian state via CDP is a major shareholder, providing implicit support. Recent EUR 450m issuance at 4.125% demonstrates strong market access. Jul 2026 maturity ($455m) should be easily refinanced. Main risks are thin construction margins (2.8%), project execution, and working capital volatility.",
@@ -206,7 +264,6 @@
       "Working capital normalization"
     ]
   },
-
   "distress_indicators": {
     "debtwire_distress_score": 8,
     "lifecycle_status": "Performing credit",

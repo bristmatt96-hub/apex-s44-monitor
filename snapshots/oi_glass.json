@@ -1,5 +1,5 @@
 {
-  "company_name": "O-I Glass Inc",
+  "company_name": "OI European Group B.V.",
   "ticker": "OI",
   "sector": "Industrials - Glass Packaging",
   "last_updated": "2026-01-22",
@@ -18,9 +18,21 @@
     "recent_news": "Jul 2025: 2Q25 EBIT fell 93% YoY to $7m. Feb 2025: S&P revised outlook to stable from positive on weaker performance. Nov 2024: Moody's revised outlook to negative. Oct 2024: 3Q24 EBIT turned negative at -$57m."
   },
   "ratings": {
-    "moodys": {"rating": "Ba3", "outlook": "Negative", "date": "2024-11"},
-    "sp": {"rating": "BB-", "outlook": "Stable", "date": "2025-02"},
-    "fitch": {"rating": "", "outlook": "", "date": ""}
+    "moodys": {
+      "rating": "Ba3",
+      "outlook": "Negative",
+      "date": "2024-11"
+    },
+    "sp": {
+      "rating": "BB-",
+      "outlook": "Stable",
+      "date": "2025-02"
+    },
+    "fitch": {
+      "rating": "",
+      "outlook": "",
+      "date": ""
+    }
   },
   "quick_assessment": {
     "period_end": "LTM Sep 2025",
@@ -41,22 +53,110 @@
     "ev_to_ebitda": 6.75
   },
   "trend_analysis": {
-    "years": ["2022", "2023", "2024", "LTM Sep 2025"],
-    "revenue": [6856, 7105, 6531, 6455],
-    "ebitda": [1028, 1275, 969, 1036],
-    "ebitda_margin": [15.0, 17.9, 14.8, 16.0],
-    "total_debt": [4584, 4772, 4774, 4938],
-    "net_debt": [3811, 3859, 4040, 4382],
-    "gross_leverage": [4.5, 3.7, 4.9, 4.8],
-    "net_leverage": [3.7, 3.0, 4.2, 4.2]
+    "years": [
+      "2022",
+      "2023",
+      "2024",
+      "LTM Sep 2025"
+    ],
+    "revenue": [
+      6856,
+      7105,
+      6531,
+      6455
+    ],
+    "ebitda": [
+      1028,
+      1275,
+      969,
+      1036
+    ],
+    "ebitda_margin": [
+      15.0,
+      17.9,
+      14.8,
+      16.0
+    ],
+    "total_debt": [
+      4584,
+      4772,
+      4774,
+      4938
+    ],
+    "net_debt": [
+      3811,
+      3859,
+      4040,
+      4382
+    ],
+    "gross_leverage": [
+      4.5,
+      3.7,
+      4.9,
+      4.8
+    ],
+    "net_leverage": [
+      3.7,
+      3.0,
+      4.2,
+      4.2
+    ]
   },
   "debt_capitalization": [
-    {"instrument": "USD 2700m Term Loan A", "amount": 2700, "maturity": "Mar 2027", "coupon": "-", "price": null, "ytw": null, "rating": "-"},
-    {"instrument": "USD 700m Sr Unsecd Notes", "amount": 700, "maturity": "2027", "coupon": "-", "price": 100.34, "ytw": null, "rating": "BB-"},
-    {"instrument": "USD 400m Sr Unsecd Notes", "amount": 400, "maturity": "2030", "coupon": "-", "price": 97.07, "ytw": 7.66, "rating": "BB-"},
-    {"instrument": "USD 690m Sr Unsecd Notes", "amount": 690, "maturity": "2031", "coupon": "-", "price": 102.43, "ytw": 6.53, "rating": "BB-"},
-    {"instrument": "USD 650m Term Loan B First Lien", "amount": 650, "maturity": "2032", "coupon": "-", "price": 100.85, "ytw": null, "rating": "-"},
-    {"instrument": "USD 300m Sr Notes", "amount": 300, "maturity": "2032", "coupon": "-", "price": 102.21, "ytw": 7.40, "rating": "BB-"}
+    {
+      "instrument": "USD 2700m Term Loan A",
+      "amount": 2700,
+      "maturity": "Mar 2027",
+      "coupon": "-",
+      "price": null,
+      "ytw": null,
+      "rating": "-"
+    },
+    {
+      "instrument": "USD 700m Sr Unsecd Notes",
+      "amount": 700,
+      "maturity": "2027",
+      "coupon": "-",
+      "price": 100.34,
+      "ytw": null,
+      "rating": "BB-"
+    },
+    {
+      "instrument": "USD 400m Sr Unsecd Notes",
+      "amount": 400,
+      "maturity": "2030",
+      "coupon": "-",
+      "price": 97.07,
+      "ytw": 7.66,
+      "rating": "BB-"
+    },
+    {
+      "instrument": "USD 690m Sr Unsecd Notes",
+      "amount": 690,
+      "maturity": "2031",
+      "coupon": "-",
+      "price": 102.43,
+      "ytw": 6.53,
+      "rating": "BB-"
+    },
+    {
+      "instrument": "USD 650m Term Loan B First Lien",
+      "amount": 650,
+      "maturity": "2032",
+      "coupon": "-",
+      "price": 100.85,
+      "ytw": null,
+      "rating": "-"
+    },
+    {
+      "instrument": "USD 300m Sr Notes",
+      "amount": 300,
+      "maturity": "2032",
+      "coupon": "-",
+      "price": 102.21,
+      "ytw": 7.4,
+      "rating": "BB-"
+    }
   ],
   "maturity_schedule": {
     "2027": 3400,
@@ -71,19 +171,54 @@
     "currency": "USD"
   },
   "top_investors": [
-    {"name": "BlackRock Advisors", "type": "Investment Advisor", "value_usd": 266},
-    {"name": "Vanguard Group", "type": "Investment Advisor", "value_usd": 248},
-    {"name": "Cooper Creek Partners", "type": "Hedge Fund", "value_usd": 131},
-    {"name": "Fidelity Management", "type": "Investment Advisor", "value_usd": 110},
-    {"name": "Dimensional Fund Advisors", "type": "Investment Advisor", "value_usd": 106}
+    {
+      "name": "BlackRock Advisors",
+      "type": "Investment Advisor",
+      "value_usd": 266
+    },
+    {
+      "name": "Vanguard Group",
+      "type": "Investment Advisor",
+      "value_usd": 248
+    },
+    {
+      "name": "Cooper Creek Partners",
+      "type": "Hedge Fund",
+      "value_usd": 131
+    },
+    {
+      "name": "Fidelity Management",
+      "type": "Investment Advisor",
+      "value_usd": 110
+    },
+    {
+      "name": "Dimensional Fund Advisors",
+      "type": "Investment Advisor",
+      "value_usd": 106
+    }
   ],
   "top_lenders": [],
   "key_deals": [
-    {"date": "Dec 2021", "deal": "Sold Cristar TableTop to Nadir Figueiredo"},
-    {"date": "Oct 2021", "deal": "Sold Le Parfait to Berlin Packaging for $84m"},
-    {"date": "Jul 2020", "deal": "Sold Australian/New Zealand business to Visy for $513m"},
-    {"date": "May 2019", "deal": "Acquired Nueva Fabrica Nacional de Vidrio from Grupo Modelo for $188m"},
-    {"date": "May 2015", "deal": "Acquired Vitro's glass container business for $2.2bn"}
+    {
+      "date": "Dec 2021",
+      "deal": "Sold Cristar TableTop to Nadir Figueiredo"
+    },
+    {
+      "date": "Oct 2021",
+      "deal": "Sold Le Parfait to Berlin Packaging for $84m"
+    },
+    {
+      "date": "Jul 2020",
+      "deal": "Sold Australian/New Zealand business to Visy for $513m"
+    },
+    {
+      "date": "May 2019",
+      "deal": "Acquired Nueva Fabrica Nacional de Vidrio from Grupo Modelo for $188m"
+    },
+    {
+      "date": "May 2015",
+      "deal": "Acquired Vitro's glass container business for $2.2bn"
+    }
   ],
   "credit_opinion": {
     "summary": "O-I Glass is a global leader in glass container manufacturing but facing significant operational headwinds. 2Q25 EBIT collapsed 93% YoY to just $7m. Leverage elevated at 4.2x net with Moody's outlook negative and S&P revised from positive to stable. Large TLA maturity in Mar 2027 ($2.7bn) will need refinancing. Unsecured notes yield 6.5-7.7% reflecting credit stress.",

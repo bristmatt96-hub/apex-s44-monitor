@@ -1,19 +1,29 @@
 {
-  "company_name": "Premier Foods",
+  "company_name": "Premier Foods Finance plc",
   "legal_entity": "Premier Foods plc",
-  "alternate_names": ["Premier Foods Finance plc", "PFD"],
+  "alternate_names": [
+    "Premier Foods Finance plc",
+    "PFD"
+  ],
   "sector": "Consumer & Retail - Branded Food",
   "geography": "United Kingdom",
   "last_updated": "2026-01-21",
   "data_source": "Debtwire",
-
   "ratings": {
-    "moodys": {"rating": "NR", "outlook": null},
-    "sp": {"rating": "BB+", "outlook": "Stable"},
-    "fitch": {"rating": "BB+", "outlook": "Stable"},
+    "moodys": {
+      "rating": "NR",
+      "outlook": null
+    },
+    "sp": {
+      "rating": "BB+",
+      "outlook": "Stable"
+    },
+    "fitch": {
+      "rating": "BB+",
+      "outlook": "Stable"
+    },
     "note": "Upgraded to BB+ by S&P (Mar 2024) on higher FCF. Fitch assigned BB+ (May 2025)."
   },
-
   "overview": {
     "business_description": "UK branded and own-label food manufacturer and distributor. Operations organized into Grocery, Sweet Treats, and international segments. Iconic British brands including Mr Kipling, Bisto, Oxo, Ambrosia, Batchelors, and Sharwood's.",
     "business_positives": [
@@ -31,7 +41,6 @@
     "ownership": "Public (LSE: PFD). Strong institutional shareholder base including JPMorgan ($139m), BlackRock ($101m), Fidelity, Goldman Sachs.",
     "recent_news": "GBP 330m notes downgraded to BB+ from BBB- by Fitch (Jul 2025). Assigned BB+ IDR stable by Fitch (May 2025). Upgraded to BB+ by S&P on higher projected FCF (Mar 2024). Acquired Merchant Gourmet (Sep 2025)."
   },
-
   "quick_assessment": {
     "total_debt": 436,
     "cash_on_hand": 171,
@@ -43,7 +52,6 @@
     "ebitda": 305,
     "market_cap": 2000
   },
-
   "key_ratios": {
     "debt_to_ebitda": 1.4,
     "net_debt_to_ebitda": 0.9,
@@ -51,27 +59,79 @@
     "ebitda_margin": 19.8,
     "note": "Excellent leverage metrics - sub-1x net debt/EBITDA"
   },
-
   "trend_analysis": {
-    "years": ["FY Apr 2022", "FY Apr 2023", "FY Mar 2024", "FY Mar 2025", "LTM Sep 2025"],
-    "revenue": [1181, 1241, 1436, 1487, 1541],
-    "ebitda": [221, 211, 275, 284, 305],
-    "ebitda_margin": [18.7, 17.0, 19.1, 19.1, 19.8],
-    "total_debt": [424, 401, 411, 421, 436],
-    "cash": [71, 79, 129, 248, 171],
-    "net_debt": [353, 322, 282, 173, 265],
-    "gross_leverage": [1.9, 1.9, 1.5, 1.5, 1.4],
-    "net_leverage": [1.6, 1.5, 1.0, 0.6, 0.9],
+    "years": [
+      "FY Apr 2022",
+      "FY Apr 2023",
+      "FY Mar 2024",
+      "FY Mar 2025",
+      "LTM Sep 2025"
+    ],
+    "revenue": [
+      1181,
+      1241,
+      1436,
+      1487,
+      1541
+    ],
+    "ebitda": [
+      221,
+      211,
+      275,
+      284,
+      305
+    ],
+    "ebitda_margin": [
+      18.7,
+      17.0,
+      19.1,
+      19.1,
+      19.8
+    ],
+    "total_debt": [
+      424,
+      401,
+      411,
+      421,
+      436
+    ],
+    "cash": [
+      71,
+      79,
+      129,
+      248,
+      171
+    ],
+    "net_debt": [
+      353,
+      322,
+      282,
+      173,
+      265
+    ],
+    "gross_leverage": [
+      1.9,
+      1.9,
+      1.5,
+      1.5,
+      1.4
+    ],
+    "net_leverage": [
+      1.6,
+      1.5,
+      1.0,
+      0.6,
+      0.9
+    ],
     "trend_summary": "Strong EBITDA growth (+27% FY24) with consistent deleveraging from 1.6x to 0.9x net. Margin expansion to ~20%."
   },
-
   "debt_capitalization": [
     {
       "instrument": "GBP 330m Sr Secd Notes",
       "amount": 467,
       "maturity": "Oct 2026",
       "coupon": null,
-      "price": 99.40,
+      "price": 99.4,
       "ytw": null,
       "stw": null,
       "rating": "BB+",
@@ -79,7 +139,6 @@
       "note": "Near-term maturity - needs refinancing"
     }
   ],
-
   "maturity_schedule": {
     "year_1": 467,
     "year_2": 0,
@@ -89,13 +148,26 @@
     "thereafter": 0,
     "maturity_wall": "Oct 2026 - $467m needs refinancing"
   },
-
   "brand_portfolio": {
-    "grocery": ["Mr Kipling", "Bisto", "Oxo", "Ambrosia", "Batchelors", "Sharwood's", "Loyd Grossman"],
-    "sweet_treats": ["Mr Kipling cakes", "Cadbury cakes (license)"],
-    "recent_acquisitions": ["Merchant Gourmet (Sep 2025)", "FUEL10K (Oct 2023)", "Spice Tailor (Sep 2022)"]
+    "grocery": [
+      "Mr Kipling",
+      "Bisto",
+      "Oxo",
+      "Ambrosia",
+      "Batchelors",
+      "Sharwood's",
+      "Loyd Grossman"
+    ],
+    "sweet_treats": [
+      "Mr Kipling cakes",
+      "Cadbury cakes (license)"
+    ],
+    "recent_acquisitions": [
+      "Merchant Gourmet (Sep 2025)",
+      "FUEL10K (Oct 2023)",
+      "Spice Tailor (Sep 2022)"
+    ]
   },
-
   "equity_market_value": {
     "ticker": "PFD.L",
     "exchange": "London Stock Exchange",
@@ -103,9 +175,14 @@
     "equity_market_value": 2000,
     "total_enterprise_value": 2280,
     "tev_to_ebitda": 7.5,
-    "key_shareholders": ["JPMorgan ($139m)", "BlackRock ($101m)", "Fidelity ($45m)", "Goldman Sachs ($44m)", "DFA ($41m)"]
+    "key_shareholders": [
+      "JPMorgan ($139m)",
+      "BlackRock ($101m)",
+      "Fidelity ($45m)",
+      "Goldman Sachs ($44m)",
+      "DFA ($41m)"
+    ]
   },
-
   "credit_opinion": {
     "recommendation": "OVERWEIGHT",
     "summary": "Premier Foods is a strong BB+ credit with excellent fundamentals. Net leverage at just 0.9x is exceptional for HY. EBITDA has grown 27% in FY24 with margins expanding to ~20%. The $2bn market cap provides substantial equity cushion. Strong FCF generation ($188m) supports deleveraging. Iconic British brands (Mr Kipling, Bisto, Oxo) provide pricing power. The Oct 2026 maturity ($467m) will need refinancing but at 0.9x leverage and BB+ ratings, this should be straightforward. Bond slightly below par (99.40) but still investment-grade adjacent credit quality.",
@@ -127,7 +204,6 @@
       "Synergies from acquisitions"
     ]
   },
-
   "distress_indicators": {
     "debtwire_distress_score": 13,
     "lifecycle_status": "Performing credit",

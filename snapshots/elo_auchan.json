@@ -1,17 +1,25 @@
 {
-  "company_name": "Elo (Auchan)",
+  "company_name": "ELO (Auchan)",
   "legal_entity": "Elo SA",
-  "alternate_names": ["Auchan", "Auchan Retail", "New Immo Holding"],
+  "alternate_names": [
+    "Auchan",
+    "Auchan Retail",
+    "New Immo Holding"
+  ],
   "sector": "Consumer & Retail - Supermarkets",
   "geography": "France",
   "last_updated": "2026-01-21",
   "data_source": "Debtwire",
-
   "ratings": {
-    "moodys": {"rating": "Ba1", "outlook": null},
-    "sp": {"rating": "BB-", "outlook": null}
+    "moodys": {
+      "rating": "Ba1",
+      "outlook": null
+    },
+    "sp": {
+      "rating": "BB-",
+      "outlook": null
+    }
   },
-
   "overview": {
     "business_description": "French retail group providing food and non-food retailing through Auchan supermarkets/hypermarkets, real estate development (shopping centers), and payment services. Operates physical stores across Europe (France, Poland, Portugal, Italy, Spain).",
     "business_positives": [
@@ -22,11 +30,10 @@
       "Asset-rich with real estate portfolio",
       "Recently refinanced with new RCFs and TL to Oct 2030"
     ],
-    "fatal_flaw": "HIGHEST DISTRESS SCORE of 39 in portfolio. EBITDA collapsed 48% from 2022 ($1.4bn → $821m). Net leverage at 6.1x is dangerous. Large net losses (-$1bn annually). EBITDA margin compressed to 2.1%. European retail structurally challenged.",
+    "fatal_flaw": "HIGHEST DISTRESS SCORE of 39 in portfolio. EBITDA collapsed 48% from 2022 ($1.4bn \u2192 $821m). Net leverage at 6.1x is dangerous. Large net losses (-$1bn annually). EBITDA margin compressed to 2.1%. European retail structurally challenged.",
     "ownership": "Private - Mulliez family (founders of Auchan)",
-    "recent_news": "Launched early redemption of EUR 1bn notes due Jan 2026 (Dec 2025). Completed EUR 425m shareholder support (Nov 2025). Considering strategic partnership change with Intermarché. Court ruling on employment protection plan (appealing)."
+    "recent_news": "Launched early redemption of EUR 1bn notes due Jan 2026 (Dec 2025). Completed EUR 425m shareholder support (Nov 2025). Considering strategic partnership change with Intermarch\u00e9. Court ruling on employment protection plan (appealing)."
   },
-
   "quick_assessment": {
     "total_debt": 6118,
     "cash_on_hand": 1149,
@@ -37,7 +44,6 @@
     "interest_expense": null,
     "ebitda": 821
   },
-
   "key_ratios": {
     "debt_to_ebitda": 7.5,
     "net_debt_to_ebitda": 6.1,
@@ -45,20 +51,63 @@
     "ebitda_minus_capex_to_interest": null,
     "fcf_to_debt": null
   },
-
   "trend_analysis": {
-    "years": ["FY 2022", "FY 2023", "FY 2024", "LTM Jun 2025"],
-    "revenue": [35842, 35071, 33541, 38596],
-    "ebitda": [1401, 1146, 734, 821],
-    "ebitda_margin": [3.9, 3.3, 2.2, 2.1],
-    "net_income": [35, -418, -1267, -994],
-    "total_debt": [5320, 6560, 6130, 6118],
-    "net_debt": [3173, 3535, 3134, 4970],
-    "gross_leverage": [3.8, 5.7, 8.3, 7.5],
-    "net_leverage": [2.3, 3.1, 4.3, 6.1],
+    "years": [
+      "FY 2022",
+      "FY 2023",
+      "FY 2024",
+      "LTM Jun 2025"
+    ],
+    "revenue": [
+      35842,
+      35071,
+      33541,
+      38596
+    ],
+    "ebitda": [
+      1401,
+      1146,
+      734,
+      821
+    ],
+    "ebitda_margin": [
+      3.9,
+      3.3,
+      2.2,
+      2.1
+    ],
+    "net_income": [
+      35,
+      -418,
+      -1267,
+      -994
+    ],
+    "total_debt": [
+      5320,
+      6560,
+      6130,
+      6118
+    ],
+    "net_debt": [
+      3173,
+      3535,
+      3134,
+      4970
+    ],
+    "gross_leverage": [
+      3.8,
+      5.7,
+      8.3,
+      7.5
+    ],
+    "net_leverage": [
+      2.3,
+      3.1,
+      4.3,
+      6.1
+    ],
     "trend_summary": "EBITDA collapsed 48% from 2022. Leverage spiked. Large net losses."
   },
-
   "debt_capitalization": [
     {
       "instrument": "EUR 500m Sr Unsecd Notes (Nov 2025)",
@@ -149,7 +198,6 @@
       "seniority": "Various"
     }
   ],
-
   "maturity_schedule": {
     "year_1": 0,
     "year_2": 0,
@@ -159,7 +207,6 @@
     "thereafter": 0,
     "note": "EUR 1bn Jan 2026 notes being early redeemed"
   },
-
   "credit_opinion": {
     "recommendation": "UNDERWEIGHT",
     "summary": "Elo/Auchan is a STRESSED Ba1/BB- credit with the HIGHEST DISTRESS SCORE (39) in your portfolio. EBITDA has collapsed 48% from 2022 ($1.4bn to $821m). Net leverage at 6.1x is dangerously high. Large annual net losses of ~$1bn. However, bonds still trade above par (101-104) reflecting family support and liquidity actions. The Mulliez family injected EUR 425m and proactively redeemed the Jan 2026 notes. The market is betting on family support, but fundamentals are deteriorating rapidly.",
@@ -177,11 +224,10 @@
       "Continued family support and capital injections",
       "Successful turnaround in EBITDA trend",
       "Asset sales from real estate portfolio",
-      "Strategic partnership with Intermarché",
+      "Strategic partnership with Intermarch\u00e9",
       "Cost restructuring benefits flowing through"
     ]
   },
-
   "distress_indicators": {
     "debtwire_distress_score": 39,
     "lifecycle_status": "Performing credit (but STRESSED)",

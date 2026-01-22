@@ -1,19 +1,27 @@
 {
-  "company_name": "SOFIMA (IMA)",
+  "company_name": "I.M.A. Industria Macchine Automatiche S.p.A.",
   "legal_entity": "Sofima Holding SPA",
   "operating_company": "IMA Industria Macchine Automatiche SpA",
-  "alternate_names": ["IMA", "Sofima", "IMA Group"],
+  "alternate_names": [
+    "IMA",
+    "Sofima",
+    "IMA Group"
+  ],
   "sector": "Industrials - Machinery/Packaging Equipment",
   "geography": "Italy (Bologna)",
   "last_updated": "2026-01-21",
   "data_source": "Debtwire",
-
   "ratings": {
-    "moodys": {"rating": "NR", "outlook": null},
-    "sp": {"rating": "NR", "outlook": null},
+    "moodys": {
+      "rating": "NR",
+      "outlook": null
+    },
+    "sp": {
+      "rating": "NR",
+      "outlook": null
+    },
     "note": "Family-owned industrial company. Solid B/BB-range credit quality implied from bond pricing."
   },
-
   "overview": {
     "business_description": "Italian industrial machinery manufacturer specializing in automatic packaging machines and processing equipment. Key supplier to pharmaceutical, food & beverage, cosmetics, and consumer goods industries. Global leader in packaging automation. Family-owned through Sofima holding structure (Vacchi family).",
     "business_positives": [
@@ -30,7 +38,6 @@
     "ownership": "Private - Single Family Office structure. Vacchi family ownership through Sofima Holding. Long-term family ownership since founding.",
     "recent_news": "Priced EUR 450m senior secured FRN add-on at 100.5 and E+375bps (Apr 2024). Automotive sector headwinds noted but IMA more diversified. Packaging automation demand structural."
   },
-
   "quick_assessment": {
     "total_debt": 1730,
     "cash_on_hand": null,
@@ -41,13 +48,11 @@
     "ebitda": null,
     "note": "Private company - limited financial disclosure. Debt quantum from bond issuances."
   },
-
   "key_ratios": {
     "debt_to_ebitda": null,
     "net_debt_to_ebitda": null,
     "note": "Financials not publicly disclosed. Family-owned private company."
   },
-
   "debt_capitalization": [
     {
       "instrument": "Term Loan",
@@ -80,7 +85,6 @@
       "note": "Apr 2024 add-on at 100.5"
     }
   ],
-
   "maturity_schedule": {
     "year_1": 7,
     "year_2": 0,
@@ -89,13 +93,23 @@
     "thereafter": 0,
     "note": "Small Mar 2026 TL. Bulk matures 2028-2029. Well-termed."
   },
-
   "recent_issuance": [
-    {"date": "May 2024", "instrument": "EUR 450m Sr Secd Notes", "pricing": "Market"},
-    {"date": "Apr 2024", "instrument": "EUR 450m Sr Secd FRN Add-on", "pricing": "E+375bps at 100.5"},
-    {"date": "Dec 2020", "instrument": "EUR 1.5bn Sr Secd Notes", "pricing": "LBO/recap financing"}
+    {
+      "date": "May 2024",
+      "instrument": "EUR 450m Sr Secd Notes",
+      "pricing": "Market"
+    },
+    {
+      "date": "Apr 2024",
+      "instrument": "EUR 450m Sr Secd FRN Add-on",
+      "pricing": "E+375bps at 100.5"
+    },
+    {
+      "date": "Dec 2020",
+      "instrument": "EUR 1.5bn Sr Secd Notes",
+      "pricing": "LBO/recap financing"
+    }
   ],
-
   "business_segments": {
     "pharma_packaging": {
       "products": "Blister packaging, filling machines, inspection systems",
@@ -111,7 +125,6 @@
       "note": "Leading position in coffee capsule equipment"
     }
   },
-
   "credit_opinion": {
     "recommendation": "OVERWEIGHT",
     "summary": "SOFIMA/IMA is a performing credit with low distress score (8) and all bonds trading at or above par (100-101). Recent EUR 450m add-on at E+375bps and 100.5 demonstrates strong market access. IMA is a global leader in packaging automation machinery serving pharma, food, and consumer goods - defensive end markets with structural growth. Family ownership through Vacchi provides long-term stability and alignment. Well-termed maturity profile with bulk in 2028-2029. Limited financial transparency as private company but bond pricing suggests solid credit quality.",
@@ -132,7 +145,6 @@
       "M&A consolidation in sector"
     ]
   },
-
   "distress_indicators": {
     "debtwire_distress_score": 8,
     "lifecycle_status": "Performing credit",

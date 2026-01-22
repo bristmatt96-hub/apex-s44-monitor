@@ -1,5 +1,5 @@
 {
-  "company_name": "TeamSystem Holdco SpA",
+  "company_name": "TeamSystem S.p.A.",
   "ticker": "TEAMSYS",
   "sector": "TMT - Software",
   "last_updated": "2026-01-22",
@@ -18,9 +18,21 @@
     "recent_news": "Jun 2025: Priced EUR 500m fixed note at 5% and EUR 1.25bn FRN at E+325bps. Jul 2025: Strong M&A pipeline in data and AI. Jun 2025: Acquired Clicdata SAS (French business software)."
   },
   "ratings": {
-    "moodys": {"rating": "B2", "outlook": "", "date": ""},
-    "sp": {"rating": "B-", "outlook": "", "date": ""},
-    "fitch": {"rating": "", "outlook": "", "date": ""}
+    "moodys": {
+      "rating": "B2",
+      "outlook": "",
+      "date": ""
+    },
+    "sp": {
+      "rating": "B-",
+      "outlook": "",
+      "date": ""
+    },
+    "fitch": {
+      "rating": "",
+      "outlook": "",
+      "date": ""
+    }
   },
   "quick_assessment": {
     "period_end": "2025",
@@ -48,15 +60,87 @@
     "total_debt": []
   },
   "debt_capitalization": [
-    {"instrument": "EUR 180m Revolving Credit", "amount": 0, "maturity": "Aug 2027", "coupon": "-", "price": null, "ytw": null, "rating": "-"},
-    {"instrument": "EUR 300m Sr Secd Notes", "amount": 324, "maturity": "Feb 2028", "coupon": "3.50%", "price": 100.21, "ytw": 3.40, "rating": "B2/B-"},
-    {"instrument": "EUR 850m Sr Secd Notes (FRN)", "amount": 917, "maturity": "Feb 2028", "coupon": "E+3.75%", "price": 100.18, "ytw": null, "rating": "B-"},
-    {"instrument": "EUR 300m Sr Secured PIK Notes", "amount": 324, "maturity": "Dec 2029", "coupon": "E+PIK", "price": null, "ytw": null, "rating": "-"},
-    {"instrument": "EUR 700m Sr Secd Notes (FRN)", "amount": 763, "maturity": "Jan 2031", "coupon": "E+3.50%", "price": 100.97, "ytw": 5.73, "rating": "B2/B-"},
-    {"instrument": "EUR 500m Sr Secd Notes", "amount": 577, "maturity": "Jul 2031", "coupon": "5.00%", "price": 100.96, "ytw": 4.80, "rating": "B2/B-"},
-    {"instrument": "EUR 50m Revolving Credit", "amount": 0, "maturity": "Jan 2031", "coupon": "-", "price": null, "ytw": null, "rating": "-"},
-    {"instrument": "EUR 300m Revolving Credit", "amount": 0, "maturity": "Jan 2031", "coupon": "-", "price": null, "ytw": null, "rating": "-"},
-    {"instrument": "EUR 1250m Sr Secd Notes (FRN)", "amount": 1442, "maturity": "Jul 2032", "coupon": "E+3.25%", "price": 100.76, "ytw": 5.61, "rating": "B-"}
+    {
+      "instrument": "EUR 180m Revolving Credit",
+      "amount": 0,
+      "maturity": "Aug 2027",
+      "coupon": "-",
+      "price": null,
+      "ytw": null,
+      "rating": "-"
+    },
+    {
+      "instrument": "EUR 300m Sr Secd Notes",
+      "amount": 324,
+      "maturity": "Feb 2028",
+      "coupon": "3.50%",
+      "price": 100.21,
+      "ytw": 3.4,
+      "rating": "B2/B-"
+    },
+    {
+      "instrument": "EUR 850m Sr Secd Notes (FRN)",
+      "amount": 917,
+      "maturity": "Feb 2028",
+      "coupon": "E+3.75%",
+      "price": 100.18,
+      "ytw": null,
+      "rating": "B-"
+    },
+    {
+      "instrument": "EUR 300m Sr Secured PIK Notes",
+      "amount": 324,
+      "maturity": "Dec 2029",
+      "coupon": "E+PIK",
+      "price": null,
+      "ytw": null,
+      "rating": "-"
+    },
+    {
+      "instrument": "EUR 700m Sr Secd Notes (FRN)",
+      "amount": 763,
+      "maturity": "Jan 2031",
+      "coupon": "E+3.50%",
+      "price": 100.97,
+      "ytw": 5.73,
+      "rating": "B2/B-"
+    },
+    {
+      "instrument": "EUR 500m Sr Secd Notes",
+      "amount": 577,
+      "maturity": "Jul 2031",
+      "coupon": "5.00%",
+      "price": 100.96,
+      "ytw": 4.8,
+      "rating": "B2/B-"
+    },
+    {
+      "instrument": "EUR 50m Revolving Credit",
+      "amount": 0,
+      "maturity": "Jan 2031",
+      "coupon": "-",
+      "price": null,
+      "ytw": null,
+      "rating": "-"
+    },
+    {
+      "instrument": "EUR 300m Revolving Credit",
+      "amount": 0,
+      "maturity": "Jan 2031",
+      "coupon": "-",
+      "price": null,
+      "ytw": null,
+      "rating": "-"
+    },
+    {
+      "instrument": "EUR 1250m Sr Secd Notes (FRN)",
+      "amount": 1442,
+      "maturity": "Jul 2032",
+      "coupon": "E+3.25%",
+      "price": 100.76,
+      "ytw": 5.61,
+      "rating": "B-"
+    }
   ],
   "maturity_schedule": {
     "2028": 1241,
@@ -68,18 +152,53 @@
     "note": "Private - PE owned"
   },
   "top_lenders": [
-    {"name": "JP Morgan", "role": "Arranger", "deals": 8},
-    {"name": "BofA Securities", "role": "Arranger", "deals": 5},
-    {"name": "Goldman Sachs", "role": "Arranger", "deals": 4},
-    {"name": "Deutsche Bank", "role": "Arranger", "deals": 4},
-    {"name": "Morgan Stanley", "role": "Arranger", "deals": 4}
+    {
+      "name": "JP Morgan",
+      "role": "Arranger",
+      "deals": 8
+    },
+    {
+      "name": "BofA Securities",
+      "role": "Arranger",
+      "deals": 5
+    },
+    {
+      "name": "Goldman Sachs",
+      "role": "Arranger",
+      "deals": 4
+    },
+    {
+      "name": "Deutsche Bank",
+      "role": "Arranger",
+      "deals": 4
+    },
+    {
+      "name": "Morgan Stanley",
+      "role": "Arranger",
+      "deals": 4
+    }
   ],
   "key_deals": [
-    {"date": "Jul 2025", "deal": "EUR 50m RCF due Jan 2031"},
-    {"date": "Jun 2025", "deal": "EUR 500m fixed SSN at 5% + EUR 1.25bn FRN at E+325bps"},
-    {"date": "Jun 2025", "deal": "Acquired Clicdata SAS (French business software)"},
-    {"date": "Jul 2024", "deal": "EUR 700m FRN at E+350bps due Jan 2031"},
-    {"date": "Jan 2021", "deal": "EUR 300m fixed SSN at 3.5% + EUR 850m FRN at E+375bps due Feb 2028"}
+    {
+      "date": "Jul 2025",
+      "deal": "EUR 50m RCF due Jan 2031"
+    },
+    {
+      "date": "Jun 2025",
+      "deal": "EUR 500m fixed SSN at 5% + EUR 1.25bn FRN at E+325bps"
+    },
+    {
+      "date": "Jun 2025",
+      "deal": "Acquired Clicdata SAS (French business software)"
+    },
+    {
+      "date": "Jul 2024",
+      "deal": "EUR 700m FRN at E+350bps due Jan 2031"
+    },
+    {
+      "date": "Jan 2021",
+      "deal": "EUR 300m fixed SSN at 3.5% + EUR 850m FRN at E+375bps due Feb 2028"
+    }
   ],
   "credit_opinion": {
     "summary": "TeamSystem is Italy's leading enterprise software provider serving SMEs with ERP, HR, and accounting solutions. PE-owned with high leverage but defensive recurring revenue business model. Active M&A in data and AI space. Bonds trading slightly above par with yields of 4.8-5.7%. B2/B- ratings reflect sponsor leverage but software fundamentals are solid.",

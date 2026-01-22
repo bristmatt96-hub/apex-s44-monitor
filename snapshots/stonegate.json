@@ -1,18 +1,26 @@
 {
-  "company_name": "Stonegate Pub Co",
+  "company_name": "Stonegate Pub Company Financing plc",
   "legal_entity": "Stonegate Pub Co Ltd",
-  "alternate_names": ["Stonegate", "Stonegate Pub Co Financing 2019 plc", "Ei Group"],
+  "alternate_names": [
+    "Stonegate",
+    "Stonegate Pub Co Financing 2019 plc",
+    "Ei Group"
+  ],
   "sector": "Consumer & Retail - Pubs/Hospitality",
   "geography": "United Kingdom",
   "last_updated": "2026-01-21",
   "data_source": "Debtwire",
-
   "ratings": {
-    "moodys": {"rating": "NR", "outlook": null},
-    "sp": {"rating": "NR", "outlook": null},
+    "moodys": {
+      "rating": "NR",
+      "outlook": null
+    },
+    "sp": {
+      "rating": "NR",
+      "outlook": null
+    },
     "note": "Ratings downgrades in 2025. CFO targeting 'another B rating' with deleveraging."
   },
-
   "overview": {
     "business_description": "UK's largest pub operator managing a portfolio of leased, tenanted, and managed pub sites across the United Kingdom. Delivers food and drink services through traditional pubs, bars, and late-night venues. Portfolio includes approximately 4,500 pubs.",
     "business_positives": [
@@ -28,7 +36,6 @@
     "ownership": "Private - PE-owned. TDR Capital since July 2024.",
     "recent_news": "Property valuation and high coupon temptations despite NEGATIVE cashflow (Jan 2026). FY25 EBITDA GBP 372m (Jan 2026). Prepares potential GBP 1bn sale of pubs (Nov 2025). Accelerate asset disposals following ratings downgrades (Nov 2025). 9M24-25 EBITDA falls 4% YoY (Sep 2025). Out-of-court restructuring completed Jan 2024."
   },
-
   "quick_assessment": {
     "total_debt": 4415,
     "cash_on_hand": 229,
@@ -39,27 +46,60 @@
     "ebitda": 554,
     "note": "Very high leverage. CFFO positive but net income negative. Free cash flow negative per credit reports."
   },
-
   "key_ratios": {
     "debt_to_ebitda": 8.0,
     "net_debt_to_ebitda": 7.6,
     "ebitda_margin": 23.7,
     "note": "VERY HIGH LEVERAGE - 7.6x net. Rating agencies downgraded. Deleveraging needed."
   },
-
   "trend_analysis": {
-    "years": ["FY Sep 2022", "FY Sep 2023", "FY Sep 2024"],
-    "revenue": [1747, 2104, 2336],
-    "ebitda": [447, 480, 554],
-    "ebitda_margin": [25.6, 22.8, 23.7],
-    "total_debt": [3501, 3932, 4415],
-    "net_debt": [3357, 3819, 4186],
-    "gross_leverage": [7.8, 8.2, 8.0],
-    "net_leverage": [7.5, 8.0, 7.6],
-    "net_income": [-138, -190, -214],
+    "years": [
+      "FY Sep 2022",
+      "FY Sep 2023",
+      "FY Sep 2024"
+    ],
+    "revenue": [
+      1747,
+      2104,
+      2336
+    ],
+    "ebitda": [
+      447,
+      480,
+      554
+    ],
+    "ebitda_margin": [
+      25.6,
+      22.8,
+      23.7
+    ],
+    "total_debt": [
+      3501,
+      3932,
+      4415
+    ],
+    "net_debt": [
+      3357,
+      3819,
+      4186
+    ],
+    "gross_leverage": [
+      7.8,
+      8.2,
+      8.0
+    ],
+    "net_leverage": [
+      7.5,
+      8.0,
+      7.6
+    ],
+    "net_income": [
+      -138,
+      -190,
+      -214
+    ],
     "trend_summary": "Leverage persistently HIGH at 7.5-8x. EBITDA growing but debt growing faster. Net income NEGATIVE every year and worsening. 9M24-25 EBITDA declined 4% YoY."
   },
-
   "debt_capitalization": [
     {
       "instrument": "RCF",
@@ -109,7 +149,6 @@
       "note": "Above par - likely high coupon"
     }
   ],
-
   "maturity_schedule": {
     "year_1": 187,
     "year_2": 0,
@@ -120,20 +159,17 @@
     "thereafter": 239,
     "note": "Bulk of maturities in 2029 (~$3bn)"
   },
-
   "restructuring_history": {
     "date": "Jan 2024",
     "type": "Out-of-Court",
     "status": "Closed",
     "note": "Successfully completed restructuring"
   },
-
   "asset_disposal_program": {
     "target": "GBP 1bn pub sale planned",
     "purpose": "Deleveraging to address high leverage",
     "status": "In preparation (Nov 2025)"
   },
-
   "credit_opinion": {
     "recommendation": "UNDERWEIGHT",
     "summary": "Stonegate is a CHALLENGED credit despite 'performing' lifecycle status. Net leverage of 7.6x is very high. Net income is NEGATIVE every year and worsening. Credit reports note NEGATIVE free cash flow. Rating downgrades in 2025 prompted accelerated asset disposal plans (GBP 1bn pub sale). The company had an out-of-court restructuring in Jan 2024. Two of three bond tranches trading BELOW PAR (98.74, 99.69). Distress score of 20 is elevated. While property values provide some comfort and CFFO is positive, the capital structure is unsustainable without significant deleveraging from asset sales.",
@@ -159,15 +195,12 @@
       "TDR Capital support/injection"
     ]
   },
-
   "distress_indicators": {
     "debtwire_distress_score": 20,
     "lifecycle_status": "Performing credit",
     "trading_signals": "Two bonds BELOW PAR (98.74, 99.69). One bond above par (105.74 - high coupon). Leverage 7.6x is very high. Rating downgrades. Negative FCF. Preparing forced asset sales. Prior restructuring Jan 2024."
   },
-
   "watchlist_priority": "HIGH - Monitor asset sales and deleveraging progress",
-
   "lme_risk_proxy": {
     "doc_vintage": "2019-2024",
     "pe_backed": true,

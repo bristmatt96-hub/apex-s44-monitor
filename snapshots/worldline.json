@@ -1,5 +1,5 @@
 {
-  "company_name": "Worldline SA",
+  "company_name": "Worldline",
   "ticker": "WLN",
   "sector": "TMT - Payments/Fintech - DISTRESSED",
   "last_updated": "2026-01-22",
@@ -18,9 +18,21 @@
     "recent_news": "Nov 2025: EUR 500m equity raise to reinforce capital structure. Nov 2025: Sold MeTS business to Magellan Partners for EUR 410m EV. Oct 2025: 3Q25 organic revenue -0.8% YoY. Dec 2025: Concerns over Ingenico weak performance and liquidity. Jan 2026: Magellan lining up EUR 610m TLB for MeTS."
   },
   "ratings": {
-    "moodys": {"rating": "", "outlook": "", "date": ""},
-    "sp": {"rating": "BBB-", "outlook": "", "date": ""},
-    "fitch": {"rating": "", "outlook": "", "date": ""}
+    "moodys": {
+      "rating": "",
+      "outlook": "",
+      "date": ""
+    },
+    "sp": {
+      "rating": "BBB-",
+      "outlook": "",
+      "date": ""
+    },
+    "fitch": {
+      "rating": "",
+      "outlook": "",
+      "date": ""
+    }
   },
   "quick_assessment": {
     "period_end": "LTM Jun 2025",
@@ -41,24 +53,128 @@
     "ev_to_ebitda": 6.51
   },
   "trend_analysis": {
-    "years": ["2022", "2023", "2024", "LTM Jun 2025"],
-    "revenue": [4671, 5089, 4811, 5341],
-    "ebitda": [942, 925, 789, 632],
-    "ebitda_margin": [20.2, 18.2, 16.4, 11.8],
-    "total_debt": [4069, 4091, 3507, 4215],
-    "net_debt": [2357, 1999, 1672, 2048],
-    "gross_leverage": [4.3, 4.4, 4.4, 6.7],
-    "net_leverage": [2.5, 2.2, 2.1, 3.2]
+    "years": [
+      "2022",
+      "2023",
+      "2024",
+      "LTM Jun 2025"
+    ],
+    "revenue": [
+      4671,
+      5089,
+      4811,
+      5341
+    ],
+    "ebitda": [
+      942,
+      925,
+      789,
+      632
+    ],
+    "ebitda_margin": [
+      20.2,
+      18.2,
+      16.4,
+      11.8
+    ],
+    "total_debt": [
+      4069,
+      4091,
+      3507,
+      4215
+    ],
+    "net_debt": [
+      2357,
+      1999,
+      1672,
+      2048
+    ],
+    "gross_leverage": [
+      4.3,
+      4.4,
+      4.4,
+      6.7
+    ],
+    "net_leverage": [
+      2.5,
+      2.2,
+      2.1,
+      3.2
+    ]
   },
   "debt_capitalization": [
-    {"instrument": "EUR 638m Convertible Debt", "amount": 410, "maturity": "Jul 2025", "coupon": "-", "price": 82.06, "ytw": null, "rating": "-"},
-    {"instrument": "EUR 226m Convertible Debt", "amount": 208, "maturity": "Jun 2026", "coupon": "-", "price": 99.78, "ytw": null, "rating": "-"},
-    {"instrument": "EUR 642m Convertible Debt", "amount": 568, "maturity": "Jun 2026", "coupon": "-", "price": 99.78, "ytw": null, "rating": "-"},
-    {"instrument": "EUR 500m Sr Unsecd Notes", "amount": 519, "maturity": "Jun 2027", "coupon": "0.88%", "price": 91.81, "ytw": 7.08, "rating": "BBB-"},
-    {"instrument": "EUR 600m Sr Unsecd Notes", "amount": 623, "maturity": "Sep 2028", "coupon": "4.13%", "price": 91.00, "ytw": 8.03, "rating": "BBB-"},
-    {"instrument": "EUR 1125m Revolving Credit", "amount": 0, "maturity": "Jul 2029", "coupon": "-", "price": null, "ytw": null, "rating": "-"},
-    {"instrument": "EUR 500m Sr Unsecd Notes", "amount": 519, "maturity": "Nov 2029", "coupon": "5.25%", "price": 87.59, "ytw": 9.22, "rating": "BBB-"},
-    {"instrument": "EUR 550m Notes", "amount": 570, "maturity": "2030", "coupon": "-", "price": 87.21, "ytw": null, "rating": "-"}
+    {
+      "instrument": "EUR 638m Convertible Debt",
+      "amount": 410,
+      "maturity": "Jul 2025",
+      "coupon": "-",
+      "price": 82.06,
+      "ytw": null,
+      "rating": "-"
+    },
+    {
+      "instrument": "EUR 226m Convertible Debt",
+      "amount": 208,
+      "maturity": "Jun 2026",
+      "coupon": "-",
+      "price": 99.78,
+      "ytw": null,
+      "rating": "-"
+    },
+    {
+      "instrument": "EUR 642m Convertible Debt",
+      "amount": 568,
+      "maturity": "Jun 2026",
+      "coupon": "-",
+      "price": 99.78,
+      "ytw": null,
+      "rating": "-"
+    },
+    {
+      "instrument": "EUR 500m Sr Unsecd Notes",
+      "amount": 519,
+      "maturity": "Jun 2027",
+      "coupon": "0.88%",
+      "price": 91.81,
+      "ytw": 7.08,
+      "rating": "BBB-"
+    },
+    {
+      "instrument": "EUR 600m Sr Unsecd Notes",
+      "amount": 623,
+      "maturity": "Sep 2028",
+      "coupon": "4.13%",
+      "price": 91.0,
+      "ytw": 8.03,
+      "rating": "BBB-"
+    },
+    {
+      "instrument": "EUR 1125m Revolving Credit",
+      "amount": 0,
+      "maturity": "Jul 2029",
+      "coupon": "-",
+      "price": null,
+      "ytw": null,
+      "rating": "-"
+    },
+    {
+      "instrument": "EUR 500m Sr Unsecd Notes",
+      "amount": 519,
+      "maturity": "Nov 2029",
+      "coupon": "5.25%",
+      "price": 87.59,
+      "ytw": 9.22,
+      "rating": "BBB-"
+    },
+    {
+      "instrument": "EUR 550m Notes",
+      "amount": 570,
+      "maturity": "2030",
+      "coupon": "-",
+      "price": 87.21,
+      "ytw": null,
+      "rating": "-"
+    }
   ],
   "maturity_schedule": {
     "2025": 410,
@@ -75,25 +191,80 @@
     "currency": "EUR"
   },
   "top_investors": [
-    {"name": "Norges Bank Investment Mgmt", "type": "Sovereign Wealth Fund", "value_usd": 144},
-    {"name": "Black Creek Investment", "type": "Investment Advisor", "value_usd": 53},
-    {"name": "FIL Ltd", "type": "Investment Advisor", "value_usd": 49},
-    {"name": "Causeway Capital", "type": "Investment Advisor", "value_usd": 34},
-    {"name": "Vanguard Group", "type": "Investment Advisor", "value_usd": 29}
+    {
+      "name": "Norges Bank Investment Mgmt",
+      "type": "Sovereign Wealth Fund",
+      "value_usd": 144
+    },
+    {
+      "name": "Black Creek Investment",
+      "type": "Investment Advisor",
+      "value_usd": 53
+    },
+    {
+      "name": "FIL Ltd",
+      "type": "Investment Advisor",
+      "value_usd": 49
+    },
+    {
+      "name": "Causeway Capital",
+      "type": "Investment Advisor",
+      "value_usd": 34
+    },
+    {
+      "name": "Vanguard Group",
+      "type": "Investment Advisor",
+      "value_usd": 29
+    }
   ],
   "top_lenders": [
-    {"name": "Natixis", "role": "Arranger", "deals": 4},
-    {"name": "Credit Agricole", "role": "Arranger", "deals": 4},
-    {"name": "Deutsche Bank", "role": "Arranger", "deals": 4},
-    {"name": "BNP Paribas", "role": "Arranger", "deals": 4},
-    {"name": "Barclays", "role": "Arranger", "deals": 3}
+    {
+      "name": "Natixis",
+      "role": "Arranger",
+      "deals": 4
+    },
+    {
+      "name": "Credit Agricole",
+      "role": "Arranger",
+      "deals": 4
+    },
+    {
+      "name": "Deutsche Bank",
+      "role": "Arranger",
+      "deals": 4
+    },
+    {
+      "name": "BNP Paribas",
+      "role": "Arranger",
+      "deals": 4
+    },
+    {
+      "name": "Barclays",
+      "role": "Arranger",
+      "deals": 3
+    }
   ],
   "key_deals": [
-    {"date": "Nov 2025", "deal": "EUR 500m equity raise to reinforce capital structure"},
-    {"date": "Nov 2025", "deal": "Sold MeTS business to Magellan Partners for EUR 410m EV"},
-    {"date": "Dec 2025", "deal": "PENDING: Selling Penki Kontinentai Group for EUR 186m"},
-    {"date": "Oct 2025", "deal": "PENDING: Selling Bambora to Shift4 for $81m"},
-    {"date": "Nov 2024", "deal": "Acquired Credemtel merchant acquiring for EUR 101m"}
+    {
+      "date": "Nov 2025",
+      "deal": "EUR 500m equity raise to reinforce capital structure"
+    },
+    {
+      "date": "Nov 2025",
+      "deal": "Sold MeTS business to Magellan Partners for EUR 410m EV"
+    },
+    {
+      "date": "Dec 2025",
+      "deal": "PENDING: Selling Penki Kontinentai Group for EUR 186m"
+    },
+    {
+      "date": "Oct 2025",
+      "deal": "PENDING: Selling Bambora to Shift4 for $81m"
+    },
+    {
+      "date": "Nov 2024",
+      "deal": "Acquired Credemtel merchant acquiring for EUR 101m"
+    }
   ],
   "credit_opinion": {
     "summary": "DISTRESSED SITUATION. Worldline is a European payments company in active turnaround under new management. EBITDA has collapsed from $942m (2022) to $632m (LTM), margins compressed from 20% to 12%. $5.3bn net loss. Market cap only $500m vs $4bn debt. Bonds trading at 87-92 cents yielding 7-9%. Active asset sale program (MeTS, Bambora, Penki Kontinentai) and EUR 500m equity raise to shore up balance sheet.",

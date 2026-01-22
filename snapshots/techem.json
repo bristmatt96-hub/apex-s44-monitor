@@ -1,5 +1,5 @@
 {
-  "company_name": "Techem GmbH",
+  "company_name": "Techem Verwaltungsgesellschaft 675 mbH",
   "ticker": "TECHEM",
   "sector": "Business Services - Utility Submetering",
   "last_updated": "2026-01-22",
@@ -18,9 +18,21 @@
     "recent_news": "Jul 2025: Acquired by Partners Group/Mubadala/GIC consortium for $7.8bn (from CDPQ). Sep 2025: Acquired inexogy Smart Metering. Oct 2024: Moody's downgraded to B2 from B1."
   },
   "ratings": {
-    "moodys": {"rating": "B2", "outlook": "", "date": "2024-10"},
-    "sp": {"rating": "", "outlook": "", "date": ""},
-    "fitch": {"rating": "B+", "outlook": "", "date": "2025-06"}
+    "moodys": {
+      "rating": "B2",
+      "outlook": "",
+      "date": "2024-10"
+    },
+    "sp": {
+      "rating": "",
+      "outlook": "",
+      "date": ""
+    },
+    "fitch": {
+      "rating": "B+",
+      "outlook": "",
+      "date": "2025-06"
+    }
   },
   "quick_assessment": {
     "period_end": "2025",
@@ -48,11 +60,51 @@
     "total_debt": []
   },
   "debt_capitalization": [
-    {"instrument": "EUR 1850m Term Loan B", "amount": 2155, "maturity": "Jul 2032", "coupon": "E+3.25%", "price": 100.78, "ytw": null, "rating": "B2"},
-    {"instrument": "EUR 610m Sr Secd Notes", "amount": 709, "maturity": "Jul 2032", "coupon": "4.63%", "price": 100.68, "ytw": 4.50, "rating": "B2/B+"},
-    {"instrument": "EUR 397m Revolving Credit", "amount": 0, "maturity": "Apr 2029", "coupon": "-", "price": null, "ytw": null, "rating": "-"},
-    {"instrument": "EUR 117m Lease Facility", "amount": 127, "maturity": "Various", "coupon": "-", "price": null, "ytw": null, "rating": "-"},
-    {"instrument": "EUR 1834m Shareholder Loan", "amount": 1909, "maturity": "Jul 2033", "coupon": "6.00%", "price": null, "ytw": null, "rating": "-"}
+    {
+      "instrument": "EUR 1850m Term Loan B",
+      "amount": 2155,
+      "maturity": "Jul 2032",
+      "coupon": "E+3.25%",
+      "price": 100.78,
+      "ytw": null,
+      "rating": "B2"
+    },
+    {
+      "instrument": "EUR 610m Sr Secd Notes",
+      "amount": 709,
+      "maturity": "Jul 2032",
+      "coupon": "4.63%",
+      "price": 100.68,
+      "ytw": 4.5,
+      "rating": "B2/B+"
+    },
+    {
+      "instrument": "EUR 397m Revolving Credit",
+      "amount": 0,
+      "maturity": "Apr 2029",
+      "coupon": "-",
+      "price": null,
+      "ytw": null,
+      "rating": "-"
+    },
+    {
+      "instrument": "EUR 117m Lease Facility",
+      "amount": 127,
+      "maturity": "Various",
+      "coupon": "-",
+      "price": null,
+      "ytw": null,
+      "rating": "-"
+    },
+    {
+      "instrument": "EUR 1834m Shareholder Loan",
+      "amount": 1909,
+      "maturity": "Jul 2033",
+      "coupon": "6.00%",
+      "price": null,
+      "ytw": null,
+      "rating": "-"
+    }
   ],
   "maturity_schedule": {
     "2029": 0,
@@ -63,16 +115,45 @@
     "note": "Private - acquired Jul 2025 for $7.8bn by Partners Group/Mubadala/GIC"
   },
   "top_lenders": [
-    {"name": "Goldman Sachs", "role": "Advisor/Arranger", "deals": 3},
-    {"name": "JP Morgan", "role": "Arranger", "deals": 2},
-    {"name": "Deutsche Bank", "role": "Arranger", "deals": 2},
-    {"name": "BNP Paribas", "role": "Arranger", "deals": 2},
-    {"name": "UBS", "role": "Arranger", "deals": 2}
+    {
+      "name": "Goldman Sachs",
+      "role": "Advisor/Arranger",
+      "deals": 3
+    },
+    {
+      "name": "JP Morgan",
+      "role": "Arranger",
+      "deals": 2
+    },
+    {
+      "name": "Deutsche Bank",
+      "role": "Arranger",
+      "deals": 2
+    },
+    {
+      "name": "BNP Paribas",
+      "role": "Arranger",
+      "deals": 2
+    },
+    {
+      "name": "UBS",
+      "role": "Arranger",
+      "deals": 2
+    }
   ],
   "key_deals": [
-    {"date": "Jul 2025", "deal": "Acquired by Partners Group/Mubadala/GIC for $7.8bn"},
-    {"date": "Sep 2025", "deal": "Acquired inexogy Smart Metering"},
-    {"date": "May 2018", "deal": "Partners Group acquired for $5.4bn (14.38x EBITDA)"}
+    {
+      "date": "Jul 2025",
+      "deal": "Acquired by Partners Group/Mubadala/GIC for $7.8bn"
+    },
+    {
+      "date": "Sep 2025",
+      "deal": "Acquired inexogy Smart Metering"
+    },
+    {
+      "date": "May 2018",
+      "deal": "Partners Group acquired for $5.4bn (14.38x EBITDA)"
+    }
   ],
   "credit_opinion": {
     "summary": "Techem is a defensive utility submetering business with recurring revenues and high customer retention. New PE consortium paid $7.8bn (up from $5.4bn in 2018) reflecting strategic value. High leverage (including shareholder loan) and B2/B+ ratings reflect PE capital structure. Bonds trading near par (4.50% yield) indicate stable credit.",

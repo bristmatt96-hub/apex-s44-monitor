@@ -1,26 +1,33 @@
 {
-  "company_name": "Metsä Board",
-  "legal_entity": "Metsä Board Oyj",
-  "parent_company": "Metsäliitto Cooperative",
-  "alternate_names": ["Metsa Board", "M-real Oyj (former)"],
+  "company_name": "Mets\u00e4 Board Corporation",
+  "legal_entity": "Mets\u00e4 Board Oyj",
+  "parent_company": "Mets\u00e4liitto Cooperative",
+  "alternate_names": [
+    "Metsa Board",
+    "M-real Oyj (former)"
+  ],
   "sector": "Energy & Natural Resources - Forestry/Paperboard",
   "geography": "Finland",
   "last_updated": "2026-01-21",
   "data_source": "Debtwire",
-
   "ratings": {
-    "moodys": {"rating": "Baa3", "outlook": "Negative"},
-    "sp": {"rating": "BBB-", "outlook": null},
+    "moodys": {
+      "rating": "Baa3",
+      "outlook": "Negative"
+    },
+    "sp": {
+      "rating": "BBB-",
+      "outlook": null
+    },
     "note": "INVESTMENT GRADE but DOWNGRADED from Baa2 to Baa3 (Aug 2025). Negative outlook due to severe earnings deterioration."
   },
-
   "overview": {
-    "business_description": "Paperboard manufacturer supplying premium fresh fibre paperboards primarily for packaging and food service industries. Operates through direct sales with focus on sustainable packaging solutions. Part of Metsä Group (Metsäliitto Cooperative).",
+    "business_description": "Paperboard manufacturer supplying premium fresh fibre paperboards primarily for packaging and food service industries. Operates through direct sales with focus on sustainable packaging solutions. Part of Mets\u00e4 Group (Mets\u00e4liitto Cooperative).",
     "business_positives": [
       "INVESTMENT GRADE rating (Baa3/BBB-)",
       "Low distress score of 9 - performing credit",
       "Both bonds trading near par (98-99)",
-      "Strong parent support (Metsäliitto Cooperative)",
+      "Strong parent support (Mets\u00e4liitto Cooperative)",
       "EUR 250m undrawn RCF provides liquidity",
       "Publicly traded with institutional ownership",
       "Sustainable packaging focus - ESG tailwind",
@@ -28,10 +35,9 @@
       "Net debt still moderate at $397m"
     ],
     "fatal_flaw": "EBITDA COLLAPSED -79% from $383m (2022) to $79m (LTM). 3Q25 EBITDA was NEGATIVE (EUR -18.2m loss). Net leverage exploded from 0.2x to 5.0x. Net income -$87m (loss). EBITDA margin collapsed from 14.4% to 3.7%. Downgraded to Baa3 with negative outlook. Paperboard industry in severe cyclical downturn.",
-    "ownership": "Public - Helsinki Stock Exchange (METSB). Majority owned by Metsäliitto Cooperative (184m shares). Other shareholders include Varma Pension, Ilmarinen, Norges Bank.",
+    "ownership": "Public - Helsinki Stock Exchange (METSB). Majority owned by Mets\u00e4liitto Cooperative (184m shares). Other shareholders include Varma Pension, Ilmarinen, Norges Bank.",
     "recent_news": "3Q25 comparable EBITDA LOSS reaches EUR 18.2m (Oct 2025). Downgraded to Baa3 from Baa2 (Aug 2025). 2Q25 comparable EBITDA falls 76.8% YoY to EUR 6.1m (Aug 2025). Outlook changed to negative (May 2025). Considers green unsecured notes issuance (May 2025). 1Q25 EBITDA declines 11.6% YoY (Apr 2025)."
   },
-
   "quick_assessment": {
     "total_debt": 646,
     "cash_on_hand": 250,
@@ -45,29 +51,76 @@
     "market_cap": 1210,
     "note": "IG rated but EBITDA collapsed. Leverage exploded from 0.2x to 5.0x."
   },
-
   "key_ratios": {
     "debt_to_ebitda": 8.2,
     "net_debt_to_ebitda": 5.0,
     "ebitda_margin": 3.7,
     "ev_to_ebitda": 23.0,
-    "note": "CRITICAL: Leverage exploded from 0.2x (2022) to 5.0x due to EBITDA collapse, not debt increase. Margin collapsed 14.4%→3.7%."
+    "note": "CRITICAL: Leverage exploded from 0.2x (2022) to 5.0x due to EBITDA collapse, not debt increase. Margin collapsed 14.4%\u21923.7%."
   },
-
   "trend_analysis": {
-    "years": ["FY 2022", "FY 2023", "FY 2024", "LTM Sep 2025"],
-    "revenue": [2661, 2149, 2019, 2152],
-    "ebitda": [383, 135, 151, 79],
-    "ebitda_margin": [14.4, 6.3, 7.5, 3.7],
-    "total_debt": [468, 469, 530, 646],
-    "net_debt": [87, 148, 340, 397],
-    "gross_leverage": [1.2, 3.5, 3.5, 8.2],
-    "net_leverage": [0.2, 1.1, 2.3, 5.0],
-    "net_income": [439, 105, 26, -87],
-    "cffo": [248, 378, 39, 157],
-    "trend_summary": "CATASTROPHIC EBITDA COLLAPSE: -79% from $383m (2022) to $79m (LTM). 3Q25 EBITDA was NEGATIVE. Net leverage exploded 0.2x→5.0x. Margins crushed 14.4%→3.7%. Net income from +$439m profit to -$87m loss."
+    "years": [
+      "FY 2022",
+      "FY 2023",
+      "FY 2024",
+      "LTM Sep 2025"
+    ],
+    "revenue": [
+      2661,
+      2149,
+      2019,
+      2152
+    ],
+    "ebitda": [
+      383,
+      135,
+      151,
+      79
+    ],
+    "ebitda_margin": [
+      14.4,
+      6.3,
+      7.5,
+      3.7
+    ],
+    "total_debt": [
+      468,
+      469,
+      530,
+      646
+    ],
+    "net_debt": [
+      87,
+      148,
+      340,
+      397
+    ],
+    "gross_leverage": [
+      1.2,
+      3.5,
+      3.5,
+      8.2
+    ],
+    "net_leverage": [
+      0.2,
+      1.1,
+      2.3,
+      5.0
+    ],
+    "net_income": [
+      439,
+      105,
+      26,
+      -87
+    ],
+    "cffo": [
+      248,
+      378,
+      39,
+      157
+    ],
+    "trend_summary": "CATASTROPHIC EBITDA COLLAPSE: -79% from $383m (2022) to $79m (LTM). 3Q25 EBITDA was NEGATIVE. Net leverage exploded 0.2x\u21925.0x. Margins crushed 14.4%\u21923.7%. Net income from +$439m profit to -$87m loss."
   },
-
   "debt_capitalization": [
     {
       "instrument": "EUR 250m Revolving Credit",
@@ -101,7 +154,6 @@
       "trading_signal": "BELOW PAR"
     }
   ],
-
   "maturity_schedule": {
     "year_1": 56,
     "year_2": 299,
@@ -111,25 +163,29 @@
     "thereafter": 225,
     "note": "Sep 2027 maturity ($299m) is key focus. Light maturity profile."
   },
-
   "equity_market_value": {
     "ticker": "METSB",
     "exchange": "Helsinki Stock Exchange",
     "share_price": "EUR 2.73",
     "equity_market_value": 1210,
-    "key_shareholders": ["Metsäliitto Cooperative (majority)", "Varma Pension", "Ilmarinen Pension", "Norges Bank", "Dimensional Fund Advisors"]
+    "key_shareholders": [
+      "Mets\u00e4liitto Cooperative (majority)",
+      "Varma Pension",
+      "Ilmarinen Pension",
+      "Norges Bank",
+      "Dimensional Fund Advisors"
+    ]
   },
-
   "credit_opinion": {
     "recommendation": "UNDERWEIGHT",
-    "summary": "Metsä Board is an INVESTMENT GRADE credit (Baa3/BBB-) with low distress score (9), but fundamentals have DETERIORATED CATASTROPHICALLY. EBITDA collapsed -79% from $383m (2022) to $79m (LTM), with 3Q25 showing an EBITDA LOSS. Net leverage exploded from 0.2x to 5.0x due to earnings collapse, not debt increase. Moody's downgraded to Baa3 with negative outlook (Aug 2025). While bonds trade near par (98-99) reflecting IG rating and strong parent support from Metsäliitto Cooperative, the fundamental trajectory is alarming. Paperboard industry in severe cyclical downturn. At risk of further downgrades if EBITDA doesn't recover.",
+    "summary": "Mets\u00e4 Board is an INVESTMENT GRADE credit (Baa3/BBB-) with low distress score (9), but fundamentals have DETERIORATED CATASTROPHICALLY. EBITDA collapsed -79% from $383m (2022) to $79m (LTM), with 3Q25 showing an EBITDA LOSS. Net leverage exploded from 0.2x to 5.0x due to earnings collapse, not debt increase. Moody's downgraded to Baa3 with negative outlook (Aug 2025). While bonds trade near par (98-99) reflecting IG rating and strong parent support from Mets\u00e4liitto Cooperative, the fundamental trajectory is alarming. Paperboard industry in severe cyclical downturn. At risk of further downgrades if EBITDA doesn't recover.",
     "key_risks": [
       "EBITDA collapsed -79% from 2022 peak",
       "3Q25 EBITDA was NEGATIVE (EUR -18.2m)",
-      "Net leverage exploded 0.2x→5.0x",
+      "Net leverage exploded 0.2x\u21925.0x",
       "Moody's downgrade with negative outlook",
       "Net income now -$87m loss",
-      "EBITDA margin crushed (14.4%→3.7%)",
+      "EBITDA margin crushed (14.4%\u21923.7%)",
       "Paperboard industry severe downturn",
       "Sep 2027 maturity ($299m)",
       "Risk of further rating downgrades",
@@ -145,12 +201,10 @@
       "Successful Sep 2027 refinancing"
     ]
   },
-
   "distress_indicators": {
     "debtwire_distress_score": 9,
     "lifecycle_status": "Performing credit",
-    "trading_signals": "INVESTMENT GRADE but CHALLENGED. Bonds at 98-99 (near par) reflect IG rating. However, EBITDA collapsed -79%, 3Q25 EBITDA negative, leverage exploded 0.2x→5.0x. Downgraded to Baa3 negative. At risk of losing IG status."
+    "trading_signals": "INVESTMENT GRADE but CHALLENGED. Bonds at 98-99 (near par) reflect IG rating. However, EBITDA collapsed -79%, 3Q25 EBITDA negative, leverage exploded 0.2x\u21925.0x. Downgraded to Baa3 negative. At risk of losing IG status."
   },
-
   "watchlist_priority": "HIGH - Monitor EBITDA recovery and rating trajectory"
 }

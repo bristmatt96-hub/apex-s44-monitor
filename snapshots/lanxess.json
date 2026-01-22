@@ -1,18 +1,24 @@
 {
-  "company_name": "Lanxess",
+  "company_name": "LANXESS Aktiengesellschaft",
   "legal_entity": "Lanxess AG",
-  "alternate_names": ["Lanxess Finance BV"],
+  "alternate_names": [
+    "Lanxess Finance BV"
+  ],
   "sector": "Industrials - Specialty Chemicals",
   "geography": "Germany",
   "last_updated": "2026-01-21",
   "data_source": "Debtwire",
-
   "ratings": {
-    "moodys": {"rating": "Baa3", "outlook": "Negative"},
-    "sp": {"rating": "NR", "outlook": null},
+    "moodys": {
+      "rating": "Baa3",
+      "outlook": "Negative"
+    },
+    "sp": {
+      "rating": "NR",
+      "outlook": null
+    },
     "note": "INVESTMENT GRADE - Baa3 rated. Expected to retain IG rating per Jan 2026 credit report. Negative outlook pending Envalior sale outcome."
   },
-
   "overview": {
     "business_description": "Specialty chemicals manufacturer developing chemical intermediates, additives, and consumer protection products for automotive, construction, agricultural, and industrial markets. German-headquartered, publicly traded on Frankfurt exchange. Formerly created Envalior JV with DSM for engineering materials.",
     "business_positives": [
@@ -30,7 +36,6 @@
     "ownership": "Public - Frankfurt Stock Exchange (LXS). Major shareholders: Causeway Capital (6.6m shares), Norges Bank, Vanguard, Allianz Global Investors.",
     "recent_news": "Expected to retain IG rating amid organic improvement and Envalior sale (Jan 2026). Exercised right to sell Envalior stake to Advent for EUR 1.2bn (Sep 2025). Envalior JV stake sale to provide cash inflow but future coupon costs likely to climb (Oct 2025). IG rating negative outlook persists as Moody's awaits Envalior stake sale outcome (Oct 2025)."
   },
-
   "quick_assessment": {
     "total_debt": 2909,
     "cash_on_hand": 459,
@@ -44,7 +49,6 @@
     "market_cap": 1668,
     "note": "Investment grade credit. Moderate leverage. Envalior sale proceeds to delever."
   },
-
   "key_ratios": {
     "debt_to_ebitda": 4.9,
     "net_debt_to_ebitda": 4.1,
@@ -52,20 +56,63 @@
     "ev_to_ebitda": 6.9,
     "note": "Leverage moderate for IG at 4.1x net. Margin recovering from 6.3% trough."
   },
-
   "trend_analysis": {
-    "years": ["FY 2022", "FY 2023", "FY 2024", "LTM Sep 2025"],
-    "revenue": [8657, 7410, 6613, 6910],
-    "ebitda": [912, 464, 541, 600],
-    "ebitda_margin": [10.5, 6.3, 8.2, 8.7],
-    "total_debt": [4340, 3097, 2931, 2909],
-    "net_debt": [3909, 2550, 2293, 2451],
-    "gross_leverage": [4.8, 6.7, 5.4, 4.9],
-    "net_leverage": [4.3, 5.5, 4.2, 4.1],
-    "net_income": [268, 489, -184, -285],
-    "trend_summary": "RECOVERY underway from 2023 trough. EBITDA bottomed at $464m (2023), now $600m. Margins recovering 6.3%→8.7%. Leverage improved from 5.5x to 4.1x net. But still -34% below 2022 EBITDA peak."
+    "years": [
+      "FY 2022",
+      "FY 2023",
+      "FY 2024",
+      "LTM Sep 2025"
+    ],
+    "revenue": [
+      8657,
+      7410,
+      6613,
+      6910
+    ],
+    "ebitda": [
+      912,
+      464,
+      541,
+      600
+    ],
+    "ebitda_margin": [
+      10.5,
+      6.3,
+      8.2,
+      8.7
+    ],
+    "total_debt": [
+      4340,
+      3097,
+      2931,
+      2909
+    ],
+    "net_debt": [
+      3909,
+      2550,
+      2293,
+      2451
+    ],
+    "gross_leverage": [
+      4.8,
+      6.7,
+      5.4,
+      4.9
+    ],
+    "net_leverage": [
+      4.3,
+      5.5,
+      4.2,
+      4.1
+    ],
+    "net_income": [
+      268,
+      489,
+      -184,
+      -285
+    ],
+    "trend_summary": "RECOVERY underway from 2023 trough. EBITDA bottomed at $464m (2023), now $600m. Margins recovering 6.3%\u21928.7%. Leverage improved from 5.5x to 4.1x net. But still -34% below 2022 EBITDA peak."
   },
-
   "debt_capitalization": [
     {
       "instrument": "EUR 500m Sr Unsecd Notes",
@@ -92,7 +139,7 @@
       "amount": 587,
       "maturity": "Sep 2027",
       "coupon": "0.92%",
-      "price": 95.70,
+      "price": 95.7,
       "ytw": "2.74%",
       "rating": "Baa3",
       "seniority": "Senior Unsecured",
@@ -129,7 +176,6 @@
       "trading_signal": "BELOW PAR - low coupon"
     }
   ],
-
   "maturity_schedule": {
     "year_1": 587,
     "year_2": 704,
@@ -139,15 +185,19 @@
     "thereafter": 0,
     "note": "Oct 2026 maturity ($587m) is key focus. Well-laddered profile through 2029."
   },
-
   "equity_market_value": {
     "ticker": "LXS",
     "exchange": "Frankfurt Stock Exchange",
     "share_price": "EUR 16.51",
     "equity_market_value": 1668,
-    "key_shareholders": ["Causeway Capital Management", "Norges Bank", "Vanguard", "Allianz Global Investors", "Deka Investment"]
+    "key_shareholders": [
+      "Causeway Capital Management",
+      "Norges Bank",
+      "Vanguard",
+      "Allianz Global Investors",
+      "Deka Investment"
+    ]
   },
-
   "envalior_transaction": {
     "description": "Lanxess exercised put option to sell Envalior JV stake to Advent for EUR 1.2bn",
     "date": "Sep 2025",
@@ -155,7 +205,6 @@
     "purpose": "Deleveraging and balance sheet strengthening",
     "note": "Key catalyst for maintaining IG rating"
   },
-
   "credit_opinion": {
     "recommendation": "OVERWEIGHT",
     "summary": "Lanxess is an INVESTMENT GRADE credit (Baa3) with low distress score of 9. While EBITDA has declined -34% from 2022 peak due to chemicals downturn, the company is recovering with margins improving from 6.3% to 8.7%. Net leverage of 4.1x is moderate for IG. The EUR 1.2bn Envalior stake sale to Advent provides significant deleveraging capacity. All bonds trading near par (90-101) with IG-tight yields of 2.5-3.5%. Oct 2026 maturity ($587m) should be easily refinanced given IG status and market access. EUR 800m undrawn revolver provides liquidity cushion. Publicly traded with strong institutional ownership.",
@@ -177,7 +226,6 @@
       "Further deleveraging below 4x"
     ]
   },
-
   "distress_indicators": {
     "debtwire_distress_score": 9,
     "lifecycle_status": "Performing credit",

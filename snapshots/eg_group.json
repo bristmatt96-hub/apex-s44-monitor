@@ -1,17 +1,24 @@
 {
-  "company_name": "EG Group",
+  "company_name": "EG Global Finance plc",
   "legal_entity": "EG Group Ltd",
-  "alternate_names": ["EG Global Finance", "Euro Garages"],
+  "alternate_names": [
+    "EG Global Finance",
+    "Euro Garages"
+  ],
   "sector": "Consumer & Retail - Convenience/Forecourt",
   "geography": "United Kingdom",
   "last_updated": "2026-01-21",
   "data_source": "Debtwire",
-
   "ratings": {
-    "moodys": {"rating": "B3", "outlook": null},
-    "sp": {"rating": "B-", "outlook": null}
+    "moodys": {
+      "rating": "B3",
+      "outlook": null
+    },
+    "sp": {
+      "rating": "B-",
+      "outlook": null
+    }
   },
-
   "overview": {
     "business_description": "Global independent convenience retailer operating 6,000+ fuel forecourt sites with convenience stores across multiple countries. Founded by Mohsin & Zuber Issa brothers. Operates fuel retail, convenience stores, and foodservice franchises (Starbucks, KFC, Burger King, etc.).",
     "business_positives": [
@@ -28,7 +35,6 @@
     "ownership": "TDR Capital LLP (50%) + Issa Brothers (Mohsin & Zuber). Private company.",
     "recent_news": "2Q25 underlying EBITDA dipped 1.1% YoY to USD 270m. Sold Australian business to Ampol (EUR 615m, Aug 2025). Sold Italian business (EUR 425m, Aug 2025). Priced EUR 1.525bn TLB at E+387.5bps (Jul 2025). Weighing Starbucks franchise sale for Costa Coffee bid."
   },
-
   "quick_assessment": {
     "total_debt": 5580,
     "cash_on_hand": null,
@@ -39,14 +45,12 @@
     "interest_expense": null,
     "ebitda_q2_2025_annualized": 1080
   },
-
   "key_ratios": {
     "debt_to_ebitda": null,
     "net_debt_to_ebitda": null,
     "ebitda_minus_capex_to_interest": null,
     "fcf_to_debt": null
   },
-
   "debt_capitalization": [
     {
       "instrument": "GBP 139m Revolving Credit",
@@ -86,7 +90,7 @@
       "amount": 1565,
       "maturity": "Feb 2028",
       "coupon": "S+425bps",
-      "price": 100.70,
+      "price": 100.7,
       "ytw": null,
       "stw": null,
       "rating": null,
@@ -108,7 +112,7 @@
       "amount": 1090,
       "maturity": "Nov 2028",
       "coupon": "12.00%",
-      "price": 108.60,
+      "price": 108.6,
       "ytw": 8.54,
       "stw": null,
       "rating": "B3/B-",
@@ -126,7 +130,6 @@
       "seniority": "Senior Secured"
     }
   ],
-
   "maturity_schedule": {
     "year_1": 0,
     "year_2": 315,
@@ -135,20 +138,41 @@
     "year_5": 0,
     "thereafter": 0
   },
-
   "maturity_detail": {
     "2027": "Revolvers (~$315m)",
     "2028_feb": "EUR 1.6bn + USD 1.7bn TLBs (~$3.2bn) - MAIN WALL",
     "2028_nov": "EUR 468m + USD 1.1bn + USD 500m notes (~$2.1bn)"
   },
-
   "asset_sales": [
-    {"date": "Aug 2025", "asset": "Australian business", "buyer": "Ampol", "value_eur": 615, "status": "Pending"},
-    {"date": "Aug 2025", "asset": "Italian business", "buyer": "PAD Multienergy", "value_eur": 425, "status": "Completed"},
-    {"date": "May 2023", "asset": "UK/Ireland operations", "buyer": "Asda", "value_usd": 2600, "status": "Completed"},
-    {"date": "Jun 2024", "asset": "Remaining UK forecourt", "buyer": "Zuber Issa", "value_usd": 291, "status": "Completed"}
+    {
+      "date": "Aug 2025",
+      "asset": "Australian business",
+      "buyer": "Ampol",
+      "value_eur": 615,
+      "status": "Pending"
+    },
+    {
+      "date": "Aug 2025",
+      "asset": "Italian business",
+      "buyer": "PAD Multienergy",
+      "value_eur": 425,
+      "status": "Completed"
+    },
+    {
+      "date": "May 2023",
+      "asset": "UK/Ireland operations",
+      "buyer": "Asda",
+      "value_usd": 2600,
+      "status": "Completed"
+    },
+    {
+      "date": "Jun 2024",
+      "asset": "Remaining UK forecourt",
+      "buyer": "Zuber Issa",
+      "value_usd": 291,
+      "status": "Completed"
+    }
   ],
-
   "credit_opinion": {
     "recommendation": "NEUTRAL",
     "summary": "EG Group is a B3/B- convenience/forecourt operator actively deleveraging through asset sales. The capital structure is EXPENSIVE (11-12% notes) but bonds trading at 108+ (above par) shows market confidence in the asset sales strategy. TLBs near par at 100-101. Main concern is the Feb 2028 TLB maturity wall (~$3.2bn) and Nov 2028 notes (~$2.1bn). Distress score of 10 is reasonable. The Issa brothers and TDR Capital are experienced but there's complexity with related party transactions (Asda).",
@@ -169,7 +193,6 @@
       "Rating upgrade if deleveraging continues"
     ]
   },
-
   "distress_indicators": {
     "debtwire_distress_score": 10,
     "lifecycle_status": "Performing credit",

@@ -1,19 +1,26 @@
 {
-  "company_name": "CABB",
+  "company_name": "Monitchem HoldCo 3 S.A. (CABB)",
   "legal_entity": "CABB GmbH",
   "holding_company": "Monitchem Holdco 3 SA",
-  "alternate_names": ["Monitchem", "CABB Chemicals"],
+  "alternate_names": [
+    "Monitchem",
+    "CABB Chemicals"
+  ],
   "sector": "Industrials - Specialty Chemicals",
   "geography": "Germany",
   "last_updated": "2026-01-21",
   "data_source": "Debtwire",
-
   "ratings": {
-    "moodys": {"rating": "B3", "outlook": null},
-    "sp": {"rating": "B", "outlook": null},
+    "moodys": {
+      "rating": "B3",
+      "outlook": null
+    },
+    "sp": {
+      "rating": "B",
+      "outlook": null
+    },
     "note": "B3/B rated - deep single-B credit. Challenged chemicals business."
   },
-
   "overview": {
     "business_description": "Specialty chemical producer supplying chlorine- and acetic-acid-based building blocks primarily for agrochemical, pharmaceutical, and performance material industries. Operations in Germany and internationally.",
     "business_positives": [
@@ -30,7 +37,6 @@
     "ownership": "Private - PE-owned. Permira (100%) via Permira V fund since June 2014. Very long PE hold (10+ years) suggests exit challenges.",
     "recent_news": "Liquidity provides near-term buffer against persistent cash burn, soft end-market demand and pricing pressures (Jan 2026 credit report). Decides to close Knapsack site; expects EBITDA improvement up to low double-digit millions (Dec 2025). Signs agreement with Anupam Rasayan to sell Jayhawk for USD 150m (Dec 2025)."
   },
-
   "quick_assessment": {
     "total_debt": 738,
     "cash_on_hand": null,
@@ -41,13 +47,11 @@
     "ebitda": null,
     "note": "CASH BURN noted. Asset sale ($150m Jayhawk) to improve liquidity. Site closure underway."
   },
-
   "key_ratios": {
     "debt_to_ebitda": null,
     "net_debt_to_ebitda": null,
     "note": "Detailed financials not provided. Credit reports note persistent cash burn and liquidity challenges."
   },
-
   "debt_capitalization": [
     {
       "instrument": "EUR 110m Revolving Credit",
@@ -81,7 +85,6 @@
       "note": "Fixed rate tranche"
     }
   ],
-
   "maturity_schedule": {
     "year_1": 0,
     "year_2": 121,
@@ -91,7 +94,6 @@
     "thereafter": 0,
     "note": "Apr 2027 RCF maturity. May 2028 bond wall ($738m). Manageable near-term."
   },
-
   "asset_disposals": {
     "jayhawk_sale": {
       "buyer": "Anupam Rasayan",
@@ -105,7 +107,6 @@
       "note": "Site closure - operational restructuring"
     }
   },
-
   "pe_ownership": {
     "sponsor": "Permira",
     "fund": "Permira V",
@@ -114,7 +115,6 @@
     "holding_period": "10+ years",
     "note": "Very long PE hold suggests exit challenges. Typical PE hold is 4-6 years."
   },
-
   "credit_opinion": {
     "recommendation": "UNDERWEIGHT",
     "summary": "CABB is a CHALLENGED B3/B rated specialty chemicals credit with elevated distress score (15). Credit reports explicitly note 'persistent cash burn, soft end-market demand and pricing pressures.' The company is in operational restructuring mode - closing Knapsack site and selling Jayhawk business for $150m to shore up liquidity. While bonds trade near par (99-100) and May 2028 maturities provide runway, the fundamental trajectory is concerning. Permira has owned since 2014 - a 10+ year hold that suggests significant exit challenges. Yields of 7.9-8.8% reflect B-rated risk premium.",
@@ -140,15 +140,12 @@
       "Successful 2028 refinancing"
     ]
   },
-
   "distress_indicators": {
     "debtwire_distress_score": 15,
     "lifecycle_status": "Performing credit",
     "trading_signals": "Bonds at 99-100 (near par) but yields elevated at 7.9-8.8%. PERSISTENT CASH BURN noted. Asset sales and site closures indicate operational stress. B3/B rating is deep single-B. Permira 10+ year hold suggests exit difficulty."
   },
-
   "watchlist_priority": "ELEVATED - Monitor cash burn, asset sale completion, and operational turnaround",
-
   "lme_risk_proxy": {
     "doc_vintage": "2023",
     "pe_backed": true,

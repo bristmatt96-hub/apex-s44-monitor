@@ -1,16 +1,20 @@
 {
-  "company_name": "Allwyn",
+  "company_name": "Allwyn Entertainment Financing (UK) plc",
   "legal_entity": "Allwyn AG",
   "sector": "Consumer & Retail - Gaming/Lottery",
   "geography": "Switzerland",
   "last_updated": "2025-01-21",
   "data_source": "Debtwire",
-
   "ratings": {
-    "sp": {"rating": "BB", "outlook": "Stable"},
-    "fitch": {"rating": "BB-", "outlook": "Stable"}
+    "sp": {
+      "rating": "BB",
+      "outlook": "Stable"
+    },
+    "fitch": {
+      "rating": "BB-",
+      "outlook": "Stable"
+    }
   },
-
   "overview": {
     "business_description": "Operator of numerical lotteries and sports betting games. Owns lottery licenses in UK, Austria, Czech Republic, Greece, Italy and Cyprus.",
     "business_positives": [
@@ -23,7 +27,6 @@
     "ownership": "KKCG SE (Private)",
     "recent_news": "3Q25 operating EBITDA falls 16% YoY to EUR 301m. Priced EUR 450m TLB add-on at E+300bps, 99.5 OID (Dec 2025)."
   },
-
   "quick_assessment": {
     "total_debt": 4567,
     "cash_on_hand": null,
@@ -32,14 +35,12 @@
     "cffo": null,
     "interest_expense": null
   },
-
   "key_ratios": {
     "debt_to_ebitda": null,
     "net_debt_to_ebitda": null,
     "ebitda_minus_capex_to_interest": null,
     "fcf_to_debt": null
   },
-
   "debt_capitalization": [
     {
       "instrument": "EUR 450m TLB First Lien (Dec 2025)",
@@ -142,7 +143,6 @@
       "rating": null
     }
   ],
-
   "maturity_schedule": {
     "year_1": 555,
     "year_2": 452,
@@ -151,7 +151,6 @@
     "year_5": 775,
     "thereafter": 1016
   },
-
   "credit_opinion": {
     "recommendation": "NEUTRAL",
     "summary": "Allwyn is a performing BB credit with diversified lottery operations. However, 3Q25 EBITDA decline of 16% YoY is concerning. Recent TLB pricing at E+300bps with 99.5 OID suggests market is comfortable but watching. Bonds trading above par indicate constructive technicals.",
@@ -169,7 +168,6 @@
       "Further M&A could add scale but also debt"
     ]
   },
-
   "distress_indicators": {
     "debtwire_distress_score": 9,
     "lifecycle_status": "Performing credit",

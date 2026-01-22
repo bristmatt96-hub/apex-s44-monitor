@@ -1,26 +1,34 @@
 {
-  "company_name": "Crown Holdings",
+  "company_name": "Crown European Holdings",
   "legal_entity": "Crown Holdings Inc",
-  "alternate_names": ["Crown Americas LLC", "Crown European Holdings SA", "CCK"],
+  "alternate_names": [
+    "Crown Americas LLC",
+    "Crown European Holdings SA",
+    "CCK"
+  ],
   "sector": "Industrials - Metal Packaging",
   "geography": "United States (Pennsylvania)",
   "last_updated": "2026-01-21",
   "data_source": "Debtwire",
-
   "ratings": {
-    "moodys": {"rating": "Ba1", "outlook": null},
-    "sp": {"rating": "BB+", "outlook": null},
+    "moodys": {
+      "rating": "Ba1",
+      "outlook": null
+    },
+    "sp": {
+      "rating": "BB+",
+      "outlook": null
+    },
     "note": "Strong crossover credit - one notch below investment grade"
   },
-
   "overview": {
     "business_description": "Global leader in metal packaging manufacturing, supplying beverage cans, food cans, and aerosol containers to consumer goods companies worldwide. Major supplier to Coca-Cola, Pepsi, AB InBev, and other beverage/food giants. Operations in Americas, Europe, and Asia-Pacific.",
     "business_positives": [
       "LOWEST distress score of 7 - tied for best in portfolio",
       "All bonds trading at or ABOVE PAR (100-105)",
-      "Excellent deleveraging: 3.7x → 2.5x net leverage",
+      "Excellent deleveraging: 3.7x \u2192 2.5x net leverage",
       "EBITDA growing +16% over 3 years to $2.08bn",
-      "EBITDA margins expanding: 13.5% → 17.1%",
+      "EBITDA margins expanding: 13.5% \u2192 17.1%",
       "MASSIVE $11.7bn market cap equity cushion",
       "Strong CFFO of $1.34bn LTM",
       "Ba1/BB+ rated - one notch from IG",
@@ -32,7 +40,6 @@
     "ownership": "Public (NYSE: CCK). Top shareholders: Vanguard ($1.1bn), BlackRock ($962m), Fidelity ($598m), State Street ($436m), Norway SWF ($184m).",
     "recent_news": "Priced EUR 500m senior unsecured 2031 note at 3.75% (Sep 2025) - very tight IG-adjacent pricing. Notes assigned Ba1/BB+ ratings. Strong deleveraging trajectory."
   },
-
   "quick_assessment": {
     "total_debt": 6389,
     "cash_on_hand": 1172,
@@ -44,7 +51,6 @@
     "ebitda": 2078,
     "market_cap": 11720
   },
-
   "key_ratios": {
     "debt_to_ebitda": 3.1,
     "net_debt_to_ebitda": 2.5,
@@ -52,19 +58,57 @@
     "ebitda_margin": 17.1,
     "note": "Excellent leverage metrics - 2.5x net and IMPROVING. Strong margin expansion."
   },
-
   "trend_analysis": {
-    "years": ["FY 2022", "FY 2023", "FY 2024", "LTM Sep 2025"],
-    "revenue": [12943, 12010, 11801, 12141],
-    "ebitda": [1746, 1820, 1898, 2078],
-    "ebitda_margin": [13.5, 15.2, 16.1, 17.1],
-    "total_debt": [6977, 7474, 6204, 6389],
-    "net_debt": [6427, 6164, 5286, 5217],
-    "gross_leverage": [4.0, 4.1, 3.3, 3.1],
-    "net_leverage": [3.7, 3.4, 2.8, 2.5],
+    "years": [
+      "FY 2022",
+      "FY 2023",
+      "FY 2024",
+      "LTM Sep 2025"
+    ],
+    "revenue": [
+      12943,
+      12010,
+      11801,
+      12141
+    ],
+    "ebitda": [
+      1746,
+      1820,
+      1898,
+      2078
+    ],
+    "ebitda_margin": [
+      13.5,
+      15.2,
+      16.1,
+      17.1
+    ],
+    "total_debt": [
+      6977,
+      7474,
+      6204,
+      6389
+    ],
+    "net_debt": [
+      6427,
+      6164,
+      5286,
+      5217
+    ],
+    "gross_leverage": [
+      4.0,
+      4.1,
+      3.3,
+      3.1
+    ],
+    "net_leverage": [
+      3.7,
+      3.4,
+      2.8,
+      2.5
+    ],
     "trend_summary": "EXCELLENT trajectory - Net leverage down from 3.7x to 2.5x. EBITDA growing. Margins expanding from 13.5% to 17.1%. Approaching investment-grade metrics."
   },
-
   "debt_capitalization": [
     {
       "instrument": "USD 1.49bn Sr Notes",
@@ -119,7 +163,6 @@
       "note": "Sep 2025 issuance - very tight pricing"
     }
   ],
-
   "maturity_schedule": {
     "year_1": 3315,
     "year_2": 0,
@@ -129,7 +172,6 @@
     "thereafter": 550,
     "note": "2026 maturity wall (~$3.3bn) but strong access demonstrated by recent 3.75% issuance"
   },
-
   "equity_market_value": {
     "ticker": "CCK",
     "exchange": "NYSE",
@@ -137,12 +179,23 @@
     "equity_market_value": 11720,
     "total_enterprise_value": 17630,
     "tev_to_ebitda": 8.5,
-    "key_shareholders": ["Vanguard ($1.1bn)", "BlackRock ($962m)", "Fidelity ($598m)", "State Street ($436m)", "Victory ($378m)", "Norway SWF ($184m)"]
+    "key_shareholders": [
+      "Vanguard ($1.1bn)",
+      "BlackRock ($962m)",
+      "Fidelity ($598m)",
+      "State Street ($436m)",
+      "Victory ($378m)",
+      "Norway SWF ($184m)"
+    ]
   },
-
   "business_segments": {
     "beverage_cans": {
-      "customers": ["Coca-Cola", "PepsiCo", "AB InBev", "Molson Coors"],
+      "customers": [
+        "Coca-Cola",
+        "PepsiCo",
+        "AB InBev",
+        "Molson Coors"
+      ],
       "trend": "Aluminum sustainability driving demand"
     },
     "food_cans": {
@@ -154,7 +207,6 @@
       "note": "Industrial packaging solutions"
     }
   },
-
   "credit_opinion": {
     "recommendation": "OVERWEIGHT",
     "summary": "Crown Holdings is one of the strongest credits in the XO S44 portfolio with the LOWEST distress score (7). The company has executed an impressive deleveraging from 3.7x to 2.5x net leverage while growing EBITDA and expanding margins to 17.1%. All bonds trading at or above par (100-105). Recent EUR 500m issuance at 3.75% demonstrates IG-adjacent market access. Ba1/BB+ rating is one notch from investment grade. Massive $11.7bn market cap and $1.3bn CFFO provide excellent support. While 2026 maturities are significant (~$3.3bn), the company's demonstrated market access and strong metrics suggest refinancing should be straightforward.",
@@ -175,7 +227,6 @@
       "M&A consolidation opportunities"
     ]
   },
-
   "distress_indicators": {
     "debtwire_distress_score": 7,
     "lifecycle_status": "Performing credit",

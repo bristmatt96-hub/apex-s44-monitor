@@ -1,18 +1,25 @@
 {
-  "company_name": "Ontex",
+  "company_name": "Ontex Group NV",
   "legal_entity": "Ontex Group SA/NV",
-  "alternate_names": ["Ontex Group", "Ontex NV"],
+  "alternate_names": [
+    "Ontex Group",
+    "Ontex NV"
+  ],
   "sector": "Consumer & Retail - Personal Hygiene Products",
   "geography": "Belgium",
   "last_updated": "2026-01-21",
   "data_source": "Debtwire",
-
   "ratings": {
-    "moodys": {"rating": "NR", "outlook": null},
-    "sp": {"rating": "B+", "outlook": "Stable"},
+    "moodys": {
+      "rating": "NR",
+      "outlook": null
+    },
+    "sp": {
+      "rating": "B+",
+      "outlook": "Stable"
+    },
     "note": "S&P revised outlook to Stable from Positive (Jan 2025) after FY25 guidance cut"
   },
-
   "overview": {
     "business_description": "Belgian manufacturer of personal hygiene products including baby diapers, feminine care products, and adult incontinence products. Sells through retail private label and healthcare channels across Europe and emerging markets.",
     "business_positives": [
@@ -27,7 +34,6 @@
     "ownership": "Public (Euronext Brussels: ONTEX). Diversified shareholder base.",
     "recent_news": "Cut FY25 EBITDA outlook (Jan 2025) - outlook revised to Stable from Positive. New CEO transition. Strategic review ongoing. Bond trading below par ahead of Jul 2026 maturity."
   },
-
   "quick_assessment": {
     "total_debt": 634,
     "cash_on_hand": 59,
@@ -39,7 +45,6 @@
     "ebitda": 208,
     "market_cap": 493
   },
-
   "key_ratios": {
     "debt_to_ebitda": 3.05,
     "net_debt_to_ebitda": 2.77,
@@ -47,16 +52,39 @@
     "ebitda_margin": null,
     "ebitda_minus_capex_to_interest": null
   },
-
   "trend_analysis": {
-    "years": ["FY 2022", "FY 2023", "FY 2024", "LTM Sep 2025"],
-    "ebitda": [182, 251, 208, 208],
-    "total_debt": [794, 628, 635, 634],
-    "gross_leverage": [4.4, 2.5, 3.1, 3.1],
-    "net_leverage": [3.8, 2.1, 2.8, 2.8],
+    "years": [
+      "FY 2022",
+      "FY 2023",
+      "FY 2024",
+      "LTM Sep 2025"
+    ],
+    "ebitda": [
+      182,
+      251,
+      208,
+      208
+    ],
+    "total_debt": [
+      794,
+      628,
+      635,
+      634
+    ],
+    "gross_leverage": [
+      4.4,
+      2.5,
+      3.1,
+      3.1
+    ],
+    "net_leverage": [
+      3.8,
+      2.1,
+      2.8,
+      2.8
+    ],
     "trend_summary": "EBITDA improved in 2023 but declined -17% in 2024. FY25 guidance cut signals further weakness. Leverage deteriorating from 2.5x back to 3.1x."
   },
-
   "debt_capitalization": [
     {
       "instrument": "EUR 400m Sr Secd Notes",
@@ -82,7 +110,6 @@
       "seniority": "Senior Secured"
     }
   ],
-
   "maturity_schedule": {
     "year_1": 692,
     "year_2": 0,
@@ -92,7 +119,6 @@
     "thereafter": 0,
     "maturity_wall": "Jul 2026 - $692m needs refinancing"
   },
-
   "equity_market_value": {
     "ticker": "ONTEX.BR",
     "exchange": "Euronext Brussels",
@@ -100,7 +126,6 @@
     "total_enterprise_value": 1128,
     "tev_to_ebitda": 5.4
   },
-
   "credit_opinion": {
     "recommendation": "NEUTRAL",
     "summary": "Ontex is a performing credit with low distress score (8) but faces near-term challenges. The Jul 2026 maturity wall ($692m) is approaching with bond trading below par (98.34), suggesting market concern about refinancing. EBITDA declined -17% in FY24 and FY25 guidance was cut, prompting S&P to revise outlook to Stable from Positive. CEO transition and strategic review add uncertainty. However, leverage at 2.77x is manageable and $493m market cap provides equity cushion. Essential consumer products provide stability but competitive pressure from P&G/Kimberly-Clark limits pricing power.",
@@ -122,12 +147,10 @@
       "Rating upgrade if leverage maintained below 3.0x"
     ]
   },
-
   "distress_indicators": {
     "debtwire_distress_score": 8,
     "lifecycle_status": "Performing credit",
     "trading_signals": "Bond at 98.34 (BELOW PAR) despite low distress score. Market pricing Jul 2026 refinancing uncertainty. EBITDA declining. Watch for refinancing developments."
   },
-
   "watchlist_priority": "MEDIUM - Monitor Jul 2026 refinancing progress"
 }

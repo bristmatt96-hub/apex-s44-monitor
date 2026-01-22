@@ -1,5 +1,5 @@
 {
-  "company_name": "Eutelsat SA",
+  "company_name": "Eutelsat S.A.",
   "ticker": "ETL FP",
   "sector": "TMT - Satellite",
   "last_updated": "2026-01-22",
@@ -17,9 +17,21 @@
     "recent_news": "Nov 2025: EUR 828m equity raise at EUR 4/share. Dec 2024: Exercised put option with EQT creating EUR 790m EV entity. Ongoing high capex cycle for satellite fleet renewal."
   },
   "ratings": {
-    "moodys": {"rating": "B1", "outlook": "", "date": ""},
-    "sp": {"rating": "B", "outlook": "", "date": ""},
-    "fitch": {"rating": "", "outlook": "", "date": ""}
+    "moodys": {
+      "rating": "B1",
+      "outlook": "",
+      "date": ""
+    },
+    "sp": {
+      "rating": "B",
+      "outlook": "",
+      "date": ""
+    },
+    "fitch": {
+      "rating": "",
+      "outlook": "",
+      "date": ""
+    }
   },
   "quick_assessment": {
     "period_end": "FY 2024",
@@ -47,16 +59,96 @@
     "total_debt": []
   },
   "debt_capitalization": [
-    {"instrument": "EUR 600m Sr Unsecd Notes", "amount": 651, "maturity": "Apr 2029", "coupon": "9.75%", "price": 106.36, "ytw": 7.49, "rating": "B1"},
-    {"instrument": "EUR 600m Sr Unsecd Notes", "amount": 706, "maturity": "Oct 2028", "coupon": "1.50%", "price": 96.78, "ytw": 2.74, "rating": "B1/B"},
-    {"instrument": "EUR 200m Term Loan", "amount": 238, "maturity": "Dec 2028", "coupon": "0.49%", "price": null, "ytw": null, "rating": "-"},
-    {"instrument": "EUR 85m Term Loan", "amount": 94, "maturity": "Nov 2029", "coupon": "-", "price": null, "ytw": null, "rating": "-"},
-    {"instrument": "EUR 420m Lease Facility", "amount": 457, "maturity": "Various", "coupon": "-", "price": null, "ytw": null, "rating": "-"},
-    {"instrument": "EUR 75m Credit Facility", "amount": 82, "maturity": "Jun 2026", "coupon": "2.52%", "price": null, "ytw": null, "rating": "-"},
-    {"instrument": "EUR 53m Credit Facility", "amount": 59, "maturity": "Jun 2026", "coupon": "5.70%", "price": null, "ytw": null, "rating": "-"},
-    {"instrument": "EUR 53m Credit Facility", "amount": 58, "maturity": "Jun 2026", "coupon": "-", "price": null, "ytw": null, "rating": "-"},
-    {"instrument": "EUR 49m Credit Facility", "amount": 54, "maturity": "Jun 2027", "coupon": "6.05%", "price": null, "ytw": null, "rating": "-"},
-    {"instrument": "EUR 53m Credit Facility", "amount": 58, "maturity": "Jun 2027", "coupon": "-", "price": null, "ytw": null, "rating": "-"}
+    {
+      "instrument": "EUR 600m Sr Unsecd Notes",
+      "amount": 651,
+      "maturity": "Apr 2029",
+      "coupon": "9.75%",
+      "price": 106.36,
+      "ytw": 7.49,
+      "rating": "B1"
+    },
+    {
+      "instrument": "EUR 600m Sr Unsecd Notes",
+      "amount": 706,
+      "maturity": "Oct 2028",
+      "coupon": "1.50%",
+      "price": 96.78,
+      "ytw": 2.74,
+      "rating": "B1/B"
+    },
+    {
+      "instrument": "EUR 200m Term Loan",
+      "amount": 238,
+      "maturity": "Dec 2028",
+      "coupon": "0.49%",
+      "price": null,
+      "ytw": null,
+      "rating": "-"
+    },
+    {
+      "instrument": "EUR 85m Term Loan",
+      "amount": 94,
+      "maturity": "Nov 2029",
+      "coupon": "-",
+      "price": null,
+      "ytw": null,
+      "rating": "-"
+    },
+    {
+      "instrument": "EUR 420m Lease Facility",
+      "amount": 457,
+      "maturity": "Various",
+      "coupon": "-",
+      "price": null,
+      "ytw": null,
+      "rating": "-"
+    },
+    {
+      "instrument": "EUR 75m Credit Facility",
+      "amount": 82,
+      "maturity": "Jun 2026",
+      "coupon": "2.52%",
+      "price": null,
+      "ytw": null,
+      "rating": "-"
+    },
+    {
+      "instrument": "EUR 53m Credit Facility",
+      "amount": 59,
+      "maturity": "Jun 2026",
+      "coupon": "5.70%",
+      "price": null,
+      "ytw": null,
+      "rating": "-"
+    },
+    {
+      "instrument": "EUR 53m Credit Facility",
+      "amount": 58,
+      "maturity": "Jun 2026",
+      "coupon": "-",
+      "price": null,
+      "ytw": null,
+      "rating": "-"
+    },
+    {
+      "instrument": "EUR 49m Credit Facility",
+      "amount": 54,
+      "maturity": "Jun 2027",
+      "coupon": "6.05%",
+      "price": null,
+      "ytw": null,
+      "rating": "-"
+    },
+    {
+      "instrument": "EUR 53m Credit Facility",
+      "amount": 58,
+      "maturity": "Jun 2027",
+      "coupon": "-",
+      "price": null,
+      "ytw": null,
+      "rating": "-"
+    }
   ],
   "maturity_schedule": {
     "2026": 199,
@@ -68,16 +160,45 @@
     "note": "Private post-OneWeb merger; Nov 2025 equity raise at EUR 4/share"
   },
   "top_lenders": [
-    {"name": "BNP Paribas", "role": "Arranger", "deals": 3},
-    {"name": "SG Corporate & Investment Banking", "role": "Arranger", "deals": 3},
-    {"name": "Credit Agricole", "role": "Arranger", "deals": 3},
-    {"name": "Intesa Sanpaolo", "role": "Arranger", "deals": 3},
-    {"name": "Goldman Sachs", "role": "Arranger", "deals": 1}
+    {
+      "name": "BNP Paribas",
+      "role": "Arranger",
+      "deals": 3
+    },
+    {
+      "name": "SG Corporate & Investment Banking",
+      "role": "Arranger",
+      "deals": 3
+    },
+    {
+      "name": "Credit Agricole",
+      "role": "Arranger",
+      "deals": 3
+    },
+    {
+      "name": "Intesa Sanpaolo",
+      "role": "Arranger",
+      "deals": 3
+    },
+    {
+      "name": "Goldman Sachs",
+      "role": "Arranger",
+      "deals": 1
+    }
   ],
   "key_deals": [
-    {"date": "Nov 2025", "deal": "EUR 828m equity raise at EUR 4/share"},
-    {"date": "Dec 2024", "deal": "EQT put option exercised; new entity EUR 790m EV"},
-    {"date": "Sep 2023", "deal": "OneWeb acquisition completed"}
+    {
+      "date": "Nov 2025",
+      "deal": "EUR 828m equity raise at EUR 4/share"
+    },
+    {
+      "date": "Dec 2024",
+      "deal": "EQT put option exercised; new entity EUR 790m EV"
+    },
+    {
+      "date": "Sep 2023",
+      "deal": "OneWeb acquisition completed"
+    }
   ],
   "credit_opinion": {
     "summary": "Eutelsat is a legacy satellite operator facing structural headwinds from LEO competition (Starlink) and declining video broadcast revenues. High capex cycle for fleet renewal pressures FCF. Nov 2025 equity raise and EQT partnership provide some cushion. 2028 notes trading at 96.78 (2.74% yield) while 2029 notes at 106.36 (7.49% yield) reflect coupon differential.",

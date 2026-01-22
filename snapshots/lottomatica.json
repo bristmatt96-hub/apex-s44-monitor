@@ -1,23 +1,30 @@
 {
-  "company_name": "Lottomatica",
+  "company_name": "Lottomatica Group S.p.A.",
   "legal_entity": "Lottomatica Group SpA",
-  "alternate_names": ["Lottomatica SpA", "LTMC"],
+  "alternate_names": [
+    "Lottomatica SpA",
+    "LTMC"
+  ],
   "sector": "Consumer & Retail - Gaming/Lottery",
   "geography": "Italy",
   "last_updated": "2026-01-21",
   "data_source": "Debtwire",
-
   "ratings": {
-    "moodys": {"rating": "Ba2", "outlook": null},
-    "sp": {"rating": "BB", "outlook": null}
+    "moodys": {
+      "rating": "Ba2",
+      "outlook": null
+    },
+    "sp": {
+      "rating": "BB",
+      "outlook": null
+    }
   },
-
   "overview": {
     "business_description": "Italian gaming company operating slot machines, video lottery terminals (VLTs), and online gaming & betting. Market leader in Italian gaming sector. Recently IPO'd and growing through M&A.",
     "business_positives": [
       "Very low distress score of 8 - performing credit",
-      "STRONG deleveraging: 5.4x → 3.4x gross leverage",
-      "EBITDA up 88% from 2022 ($386m → $727m)",
+      "STRONG deleveraging: 5.4x \u2192 3.4x gross leverage",
+      "EBITDA up 88% from 2022 ($386m \u2192 $727m)",
       "Excellent EBITDA margins (28%)",
       "All bonds above par (100-103)",
       "$6bn market cap equity cushion",
@@ -29,7 +36,6 @@
     "ownership": "Public (MTA: LTMC). Diversified institutional shareholder base.",
     "recent_news": "Priced upsized EUR 1.1bn Sr Secd 2031 notes at 4.875% (Apr 2025) - strong market reception. EUR 1.39bn follow-on equity offering (Jun 2025). Growing through M&A."
   },
-
   "quick_assessment": {
     "total_debt": 2470,
     "cash_on_hand": 260,
@@ -41,7 +47,6 @@
     "ebitda": 727,
     "market_cap": 5970
   },
-
   "key_ratios": {
     "debt_to_ebitda": 3.4,
     "net_debt_to_ebitda": 3.0,
@@ -49,19 +54,57 @@
     "ebitda_margin": 27.9,
     "ebitda_minus_capex_to_interest": null
   },
-
   "trend_analysis": {
-    "years": ["FY 2022", "FY 2023", "FY 2024", "LTM Sep 2025"],
-    "revenue": [1493, 1802, 2082, 2608],
-    "ebitda": [386, 524, 598, 727],
-    "ebitda_margin": [25.9, 29.1, 28.7, 27.9],
-    "total_debt": [2087, 2314, 2146, 2470],
-    "net_debt": [1836, 1989, 1976, 2210],
-    "gross_leverage": [5.4, 4.4, 3.6, 3.4],
-    "net_leverage": [4.8, 3.8, 3.3, 3.0],
+    "years": [
+      "FY 2022",
+      "FY 2023",
+      "FY 2024",
+      "LTM Sep 2025"
+    ],
+    "revenue": [
+      1493,
+      1802,
+      2082,
+      2608
+    ],
+    "ebitda": [
+      386,
+      524,
+      598,
+      727
+    ],
+    "ebitda_margin": [
+      25.9,
+      29.1,
+      28.7,
+      27.9
+    ],
+    "total_debt": [
+      2087,
+      2314,
+      2146,
+      2470
+    ],
+    "net_debt": [
+      1836,
+      1989,
+      1976,
+      2210
+    ],
+    "gross_leverage": [
+      5.4,
+      4.4,
+      3.6,
+      3.4
+    ],
+    "net_leverage": [
+      4.8,
+      3.8,
+      3.3,
+      3.0
+    ],
     "trend_summary": "Strong EBITDA growth (+88% since 2022) and consistent deleveraging."
   },
-
   "debt_capitalization": [
     {
       "instrument": "EUR 513m Revolving Credit",
@@ -108,7 +151,6 @@
       "seniority": "Senior Secured"
     }
   ],
-
   "maturity_schedule": {
     "year_1": 0,
     "year_2": 0,
@@ -117,16 +159,19 @@
     "year_5": 550,
     "thereafter": 1650
   },
-
   "equity_market_value": {
     "ticker": "LTMC.MI",
     "exchange": "Milan Stock Exchange (MTA)",
     "equity_market_value": 5970,
     "total_enterprise_value": 8330,
     "tev_to_ebitda": 11.5,
-    "key_shareholders": ["Fidelity ($361m)", "Smallcap World Fund ($305m)", "Norway Govt Pension ($286m)", "Vanguard ($205m)"]
+    "key_shareholders": [
+      "Fidelity ($361m)",
+      "Smallcap World Fund ($305m)",
+      "Norway Govt Pension ($286m)",
+      "Vanguard ($205m)"
+    ]
   },
-
   "credit_opinion": {
     "recommendation": "OVERWEIGHT",
     "summary": "Lottomatica is a strong Ba2/BB Italian gaming credit with excellent fundamentals. Distress score of 8 is very low. EBITDA has grown 88% since 2022 with consistent deleveraging from 5.4x to 3.4x. Excellent EBITDA margins of 28%. All bonds trading above par (100-103) with tight yields. The $6bn market cap provides significant equity cushion. Strong institutional investor base. Recent EUR 1.1bn bond at 4.875% was upsized on strong demand. Gaming fundamentals in Italy remain solid.",
@@ -146,7 +191,6 @@
       "Further spread tightening"
     ]
   },
-
   "distress_indicators": {
     "debtwire_distress_score": 8,
     "lifecycle_status": "Performing credit",
