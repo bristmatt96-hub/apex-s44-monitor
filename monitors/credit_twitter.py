@@ -12,7 +12,7 @@ from pathlib import Path
 from typing import List, Dict, Optional
 
 # Load bearer token
-TWITTER_BEARER_TOKEN = st.secrets.get("TWITTER_BEARER_TOKEN", os.environ.get("TWITTER_BEARER_TOKEN", ""))
+TWITTER_BEARER_TOKEN = st.secrets.get("TWITTER_BEARER_TOKEN", st.secrets.get("Bearer token", os.environ.get("TWITTER_BEARER_TOKEN", "")))
 
 # ============== CURATED ACCOUNT LISTS ==============
 
