@@ -1,0 +1,102 @@
+{
+  "company_name": "TeamSystem Holdco SpA",
+  "ticker": "TEAMSYS",
+  "sector": "TMT - Software",
+  "last_updated": "2026-01-22",
+  "overview": {
+    "business_description": "Italian enterprise software provider delivering ERP, HR, payroll, accounting, and business management solutions primarily to SMEs. Leading player in Italian business software market with strong recurring revenue model. Active M&A strategy in data and AI.",
+    "business_positives": [
+      "Leading Italian enterprise software provider",
+      "High recurring revenue from subscription model",
+      "Strong SME customer base in Italy",
+      "Active M&A pipeline in data and AI",
+      "Defensive software business model"
+    ],
+    "fatal_flaw": "High PE leverage (B2/B- ratings); concentrated in Italian market; significant debt load (~$4.3bn) from sponsor ownership",
+    "ownership": "Private equity owned",
+    "public_private": "private",
+    "recent_news": "Jun 2025: Priced EUR 500m fixed note at 5% and EUR 1.25bn FRN at E+325bps. Jul 2025: Strong M&A pipeline in data and AI. Jun 2025: Acquired Clicdata SAS (French business software)."
+  },
+  "ratings": {
+    "moodys": {"rating": "B2", "outlook": "", "date": ""},
+    "sp": {"rating": "B-", "outlook": "", "date": ""},
+    "fitch": {"rating": "", "outlook": "", "date": ""}
+  },
+  "quick_assessment": {
+    "period_end": "2025",
+    "revenue": null,
+    "ebitda": null,
+    "cffo": null,
+    "total_debt": 4346,
+    "interest_expense": null,
+    "capex": null,
+    "debt_due_one_year": 218,
+    "cash_on_hand": null,
+    "revolver_available": 530
+  },
+  "key_ratios": {
+    "debt_to_ebitda": null,
+    "net_debt_to_ebitda": null,
+    "ebitda_margin": null,
+    "ev_to_ebitda": null
+  },
+  "trend_analysis": {
+    "years": [],
+    "revenue": [],
+    "ebitda": [],
+    "ebitda_margin": [],
+    "total_debt": []
+  },
+  "debt_capitalization": [
+    {"instrument": "EUR 180m Revolving Credit", "amount": 0, "maturity": "Aug 2027", "coupon": "-", "price": null, "ytw": null, "rating": "-"},
+    {"instrument": "EUR 300m Sr Secd Notes", "amount": 324, "maturity": "Feb 2028", "coupon": "3.50%", "price": 100.21, "ytw": 3.40, "rating": "B2/B-"},
+    {"instrument": "EUR 850m Sr Secd Notes (FRN)", "amount": 917, "maturity": "Feb 2028", "coupon": "E+3.75%", "price": 100.18, "ytw": null, "rating": "B-"},
+    {"instrument": "EUR 300m Sr Secured PIK Notes", "amount": 324, "maturity": "Dec 2029", "coupon": "E+PIK", "price": null, "ytw": null, "rating": "-"},
+    {"instrument": "EUR 700m Sr Secd Notes (FRN)", "amount": 763, "maturity": "Jan 2031", "coupon": "E+3.50%", "price": 100.97, "ytw": 5.73, "rating": "B2/B-"},
+    {"instrument": "EUR 500m Sr Secd Notes", "amount": 577, "maturity": "Jul 2031", "coupon": "5.00%", "price": 100.96, "ytw": 4.80, "rating": "B2/B-"},
+    {"instrument": "EUR 50m Revolving Credit", "amount": 0, "maturity": "Jan 2031", "coupon": "-", "price": null, "ytw": null, "rating": "-"},
+    {"instrument": "EUR 300m Revolving Credit", "amount": 0, "maturity": "Jan 2031", "coupon": "-", "price": null, "ytw": null, "rating": "-"},
+    {"instrument": "EUR 1250m Sr Secd Notes (FRN)", "amount": 1442, "maturity": "Jul 2032", "coupon": "E+3.25%", "price": 100.76, "ytw": 5.61, "rating": "B-"}
+  ],
+  "maturity_schedule": {
+    "2028": 1241,
+    "2029": 324,
+    "2031": 1340,
+    "2032": 1442
+  },
+  "equity_market_value": {
+    "note": "Private - PE owned"
+  },
+  "top_lenders": [
+    {"name": "JP Morgan", "role": "Arranger", "deals": 8},
+    {"name": "BofA Securities", "role": "Arranger", "deals": 5},
+    {"name": "Goldman Sachs", "role": "Arranger", "deals": 4},
+    {"name": "Deutsche Bank", "role": "Arranger", "deals": 4},
+    {"name": "Morgan Stanley", "role": "Arranger", "deals": 4}
+  ],
+  "key_deals": [
+    {"date": "Jul 2025", "deal": "EUR 50m RCF due Jan 2031"},
+    {"date": "Jun 2025", "deal": "EUR 500m fixed SSN at 5% + EUR 1.25bn FRN at E+325bps"},
+    {"date": "Jun 2025", "deal": "Acquired Clicdata SAS (French business software)"},
+    {"date": "Jul 2024", "deal": "EUR 700m FRN at E+350bps due Jan 2031"},
+    {"date": "Jan 2021", "deal": "EUR 300m fixed SSN at 3.5% + EUR 850m FRN at E+375bps due Feb 2028"}
+  ],
+  "credit_opinion": {
+    "summary": "TeamSystem is Italy's leading enterprise software provider serving SMEs with ERP, HR, and accounting solutions. PE-owned with high leverage but defensive recurring revenue business model. Active M&A in data and AI space. Bonds trading slightly above par with yields of 4.8-5.7%. B2/B- ratings reflect sponsor leverage but software fundamentals are solid.",
+    "key_risks": [
+      "High PE leverage",
+      "Concentrated in Italian market",
+      "B2/B- ratings limit financial flexibility",
+      "PIK notes add structural complexity",
+      "M&A integration risk"
+    ],
+    "key_catalysts": [
+      "Recurring revenue growth",
+      "M&A synergies in data/AI",
+      "Potential IPO or sponsor exit",
+      "Expansion beyond Italy",
+      "Deleveraging from cash flow"
+    ],
+    "recommendation": "NEUTRAL - Defensive software business but high leverage; bonds fairly valued at 5-6% yields"
+  }
+}
