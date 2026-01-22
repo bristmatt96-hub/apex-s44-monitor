@@ -1,0 +1,108 @@
+{
+  "company_name": "Zegona Communications plc (Vodafone Spain)",
+  "ticker": "ZEG",
+  "sector": "TMT - Telecommunications",
+  "last_updated": "2026-01-22",
+  "overview": {
+    "business_description": "UK-listed investment holding company that acquires and improves underperforming telecommunications businesses in Europe. Primary asset is Vodafone Spain (acquired Oct 2023 for $5.3bn), providing mobile, broadband, and TV services to Spanish consumers and businesses.",
+    "business_positives": [
+      "Strong operational turnaround at Vodafone Spain",
+      "Excellent EBITDA margin (42%)",
+      "Moderate leverage (2.9x net)",
+      "Successfully monetizing fiber assets",
+      "Telefónica reportedly interested in acquiring Vodafone Spain"
+    ],
+    "fatal_flaw": "Single asset concentration (Vodafone Spain); Spanish telecom market highly competitive with MasOrange consolidation; execution risk on turnaround",
+    "ownership": "Public (LSE: ZEG)",
+    "public_private": "public",
+    "recent_news": "Jan 2026: Telefónica reportedly hires Morgan Stanley to revive Vodafone Spain acquisition plans. Jan 2026: Repriced EUR 1.665bn TLB at E+225bps. Aug 2025: Sold 25% of fiber JV to GIC for $434m. Jul 2025: EUR 575m TLB add-on at E+300bps."
+  },
+  "ratings": {
+    "moodys": {"rating": "", "outlook": "", "date": ""},
+    "sp": {"rating": "", "outlook": "", "date": ""},
+    "fitch": {"rating": "", "outlook": "", "date": ""}
+  },
+  "quick_assessment": {
+    "period_end": "LTM Sep 2025",
+    "revenue": 3517,
+    "ebitda": 1469,
+    "cffo": 1448,
+    "total_debt": 4597,
+    "interest_expense": null,
+    "capex": null,
+    "debt_due_one_year": 0,
+    "cash_on_hand": 355,
+    "revolver_available": null
+  },
+  "key_ratios": {
+    "debt_to_ebitda": 3.1,
+    "net_debt_to_ebitda": 2.9,
+    "ebitda_margin": 41.8,
+    "ev_to_ebitda": 7.13
+  },
+  "trend_analysis": {
+    "years": ["Mar 2025", "LTM Sep 2025"],
+    "revenue": [2610, 3517],
+    "ebitda": [993, 1469],
+    "ebitda_margin": [38.1, 41.8],
+    "total_debt": [4290, 4597],
+    "net_debt": [4065, 4242],
+    "gross_leverage": [4.3, 3.1],
+    "net_leverage": [4.1, 2.9]
+  },
+  "debt_capitalization": [
+    {"instrument": "EUR 1665m Term Loan B", "amount": 1820, "maturity": "2029", "coupon": "E+2.25%", "price": 99.54, "ytw": null, "rating": "-"},
+    {"instrument": "EUR SSN (6.75%)", "amount": null, "maturity": "2031", "coupon": "6.75%", "price": 105.50, "ytw": null, "rating": "-"},
+    {"instrument": "Other TLB/facilities", "amount": 2777, "maturity": "Various", "coupon": "-", "price": null, "ytw": null, "rating": "-"}
+  ],
+  "maturity_schedule": {
+    "2029": 1820,
+    "2031+": 2777
+  },
+  "equity_market_value": {
+    "market_cap": 5040,
+    "ticker": "LSE: ZEG",
+    "share_price": 16.05,
+    "currency": "GBP"
+  },
+  "top_investors": [
+    {"name": "Thornburg Investment Management", "type": "Investment Advisor", "value_usd": 542},
+    {"name": "Fidelity Management & Research", "type": "Investment Advisor", "value_usd": 485},
+    {"name": "Alken Asset Management", "type": "Investment Advisor", "value_usd": 269},
+    {"name": "Working Capital Management", "type": "Holding Company", "value_usd": 121},
+    {"name": "Eaton Vance Management", "type": "Investment Advisor", "value_usd": 95}
+  ],
+  "top_lenders": [
+    {"name": "ING", "role": "Arranger", "deals": 11},
+    {"name": "Deutsche Bank", "role": "Arranger", "deals": 10},
+    {"name": "UniCredit", "role": "Arranger", "deals": 10},
+    {"name": "Banco Santander", "role": "Arranger", "deals": 5},
+    {"name": "Barclays", "role": "Arranger", "deals": 4}
+  ],
+  "key_deals": [
+    {"date": "Jan 2026", "deal": "Repriced EUR 1.665bn TLB at E+225bps (from E+300bps)"},
+    {"date": "Nov 2025", "deal": "PENDING: Acquiring 40% of Compania Mayorista de Fibra for $577m"},
+    {"date": "Aug 2025", "deal": "Sold 25% of fiber JV to GIC for $434m"},
+    {"date": "Jul 2025", "deal": "EUR 575m TLB add-on at E+300bps"},
+    {"date": "Jan 2025", "deal": "Sold fiber optic network assets to MasOrange for $2.1bn"},
+    {"date": "Oct 2023", "deal": "Acquired 100% of Vodafone Spain for $5.3bn (5.28x EBITDA)"}
+  ],
+  "credit_opinion": {
+    "summary": "Zegona is a UK-listed telecom turnaround vehicle, with Vodafone Spain as its core asset (acquired Oct 2023 for $5.3bn). Strong operational performance with 42% EBITDA margin and moderate 2.9x net leverage. Successfully monetizing fiber assets through JV sales. Telefónica reportedly reviving interest in acquiring Vodafone Spain - potential M&A upside. TLB repriced tighter (E+225bps from E+300bps) reflecting improved credit.",
+    "key_risks": [
+      "Single asset concentration (Vodafone Spain)",
+      "Spanish telecom market competition",
+      "MasOrange consolidation pressuring market",
+      "Turnaround execution risk",
+      "FX exposure (GBP listing, EUR operations)"
+    ],
+    "key_catalysts": [
+      "Telefónica acquisition interest",
+      "Further fiber asset monetization",
+      "Continued turnaround execution",
+      "Deleveraging from cash flow",
+      "TLB repricing reflects improving credit"
+    ],
+    "recommendation": "OVERWEIGHT - Strong turnaround execution; M&A optionality from Telefónica interest; moderate leverage at 2.9x"
+  }
+}
