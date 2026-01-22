@@ -1,0 +1,141 @@
+{
+  "company_name": "SOFIMA (IMA)",
+  "legal_entity": "Sofima Holding SPA",
+  "operating_company": "IMA Industria Macchine Automatiche SpA",
+  "alternate_names": ["IMA", "Sofima", "IMA Group"],
+  "sector": "Industrials - Machinery/Packaging Equipment",
+  "geography": "Italy (Bologna)",
+  "last_updated": "2026-01-21",
+  "data_source": "Debtwire",
+
+  "ratings": {
+    "moodys": {"rating": "NR", "outlook": null},
+    "sp": {"rating": "NR", "outlook": null},
+    "note": "Family-owned industrial company. Solid B/BB-range credit quality implied from bond pricing."
+  },
+
+  "overview": {
+    "business_description": "Italian industrial machinery manufacturer specializing in automatic packaging machines and processing equipment. Key supplier to pharmaceutical, food & beverage, cosmetics, and consumer goods industries. Global leader in packaging automation. Family-owned through Sofima holding structure (Vacchi family).",
+    "business_positives": [
+      "Low distress score of 8 - performing credit",
+      "All bonds trading at or ABOVE PAR (100-101)",
+      "Recent EUR 450m add-on at E+375bps and 100.5 (Apr 2024)",
+      "Global leader in packaging automation machinery",
+      "Diversified end markets (pharma, food, cosmetics)",
+      "Family ownership - long-term perspective",
+      "Essential equipment for packaging/processing",
+      "Recurring revenue from parts/service"
+    ],
+    "fatal_flaw": "Private family-owned - limited financial transparency. Automotive/industrial exposure creates cyclical risk. Mar 2026 term loan maturity approaching ($7m - small). Competition in packaging machinery.",
+    "ownership": "Private - Single Family Office structure. Vacchi family ownership through Sofima Holding. Long-term family ownership since founding.",
+    "recent_news": "Priced EUR 450m senior secured FRN add-on at 100.5 and E+375bps (Apr 2024). Automotive sector headwinds noted but IMA more diversified. Packaging automation demand structural."
+  },
+
+  "quick_assessment": {
+    "total_debt": 1730,
+    "cash_on_hand": null,
+    "revolver_available": null,
+    "debt_due_one_year": 7,
+    "cffo": null,
+    "interest_expense": null,
+    "ebitda": null,
+    "note": "Private company - limited financial disclosure. Debt quantum from bond issuances."
+  },
+
+  "key_ratios": {
+    "debt_to_ebitda": null,
+    "net_debt_to_ebitda": null,
+    "note": "Financials not publicly disclosed. Family-owned private company."
+  },
+
+  "debt_capitalization": [
+    {
+      "instrument": "Term Loan",
+      "amount": 7,
+      "maturity": "Mar 2026",
+      "seniority": "Senior Secured",
+      "note": "Small near-term maturity"
+    },
+    {
+      "instrument": "EUR 830m Secd Bonds",
+      "amount": 913,
+      "maturity": "2028",
+      "price": 100.16,
+      "seniority": "Senior Secured"
+    },
+    {
+      "instrument": "EUR 450m Sr Secd Notes (Fixed)",
+      "amount": 495,
+      "maturity": "2029",
+      "price": 101.08,
+      "seniority": "Senior Secured"
+    },
+    {
+      "instrument": "EUR 450m Sr Secd Notes (FRN)",
+      "amount": 495,
+      "maturity": "2029",
+      "coupon": "E+375bps",
+      "price": 101.08,
+      "seniority": "Senior Secured",
+      "note": "Apr 2024 add-on at 100.5"
+    }
+  ],
+
+  "maturity_schedule": {
+    "year_1": 7,
+    "year_2": 0,
+    "year_3": 913,
+    "year_4": 990,
+    "thereafter": 0,
+    "note": "Small Mar 2026 TL. Bulk matures 2028-2029. Well-termed."
+  },
+
+  "recent_issuance": [
+    {"date": "May 2024", "instrument": "EUR 450m Sr Secd Notes", "pricing": "Market"},
+    {"date": "Apr 2024", "instrument": "EUR 450m Sr Secd FRN Add-on", "pricing": "E+375bps at 100.5"},
+    {"date": "Dec 2020", "instrument": "EUR 1.5bn Sr Secd Notes", "pricing": "LBO/recap financing"}
+  ],
+
+  "business_segments": {
+    "pharma_packaging": {
+      "products": "Blister packaging, filling machines, inspection systems",
+      "customers": "Global pharmaceutical companies",
+      "trend": "Healthcare packaging growth"
+    },
+    "food_beverage": {
+      "products": "Packaging and processing equipment",
+      "customers": "Consumer goods manufacturers"
+    },
+    "tea_coffee": {
+      "products": "Pod/capsule filling, tea bag machines",
+      "note": "Leading position in coffee capsule equipment"
+    }
+  },
+
+  "credit_opinion": {
+    "recommendation": "OVERWEIGHT",
+    "summary": "SOFIMA/IMA is a performing credit with low distress score (8) and all bonds trading at or above par (100-101). Recent EUR 450m add-on at E+375bps and 100.5 demonstrates strong market access. IMA is a global leader in packaging automation machinery serving pharma, food, and consumer goods - defensive end markets with structural growth. Family ownership through Vacchi provides long-term stability and alignment. Well-termed maturity profile with bulk in 2028-2029. Limited financial transparency as private company but bond pricing suggests solid credit quality.",
+    "key_risks": [
+      "Private company - limited financial disclosure",
+      "Family ownership - governance considerations",
+      "Industrial machinery cyclicality",
+      "Competition in packaging equipment",
+      "Italian economic/political risk",
+      "Customer capex dependency"
+    ],
+    "key_catalysts": [
+      "Continued bond performance above par",
+      "Packaging automation demand growth",
+      "Pharma/healthcare end market strength",
+      "Potential rating assignment",
+      "Successful 2028 refinancing",
+      "M&A consolidation in sector"
+    ]
+  },
+
+  "distress_indicators": {
+    "debtwire_distress_score": 8,
+    "lifecycle_status": "Performing credit",
+    "trading_signals": "All bonds at 100-101 (at/above par). Recent add-on priced at premium (100.5). Low distress score. Family ownership provides stability. Solid industrial credit."
+  }
+}

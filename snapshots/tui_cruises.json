@@ -1,0 +1,170 @@
+{
+  "company_name": "TUI Cruises",
+  "legal_entity": "TUI Cruises GmbH",
+  "alternate_names": ["Mein Schiff"],
+  "sector": "Consumer & Retail - Cruises/Leisure",
+  "geography": "Germany",
+  "last_updated": "2026-01-21",
+  "data_source": "Debtwire",
+
+  "ratings": {
+    "moodys": {"rating": "NR", "outlook": null},
+    "sp": {"rating": "NR", "outlook": null},
+    "note": "JV between TUI AG (publicly traded) and Royal Caribbean. Investment-grade adjacent given parent support."
+  },
+
+  "overview": {
+    "business_description": "Premium cruise operator offering holiday voyages primarily for German-speaking customers. Focuses on inclusive onboard experiences under the 'Mein Schiff' brand. Joint venture between TUI AG and Royal Caribbean Cruises.",
+    "business_positives": [
+      "Low distress score of 8 - performing credit",
+      "All bonds trading at or ABOVE PAR (100-104)",
+      "Strong JV parents - TUI AG and Royal Caribbean",
+      "Recent EUR 375m notes at 5% (Nov 2024) - tight pricing",
+      "EUR 350m 2029 notes at 103.83 - premium pricing",
+      "Premium market positioning (Mein Schiff brand)",
+      "German-speaking customer base - affluent demographics",
+      "Post-COVID cruise demand recovery strong",
+      "TUI parent EBIT flat YoY at EUR 1.25bn (Dec 2025)"
+    ],
+    "fatal_flaw": "Feb 2026 buyer credit maturity approaching ($1.04bn). Cruise sector remains capital-intensive with high fixed costs. TUI parent had COVID restructuring (Mar 2020). Some 2026 bond maturities need refinancing.",
+    "ownership": "Private JV. 50% TUI AG (German publicly traded travel company) and 50% Royal Caribbean Cruises (US publicly traded cruise operator).",
+    "recent_news": "TUI 4Q24-25 underlying EBIT flat YoY at EUR 1.248bn (Dec 2025). Priced EUR 375m senior unsecured 2030 note at 5% (Nov 2024). Strong recovery from COVID disruption."
+  },
+
+  "quick_assessment": {
+    "total_debt": 1900,
+    "cash_on_hand": null,
+    "revolver_available": null,
+    "debt_due_one_year": 1040,
+    "cffo": null,
+    "interest_expense": null,
+    "ebitda": null,
+    "note": "JV structure - financials at parent level. Strong parent support from TUI AG and Royal Caribbean."
+  },
+
+  "key_ratios": {
+    "debt_to_ebitda": null,
+    "net_debt_to_ebitda": null,
+    "note": "Financials consolidated at TUI AG and Royal Caribbean parent level"
+  },
+
+  "debt_capitalization": [
+    {
+      "instrument": "Buyer Credit",
+      "amount": 1040,
+      "maturity": "Feb 2026",
+      "coupon": null,
+      "price": null,
+      "ytw": null,
+      "stw": null,
+      "rating": null,
+      "seniority": "Senior",
+      "note": "Near-term maturity"
+    },
+    {
+      "instrument": "EUR 300m Sr Notes",
+      "amount": 330,
+      "maturity": "2026",
+      "coupon": null,
+      "price": 100.26,
+      "ytw": null,
+      "stw": null,
+      "rating": null,
+      "seniority": "Senior Unsecured"
+    },
+    {
+      "instrument": "EUR 224m Sr Notes",
+      "amount": 246,
+      "maturity": "2026",
+      "coupon": null,
+      "price": 100.26,
+      "ytw": null,
+      "stw": null,
+      "rating": null,
+      "seniority": "Senior Unsecured"
+    },
+    {
+      "instrument": "EUR 350m Sr Notes",
+      "amount": 385,
+      "maturity": "2029",
+      "coupon": null,
+      "price": 103.83,
+      "ytw": null,
+      "stw": null,
+      "rating": null,
+      "seniority": "Senior Unsecured"
+    },
+    {
+      "instrument": "EUR 375m Sr Unsecd Notes",
+      "amount": 413,
+      "maturity": "2030",
+      "coupon": "5%",
+      "price": null,
+      "ytw": null,
+      "stw": null,
+      "rating": null,
+      "seniority": "Senior Unsecured",
+      "note": "Nov 2024 issuance at par"
+    }
+  ],
+
+  "maturity_schedule": {
+    "year_1": 1616,
+    "year_2": 0,
+    "year_3": 0,
+    "year_4": 385,
+    "year_5": 413,
+    "thereafter": 0,
+    "note": "2026 maturities significant (~$1.6bn) but manageable with parent support"
+  },
+
+  "recent_issuance": [
+    {"date": "Nov 2024", "instrument": "EUR 375m Sr Unsecd Notes 2030", "pricing": "5% at par"},
+    {"date": "Apr 2024", "instrument": "EUR 350m Sr Notes 2029", "pricing": "Market"},
+    {"date": "Oct 2021", "instrument": "EUR 237m Sr Notes", "pricing": "Market"},
+    {"date": "May 2021", "instrument": "EUR 330m Sr Notes", "pricing": "Market"}
+  ],
+
+  "parent_support": {
+    "tui_ag": {
+      "ownership": "50%",
+      "status": "Publicly traded (Germany)",
+      "financials": "4Q24-25 underlying EBIT EUR 1.248bn",
+      "restructuring_history": "Out-of-court restructuring Mar 2020 (COVID) - Closed"
+    },
+    "royal_caribbean": {
+      "ownership": "50%",
+      "status": "Publicly traded (US)",
+      "note": "Strong cruise industry recovery"
+    }
+  },
+
+  "credit_opinion": {
+    "recommendation": "OVERWEIGHT",
+    "summary": "TUI Cruises is a performing credit with low distress score (8) and all bonds trading at or above par (100-104). The JV structure with TUI AG and Royal Caribbean provides strong parent support. Recent EUR 375m issuance at 5% (Nov 2024) demonstrates continued market access. Premium 'Mein Schiff' brand serves affluent German-speaking customers. Post-COVID cruise demand recovery has been strong. While 2026 maturities are significant (~$1.6bn including buyer credit), the strong parents should support refinancing. TUI parent EBIT stable at EUR 1.25bn.",
+    "key_risks": [
+      "Feb 2026 buyer credit maturity ($1.04bn)",
+      "2026 bond maturities need refinancing ($576m)",
+      "Capital-intensive cruise business",
+      "TUI parent had COVID restructuring (2020)",
+      "Consumer discretionary spending sensitivity",
+      "Fuel cost exposure",
+      "Geopolitical risks affecting cruise routes",
+      "Environmental regulations"
+    ],
+    "key_catalysts": [
+      "Successful 2026 refinancing",
+      "Continued cruise demand recovery",
+      "TUI AG deleveraging",
+      "Rating assignment",
+      "Fleet expansion/newbuilds",
+      "Market share gains"
+    ]
+  },
+
+  "distress_indicators": {
+    "debtwire_distress_score": 8,
+    "lifecycle_status": "Performing credit",
+    "trading_signals": "All bonds at 100-104 (at/above par). Recent 5% issuance shows tight pricing. Strong JV parents. Low distress score. 2026 maturities need addressing but parent support strong."
+  }
+}

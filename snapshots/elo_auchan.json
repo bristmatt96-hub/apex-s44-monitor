@@ -1,0 +1,190 @@
+{
+  "company_name": "Elo (Auchan)",
+  "legal_entity": "Elo SA",
+  "alternate_names": ["Auchan", "Auchan Retail", "New Immo Holding"],
+  "sector": "Consumer & Retail - Supermarkets",
+  "geography": "France",
+  "last_updated": "2026-01-21",
+  "data_source": "Debtwire",
+
+  "ratings": {
+    "moodys": {"rating": "Ba1", "outlook": null},
+    "sp": {"rating": "BB-", "outlook": null}
+  },
+
+  "overview": {
+    "business_description": "French retail group providing food and non-food retailing through Auchan supermarkets/hypermarkets, real estate development (shopping centers), and payment services. Operates physical stores across Europe (France, Poland, Portugal, Italy, Spain).",
+    "business_positives": [
+      "Bonds still trading ABOVE PAR (101-104) despite distress score",
+      "EUR 425m shareholder support completed (Nov 2025)",
+      "Proactive: Early redemption of EUR 1bn Jan 2026 notes",
+      "Family ownership provides support cushion",
+      "Asset-rich with real estate portfolio",
+      "Recently refinanced with new RCFs and TL to Oct 2030"
+    ],
+    "fatal_flaw": "HIGHEST DISTRESS SCORE of 39 in portfolio. EBITDA collapsed 48% from 2022 ($1.4bn → $821m). Net leverage at 6.1x is dangerous. Large net losses (-$1bn annually). EBITDA margin compressed to 2.1%. European retail structurally challenged.",
+    "ownership": "Private - Mulliez family (founders of Auchan)",
+    "recent_news": "Launched early redemption of EUR 1bn notes due Jan 2026 (Dec 2025). Completed EUR 425m shareholder support (Nov 2025). Considering strategic partnership change with Intermarché. Court ruling on employment protection plan (appealing)."
+  },
+
+  "quick_assessment": {
+    "total_debt": 6118,
+    "cash_on_hand": 1149,
+    "revolver_available": 1090,
+    "revolver_drawn": 0,
+    "debt_due_one_year": 1171,
+    "cffo": 986,
+    "interest_expense": null,
+    "ebitda": 821
+  },
+
+  "key_ratios": {
+    "debt_to_ebitda": 7.5,
+    "net_debt_to_ebitda": 6.1,
+    "ebitda_margin": 2.1,
+    "ebitda_minus_capex_to_interest": null,
+    "fcf_to_debt": null
+  },
+
+  "trend_analysis": {
+    "years": ["FY 2022", "FY 2023", "FY 2024", "LTM Jun 2025"],
+    "revenue": [35842, 35071, 33541, 38596],
+    "ebitda": [1401, 1146, 734, 821],
+    "ebitda_margin": [3.9, 3.3, 2.2, 2.1],
+    "net_income": [35, -418, -1267, -994],
+    "total_debt": [5320, 6560, 6130, 6118],
+    "net_debt": [3173, 3535, 3134, 4970],
+    "gross_leverage": [3.8, 5.7, 8.3, 7.5],
+    "net_leverage": [2.3, 3.1, 4.3, 6.1],
+    "trend_summary": "EBITDA collapsed 48% from 2022. Leverage spiked. Large net losses."
+  },
+
+  "debt_capitalization": [
+    {
+      "instrument": "EUR 500m Sr Unsecd Notes (Nov 2025)",
+      "amount": 574,
+      "maturity": "Nov 2030",
+      "coupon": "4.95%",
+      "price": 101.19,
+      "ytw": 4.66,
+      "stw": null,
+      "rating": "Ba1",
+      "seniority": "Senior Unsecured"
+    },
+    {
+      "instrument": "EUR 350m Revolving Credit",
+      "amount": 0,
+      "maturity": "Oct 2030",
+      "coupon": null,
+      "price": null,
+      "ytw": null,
+      "stw": null,
+      "rating": null,
+      "seniority": "Senior"
+    },
+    {
+      "instrument": "EUR 425m Term Loan",
+      "amount": 493,
+      "maturity": "Oct 2030",
+      "coupon": null,
+      "price": null,
+      "ytw": null,
+      "stw": null,
+      "rating": null,
+      "seniority": "Senior"
+    },
+    {
+      "instrument": "EUR 740m Revolving Credit",
+      "amount": 0,
+      "maturity": "Oct 2030",
+      "coupon": null,
+      "price": null,
+      "ytw": null,
+      "stw": null,
+      "rating": null,
+      "seniority": "Senior"
+    },
+    {
+      "instrument": "EUR 750m Sr Unsecd Notes",
+      "amount": 814,
+      "maturity": "Apr 2028",
+      "coupon": "5.875%",
+      "price": 103.77,
+      "ytw": 4.06,
+      "stw": null,
+      "rating": "Ba1/BB-",
+      "seniority": "Senior Unsecured"
+    },
+    {
+      "instrument": "EUR 750m Sr Notes",
+      "amount": 828,
+      "maturity": "Mar 2029",
+      "coupon": "6.00%",
+      "price": 104.53,
+      "ytw": 4.43,
+      "stw": null,
+      "rating": "Ba1/BB-",
+      "seniority": "Senior Unsecured"
+    },
+    {
+      "instrument": "EUR 150m Sr Unsecd Notes FRN",
+      "amount": 166,
+      "maturity": "May 2028",
+      "coupon": "E+190bps",
+      "price": null,
+      "ytw": null,
+      "stw": null,
+      "rating": null,
+      "seniority": "Senior Unsecured"
+    },
+    {
+      "instrument": "Other facilities (Overdraft, Lease, CP)",
+      "amount": 311,
+      "maturity": "Various",
+      "coupon": null,
+      "price": null,
+      "ytw": null,
+      "stw": null,
+      "rating": null,
+      "seniority": "Various"
+    }
+  ],
+
+  "maturity_schedule": {
+    "year_1": 0,
+    "year_2": 0,
+    "year_3": 980,
+    "year_4": 828,
+    "year_5": 1067,
+    "thereafter": 0,
+    "note": "EUR 1bn Jan 2026 notes being early redeemed"
+  },
+
+  "credit_opinion": {
+    "recommendation": "UNDERWEIGHT",
+    "summary": "Elo/Auchan is a STRESSED Ba1/BB- credit with the HIGHEST DISTRESS SCORE (39) in your portfolio. EBITDA has collapsed 48% from 2022 ($1.4bn to $821m). Net leverage at 6.1x is dangerously high. Large annual net losses of ~$1bn. However, bonds still trade above par (101-104) reflecting family support and liquidity actions. The Mulliez family injected EUR 425m and proactively redeemed the Jan 2026 notes. The market is betting on family support, but fundamentals are deteriorating rapidly.",
+    "key_risks": [
+      "HIGHEST distress score of 39 - CRITICAL WARNING",
+      "EBITDA collapsed 48% from 2022 peak",
+      "Net leverage at 6.1x - very high for retail",
+      "Large annual net losses (~$1bn)",
+      "EBITDA margin at 2.1% - thin and declining",
+      "European hypermarket model structurally challenged",
+      "Employment issues - court ruling being appealed",
+      "Private company - limited transparency"
+    ],
+    "key_catalysts": [
+      "Continued family support and capital injections",
+      "Successful turnaround in EBITDA trend",
+      "Asset sales from real estate portfolio",
+      "Strategic partnership with Intermarché",
+      "Cost restructuring benefits flowing through"
+    ]
+  },
+
+  "distress_indicators": {
+    "debtwire_distress_score": 39,
+    "lifecycle_status": "Performing credit (but STRESSED)",
+    "trading_signals": "Bonds at 101-104 (above par) with 4.0-4.7% YTW despite 39 distress score. Market pricing family support. Disconnect between distress score and bond pricing is notable."
+  }
+}

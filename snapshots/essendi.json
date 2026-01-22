@@ -1,0 +1,206 @@
+{
+  "company_name": "Essendi",
+  "legal_entity": "Essendi SA",
+  "alternate_names": ["AccorInvest", "AccorInvest Group"],
+  "sector": "Consumer & Retail - Hotels/Lodging",
+  "geography": "Luxembourg",
+  "last_updated": "2026-01-21",
+  "data_source": "Debtwire",
+
+  "ratings": {
+    "moodys": {"rating": "B2", "outlook": null},
+    "sp": {"rating": "B+", "outlook": null}
+  },
+
+  "overview": {
+    "business_description": "Hotel owner and operator serving economy and mid-scale segments across Europe. Operates under Accor brands (Ibis, Novotel, etc.) through asset ownership and management model. Rebranded from AccorInvest to Essendi. Owns and operates hotels primarily in Europe with some LatAm exposure.",
+    "business_positives": [
+      "LOWEST distress score of 8 in portfolio",
+      "All bonds trading ABOVE PAR (101-105)",
+      "Strong sovereign wealth fund backing: GIC (Singapore) + PIF (Saudi Arabia)",
+      "Attracting strategic interest from Blackstone and Brookfield",
+      "Well-laddered maturity profile (2028-2032)",
+      "Previous restructuring (2020-21) now behind them",
+      "Benefits from European travel recovery post-COVID",
+      "Asset-rich model provides collateral value"
+    ],
+    "fatal_flaw": "Hotel sector cyclical and sensitive to economic downturns. Previous restructuring history (2020-21 conciliation, 2023 out-of-court). Asset sales may indicate need for capital.",
+    "ownership": "Private - backed by GIC Pte Ltd (Singapore SWF) and Public Investment Fund (PIF - Saudi Arabia SWF). Both entered Mar 2021.",
+    "recent_news": "Attracting interest from Blackstone and Brookfield (Nov 2025). Priced EUR 1.25bn triple-tranche notes May 2025 (5.375%, 5.625%, E+375bps). Active hotel disposals in Argentina, Brazil, Germany, France."
+  },
+
+  "quick_assessment": {
+    "total_debt": 3739,
+    "total_debt_inc_leases": 3824,
+    "cash_on_hand": null,
+    "revolver_available": 287,
+    "revolver_drawn": 113,
+    "debt_due_one_year": 0,
+    "cffo": null,
+    "interest_expense": null,
+    "ebitda": null
+  },
+
+  "key_ratios": {
+    "debt_to_ebitda": null,
+    "net_debt_to_ebitda": null,
+    "ebitda_minus_capex_to_interest": null,
+    "fcf_to_debt": null
+  },
+
+  "debt_capitalization": [
+    {
+      "instrument": "EUR 200m Term Loan B",
+      "amount": 227,
+      "maturity": "May 2028",
+      "coupon": null,
+      "price": null,
+      "ytw": null,
+      "stw": null,
+      "rating": null,
+      "seniority": "Senior Secured"
+    },
+    {
+      "instrument": "EUR 350m Term Loan B",
+      "amount": 396,
+      "maturity": "May 2030",
+      "coupon": null,
+      "price": null,
+      "ytw": null,
+      "stw": null,
+      "rating": null,
+      "seniority": "Senior Secured"
+    },
+    {
+      "instrument": "EUR 400m Revolving Credit",
+      "amount": 113,
+      "maturity": "May 2030",
+      "coupon": null,
+      "price": null,
+      "ytw": null,
+      "stw": null,
+      "rating": null,
+      "seniority": "Senior Secured"
+    },
+    {
+      "instrument": "EUR 750m Sr Secd Notes",
+      "amount": 848,
+      "maturity": "Oct 2029",
+      "coupon": "6.375%",
+      "price": 104.93,
+      "ytw": 4.91,
+      "stw": null,
+      "rating": "B2/B+",
+      "seniority": "Senior Secured"
+    },
+    {
+      "instrument": "EUR 400m Sr Secd Notes",
+      "amount": 452,
+      "maturity": "May 2030",
+      "coupon": "5.375%",
+      "price": 103.11,
+      "ytw": 4.57,
+      "stw": null,
+      "rating": "B2/B+",
+      "seniority": "Senior Secured"
+    },
+    {
+      "instrument": "EUR 650m Sr Secd Notes",
+      "amount": 735,
+      "maturity": "Nov 2031",
+      "coupon": "5.50%",
+      "price": 102.76,
+      "ytw": 4.95,
+      "stw": null,
+      "rating": "B2/B+",
+      "seniority": "Senior Secured"
+    },
+    {
+      "instrument": "EUR 300m Sr Secd Notes",
+      "amount": 339,
+      "maturity": "May 2032",
+      "coupon": "5.625%",
+      "price": 102.84,
+      "ytw": 5.09,
+      "stw": null,
+      "rating": "B2/B+",
+      "seniority": "Senior Secured"
+    },
+    {
+      "instrument": "EUR 550m Sr Secd Notes FRN",
+      "amount": 622,
+      "maturity": "May 2032",
+      "coupon": "E+375bps",
+      "price": 101.41,
+      "ytw": 5.95,
+      "stw": null,
+      "rating": "B2/B+",
+      "seniority": "Senior Secured"
+    },
+    {
+      "instrument": "EUR 81m Lease Facility",
+      "amount": 84,
+      "maturity": "Various",
+      "coupon": null,
+      "price": null,
+      "ytw": null,
+      "stw": null,
+      "rating": null,
+      "seniority": "Finance Lease"
+    }
+  ],
+
+  "maturity_schedule": {
+    "year_1": 0,
+    "year_2": 0,
+    "year_3": 227,
+    "year_4": 1696,
+    "year_5": 0,
+    "thereafter": 1696
+  },
+
+  "maturity_detail": {
+    "2028": "EUR 200m TLB (~$227m)",
+    "2029": "EUR 750m notes (~$848m)",
+    "2030": "EUR 350m TLB + EUR 400m notes + RCF (~$960m)",
+    "2031": "EUR 650m notes (~$735m)",
+    "2032": "EUR 850m notes (~$961m)"
+  },
+
+  "strategic_interest": {
+    "potential_acquirers": ["Blackstone", "Brookfield"],
+    "status": "Interest reported Nov 2025",
+    "implication": "Potential LBO/take-private could provide exit for bondholders at par or premium"
+  },
+
+  "restructuring_history": [
+    {"date": "Nov 2023", "type": "Out-of-Court", "status": "Closed", "jurisdiction": "Luxembourg"},
+    {"date": "Oct 2020", "type": "Conciliation", "status": "Closed", "venue": "Paris Commercial Court"}
+  ],
+
+  "credit_opinion": {
+    "recommendation": "OVERWEIGHT",
+    "summary": "Essendi (fka AccorInvest) is a strong B2/B+ hotel credit with the LOWEST distress score (8) in your portfolio. All bonds trading above par (101-105) with tight yields (4.5-6.0%). Strong sovereign wealth fund backing (GIC, PIF) provides support. The Blackstone/Brookfield strategic interest (Nov 2025) suggests potential M&A upside. Well-laddered maturities through 2032. Previous restructuring (2020-21 COVID) is behind them. Benefits from European travel recovery.",
+    "key_risks": [
+      "Hotel sector cyclical - sensitive to economic downturns",
+      "Previous restructuring history (COVID-related)",
+      "Asset sales may indicate need for capital",
+      "Accor brand license dependency",
+      "Competition from Airbnb/alternative lodging",
+      "Private company with limited transparency"
+    ],
+    "key_catalysts": [
+      "Blackstone/Brookfield acquisition interest - potential takeout",
+      "Continued European travel recovery",
+      "Rating upgrade if EBITDA improves",
+      "Successful asset rotation at attractive prices",
+      "Further spread tightening toward BB levels"
+    ]
+  },
+
+  "distress_indicators": {
+    "debtwire_distress_score": 8,
+    "lifecycle_status": "Performing credit",
+    "trading_signals": "All bonds at 101-105 (above par) with 4.5-6.0% YTW. Lowest distress score in portfolio. Market pricing strong recovery and M&A optionality."
+  }
+}

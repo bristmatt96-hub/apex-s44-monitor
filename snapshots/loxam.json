@@ -1,0 +1,178 @@
+{
+  "company_name": "Loxam",
+  "legal_entity": "Loxam SAS",
+  "alternate_names": ["Loxam Group"],
+  "sector": "Business Services - Equipment Rental",
+  "geography": "France",
+  "last_updated": "2026-01-21",
+  "data_source": "Debtwire",
+
+  "ratings": {
+    "moodys": {"rating": "NR", "outlook": null},
+    "sp": {"rating": "BB-", "outlook": null},
+    "note": "BB- rated bonds. Performing credit with moderate leverage."
+  },
+
+  "overview": {
+    "business_description": "Equipment rental provider supplying construction, civil engineering, and industrial sectors with machinery and tools through a broad network of branches. European market leader in equipment rental with operations across France and pan-European footprint.",
+    "business_positives": [
+      "Low distress score of 12 - performing credit",
+      "All bonds trading at or ABOVE PAR (100-103)",
+      "Strong EBITDA margins of ~28%",
+      "Very strong CFFO of $772m in LTM",
+      "Moderate net leverage of 4.5x",
+      "European equipment rental market leader",
+      "Recent issuances at tight spreads (4.25%)",
+      "Capital-light rental model with recurring revenues",
+      "Deal priced tight despite top-line issues (Jul 2025)"
+    ],
+    "fatal_flaw": "EBITDA DECLINING - 3Q25 EBITDA down -9.6% YoY, 2Q25 EBITDA down -12.4% YoY. Net income turned negative (-$4.5m). Apr 2026 maturity ($336m) approaching. European construction slowdown impacting demand. Private company with limited transparency.",
+    "ownership": "Private - family-owned French business.",
+    "recent_news": "3Q25 total EBITDA declines 9.6% YoY to EUR 237.3m (Nov 2025). 2Q25 total EBITDA falls 12.4% YoY to EUR 224.1m (Sep 2025). Deal prices tight despite top-line issues, amid positive outlook for 2H25 (Jul 2025). Priced EUR 540m SSN at 4.25% upsized (Jul 2025). Priced EUR 500m SSN at 4.25% (Feb 2025)."
+  },
+
+  "quick_assessment": {
+    "total_debt": 3868,
+    "cash_on_hand": 125,
+    "revolver_available": null,
+    "debt_due_one_year": 336,
+    "cffo": 772,
+    "interest_expense": null,
+    "ebitda": 836,
+    "net_income": -5,
+    "note": "Strong CFFO despite EBITDA headwinds. Moderate leverage."
+  },
+
+  "key_ratios": {
+    "debt_to_ebitda": 4.6,
+    "net_debt_to_ebitda": 4.5,
+    "ebitda_margin": 27.8,
+    "note": "Leverage moderate at 4.5x net. Margins healthy at ~28% but EBITDA declining."
+  },
+
+  "trend_analysis": {
+    "years": ["FY 2022", "FY 2023", "FY 2024", "LTM Jun 2025"],
+    "revenue": [2584, 2836, 2748, 3012],
+    "ebitda": [737, 820, 783, 836],
+    "ebitda_margin": [28.5, 28.9, 28.5, 27.8],
+    "total_debt": [3734, 3924, 3645, 3868],
+    "net_debt": [3490, 3768, 3333, 3743],
+    "gross_leverage": [5.1, 4.8, 4.7, 4.6],
+    "net_leverage": [4.7, 4.6, 4.3, 4.5],
+    "net_income": [66, 84, 24, -5],
+    "cffo": [635, 646, 654, 772],
+    "trend_summary": "EBITDA peaked in 2023 at $820m, declined in FY24, recovering in LTM but quarterly trend negative (3Q25 -9.6% YoY). Net income turning negative. Leverage stable at 4.5x. Strong CFFO generation."
+  },
+
+  "debt_capitalization": [
+    {
+      "instrument": "Sr Secd Notes",
+      "amount": 336,
+      "maturity": "Apr 2026",
+      "seniority": "Senior Secured",
+      "note": "Near-term maturity - key focus"
+    },
+    {
+      "instrument": "EUR 350m Sr Secd Notes",
+      "amount": 385,
+      "maturity": "2027",
+      "price": 100.32,
+      "rating": "BB-",
+      "seniority": "Senior Secured"
+    },
+    {
+      "instrument": "EUR 400m Sr Secd Notes",
+      "amount": 440,
+      "maturity": "2028",
+      "price": 103.10,
+      "rating": "BB-",
+      "seniority": "Senior Secured",
+      "note": "EUR 300m + EUR 100m tranches"
+    },
+    {
+      "instrument": "EUR 500m Sr Secd Notes",
+      "amount": 517,
+      "maturity": "Feb 2030",
+      "coupon": "4.25%",
+      "price": 100.61,
+      "ytw": "4.09%",
+      "rating": "BB-",
+      "seniority": "Senior Secured",
+      "note": "Feb 2025 issuance"
+    },
+    {
+      "instrument": "EUR 540m Sr Secd Notes",
+      "amount": 629,
+      "maturity": "Feb 2031",
+      "coupon": "4.25%",
+      "price": 100.16,
+      "ytw": "4.21%",
+      "rating": "BB-",
+      "seniority": "Senior Secured",
+      "note": "Jul 2025 issuance - upsized"
+    },
+    {
+      "instrument": "EUR 596m Term Loan",
+      "amount": 665,
+      "maturity": null,
+      "seniority": "Senior Secured"
+    },
+    {
+      "instrument": "EUR 497m Lease Facility",
+      "amount": 555,
+      "maturity": null,
+      "seniority": "Lease"
+    },
+    {
+      "instrument": "Various Credit Facilities",
+      "amount": 188,
+      "maturity": null,
+      "seniority": "Senior Secured",
+      "note": "Includes commercial paper and other facilities"
+    }
+  ],
+
+  "maturity_schedule": {
+    "year_1": 336,
+    "year_2": 385,
+    "year_3": 440,
+    "year_4": 0,
+    "year_5": 517,
+    "thereafter": 629,
+    "note": "Apr 2026 maturity ($336m) is near-term focus. Well-laddered profile."
+  },
+
+  "recent_issuance": [
+    {"date": "Jul 2025", "instrument": "EUR 540m Sr Secd Notes 2031", "coupon": "4.25%", "pricing": "Upsized, tight spreads"},
+    {"date": "Feb 2025", "instrument": "EUR 500m Sr Secd Notes 2030", "coupon": "4.25%", "pricing": "Market"},
+    {"date": "Dec 2023", "instrument": "EUR 600m Sr Secd Notes", "pricing": "Market"}
+  ],
+
+  "credit_opinion": {
+    "recommendation": "NEUTRAL",
+    "summary": "Loxam is a performing credit with low distress score (12) and all bonds trading at or above par (100-103). The company is the European leader in equipment rental with strong EBITDA margins (~28%) and very strong CFFO generation ($772m). Net leverage of 4.5x is moderate. However, EBITDA is DECLINING with 3Q25 down -9.6% YoY and 2Q25 down -12.4% YoY, reflecting European construction slowdown. Net income has turned negative. Recent issuances at 4.25% demonstrate continued market access at tight spreads. Apr 2026 maturity ($336m) should be easily refinanced.",
+    "key_risks": [
+      "EBITDA declining (-9.6% YoY in 3Q25)",
+      "Net income turned negative (-$4.5m)",
+      "Apr 2026 maturity ($336m) approaching",
+      "European construction slowdown",
+      "Cyclical equipment rental exposure",
+      "Private company - limited transparency",
+      "High capex requirements for fleet"
+    ],
+    "key_catalysts": [
+      "EBITDA stabilization/recovery",
+      "2H25 positive outlook materializing",
+      "Successful Apr 2026 refinancing",
+      "European construction recovery",
+      "Further deleveraging below 4x",
+      "Rating upgrade potential"
+    ]
+  },
+
+  "distress_indicators": {
+    "debtwire_distress_score": 12,
+    "lifecycle_status": "Performing credit",
+    "trading_signals": "All bonds at 100-103 (at/above par). Recent issuances at 4.25% - tight HY spreads. Low distress despite EBITDA headwinds. Market confidence in European equipment rental leader."
+  }
+}

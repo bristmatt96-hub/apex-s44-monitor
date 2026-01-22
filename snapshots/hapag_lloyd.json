@@ -1,0 +1,146 @@
+{
+  "company_name": "Hapag-Lloyd",
+  "legal_entity": "Hapag-Lloyd AG",
+  "alternate_names": ["HLAG"],
+  "sector": "Transportation - Container Shipping",
+  "geography": "Germany (Hamburg)",
+  "last_updated": "2026-01-21",
+  "data_source": "Debtwire",
+
+  "ratings": {
+    "moodys": {"rating": "NR", "outlook": null},
+    "sp": {"rating": "NR", "outlook": null},
+    "note": "Very large publicly traded company. Low leverage suggests investment-grade adjacent despite cyclical sector."
+  },
+
+  "overview": {
+    "business_description": "International container shipping company serving global trade customers across major trade routes with containerized cargo transport. Operates one of the world's largest container vessel fleets. Fifth largest container shipping line globally.",
+    "business_positives": [
+      "Low distress score of 8 - performing credit",
+      "NET CASH position of $1.24bn",
+      "MASSIVE $23.9bn market cap equity cushion",
+      "Very low gross leverage at 1.1x",
+      "Strong CFFO of $4.56bn LTM",
+      "Fifth largest container shipping line globally",
+      "Large modern fleet",
+      "Strategic M&A interest - bid for ZIM (Dec 2025)"
+    ],
+    "fatal_flaw": "EBITDA COLLAPSED from COVID boom peak: $19.6bn (2022) → $3.0bn (LTM) - down 85%. 3Q25 EBITDA -46.6% YoY. Cash pile declining from $16bn to $4.6bn. Bond below par (98.86). CDS widening risk flagged. Highly cyclical shipping sector. Freight rate volatility.",
+    "ownership": "Public (Frankfurt: HLAG). Major shareholders include City of Hamburg, Klaus-Michael Kuehne, CSAV (Chilean shipping family).",
+    "recent_news": "CDS widening risk flagged due to flagging earnings (Jan 2026). Bid for ZIM (competitor) tabled (Dec 2025). 3Q25 EBITDA drops 46.6% YoY to $866m (Nov 2025). 2Q25 EBITDA declines 20% YoY (Aug 2025). MSC rumored interest in ZIM."
+  },
+
+  "quick_assessment": {
+    "total_debt": 3335,
+    "cash_on_hand": 4577,
+    "revolver_available": null,
+    "debt_due_one_year": 758,
+    "cffo": 4562,
+    "interest_expense": null,
+    "enterprise_value": 26790,
+    "ebitda": 3037,
+    "market_cap": 23880,
+    "net_cash": 1242
+  },
+
+  "key_ratios": {
+    "debt_to_ebitda": 1.1,
+    "net_debt_to_ebitda": "NM (net cash)",
+    "ev_to_ebitda": 8.8,
+    "ebitda_margin": 13.3,
+    "note": "NET CASH position. Very low leverage. But EBITDA normalizing sharply from COVID boom."
+  },
+
+  "trend_analysis": {
+    "years": ["FY 2022", "FY 2023", "FY 2024", "LTM Sep 2025"],
+    "revenue": [36974, 19789, 19852, 22770],
+    "ebitda": [19553, 3744, 3643, 3037],
+    "ebitda_margin": [52.9, 18.9, 18.3, 13.3],
+    "total_debt": [2972, 3057, 2962, 3335],
+    "cash": [16308, 6412, 5693, 4577],
+    "net_debt": [-13336, -3355, -2731, -1242],
+    "gross_leverage": [0.2, 0.8, 0.8, 1.1],
+    "net_leverage": ["NM", "NM", "NM", "NM"],
+    "trend_summary": "EBITDA collapsed 85% from 2022 COVID peak. Cash pile declining from $16bn to $4.6bn. Margins normalizing from 53% to 13%. Still NET CASH but cushion shrinking."
+  },
+
+  "debt_capitalization": [
+    {
+      "instrument": "Term Loan",
+      "amount": 758,
+      "maturity": "Jun 2026",
+      "seniority": "Senior Secured",
+      "note": "Near-term maturity"
+    },
+    {
+      "instrument": "EUR 300m Notes",
+      "amount": 330,
+      "maturity": "2028",
+      "price": 98.86,
+      "seniority": "Senior Notes",
+      "trading_signal": "Below par - market concern"
+    },
+    {
+      "instrument": "Other Debt/Leases",
+      "amount": 2247,
+      "note": "Ship financing and operating leases"
+    }
+  ],
+
+  "maturity_schedule": {
+    "year_1": 758,
+    "year_2": 0,
+    "year_3": 330,
+    "thereafter": 2247,
+    "note": "Jun 2026 TL maturity. Well-laddered overall given cash position."
+  },
+
+  "equity_market_value": {
+    "ticker": "HLAG.DE",
+    "exchange": "Frankfurt",
+    "share_price": "EUR 116.60",
+    "equity_market_value": 23880,
+    "total_enterprise_value": 26790,
+    "tev_to_ebitda": 8.8,
+    "key_shareholders": ["City of Hamburg", "Klaus-Michael Kuehne", "CSAV (Chile)", "Dimensional ($23m)", "BlackRock ($17m)"]
+  },
+
+  "strategic_developments": {
+    "zim_bid": {
+      "target": "ZIM Integrated Shipping",
+      "status": "Bid tabled Dec 2025",
+      "competitors": ["MSC also rumored interested"],
+      "rationale": "Industry consolidation"
+    }
+  },
+
+  "credit_opinion": {
+    "recommendation": "NEUTRAL",
+    "summary": "Hapag-Lloyd is a unique credit with massive scale ($23.9bn market cap) and NET CASH position ($1.24bn). Very low gross leverage of just 1.1x. However, the company is experiencing a severe normalization from COVID-era boom - EBITDA collapsed 85% from $19.6bn (2022) to $3.0bn (LTM). Cash pile declining from $16bn to $4.6bn. Bond trading below par (98.86) and CDS widening risk flagged. 3Q25 EBITDA -46.6% YoY signals continued pressure. Container shipping is highly cyclical with freight rate volatility. Bid for ZIM suggests management seeking growth through M&A. Despite strong balance sheet, earnings trajectory and sector cyclicality warrant caution.",
+    "key_risks": [
+      "EBITDA collapsed 85% from 2022 peak",
+      "3Q25 EBITDA -46.6% YoY - continued decline",
+      "Bond BELOW PAR (98.86)",
+      "CDS widening risk flagged (Jan 2026)",
+      "Cash pile declining ($16bn → $4.6bn)",
+      "Highly cyclical container shipping",
+      "Freight rate volatility",
+      "ZIM acquisition execution risk",
+      "Geopolitical risks (Red Sea disruptions)"
+    ],
+    "key_catalysts": [
+      "Freight rate recovery",
+      "Successful ZIM acquisition",
+      "EBITDA stabilization",
+      "Cost reduction initiatives",
+      "Industry consolidation benefits",
+      "Fleet renewal efficiency gains"
+    ]
+  },
+
+  "distress_indicators": {
+    "debtwire_distress_score": 8,
+    "lifecycle_status": "Performing credit",
+    "trading_signals": "Bond at 98.86 (below par). NET CASH position but EBITDA collapsing. CDS widening risk. Low distress score reflects strong balance sheet despite earnings pressure. Sector cyclicality is key risk."
+  }
+}

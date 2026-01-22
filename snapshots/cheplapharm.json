@@ -1,0 +1,192 @@
+{
+  "company_name": "Cheplapharm",
+  "legal_entity": "Cheplapharm SE",
+  "operating_entity": "CHEPLAPHARM Arzneimittel GmbH",
+  "sector": "Healthcare - Specialty Pharma",
+  "geography": "Germany",
+  "last_updated": "2026-01-21",
+  "data_source": "Debtwire",
+
+  "ratings": {
+    "moodys": {"rating": "B3", "outlook": null},
+    "sp": {"rating": "B", "outlook": null}
+  },
+
+  "overview": {
+    "business_description": "Specialty pharma platform acquiring and managing established pharmaceutical brands globally. Serial acquirer of off-patent/mature drugs from big pharma companies including Eli Lilly, Bristol-Myers, AstraZeneca, Takeda, Sanofi, and others.",
+    "business_positives": [
+      "Diversified portfolio of established pharma brands",
+      "Recurring cash flows from mature, off-patent drugs",
+      "Proven M&A execution - multiple successful acquisitions",
+      "Bonds trading near/above par - market comfortable with credit",
+      "No near-term maturities until Jan 2028",
+      "Strong relationship with big pharma for deal flow"
+    ],
+    "fatal_flaw": "EBITDA declined 13.9% YoY in 1H25 to EUR 337.6m. Distress score of 28 is elevated. Acquisition-dependent model requires constant execution. Private company = limited transparency.",
+    "ownership": "Private - Atlantic Park Strategic Capital (minority stake acquired Oct 2022 at $545m)",
+    "recent_news": "1H25 EBITDA declines 13.9% YoY to EUR 337.6m. Issued EUR 750m Sr Secd Notes at 7.125% (Jun 2025). Pending acquisition of Eli Lilly's Gemzar worldwide rights."
+  },
+
+  "quick_assessment": {
+    "total_debt": 4835,
+    "cash_on_hand": null,
+    "revolver_available": 422,
+    "revolver_drawn": 273,
+    "debt_due_one_year": 0,
+    "cffo": null,
+    "interest_expense": null,
+    "ebitda_1h25_annualized": 675
+  },
+
+  "key_ratios": {
+    "debt_to_ebitda": null,
+    "net_debt_to_ebitda": null,
+    "ebitda_minus_capex_to_interest": null,
+    "fcf_to_debt": null
+  },
+
+  "debt_capitalization": [
+    {
+      "instrument": "EUR 695m Revolving Credit",
+      "amount": 273,
+      "maturity": "Apr 2028",
+      "coupon": null,
+      "price": null,
+      "ytw": null,
+      "stw": null,
+      "rating": null,
+      "seniority": "Senior Secured"
+    },
+    {
+      "instrument": "EUR 1480m Term Loan B First Lien",
+      "amount": 1682,
+      "maturity": "Feb 2029",
+      "coupon": "E+400bps",
+      "price": 100.40,
+      "ytw": null,
+      "stw": null,
+      "rating": null,
+      "seniority": "Senior Secured"
+    },
+    {
+      "instrument": "EUR 325m Sr Secd Notes",
+      "amount": 348,
+      "maturity": "May 2030",
+      "coupon": "E+475bps",
+      "price": 100.04,
+      "ytw": 7.05,
+      "stw": null,
+      "rating": "B3/B",
+      "seniority": "Senior Secured"
+    },
+    {
+      "instrument": "EUR 425m Sr Secd Notes",
+      "amount": 455,
+      "maturity": "May 2030",
+      "coupon": "7.50%",
+      "price": 103.32,
+      "ytw": 6.60,
+      "stw": null,
+      "rating": "B3/B",
+      "seniority": "Senior Secured"
+    },
+    {
+      "instrument": "EUR 300m Sr Secd Notes",
+      "amount": 321,
+      "maturity": "May 2030",
+      "coupon": "7.50%",
+      "price": 103.32,
+      "ytw": 6.60,
+      "stw": null,
+      "rating": "B3/B",
+      "seniority": "Senior Secured"
+    },
+    {
+      "instrument": "EUR 750m Sr Secd Notes (Jun 2025)",
+      "amount": 865,
+      "maturity": "Jun 2031",
+      "coupon": "7.125%",
+      "price": 101.80,
+      "ytw": 6.72,
+      "stw": null,
+      "rating": "B3",
+      "seniority": "Senior Secured"
+    },
+    {
+      "instrument": "EUR 575m Notes (Unsecured)",
+      "amount": 675,
+      "maturity": "Jan 2028",
+      "coupon": "4.375%",
+      "price": 99.63,
+      "ytw": 4.57,
+      "stw": null,
+      "rating": "B3/B",
+      "seniority": "Senior Unsecured"
+    },
+    {
+      "instrument": "USD 500m Notes (Unsecured)",
+      "amount": 215,
+      "maturity": "Jan 2028",
+      "coupon": "5.50%",
+      "price": 98.81,
+      "ytw": 6.14,
+      "stw": null,
+      "rating": "B",
+      "seniority": "Senior Unsecured"
+    }
+  ],
+
+  "maturity_schedule": {
+    "year_1": 0,
+    "year_2": 0,
+    "year_3": 1163,
+    "year_4": 1682,
+    "year_5": 1124,
+    "thereafter": 865
+  },
+
+  "maturity_detail": {
+    "2028": "EUR 575m + USD 500m unsecured notes (~$890m) + RCF (~$273m)",
+    "2029": "EUR 1480m TLB (~$1.68bn)",
+    "2030": "EUR 1050m secured notes (~$1.12bn)",
+    "2031": "EUR 750m secured notes (~$865m)"
+  },
+
+  "acquisition_history": [
+    {"date": "Oct 2024", "target": "Eli Lilly - Gemzar worldwide rights", "status": "Pending"},
+    {"date": "Nov 2023", "target": "Chugai - Xeloda Japan", "value": null},
+    {"date": "Apr 2023", "target": "Eli Lilly - Zyprexa", "value": 1400},
+    {"date": "Mar 2022", "target": "Bristol-Myers - Oncology drugs (Hydrea, Paraplatin, Taxol)", "value": null},
+    {"date": "Jun 2021", "target": "Astellas - Infectious disease drugs", "value": 115},
+    {"date": "Jan 2021", "target": "AstraZeneca - Atacand", "value": 400},
+    {"date": "Sep 2020", "target": "Takeda - Non-core assets Europe/Canada", "value": 562},
+    {"date": "Aug 2020", "target": "Leo Pharma - One-Alpha, Locoid, Pimafucin, Zineryt", "value": 358}
+  ],
+
+  "credit_opinion": {
+    "recommendation": "NEUTRAL",
+    "summary": "Cheplapharm is a B3/B rated specialty pharma with an elevated distress score of 28. The 1H25 EBITDA decline of 13.9% YoY is concerning and warrants monitoring. However, bonds are trading near/above par (secured at 100-103, unsecured at 98-99) suggesting market is comfortable. The acquisition-dependent model requires constant execution. No near-term maturities until Jan 2028 (~$890m unsecured) provides some runway. Total debt of ~$4.8bn is substantial.",
+    "key_risks": [
+      "EBITDA declining 13.9% YoY in 1H25 - trend reversal needed",
+      "Elevated distress score of 28",
+      "Acquisition-dependent model - execution risk on each deal",
+      "Private company with limited financial transparency",
+      "Large debt stack ($4.8bn) relative to EBITDA",
+      "Jan 2028 maturity wall (~$890m unsecured notes) approaching",
+      "Integration risk from multiple concurrent acquisitions"
+    ],
+    "key_catalysts": [
+      "EBITDA stabilization or return to growth",
+      "Successful Gemzar acquisition closing",
+      "Proactive refinancing of Jan 2028 unsecured notes",
+      "Additional accretive M&A at attractive valuations",
+      "Potential rating upgrade if leverage improves"
+    ]
+  },
+
+  "distress_indicators": {
+    "debtwire_distress_score": 28,
+    "lifecycle_status": "Performing credit",
+    "trading_signals": "Secured bonds at 100-103 (near/above par), unsecured at 98-99 (near par). TLB at 100.40. Market pricing as stable B credit despite elevated distress score."
+  }
+}
