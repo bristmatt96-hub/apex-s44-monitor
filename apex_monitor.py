@@ -77,9 +77,11 @@ except ImportError:
 
 # Try to import credit twitter
 CREDIT_TWITTER_AVAILABLE = False
+CREDIT_TWITTER_MONITOR_AVAILABLE = False
 try:
-    from monitors.credit_twitter import render_credit_twitter
+    from monitors.credit_twitter import render_credit_twitter, start_credit_twitter_monitor
     CREDIT_TWITTER_AVAILABLE = True
+    CREDIT_TWITTER_MONITOR_AVAILABLE = True
 except ImportError:
     pass
 
@@ -928,6 +930,14 @@ if MORNING_BRIEF_AVAILABLE and TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID:
         start_scheduler()
         return True
     init_morning_scheduler()
+
+# Start Credit Twitter monitor (background alerts for curated accounts)
+if CREDIT_TWITTER_MONITOR_AVAILABLE and TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID:
+    @st.cache_resource
+    def init_credit_twitter_monitor():
+        start_credit_twitter_monitor()
+        return True
+    init_credit_twitter_monitor()
 
 # Main content tabs
 tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9, tab10 = st.tabs(["Trading Signals", "Equity Monitor", "Credit Events", "News Monitor", "RSS & News", "Credit Snapshot", "Knowledge Base", "Trading Tools", "Credit Twitter", "Trade Workbench"])
