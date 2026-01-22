@@ -1,0 +1,113 @@
+{
+  "company_name": "Sunrise Communications AG",
+  "ticker": "SUNRISE",
+  "sector": "TMT - Telecommunications",
+  "last_updated": "2026-01-22",
+  "overview": {
+    "business_description": "Swiss telecommunications provider delivering mobile, internet, TV, and landline services to residential and business customers. Second-largest telecom operator in Switzerland after Swisscom. Spun off from Liberty Global in November 2024.",
+    "business_positives": [
+      "Second-largest Swiss telecom operator",
+      "Premium Swiss market with high ARPUs",
+      "Independent company post Liberty Global spin-off",
+      "Strong fixed-mobile convergence offering",
+      "Stable Swiss regulatory environment"
+    ],
+    "fatal_flaw": "High leverage (6.5x net) inherited from Liberty Global; faces competition from Swisscom and Salt; EBITDA margin pressure",
+    "ownership": "Public (spun off from Liberty Global Nov 2024)",
+    "public_private": "public",
+    "recent_news": "Oct 2025: Negotiated EUR 385m SSN add-on and USD 650m term loan. May 2025: Priced EUR 550m SSN at 4.625%. Nov 2024: Completed spin-off from Liberty Global valued at $9.3bn."
+  },
+  "ratings": {
+    "moodys": {"rating": "B1", "outlook": "", "date": ""},
+    "sp": {"rating": "BB-", "outlook": "", "date": ""},
+    "fitch": {"rating": "", "outlook": "", "date": ""}
+  },
+  "quick_assessment": {
+    "period_end": "LTM Sep 2025",
+    "revenue": 4771,
+    "ebitda": 1073,
+    "cffo": 1372,
+    "total_debt": 8695,
+    "interest_expense": null,
+    "capex": 258,
+    "debt_due_one_year": 751,
+    "cash_on_hand": 1674,
+    "revolver_available": 1290
+  },
+  "key_ratios": {
+    "debt_to_ebitda": 8.1,
+    "net_debt_to_ebitda": 6.5,
+    "ebitda_margin": 22.5,
+    "ev_to_ebitda": 10.85
+  },
+  "trend_analysis": {
+    "years": ["2022", "2023", "2024", "LTM Sep 2025"],
+    "revenue": [4018, 4116, 4342, 4771],
+    "ebitda": [1266, 952, 988, 1073],
+    "ebitda_margin": [31.5, 23.1, 22.8, 22.5],
+    "total_debt": [14063, 9454, 9250, 8695],
+    "net_debt": [12336, 8044, 7434, 7021],
+    "gross_leverage": [11.1, 9.9, 9.4, 8.1],
+    "net_leverage": [9.7, 8.5, 7.5, 6.5]
+  },
+  "debt_capitalization": [
+    {"instrument": "EUR 1144m Term Loan", "amount": 1224, "maturity": "Dec 2026", "coupon": "-", "price": null, "ytw": null, "rating": "-"},
+    {"instrument": "EUR 890m Term Loan", "amount": 425, "maturity": "Nov 2028", "coupon": "E+3.00%", "price": null, "ytw": null, "rating": "-"},
+    {"instrument": "EUR 570m Revolving Credit", "amount": 0, "maturity": "May 2029", "coupon": "E+2.25%", "price": null, "ytw": null, "rating": "-"},
+    {"instrument": "EUR 720m Revolving Credit", "amount": 0, "maturity": "Sep 2029", "coupon": "-", "price": null, "ytw": null, "rating": "-"},
+    {"instrument": "EUR 550m Sr Secd Notes", "amount": 619, "maturity": "May 2032", "coupon": "4.625%", "price": 101.21, "ytw": 4.40, "rating": "B1/BB-"},
+    {"instrument": "EUR 385m Sr Secd Notes (add-on)", "amount": 452, "maturity": "May 2032", "coupon": "4.625%", "price": 101.21, "ytw": 4.40, "rating": "BB-"},
+    {"instrument": "EUR 500m Term Loan B", "amount": 524, "maturity": "Mar 2033", "coupon": "E+3.00%", "price": 100.35, "ytw": null, "rating": "-"}
+  ],
+  "maturity_schedule": {
+    "2026": 1224,
+    "2028": 425,
+    "2032": 1071,
+    "2033": 524
+  },
+  "equity_market_value": {
+    "market_cap": 3540,
+    "ticker": "NASDAQ: LBTYA",
+    "share_price": 10.52,
+    "note": "Liberty Global parent; Sunrise spun off Nov 2024 valued at $9.3bn"
+  },
+  "top_investors": [
+    {"name": "ACR Alpine Capital Research", "type": "Investment Advisor", "value_usd": 327},
+    {"name": "Baupost Group", "type": "Hedge Fund", "value_usd": 313},
+    {"name": "Dimensional Fund Advisors", "type": "Investment Advisor", "value_usd": 181},
+    {"name": "BlackRock Advisors", "type": "Investment Advisor", "value_usd": 160},
+    {"name": "Rubric Capital Management", "type": "Hedge Fund", "value_usd": 142}
+  ],
+  "top_lenders": [
+    {"name": "JP Morgan", "role": "Arranger", "deals": 9},
+    {"name": "BNP Paribas", "role": "Arranger", "deals": 8},
+    {"name": "UBS", "role": "Arranger", "deals": 7},
+    {"name": "Goldman Sachs", "role": "Arranger", "deals": 8},
+    {"name": "Scotiabank", "role": "Arranger", "deals": 6}
+  ],
+  "key_deals": [
+    {"date": "Oct 2025", "deal": "EUR 385m SSN add-on at 4.625% + USD 650m term loan"},
+    {"date": "May 2025", "deal": "EUR 550m SSN at 4.625%"},
+    {"date": "Feb 2025", "deal": "EUR 500m TLB at E+300bps"},
+    {"date": "Nov 2024", "deal": "Spin-off from Liberty Global at $9.3bn valuation"},
+    {"date": "Dec 2025", "deal": "PENDING: UPC Slovakia sale to PPF Group for $111m"}
+  ],
+  "credit_opinion": {
+    "summary": "Sunrise is Switzerland's second-largest telecom operator, spun off from Liberty Global in Nov 2024 at $9.3bn valuation. High leverage (6.5x net) but deleveraging trend continues. Competes with Swisscom and Salt in premium Swiss market. EBITDA margins compressed from 31.5% (2022) to 22.5% (LTM). Secured notes yield 4.4% reflecting BB- rating.",
+    "key_risks": [
+      "High leverage (6.5x net) inherited from Liberty Global",
+      "EBITDA margin compression",
+      "Competition from Swisscom and Salt",
+      "Sub-investment grade ratings",
+      "Capital intensity of network investment"
+    ],
+    "key_catalysts": [
+      "Continued deleveraging from cash flow",
+      "Swiss market consolidation potential",
+      "Synergies from UPC Switzerland integration",
+      "ARPU stability in premium market",
+      "Rating upgrades as leverage declines"
+    ],
+    "recommendation": "NEUTRAL - Deleveraging trend positive but high leverage persists; fairly valued at 4.4% yield"
+  }
+}
