@@ -1,5 +1,5 @@
 {
-  "company_name": "Arrow Global Group Ltd",
+  "company_name": "Sherwood Financing plc (Arrow Global)",
   "ticker": "ARWGF",
   "sector": "Financials - Alternative Asset Manager",
   "last_updated": "2026-01-21",
@@ -17,9 +17,21 @@
     "recent_news": "Dec 2025: Downgraded to B by Fitch (from B+), Moody's B2 outlook changed to negative. 9M25 adjusted EBITDA fell 40.1% YoY to GBP 169.2m. Selling Zenith Service SpA for EUR 127m."
   },
   "ratings": {
-    "moodys": {"rating": "B2", "outlook": "Negative", "date": "2025-12"},
-    "sp": {"rating": "", "outlook": "", "date": ""},
-    "fitch": {"rating": "B", "outlook": "Stable", "date": "2025-12"}
+    "moodys": {
+      "rating": "B2",
+      "outlook": "Negative",
+      "date": "2025-12"
+    },
+    "sp": {
+      "rating": "",
+      "outlook": "",
+      "date": ""
+    },
+    "fitch": {
+      "rating": "B",
+      "outlook": "Stable",
+      "date": "2025-12"
+    }
   },
   "quick_assessment": {
     "period_end": "LTM Sep 2025",
@@ -40,18 +52,77 @@
     "ev_to_ebitda": null
   },
   "trend_analysis": {
-    "years": ["2022", "2023", "2024", "LTM Sep 2025"],
-    "revenue": [255, 234, 350, 394],
-    "operating_income": [-106, -164, -73, -105],
-    "net_income": [-103, -160, -87, -179],
-    "total_debt": [1800, 1829, 1699, 2130],
-    "net_debt": [1626, 1683, 1589, 1994],
-    "equity": [517, 391, 293, 191]
+    "years": [
+      "2022",
+      "2023",
+      "2024",
+      "LTM Sep 2025"
+    ],
+    "revenue": [
+      255,
+      234,
+      350,
+      394
+    ],
+    "operating_income": [
+      -106,
+      -164,
+      -73,
+      -105
+    ],
+    "net_income": [
+      -103,
+      -160,
+      -87,
+      -179
+    ],
+    "total_debt": [
+      1800,
+      1829,
+      1699,
+      2130
+    ],
+    "net_debt": [
+      1626,
+      1683,
+      1589,
+      1994
+    ],
+    "equity": [
+      517,
+      391,
+      293,
+      191
+    ]
   },
   "debt_capitalization": [
-    {"instrument": "Senior Secured Notes (Sherwood)", "amount": 1000, "maturity": "2029", "coupon": "-", "price": null, "ytw": null, "rating": "B2/B"},
-    {"instrument": "Senior Secured Notes", "amount": 58, "maturity": "-", "coupon": "-", "price": null, "ytw": null, "rating": "B2/B"},
-    {"instrument": "Other Debt", "amount": 1072, "maturity": "Various", "coupon": "-", "price": null, "ytw": null, "rating": "-"}
+    {
+      "instrument": "Senior Secured Notes (Sherwood)",
+      "amount": 1000,
+      "maturity": "2029",
+      "coupon": "-",
+      "price": null,
+      "ytw": null,
+      "rating": "B2/B"
+    },
+    {
+      "instrument": "Senior Secured Notes",
+      "amount": 58,
+      "maturity": "-",
+      "coupon": "-",
+      "price": null,
+      "ytw": null,
+      "rating": "B2/B"
+    },
+    {
+      "instrument": "Other Debt",
+      "amount": 1072,
+      "maturity": "Various",
+      "coupon": "-",
+      "price": null,
+      "ytw": null,
+      "rating": "-"
+    }
   ],
   "maturity_schedule": {
     "2029": 1000
@@ -60,17 +131,49 @@
     "note": "Private - owned by TDR Capital"
   },
   "top_lenders": [
-    {"name": "JP Morgan", "role": "Arranger", "deals": 7},
-    {"name": "Goldman Sachs", "role": "Arranger", "deals": 7},
-    {"name": "HSBC", "role": "Lender", "deals": 3},
-    {"name": "Barclays", "role": "Lender", "deals": 3},
-    {"name": "Citi", "role": "Lender", "deals": 3}
+    {
+      "name": "JP Morgan",
+      "role": "Arranger",
+      "deals": 7
+    },
+    {
+      "name": "Goldman Sachs",
+      "role": "Arranger",
+      "deals": 7
+    },
+    {
+      "name": "HSBC",
+      "role": "Lender",
+      "deals": 3
+    },
+    {
+      "name": "Barclays",
+      "role": "Lender",
+      "deals": 3
+    },
+    {
+      "name": "Citi",
+      "role": "Lender",
+      "deals": 3
+    }
   ],
   "key_deals": [
-    {"date": "Nov 2025", "deal": "Selling Zenith Service SpA for EUR 127m (pending)"},
-    {"date": "Jul 2025", "deal": "Acquired Transfor Group (Portugal construction)"},
-    {"date": "May 2025", "deal": "Acquired Realta Investments from Magnetar"},
-    {"date": "Oct 2024", "deal": "Acquired Square Shopping Centre Tallaght for $143m"}
+    {
+      "date": "Nov 2025",
+      "deal": "Selling Zenith Service SpA for EUR 127m (pending)"
+    },
+    {
+      "date": "Jul 2025",
+      "deal": "Acquired Transfor Group (Portugal construction)"
+    },
+    {
+      "date": "May 2025",
+      "deal": "Acquired Realta Investments from Magnetar"
+    },
+    {
+      "date": "Oct 2024",
+      "deal": "Acquired Square Shopping Centre Tallaght for $143m"
+    }
   ],
   "credit_opinion": {
     "summary": "Arrow Global is a PE-owned alternative asset manager under significant credit stress. EBITDA down 40% YoY, persistent operating losses, and declining equity base ($517m in 2022 to $191m now). Recent downgrades from both Moody's and Fitch reflect deteriorating credit profile. Actively disposing assets to manage liquidity.",

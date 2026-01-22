@@ -1,16 +1,20 @@
 {
-  "company_name": "D'Ieteren / Belron",
+  "company_name": "Belron UK Finance plc",
   "legal_entity": "D'Ieteren Group SA/NV",
   "sector": "Autos & Industrials - Vehicle Glass Services",
   "geography": "Belgium",
   "last_updated": "2025-01-21",
   "data_source": "Debtwire",
-
   "ratings": {
-    "sp": {"rating": "NR", "outlook": null},
-    "moodys": {"rating": "NR", "outlook": null}
+    "sp": {
+      "rating": "NR",
+      "outlook": null
+    },
+    "moodys": {
+      "rating": "NR",
+      "outlook": null
+    }
   },
-
   "overview": {
     "business_description": "Investment holding company. Primary asset is Belron - global leader in vehicle glass repair and replacement (Carglass, Safelite, Autoglass brands). Also has Belgian auto distribution business.",
     "business_positives": [
@@ -24,7 +28,6 @@
     "ownership": "Nayarit Participations SA/NV (family holding). Public equity (BR: DIE) - Market Cap $11.4bn",
     "recent_news": "Belron repriced EUR 2.05bn TLB at E+225bps and par (Jan 2026) - very tight pricing reflects strong credit quality."
   },
-
   "quick_assessment": {
     "total_debt": 2869,
     "cash_on_hand": 283,
@@ -33,23 +36,50 @@
     "cffo": 553,
     "interest_expense": null
   },
-
   "key_ratios": {
     "debt_to_ebitda": 4.5,
     "net_debt_to_ebitda": 4.1,
     "ebitda_minus_capex_to_interest": null,
     "fcf_to_debt": null
   },
-
   "trend_analysis": {
-    "years": ["2022", "2023", "2024", "LTM Jun 2025"],
-    "revenue": [5046, 8811, 8471, 9282],
-    "ebitda": [312, 621, 384, 635],
-    "ebitda_margin": [6.2, 7.0, 4.5, 6.8],
-    "total_debt": [1449, 1423, 2347, 2869],
-    "net_leverage": [3.5, 0.9, 4.5, 4.1]
+    "years": [
+      "2022",
+      "2023",
+      "2024",
+      "LTM Jun 2025"
+    ],
+    "revenue": [
+      5046,
+      8811,
+      8471,
+      9282
+    ],
+    "ebitda": [
+      312,
+      621,
+      384,
+      635
+    ],
+    "ebitda_margin": [
+      6.2,
+      7.0,
+      4.5,
+      6.8
+    ],
+    "total_debt": [
+      1449,
+      1423,
+      2347,
+      2869
+    ],
+    "net_leverage": [
+      3.5,
+      0.9,
+      4.5,
+      4.1
+    ]
   },
-
   "debt_capitalization": [
     {
       "instrument": "Belron EUR 2.05bn TLB (repriced Jan 2026)",
@@ -72,7 +102,6 @@
       "rating": null
     }
   ],
-
   "maturity_schedule": {
     "year_1": 625,
     "year_2": null,
@@ -81,7 +110,6 @@
     "year_5": null,
     "thereafter": 2244
   },
-
   "equity_market_value": {
     "ticker": "DIE.BR",
     "exchange": "Euronext Brussels",
@@ -89,7 +117,6 @@
     "total_enterprise_value": 14040,
     "tev_to_ebitda": 22.1
   },
-
   "credit_opinion": {
     "recommendation": "OVERWEIGHT",
     "summary": "D'Ieteren/Belron is a strong performing credit. Belron's dominant position in vehicle glass provides stable, recurring cash flows. Recent TLB repricing at E+225bps (among the tightest in European HY) reflects market confidence. Net leverage at 4.1x is manageable. Public equity provides transparency and $11bn equity cushion beneath the debt.",
@@ -106,7 +133,6 @@
       "Share buybacks or special dividends from parent"
     ]
   },
-
   "distress_indicators": {
     "debtwire_distress_score": null,
     "lifecycle_status": "Performing credit",

@@ -1,19 +1,26 @@
 {
-  "company_name": "Aggreko (Albion)",
+  "company_name": "Albion Financing 1 S.\u00e0 r.l. (Aggreko)",
   "legal_entity": "Aggreko Ltd",
   "holding_company": "Albion Financing 1 Sarl",
-  "alternate_names": ["Albion HoldCo Ltd", "Albion 1 SARL"],
+  "alternate_names": [
+    "Albion HoldCo Ltd",
+    "Albion 1 SARL"
+  ],
   "sector": "Business Services - Energy Equipment/Rental",
   "geography": "United Kingdom",
   "last_updated": "2026-01-21",
   "data_source": "Debtwire",
-
   "ratings": {
-    "moodys": {"rating": "NR", "outlook": null},
-    "sp": {"rating": "BB-", "outlook": "Negative"},
+    "moodys": {
+      "rating": "NR",
+      "outlook": null
+    },
+    "sp": {
+      "rating": "BB-",
+      "outlook": "Negative"
+    },
     "note": "S&P revised BB- outlook to Negative from Stable (Jan 2026)"
   },
-
   "overview": {
     "business_description": "Energy equipment supplier delivering temporary power and temperature control solutions, serving industrial, commercial, and event sectors globally. Business model centers on flexible equipment rental with strong recurring revenue from long-term contracts. Former FTSE 250 company taken private in 2021.",
     "business_positives": [
@@ -30,7 +37,6 @@
     "ownership": "Private - PE consortium. TDR Capital, I Squared Capital, and Brookfield Oaktree Holdings since August 2021 take-private (~$3.86bn deal).",
     "recent_news": "Priced EUR 407m / USD 715m TLB add-on at E/S+300bps and par (Jan 2026). S&P revised BB- outlook to Negative (Jan 2026). ADIA, KKR, CVC interested in stake sale (Jul 2025). TLB A&E completed at E/S+300bps (Jun 2025)."
   },
-
   "quick_assessment": {
     "total_debt": 5500,
     "cash_on_hand": null,
@@ -38,7 +44,6 @@
     "debt_due_one_year": 0,
     "note": "Large debt quantum from LBO and subsequent add-ons. Recent TLB issuance increases leverage."
   },
-
   "debt_capitalization": [
     {
       "instrument": "EUR 450m Sr Secd Notes",
@@ -58,7 +63,7 @@
       "instrument": "USD 1bn Sr Secd Notes",
       "amount": 1000,
       "maturity": "2030",
-      "price": 104.30,
+      "price": 104.3,
       "seniority": "Senior Secured"
     },
     {
@@ -82,12 +87,11 @@
       "amount": 1162,
       "maturity": "2031",
       "coupon": "E/S+300bps",
-      "price": 100.00,
+      "price": 100.0,
       "seniority": "Senior Secured First Lien",
       "note": "Jan 2026 issuance - upsized"
     }
   ],
-
   "maturity_schedule": {
     "year_1": 495,
     "year_2": 0,
@@ -97,30 +101,54 @@
     "thereafter": 3262,
     "note": "2026 notes near-term, bulk matures 2030-2031. Well-laddered."
   },
-
   "recent_issuance": [
-    {"date": "Jan 2026", "instrument": "EUR 407m / USD 715m TLB Add-on", "pricing": "E/S+300bps at par"},
-    {"date": "Jun 2025", "instrument": "EUR 1.285bn / USD 1.418bn TLB A&E", "pricing": "E/S+300bps, 99.75 OID"},
-    {"date": "May 2025", "instrument": "EUR/USD Sr Secd Notes 2030", "pricing": "$2.4bn total"},
-    {"date": "Oct 2021", "instrument": "LBO Financing", "pricing": "$1.5bn"}
+    {
+      "date": "Jan 2026",
+      "instrument": "EUR 407m / USD 715m TLB Add-on",
+      "pricing": "E/S+300bps at par"
+    },
+    {
+      "date": "Jun 2025",
+      "instrument": "EUR 1.285bn / USD 1.418bn TLB A&E",
+      "pricing": "E/S+300bps, 99.75 OID"
+    },
+    {
+      "date": "May 2025",
+      "instrument": "EUR/USD Sr Secd Notes 2030",
+      "pricing": "$2.4bn total"
+    },
+    {
+      "date": "Oct 2021",
+      "instrument": "LBO Financing",
+      "pricing": "$1.5bn"
+    }
   ],
-
   "strategic_developments": {
     "stake_sale_interest": {
-      "potential_buyers": ["ADIA", "KKR", "CVC"],
+      "potential_buyers": [
+        "ADIA",
+        "KKR",
+        "CVC"
+      ],
       "status": "Initial bids due Jul 2025",
       "note": "Strong strategic interest from major infrastructure investors"
     },
-    "recent_acquisitions": ["Resalta BV (Jul 2024)", "Crestchic (Feb 2023)", "Mobil in Time (Jul 2025)"]
+    "recent_acquisitions": [
+      "Resalta BV (Jul 2024)",
+      "Crestchic (Feb 2023)",
+      "Mobil in Time (Jul 2025)"
+    ]
   },
-
   "transaction_history": {
     "take_private_date": "Aug 2021",
     "deal_value": 3860,
-    "acquirers": ["TDR Capital", "I Squared Capital", "Brookfield Oaktree"],
+    "acquirers": [
+      "TDR Capital",
+      "I Squared Capital",
+      "Brookfield Oaktree"
+    ],
     "former_listing": "FTSE 250 (LSE)"
   },
-
   "credit_opinion": {
     "recommendation": "NEUTRAL",
     "summary": "Aggreko is a performing credit with all bonds trading above par (100-104), demonstrating strong market confidence. Recent EUR/USD TLB add-on at E/S+300bps and par shows continued market access. However, the S&P outlook revision to Negative (Jan 2026) is a concern, and distress score of 15 is elevated. Large debt quantum (~$5.5bn) post-recent add-on. Positive that major infrastructure investors (ADIA, KKR, CVC) have expressed interest in stake purchase. Global leader in temporary power with essential infrastructure positioning. Triple sponsor backing provides support but exit path unclear after 4+ years.",
@@ -143,17 +171,19 @@
       "Rating upgrade"
     ]
   },
-
   "distress_indicators": {
     "debtwire_distress_score": 15,
     "lifecycle_status": "Performing credit",
     "trading_signals": "All bonds at 100-104 (above par). Recent TLB at par shows market support. BUT S&P outlook Negative and distress score elevated. Watch for rating action."
   },
-
   "lme_risk_proxy": {
     "doc_vintage": "2021-2026",
     "pe_backed": true,
-    "sponsors": ["TDR Capital", "I Squared Capital", "Brookfield Oaktree"],
+    "sponsors": [
+      "TDR Capital",
+      "I Squared Capital",
+      "Brookfield Oaktree"
+    ],
     "holding_period_years": 4.5,
     "lbo_date": "Aug 2021",
     "complex_structure": true,
@@ -166,7 +196,11 @@
     "advisor_hired": false,
     "asset_sales_announced": false,
     "stake_sale_process": true,
-    "stake_sale_buyers": ["ADIA", "KKR", "CVC"],
+    "stake_sale_buyers": [
+      "ADIA",
+      "KKR",
+      "CVC"
+    ],
     "distress_score": 15,
     "lifecycle_status": "Performing",
     "inferred_lme_risk": "MEDIUM",

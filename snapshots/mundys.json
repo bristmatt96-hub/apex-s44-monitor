@@ -1,19 +1,30 @@
 {
-  "company_name": "Mundys",
+  "company_name": "Mundys S.p.A.",
   "legal_entity": "Mundys SpA",
-  "key_subsidiaries": ["Aeroporti di Roma SpA", "Autostrade per l'Italia", "Aeroports de la Cote d'Azur"],
-  "alternate_names": ["Atlantia (former)", "ASPI"],
+  "key_subsidiaries": [
+    "Aeroporti di Roma SpA",
+    "Autostrade per l'Italia",
+    "Aeroports de la Cote d'Azur"
+  ],
+  "alternate_names": [
+    "Atlantia (former)",
+    "ASPI"
+  ],
   "sector": "Transportation - Infrastructure/Mobility",
   "geography": "Italy",
   "last_updated": "2026-01-21",
   "data_source": "Debtwire",
-
   "ratings": {
-    "mundys": {"moodys": "Ba1", "sp": "BB+"},
-    "aeroporti_di_roma": {"moodys": "Baa1", "sp": "BBB-"},
+    "mundys": {
+      "moodys": "Ba1",
+      "sp": "BB+"
+    },
+    "aeroporti_di_roma": {
+      "moodys": "Baa1",
+      "sp": "BBB-"
+    },
     "note": "Split rating structure. Mundys holdco at Ba1/BB+ (crossover), subsidiaries like Aeroporti di Roma at investment grade (Baa1/BBB-). Complex multi-entity credit."
   },
-
   "overview": {
     "business_description": "Infrastructure and mobility provider managing toll roads and airport concessions, serving transportation and logistics sectors through long-term contracts. Key assets include Autostrade per l'Italia (Italian toll roads), Aeroporti di Roma (Rome airports), and Aeroports de la Cote d'Azur (Nice airport). Global infrastructure footprint.",
     "business_positives": [
@@ -32,7 +43,6 @@
     "ownership": "Private - PE-backed. Edizione SpA (57.01%) - Benetton family holding company. Blackstone minority stake since Dec 2022.",
     "recent_news": "Priced EUR 500m senior unsecured 2031 note at 3.7% (Sep 2025). Brightline Florida approaches Mundys for investment (Oct 2025). Aeroporti di Roma downgraded to BBB- from BBB due to equity reserves distribution (Apr 2025)."
   },
-
   "quick_assessment": {
     "total_debt": 38018,
     "cash_on_hand": 5695,
@@ -44,28 +54,65 @@
     "net_income": -248,
     "note": "MASSIVE infrastructure group. Very high absolute debt but strong cash generation."
   },
-
   "key_ratios": {
     "debt_to_ebitda": 6.5,
     "net_debt_to_ebitda": 5.5,
     "ebitda_margin": 55.2,
     "note": "Leverage appropriate for infrastructure. Very high margins reflect toll road/airport concession model."
   },
-
   "trend_analysis": {
-    "years": ["FY 2022", "FY 2023", "FY 2024"],
-    "revenue": [8926, 10716, 10623],
-    "ebitda": [5159, 6056, 5864],
-    "ebitda_margin": [57.8, 56.5, 55.2],
-    "total_debt": [38728, 44477, 38018],
-    "net_debt": [23235, 37718, 32323],
-    "gross_leverage": [7.5, 7.3, 6.5],
-    "net_leverage": [4.5, 6.2, 5.5],
-    "net_income": [6199, 137, -248],
-    "cffo": [3656, 3627, 3844],
+    "years": [
+      "FY 2022",
+      "FY 2023",
+      "FY 2024"
+    ],
+    "revenue": [
+      8926,
+      10716,
+      10623
+    ],
+    "ebitda": [
+      5159,
+      6056,
+      5864
+    ],
+    "ebitda_margin": [
+      57.8,
+      56.5,
+      55.2
+    ],
+    "total_debt": [
+      38728,
+      44477,
+      38018
+    ],
+    "net_debt": [
+      23235,
+      37718,
+      32323
+    ],
+    "gross_leverage": [
+      7.5,
+      7.3,
+      6.5
+    ],
+    "net_leverage": [
+      4.5,
+      6.2,
+      5.5
+    ],
+    "net_income": [
+      6199,
+      137,
+      -248
+    ],
+    "cffo": [
+      3656,
+      3627,
+      3844
+    ],
     "trend_summary": "Stable infrastructure business. EBITDA ~$6bn with 55% margins. FY22 net income of $6.2bn was one-time gain. Leverage improved from 6.2x to 5.5x. CFFO consistently strong at $3.6-3.8bn."
   },
-
   "debt_capitalization": [
     {
       "instrument": "EUR 350m Term Loan",
@@ -131,12 +178,10 @@
       "note": "Complex multi-tranche capital structure across group entities"
     }
   ],
-
   "maturity_schedule": {
     "year_1": 4768,
     "note": "Large near-term maturities but strong CFFO ($3.8bn) and market access provide refinancing capacity."
   },
-
   "pe_ownership": {
     "primary_sponsor": "Edizione SpA",
     "stake": "57.01%",
@@ -146,7 +191,6 @@
     "blackstone_entry": "Dec 2022",
     "note": "Strategic infrastructure investors with long-term horizon"
   },
-
   "subsidiary_analysis": {
     "aeroporti_di_roma": {
       "description": "Rome Fiumicino and Ciampino airports",
@@ -158,7 +202,6 @@
       "note": "Core asset. Subject to Italian regulatory/political risk."
     }
   },
-
   "credit_opinion": {
     "recommendation": "NEUTRAL",
     "summary": "Mundys is a MASSIVE infrastructure group with $38bn total debt but very strong fundamentals - $5.9bn EBITDA with 55% margins and $3.8bn CFFO. The business benefits from long-duration toll road and airport concessions. All bonds trade at or above par (99-105) with tight yields (3.3-3.8%) reflecting infrastructure quality. Distress score of 12 is low. However, the sheer debt quantum creates refinancing execution risk. Net leverage of 5.5x is appropriate for infrastructure but leaves limited cushion. Split credit structure (Mundys Ba1/BB+, subsidiaries IG) adds complexity. Aeroporti di Roma downgrade is a yellow flag. Edizione/Blackstone backing provides support.",
@@ -182,7 +225,6 @@
       "Brightline investment opportunity"
     ]
   },
-
   "distress_indicators": {
     "debtwire_distress_score": 12,
     "lifecycle_status": "Performing credit",

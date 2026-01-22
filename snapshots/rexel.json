@@ -1,5 +1,5 @@
 {
-  "company_name": "Rexel SA",
+  "company_name": "Rexel",
   "ticker": "RXL FP",
   "sector": "Industrials - Electrical Distribution",
   "last_updated": "2026-01-22",
@@ -18,9 +18,21 @@
     "recent_news": "Dec 2025: Denied talks with potential buyers. Sep 2025: Issued EUR 400m notes at 4%. Q3 2025 sales flat YoY. Rejected QXO's $13.8bn hostile bid (Sep 2024)."
   },
   "ratings": {
-    "moodys": {"rating": "Ba1", "outlook": "", "date": "2025-09"},
-    "sp": {"rating": "BB+", "outlook": "", "date": "2025-09"},
-    "fitch": {"rating": "", "outlook": "", "date": ""}
+    "moodys": {
+      "rating": "Ba1",
+      "outlook": "",
+      "date": "2025-09"
+    },
+    "sp": {
+      "rating": "BB+",
+      "outlook": "",
+      "date": "2025-09"
+    },
+    "fitch": {
+      "rating": "",
+      "outlook": "",
+      "date": ""
+    }
   },
   "quick_assessment": {
     "period_end": "LTM Jun 2025",
@@ -41,24 +53,131 @@
     "ev_to_ebitda": 12.86
   },
   "trend_analysis": {
-    "years": ["2022", "2023", "2024", "LTM Jun 2025"],
-    "revenue": [20018, 21140, 20032, 22818],
-    "ebitda": [1505, 1473, 1200, 1343],
-    "ebitda_margin": [7.5, 7.0, 6.0, 5.9],
-    "total_debt": [2471, 3147, 3352, 3959],
-    "net_debt": [1513, 2140, 2435, 3443],
-    "gross_leverage": [1.6, 2.1, 2.8, 2.9]
+    "years": [
+      "2022",
+      "2023",
+      "2024",
+      "LTM Jun 2025"
+    ],
+    "revenue": [
+      20018,
+      21140,
+      20032,
+      22818
+    ],
+    "ebitda": [
+      1505,
+      1473,
+      1200,
+      1343
+    ],
+    "ebitda_margin": [
+      7.5,
+      7.0,
+      6.0,
+      5.9
+    ],
+    "total_debt": [
+      2471,
+      3147,
+      3352,
+      3959
+    ],
+    "net_debt": [
+      1513,
+      2140,
+      2435,
+      3443
+    ],
+    "gross_leverage": [
+      1.6,
+      2.1,
+      2.8,
+      2.9
+    ]
   },
   "debt_capitalization": [
-    {"instrument": "EUR 300m Sr Unsecd Notes", "amount": 363, "maturity": "Jun 2026", "coupon": "2.13%", "price": 98.53, "ytw": 2.76, "rating": "Ba1/BB+"},
-    {"instrument": "EUR 600m Sr Unsecd Notes", "amount": 681, "maturity": "Jun 2026", "coupon": "2.75%", "price": null, "ytw": null, "rating": "Ba3"},
-    {"instrument": "EUR 100m Sr Unsecd Notes", "amount": 120, "maturity": "Jun 2028", "coupon": "2.13%", "price": 98.53, "ytw": 2.76, "rating": "Ba1/BB+"},
-    {"instrument": "EUR 600m Sr Unsecd Notes", "amount": 696, "maturity": "Dec 2028", "coupon": "2.13%", "price": 98.56, "ytw": 2.64, "rating": "Ba1/BB+"},
-    {"instrument": "EUR 200m Promissory Note", "amount": 215, "maturity": "Jul 2029", "coupon": "-", "price": null, "ytw": null, "rating": "-"},
-    {"instrument": "EUR 500m Revolving Credit", "amount": 0, "maturity": "Jan 2029", "coupon": "-", "price": null, "ytw": null, "rating": "-"},
-    {"instrument": "EUR 200m Revolving Credit", "amount": 0, "maturity": "Jan 2029", "coupon": "-", "price": null, "ytw": null, "rating": "-"},
-    {"instrument": "EUR 400m Notes", "amount": 430, "maturity": "Sep 2030", "coupon": "5.25%", "price": 103.71, "ytw": 4.57, "rating": "Ba1/BB+"},
-    {"instrument": "EUR 400m Sr Unsecd Notes", "amount": 468, "maturity": "Sep 2030", "coupon": "4.00%", "price": 101.61, "ytw": 3.62, "rating": "Ba1/BB+"}
+    {
+      "instrument": "EUR 300m Sr Unsecd Notes",
+      "amount": 363,
+      "maturity": "Jun 2026",
+      "coupon": "2.13%",
+      "price": 98.53,
+      "ytw": 2.76,
+      "rating": "Ba1/BB+"
+    },
+    {
+      "instrument": "EUR 600m Sr Unsecd Notes",
+      "amount": 681,
+      "maturity": "Jun 2026",
+      "coupon": "2.75%",
+      "price": null,
+      "ytw": null,
+      "rating": "Ba3"
+    },
+    {
+      "instrument": "EUR 100m Sr Unsecd Notes",
+      "amount": 120,
+      "maturity": "Jun 2028",
+      "coupon": "2.13%",
+      "price": 98.53,
+      "ytw": 2.76,
+      "rating": "Ba1/BB+"
+    },
+    {
+      "instrument": "EUR 600m Sr Unsecd Notes",
+      "amount": 696,
+      "maturity": "Dec 2028",
+      "coupon": "2.13%",
+      "price": 98.56,
+      "ytw": 2.64,
+      "rating": "Ba1/BB+"
+    },
+    {
+      "instrument": "EUR 200m Promissory Note",
+      "amount": 215,
+      "maturity": "Jul 2029",
+      "coupon": "-",
+      "price": null,
+      "ytw": null,
+      "rating": "-"
+    },
+    {
+      "instrument": "EUR 500m Revolving Credit",
+      "amount": 0,
+      "maturity": "Jan 2029",
+      "coupon": "-",
+      "price": null,
+      "ytw": null,
+      "rating": "-"
+    },
+    {
+      "instrument": "EUR 200m Revolving Credit",
+      "amount": 0,
+      "maturity": "Jan 2029",
+      "coupon": "-",
+      "price": null,
+      "ytw": null,
+      "rating": "-"
+    },
+    {
+      "instrument": "EUR 400m Notes",
+      "amount": 430,
+      "maturity": "Sep 2030",
+      "coupon": "5.25%",
+      "price": 103.71,
+      "ytw": 4.57,
+      "rating": "Ba1/BB+"
+    },
+    {
+      "instrument": "EUR 400m Sr Unsecd Notes",
+      "amount": 468,
+      "maturity": "Sep 2030",
+      "coupon": "4.00%",
+      "price": 101.61,
+      "ytw": 3.62,
+      "rating": "Ba1/BB+"
+    }
   ],
   "maturity_schedule": {
     "2026": 1044,
@@ -72,17 +191,49 @@
     "enterprise_value_usd": 17280
   },
   "top_investors": [
-    {"name": "Government Pension Fund (Norway)", "type": "Pension", "value_usd": 475.57},
-    {"name": "Norges Bank Investment Management", "type": "Sovereign Wealth Fund", "value_usd": 411.42},
-    {"name": "Dimensional Fund Advisors", "type": "Investment Advisor", "value_usd": 251.73},
-    {"name": "St. James's Place", "type": "Unit Trust", "value_usd": 234.45},
-    {"name": "Vanguard Group", "type": "Investment Advisor", "value_usd": 218.60}
+    {
+      "name": "Government Pension Fund (Norway)",
+      "type": "Pension",
+      "value_usd": 475.57
+    },
+    {
+      "name": "Norges Bank Investment Management",
+      "type": "Sovereign Wealth Fund",
+      "value_usd": 411.42
+    },
+    {
+      "name": "Dimensional Fund Advisors",
+      "type": "Investment Advisor",
+      "value_usd": 251.73
+    },
+    {
+      "name": "St. James's Place",
+      "type": "Unit Trust",
+      "value_usd": 234.45
+    },
+    {
+      "name": "Vanguard Group",
+      "type": "Investment Advisor",
+      "value_usd": 218.6
+    }
   ],
   "key_deals": [
-    {"date": "Sep 2024", "deal": "Rejected QXO hostile bid ($13.8bn, 8.59x EBITDA)"},
-    {"date": "Aug 2025", "deal": "Acquired Connectronics (US wireless)"},
-    {"date": "Apr 2025", "deal": "Acquired Schwing Electrical (US)"},
-    {"date": "May 2023", "deal": "Acquired Wasco (Netherlands) for EUR 520m"}
+    {
+      "date": "Sep 2024",
+      "deal": "Rejected QXO hostile bid ($13.8bn, 8.59x EBITDA)"
+    },
+    {
+      "date": "Aug 2025",
+      "deal": "Acquired Connectronics (US wireless)"
+    },
+    {
+      "date": "Apr 2025",
+      "deal": "Acquired Schwing Electrical (US)"
+    },
+    {
+      "date": "May 2023",
+      "deal": "Acquired Wasco (Netherlands) for EUR 520m"
+    }
   ],
   "credit_opinion": {
     "summary": "Rexel is the global leader in electrical distribution with exposure to energy transition themes. Rejected QXO's $13.8bn takeover validates strategic value. However, EBITDA margins compressed from 7.5% to 5.9% and leverage increased to 2.9x. Bonds trading at tight yields (2.64-4.57%) reflect near-IG credit quality but margin trends warrant monitoring.",

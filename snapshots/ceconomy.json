@@ -1,16 +1,20 @@
 {
-  "company_name": "Ceconomy",
+  "company_name": "Ceconomy AG",
   "legal_entity": "Ceconomy AG",
   "sector": "Consumer & Retail - Electronics Retail",
   "geography": "Germany",
   "last_updated": "2026-01-21",
   "data_source": "Debtwire",
-
   "ratings": {
-    "sp": {"rating": "BB-", "outlook": null},
-    "moodys": {"rating": "NR", "outlook": null}
+    "sp": {
+      "rating": "BB-",
+      "outlook": null
+    },
+    "moodys": {
+      "rating": "NR",
+      "outlook": null
+    }
   },
-
   "overview": {
     "business_description": "European consumer electronics retailer. Operates MediaMarkt and Saturn stores supplying consumer electronics and household appliances through physical stores and online channels across Europe.",
     "business_positives": [
@@ -25,7 +29,6 @@
     "ownership": "Public (FRR: CEC). JD.com takeover pending - Supervisory Board recommends offer.",
     "recent_news": "JD.com seeks commitments for EUR loan to back Ceconomy takeover (Sep 2025). Deal value EUR 2.2bn / $4.7bn. 3Q24-25 adjusted EBIT loss narrowed to EUR 31m YoY."
   },
-
   "quick_assessment": {
     "total_debt": 1084,
     "cash_on_hand": 1417,
@@ -36,7 +39,6 @@
     "enterprise_value": 4050,
     "ebitda": 520
   },
-
   "key_ratios": {
     "debt_to_ebitda": 2.1,
     "net_debt_to_ebitda": "NM (net cash)",
@@ -44,17 +46,50 @@
     "ebitda_minus_capex_to_interest": null,
     "fcf_to_debt": null
   },
-
   "trend_analysis": {
-    "years": ["FY Sep 2022", "FY Sep 2023", "FY Sep 2024", "FY Sep 2025"],
-    "revenue": [21329, 23520, 25048, 27078],
-    "ebitda": [319, 365, 440, 520],
-    "ebitda_margin": [1.5, 1.6, 1.8, 1.9],
-    "total_debt": [796, 845, 1010, 1084],
-    "net_debt": [42, -104, -117, -332],
-    "gross_leverage": [2.5, 2.3, 2.3, 2.1]
+    "years": [
+      "FY Sep 2022",
+      "FY Sep 2023",
+      "FY Sep 2024",
+      "FY Sep 2025"
+    ],
+    "revenue": [
+      21329,
+      23520,
+      25048,
+      27078
+    ],
+    "ebitda": [
+      319,
+      365,
+      440,
+      520
+    ],
+    "ebitda_margin": [
+      1.5,
+      1.6,
+      1.8,
+      1.9
+    ],
+    "total_debt": [
+      796,
+      845,
+      1010,
+      1084
+    ],
+    "net_debt": [
+      42,
+      -104,
+      -117,
+      -332
+    ],
+    "gross_leverage": [
+      2.5,
+      2.3,
+      2.3,
+      2.1
+    ]
   },
-
   "debt_capitalization": [
     {
       "instrument": "EUR 900m RCF First Lien",
@@ -117,7 +152,6 @@
       "rating": null
     }
   ],
-
   "maturity_schedule": {
     "year_1": 236,
     "year_2": 233,
@@ -126,7 +160,6 @@
     "year_5": 0,
     "thereafter": 1707
   },
-
   "equity_market_value": {
     "ticker": "CEC.DE",
     "exchange": "Frankfurt",
@@ -134,7 +167,6 @@
     "total_enterprise_value": 4050,
     "tev_to_ebitda": 7.8
   },
-
   "pending_ma": {
     "acquirer": "JD.com Inc",
     "deal_value": 4700,
@@ -145,7 +177,6 @@
     "revenue_multiple": 0.18,
     "ebitda_multiple": 9.32
   },
-
   "credit_opinion": {
     "recommendation": "OVERWEIGHT",
     "summary": "Ceconomy is a strong performing BB- credit with exceptional liquidity. The company has a NET CASH position ($1.4bn cash vs $1.1bn debt), bonds trading above par at 104.61, and low distress score of 13. The pending JD.com takeover at $4.7bn provides M&A optionality. EBITDA growth of 12% YoY and improving margins demonstrate operational turnaround. Main risk is structural challenge in consumer electronics retail vs Amazon.",
@@ -163,7 +194,6 @@
       "Potential rating upgrade on deal completion or standalone improvement"
     ]
   },
-
   "distress_indicators": {
     "debtwire_distress_score": 13,
     "lifecycle_status": "Performing credit",

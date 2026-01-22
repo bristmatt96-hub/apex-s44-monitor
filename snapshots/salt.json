@@ -1,5 +1,5 @@
 {
-  "company_name": "Salt Mobile SA",
+  "company_name": "Matterhorn Telecom S.A. (Salt)",
   "ticker": "SALT",
   "sector": "TMT - Telecommunications/Wireless",
   "last_updated": "2026-01-22",
@@ -18,9 +18,21 @@
     "recent_news": "May 2025: Moody's upgraded CFR to B1 from B2 (stable outlook). May 2025: EUR 200m TLB add-on at 98.5-98.75. Jan 2025: Priced EUR 420m SSN at 4.5% and EUR 430m TLB at E+275bps."
   },
   "ratings": {
-    "moodys": {"rating": "B1", "outlook": "Stable", "date": "2025-05"},
-    "sp": {"rating": "", "outlook": "", "date": ""},
-    "fitch": {"rating": "", "outlook": "", "date": ""}
+    "moodys": {
+      "rating": "B1",
+      "outlook": "Stable",
+      "date": "2025-05"
+    },
+    "sp": {
+      "rating": "",
+      "outlook": "",
+      "date": ""
+    },
+    "fitch": {
+      "rating": "",
+      "outlook": "",
+      "date": ""
+    }
   },
   "quick_assessment": {
     "period_end": "2025",
@@ -48,8 +60,24 @@
     "total_debt": []
   },
   "debt_capitalization": [
-    {"instrument": "EUR 420m Sr Secd Notes", "amount": 458, "maturity": "2030", "coupon": "4.50%", "price": 100, "ytw": 4.50, "rating": "B1"},
-    {"instrument": "EUR 630m+ Term Loan B", "amount": 687, "maturity": "2032", "coupon": "E+2.75%", "price": 98.63, "ytw": null, "rating": "B1"}
+    {
+      "instrument": "EUR 420m Sr Secd Notes",
+      "amount": 458,
+      "maturity": "2030",
+      "coupon": "4.50%",
+      "price": 100,
+      "ytw": 4.5,
+      "rating": "B1"
+    },
+    {
+      "instrument": "EUR 630m+ Term Loan B",
+      "amount": 687,
+      "maturity": "2032",
+      "coupon": "E+2.75%",
+      "price": 98.63,
+      "ytw": null,
+      "rating": "B1"
+    }
   ],
   "maturity_schedule": {
     "2030": 458,
@@ -59,16 +87,45 @@
     "note": "Private - owned by NJJ Capital SAS (Xavier Niel)"
   },
   "top_lenders": [
-    {"name": "Goldman Sachs", "role": "Arranger", "deals": 8},
-    {"name": "BofA Securities", "role": "Arranger", "deals": 7},
-    {"name": "BNP Paribas", "role": "Arranger", "deals": 6},
-    {"name": "JP Morgan", "role": "Arranger", "deals": 5},
-    {"name": "UBS", "role": "Arranger", "deals": 5}
+    {
+      "name": "Goldman Sachs",
+      "role": "Arranger",
+      "deals": 8
+    },
+    {
+      "name": "BofA Securities",
+      "role": "Arranger",
+      "deals": 7
+    },
+    {
+      "name": "BNP Paribas",
+      "role": "Arranger",
+      "deals": 6
+    },
+    {
+      "name": "JP Morgan",
+      "role": "Arranger",
+      "deals": 5
+    },
+    {
+      "name": "UBS",
+      "role": "Arranger",
+      "deals": 5
+    }
   ],
   "key_deals": [
-    {"date": "May 2025", "deal": "EUR 200m fungible TLB add-on at 98.5-98.75"},
-    {"date": "Mar 2025", "deal": "EUR 25m privately placed TLB add-on"},
-    {"date": "Jan 2025", "deal": "EUR 420m SSN at 4.5% and EUR 430m TLB at E+275bps"}
+    {
+      "date": "May 2025",
+      "deal": "EUR 200m fungible TLB add-on at 98.5-98.75"
+    },
+    {
+      "date": "Mar 2025",
+      "deal": "EUR 25m privately placed TLB add-on"
+    },
+    {
+      "date": "Jan 2025",
+      "deal": "EUR 420m SSN at 4.5% and EUR 430m TLB at E+275bps"
+    }
   ],
   "credit_opinion": {
     "summary": "Salt is Switzerland's third-largest mobile operator, owned by Xavier Niel's NJJ Capital. Recent upgrade to B1 (from B2) reflects improving fundamentals. Swiss market offers high ARPUs and stable regulatory environment. Challenger positioning vs Swisscom and Sunrise. Limited financial disclosure as private company.",

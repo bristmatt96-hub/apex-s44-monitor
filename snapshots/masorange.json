@@ -1,5 +1,5 @@
 {
-  "company_name": "MASORANGE (MasMovil)",
+  "company_name": "Kaixo Bondco Telecom, S.A.U. (MasMovil)",
   "ticker": "MASMOV",
   "sector": "TMT - Telecommunications/Wireless",
   "last_updated": "2026-01-22",
@@ -18,9 +18,21 @@
     "recent_news": "Oct 2025: Orange SA acquiring 100% for $19.4bn (pending). Aug 2025: GIC acquired 25% of fiber JV for $434m. Jan 2025: Acquired Vodafone Spain fiber assets for $2.1bn. May 2025: Refinanced with new EUR 2.75bn term loans."
   },
   "ratings": {
-    "moodys": {"rating": "", "outlook": "", "date": ""},
-    "sp": {"rating": "BB+", "outlook": "", "date": ""},
-    "fitch": {"rating": "", "outlook": "", "date": ""}
+    "moodys": {
+      "rating": "",
+      "outlook": "",
+      "date": ""
+    },
+    "sp": {
+      "rating": "BB+",
+      "outlook": "",
+      "date": ""
+    },
+    "fitch": {
+      "rating": "",
+      "outlook": "",
+      "date": ""
+    }
   },
   "quick_assessment": {
     "period_end": "2025",
@@ -48,15 +60,87 @@
     "total_debt": []
   },
   "debt_capitalization": [
-    {"instrument": "EUR 366m Term Loan", "amount": 379, "maturity": "Jul 2027", "coupon": "-", "price": null, "ytw": null, "rating": "-"},
-    {"instrument": "EUR 41m Term Loan", "amount": 43, "maturity": "Jul 2027", "coupon": "-", "price": null, "ytw": null, "rating": "-"},
-    {"instrument": "EUR 98m Term Loan", "amount": 101, "maturity": "Jul 2027", "coupon": "-", "price": null, "ytw": null, "rating": "-"},
-    {"instrument": "EUR 4250m Term Loan A", "amount": 4512, "maturity": "Dec 2027", "coupon": "-", "price": null, "ytw": null, "rating": "-"},
-    {"instrument": "EUR 1250m Term Loan First Lien", "amount": 1406, "maturity": "May 2028", "coupon": "-", "price": null, "ytw": null, "rating": "-"},
-    {"instrument": "EUR 600m Sr Secd Notes", "amount": 640, "maturity": "Apr 2029", "coupon": "5.75%", "price": 103.73, "ytw": 4.51, "rating": "BB+"},
-    {"instrument": "EUR 1000m Revolving Credit", "amount": 0, "maturity": "May 2030", "coupon": "-", "price": null, "ytw": null, "rating": "-"},
-    {"instrument": "EUR 1500m Term Loan First Lien", "amount": 1687, "maturity": "May 2030", "coupon": "-", "price": null, "ytw": null, "rating": "-"},
-    {"instrument": "EUR 4300m Term Loan B First Lien", "amount": 4496, "maturity": "Mar 2031", "coupon": "E+2.75%", "price": 100.31, "ytw": null, "rating": "-"}
+    {
+      "instrument": "EUR 366m Term Loan",
+      "amount": 379,
+      "maturity": "Jul 2027",
+      "coupon": "-",
+      "price": null,
+      "ytw": null,
+      "rating": "-"
+    },
+    {
+      "instrument": "EUR 41m Term Loan",
+      "amount": 43,
+      "maturity": "Jul 2027",
+      "coupon": "-",
+      "price": null,
+      "ytw": null,
+      "rating": "-"
+    },
+    {
+      "instrument": "EUR 98m Term Loan",
+      "amount": 101,
+      "maturity": "Jul 2027",
+      "coupon": "-",
+      "price": null,
+      "ytw": null,
+      "rating": "-"
+    },
+    {
+      "instrument": "EUR 4250m Term Loan A",
+      "amount": 4512,
+      "maturity": "Dec 2027",
+      "coupon": "-",
+      "price": null,
+      "ytw": null,
+      "rating": "-"
+    },
+    {
+      "instrument": "EUR 1250m Term Loan First Lien",
+      "amount": 1406,
+      "maturity": "May 2028",
+      "coupon": "-",
+      "price": null,
+      "ytw": null,
+      "rating": "-"
+    },
+    {
+      "instrument": "EUR 600m Sr Secd Notes",
+      "amount": 640,
+      "maturity": "Apr 2029",
+      "coupon": "5.75%",
+      "price": 103.73,
+      "ytw": 4.51,
+      "rating": "BB+"
+    },
+    {
+      "instrument": "EUR 1000m Revolving Credit",
+      "amount": 0,
+      "maturity": "May 2030",
+      "coupon": "-",
+      "price": null,
+      "ytw": null,
+      "rating": "-"
+    },
+    {
+      "instrument": "EUR 1500m Term Loan First Lien",
+      "amount": 1687,
+      "maturity": "May 2030",
+      "coupon": "-",
+      "price": null,
+      "ytw": null,
+      "rating": "-"
+    },
+    {
+      "instrument": "EUR 4300m Term Loan B First Lien",
+      "amount": 4496,
+      "maturity": "Mar 2031",
+      "coupon": "E+2.75%",
+      "price": 100.31,
+      "ytw": null,
+      "rating": "-"
+    }
   ],
   "maturity_schedule": {
     "2027": 5035,
@@ -69,19 +153,57 @@
     "note": "Private - Orange SA acquiring for $19.4bn (Oct 2025, pending)"
   },
   "top_lenders": [
-    {"name": "BNP Paribas", "role": "Arranger", "deals": 16},
-    {"name": "Banco Santander", "role": "Arranger", "deals": 14},
-    {"name": "Goldman Sachs", "role": "Arranger", "deals": 12},
-    {"name": "BofA Securities", "role": "Arranger", "deals": 12},
-    {"name": "Credit Agricole", "role": "Arranger", "deals": 11}
+    {
+      "name": "BNP Paribas",
+      "role": "Arranger",
+      "deals": 16
+    },
+    {
+      "name": "Banco Santander",
+      "role": "Arranger",
+      "deals": 14
+    },
+    {
+      "name": "Goldman Sachs",
+      "role": "Arranger",
+      "deals": 12
+    },
+    {
+      "name": "BofA Securities",
+      "role": "Arranger",
+      "deals": 12
+    },
+    {
+      "name": "Credit Agricole",
+      "role": "Arranger",
+      "deals": 11
+    }
   ],
   "key_deals": [
-    {"date": "Oct 2025", "deal": "PENDING: Orange SA acquiring 100% for $19.4bn"},
-    {"date": "Aug 2025", "deal": "GIC acquired 25% of fiber JV for $434m"},
-    {"date": "May 2025", "deal": "EUR 2.75bn refinancing (EUR 1.25bn TL 2028 + EUR 1.5bn TL 2030)"},
-    {"date": "Jan 2025", "deal": "Acquired Vodafone Spain fiber optic network for $2.1bn"},
-    {"date": "Feb 2025", "deal": "EUR 4.3bn Term Loan B refinancing due 2031"},
-    {"date": "Aug 2024", "deal": "Sold Cabonitel to Digi Communications for $162m"}
+    {
+      "date": "Oct 2025",
+      "deal": "PENDING: Orange SA acquiring 100% for $19.4bn"
+    },
+    {
+      "date": "Aug 2025",
+      "deal": "GIC acquired 25% of fiber JV for $434m"
+    },
+    {
+      "date": "May 2025",
+      "deal": "EUR 2.75bn refinancing (EUR 1.25bn TL 2028 + EUR 1.5bn TL 2030)"
+    },
+    {
+      "date": "Jan 2025",
+      "deal": "Acquired Vodafone Spain fiber optic network for $2.1bn"
+    },
+    {
+      "date": "Feb 2025",
+      "deal": "EUR 4.3bn Term Loan B refinancing due 2031"
+    },
+    {
+      "date": "Aug 2024",
+      "deal": "Sold Cabonitel to Digi Communications for $162m"
+    }
   ],
   "credit_opinion": {
     "summary": "MasOrange is Spain's leading challenger telco formed from MasMovil's merger with Orange Spain. Credit story now dominated by pending Orange SA acquisition for $19.4bn which will consolidate ownership under the French telecom giant. Bonds trading above par (4.51% yield) reflect acquisition premium. High PE leverage but acquisition provides clear exit path for creditors.",

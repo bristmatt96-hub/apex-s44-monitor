@@ -1,5 +1,5 @@
 {
-  "company_name": "Saipem SpA",
+  "company_name": "Saipem Finance International B.V.",
   "ticker": "SPM IM",
   "sector": "Energy - Oil & Gas Services",
   "last_updated": "2026-01-22",
@@ -18,9 +18,21 @@
     "recent_news": "Feb 2025: Pending merger with Subsea 7 ($6.3bn deal, 1.0x revenue, 8.8x EBITDA). Strong backlog and cash generation driving continued deleveraging."
   },
   "ratings": {
-    "moodys": {"rating": "Ba1", "outlook": "", "date": ""},
-    "sp": {"rating": "BB+", "outlook": "", "date": ""},
-    "fitch": {"rating": "", "outlook": "", "date": ""}
+    "moodys": {
+      "rating": "Ba1",
+      "outlook": "",
+      "date": ""
+    },
+    "sp": {
+      "rating": "BB+",
+      "outlook": "",
+      "date": ""
+    },
+    "fitch": {
+      "rating": "",
+      "outlook": "",
+      "date": ""
+    }
   },
   "quick_assessment": {
     "period_end": "LTM Jun 2025",
@@ -41,24 +53,131 @@
     "ev_to_ebitda": 5.91
   },
   "trend_analysis": {
-    "years": ["2022", "2023", "2024", "LTM Jun 2025"],
-    "revenue": [10690, 13113, 15113, 18021],
-    "ebitda": [426, 863, 1092, 1340],
-    "ebitda_margin": [4.0, 6.6, 7.2, 7.4],
-    "total_debt": [2815, 2641, 2269, 2057],
-    "net_debt": [619, 284, 27, 42],
-    "gross_leverage": [6.6, 3.1, 2.1, 1.5]
+    "years": [
+      "2022",
+      "2023",
+      "2024",
+      "LTM Jun 2025"
+    ],
+    "revenue": [
+      10690,
+      13113,
+      15113,
+      18021
+    ],
+    "ebitda": [
+      426,
+      863,
+      1092,
+      1340
+    ],
+    "ebitda_margin": [
+      4.0,
+      6.6,
+      7.2,
+      7.4
+    ],
+    "total_debt": [
+      2815,
+      2641,
+      2269,
+      2057
+    ],
+    "net_debt": [
+      619,
+      284,
+      27,
+      42
+    ],
+    "gross_leverage": [
+      6.6,
+      3.1,
+      2.1,
+      1.5
+    ]
   },
   "debt_capitalization": [
-    {"instrument": "EUR 500m Sr Unsecd Notes", "amount": 562, "maturity": "Jul 2026", "coupon": "3.38%", "price": 100.27, "ytw": 2.76, "rating": "Ba1/BB+"},
-    {"instrument": "EUR 499m Term Loan", "amount": 232, "maturity": "Dec 2026", "coupon": "-", "price": null, "ytw": null, "rating": "-"},
-    {"instrument": "EUR 260m Export Credit", "amount": 131, "maturity": "Aug 2027", "coupon": "-", "price": null, "ytw": null, "rating": "-"},
-    {"instrument": "EUR 500m Sr Unsecd Notes", "amount": 596, "maturity": "Mar 2028", "coupon": "3.13%", "price": 100.51, "ytw": 2.88, "rating": "Ba1/BB+"},
-    {"instrument": "EUR 387m Term Loan", "amount": 416, "maturity": "Feb 2028", "coupon": "-", "price": null, "ytw": null, "rating": "-"},
-    {"instrument": "EUR 600m Revolving Credit", "amount": 0, "maturity": "Feb 2028", "coupon": "-", "price": null, "ytw": null, "rating": "-"},
-    {"instrument": "EUR 500m Convertible Debt", "amount": 544, "maturity": "Sep 2029", "coupon": "2.88%", "price": 168.94, "ytw": null, "rating": "-"},
-    {"instrument": "EUR 500m Sr Unsecd Notes", "amount": 543, "maturity": "May 2030", "coupon": "4.88%", "price": 105.95, "ytw": 3.38, "rating": "Ba1/BB+"},
-    {"instrument": "EUR 308m Lease Facility", "amount": 346, "maturity": "Various", "coupon": "-", "price": null, "ytw": null, "rating": "-"}
+    {
+      "instrument": "EUR 500m Sr Unsecd Notes",
+      "amount": 562,
+      "maturity": "Jul 2026",
+      "coupon": "3.38%",
+      "price": 100.27,
+      "ytw": 2.76,
+      "rating": "Ba1/BB+"
+    },
+    {
+      "instrument": "EUR 499m Term Loan",
+      "amount": 232,
+      "maturity": "Dec 2026",
+      "coupon": "-",
+      "price": null,
+      "ytw": null,
+      "rating": "-"
+    },
+    {
+      "instrument": "EUR 260m Export Credit",
+      "amount": 131,
+      "maturity": "Aug 2027",
+      "coupon": "-",
+      "price": null,
+      "ytw": null,
+      "rating": "-"
+    },
+    {
+      "instrument": "EUR 500m Sr Unsecd Notes",
+      "amount": 596,
+      "maturity": "Mar 2028",
+      "coupon": "3.13%",
+      "price": 100.51,
+      "ytw": 2.88,
+      "rating": "Ba1/BB+"
+    },
+    {
+      "instrument": "EUR 387m Term Loan",
+      "amount": 416,
+      "maturity": "Feb 2028",
+      "coupon": "-",
+      "price": null,
+      "ytw": null,
+      "rating": "-"
+    },
+    {
+      "instrument": "EUR 600m Revolving Credit",
+      "amount": 0,
+      "maturity": "Feb 2028",
+      "coupon": "-",
+      "price": null,
+      "ytw": null,
+      "rating": "-"
+    },
+    {
+      "instrument": "EUR 500m Convertible Debt",
+      "amount": 544,
+      "maturity": "Sep 2029",
+      "coupon": "2.88%",
+      "price": 168.94,
+      "ytw": null,
+      "rating": "-"
+    },
+    {
+      "instrument": "EUR 500m Sr Unsecd Notes",
+      "amount": 543,
+      "maturity": "May 2030",
+      "coupon": "4.88%",
+      "price": 105.95,
+      "ytw": 3.38,
+      "rating": "Ba1/BB+"
+    },
+    {
+      "instrument": "EUR 308m Lease Facility",
+      "amount": 346,
+      "maturity": "Various",
+      "coupon": "-",
+      "price": null,
+      "ytw": null,
+      "rating": "-"
+    }
   ],
   "maturity_schedule": {
     "2026": 794,
@@ -73,16 +192,45 @@
     "enterprise_value_usd": 7920
   },
   "top_investors": [
-    {"name": "ENI SpA", "type": "Strategic (31%)", "value_usd": 931.55},
-    {"name": "Cassa Depositi e Prestiti", "type": "Italian Govt (19%)", "value_usd": 563.59},
-    {"name": "Government Pension Fund", "type": "Pension", "value_usd": 153.11},
-    {"name": "Boston Partners", "type": "Investment Advisor", "value_usd": 120.56},
-    {"name": "Vanguard Group", "type": "Investment Advisor", "value_usd": 107.10}
+    {
+      "name": "ENI SpA",
+      "type": "Strategic (31%)",
+      "value_usd": 931.55
+    },
+    {
+      "name": "Cassa Depositi e Prestiti",
+      "type": "Italian Govt (19%)",
+      "value_usd": 563.59
+    },
+    {
+      "name": "Government Pension Fund",
+      "type": "Pension",
+      "value_usd": 153.11
+    },
+    {
+      "name": "Boston Partners",
+      "type": "Investment Advisor",
+      "value_usd": 120.56
+    },
+    {
+      "name": "Vanguard Group",
+      "type": "Investment Advisor",
+      "value_usd": 107.1
+    }
   ],
   "key_deals": [
-    {"date": "Feb 2025", "deal": "Pending merger with Subsea 7 ($6.3bn)"},
-    {"date": "Feb 2025", "deal": "EUR 600m RCF refinancing"},
-    {"date": "Jun 2022", "deal": "Sold onshore drilling to KCA Deutag ($641m)"}
+    {
+      "date": "Feb 2025",
+      "deal": "Pending merger with Subsea 7 ($6.3bn)"
+    },
+    {
+      "date": "Feb 2025",
+      "deal": "EUR 600m RCF refinancing"
+    },
+    {
+      "date": "Jun 2022",
+      "deal": "Sold onshore drilling to KCA Deutag ($641m)"
+    }
   ],
   "credit_opinion": {
     "summary": "Saipem has undergone a remarkable turnaround from 6.6x leverage in 2022 to virtually no net debt today. Strong backlog, improving margins, and robust cash generation support the credit. Pending Subsea 7 merger would create global offshore leader. Bonds trading tight (2.76-3.38% yields) reflect near-IG credit quality.",

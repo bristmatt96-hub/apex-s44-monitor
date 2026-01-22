@@ -1,5 +1,5 @@
 {
-  "company_name": "Wizz Air Holdings plc",
+  "company_name": "Wizz Air Finance Company B.V.",
   "ticker": "WIZZ LN",
   "sector": "Transportation - Airlines",
   "last_updated": "2026-01-21",
@@ -18,9 +18,21 @@
     "recent_news": "Downgraded to BB by Fitch (Jul 2025) and Ba2 by Moody's (Jun 2025). Repaying 1% 2026 bonds without refinancing. GTF engine issues remain headwind."
   },
   "ratings": {
-    "moodys": {"rating": "Ba2", "outlook": "Negative", "date": "2025-06"},
-    "sp": {"rating": "", "outlook": "", "date": ""},
-    "fitch": {"rating": "BB", "outlook": "Stable", "date": "2025-07"}
+    "moodys": {
+      "rating": "Ba2",
+      "outlook": "Negative",
+      "date": "2025-06"
+    },
+    "sp": {
+      "rating": "",
+      "outlook": "",
+      "date": ""
+    },
+    "fitch": {
+      "rating": "BB",
+      "outlook": "Stable",
+      "date": "2025-07"
+    }
   },
   "quick_assessment": {
     "period_end": "LTM Sep 2025",
@@ -41,18 +53,84 @@
     "ev_to_ebitda": 10.75
   },
   "trend_analysis": {
-    "years": ["Mar 2022", "Mar 2023", "Mar 2024", "Mar 2025", "LTM Sep 2025"],
-    "revenue": [1849, 4238, 5475, 5700, 6506],
-    "ebitda": [-439, -421, 501, 554, 789],
-    "ebitda_margin": [-23.8, -9.9, 9.1, 9.7, 12.1],
-    "total_debt": [1154, 1409, 1095, 887, 998],
-    "net_debt": [301, -123, 309, 240, -156],
-    "gross_leverage": [null, null, 2.2, 1.6, 1.3]
+    "years": [
+      "Mar 2022",
+      "Mar 2023",
+      "Mar 2024",
+      "Mar 2025",
+      "LTM Sep 2025"
+    ],
+    "revenue": [
+      1849,
+      4238,
+      5475,
+      5700,
+      6506
+    ],
+    "ebitda": [
+      -439,
+      -421,
+      501,
+      554,
+      789
+    ],
+    "ebitda_margin": [
+      -23.8,
+      -9.9,
+      9.1,
+      9.7,
+      12.1
+    ],
+    "total_debt": [
+      1154,
+      1409,
+      1095,
+      887,
+      998
+    ],
+    "net_debt": [
+      301,
+      -123,
+      309,
+      240,
+      -156
+    ],
+    "gross_leverage": [
+      null,
+      null,
+      2.2,
+      1.6,
+      1.3
+    ]
   },
   "debt_capitalization": [
-    {"instrument": "EUR 500m Sr Unsecd Notes", "amount": 500, "maturity": "2026", "coupon": "1.00%", "price": 100.00, "ytw": 2.65, "rating": "BB"},
-    {"instrument": "EUR 98m Term Loan", "amount": 108, "maturity": "2032", "coupon": "-", "price": null, "ytw": null, "rating": "-"},
-    {"instrument": "EUR 2795m Lease Facility", "amount": 3040, "maturity": "Various", "coupon": "-", "price": null, "ytw": null, "rating": "-"}
+    {
+      "instrument": "EUR 500m Sr Unsecd Notes",
+      "amount": 500,
+      "maturity": "2026",
+      "coupon": "1.00%",
+      "price": 100.0,
+      "ytw": 2.65,
+      "rating": "BB"
+    },
+    {
+      "instrument": "EUR 98m Term Loan",
+      "amount": 108,
+      "maturity": "2032",
+      "coupon": "-",
+      "price": null,
+      "ytw": null,
+      "rating": "-"
+    },
+    {
+      "instrument": "EUR 2795m Lease Facility",
+      "amount": 3040,
+      "maturity": "Various",
+      "coupon": "-",
+      "price": null,
+      "ytw": null,
+      "rating": "-"
+    }
   ],
   "maturity_schedule": {
     "2026": 500,
@@ -64,16 +142,45 @@
     "enterprise_value_usd": 8470
   },
   "top_investors": [
-    {"name": "Capital World Investors", "type": "Investment Advisor", "value_usd": 55.37},
-    {"name": "Comgest SA", "type": "Investment Advisor", "value_usd": 54.22},
-    {"name": "Artisan Partners", "type": "Investment Advisor", "value_usd": 39.38},
-    {"name": "FIL Ltd", "type": "Investment Advisor", "value_usd": 39.08},
-    {"name": "Norges Bank", "type": "Sovereign Wealth Fund", "value_usd": 30.36}
+    {
+      "name": "Capital World Investors",
+      "type": "Investment Advisor",
+      "value_usd": 55.37
+    },
+    {
+      "name": "Comgest SA",
+      "type": "Investment Advisor",
+      "value_usd": 54.22
+    },
+    {
+      "name": "Artisan Partners",
+      "type": "Investment Advisor",
+      "value_usd": 39.38
+    },
+    {
+      "name": "FIL Ltd",
+      "type": "Investment Advisor",
+      "value_usd": 39.08
+    },
+    {
+      "name": "Norges Bank",
+      "type": "Sovereign Wealth Fund",
+      "value_usd": 30.36
+    }
   ],
   "key_deals": [
-    {"date": "May 2023", "deal": "CleanJoule $50m investment (sustainable aviation fuel)"},
-    {"date": "Mar 2021", "deal": "Indigo Partners sold 8.99% stake for $556m"},
-    {"date": "Feb 2020", "deal": "Indigo Partners sold 17.1% stake for $654m"}
+    {
+      "date": "May 2023",
+      "deal": "CleanJoule $50m investment (sustainable aviation fuel)"
+    },
+    {
+      "date": "Mar 2021",
+      "deal": "Indigo Partners sold 8.99% stake for $556m"
+    },
+    {
+      "date": "Feb 2020",
+      "deal": "Indigo Partners sold 17.1% stake for $654m"
+    }
   ],
   "credit_opinion": {
     "summary": "Wizz Air has improved dramatically from COVID losses to positive EBITDA and net cash position. However, Pratt & Whitney GTF engine issues causing fleet groundings led to rating downgrades. Trading at tight spreads (2.65% yield) given recent negative rating actions.",

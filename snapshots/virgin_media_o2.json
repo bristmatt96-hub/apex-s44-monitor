@@ -1,5 +1,5 @@
 {
-  "company_name": "Virgin Media O2",
+  "company_name": "Virgin Media Finance plc",
   "ticker": "VMED",
   "sector": "Telecommunications - Cable/Mobile",
   "last_updated": "2026-01-21",
@@ -14,12 +14,24 @@
     "fatal_flaw": "Highly leveraged capital structure ($34bn debt); competitive UK market; NetCo sale uncertainty; unsecured trading at distressed levels",
     "ownership": "Liberty Global (50%), Telefonica (50%) - JV",
     "public_private": "private",
-    "recent_news": "Jan 2026: EUR 720m TLB repricing at E+300bps. Dec 2025: EUR 1.43bn TLAE priced. Seeking buyer for NetCo (~£1.3bn). Acquired Daisy Group for £4bn (May 2025)."
+    "recent_news": "Jan 2026: EUR 720m TLB repricing at E+300bps. Dec 2025: EUR 1.43bn TLAE priced. Seeking buyer for NetCo (~\u00a31.3bn). Acquired Daisy Group for \u00a34bn (May 2025)."
   },
   "ratings": {
-    "moodys": {"rating": "B2", "outlook": "", "date": ""},
-    "sp": {"rating": "B-", "outlook": "", "date": ""},
-    "fitch": {"rating": "", "outlook": "", "date": ""}
+    "moodys": {
+      "rating": "B2",
+      "outlook": "",
+      "date": ""
+    },
+    "sp": {
+      "rating": "B-",
+      "outlook": "",
+      "date": ""
+    },
+    "fitch": {
+      "rating": "",
+      "outlook": "",
+      "date": ""
+    }
   },
   "quick_assessment": {
     "period_end": "Q3 2025",
@@ -47,24 +59,168 @@
     "total_debt": []
   },
   "debt_capitalization": [
-    {"instrument": "GBP 1324m Revolving Credit", "amount": 0, "maturity": "Jan 2026", "coupon": "SONIA+2.75%", "price": null, "ytw": null, "rating": "Ba3"},
-    {"instrument": "GBP 130m Term Loan", "amount": 169, "maturity": "Feb 2026", "coupon": "-", "price": null, "ytw": null, "rating": "Ba3"},
-    {"instrument": "GBP 650m Term Loan", "amount": 845, "maturity": "Feb 2026", "coupon": "-", "price": null, "ytw": null, "rating": "Ba3"},
-    {"instrument": "GBP 500m Revolving Credit", "amount": 0, "maturity": "Jan 2027", "coupon": "SONIA+2.00%", "price": null, "ytw": null, "rating": "Ba3"},
-    {"instrument": "GBP 400m Term Loan B", "amount": 525, "maturity": "Jan 2027", "coupon": "SONIA+3.25%", "price": null, "ytw": null, "rating": "Ba3"},
-    {"instrument": "GBP 1500m Term Loan A", "amount": 1166, "maturity": "Sep 2027", "coupon": "SONIA+3.25%", "price": null, "ytw": null, "rating": "Ba3"},
-    {"instrument": "USD 3300m Term Loan B", "amount": 990, "maturity": "Jan 2028", "coupon": "LIBOR+2.50%", "price": 100.23, "ytw": null, "rating": "Ba3"},
-    {"instrument": "EUR 750m Term Loan B", "amount": 822, "maturity": "Jan 2029", "coupon": "2.03%+2.50%", "price": 100.12, "ytw": null, "rating": "Ba3"},
-    {"instrument": "GBP 600m Sr Secd Notes", "amount": 807, "maturity": "Jan 2029", "coupon": "4.00%", "price": 96.58, "ytw": 5.24, "rating": "Ba3/B+"},
-    {"instrument": "EUR 750m Term Loan B", "amount": 888, "maturity": "Jan 2029", "coupon": "2.03%+3.25%", "price": 100.53, "ytw": null, "rating": "Ba3"},
-    {"instrument": "GBP 500m Sr Unsecd Notes", "amount": 622, "maturity": "Jul 2028", "coupon": "4.88%", "price": 99.41, "ytw": 5.13, "rating": "B2/B-"},
-    {"instrument": "GBP 400m Sr Unsecd Notes", "amount": 508, "maturity": "Jul 2028", "coupon": "4.88%", "price": 99.41, "ytw": 5.13, "rating": "B2/B-"},
-    {"instrument": "USD 500m Sr Unsecd Notes", "amount": 500, "maturity": "Jul 2028", "coupon": "5.00%", "price": 100.00, "ytw": 5.00, "rating": "B2/B-"},
-    {"instrument": "EUR 500m Sr Unsecd Notes", "amount": 587, "maturity": "Jul 2030", "coupon": "3.75%", "price": 93.43, "ytw": 5.42, "rating": "B2/B-"},
-    {"instrument": "USD 250m Sr Notes", "amount": 250, "maturity": "Jul 2030", "coupon": "5.00%", "price": 87.80, "ytw": 8.31, "rating": "B2/B-"},
-    {"instrument": "USD 675m Sr Notes", "amount": 675, "maturity": "Jul 2030", "coupon": "5.00%", "price": 87.80, "ytw": 8.31, "rating": "B2/B-"},
-    {"instrument": "Total Senior Secured (43 instruments)", "amount": 30892, "maturity": "Various", "coupon": "-", "price": null, "ytw": null, "rating": "Ba3/B+"},
-    {"instrument": "Total Senior Unsecured", "amount": 3141, "maturity": "Various", "coupon": "-", "price": null, "ytw": null, "rating": "B2/B-"}
+    {
+      "instrument": "GBP 1324m Revolving Credit",
+      "amount": 0,
+      "maturity": "Jan 2026",
+      "coupon": "SONIA+2.75%",
+      "price": null,
+      "ytw": null,
+      "rating": "Ba3"
+    },
+    {
+      "instrument": "GBP 130m Term Loan",
+      "amount": 169,
+      "maturity": "Feb 2026",
+      "coupon": "-",
+      "price": null,
+      "ytw": null,
+      "rating": "Ba3"
+    },
+    {
+      "instrument": "GBP 650m Term Loan",
+      "amount": 845,
+      "maturity": "Feb 2026",
+      "coupon": "-",
+      "price": null,
+      "ytw": null,
+      "rating": "Ba3"
+    },
+    {
+      "instrument": "GBP 500m Revolving Credit",
+      "amount": 0,
+      "maturity": "Jan 2027",
+      "coupon": "SONIA+2.00%",
+      "price": null,
+      "ytw": null,
+      "rating": "Ba3"
+    },
+    {
+      "instrument": "GBP 400m Term Loan B",
+      "amount": 525,
+      "maturity": "Jan 2027",
+      "coupon": "SONIA+3.25%",
+      "price": null,
+      "ytw": null,
+      "rating": "Ba3"
+    },
+    {
+      "instrument": "GBP 1500m Term Loan A",
+      "amount": 1166,
+      "maturity": "Sep 2027",
+      "coupon": "SONIA+3.25%",
+      "price": null,
+      "ytw": null,
+      "rating": "Ba3"
+    },
+    {
+      "instrument": "USD 3300m Term Loan B",
+      "amount": 990,
+      "maturity": "Jan 2028",
+      "coupon": "LIBOR+2.50%",
+      "price": 100.23,
+      "ytw": null,
+      "rating": "Ba3"
+    },
+    {
+      "instrument": "EUR 750m Term Loan B",
+      "amount": 822,
+      "maturity": "Jan 2029",
+      "coupon": "2.03%+2.50%",
+      "price": 100.12,
+      "ytw": null,
+      "rating": "Ba3"
+    },
+    {
+      "instrument": "GBP 600m Sr Secd Notes",
+      "amount": 807,
+      "maturity": "Jan 2029",
+      "coupon": "4.00%",
+      "price": 96.58,
+      "ytw": 5.24,
+      "rating": "Ba3/B+"
+    },
+    {
+      "instrument": "EUR 750m Term Loan B",
+      "amount": 888,
+      "maturity": "Jan 2029",
+      "coupon": "2.03%+3.25%",
+      "price": 100.53,
+      "ytw": null,
+      "rating": "Ba3"
+    },
+    {
+      "instrument": "GBP 500m Sr Unsecd Notes",
+      "amount": 622,
+      "maturity": "Jul 2028",
+      "coupon": "4.88%",
+      "price": 99.41,
+      "ytw": 5.13,
+      "rating": "B2/B-"
+    },
+    {
+      "instrument": "GBP 400m Sr Unsecd Notes",
+      "amount": 508,
+      "maturity": "Jul 2028",
+      "coupon": "4.88%",
+      "price": 99.41,
+      "ytw": 5.13,
+      "rating": "B2/B-"
+    },
+    {
+      "instrument": "USD 500m Sr Unsecd Notes",
+      "amount": 500,
+      "maturity": "Jul 2028",
+      "coupon": "5.00%",
+      "price": 100.0,
+      "ytw": 5.0,
+      "rating": "B2/B-"
+    },
+    {
+      "instrument": "EUR 500m Sr Unsecd Notes",
+      "amount": 587,
+      "maturity": "Jul 2030",
+      "coupon": "3.75%",
+      "price": 93.43,
+      "ytw": 5.42,
+      "rating": "B2/B-"
+    },
+    {
+      "instrument": "USD 250m Sr Notes",
+      "amount": 250,
+      "maturity": "Jul 2030",
+      "coupon": "5.00%",
+      "price": 87.8,
+      "ytw": 8.31,
+      "rating": "B2/B-"
+    },
+    {
+      "instrument": "USD 675m Sr Notes",
+      "amount": 675,
+      "maturity": "Jul 2030",
+      "coupon": "5.00%",
+      "price": 87.8,
+      "ytw": 8.31,
+      "rating": "B2/B-"
+    },
+    {
+      "instrument": "Total Senior Secured (43 instruments)",
+      "amount": 30892,
+      "maturity": "Various",
+      "coupon": "-",
+      "price": null,
+      "ytw": null,
+      "rating": "Ba3/B+"
+    },
+    {
+      "instrument": "Total Senior Unsecured",
+      "amount": 3141,
+      "maturity": "Various",
+      "coupon": "-",
+      "price": null,
+      "ytw": null,
+      "rating": "B2/B-"
+    }
   ],
   "maturity_schedule": {
     "2026": 1014,
@@ -78,17 +234,49 @@
     "note": "Private - JV between Liberty Global and Telefonica"
   },
   "top_lenders": [
-    {"name": "Goldman Sachs", "role": "Arranger", "deals": 11},
-    {"name": "BNP Paribas", "role": "Arranger", "deals": 11},
-    {"name": "Citi", "role": "Arranger", "deals": 10},
-    {"name": "JP Morgan", "role": "Arranger", "deals": 8},
-    {"name": "NatWest Markets", "role": "Arranger", "deals": 8}
+    {
+      "name": "Goldman Sachs",
+      "role": "Arranger",
+      "deals": 11
+    },
+    {
+      "name": "BNP Paribas",
+      "role": "Arranger",
+      "deals": 11
+    },
+    {
+      "name": "Citi",
+      "role": "Arranger",
+      "deals": 10
+    },
+    {
+      "name": "JP Morgan",
+      "role": "Arranger",
+      "deals": 8
+    },
+    {
+      "name": "NatWest Markets",
+      "role": "Arranger",
+      "deals": 8
+    }
   ],
   "key_deals": [
-    {"date": "May 2025", "deal": "Acquired Daisy Group (B2B comms) for £4bn"},
-    {"date": "Feb 2025", "deal": "Seeking buyer for NetCo (~£1.3bn)"},
-    {"date": "Oct 2024", "deal": "Sold 8.33% of Cornerstone for $242m"},
-    {"date": "Nov 2023", "deal": "Sold 16.67% of Cornerstone for $437m"}
+    {
+      "date": "May 2025",
+      "deal": "Acquired Daisy Group (B2B comms) for \u00a34bn"
+    },
+    {
+      "date": "Feb 2025",
+      "deal": "Seeking buyer for NetCo (~\u00a31.3bn)"
+    },
+    {
+      "date": "Oct 2024",
+      "deal": "Sold 8.33% of Cornerstone for $242m"
+    },
+    {
+      "date": "Nov 2023",
+      "deal": "Sold 16.67% of Cornerstone for $437m"
+    }
   ],
   "credit_opinion": {
     "summary": "Virgin Media O2 is a highly leveraged UK telecom with $34bn debt. Actively managing liabilities through repricings and refinancings. Unsecured notes trading at 87.80 (8.31% yield) reflect subordination risk in the complex capital structure. NetCo sale could provide deleveraging catalyst.",

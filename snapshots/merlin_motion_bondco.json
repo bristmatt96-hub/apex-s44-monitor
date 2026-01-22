@@ -1,18 +1,25 @@
 {
-  "company_name": "Merlin (Motion Bondco)",
+  "company_name": "Motion Bondco Designated Activity Company (Merlin)",
   "legal_entity": "Motion Bondco dac",
-  "alternate_names": ["Merlin Entertainments", "Merlin"],
+  "alternate_names": [
+    "Merlin Entertainments",
+    "Merlin"
+  ],
   "sector": "Consumer & Retail - Theme Parks/Attractions",
   "geography": "United Kingdom",
   "last_updated": "2026-01-21",
   "data_source": "Debtwire",
-
   "ratings": {
-    "moodys": {"rating": "NR", "outlook": null},
-    "sp": {"rating": "NR", "outlook": null},
+    "moodys": {
+      "rating": "NR",
+      "outlook": null
+    },
+    "sp": {
+      "rating": "NR",
+      "outlook": null
+    },
     "note": "Likely sub-investment grade given distress score"
   },
-
   "overview": {
     "business_description": "Acquisition vehicle for Merlin Entertainments. Merlin is a major theme park and attractions operator running Legoland parks, Alton Towers, Madame Tussauds, Sea Life aquariums, The Dungeons, London Eye, and other attractions globally.",
     "business_positives": [
@@ -24,7 +31,6 @@
     "ownership": "Private - LBO structure (acquisition vehicle). Backed by Blackstone, KIRKBI, CPPIB.",
     "recent_news": "Merlin moves past organic growth, evaluates liquidity options to sustain capital structure amid sector pressures (Dec 2025). Faces headwinds as margin pressure and refinancing risk mount (Jul 2025)."
   },
-
   "quick_assessment": {
     "total_debt": 818,
     "cash_on_hand": null,
@@ -35,13 +41,11 @@
     "ebitda": null,
     "note": "Limited financial data - private LBO structure"
   },
-
   "key_ratios": {
     "debt_to_ebitda": null,
     "net_debt_to_ebitda": null,
     "note": "Financial ratios not disclosed"
   },
-
   "debt_capitalization": [
     {
       "instrument": "EUR 370m Sr Unsecd Notes",
@@ -68,7 +72,6 @@
       "trading_signal": "BELOW PAR - distress pricing"
     }
   ],
-
   "maturity_schedule": {
     "year_1": 0,
     "year_2": 818,
@@ -78,13 +81,23 @@
     "thereafter": 0,
     "maturity_wall": "Nov 2027 - ~$818m needs refinancing"
   },
-
   "attractions_portfolio": {
-    "theme_parks": ["Legoland (8 parks)", "Alton Towers", "Thorpe Park", "Chessington", "Gardaland", "Heide Park"],
-    "attractions": ["Madame Tussauds", "London Eye", "The Dungeons", "Sea Life aquariums"],
+    "theme_parks": [
+      "Legoland (8 parks)",
+      "Alton Towers",
+      "Thorpe Park",
+      "Chessington",
+      "Gardaland",
+      "Heide Park"
+    ],
+    "attractions": [
+      "Madame Tussauds",
+      "London Eye",
+      "The Dungeons",
+      "Sea Life aquariums"
+    ],
     "geographic_exposure": "UK, Europe, US, Asia"
   },
-
   "credit_opinion": {
     "recommendation": "UNDERWEIGHT",
     "summary": "Motion Bondco/Merlin is a STRESSED credit with the HIGHEST distress score (53) in your portfolio - now officially in 'Stressed' lifecycle status. Bonds trading below par (95-97) reflect market pricing of refinancing risk. The company is 'evaluating liquidity options' which is warning language for potential restructuring. Nov 2027 maturity wall (~$818m) is approaching with margin pressure mounting. This is the most distressed credit in XO S44 based on Debtwire's scoring.",
@@ -106,19 +119,20 @@
       "Potential strategic sale of company"
     ]
   },
-
   "distress_indicators": {
     "debtwire_distress_score": 53,
     "lifecycle_status": "STRESSED",
     "trading_signals": "Bonds at 95-97 (BELOW PAR) - market pricing significant distress. Evaluating liquidity options is warning language. Refinancing risk for Nov 2027 maturities."
   },
-
   "watchlist_priority": "HIGH - Monitor closely for restructuring news",
-
   "lme_risk_proxy": {
     "doc_vintage": "Unknown (LBO structure)",
     "pe_backed": true,
-    "sponsors": ["Blackstone", "KIRKBI (Lego family)", "CPPIB"],
+    "sponsors": [
+      "Blackstone",
+      "KIRKBI (Lego family)",
+      "CPPIB"
+    ],
     "holding_period_years": 5,
     "lbo_date": "2019",
     "complex_structure": true,

@@ -1,17 +1,24 @@
 {
-  "company_name": "Boparan",
+  "company_name": "Boparan Finance plc",
   "legal_entity": "Boparan Holdco Ltd",
-  "alternate_names": ["2 Sisters Food Group", "2SFG"],
+  "alternate_names": [
+    "2 Sisters Food Group",
+    "2SFG"
+  ],
   "sector": "Consumer & Retail - Food & Beverage (Poultry/Meat)",
   "geography": "United Kingdom",
   "last_updated": "2025-01-21",
   "data_source": "Debtwire",
-
   "ratings": {
-    "moodys": {"rating": "B3", "outlook": null},
-    "sp": {"rating": "B", "outlook": null}
+    "moodys": {
+      "rating": "B3",
+      "outlook": null
+    },
+    "sp": {
+      "rating": "B",
+      "outlook": null
+    }
   },
-
   "overview": {
     "business_description": "UK food manufacturing holding company. Supplies poultry, ready meals, chilled products, and bakery items to retail and food service customers. One of the largest poultry producers in the UK.",
     "business_positives": [
@@ -25,7 +32,6 @@
     "ownership": "Boparan Private Office Ltd (family-owned)",
     "recent_news": "1Q25-26 LFL adjusted EBITDA rises 45.3% YoY to GBP 46.5m. 4Q24-25 EBITDA up 66.5% YoY to GBP 53.1m. Strong operational turnaround underway."
   },
-
   "quick_assessment": {
     "total_debt": 623,
     "cash_on_hand": null,
@@ -34,14 +40,12 @@
     "cffo": null,
     "interest_expense": 49
   },
-
   "key_ratios": {
     "debt_to_ebitda": null,
     "net_debt_to_ebitda": null,
     "ebitda_minus_capex_to_interest": null,
     "fcf_to_debt": null
   },
-
   "debt_capitalization": [
     {
       "instrument": "GBP RCF (Super Senior)",
@@ -74,7 +78,6 @@
       "rating": null
     }
   ],
-
   "maturity_schedule": {
     "year_1": 0,
     "year_2": 0,
@@ -83,7 +86,6 @@
     "year_5": 0,
     "thereafter": 0
   },
-
   "credit_opinion": {
     "recommendation": "OVERWEIGHT",
     "summary": "Boparan is a turnaround story with improving fundamentals. EBITDA growth of 45-66% YoY demonstrates successful operational improvements. Bonds at 107 (above par) with 7.25% YTW indicate market confidence. Modest $620m debt stack with no near-term maturities (2029) provides runway. The historical distress score of 23 reflects past challenges, but current trajectory is positive.",
@@ -101,7 +103,6 @@
       "Bolt-on acquisitions (e.g., ForFarmers feed mills)"
     ]
   },
-
   "distress_indicators": {
     "debtwire_distress_score": 23,
     "lifecycle_status": "Performing credit - turnaround",

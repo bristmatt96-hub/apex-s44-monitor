@@ -1,5 +1,5 @@
 {
-  "company_name": "Q-Park NV",
+  "company_name": "Q-Park Holding I B.V.",
   "ticker": "QPARK",
   "sector": "Transportation - Parking Infrastructure",
   "last_updated": "2026-01-22",
@@ -18,9 +18,21 @@
     "recent_news": "Jan 2026: EUR 630m senior secured notes (BB rating). Active acquisition spree: Bavaria Parkgaragen (Jul 2025), Park One (Apr 2025), SAGS France (Dec 2024), Britannia Parking UK (Jun 2024)."
   },
   "ratings": {
-    "moodys": {"rating": "Ba3", "outlook": "", "date": ""},
-    "sp": {"rating": "BB", "outlook": "", "date": "2026-01"},
-    "fitch": {"rating": "", "outlook": "", "date": ""}
+    "moodys": {
+      "rating": "Ba3",
+      "outlook": "",
+      "date": ""
+    },
+    "sp": {
+      "rating": "BB",
+      "outlook": "",
+      "date": "2026-01"
+    },
+    "fitch": {
+      "rating": "",
+      "outlook": "",
+      "date": ""
+    }
   },
   "quick_assessment": {
     "period_end": "2025",
@@ -48,15 +60,87 @@
     "total_debt": []
   },
   "debt_capitalization": [
-    {"instrument": "EUR 630m Sr Secd Notes", "amount": 686, "maturity": "Mar 2027", "coupon": "2.00%", "price": 99.59, "ytw": 2.38, "rating": "Ba3/BB"},
-    {"instrument": "EUR 430m Sr Secd Notes", "amount": 470, "maturity": "Mar 2029", "coupon": "5.13%", "price": 102.80, "ytw": 4.15, "rating": "Ba3/BB-"},
-    {"instrument": "EUR 550m Sr Secd Notes", "amount": 591, "maturity": "Feb 2030", "coupon": "5.13%", "price": 103.04, "ytw": 4.30, "rating": "Ba3/BB-"},
-    {"instrument": "EUR 300m Sr Secd Notes", "amount": 340, "maturity": "Sep 2030", "coupon": "4.25%", "price": 101.26, "ytw": 3.95, "rating": "Ba3/BB"},
-    {"instrument": "EUR 350m Secd Bonds (Fixed)", "amount": 359, "maturity": "Sep 2031", "coupon": "3.88%", "price": 99.89, "ytw": 3.90, "rating": "-"},
-    {"instrument": "EUR 300m Secd Bonds (FRN)", "amount": 307, "maturity": "Sep 2031", "coupon": "E+200bps", "price": 100.58, "ytw": 4.33, "rating": "-"},
-    {"instrument": "EUR 1237m Lease Facility", "amount": 1347, "maturity": "Various", "coupon": "-", "price": null, "ytw": null, "rating": "-"},
-    {"instrument": "EUR 250m Revolving Credit", "amount": 0, "maturity": "Aug 2026", "coupon": "-", "price": null, "ytw": null, "rating": "-"},
-    {"instrument": "EUR 53m Shareholder Loan", "amount": 57, "maturity": "-", "coupon": "-", "price": null, "ytw": null, "rating": "-"}
+    {
+      "instrument": "EUR 630m Sr Secd Notes",
+      "amount": 686,
+      "maturity": "Mar 2027",
+      "coupon": "2.00%",
+      "price": 99.59,
+      "ytw": 2.38,
+      "rating": "Ba3/BB"
+    },
+    {
+      "instrument": "EUR 430m Sr Secd Notes",
+      "amount": 470,
+      "maturity": "Mar 2029",
+      "coupon": "5.13%",
+      "price": 102.8,
+      "ytw": 4.15,
+      "rating": "Ba3/BB-"
+    },
+    {
+      "instrument": "EUR 550m Sr Secd Notes",
+      "amount": 591,
+      "maturity": "Feb 2030",
+      "coupon": "5.13%",
+      "price": 103.04,
+      "ytw": 4.3,
+      "rating": "Ba3/BB-"
+    },
+    {
+      "instrument": "EUR 300m Sr Secd Notes",
+      "amount": 340,
+      "maturity": "Sep 2030",
+      "coupon": "4.25%",
+      "price": 101.26,
+      "ytw": 3.95,
+      "rating": "Ba3/BB"
+    },
+    {
+      "instrument": "EUR 350m Secd Bonds (Fixed)",
+      "amount": 359,
+      "maturity": "Sep 2031",
+      "coupon": "3.88%",
+      "price": 99.89,
+      "ytw": 3.9,
+      "rating": "-"
+    },
+    {
+      "instrument": "EUR 300m Secd Bonds (FRN)",
+      "amount": 307,
+      "maturity": "Sep 2031",
+      "coupon": "E+200bps",
+      "price": 100.58,
+      "ytw": 4.33,
+      "rating": "-"
+    },
+    {
+      "instrument": "EUR 1237m Lease Facility",
+      "amount": 1347,
+      "maturity": "Various",
+      "coupon": "-",
+      "price": null,
+      "ytw": null,
+      "rating": "-"
+    },
+    {
+      "instrument": "EUR 250m Revolving Credit",
+      "amount": 0,
+      "maturity": "Aug 2026",
+      "coupon": "-",
+      "price": null,
+      "ytw": null,
+      "rating": "-"
+    },
+    {
+      "instrument": "EUR 53m Shareholder Loan",
+      "amount": 57,
+      "maturity": "-",
+      "coupon": "-",
+      "price": null,
+      "ytw": null,
+      "rating": "-"
+    }
   ],
   "maturity_schedule": {
     "2026": 441,
@@ -69,19 +153,57 @@
     "note": "Private - KKR acquired for EUR 3.3bn in 2017 (15.14x EBITDA)"
   },
   "top_lenders": [
-    {"name": "ING", "role": "Arranger", "deals": 4},
-    {"name": "KKR Capital Markets", "role": "Arranger", "deals": 4},
-    {"name": "BofA Securities", "role": "Arranger", "deals": 4},
-    {"name": "Rabobank", "role": "Arranger", "deals": 3},
-    {"name": "NatWest Markets", "role": "Arranger", "deals": 3}
+    {
+      "name": "ING",
+      "role": "Arranger",
+      "deals": 4
+    },
+    {
+      "name": "KKR Capital Markets",
+      "role": "Arranger",
+      "deals": 4
+    },
+    {
+      "name": "BofA Securities",
+      "role": "Arranger",
+      "deals": 4
+    },
+    {
+      "name": "Rabobank",
+      "role": "Arranger",
+      "deals": 3
+    },
+    {
+      "name": "NatWest Markets",
+      "role": "Arranger",
+      "deals": 3
+    }
   ],
   "key_deals": [
-    {"date": "Jul 2025", "deal": "Acquired Bavaria Parkgaragen (Germany)"},
-    {"date": "Apr 2025", "deal": "Acquired Park One (Germany)"},
-    {"date": "Dec 2024", "deal": "KKR sold 20% stake to Pontegadea"},
-    {"date": "Dec 2024", "deal": "Acquired SAGS (France)"},
-    {"date": "Jun 2024", "deal": "Acquired Britannia Parking (UK)"},
-    {"date": "May 2017", "deal": "KKR acquired Q-Park for EUR 3.3bn"}
+    {
+      "date": "Jul 2025",
+      "deal": "Acquired Bavaria Parkgaragen (Germany)"
+    },
+    {
+      "date": "Apr 2025",
+      "deal": "Acquired Park One (Germany)"
+    },
+    {
+      "date": "Dec 2024",
+      "deal": "KKR sold 20% stake to Pontegadea"
+    },
+    {
+      "date": "Dec 2024",
+      "deal": "Acquired SAGS (France)"
+    },
+    {
+      "date": "Jun 2024",
+      "deal": "Acquired Britannia Parking (UK)"
+    },
+    {
+      "date": "May 2017",
+      "deal": "KKR acquired Q-Park for EUR 3.3bn"
+    }
   ],
   "credit_opinion": {
     "summary": "Q-Park is Europe's leading parking operator with defensive infrastructure characteristics and prime urban locations. KKR ownership drives active M&A strategy expanding European footprint. Bonds trading at tight yields (2.38-4.33%) reflect solid credit quality. Pontegadea's 20% stake acquisition validates asset quality.",

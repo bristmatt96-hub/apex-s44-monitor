@@ -1,17 +1,24 @@
 {
-  "company_name": "Essendi",
+  "company_name": "Essendi S.A. (AccorInvest)",
   "legal_entity": "Essendi SA",
-  "alternate_names": ["AccorInvest", "AccorInvest Group"],
+  "alternate_names": [
+    "AccorInvest",
+    "AccorInvest Group"
+  ],
   "sector": "Consumer & Retail - Hotels/Lodging",
   "geography": "Luxembourg",
   "last_updated": "2026-01-21",
   "data_source": "Debtwire",
-
   "ratings": {
-    "moodys": {"rating": "B2", "outlook": null},
-    "sp": {"rating": "B+", "outlook": null}
+    "moodys": {
+      "rating": "B2",
+      "outlook": null
+    },
+    "sp": {
+      "rating": "B+",
+      "outlook": null
+    }
   },
-
   "overview": {
     "business_description": "Hotel owner and operator serving economy and mid-scale segments across Europe. Operates under Accor brands (Ibis, Novotel, etc.) through asset ownership and management model. Rebranded from AccorInvest to Essendi. Owns and operates hotels primarily in Europe with some LatAm exposure.",
     "business_positives": [
@@ -28,7 +35,6 @@
     "ownership": "Private - backed by GIC Pte Ltd (Singapore SWF) and Public Investment Fund (PIF - Saudi Arabia SWF). Both entered Mar 2021.",
     "recent_news": "Attracting interest from Blackstone and Brookfield (Nov 2025). Priced EUR 1.25bn triple-tranche notes May 2025 (5.375%, 5.625%, E+375bps). Active hotel disposals in Argentina, Brazil, Germany, France."
   },
-
   "quick_assessment": {
     "total_debt": 3739,
     "total_debt_inc_leases": 3824,
@@ -40,14 +46,12 @@
     "interest_expense": null,
     "ebitda": null
   },
-
   "key_ratios": {
     "debt_to_ebitda": null,
     "net_debt_to_ebitda": null,
     "ebitda_minus_capex_to_interest": null,
     "fcf_to_debt": null
   },
-
   "debt_capitalization": [
     {
       "instrument": "EUR 200m Term Loan B",
@@ -149,7 +153,6 @@
       "seniority": "Finance Lease"
     }
   ],
-
   "maturity_schedule": {
     "year_1": 0,
     "year_2": 0,
@@ -158,7 +161,6 @@
     "year_5": 0,
     "thereafter": 1696
   },
-
   "maturity_detail": {
     "2028": "EUR 200m TLB (~$227m)",
     "2029": "EUR 750m notes (~$848m)",
@@ -166,18 +168,28 @@
     "2031": "EUR 650m notes (~$735m)",
     "2032": "EUR 850m notes (~$961m)"
   },
-
   "strategic_interest": {
-    "potential_acquirers": ["Blackstone", "Brookfield"],
+    "potential_acquirers": [
+      "Blackstone",
+      "Brookfield"
+    ],
     "status": "Interest reported Nov 2025",
     "implication": "Potential LBO/take-private could provide exit for bondholders at par or premium"
   },
-
   "restructuring_history": [
-    {"date": "Nov 2023", "type": "Out-of-Court", "status": "Closed", "jurisdiction": "Luxembourg"},
-    {"date": "Oct 2020", "type": "Conciliation", "status": "Closed", "venue": "Paris Commercial Court"}
+    {
+      "date": "Nov 2023",
+      "type": "Out-of-Court",
+      "status": "Closed",
+      "jurisdiction": "Luxembourg"
+    },
+    {
+      "date": "Oct 2020",
+      "type": "Conciliation",
+      "status": "Closed",
+      "venue": "Paris Commercial Court"
+    }
   ],
-
   "credit_opinion": {
     "recommendation": "OVERWEIGHT",
     "summary": "Essendi (fka AccorInvest) is a strong B2/B+ hotel credit with the LOWEST distress score (8) in your portfolio. All bonds trading above par (101-105) with tight yields (4.5-6.0%). Strong sovereign wealth fund backing (GIC, PIF) provides support. The Blackstone/Brookfield strategic interest (Nov 2025) suggests potential M&A upside. Well-laddered maturities through 2032. Previous restructuring (2020-21 COVID) is behind them. Benefits from European travel recovery.",
@@ -197,7 +209,6 @@
       "Further spread tightening toward BB levels"
     ]
   },
-
   "distress_indicators": {
     "debtwire_distress_score": 8,
     "lifecycle_status": "Performing credit",

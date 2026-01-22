@@ -1,18 +1,27 @@
 {
-  "company_name": "Picard Groupe",
+  "company_name": "Picard Bondco S.A.",
   "legal_entity": "Picard Groupe SAS",
-  "alternate_names": ["Picard", "Picard Bondco", "FR Bondco", "Lion Polaris"],
+  "alternate_names": [
+    "Picard",
+    "Picard Bondco",
+    "FR Bondco",
+    "Lion Polaris"
+  ],
   "sector": "Consumer & Retail - Frozen Food Retail",
   "geography": "France",
   "last_updated": "2026-01-21",
   "data_source": "Debtwire",
-
   "ratings": {
-    "moodys": {"rating": "NR", "outlook": null},
-    "sp": {"rating": "NR", "outlook": null},
+    "moodys": {
+      "rating": "NR",
+      "outlook": null
+    },
+    "sp": {
+      "rating": "NR",
+      "outlook": null
+    },
     "note": "Bonds described as HY. Multiple issuances suggest solid B/BB-range credit."
   },
-
   "overview": {
     "business_description": "French frozen food manufacturer and retailer supplying a wide range of frozen products to consumers through its own retail store network. Business model combines in-house production with direct-to-consumer retail. Market leader in French frozen food with strong brand recognition.",
     "business_positives": [
@@ -30,7 +39,6 @@
     "ownership": "Private - PE-owned (IGZ group parent). History of PE ownership changes.",
     "recent_news": "Priced EUR 280m senior notes at 6.875% (Nov 2025). Credit report notes 'unsecureds have IPO upside' (Nov 2025). CDS tightens on corporate structure change intentions. Strong free cash flow comfort counters subordination risk."
   },
-
   "quick_assessment": {
     "total_debt": 2385,
     "cash_on_hand": null,
@@ -41,20 +49,18 @@
     "ebitda": null,
     "note": "Private PE-owned - limited financial disclosure. Strong FCF generation noted."
   },
-
   "key_ratios": {
     "debt_to_ebitda": null,
     "net_debt_to_ebitda": null,
     "note": "Financials not publicly disclosed"
   },
-
   "debt_capitalization": [
     {
       "instrument": "EUR 650m Sr Secd Notes (2021)",
       "amount": 715,
       "maturity": "2026",
       "coupon": null,
-      "price": 100.00,
+      "price": 100.0,
       "ytw": null,
       "stw": null,
       "rating": null,
@@ -65,7 +71,7 @@
       "amount": 341,
       "maturity": "Jul 2027",
       "coupon": null,
-      "price": 100.00,
+      "price": 100.0,
       "ytw": null,
       "stw": null,
       "rating": null,
@@ -118,7 +124,6 @@
       "note": "Nov 2025 issuance"
     }
   ],
-
   "maturity_schedule": {
     "year_1": 715,
     "year_2": 341,
@@ -128,14 +133,28 @@
     "thereafter": 308,
     "note": "2026 secured notes and Jul 2027 unsecured notes are near-term maturities"
   },
-
   "recent_issuance": [
-    {"date": "Nov 2025", "instrument": "EUR 280m Senior Notes", "pricing": "6.875%"},
-    {"date": "Nov 2024", "instrument": "EUR 200m HY Bond (Lion Polaris)", "pricing": "Market"},
-    {"date": "Jul 2024", "instrument": "EUR 633m + EUR 560m HY Bonds", "pricing": "Market"},
-    {"date": "Jul 2021", "instrument": "EUR 2bn HY Bond (Picard Bondco)", "pricing": "Market"}
+    {
+      "date": "Nov 2025",
+      "instrument": "EUR 280m Senior Notes",
+      "pricing": "6.875%"
+    },
+    {
+      "date": "Nov 2024",
+      "instrument": "EUR 200m HY Bond (Lion Polaris)",
+      "pricing": "Market"
+    },
+    {
+      "date": "Jul 2024",
+      "instrument": "EUR 633m + EUR 560m HY Bonds",
+      "pricing": "Market"
+    },
+    {
+      "date": "Jul 2021",
+      "instrument": "EUR 2bn HY Bond (Picard Bondco)",
+      "pricing": "Market"
+    }
   ],
-
   "business_segments": {
     "retail_stores": {
       "description": "Picard-branded frozen food retail stores",
@@ -147,7 +166,6 @@
       "note": "Vertically integrated model"
     }
   },
-
   "credit_opinion": {
     "recommendation": "OVERWEIGHT",
     "summary": "Picard is a performing credit with low distress score (11) and all bonds trading at or above par (100-104). The recent EUR 280m issuance at 6.875% demonstrates continued market access at attractive rates. Debtwire research highlights 'unsecureds have IPO upside' suggesting potential listing could provide deleveraging catalyst. Strong free cash flow generation noted. French frozen food market leader with vertically integrated model. CDS tightening on corporate structure changes is positive signal. Near-term 2026/2027 maturities will need addressing but company has demonstrated consistent refinancing ability.",
@@ -169,7 +187,6 @@
       "International expansion"
     ]
   },
-
   "distress_indicators": {
     "debtwire_distress_score": 11,
     "lifecycle_status": "Performing credit",
