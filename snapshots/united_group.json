@@ -1,0 +1,106 @@
+{
+  "company_name": "United Group BV",
+  "ticker": "UNTDGR",
+  "sector": "TMT - Telecommunications/Cable",
+  "last_updated": "2026-01-22",
+  "overview": {
+    "business_description": "Southeastern European telecommunications and media provider delivering pay TV, broadband internet, fixed telephony, and mobile services. Operates through cable, DTH satellite, and mobile networks across Serbia, Greece, Slovenia, and other SE European markets.",
+    "business_positives": [
+      "Leading telecom/media platform in Southeastern Europe",
+      "Strong BC Partners sponsorship",
+      "Converged services (TV, broadband, mobile)",
+      "Portfolio optimization through asset sales",
+      "Growth potential in underpenetrated markets"
+    ],
+    "fatal_flaw": "High leverage (~5.5bn debt); geopolitical risk in SE Europe; thin cash flow generation; complex capital structure with PIYC notes",
+    "ownership": "BC Partners (BC European Capital X fund)",
+    "public_private": "private",
+    "recent_news": "Jan 2026: Priced EUR 1.13bn FRN at E+325bps and EUR 355m PIYC at 8.875%. Dec 2025: Priced EUR 400m SSN at 6.25% due 2032. Feb 2025: Sold SBB Serbia to PPF Group for $856m. Feb 2025: Sold NetTV Plus to Telekom Serbia for $676m."
+  },
+  "ratings": {
+    "moodys": {"rating": "B2", "outlook": "", "date": ""},
+    "sp": {"rating": "B", "outlook": "", "date": ""},
+    "fitch": {"rating": "", "outlook": "", "date": ""}
+  },
+  "quick_assessment": {
+    "period_end": "2025",
+    "revenue": null,
+    "ebitda": null,
+    "cffo": null,
+    "total_debt": 5487,
+    "interest_expense": null,
+    "capex": null,
+    "debt_due_one_year": 16,
+    "cash_on_hand": null,
+    "revolver_available": null
+  },
+  "key_ratios": {
+    "debt_to_ebitda": null,
+    "net_debt_to_ebitda": null,
+    "ebitda_margin": null,
+    "ev_to_ebitda": null
+  },
+  "trend_analysis": {
+    "years": [],
+    "revenue": [],
+    "ebitda": [],
+    "ebitda_margin": [],
+    "total_debt": []
+  },
+  "debt_capitalization": [
+    {"instrument": "EUR 15m Revolving Credit", "amount": 16, "maturity": "Jan 2026", "coupon": "E+2.00%", "price": null, "ytw": null, "rating": "-"},
+    {"instrument": "EUR 480m Sr Secd Notes (FRN)", "amount": 522, "maturity": "Feb 2029", "coupon": "E+4.25%", "price": 100.22, "ytw": null, "rating": "B2/B"},
+    {"instrument": "EUR 300m Sr Secd Notes", "amount": 326, "maturity": "Feb 2029", "coupon": "10.00%", "price": 100.52, "ytw": null, "rating": "B-"},
+    {"instrument": "EUR 500m Senior Bonds", "amount": 570, "maturity": "Feb 2030", "coupon": "5.25%", "price": 100.26, "ytw": 5.18, "rating": "B2/B"},
+    {"instrument": "EUR 355m Sr Secd Notes (PIYC)", "amount": 414, "maturity": "Jan 2031", "coupon": "8.875%", "price": 101.15, "ytw": 8.55, "rating": "-"},
+    {"instrument": "EUR 300m Sr Secd Notes", "amount": 326, "maturity": "Feb 2031", "coupon": "6.75%", "price": 103.41, "ytw": 5.96, "rating": "B2/B"},
+    {"instrument": "EUR 650m Sr Secd Notes (FRN)", "amount": 707, "maturity": "Feb 2031", "coupon": "E+4.25%", "price": 100.16, "ytw": null, "rating": "B2/B"},
+    {"instrument": "EUR 750m Sr Secd Notes", "amount": 824, "maturity": "Oct 2031", "coupon": "6.50%", "price": 103.12, "ytw": 5.86, "rating": "B2/B"},
+    {"instrument": "EUR 400m Sr Secd Notes", "amount": 466, "maturity": "Jan 2032", "coupon": "6.25%", "price": 101.64, "ytw": 5.92, "rating": "B2/B"},
+    {"instrument": "EUR 1130m Sr Secd Notes (FRN)", "amount": 1316, "maturity": "Jan 2033", "coupon": "E+3.25%", "price": 100.04, "ytw": 5.79, "rating": "-"}
+  ],
+  "maturity_schedule": {
+    "2026": 16,
+    "2029": 848,
+    "2030": 570,
+    "2031": 2271,
+    "2032": 466,
+    "2033": 1316
+  },
+  "equity_market_value": {
+    "note": "Private - BC Partners owned (BC European Capital X)"
+  },
+  "top_lenders": [
+    {"name": "JP Morgan", "role": "Arranger", "deals": 13},
+    {"name": "Morgan Stanley", "role": "Arranger", "deals": 13},
+    {"name": "KKR", "role": "Arranger", "deals": 11},
+    {"name": "Citi", "role": "Arranger", "deals": 10},
+    {"name": "Credit Agricole", "role": "Arranger", "deals": 10}
+  ],
+  "key_deals": [
+    {"date": "Jan 2026", "deal": "EUR 1.13bn FRN at E+325bps + EUR 355m PIYC at 8.875%"},
+    {"date": "Dec 2025", "deal": "EUR 400m SSN at 6.25% due 2032"},
+    {"date": "Feb 2025", "deal": "Sold SBB Serbia to PPF Group for $856m"},
+    {"date": "Feb 2025", "deal": "Sold NetTV Plus to Telekom Serbia for $676m"},
+    {"date": "Oct 2024", "deal": "EUR 750m SSN at 6.50% due Oct 2031"},
+    {"date": "Aug 2021", "deal": "Acquired WIND Hellas (Greece) for $1.2bn"}
+  ],
+  "credit_opinion": {
+    "summary": "United Group is BC Partners' SE European telecom/media platform operating across Serbia, Greece, Slovenia and other markets. Heavy debt load (~$5.5bn) with complex structure including PIYC notes at 8.875%. Recently divested Serbian assets (SBB, NetTV Plus) for ~$1.5bn to PPF/Telekom Serbia. Fixed-rate bonds yield 5.2-6.0%, PIYC yields 8.55%. Growth potential but thin cash flow generation.",
+    "key_risks": [
+      "High leverage and complex capital structure",
+      "SE European geopolitical/macro risk",
+      "Thin free cash flow generation",
+      "PIYC notes add structural subordination",
+      "Asset sale dependency for deleveraging"
+    ],
+    "key_catalysts": [
+      "Asset sale proceeds for deleveraging",
+      "Growth in underpenetrated markets",
+      "Convergence synergies (TV/broadband/mobile)",
+      "Potential sponsor exit/IPO",
+      "Greek market expansion (WIND Hellas)"
+    ],
+    "recommendation": "NEUTRAL - Growth potential offset by high leverage and execution risk; bonds fairly valued at 5-6% yields"
+  }
+}

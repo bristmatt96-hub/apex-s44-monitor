@@ -1,0 +1,104 @@
+{
+  "company_name": "MASORANGE (MasMovil)",
+  "ticker": "MASMOV",
+  "sector": "TMT - Telecommunications/Wireless",
+  "last_updated": "2026-01-22",
+  "overview": {
+    "business_description": "Spanish telecommunication operator supplying broadband, mobile, and convergent connectivity services to private and corporate customers. Delivers services through a multi-brand network (Yoigo, MasMovil, Pepephone, Lebara). Formed from MasMovil merger with Orange Spain.",
+    "business_positives": [
+      "Leading challenger telco in Spain",
+      "Strong PE sponsor backing (Providence, KKR, Cinven)",
+      "Multi-brand strategy capturing market segments",
+      "Fiber JV partnership with GIC for network expansion",
+      "Orange SA acquiring 100% - provides exit clarity"
+    ],
+    "fatal_flaw": "High leverage from PE ownership; pending Orange SA acquisition at $19.4bn - credit story shifts to Orange consolidation",
+    "ownership": "Providence Equity Partners, KKR, Cinven (being acquired by Orange SA)",
+    "public_private": "private",
+    "recent_news": "Oct 2025: Orange SA acquiring 100% for $19.4bn (pending). Aug 2025: GIC acquired 25% of fiber JV for $434m. Jan 2025: Acquired Vodafone Spain fiber assets for $2.1bn. May 2025: Refinanced with new EUR 2.75bn term loans."
+  },
+  "ratings": {
+    "moodys": {"rating": "", "outlook": "", "date": ""},
+    "sp": {"rating": "BB+", "outlook": "", "date": ""},
+    "fitch": {"rating": "", "outlook": "", "date": ""}
+  },
+  "quick_assessment": {
+    "period_end": "2025",
+    "revenue": null,
+    "ebitda": null,
+    "cffo": null,
+    "total_debt": 13264,
+    "interest_expense": null,
+    "capex": null,
+    "debt_due_one_year": 640,
+    "cash_on_hand": null,
+    "revolver_available": 1092
+  },
+  "key_ratios": {
+    "debt_to_ebitda": null,
+    "net_debt_to_ebitda": null,
+    "ebitda_margin": null,
+    "ev_to_ebitda": null
+  },
+  "trend_analysis": {
+    "years": [],
+    "revenue": [],
+    "ebitda": [],
+    "ebitda_margin": [],
+    "total_debt": []
+  },
+  "debt_capitalization": [
+    {"instrument": "EUR 366m Term Loan", "amount": 379, "maturity": "Jul 2027", "coupon": "-", "price": null, "ytw": null, "rating": "-"},
+    {"instrument": "EUR 41m Term Loan", "amount": 43, "maturity": "Jul 2027", "coupon": "-", "price": null, "ytw": null, "rating": "-"},
+    {"instrument": "EUR 98m Term Loan", "amount": 101, "maturity": "Jul 2027", "coupon": "-", "price": null, "ytw": null, "rating": "-"},
+    {"instrument": "EUR 4250m Term Loan A", "amount": 4512, "maturity": "Dec 2027", "coupon": "-", "price": null, "ytw": null, "rating": "-"},
+    {"instrument": "EUR 1250m Term Loan First Lien", "amount": 1406, "maturity": "May 2028", "coupon": "-", "price": null, "ytw": null, "rating": "-"},
+    {"instrument": "EUR 600m Sr Secd Notes", "amount": 640, "maturity": "Apr 2029", "coupon": "5.75%", "price": 103.73, "ytw": 4.51, "rating": "BB+"},
+    {"instrument": "EUR 1000m Revolving Credit", "amount": 0, "maturity": "May 2030", "coupon": "-", "price": null, "ytw": null, "rating": "-"},
+    {"instrument": "EUR 1500m Term Loan First Lien", "amount": 1687, "maturity": "May 2030", "coupon": "-", "price": null, "ytw": null, "rating": "-"},
+    {"instrument": "EUR 4300m Term Loan B First Lien", "amount": 4496, "maturity": "Mar 2031", "coupon": "E+2.75%", "price": 100.31, "ytw": null, "rating": "-"}
+  ],
+  "maturity_schedule": {
+    "2027": 5035,
+    "2028": 1406,
+    "2029": 640,
+    "2030": 1687,
+    "2031": 4496
+  },
+  "equity_market_value": {
+    "note": "Private - Orange SA acquiring for $19.4bn (Oct 2025, pending)"
+  },
+  "top_lenders": [
+    {"name": "BNP Paribas", "role": "Arranger", "deals": 16},
+    {"name": "Banco Santander", "role": "Arranger", "deals": 14},
+    {"name": "Goldman Sachs", "role": "Arranger", "deals": 12},
+    {"name": "BofA Securities", "role": "Arranger", "deals": 12},
+    {"name": "Credit Agricole", "role": "Arranger", "deals": 11}
+  ],
+  "key_deals": [
+    {"date": "Oct 2025", "deal": "PENDING: Orange SA acquiring 100% for $19.4bn"},
+    {"date": "Aug 2025", "deal": "GIC acquired 25% of fiber JV for $434m"},
+    {"date": "May 2025", "deal": "EUR 2.75bn refinancing (EUR 1.25bn TL 2028 + EUR 1.5bn TL 2030)"},
+    {"date": "Jan 2025", "deal": "Acquired Vodafone Spain fiber optic network for $2.1bn"},
+    {"date": "Feb 2025", "deal": "EUR 4.3bn Term Loan B refinancing due 2031"},
+    {"date": "Aug 2024", "deal": "Sold Cabonitel to Digi Communications for $162m"}
+  ],
+  "credit_opinion": {
+    "summary": "MasOrange is Spain's leading challenger telco formed from MasMovil's merger with Orange Spain. Credit story now dominated by pending Orange SA acquisition for $19.4bn which will consolidate ownership under the French telecom giant. Bonds trading above par (4.51% yield) reflect acquisition premium. High PE leverage but acquisition provides clear exit path for creditors.",
+    "key_risks": [
+      "Orange SA acquisition regulatory approval risk",
+      "High leverage from PE ownership",
+      "Spanish telecom market competition",
+      "Integration complexity post-acquisition",
+      "Fiber network capex requirements"
+    ],
+    "key_catalysts": [
+      "Orange SA acquisition completion (expected 2026)",
+      "Fiber JV value realization",
+      "Spanish market consolidation benefits",
+      "Deleveraging under Orange ownership",
+      "Synergy realization post-merger"
+    ],
+    "recommendation": "NEUTRAL - Credit improving with Orange SA acquisition; bonds fairly valued at 4.5% yield"
+  }
+}
