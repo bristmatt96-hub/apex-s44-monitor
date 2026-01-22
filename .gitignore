@@ -4,3 +4,4 @@ __pycache__/
 
 # PDF books (index locally)
 knowledge/books/*.pdf
+.streamlit/secrets.toml
