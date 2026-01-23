@@ -228,6 +228,233 @@ ISDA_PRECEDENTS = {
             "Multi-jurisdictional restructurings are complex",
             "Sequence of restructuring steps matters"
         ]
+    },
+
+    "Phones4U": {
+        "year": 2014,
+        "events": ["Bankruptcy"],
+        "summary": "UK mobile phone retailer. Entered administration after losing carrier contracts.",
+        "key_rulings": [
+            "UK Administration = Bankruptcy Credit Event",
+            "Administrator appointment is the trigger date",
+            "No need to wait for liquidation"
+        ],
+        "lessons": [
+            "UK Administration is clear Bankruptcy CE",
+            "Similar to US Chapter 11 in triggering effect",
+            "Speed of UK process can catch market off guard"
+        ]
+    },
+
+    "Thomas Cook": {
+        "year": 2019,
+        "events": ["Bankruptcy"],
+        "summary": "UK travel company. Compulsory liquidation after failed rescue deal.",
+        "key_rulings": [
+            "Compulsory liquidation = Bankruptcy CE",
+            "Failed last-minute rescue did not prevent CE",
+            "Multiple group entities affected"
+        ],
+        "lessons": [
+            "UK compulsory liquidation = Bankruptcy",
+            "Failed rescue attempts don't delay CE",
+            "Group structure matters - which entity is Reference Entity?"
+        ]
+    },
+
+    "Banco Espirito Santo": {
+        "year": 2014,
+        "events": ["Restructuring", "Governmental Intervention"],
+        "summary": "Portuguese bank. Resolution and bail-in by Portuguese authorities. Good bank/bad bank split.",
+        "key_rulings": [
+            "Governmental Intervention analyzed (bank-specific CE)",
+            "Senior bonds transferred to 'good bank' Novo Banco",
+            "Subordinated debt left in 'bad bank' - different CE treatment"
+        ],
+        "lessons": [
+            "Bank resolution can trigger Governmental Intervention CE",
+            "Good bank/bad bank splits complicate CDS settlement",
+            "Seniority determines which entity bonds follow",
+            "EU Bank Recovery and Resolution Directive (BRRD) implications"
+        ]
+    },
+
+    "Europcar": {
+        "year": 2021,
+        "events": ["Restructuring"],
+        "summary": "French car rental. Sauvegarde accélérée (accelerated safeguard) proceedings.",
+        "key_rulings": [
+            "French sauvegarde accélérée binds dissenting creditors",
+            "Court approval makes plan binding",
+            "Restructuring CE confirmed"
+        ],
+        "lessons": [
+            "French accelerated safeguard = likely Restructuring CE",
+            "Pre-pack French restructurings still bind all creditors",
+            "Speed of process doesn't affect binding nature"
+        ]
+    },
+
+    "Selecta": {
+        "year": 2021,
+        "events": ["Restructuring"],
+        "summary": "Swiss vending company. Used Dutch WHOA (Wet Homologatie Onderhands Akkoord) scheme.",
+        "key_rulings": [
+            "Dutch WHOA analyzed for first time by DC",
+            "WHOA binds dissenting creditors in affected classes",
+            "Restructuring Credit Event triggered"
+        ],
+        "lessons": [
+            "Dutch WHOA = Restructuring CE (new tool, now established)",
+            "Similar to UK scheme of arrangement in effect",
+            "Netherlands becoming popular restructuring jurisdiction"
+        ]
+    },
+
+    "OI Brasil (Oi S.A.)": {
+        "year": 2016,
+        "events": ["Bankruptcy", "Restructuring"],
+        "summary": "Brazilian telecom. Recuperação Judicial (Brazilian reorganization). Linked to Portugal Telecom succession.",
+        "key_rulings": [
+            "Brazilian RJ (Recuperação Judicial) = Bankruptcy or Restructuring depending on analysis",
+            "Largest bankruptcy in Brazilian history at time",
+            "Complex interplay with PT succession determination"
+        ],
+        "lessons": [
+            "Brazilian RJ filing can trigger Bankruptcy CE",
+            "Or may be analyzed as Restructuring depending on trade",
+            "Latin American insolvency regimes have their own nuances"
+        ]
+    },
+
+    "Pacific Gas & Electric (PG&E)": {
+        "year": 2019,
+        "events": ["Bankruptcy"],
+        "summary": "California utility. Chapter 11 due to wildfire liabilities.",
+        "key_rulings": [
+            "Chapter 11 filing = Bankruptcy CE",
+            "Investment grade issuer pre-filing",
+            "Utility regulatory framework didn't prevent CE"
+        ],
+        "lessons": [
+            "Even regulated utilities can trigger CDS",
+            "Investment grade status irrelevant once filed",
+            "Tort liabilities can drive bankruptcy of large corporates"
+        ]
+    },
+
+    "Hertz": {
+        "year": 2020,
+        "events": ["Bankruptcy"],
+        "summary": "US car rental. Chapter 11 during COVID-19 pandemic.",
+        "key_rulings": [
+            "Chapter 11 filing = Bankruptcy CE",
+            "COVID-19 circumstances didn't affect CE analysis",
+            "Successful emergence didn't unwind CE"
+        ],
+        "lessons": [
+            "Pandemic-driven bankruptcies treated same as others",
+            "CE is triggered at filing, not affected by later emergence",
+            "Market dislocation can create settlement challenges"
+        ]
+    },
+
+    "Avianca": {
+        "year": 2020,
+        "events": ["Bankruptcy"],
+        "summary": "Colombian airline. Chapter 11 filing in US (foreign debtor).",
+        "key_rulings": [
+            "Foreign company can file Chapter 11 in US",
+            "Chapter 11 = Bankruptcy CE regardless of domicile",
+            "Airline-specific considerations didn't change analysis"
+        ],
+        "lessons": [
+            "US Chapter 11 available to foreign debtors",
+            "Jurisdiction of filing matters, not incorporation",
+            "Industry-specific factors don't change CE definitions"
+        ]
+    },
+
+    "Rallye SA": {
+        "year": 2020,
+        "events": ["Restructuring"],
+        "summary": "French holding company (Casino parent). Sauvegarde followed by plan modification.",
+        "key_rulings": [
+            "French sauvegarde plan modifications analyzed",
+            "Binding nature of court-approved plan confirmed",
+            "Restructuring CE applicable"
+        ],
+        "lessons": [
+            "French sauvegarde = Restructuring CE",
+            "Plan modifications also binding",
+            "Holding company vs opco distinction matters"
+        ]
+    },
+
+    "Garuda Indonesia": {
+        "year": 2021,
+        "events": ["Restructuring", "Failure to Pay"],
+        "summary": "Indonesian airline. Sukuk (Islamic bond) missed payments and PKPU restructuring.",
+        "key_rulings": [
+            "Sukuk analyzed same as conventional bonds for FtP",
+            "Indonesian PKPU (restructuring) process examined",
+            "Grace period analysis applied normally"
+        ],
+        "lessons": [
+            "Sukuk treated same as bonds for ISDA purposes",
+            "Emerging market insolvency regimes require careful analysis",
+            "Payment mechanics may differ but CE tests same"
+        ]
+    },
+
+    "Evergrande": {
+        "year": 2023,
+        "events": ["Failure to Pay", "Restructuring"],
+        "summary": "Chinese property developer. Multiple missed payments, offshore restructuring attempts.",
+        "key_rulings": [
+            "Failure to Pay confirmed after grace period expiry",
+            "Offshore vs onshore debt treatment different",
+            "Hong Kong scheme of arrangement for offshore debt"
+        ],
+        "lessons": [
+            "Chinese property sector has unique characteristics",
+            "Offshore bonds (USD) may have different CE than onshore",
+            "Government intervention can complicate timeline",
+            "Hong Kong schemes bind offshore creditors"
+        ]
+    },
+
+    "Sri Lanka (Sovereign)": {
+        "year": 2022,
+        "events": ["Failure to Pay", "Repudiation/Moratorium"],
+        "summary": "Sovereign default. Announced suspension of external debt payments.",
+        "key_rulings": [
+            "Sovereign Failure to Pay after grace period",
+            "Repudiation/Moratorium also analyzed",
+            "IMF program implications"
+        ],
+        "lessons": [
+            "Sovereign CDS has Repudiation/Moratorium CE (not available for corporates)",
+            "Announced payment suspension = potential trigger",
+            "Sovereign restructurings often prolonged"
+        ]
+    },
+
+    "Russia (Sovereign)": {
+        "year": 2022,
+        "events": ["Failure to Pay"],
+        "summary": "Sovereign default due to sanctions preventing payment in USD.",
+        "key_rulings": [
+            "Failure to Pay despite issuer willingness to pay",
+            "Sanctions blocking payment mechanism analyzed",
+            "Payment in rubles when USD required = non-payment"
+        ],
+        "lessons": [
+            "Inability to pay (sanctions) still triggers FtP",
+            "Willingness to pay is irrelevant - it's a mechanical test",
+            "Currency of payment must match obligation terms",
+            "Force majeure arguments rejected"
+        ]
     }
 }
 
@@ -242,15 +469,30 @@ ISDA_SYSTEM_PROMPT = """You are an expert ISDA Credit Derivatives analyst with d
 4. Nuances of different bankruptcy/insolvency regimes globally
 
 You have studied all major DC determinations including:
+
+CORPORATE CASES:
 - Portugal Telecom (succession events, merger complexity)
 - Abengoa (Spanish homologación, Failure to Pay)
-- Isolux (voluntary vs binding restructuring)
-- Intrum (modern LME structures)
-- Codere (manufactured defaults)
+- Isolux (voluntary vs binding restructuring - voluntary = NO CE)
+- Intrum (modern LME structures, coercive vs binding)
+- Codere (manufactured defaults - intent irrelevant)
 - Caesars (subsidiary vs parent, guarantees)
-- Noble Group (scheme of arrangement)
-- Windstream (covenant breach vs Credit Event)
+- Noble Group (Singapore scheme of arrangement)
+- Windstream (covenant breach is NOT a CE)
 - Rallye/Casino (French sauvegarde)
+- Phones4U, Thomas Cook (UK administration)
+- Banco Espirito Santo (bank resolution, bail-in)
+- Europcar (French sauvegarde accélérée)
+- Selecta (Dutch WHOA - new tool, binds creditors)
+- OI Brasil (Brazilian Recuperação Judicial)
+- PG&E (regulated utility Chapter 11)
+- Hertz, Avianca (COVID-era bankruptcies)
+- Garuda Indonesia (sukuk, emerging markets)
+- Evergrande (China property, offshore vs onshore)
+
+SOVEREIGN CASES:
+- Russia 2022 (sanctions blocking payment = still FtP)
+- Sri Lanka 2022 (Repudiation/Moratorium)
 
 KEY PRINCIPLES YOU APPLY:
 
