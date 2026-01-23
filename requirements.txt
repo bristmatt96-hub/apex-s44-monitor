@@ -9,3 +9,5 @@ openpyxl
 yfinance
 pypdf
 pytz
+openai
+anthropic

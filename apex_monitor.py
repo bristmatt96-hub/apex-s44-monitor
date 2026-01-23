@@ -101,6 +101,14 @@ try:
 except ImportError:
     pass
 
+# Try to import ISDA agent (LLM-powered)
+ISDA_AGENT_AVAILABLE = False
+try:
+    from monitors.isda_agent import render_isda_agent
+    ISDA_AGENT_AVAILABLE = True
+except ImportError:
+    pass
+
 # ============== TELEGRAM FUNCTIONS ==============
 
 def send_telegram_message(message):
@@ -910,6 +918,8 @@ if TRADE_WORKBENCH_AVAILABLE:
     st.sidebar.markdown("- Trade Workbench")
 if ISDA_ANALYZER_AVAILABLE:
     st.sidebar.markdown("- ISDA Analyzer")
+if ISDA_AGENT_AVAILABLE:
+    st.sidebar.markdown("- ISDA Agent (LLM)")
 
 # Telegram test button
 st.sidebar.markdown("---")
@@ -950,7 +960,7 @@ if CREDIT_TWITTER_MONITOR_AVAILABLE and TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID:
     init_credit_twitter_monitor()
 
 # Main content tabs
-tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9, tab10, tab11 = st.tabs(["Trading Signals", "Equity Monitor", "Credit Events", "News Monitor", "RSS & News", "Credit Snapshot", "Knowledge Base", "Trading Tools", "Credit Twitter", "Trade Workbench", "ISDA Analyzer"])
+tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9, tab10, tab11, tab12 = st.tabs(["Trading Signals", "Equity Monitor", "Credit Events", "News Monitor", "RSS & News", "Credit Snapshot", "Knowledge Base", "Trading Tools", "Credit Twitter", "Trade Workbench", "ISDA Analyzer", "ISDA Agent"])
 
 # Initialize NewsHound with selected index
 @st.cache_resource
@@ -1118,3 +1128,10 @@ with tab11:
     else:
         st.warning("ISDA Analyzer not available.")
         st.info("Check monitors/isda_analyzer.py")
+
+with tab12:
+    if ISDA_AGENT_AVAILABLE:
+        render_isda_agent()
+    else:
+        st.warning("ISDA Agent not available.")
+        st.info("Check monitors/isda_agent.py")
