@@ -535,19 +535,20 @@ ISDA_PRECEDENTS = {
     "Altice France": {
         "year": 2025,
         "events": ["Bankruptcy"],
-        "summary": "Entered Accelerated Safeguard proceedings in France. ~95% of bonds locked up in restructuring agreement.",
+        "summary": "Entered Accelerated Safeguard proceedings in France. ~95% of bonds locked up in restructuring agreement. Also aggressively used dropdown threats.",
         "key_rulings": [
             "Accelerated Safeguard = Bankruptcy CE (relief from creditors)",
             "CRITICAL: ~95% bonds 'locked up' - could not be traded in auction",
-            "DC had to abandon standard auction mechanics",
-            "Used 'Composite Price' based on new instrument values"
+            "DC abandoned standard auction - used Section 3.2(d) Composite Price mechanism",
+            "Composite Price calculated from exit package (New Notes + Cash + Equity)"
         ],
         "lessons": [
             "French Accelerated Safeguard = Bankruptcy CE",
             "AUCTION FAILURE RISK when high lock-up percentage",
-            "'Composite Settlement' used when bonds un-auctionable",
+            "Section 3.2(d) 'Composite Settlement' used when bonds un-auctionable",
             "Composite Price = value of cash + new notes + equity in restructuring",
-            "Lock-up agreements can break standard CDS settlement",
+            "'Locking up the float' is NO LONGER a valid avoidance tactic - DC will switch to cash settlement",
+            "Dropdown threats (moving assets to unrestricted subs) used to coerce creditors",
             "Critical precedent for LME-era settlements"
         ]
     },
@@ -555,20 +556,41 @@ ISDA_PRECEDENTS = {
     "Ardagh Packaging Finance": {
         "year": 2025,
         "events": ["Restructuring"],
-        "summary": "Distressed exchange with Transaction Support Agreement (TSA). Supermajority signed TSA before actual bond exchange.",
+        "summary": "Distressed exchange with Transaction Support Agreement (TSA). External Review Panel ruled CE occurred at TSA signing, not deal close.",
         "key_rulings": [
             "Question: CE date = TSA signing (Oct 7) or deal close (Nov 12)?",
             "Answer: TSA signing date (earlier date)",
-            "External Review Panel ruled: agreement 'in form that binds all holders'",
-            "Once TSA reached threshold to force minority = CE occurred"
+            "External Review Panel (3 KCs/Judges, NOT market participants) ruled: 'binding means inevitable'",
+            "Panel prioritized legal certainty over 'market custom' of waiting for closing"
         ],
         "lessons": [
-            "THE 'BINDING' TRIGGER - CE can occur at TSA/Lock-Up signing",
-            "Don't wait for actual exchange - watch for binding threshold",
-            "Voting threshold that forces minority = trigger point",
+            "THE 'BINDING' TRIGGER - CE occurs when agreement is mathematically inevitable",
+            "'Binding Threshold' = LOWER of: Contractual CAC OR Statutory Scheme threshold",
+            "Senior Notes: 90% CAC required, 92% signed TSA → 92% > 90% = BOUND immediately",
+            "PIK Notes: 90% CAC required, only 82% signed → pivoted to English Scheme (75% threshold)",
+            "PIK result: 82% > 75% Scheme threshold = also BOUND",
             "Protection sellers caught off guard by earlier trigger date",
-            "Critical for LME situations with support agreements",
-            "Implication: CDS triggers moved EARLIER in timeline"
+            "ERP = 'Supreme Court' of CDS - convened when DC can't reach 80% supermajority"
+        ]
+    },
+
+    "Adler Group": {
+        "year": 2023,
+        "events": ["LME - No Credit Event"],
+        "summary": "German real estate company. Used exit consents to strip covenants from old bonds, creating 'zombie bonds'. CDS remained attached to hollow shell.",
+        "key_rulings": [
+            "Exchange offer: Old Bonds for New Bonds with haircut",
+            "Exit consent mechanism: participating holders voted to strip old bond covenants",
+            "Old bonds left as 'zombie bonds' - worthless but technically not restructured",
+            "CDS did NOT trigger - no change to Ranking, Principal, Coupon, or Maturity"
+        ],
+        "lessons": [
+            "THE 'ZOMBIE BOND' / COVENANT STRIP TACTIC",
+            "ISDA Restructuring requires change to: Ranking, Principal, Coupon, or Maturity",
+            "Stripping covenants (Negative Pledge, Cross-Default) does NOT fit this list",
+            "Old bond remains outstanding with original payment terms - CDS references this zombie",
+            "CDS left 'orphaned' on hollow shell that won't technically default",
+            "Exit consents force 'voluntary' participation without triggering CDS"
         ]
     }
 }
@@ -607,10 +629,11 @@ CORPORATE CASES (Classic):
 LME ERA CASES (2023-2025) - CRITICAL NEW PRECEDENTS:
 - Credit Suisse 2023 (AT1 write-down, Reference Obligation hierarchy gap)
 - Casino 2023 (Conciliation vs Safeguard - consensual vs coercive)
+- Adler 2023 (Exit consents, 'Zombie Bond' - covenant strip avoids CDS trigger)
 - Matalan 2020 (Chapter 15 'Relief Sought' test vs Thomas Cook)
 - Intrum 2024 (European company Chapter 11 in US)
-- Altice France 2025 (Accelerated Safeguard + 'Composite Settlement' for locked-up bonds)
-- Ardagh 2025 (TSA/Lock-Up signing = 'Binding Trigger' before actual exchange)
+- Altice France 2025 (Accelerated Safeguard + Section 3.2(d) 'Composite Settlement')
+- Ardagh 2025 (TSA/Lock-Up signing = 'Binding Trigger', CAC vs Scheme threshold)
 
 SOVEREIGN CASES:
 - Russia 2022 (sanctions blocking payment = still FtP)
@@ -660,16 +683,45 @@ SUCCESSION EVENTS:
 THE "BINDING" TRIGGER (Ardagh 2025):
 - A Restructuring CE can occur at TSA/Lock-Up Agreement signing
 - NOT just when actual debt exchange closes
-- Test: Has agreement reached threshold that binds ALL holders (including minority)?
-- Once voting threshold reached to force non-consenting holders = CE triggered
-- Implication: CDS triggers may be EARLIER than expected in LMEs
+- "Binding" is a MATHEMATICALLY DYNAMIC threshold, not a fixed ISDA number
+- The test: "Binding Threshold" = LOWER of: (1) Contractual CAC or (2) Statutory Scheme threshold
+- Ardagh Senior Notes: 90% CAC required, 92% signed TSA → 92% > 90% = BOUND immediately
+- Ardagh PIK Notes: 90% CAC required, only 82% signed → pivoted to English Scheme (75%)
+- PIK result: 82% > 75% Scheme threshold = also BOUND
+- EXTERNAL REVIEW PANEL (ERP) = "Supreme Court" of CDS (3 KCs/Judges, NOT market participants)
+- ERP prioritized "legal certainty" over "market custom" of waiting for closing
 
 THE "COMPOSITE SETTLEMENT" / BROKEN AUCTION (Altice 2025):
 - When 90%+ bonds are locked up in restructuring, auction may fail
 - Locked-up bonds cannot be freely traded in standard auction
-- DC may abandon auction and use "Composite Price" instead
+- DC abandoned auction - invoked Section 3.2(d) "Composite Price" mechanism
 - Composite = value of cash + new notes + equity from restructuring
-- Critical for high lock-up LMEs - settlement mechanism can break
+- "Locking up the float" is NO LONGER a valid avoidance tactic
+- DC will simply switch to cash settlement using Composite Price
+
+============== LME AVOIDANCE TACTICS (The "Playbook") ==============
+
+EXIT CONSENTS / "ZOMBIE BOND" (Adler 2023):
+- Issuer offers exchange: Old Bonds → New Bonds (often with haircut)
+- Exit consent: participating holders vote to strip Old Bond covenants
+- Covenants stripped: Negative Pledge, Cross-Default, etc.
+- Result: Old bond is "zombie" - worthless but payment terms unchanged
+- CDS does NOT trigger: no change to Ranking, Principal, Coupon, or Maturity
+- CDS left "orphaned" on hollow shell
+
+DROP-DOWN TRANSACTIONS (J.Crew / Envision / Altice style):
+- Company uses "Unrestricted Subsidiary" baskets
+- Transfers valuable assets (IP, operating units) out of credit group
+- Raises new debt secured by those assets
+- Reference Entity (original issuer) hasn't failed to pay or restructured
+- CDS attached to empty shell
+
+CAC MANIPULATION / "VOTE RIGGING":
+- Sponsor issues new debt to friendly affiliates
+- Dilutes voting pool mathematically
+- Crosses waiver threshold before ISDA Grace Period expires
+- Manufactured majority waives default retroactively
+- Prevents Failure to Pay trigger
 
 THE "REFERENCE OBLIGATION" HIERARCHY GAP (Credit Suisse 2023):
 - For bank CDS, standard "Subordinated CDS" references Tier 2, NOT AT1s
