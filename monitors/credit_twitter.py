@@ -25,6 +25,14 @@ CONFIG_DIR = Path(__file__).parent.parent / "config"
 SEEN_TWEETS_FILE = CONFIG_DIR / "seen_tweets.json"
 CUSTOM_ACCOUNTS_FILE = CONFIG_DIR / "credit_twitter_accounts.json"
 
+# Try to import ISDA analyzer
+ISDA_ANALYZER_AVAILABLE = False
+try:
+    from monitors.isda_analyzer import analyze_text_for_isda, format_isda_alert, CreditEventType
+    ISDA_ANALYZER_AVAILABLE = True
+except ImportError:
+    pass
+
 # ============== TELEGRAM ALERTS ==============
 
 def send_telegram_alert(message: str) -> bool:
@@ -68,16 +76,29 @@ def save_seen_tweets(seen_ids: Set[str]):
 
 
 def format_tweet_alert(tweet: Dict) -> str:
-    """Format a tweet as a Telegram alert message"""
+    """Format a tweet as a Telegram alert message with ISDA analysis"""
     keywords = tweet.get('keywords', [])
     keywords_str = ", ".join(keywords[:5]) if keywords else "credit"
+    tweet_text = tweet.get('text', '')
 
     msg = (
         f"*Credit Alert* ({keywords_str})\n\n"
         f"@{tweet.get('username', 'unknown')} ({tweet.get('category', '')})\n\n"
-        f"{tweet.get('text', '')[:500]}\n\n"
+        f"{tweet_text[:500]}\n\n"
         f"[View on X]({tweet.get('link', '')})"
     )
+
+    # Add ISDA analysis if available
+    if ISDA_ANALYZER_AVAILABLE and tweet_text:
+        try:
+            analysis = analyze_text_for_isda(tweet_text)
+            # Only add ISDA section for actual potential events (not just "Watch")
+            if analysis.event_type != CreditEventType.WATCH:
+                isda_section = format_isda_alert(tweet_text, analysis)
+                msg += isda_section
+        except:
+            pass  # Fail silently if ISDA analysis errors
+
     return msg
 
 
