@@ -11,12 +11,20 @@ import feedparser
 
 # ============== CONFIGURATION ==============
 
+# Helper function to safely get secrets (handles missing secrets.toml)
+def get_secret(key, default=""):
+    """Get secret from Streamlit secrets or environment variables"""
+    try:
+        return st.secrets.get(key, os.environ.get(key, default))
+    except Exception:
+        return os.environ.get(key, default)
+
 # Load secrets from Streamlit Cloud or environment variables
-TELEGRAM_BOT_TOKEN = st.secrets.get("TELEGRAM_BOT_TOKEN", os.environ.get("TELEGRAM_BOT_TOKEN", ""))
-TELEGRAM_CHAT_ID = st.secrets.get("TELEGRAM_CHAT_ID", os.environ.get("TELEGRAM_CHAT_ID", ""))
-TWITTER_BEARER_TOKEN = st.secrets.get("TWITTER_BEARER_TOKEN", st.secrets.get("Bearer token", os.environ.get("TWITTER_BEARER_TOKEN", "")))
-NEWSAPI_KEY = st.secrets.get("NEWSAPI_KEY", os.environ.get("NEWSAPI_KEY", ""))
-DATABASE_URL = st.secrets.get("DATABASE_URL", os.environ.get("DATABASE_URL", ""))
+TELEGRAM_BOT_TOKEN = get_secret("TELEGRAM_BOT_TOKEN", "")
+TELEGRAM_CHAT_ID = get_secret("TELEGRAM_CHAT_ID", "")
+TWITTER_BEARER_TOKEN = get_secret("TWITTER_BEARER_TOKEN", get_secret("Bearer token", ""))
+NEWSAPI_KEY = get_secret("NEWSAPI_KEY", "")
+DATABASE_URL = get_secret("DATABASE_URL", "")
 
 # Try to import database module (optional - falls back to JSON if unavailable)
 DB_AVAILABLE = False
