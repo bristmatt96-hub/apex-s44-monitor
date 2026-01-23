@@ -2,6 +2,7 @@
 Trading Tools for XO S44 Credit Monitor
 - LME Risk Dashboard
 - Earnings Release Monitor (SEC filings - beat Debtwire by 9 days)
+- Call Transcriber (record calls, upload, transcribe, analyze)
 - Earnings Sentiment Analyzer
 - What-If Stress Calculator
 - Maturity Wall Visualizer
@@ -547,6 +548,19 @@ def render_earnings_monitor_wrapper():
         st.error(f"Error rendering Earnings Monitor: {e}")
 
 
+# ============== CALL TRANSCRIBER ==============
+
+def render_call_transcriber_wrapper():
+    """Wrapper to import and render Call Transcriber"""
+    try:
+        from monitors.call_transcriber import render_call_transcriber
+        render_call_transcriber()
+    except ImportError as e:
+        st.error(f"Could not load Call Transcriber: {e}")
+    except Exception as e:
+        st.error(f"Error rendering Call Transcriber: {e}")
+
+
 # ============== MAIN RENDER FUNCTION ==============
 
 def render_trading_tools():
@@ -554,23 +568,25 @@ def render_trading_tools():
 
     tool = st.radio(
         "Select Tool",
-        ["LME Risk Dashboard", "Earnings Monitor", "Earnings Sentiment", "What-If Calculator", "Maturity Wall", "Data Freshness", "Position Tracker"],
+        ["LME Risk", "Earnings Monitor", "Call Transcriber", "Sentiment", "What-If", "Maturity Wall", "Freshness", "Positions"],
         horizontal=True
     )
 
     st.markdown("---")
 
-    if tool == "LME Risk Dashboard":
+    if tool == "LME Risk":
         render_lme_risk_dashboard_wrapper()
     elif tool == "Earnings Monitor":
         render_earnings_monitor_wrapper()
-    elif tool == "Earnings Sentiment":
+    elif tool == "Call Transcriber":
+        render_call_transcriber_wrapper()
+    elif tool == "Sentiment":
         render_earnings_sentiment_wrapper()
-    elif tool == "What-If Calculator":
+    elif tool == "What-If":
         render_whatif_calculator()
     elif tool == "Maturity Wall":
         render_maturity_wall()
-    elif tool == "Data Freshness":
+    elif tool == "Freshness":
         render_freshness_tracker()
-    elif tool == "Position Tracker":
+    elif tool == "Positions":
         render_position_tracker()
