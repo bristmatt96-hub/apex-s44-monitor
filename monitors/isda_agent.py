@@ -26,9 +26,17 @@ try:
 except ImportError:
     pass
 
+# Helper function to safely get secrets (handles missing secrets.toml)
+def get_secret(key, default=""):
+    """Get secret from Streamlit secrets or environment variables"""
+    try:
+        return st.secrets.get(key, os.environ.get(key, default))
+    except Exception:
+        return os.environ.get(key, default)
+
 # Load API keys from secrets
-OPENAI_API_KEY = st.secrets.get("OPENAI_API_KEY", os.environ.get("OPENAI_API_KEY", ""))
-ANTHROPIC_API_KEY = st.secrets.get("ANTHROPIC_API_KEY", os.environ.get("ANTHROPIC_API_KEY", ""))
+OPENAI_API_KEY = get_secret("OPENAI_API_KEY", "")
+ANTHROPIC_API_KEY = get_secret("ANTHROPIC_API_KEY", "")
 
 
 # ============== ISDA DC PRECEDENT DATABASE ==============
