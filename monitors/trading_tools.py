@@ -1,5 +1,7 @@
 """
 Trading Tools for XO S44 Credit Monitor
+- LME Risk Dashboard
+- Earnings Sentiment Analyzer
 - What-If Stress Calculator
 - Maturity Wall Visualizer
 - Data Freshness Tracker
@@ -518,6 +520,19 @@ def render_lme_risk_dashboard_wrapper():
         st.error(f"Error rendering LME Risk Dashboard: {e}")
 
 
+# ============== EARNINGS SENTIMENT ANALYZER ==============
+
+def render_earnings_sentiment_wrapper():
+    """Wrapper to import and render Earnings Sentiment Analyzer"""
+    try:
+        from monitors.earnings_sentiment import render_earnings_analyzer
+        render_earnings_analyzer()
+    except ImportError as e:
+        st.error(f"Could not load Earnings Sentiment Analyzer: {e}")
+    except Exception as e:
+        st.error(f"Error rendering Earnings Sentiment Analyzer: {e}")
+
+
 # ============== MAIN RENDER FUNCTION ==============
 
 def render_trading_tools():
@@ -525,7 +540,7 @@ def render_trading_tools():
 
     tool = st.radio(
         "Select Tool",
-        ["LME Risk Dashboard", "What-If Calculator", "Maturity Wall", "Data Freshness", "Position Tracker"],
+        ["LME Risk Dashboard", "Earnings Sentiment", "What-If Calculator", "Maturity Wall", "Data Freshness", "Position Tracker"],
         horizontal=True
     )
 
@@ -533,6 +548,8 @@ def render_trading_tools():
 
     if tool == "LME Risk Dashboard":
         render_lme_risk_dashboard_wrapper()
+    elif tool == "Earnings Sentiment":
+        render_earnings_sentiment_wrapper()
     elif tool == "What-If Calculator":
         render_whatif_calculator()
     elif tool == "Maturity Wall":
