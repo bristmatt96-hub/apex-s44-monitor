@@ -172,259 +172,401 @@ def render_call_transcriber():
     st.header("🎙️ Earnings Call Transcriber")
     st.caption("Record earnings calls on your phone, upload here, get instant transcript + sentiment")
 
-    # Show the workflow
-    with st.expander("📋 How to use this"):
+    # Recording guide tabs
+    tab1, tab2, tab3 = st.tabs(["📱 Recording Guide", "⚙️ Transcribe", "💡 Tips"])
+
+    with tab1:
+        st.markdown("## How to Record Earnings Calls")
+
+        col1, col2 = st.columns(2)
+
+        with col1:
+            st.markdown("""
+            ### Android (Recommended Setup)
+
+            **Best Apps:**
+            | App | Quality | Free? |
+            |-----|---------|-------|
+            | **Easy Voice Recorder** | Excellent | Yes |
+            | **Hi-Q MP3 Recorder** | High bitrate | Yes |
+            | **Samsung Voice Recorder** | Good | Built-in |
+            | **Google Recorder** (Pixel) | Best | Built-in |
+
+            **Settings for Best Quality:**
+            ```
+            Format: M4A or MP3
+            Bitrate: 128kbps+ (higher = better)
+            Sample rate: 44.1kHz
+            ```
+
+            **Direct Call Recording (if dialing in):**
+            - **Cube ACR** - Works on most phones
+            - **Call Recorder - ACR** - Reliable backup
+            - Note: Some carriers/phones block this
+            """)
+
+        with col2:
+            st.markdown("""
+            ### iPhone
+
+            **Voice Memos (Built-in):**
+            1. Open Voice Memos app
+            2. Tap red record button
+            3. Place near speaker
+            4. Tap stop when done
+            5. Share → Save to Files → Upload here
+
+            **For Direct Call Recording:**
+            - **TapeACall** (~$4/month)
+            - **Rev Call Recorder** (free, uses their service)
+
+            **AirDrop Tip:**
+            Record on iPhone → AirDrop to Mac → Upload
+            """)
+
+        st.markdown("---")
+
         st.markdown("""
-        ### Recording the Call
+        ### Recommended Setup (Best Quality)
 
-        **iPhone:**
-        1. Use Voice Memos app (built-in)
-        2. Or install "TapeACall" for direct call recording
-        3. Or use speaker + separate device
-
-        **Android:**
-        1. Use built-in recorder app
-        2. Or install "Call Recorder" from Play Store
-        3. Speaker + separate device works too
-
-        **Best Practice:**
-        - Dial into earnings call webcast (better quality than phone)
-        - Record using computer (Audacity, QuickTime, OBS)
-        - Or phone on speaker next to laptop speaker
-
-        ### Supported Formats
-        MP3, M4A, WAV, MP4, WebM, OGG, FLAC
-
-        ### Transcription Options
-        1. **OpenAI Whisper API** - Fast, accurate, ~$0.36/hour
-        2. **Local Whisper** - Free, slower, needs setup
-        3. **AssemblyAI** - Good for long calls, speaker labels
-
-        ### The Alpha Edge
         ```
-        9:00 AM  - Earnings call starts
-        10:00 AM - Call ends, you upload recording
-        10:05 AM - Transcript ready
-        10:10 AM - Sentiment analysis complete
-        10:15 AM - YOU TRADE
-
-        Day +9   - Debtwire publishes transcript
-        Day +9   - Everyone else reads it
+        ┌─────────────────────────────────────────────────────────┐
+        │                                                         │
+        │   LAPTOP                         PHONE                  │
+        │   ┌─────────┐                   ┌─────────┐            │
+        │   │ Webcast │ ───speaker───►    │ Record  │            │
+        │   │ playing │    ~30cm          │   app   │            │
+        │   └─────────┘                   └─────────┘            │
+        │       │                              │                  │
+        │       │ (wear headphones             │                  │
+        │       │  to hear yourself)           ▼                  │
+        │                                 Upload M4A              │
+        │                                 to this tool            │
+        └─────────────────────────────────────────────────────────┘
         ```
+
+        **Why this works:**
+        - Webcast audio quality > phone dial-in quality
+        - No carrier restrictions on recording
+        - Consistent volume levels
+        - Works every time
+
+        **Pro tips:**
+        - Place phone 20-30cm from laptop speaker
+        - Use a quiet room (no echo/background noise)
+        - Test with a 30-second clip first
+        - Disable phone notifications during recording
         """)
 
-    st.markdown("---")
+        st.markdown("---")
 
-    # Step 1: Upload audio
-    st.subheader("Step 1: Upload Recording")
+        st.markdown("""
+        ### Finding Earnings Call Dial-ins
 
-    uploaded_file = st.file_uploader(
-        "Upload earnings call recording",
-        type=["mp3", "m4a", "wav", "mp4", "webm", "ogg", "flac"],
-        help="Record the earnings call on your phone and upload here"
-    )
+        **Where to find webcast/dial-in:**
+        1. Company IR page → "Events" or "Presentations"
+        2. SEC filing (6-K/8-K) often has dial-in number
+        3. Bloomberg: `COMP <GO>` → Events
+        4. Google: "[Company] Q3 2025 earnings call webcast"
 
-    if uploaded_file:
-        valid, message = validate_audio_file(uploaded_file)
-        if valid:
-            st.success(message)
+        **Typical schedule:**
+        - US companies: 8-10 AM ET
+        - European companies: 8-10 AM CET (2-4 AM ET)
+        - Call duration: 45-90 minutes
+        """)
 
-            # Estimate duration (rough: 1MB ≈ 1 minute for compressed audio)
-            size_mb = uploaded_file.size / (1024 * 1024)
-            est_duration = size_mb * 1.5  # rough estimate
-            st.caption(f"Estimated duration: ~{est_duration:.0f} minutes")
-        else:
-            st.error(message)
-            return
+    with tab2:
+        # Step 1: Upload audio
+        st.subheader("Step 1: Upload Recording")
 
-    # Step 2: Choose transcription method
-    st.markdown("---")
-    st.subheader("Step 2: Choose Transcription Method")
-
-    method = st.radio(
-        "Transcription backend:",
-        ["OpenAI Whisper API (Recommended)", "Local Whisper (Free)", "AssemblyAI (Speaker Labels)"],
-        horizontal=True
-    )
-
-    # API key inputs
-    api_key = None
-
-    if "OpenAI" in method:
-        api_key = st.text_input(
-            "OpenAI API Key:",
-            type="password",
-            help="Get from: https://platform.openai.com/api-keys"
+        uploaded_file = st.file_uploader(
+            "Upload earnings call recording",
+            type=["mp3", "m4a", "wav", "mp4", "webm", "ogg", "flac"],
+            help="Record the earnings call on your phone and upload here"
         )
-        st.caption("Cost: ~$0.006/minute (~$0.36/hour)")
 
-        if not OPENAI_AVAILABLE:
-            st.warning("OpenAI package not installed. Run: `pip install openai`")
+        if uploaded_file:
+            valid, message = validate_audio_file(uploaded_file)
+            if valid:
+                st.success(message)
 
-    elif "Local" in method:
-        model_size = st.select_slider(
-            "Model size (larger = more accurate, slower):",
-            options=["tiny", "base", "small", "medium", "large"],
-            value="base"
+                # Estimate duration (rough: 1MB ≈ 1 minute for compressed audio)
+                size_mb = uploaded_file.size / (1024 * 1024)
+                est_duration = size_mb * 1.5  # rough estimate
+                st.caption(f"Estimated duration: ~{est_duration:.0f} minutes")
+            else:
+                st.error(message)
+                return
+
+        # Step 2: Choose transcription method
+        st.markdown("---")
+        st.subheader("Step 2: Choose Transcription Method")
+
+        method = st.radio(
+            "Transcription backend:",
+            ["OpenAI Whisper API (Recommended)", "Local Whisper (Free)", "AssemblyAI (Speaker Labels)"],
+            horizontal=True
         )
-        st.caption("First run downloads model. 'base' is good balance of speed/accuracy.")
 
-        if not WHISPER_AVAILABLE:
-            st.warning("Whisper not installed. Run: `pip install openai-whisper`")
-            st.info("Also needs ffmpeg: `brew install ffmpeg` (Mac) or `apt install ffmpeg` (Linux)")
-
-    elif "AssemblyAI" in method:
-        api_key = st.text_input(
-            "AssemblyAI API Key:",
-            type="password",
-            help="Get from: https://www.assemblyai.com/dashboard"
-        )
-        st.caption("Cost: ~$0.015/minute (~$0.90/hour). Includes speaker identification.")
-
-    # Step 3: Transcribe
-    st.markdown("---")
-    st.subheader("Step 3: Transcribe")
-
-    company_name = st.text_input("Company name:", placeholder="e.g., Ardagh Group")
-    call_date = st.date_input("Call date:", value=datetime.now())
-
-    if st.button("🎯 Transcribe Recording", type="primary", disabled=not uploaded_file):
-        if not uploaded_file:
-            st.error("Please upload an audio file first")
-            return
-
-        # Save file temporarily
-        with st.spinner("Saving audio file..."):
-            audio_path = save_uploaded_file(uploaded_file)
-
-        # Transcribe
-        transcript = ""
-        error = None
+        # API key inputs
+        api_key = None
+        model_size = "base"
 
         if "OpenAI" in method:
-            if not api_key:
-                st.error("Please enter your OpenAI API key")
-                return
-            with st.spinner("Transcribing with OpenAI Whisper API... (typically 1-2 minutes)"):
-                transcript, error = transcribe_with_openai_api(audio_path, api_key)
+            api_key = st.text_input(
+                "OpenAI API Key:",
+                type="password",
+                help="Get from: https://platform.openai.com/api-keys"
+            )
+            st.caption("Cost: ~$0.006/minute (~$0.36/hour)")
+
+            if not OPENAI_AVAILABLE:
+                st.warning("OpenAI package not installed. Run: `pip install openai`")
 
         elif "Local" in method:
-            with st.spinner(f"Transcribing with local Whisper ({model_size})... (may take a while)"):
-                transcript, error = transcribe_with_local_whisper(audio_path, model_size)
+            model_size = st.select_slider(
+                "Model size (larger = more accurate, slower):",
+                options=["tiny", "base", "small", "medium", "large"],
+                value="base"
+            )
+            st.caption("First run downloads model. 'base' is good balance of speed/accuracy.")
+
+            if not WHISPER_AVAILABLE:
+                st.warning("Whisper not installed. Run: `pip install openai-whisper`")
+                st.info("Also needs ffmpeg: `brew install ffmpeg` (Mac) or `apt install ffmpeg` (Linux)")
 
         elif "AssemblyAI" in method:
-            if not api_key:
-                st.error("Please enter your AssemblyAI API key")
-                return
-            with st.spinner("Transcribing with AssemblyAI... (typically 2-5 minutes)"):
-                transcript, error = transcribe_with_assemblyai(audio_path, api_key)
-
-        # Clean up temp file
-        try:
-            os.unlink(audio_path)
-        except:
-            pass
-
-        if error:
-            st.error(error)
-            return
-
-        if not transcript:
-            st.error("Transcription returned empty. Check audio quality.")
-            return
-
-        # Success!
-        st.success(f"Transcription complete! ({len(transcript)} characters)")
-
-        # Store in session state for sentiment analysis
-        st.session_state["last_transcript"] = transcript
-        st.session_state["last_transcript_company"] = company_name
-        st.session_state["last_transcript_date"] = str(call_date)
-
-        # Show transcript
-        st.markdown("---")
-        st.subheader("📝 Transcript")
-
-        st.text_area(
-            "Full transcript:",
-            value=transcript,
-            height=400,
-            help="Copy this or use 'Analyze Sentiment' below"
-        )
-
-        # Word count and stats
-        words = len(transcript.split())
-        st.caption(f"Words: {words:,} | Characters: {len(transcript):,} | Est. pages: {words // 300}")
-
-        # Download button
-        st.download_button(
-            "📥 Download Transcript",
-            data=transcript,
-            file_name=f"{company_name or 'earnings_call'}_{call_date}.txt",
-            mime="text/plain"
-        )
-
-        # Quick link to sentiment analysis
-        st.markdown("---")
-        st.subheader("Step 4: Analyze Sentiment")
-
-        if st.button("🔍 Run Sentiment Analysis", type="primary"):
-            # Import and run sentiment analyzer
-            try:
-                from monitors.earnings_sentiment import analyze_transcript
-
-                with st.spinner("Analyzing sentiment..."):
-                    result = analyze_transcript(transcript, company_name or "Unknown")
-
-                # Display results
-                col1, col2, col3 = st.columns(3)
-
-                with col1:
-                    color = "🔴" if result.overall_score < -10 else "🟡" if result.overall_score < 10 else "🟢"
-                    st.metric("Sentiment", f"{result.overall_score:.0f}")
-                    st.caption(color)
-
-                with col2:
-                    st.metric("Mgmt Confidence", f"{result.management_confidence:.0f}%")
-
-                with col3:
-                    high_flags = len([f for f in result.red_flags if f.severity == "HIGH"])
-                    st.metric("High Severity Flags", high_flags)
-
-                # Red flags
-                if result.red_flags:
-                    st.markdown("### 🚨 Red Flags Detected")
-                    high = [f for f in result.red_flags if f.severity == "HIGH"]
-                    for flag in high[:5]:
-                        st.warning(f"**{flag.category}**: {flag.text[:100]}...")
-
-                # Action recommendation
-                st.markdown("---")
-                high_flags = len([f for f in result.red_flags if f.severity == "HIGH"])
-                if high_flags >= 3 or result.overall_score < -20:
-                    st.error("⚠️ **ELEVATED CONCERN** - Review CDS levels, check for advisor engagement")
-                elif high_flags >= 1 or result.overall_score < 0:
-                    st.warning("🟡 **MONITOR CLOSELY** - Some distress signals detected")
-                else:
-                    st.success("🟢 **STABLE** - No significant distress signals")
-
-            except ImportError:
-                st.error("Sentiment analyzer not available")
-            except Exception as e:
-                st.error(f"Analysis error: {e}")
-
-    # Show previously transcribed content if available
-    if "last_transcript" in st.session_state and not uploaded_file:
-        st.markdown("---")
-        st.info(f"Previous transcript available: {st.session_state.get('last_transcript_company', 'Unknown')} "
-               f"({st.session_state.get('last_transcript_date', 'Unknown date')})")
-
-        if st.button("Load Previous Transcript"):
-            st.text_area(
-                "Previous transcript:",
-                value=st.session_state["last_transcript"],
-                height=300
+            api_key = st.text_input(
+                "AssemblyAI API Key:",
+                type="password",
+                help="Get from: https://www.assemblyai.com/dashboard"
             )
+            st.caption("Cost: ~$0.015/minute (~$0.90/hour). Includes speaker identification.")
+
+        # Step 3: Transcribe
+        st.markdown("---")
+        st.subheader("Step 3: Transcribe")
+
+        company_name = st.text_input("Company name:", placeholder="e.g., Ardagh Group")
+        call_date = st.date_input("Call date:", value=datetime.now())
+
+        if st.button("🎯 Transcribe Recording", type="primary", disabled=not uploaded_file):
+            if not uploaded_file:
+                st.error("Please upload an audio file first")
+                return
+
+            # Save file temporarily
+            with st.spinner("Saving audio file..."):
+                audio_path = save_uploaded_file(uploaded_file)
+
+            # Transcribe
+            transcript = ""
+            error = None
+
+            if "OpenAI" in method:
+                if not api_key:
+                    st.error("Please enter your OpenAI API key")
+                    return
+                with st.spinner("Transcribing with OpenAI Whisper API... (typically 1-2 minutes)"):
+                    transcript, error = transcribe_with_openai_api(audio_path, api_key)
+
+            elif "Local" in method:
+                with st.spinner(f"Transcribing with local Whisper ({model_size})... (may take a while)"):
+                    transcript, error = transcribe_with_local_whisper(audio_path, model_size)
+
+            elif "AssemblyAI" in method:
+                if not api_key:
+                    st.error("Please enter your AssemblyAI API key")
+                    return
+                with st.spinner("Transcribing with AssemblyAI... (typically 2-5 minutes)"):
+                    transcript, error = transcribe_with_assemblyai(audio_path, api_key)
+
+            # Clean up temp file
+            try:
+                os.unlink(audio_path)
+            except:
+                pass
+
+            if error:
+                st.error(error)
+                return
+
+            if not transcript:
+                st.error("Transcription returned empty. Check audio quality.")
+                return
+
+            # Success!
+            st.success(f"Transcription complete! ({len(transcript)} characters)")
+
+            # Store in session state for sentiment analysis
+            st.session_state["last_transcript"] = transcript
+            st.session_state["last_transcript_company"] = company_name
+            st.session_state["last_transcript_date"] = str(call_date)
+
+            # Show transcript
+            st.markdown("---")
+            st.subheader("📝 Transcript")
+
+            st.text_area(
+                "Full transcript:",
+                value=transcript,
+                height=400,
+                help="Copy this or use 'Analyze Sentiment' below"
+            )
+
+            # Word count and stats
+            words = len(transcript.split())
+            st.caption(f"Words: {words:,} | Characters: {len(transcript):,} | Est. pages: {words // 300}")
+
+            # Download button
+            st.download_button(
+                "📥 Download Transcript",
+                data=transcript,
+                file_name=f"{company_name or 'earnings_call'}_{call_date}.txt",
+                mime="text/plain"
+            )
+
+            # Quick link to sentiment analysis
+            st.markdown("---")
+            st.subheader("Step 4: Analyze Sentiment")
+
+            if st.button("🔍 Run Sentiment Analysis", type="primary"):
+                # Import and run sentiment analyzer
+                try:
+                    from monitors.earnings_sentiment import analyze_transcript
+
+                    with st.spinner("Analyzing sentiment..."):
+                        result = analyze_transcript(transcript, company_name or "Unknown")
+
+                    # Display results
+                    col1, col2, col3 = st.columns(3)
+
+                    with col1:
+                        color = "🔴" if result.overall_score < -10 else "🟡" if result.overall_score < 10 else "🟢"
+                        st.metric("Sentiment", f"{result.overall_score:.0f}")
+                        st.caption(color)
+
+                    with col2:
+                        st.metric("Mgmt Confidence", f"{result.management_confidence:.0f}%")
+
+                    with col3:
+                        high_flags = len([f for f in result.red_flags if f.severity == "HIGH"])
+                        st.metric("High Severity Flags", high_flags)
+
+                    # Red flags
+                    if result.red_flags:
+                        st.markdown("### 🚨 Red Flags Detected")
+                        high = [f for f in result.red_flags if f.severity == "HIGH"]
+                        for flag in high[:5]:
+                            st.warning(f"**{flag.category}**: {flag.text[:100]}...")
+
+                    # Action recommendation
+                    st.markdown("---")
+                    high_flags = len([f for f in result.red_flags if f.severity == "HIGH"])
+                    if high_flags >= 3 or result.overall_score < -20:
+                        st.error("⚠️ **ELEVATED CONCERN** - Review CDS levels, check for advisor engagement")
+                    elif high_flags >= 1 or result.overall_score < 0:
+                        st.warning("🟡 **MONITOR CLOSELY** - Some distress signals detected")
+                    else:
+                        st.success("🟢 **STABLE** - No significant distress signals")
+
+                except ImportError:
+                    st.error("Sentiment analyzer not available")
+                except Exception as e:
+                    st.error(f"Analysis error: {e}")
+
+        # Show previously transcribed content if available
+        if "last_transcript" in st.session_state and not uploaded_file:
+            st.markdown("---")
+            st.info(f"Previous transcript available: {st.session_state.get('last_transcript_company', 'Unknown')} "
+                   f"({st.session_state.get('last_transcript_date', 'Unknown date')})")
+
+            if st.button("Load Previous Transcript"):
+                st.text_area(
+                    "Previous transcript:",
+                    value=st.session_state["last_transcript"],
+                    height=300
+                )
+
+    with tab3:
+        st.markdown("""
+        ## Alpha Edge: The Timeline
+
+        ```
+        ┌────────────────────────────────────────────────────────────────┐
+        │  YOUR WORKFLOW                    vs    EVERYONE ELSE         │
+        ├────────────────────────────────────────────────────────────────┤
+        │                                                                │
+        │  09:00  Earnings call starts      09:00  Waiting for          │
+        │         You're recording                 Debtwire...          │
+        │                                                                │
+        │  10:00  Call ends                 ...                         │
+        │         Upload recording                                       │
+        │                                                                │
+        │  10:05  Transcript ready          ...                         │
+        │                                                                │
+        │  10:10  Sentiment analysis        ...                         │
+        │         complete                                               │
+        │                                                                │
+        │  10:15  YOU TRADE                 ...                         │
+        │         ════════════                                          │
+        │                                                                │
+        │  Day +9 ...                       Debtwire publishes          │
+        │                                   transcript                   │
+        │                                   Everyone else reads it       │
+        │                                   Market already moved         │
+        └────────────────────────────────────────────────────────────────┘
+        ```
+
+        ## Cost Comparison
+
+        | Method | Cost/Hour | 1-Hour Call | Speed |
+        |--------|-----------|-------------|-------|
+        | OpenAI Whisper API | $0.36 | $0.36 | Fast (1-2 min) |
+        | AssemblyAI | $0.90 | $0.90 | Medium (2-5 min) |
+        | Local Whisper | Free | $0 | Slow (5-15 min) |
+        | Debtwire Subscription | ~$30k/yr | N/A | 5-10 days late |
+
+        ## Quality Tips
+
+        **For best transcription accuracy:**
+
+        1. **Use webcast, not phone dial-in**
+           - Higher audio quality = better transcription
+           - Phone lines compress audio
+
+        2. **Quiet environment**
+           - No background noise, TV, conversations
+           - Avoid rooms with echo
+
+        3. **Consistent volume**
+           - Don't adjust volume during recording
+           - Test levels before call starts
+
+        4. **File format**
+           - M4A or MP3 preferred
+           - 128kbps+ bitrate
+           - Mono is fine (stereo doesn't help)
+
+        ## What to Listen For (Live)
+
+        While recording, note timestamps for:
+
+        | Signal | What to Note |
+        |--------|--------------|
+        | "Restructuring" mentioned | Timestamp + context |
+        | Advisor names (Houlihan, PJT) | Huge red flag |
+        | Liquidity questions from analysts | Note the answer |
+        | Management hedging/evasion | "We'll get back to you" |
+        | Covenant discussion | Compliance, waivers |
+        | Guidance changes | Up/down/withdrawn |
+
+        These notes + transcript + sentiment = complete picture
+        """)
+
+        st.markdown("---")
+        st.markdown("### XO S44 Earnings Calendar")
+        st.info("Coming soon: Integration with earnings calendar to alert you before calls")
 
 
 # ============================================================================
