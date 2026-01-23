@@ -483,3 +483,169 @@ Triggers: restructuring, exchange offer
 _Watch: Is exchange voluntary or binding? Voluntary = likely NOT a Credit Event_
 """
     st.code(example, language=None)
+
+
+def render_lme_vs_bankruptcy_tree():
+    """LME vs Bankruptcy decision tree for quick reference"""
+
+    st.markdown("### LME vs Bankruptcy: Will It Trigger CDS?")
+    st.caption("Quick decision tree based on DC precedents")
+
+    st.markdown("""
+    ```
+    HEADLINE RECEIVED
+          │
+          ▼
+    ┌─────────────────────────────────────┐
+    │  What type of action is announced?  │
+    └─────────────────────────────────────┘
+          │
+    ┌─────┴─────┬─────────────┬──────────────────┐
+    │           │             │                  │
+    ▼           ▼             ▼                  ▼
+VOLUNTARY    BINDING      COURT FILING      MISSED
+EXCHANGE    AGREEMENT    (Bankruptcy)       PAYMENT
+    │           │             │                  │
+    ▼           ▼             ▼                  ▼
+  ┌───┐      ┌───┐         ┌───┐              ┌───┐
+  │NO │      │???│         │YES│              │YES│
+  │CE │      │   │         │CE │              │CE │
+  └───┘      └───┘         └───┘              └───┘
+    │           │             │                  │
+    │      Check if         Filing =          After
+    │      binding on       Immediate         Grace
+    │      ALL holders      Trigger           Period
+    │           │
+    │           ▼
+    │    ┌──────────────────┐
+    │    │ TSA/Lock-up with │
+    │    │ >90% support?    │
+    │    └──────────────────┘
+    │      │YES        │NO
+    │      ▼           ▼
+    │   ┌─────┐     ┌─────┐
+    │   │ YES │     │ NO  │
+    │   │ CE  │     │ CE  │
+    │   └─────┘     └─────┘
+    │   (Ardagh)   (Intrum LME)
+    │
+    ▼
+┌────────────────────────────────────┐
+│  VOLUNTARY = NOT a Credit Event   │
+│  (Isolux, most LMEs)              │
+│                                    │
+│  Key: Non-participating holders   │
+│  keep original terms unchanged    │
+└────────────────────────────────────┘
+    ```
+    """)
+
+    # Jurisdiction-specific guidance
+    st.markdown("---")
+    st.markdown("### By Jurisdiction")
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.markdown("**France**")
+        st.markdown("""
+        | Proceeding | Credit Event? |
+        |------------|---------------|
+        | Mandat ad hoc | NO |
+        | Conciliation | NO |
+        | Safeguard | **YES** |
+        | Sauvegarde Accélérée | **YES** |
+        | Redressement | **YES** |
+        | Liquidation | **YES** |
+
+        *Key: Does it impose mandatory stay?*
+        """)
+
+        st.markdown("**UK**")
+        st.markdown("""
+        | Proceeding | Credit Event? |
+        |------------|---------------|
+        | Voluntary Exchange | NO |
+        | Scheme of Arrangement | **YES** |
+        | Administration | **YES** |
+        | CVA (binding) | **YES** |
+        | Liquidation | **YES** |
+
+        *Schemes bind all holders = Restructuring CE*
+        """)
+
+    with col2:
+        st.markdown("**US**")
+        st.markdown("""
+        | Proceeding | Credit Event? |
+        |------------|---------------|
+        | Voluntary Exchange | NO |
+        | Uptier/Dropdown | NO* |
+        | Chapter 11 | **YES** |
+        | Chapter 7 | **YES** |
+        | Chapter 15 + Stay | **YES** |
+        | Chapter 15 only | NO |
+
+        *Unless reaches binding threshold (Ardagh)*
+        """)
+
+        st.markdown("**Netherlands**")
+        st.markdown("""
+        | Proceeding | Credit Event? |
+        |------------|---------------|
+        | WHOA (Scheme) | **YES** |
+        | Suspension of Payments | **YES** |
+        | Bankruptcy | **YES** |
+
+        *WHOA = Dutch scheme, binds creditors (Selecta)*
+        """)
+
+    # Key tests
+    st.markdown("---")
+    st.markdown("### Key Questions to Ask")
+
+    st.markdown("""
+    1. **Is this VOLUNTARY or BINDING on all holders?**
+       - Voluntary = NO Credit Event (most LMEs)
+       - Binding via scheme/court = YES Credit Event
+
+    2. **What consent threshold triggers "binding"?**
+       - Check indenture CACs (typically 75% or 90%)
+       - TSA reaching threshold = potential CE date (Ardagh)
+
+    3. **Is there a court filing?**
+       - Chapter 11/7 = immediate Bankruptcy CE
+       - French Safeguard = Bankruptcy CE
+       - UK Administration = Bankruptcy CE
+
+    4. **What jurisdiction?**
+       - US Chapter 15: depends on relief sought (stay = CE)
+       - French Conciliation: NOT a CE (yet)
+       - Watch for transition to court-supervised process
+
+    5. **Is there a missed payment?**
+       - Check contractual grace period (often 30 days)
+       - + 3 business day ISDA extension
+       - Payment Requirement threshold ($1M typically)
+    """)
+
+
+def render_isda_analyzer():
+    """Render the ISDA analyzer UI"""
+
+    st.subheader("ISDA Credit Event Analyzer")
+    st.caption("Interpret headlines and articles through ISDA Credit Derivatives Definitions")
+
+    tab1, tab2, tab3, tab4 = st.tabs(["Analyze Text", "LME vs Bankruptcy", "ISDA Reference", "Recent Alerts"])
+
+    with tab1:
+        render_text_analyzer()
+
+    with tab2:
+        render_lme_vs_bankruptcy_tree()
+
+    with tab3:
+        render_isda_reference()
+
+    with tab4:
+        render_recent_isda_alerts()

@@ -505,6 +505,19 @@ def render_position_tracker():
         st.rerun()
 
 
+# ============== LME RISK DASHBOARD ==============
+
+def render_lme_risk_dashboard_wrapper():
+    """Wrapper to import and render LME Risk Dashboard"""
+    try:
+        from monitors.lme_risk_calculator import render_lme_risk_dashboard
+        render_lme_risk_dashboard()
+    except ImportError as e:
+        st.error(f"Could not load LME Risk Calculator: {e}")
+    except Exception as e:
+        st.error(f"Error rendering LME Risk Dashboard: {e}")
+
+
 # ============== MAIN RENDER FUNCTION ==============
 
 def render_trading_tools():
@@ -512,13 +525,15 @@ def render_trading_tools():
 
     tool = st.radio(
         "Select Tool",
-        ["What-If Calculator", "Maturity Wall", "Data Freshness", "Position Tracker"],
+        ["LME Risk Dashboard", "What-If Calculator", "Maturity Wall", "Data Freshness", "Position Tracker"],
         horizontal=True
     )
 
     st.markdown("---")
 
-    if tool == "What-If Calculator":
+    if tool == "LME Risk Dashboard":
+        render_lme_risk_dashboard_wrapper()
+    elif tool == "What-If Calculator":
         render_whatif_calculator()
     elif tool == "Maturity Wall":
         render_maturity_wall()

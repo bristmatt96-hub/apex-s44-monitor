@@ -3,6 +3,7 @@
   "company_name": "",
   "ticker": "",
   "sector": "",
+  "geography": "",
   "last_updated": "",
 
   "overview": {
@@ -12,6 +13,47 @@
     "ownership": "",
     "public_private": "private",
     "recent_news": ""
+  },
+
+  "lme_risk": {
+    "_description": "Liability Management Exercise risk factors for 2027/28 maturity wall",
+    "doc_quality": {
+      "vintage": "",
+      "cov_lite": false,
+      "j_crew_blocker": false,
+      "serta_blocker": false,
+      "chewy_blocker": false,
+      "notes": ""
+    },
+    "consent_thresholds": {
+      "amendment_threshold_pct": null,
+      "cac_threshold_pct": null,
+      "notes": ""
+    },
+    "ownership": {
+      "pe_backed": false,
+      "sponsor": "",
+      "founder_controlled": false,
+      "dividend_recap_history": false
+    },
+    "structure": {
+      "complex_structure": false,
+      "holding_company": "",
+      "multi_entity_issuer": false,
+      "unrestricted_subs": false,
+      "related_entities": []
+    },
+    "distress_signals": {
+      "bonds_below_90": false,
+      "bonds_below_80": false,
+      "yields_above_12pct": false,
+      "advisor_hired": false,
+      "advisor": ""
+    },
+    "jurisdiction": "",
+    "likely_restructuring_path": "",
+    "lme_risk_score": null,
+    "monitoring_triggers": []
   },
 
   "ratings": {
