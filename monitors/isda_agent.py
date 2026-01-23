@@ -84,10 +84,10 @@ ISDA_PRECEDENTS = {
         ]
     },
 
-    "Intrum": {
+    "Intrum (2023 LME)": {
         "year": 2023,
         "events": ["Potential Restructuring - LME"],
-        "summary": "Swedish debt collector. Liability Management Exercise (LME) with exchange offer. Key question: does modern LME structure trigger Restructuring?",
+        "summary": "Swedish debt collector. Liability Management Exercise (LME) with exchange offer. Key question: does modern LME structure trigger Restructuring? (Note: Company later filed Chapter 11 in 2024 - see separate entry)",
         "key_rulings": [
             "Exchange offers with coercive elements analyzed carefully",
             "Distinction between 'economically coercive' vs 'legally binding'",
@@ -455,6 +455,121 @@ ISDA_PRECEDENTS = {
             "Currency of payment must match obligation terms",
             "Force majeure arguments rejected"
         ]
+    },
+
+    # ============== 2023-2025 LME ERA PRECEDENTS ==============
+
+    "Credit Suisse": {
+        "year": 2023,
+        "events": ["Governmental Intervention"],
+        "summary": "Swiss regulator FINMA ordered full write-down of CHF 16bn AT1 bonds. Senior and Tier 2 bonds transferred to UBS intact.",
+        "key_rulings": [
+            "Question: Did Governmental Intervention CE occur on Subordinated CDS?",
+            "Answer: NO - because Reference Obligation (Tier 2) was not affected",
+            "AT1 write-down hit a junior layer but Tier 2 was transferred intact",
+            "Standard 'Subordinated CDS' contracts reference Tier 2, NOT AT1s"
+        ],
+        "lessons": [
+            "The 'Reference Obligation Trap' - GI must affect the Reference Obligation",
+            "For GI to trigger, must write down Reference Obligation or pari passu/senior",
+            "Hierarchy matters - junior layer write-down may NOT trigger CDS",
+            "Massive 'protection gap' exposed - AT1 holders lost everything, CDS paid zero",
+            "Bank capital structure hierarchy is critical for CDS analysis"
+        ]
+    },
+
+    "Casino Guichard-Perrachon": {
+        "year": 2023,
+        "events": ["Restructuring"],
+        "summary": "French retailer used Conciliation (amicable) then Safeguard (court-supervised) proceedings.",
+        "key_rulings": [
+            "Question: Does opening Conciliation trigger Bankruptcy?",
+            "Answer: NO - Conciliation is voluntary/consensual",
+            "BUT: Safeguard DOES trigger - it imposes mandatory stay on creditors",
+            "Key distinction between consensual and coercive proceedings"
+        ],
+        "lessons": [
+            "French Conciliation (consensual) = NOT a Credit Event",
+            "French Safeguard (coercive, court-supervised) = Bankruptcy/Restructuring CE",
+            "Only proceedings imposing mandatory stay trigger 'Bankruptcy' clause",
+            "Watch for: when does company move from Conciliation to Safeguard?"
+        ]
+    },
+
+    "Matalan": {
+        "year": 2020,
+        "events": ["Bankruptcy"],
+        "summary": "UK retailer filed Chapter 15 in US seeking recognition AND automatic stay.",
+        "key_rulings": [
+            "Compared to Thomas Cook (which only sought recognition - NO CE)",
+            "Matalan asked for recognition PLUS automatic stay",
+            "DC ruled: requesting broad stay = 'relief similar to judgment of insolvency'",
+            "Therefore: Bankruptcy CE confirmed"
+        ],
+        "lessons": [
+            "The 'Relief Sought' Test for Chapter 15",
+            "Chapter 15 with recognition only = NOT a Credit Event",
+            "Chapter 15 with recognition + stay = Bankruptcy CE",
+            "Read the actual Chapter 15 filing - what relief is requested?",
+            "Thomas Cook (recognition only) vs Matalan (recognition + stay)"
+        ]
+    },
+
+    "Intrum AB (2024)": {
+        "year": 2024,
+        "events": ["Bankruptcy"],
+        "summary": "Swedish debt collector filed for US Chapter 11 to implement pre-packaged reorganization.",
+        "key_rulings": [
+            "Chapter 11 filing by European entity = Bankruptcy CE",
+            "Pre-packaged/technical nature did not affect CE analysis",
+            "US Chapter 11 available to foreign debtors"
+        ],
+        "lessons": [
+            "US Chapter 11 by European company = clear Bankruptcy CE",
+            "Pre-pack nature irrelevant - filing is the trigger",
+            "Confirms foreign companies can use US Chapter 11",
+            "Jurisdiction of filing matters, not place of incorporation"
+        ]
+    },
+
+    "Altice France": {
+        "year": 2025,
+        "events": ["Bankruptcy"],
+        "summary": "Entered Accelerated Safeguard proceedings in France. ~95% of bonds locked up in restructuring agreement.",
+        "key_rulings": [
+            "Accelerated Safeguard = Bankruptcy CE (relief from creditors)",
+            "CRITICAL: ~95% bonds 'locked up' - could not be traded in auction",
+            "DC had to abandon standard auction mechanics",
+            "Used 'Composite Price' based on new instrument values"
+        ],
+        "lessons": [
+            "French Accelerated Safeguard = Bankruptcy CE",
+            "AUCTION FAILURE RISK when high lock-up percentage",
+            "'Composite Settlement' used when bonds un-auctionable",
+            "Composite Price = value of cash + new notes + equity in restructuring",
+            "Lock-up agreements can break standard CDS settlement",
+            "Critical precedent for LME-era settlements"
+        ]
+    },
+
+    "Ardagh Packaging Finance": {
+        "year": 2025,
+        "events": ["Restructuring"],
+        "summary": "Distressed exchange with Transaction Support Agreement (TSA). Supermajority signed TSA before actual bond exchange.",
+        "key_rulings": [
+            "Question: CE date = TSA signing (Oct 7) or deal close (Nov 12)?",
+            "Answer: TSA signing date (earlier date)",
+            "External Review Panel ruled: agreement 'in form that binds all holders'",
+            "Once TSA reached threshold to force minority = CE occurred"
+        ],
+        "lessons": [
+            "THE 'BINDING' TRIGGER - CE can occur at TSA/Lock-Up signing",
+            "Don't wait for actual exchange - watch for binding threshold",
+            "Voting threshold that forces minority = trigger point",
+            "Protection sellers caught off guard by earlier trigger date",
+            "Critical for LME situations with support agreements",
+            "Implication: CDS triggers moved EARLIER in timeline"
+        ]
     }
 }
 
@@ -467,19 +582,18 @@ ISDA_SYSTEM_PROMPT = """You are an expert ISDA Credit Derivatives analyst with d
 2. Credit Derivatives Determinations Committee (DC) rulings and precedents
 3. How different restructuring types (Mod-R, Mod-Mod-R, Old-R) affect CDS
 4. Nuances of different bankruptcy/insolvency regimes globally
+5. Modern LME (Liability Management Exercise) structures and their CE implications
 
 You have studied all major DC determinations including:
 
-CORPORATE CASES:
+CORPORATE CASES (Classic):
 - Portugal Telecom (succession events, merger complexity)
 - Abengoa (Spanish homologación, Failure to Pay)
 - Isolux (voluntary vs binding restructuring - voluntary = NO CE)
-- Intrum (modern LME structures, coercive vs binding)
 - Codere (manufactured defaults - intent irrelevant)
 - Caesars (subsidiary vs parent, guarantees)
 - Noble Group (Singapore scheme of arrangement)
 - Windstream (covenant breach is NOT a CE)
-- Rallye/Casino (French sauvegarde)
 - Phones4U, Thomas Cook (UK administration)
 - Banco Espirito Santo (bank resolution, bail-in)
 - Europcar (French sauvegarde accélérée)
@@ -489,6 +603,14 @@ CORPORATE CASES:
 - Hertz, Avianca (COVID-era bankruptcies)
 - Garuda Indonesia (sukuk, emerging markets)
 - Evergrande (China property, offshore vs onshore)
+
+LME ERA CASES (2023-2025) - CRITICAL NEW PRECEDENTS:
+- Credit Suisse 2023 (AT1 write-down, Reference Obligation hierarchy gap)
+- Casino 2023 (Conciliation vs Safeguard - consensual vs coercive)
+- Matalan 2020 (Chapter 15 'Relief Sought' test vs Thomas Cook)
+- Intrum 2024 (European company Chapter 11 in US)
+- Altice France 2025 (Accelerated Safeguard + 'Composite Settlement' for locked-up bonds)
+- Ardagh 2025 (TSA/Lock-Up signing = 'Binding Trigger' before actual exchange)
 
 SOVEREIGN CASES:
 - Russia 2022 (sanctions blocking payment = still FtP)
@@ -532,6 +654,43 @@ SUCCESSION EVENTS:
 - Universal Successor test: >75% of Relevant Obligations
 - May result in contract splitting if multiple successors
 - Corporate restructurings must be tracked carefully (PT/Oi)
+
+============== 2023-2025 KEY INTERPRETIVE DEVELOPMENTS ==============
+
+THE "BINDING" TRIGGER (Ardagh 2025):
+- A Restructuring CE can occur at TSA/Lock-Up Agreement signing
+- NOT just when actual debt exchange closes
+- Test: Has agreement reached threshold that binds ALL holders (including minority)?
+- Once voting threshold reached to force non-consenting holders = CE triggered
+- Implication: CDS triggers may be EARLIER than expected in LMEs
+
+THE "COMPOSITE SETTLEMENT" / BROKEN AUCTION (Altice 2025):
+- When 90%+ bonds are locked up in restructuring, auction may fail
+- Locked-up bonds cannot be freely traded in standard auction
+- DC may abandon auction and use "Composite Price" instead
+- Composite = value of cash + new notes + equity from restructuring
+- Critical for high lock-up LMEs - settlement mechanism can break
+
+THE "REFERENCE OBLIGATION" HIERARCHY GAP (Credit Suisse 2023):
+- For bank CDS, standard "Subordinated CDS" references Tier 2, NOT AT1s
+- For Governmental Intervention CE to trigger, must affect Reference Obligation or senior
+- If write-down hits junior layer (AT1) but skips Tier 2 = NO CE
+- Creates massive "protection gap" - bonds written down but CDS pays zero
+- Bank capital structure hierarchy is critical
+
+CONCILIATION vs SAFEGUARD (Casino 2023):
+- French Conciliation (amicable, consensual) = NOT a Credit Event
+- French Safeguard (court-supervised, coercive) = Bankruptcy/Restructuring CE
+- Key test: Does proceeding impose MANDATORY stay on creditors?
+- Consensual proceedings without stay = no trigger
+- Watch for transition from Conciliation to Safeguard
+
+CHAPTER 15 "RELIEF SOUGHT" TEST (Matalan vs Thomas Cook):
+- Chapter 15 for recognition only = NOT a Credit Event (Thomas Cook)
+- Chapter 15 for recognition + automatic stay = Bankruptcy CE (Matalan)
+- Key: what relief is actually requested in the filing?
+- Broad stay request = "relief similar to judgment of insolvency"
+- Must read actual Chapter 15 petition to determine
 
 When analyzing a situation:
 1. Identify which Credit Event type is potentially relevant
