@@ -39,6 +39,68 @@ OPENAI_API_KEY = get_secret("OPENAI_API_KEY", "")
 ANTHROPIC_API_KEY = get_secret("ANTHROPIC_API_KEY", "")
 
 
+# ============== LIVE PRECEDENT MANAGEMENT ==============
+
+LIVE_PRECEDENTS_FILE = Path(__file__).parent.parent / "data" / "isda_precedents.json"
+
+def load_live_precedents() -> Dict:
+    """Load user-added precedents and live updates from JSON file"""
+    if LIVE_PRECEDENTS_FILE.exists():
+        try:
+            with open(LIVE_PRECEDENTS_FILE, "r", encoding="utf-8") as f:
+                return json.load(f)
+        except:
+            pass
+    return {"precedents": {}, "live_updates": []}
+
+def save_live_precedents(data: Dict):
+    """Save precedents and live updates to JSON file"""
+    LIVE_PRECEDENTS_FILE.parent.mkdir(parents=True, exist_ok=True)
+    with open(LIVE_PRECEDENTS_FILE, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2, ensure_ascii=False)
+
+def add_precedent(name: str, year: int, events: List[str], summary: str,
+                  key_rulings: List[str], lessons: List[str]):
+    """Add a new precedent to the live database"""
+    data = load_live_precedents()
+    data["precedents"][name] = {
+        "year": year,
+        "events": events,
+        "summary": summary,
+        "key_rulings": key_rulings,
+        "lessons": lessons,
+        "added": datetime.now().isoformat()
+    }
+    save_live_precedents(data)
+
+def add_live_update(company: str, date: str, headline: str, details: str,
+                    potential_ce: str, source: str = ""):
+    """Add a live news update for tracking"""
+    data = load_live_precedents()
+    data["live_updates"].append({
+        "company": company,
+        "date": date,
+        "headline": headline,
+        "details": details,
+        "potential_ce": potential_ce,
+        "source": source,
+        "added": datetime.now().isoformat()
+    })
+    save_live_precedents(data)
+
+def get_all_precedents() -> Dict:
+    """Get all precedents (hardcoded + user-added)"""
+    all_precs = dict(ISDA_PRECEDENTS)  # Start with hardcoded
+    live_data = load_live_precedents()
+    all_precs.update(live_data.get("precedents", {}))  # Add user precedents
+    return all_precs
+
+def get_live_updates() -> List:
+    """Get all live updates"""
+    data = load_live_precedents()
+    return data.get("live_updates", [])
+
+
 # ============== ISDA DC PRECEDENT DATABASE ==============
 # Real cases and how they were determined
 
@@ -770,10 +832,13 @@ If uncertain, say so and explain what additional information would be needed.
 
 
 def build_precedent_context() -> str:
-    """Build context string from precedent database"""
+    """Build context string from precedent database (including live updates)"""
     context = "RELEVANT ISDA DC PRECEDENTS:\n\n"
 
-    for name, data in ISDA_PRECEDENTS.items():
+    # Get all precedents (hardcoded + user-added)
+    all_precedents = get_all_precedents()
+
+    for name, data in all_precedents.items():
         context += f"=== {name} ({data['year']}) ===\n"
         context += f"Events: {', '.join(data['events'])}\n"
         context += f"Summary: {data['summary']}\n"
@@ -781,6 +846,20 @@ def build_precedent_context() -> str:
         for lesson in data['lessons']:
             context += f"  - {lesson}\n"
         context += "\n"
+
+    # Add live updates (recent news being tracked)
+    live_updates = get_live_updates()
+    if live_updates:
+        context += "\n\n============== LIVE SITUATION UPDATES ==============\n"
+        context += "(Recent news/events being tracked - may not yet be DC-determined)\n\n"
+        for update in live_updates[-10:]:  # Last 10 updates
+            context += f"=== {update['company']} ({update['date']}) ===\n"
+            context += f"Headline: {update['headline']}\n"
+            context += f"Details: {update['details']}\n"
+            context += f"Potential CE Type: {update['potential_ce']}\n"
+            if update.get('source'):
+                context += f"Source: {update['source']}\n"
+            context += "\n"
 
     return context
 
@@ -901,7 +980,7 @@ def render_isda_agent():
 
     st.markdown("---")
 
-    tab1, tab2, tab3 = st.tabs(["Ask Agent", "Analyze Article", "DC Precedents"])
+    tab1, tab2, tab3, tab4 = st.tabs(["Ask Agent", "Analyze Article", "DC Precedents", "Add Live Update"])
 
     with tab1:
         render_agent_query(provider)
@@ -911,6 +990,9 @@ def render_isda_agent():
 
     with tab3:
         render_precedent_browser()
+
+    with tab4:
+        render_live_update_manager()
 
 
 def render_agent_query(provider: str):
@@ -983,9 +1065,12 @@ def render_precedent_browser():
     st.markdown("### DC Precedent Database")
     st.caption("Key Credit Derivatives Determinations Committee rulings")
 
+    # Get all precedents (hardcoded + user-added)
+    all_precedents = get_all_precedents()
+
     # Filter by event type
     all_events = set()
-    for data in ISDA_PRECEDENTS.values():
+    for data in all_precedents.values():
         all_events.update(data["events"])
 
     event_filter = st.multiselect(
@@ -994,7 +1079,10 @@ def render_precedent_browser():
         default=[]
     )
 
-    for name, data in sorted(ISDA_PRECEDENTS.items(), key=lambda x: x[1]["year"], reverse=True):
+    # Show count
+    st.caption(f"Total precedents: {len(all_precedents)}")
+
+    for name, data in sorted(all_precedents.items(), key=lambda x: x[1]["year"], reverse=True):
         # Apply filter
         if event_filter and not any(e in data["events"] for e in event_filter):
             continue
@@ -1009,3 +1097,120 @@ def render_precedent_browser():
             st.markdown("**Lessons for Future Cases:**")
             for lesson in data["lessons"]:
                 st.markdown(f"- {lesson}")
+
+
+def render_live_update_manager():
+    """UI for adding live updates and new precedents"""
+
+    st.markdown("### Live Situation Tracker")
+    st.caption("Add breaking news and developments to the agent's context")
+
+    update_type = st.radio(
+        "What do you want to add?",
+        ["Live News Update", "New DC Precedent"],
+        horizontal=True
+    )
+
+    if update_type == "Live News Update":
+        st.markdown("#### Add Live Update")
+        st.caption("Track a developing situation - the agent will consider this when answering questions")
+
+        col1, col2 = st.columns(2)
+        with col1:
+            company = st.text_input("Company Name", placeholder="e.g., Ardagh Packaging")
+            date = st.date_input("Date")
+        with col2:
+            potential_ce = st.selectbox(
+                "Potential Credit Event Type",
+                ["Unknown/Analyzing", "Failure to Pay", "Bankruptcy", "Restructuring",
+                 "Repudiation/Moratorium", "Governmental Intervention", "Not a Credit Event"]
+            )
+            source = st.text_input("Source (optional)", placeholder="e.g., Bloomberg, Reuters")
+
+        headline = st.text_input("Headline", placeholder="Brief headline of the development")
+        details = st.text_area(
+            "Details",
+            height=150,
+            placeholder="Paste the full article or describe the situation in detail..."
+        )
+
+        if st.button("Add Live Update", type="primary"):
+            if company and headline and details:
+                add_live_update(
+                    company=company,
+                    date=str(date),
+                    headline=headline,
+                    details=details,
+                    potential_ce=potential_ce,
+                    source=source
+                )
+                st.success(f"Added live update for {company}")
+                st.info("The agent will now consider this when answering questions.")
+            else:
+                st.warning("Please fill in Company, Headline, and Details")
+
+        # Show existing live updates
+        st.markdown("---")
+        st.markdown("#### Current Live Updates")
+        updates = get_live_updates()
+        if updates:
+            for i, update in enumerate(reversed(updates[-10:])):
+                with st.expander(f"{update['company']} - {update['date']}: {update['headline']}"):
+                    st.markdown(f"**Potential CE:** {update['potential_ce']}")
+                    st.markdown(f"**Details:** {update['details'][:500]}...")
+                    if update.get('source'):
+                        st.caption(f"Source: {update['source']}")
+        else:
+            st.info("No live updates yet. Add one above to track developing situations.")
+
+    else:  # New DC Precedent
+        st.markdown("#### Add New DC Precedent")
+        st.caption("Add a formally determined case to the precedent database")
+
+        col1, col2 = st.columns(2)
+        with col1:
+            name = st.text_input("Case Name", placeholder="e.g., Company Name (Year)")
+            year = st.number_input("Year", min_value=2000, max_value=2030, value=2024)
+        with col2:
+            events = st.multiselect(
+                "Credit Event Types",
+                ["Bankruptcy", "Failure to Pay", "Restructuring", "Repudiation/Moratorium",
+                 "Governmental Intervention", "Obligation Acceleration", "Obligation Default",
+                 "Succession Event", "LME - No Credit Event"]
+            )
+
+        summary = st.text_area(
+            "Summary",
+            height=100,
+            placeholder="Brief summary of what happened and how it was determined..."
+        )
+
+        key_rulings_text = st.text_area(
+            "Key Rulings (one per line)",
+            height=100,
+            placeholder="Enter each key ruling on a new line..."
+        )
+
+        lessons_text = st.text_area(
+            "Lessons for Future Cases (one per line)",
+            height=100,
+            placeholder="Enter each lesson on a new line..."
+        )
+
+        if st.button("Add Precedent", type="primary"):
+            if name and events and summary:
+                key_rulings = [r.strip() for r in key_rulings_text.split("\n") if r.strip()]
+                lessons = [l.strip() for l in lessons_text.split("\n") if l.strip()]
+
+                add_precedent(
+                    name=name,
+                    year=year,
+                    events=events,
+                    summary=summary,
+                    key_rulings=key_rulings,
+                    lessons=lessons
+                )
+                st.success(f"Added precedent: {name}")
+                st.info("This case will now be included in all future agent analyses.")
+            else:
+                st.warning("Please fill in Name, Events, and Summary")
