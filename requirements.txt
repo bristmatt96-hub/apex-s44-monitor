@@ -1,13 +1,35 @@
-streamlit
-tweepy
-requests
-feedparser
-sqlalchemy
-psycopg2-binary
-pandas
-openpyxl
-yfinance
-pypdf
-pytz
-openai
-anthropic
+# Core
+streamlit>=1.28.0
+pandas>=2.0.0
+requests>=2.31.0
+
+# Database
+sqlalchemy>=2.0.0
+psycopg2-binary>=2.9.0
+
+# Data sources
+tweepy>=4.14.0
+feedparser>=6.0.0
+yfinance>=0.2.0
+
+# Document processing
+pypdf>=3.0.0
+openpyxl>=3.1.0
+
+# AI/LLM
+openai>=1.0.0
+anthropic>=0.18.0
+
+# Transcription (install what you need)
+# pip install openai-whisper  # Local Whisper (free, needs ffmpeg)
+# pip install deepgram-sdk    # Live transcription ($0.0043/min)
+# pip install assemblyai      # Alternative live ($0.015/min)
+
+# Audio capture for live transcription
+# pip install pyaudio         # System audio capture
+
+# Timezone
+pytz>=2024.1
+
+# Optional: Better HTTP
+httpx>=0.27.0

@@ -1,7 +1,46 @@
+# Python
 __pycache__/
 *.pyc
-.env
+*.pyo
+*.egg-info/
+dist/
+build/
 
-# PDF books (index locally)
-knowledge/books/*.pdf
+# Virtual environment (rebuild on each machine)
+venv/
+.venv/
+env/
+
+# API keys and secrets (NEVER commit!)
+.env
+*.env
 .streamlit/secrets.toml
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# PDF books (too large for git)
+knowledge/books/*.pdf
+
+# Temp files
+*.tmp
+*.temp
+*.log
+
+# Audio recordings (too large)
+*.mp3
+*.m4a
+*.wav
+*.ogg
+
+# Database files (if using SQLite locally)
+*.db
+*.sqlite

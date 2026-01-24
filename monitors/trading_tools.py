@@ -1,8 +1,12 @@
 """
 Trading Tools for XO S44 Credit Monitor
+- LIVE Transcriber (real-time streaming with instant keyword alerts)
+- Call Transcriber (record calls, upload, transcribe, analyze)
+- Earnings Sentiment Analyzer
+- Earnings Release Monitor (SEC filings - beat Debtwire by 9 days)
+- LME Risk Dashboard
 - What-If Stress Calculator
 - Maturity Wall Visualizer
-- Data Freshness Tracker
 - Position Tracker with P&L
 """
 
@@ -505,6 +509,71 @@ def render_position_tracker():
         st.rerun()
 
 
+# ============== LME RISK DASHBOARD ==============
+
+def render_lme_risk_dashboard_wrapper():
+    """Wrapper to import and render LME Risk Dashboard"""
+    try:
+        from monitors.lme_risk_calculator import render_lme_risk_dashboard
+        render_lme_risk_dashboard()
+    except ImportError as e:
+        st.error(f"Could not load LME Risk Calculator: {e}")
+    except Exception as e:
+        st.error(f"Error rendering LME Risk Dashboard: {e}")
+
+
+# ============== EARNINGS SENTIMENT ANALYZER ==============
+
+def render_earnings_sentiment_wrapper():
+    """Wrapper to import and render Earnings Sentiment Analyzer"""
+    try:
+        from monitors.earnings_sentiment import render_earnings_analyzer
+        render_earnings_analyzer()
+    except ImportError as e:
+        st.error(f"Could not load Earnings Sentiment Analyzer: {e}")
+    except Exception as e:
+        st.error(f"Error rendering Earnings Sentiment Analyzer: {e}")
+
+
+# ============== EARNINGS RELEASE MONITOR ==============
+
+def render_earnings_monitor_wrapper():
+    """Wrapper to import and render Earnings Release Monitor"""
+    try:
+        from monitors.earnings_monitor import render_earnings_monitor
+        render_earnings_monitor()
+    except ImportError as e:
+        st.error(f"Could not load Earnings Monitor: {e}")
+    except Exception as e:
+        st.error(f"Error rendering Earnings Monitor: {e}")
+
+
+# ============== CALL TRANSCRIBER ==============
+
+def render_call_transcriber_wrapper():
+    """Wrapper to import and render Call Transcriber"""
+    try:
+        from monitors.call_transcriber import render_call_transcriber
+        render_call_transcriber()
+    except ImportError as e:
+        st.error(f"Could not load Call Transcriber: {e}")
+    except Exception as e:
+        st.error(f"Error rendering Call Transcriber: {e}")
+
+
+# ============== LIVE TRANSCRIBER ==============
+
+def render_live_transcriber_wrapper():
+    """Wrapper to import and render Live Transcriber"""
+    try:
+        from monitors.live_transcriber import render_live_transcriber
+        render_live_transcriber()
+    except ImportError as e:
+        st.error(f"Could not load Live Transcriber: {e}")
+    except Exception as e:
+        st.error(f"Error rendering Live Transcriber: {e}")
+
+
 # ============== MAIN RENDER FUNCTION ==============
 
 def render_trading_tools():
@@ -512,17 +581,25 @@ def render_trading_tools():
 
     tool = st.radio(
         "Select Tool",
-        ["What-If Calculator", "Maturity Wall", "Data Freshness", "Position Tracker"],
+        ["🔴 LIVE", "Transcribe", "Sentiment", "Earnings Mon", "LME Risk", "What-If", "Maturity", "Positions"],
         horizontal=True
     )
 
     st.markdown("---")
 
-    if tool == "What-If Calculator":
+    if tool == "🔴 LIVE":
+        render_live_transcriber_wrapper()
+    elif tool == "Transcribe":
+        render_call_transcriber_wrapper()
+    elif tool == "Sentiment":
+        render_earnings_sentiment_wrapper()
+    elif tool == "Earnings Mon":
+        render_earnings_monitor_wrapper()
+    elif tool == "LME Risk":
+        render_lme_risk_dashboard_wrapper()
+    elif tool == "What-If":
         render_whatif_calculator()
-    elif tool == "Maturity Wall":
+    elif tool == "Maturity":
         render_maturity_wall()
-    elif tool == "Data Freshness":
-        render_freshness_tracker()
-    elif tool == "Position Tracker":
+    elif tool == "Positions":
         render_position_tracker()

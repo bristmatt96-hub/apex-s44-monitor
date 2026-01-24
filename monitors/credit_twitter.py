@@ -238,10 +238,31 @@ CREDIT_KEYWORDS = [
     "covenant breach", "covenant waiver", "liquidity concerns",
     "going concern", "default", "missed payment", "forbearance",
 
-    # Restructuring
+    # Restructuring - General
     "restructuring", "liability management", "exchange offer",
     "maturity extension", "amend and extend", "debt-for-equity",
     "chapter 11", "scheme of arrangement", "standstill",
+
+    # LME-specific (2027/28 maturity wall critical keywords)
+    "lme", "transaction support agreement", "tsa", "lock-up",
+    "lockup", "consent solicitation", "uptier", "drop-down",
+    "dropdown", "priming", "non-pro rata", "cram down",
+    "cramdown", "exit consent", "asset stripping",
+    "unrestricted subsidiary", "j. crew", "serta", "chewy",
+    "creditor on creditor", "inter-creditor", "cooperation agreement",
+    "ad hoc group", "creditor group", "steering committee",
+
+    # Restructuring advisors (early warning)
+    "houlihan lokey", "pjt partners", "moelis", "evercore",
+    "lazard", "rothschild", "perella weinberg", "ducera",
+    "alvarez marsal", "alix partners", "fti consulting",
+    "kirkland", "weil gotshal", "milbank", "paul weiss",
+
+    # Insolvency proceedings
+    "chapter 7", "chapter 15", "administration", "liquidation",
+    "conciliation", "safeguard", "sauvegarde", "redressement",
+    "insolvency", "bankruptcy", "cvr", "cva", "whoa",
+    "receivership", "winding up", "pre-pack",
 
     # Refinancing
     "refinancing", "repricing", "new issue", "bond issue",
@@ -251,9 +272,16 @@ CREDIT_KEYWORDS = [
     "lbo", "leveraged buyout", "acquisition financing",
     "take-private", "sponsor-backed",
 
-    # Spread movements
+    # Spread movements / CDS
     "cds", "spread", "basis points", "bps wider", "bps tighter",
     "trading at", "bid wanted", "distressed",
+    "credit event", "determinations committee", "isda dc",
+    "auction", "deliverable", "recovery rate",
+
+    # Payment / Liquidity
+    "grace period", "payment default", "interest payment",
+    "coupon payment", "principal repayment", "liquidity crisis",
+    "cash burn", "runway", "debt service",
 ]
 
 def load_custom_accounts() -> List[Dict]:

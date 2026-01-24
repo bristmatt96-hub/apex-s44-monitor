@@ -1,0 +1,31 @@
+{
+  "precedents": {
+    "Ardagh Packaging Finance (2025-2026)": {
+      "year": 2025,
+      "events": ["Restructuring"],
+      "summary": "Luxembourg packaging group restructured USD 10bn debt. TSA signed July 2025 with 90%+ creditor support. SUNs (USD 4.3bn) equitized for 92.5% equity, SSNs exchanged into second-lien notes maturing Dec 2030. PIK Notes received 7.5% equity. External Review Panel ruled Restructuring CE occurred at TSA signing date (7 Oct 2025), not implementation. Arini challenged inclusion of SUNs as deliverable obligations, arguing their OPB was reduced to zero at agreement date (creating 'Schrödinger's Obligations' - existing in two opposite states). Tresidor and Laurion filed responses defending SUNs inclusion. DC ruled 9-2 in favour of including SUNs as deliverables on 9 Jan 2026. Asset Package Delivery mechanism to be used since SUNs equitized before auction. Owner Paul Coulson ceded control to bondholders, receiving ~USD 100m of USD 300m shareholder payout.",
+      "key_rulings": [
+        "Restructuring CE triggered at TSA signing (7 Oct 2025) when binding threshold exceeded, not at implementation",
+        "SUNs deliverable into CDS auction despite being equitized before auction (9-2 DC vote)",
+        "DC rejected 'Schrödinger's Obligations' argument - agreement to restructure ≠ implementation of restructuring",
+        "Asset Package Delivery allows post-reorg equity to be delivered in lieu of extinguished bonds",
+        "External agreements (TSA, consent solicitation) caused principal reduction, not 'terms of the obligation' themselves",
+        "90% consent threshold required for consensual implementation; alternative UK schemes available if not met",
+        "Early bird fees: SSN holders got par vs 80 cents; SUN/PIK holders got 30% extra equity allocation"
+      ],
+      "lessons": [
+        "Binding threshold crossed at TSA = CE trigger, regardless of whether restructuring is ever completed",
+        "Post-reorg equity can be deliverable via Asset Package Delivery mechanism (follows Altice France precedent)",
+        "Cheapest-to-deliver matters: SUNs at steep discount vs SSNs at 90+ cents dramatically affects CDS payout",
+        "Challenging deliverables list is possible but difficult - need clear contractual argument",
+        "'Schrödinger's Obligations' theory rejected - cannot have CE trigger but zero OPB simultaneously",
+        "Protection sellers must account for timing gap between agreement and implementation",
+        "DC prioritizes economic reality of creditor losses over technical/creative arguments",
+        "Distinction between 'agreement to restructure' and 'implementation' is critical for CDS timing",
+        "Chapter 15 filed in US (SDNY, Judge Glenn) to recognize Luxembourg reorganization proceedings"
+      ],
+      "added": "2026-01-24T16:00:00"
+    }
+  },
+  "live_updates": []
+}
