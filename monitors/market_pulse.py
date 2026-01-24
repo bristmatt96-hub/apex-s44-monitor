@@ -58,7 +58,7 @@ def load_watchlist() -> List[str]:
     watchlist = []
 
     # Try to load XO S44 index
-    xo_file = indices_dir / "xo_s44.json"
+    xo_file = indices_dir / "xover_s44.json"
     if xo_file.exists():
         try:
             with open(xo_file, "r", encoding="utf-8") as f:
