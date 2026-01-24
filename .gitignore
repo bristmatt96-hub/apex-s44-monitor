@@ -44,3 +44,8 @@ knowledge/books/*.pdf
 # Database files (if using SQLite locally)
 *.db
 *.sqlite
+
+# Excel exports (raw data)
+*.xlsx
+*.xls
+data/exports/
