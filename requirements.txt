@@ -1,11 +1,13 @@
 # Core
 streamlit>=1.28.0
 pandas>=2.0.0
+numpy>=1.26.0
 requests>=2.31.0
 
 # Database
 sqlalchemy>=2.0.0
 psycopg2-binary>=2.9.0
+aiosqlite>=0.19.0
 
 # Data sources
 tweepy>=4.14.0
@@ -20,16 +22,57 @@ openpyxl>=3.1.0
 openai>=1.0.0
 anthropic>=0.18.0
 
-# Transcription (install what you need)
-# pip install openai-whisper  # Local Whisper (free, needs ffmpeg)
-# pip install deepgram-sdk    # Live transcription ($0.0043/min)
-# pip install assemblyai      # Alternative live ($0.015/min)
-
-# Audio capture for live transcription
-# pip install pyaudio         # System audio capture
-
 # Timezone
 pytz>=2024.1
 
-# Optional: Better HTTP
+# HTTP
 httpx>=0.27.0
+aiohttp>=3.9.0
+
+# ============================================
+# TRADING SYSTEM - Multi-Agent Dependencies
+# ============================================
+
+# Interactive Brokers
+ib_insync>=0.9.86
+
+# Crypto exchanges
+ccxt>=4.2.0
+python-binance>=1.0.19
+
+# Technical Analysis
+pandas-ta>=0.3.14b
+ta>=0.11.0
+
+# Machine Learning
+scikit-learn>=1.4.0
+xgboost>=2.0.3
+lightgbm>=4.3.0
+
+# Deep Learning (optional)
+# torch>=2.1.0
+
+# Sentiment Analysis
+textblob>=0.17.1
+vaderSentiment>=3.3.2
+newsapi-python>=0.2.7
+praw>=7.7.1
+
+# Agent Communication
+redis>=5.0.0
+
+# API Framework
+fastapi>=0.109.0
+uvicorn>=0.27.0
+websockets>=12.0
+
+# Utilities
+python-dotenv>=1.0.0
+pydantic>=2.5.0
+loguru>=0.7.2
+schedule>=1.2.0
+scipy>=1.12.0
+
+# Testing
+pytest>=7.4.0
+pytest-asyncio>=0.23.0

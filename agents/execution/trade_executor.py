@@ -1,0 +1,374 @@
+"""
+Trade Execution Agent
+Handles order execution, position management, and trade tracking
+"""
+import asyncio
+from typing import List, Optional, Dict, Any
+from datetime import datetime
+from loguru import logger
+
+from core.base_agent import BaseAgent, AgentMessage
+from core.broker import IBBroker
+from core.models import Trade, Position, OrderType, OrderStatus, MarketType
+from config.settings import config
+
+
+class TradeExecutor(BaseAgent):
+    """
+    Executes trades based on approved opportunities.
+
+    Responsibilities:
+    - Order execution through IB
+    - Position sizing based on risk
+    - Stop loss / take profit orders
+    - Trade tracking and logging
+    - PDT compliance for equities
+    """
+
+    def __init__(self, agent_config: Optional[Dict] = None):
+        super().__init__("TradeExecutor", agent_config)
+
+        self.broker = IBBroker()
+        self.pending_orders: List[Dict] = []
+        self.active_trades: List[Trade] = []
+        self.positions: List[Position] = []
+        self.trade_history: List[Trade] = []
+
+        # Position sizing
+        self.capital = config.risk.starting_capital
+        self.max_position_pct = config.risk.max_position_pct
+        self.max_positions = config.risk.max_positions
+
+        # PDT tracking
+        self.day_trades_today = 0
+        self.pdt_restricted = config.pdt_restricted
+
+        # Connection state
+        self.connected = False
+
+    async def start(self) -> None:
+        """Start executor and connect to broker"""
+        await super().start()
+
+        # Connect to Interactive Brokers
+        self.connected = await self.broker.connect()
+
+        if self.connected:
+            logger.info("TradeExecutor connected to IB")
+            await self._sync_positions()
+        else:
+            logger.warning("TradeExecutor running in simulation mode (IB not connected)")
+
+    async def stop(self) -> None:
+        """Stop executor and disconnect"""
+        if self.connected:
+            await self.broker.disconnect()
+        await super().stop()
+
+    async def process(self) -> None:
+        """Process pending orders"""
+        if not self.pending_orders:
+            await asyncio.sleep(0.5)
+            return
+
+        while self.pending_orders:
+            order = self.pending_orders.pop(0)
+
+            # Validate order
+            if not await self._validate_order(order):
+                continue
+
+            # Execute
+            trade = await self._execute_order(order)
+
+            if trade:
+                self.active_trades.append(trade)
+                await self._notify_trade_status(trade)
+
+    async def handle_message(self, message: AgentMessage) -> None:
+        """Handle incoming messages"""
+        if message.msg_type == 'execute_trade':
+            self.pending_orders.append(message.payload)
+            logger.info(f"Order queued: {message.payload.get('symbol')}")
+
+        elif message.msg_type == 'cancel_order':
+            order_id = message.payload.get('order_id')
+            await self._cancel_order(order_id)
+
+        elif message.msg_type == 'close_position':
+            symbol = message.payload.get('symbol')
+            await self._close_position(symbol)
+
+        elif message.msg_type == 'get_positions':
+            await self._send_positions()
+
+        elif message.msg_type == 'sync_positions':
+            await self._sync_positions()
+
+    async def _validate_order(self, order: Dict) -> bool:
+        """Validate order before execution"""
+        symbol = order.get('symbol')
+        market_type = order.get('market_type')
+        side = order.get('side', 'buy')
+
+        # Check position limits
+        if len(self.positions) >= self.max_positions and side == 'buy':
+            logger.warning(f"Max positions ({self.max_positions}) reached")
+            return False
+
+        # Check if already have position in same symbol
+        for pos in self.positions:
+            if pos.symbol == symbol:
+                logger.warning(f"Already have position in {symbol}")
+                return False
+
+        # PDT check for equity day trades
+        if market_type == 'equity' and self.pdt_restricted:
+            if self._is_day_trade(order) and self.day_trades_today >= 3:
+                logger.warning("PDT limit reached - order rejected")
+                await self.send_message(
+                    target='coordinator',
+                    msg_type='order_rejected',
+                    payload={'symbol': symbol, 'reason': 'PDT limit'},
+                    priority=2
+                )
+                return False
+
+        return True
+
+    def _is_day_trade(self, order: Dict) -> bool:
+        """Check if order would be a day trade"""
+        # Would need to check if we opened position today
+        # Simplified: treat all equity trades as potential day trades
+        return order.get('market_type') == 'equity'
+
+    async def _execute_order(self, order: Dict) -> Optional[Trade]:
+        """Execute a trade order"""
+        symbol = order.get('symbol')
+        market_type = MarketType(order.get('market_type', 'equity'))
+        side = order.get('side', 'buy')
+        entry_price = order.get('entry_price', 0)
+        stop_loss = order.get('stop_loss')
+        target_price = order.get('target_price')
+
+        # Calculate position size
+        quantity = self._calculate_position_size(order)
+
+        if quantity <= 0:
+            logger.warning(f"Invalid position size for {symbol}")
+            return None
+
+        logger.info(f"Executing: {side.upper()} {quantity} {symbol} @ ~{entry_price:.2f}")
+
+        if self.connected:
+            # Live execution through IB
+            trade = await self.broker.place_order(
+                symbol=symbol,
+                market_type=market_type,
+                side=side,
+                quantity=quantity,
+                order_type=OrderType.MARKET
+            )
+
+            if trade:
+                trade.metadata['stop_loss'] = stop_loss
+                trade.metadata['target_price'] = target_price
+                trade.metadata['signal'] = order
+
+                # Place stop loss order
+                if stop_loss:
+                    await self._place_stop_order(symbol, market_type, quantity, stop_loss)
+
+                # Track day trades
+                if market_type == MarketType.EQUITY:
+                    self.day_trades_today += 1
+
+                return trade
+
+        else:
+            # Simulation mode
+            trade = Trade(
+                id=f"SIM-{datetime.now().strftime('%Y%m%d%H%M%S')}",
+                symbol=symbol,
+                market_type=market_type,
+                side=side,
+                quantity=quantity,
+                order_type=OrderType.MARKET,
+                status=OrderStatus.FILLED,
+                fill_price=entry_price,
+                fill_quantity=quantity,
+                filled_at=datetime.now(),
+                metadata={
+                    'stop_loss': stop_loss,
+                    'target_price': target_price,
+                    'simulated': True,
+                    'signal': order
+                }
+            )
+
+            # Create simulated position
+            position = Position(
+                symbol=symbol,
+                market_type=market_type,
+                quantity=quantity,
+                entry_price=entry_price,
+                current_price=entry_price,
+                entry_time=datetime.now(),
+                stop_loss=stop_loss,
+                take_profit=target_price
+            )
+            self.positions.append(position)
+
+            logger.info(f"SIMULATED: {side.upper()} {quantity} {symbol} @ {entry_price:.2f}")
+            return trade
+
+        return None
+
+    def _calculate_position_size(self, order: Dict) -> float:
+        """Calculate position size based on risk parameters"""
+        entry_price = order.get('entry_price', 0)
+        stop_loss = order.get('stop_loss', 0)
+        market_type = order.get('market_type', 'equity')
+
+        if entry_price <= 0:
+            return 0
+
+        # Max position value
+        max_position_value = self.capital * self.max_position_pct
+
+        # Risk-based sizing (if stop loss provided)
+        if stop_loss and stop_loss < entry_price:
+            risk_per_share = entry_price - stop_loss
+            # Risk 1% of capital per trade
+            max_risk = self.capital * 0.01
+            risk_based_quantity = max_risk / risk_per_share
+
+            # Position value constraint
+            value_based_quantity = max_position_value / entry_price
+
+            quantity = min(risk_based_quantity, value_based_quantity)
+        else:
+            # Simple position sizing
+            quantity = max_position_value / entry_price
+
+        # Round appropriately
+        if market_type == 'crypto':
+            # Crypto can have fractional quantities
+            return round(quantity, 4)
+        elif market_type == 'forex':
+            # Forex in lots (1 lot = 100,000 units)
+            # For small account, use micro lots
+            return round(quantity, 2)
+        else:
+            # Equities - whole shares
+            return int(quantity)
+
+    async def _place_stop_order(
+        self,
+        symbol: str,
+        market_type: MarketType,
+        quantity: float,
+        stop_price: float
+    ) -> None:
+        """Place a stop loss order"""
+        if not self.connected:
+            return
+
+        await self.broker.place_order(
+            symbol=symbol,
+            market_type=market_type,
+            side='sell',
+            quantity=quantity,
+            order_type=OrderType.STOP,
+            stop_price=stop_price
+        )
+        logger.info(f"Stop loss placed for {symbol} @ {stop_price:.2f}")
+
+    async def _cancel_order(self, order_id: str) -> None:
+        """Cancel an order"""
+        if self.connected:
+            success = await self.broker.cancel_order(order_id)
+            if success:
+                logger.info(f"Order {order_id} cancelled")
+        else:
+            # Remove from active trades in sim mode
+            self.active_trades = [t for t in self.active_trades if t.id != order_id]
+
+    async def _close_position(self, symbol: str) -> None:
+        """Close a position"""
+        position = next((p for p in self.positions if p.symbol == symbol), None)
+
+        if not position:
+            logger.warning(f"No position found for {symbol}")
+            return
+
+        if self.connected:
+            # Market sell order
+            await self.broker.place_order(
+                symbol=symbol,
+                market_type=position.market_type,
+                side='sell',
+                quantity=position.quantity,
+                order_type=OrderType.MARKET
+            )
+        else:
+            # Simulation
+            self.positions = [p for p in self.positions if p.symbol != symbol]
+            logger.info(f"SIMULATED: Closed position in {symbol}")
+
+    async def _sync_positions(self) -> None:
+        """Sync positions from broker"""
+        if self.connected:
+            self.positions = await self.broker.get_positions()
+            logger.info(f"Synced {len(self.positions)} positions from IB")
+
+    async def _send_positions(self) -> None:
+        """Send current positions to coordinator"""
+        await self.send_message(
+            target='coordinator',
+            msg_type='positions_update',
+            payload={
+                'positions': [
+                    {
+                        'symbol': p.symbol,
+                        'market_type': p.market_type.value,
+                        'quantity': p.quantity,
+                        'entry_price': p.entry_price,
+                        'current_price': p.current_price,
+                        'pnl_pct': p.pnl_pct,
+                        'stop_loss': p.stop_loss,
+                        'take_profit': p.take_profit
+                    }
+                    for p in self.positions
+                ],
+                'count': len(self.positions)
+            },
+            priority=3
+        )
+
+    async def _notify_trade_status(self, trade: Trade) -> None:
+        """Notify coordinator of trade execution"""
+        await self.send_message(
+            target='coordinator',
+            msg_type='trade_executed',
+            payload={
+                'trade_id': trade.id,
+                'symbol': trade.symbol,
+                'market_type': trade.market_type.value,
+                'side': trade.side,
+                'quantity': trade.quantity,
+                'fill_price': trade.fill_price,
+                'status': trade.status.value,
+                'timestamp': trade.filled_at.isoformat() if trade.filled_at else None
+            },
+            priority=1
+        )
+
+    def get_portfolio_value(self) -> float:
+        """Get total portfolio value"""
+        positions_value = sum(p.market_value for p in self.positions)
+        return self.capital + positions_value
+
+    def get_unrealized_pnl(self) -> float:
+        """Get total unrealized P&L"""
+        return sum(p.unrealized_pnl for p in self.positions)
