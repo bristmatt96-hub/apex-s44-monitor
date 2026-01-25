@@ -52,6 +52,10 @@ lightgbm>=4.3.0
 # Deep Learning (optional)
 # torch>=2.1.0
 
+# Audio Transcription (for knowledge ingestion)
+openai-whisper>=20231117
+ffmpeg-python>=0.2.0
+
 # Sentiment Analysis
 textblob>=0.17.1
 vaderSentiment>=3.3.2

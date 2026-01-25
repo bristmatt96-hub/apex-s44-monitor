@@ -16,7 +16,7 @@ sudo apt update && sudo apt upgrade -y
 
 # Install Python and dependencies
 echo "[2/6] Installing Python and tools..."
-sudo apt install -y python3 python3-pip python3-venv git screen htop
+sudo apt install -y python3 python3-pip python3-venv git screen htop ffmpeg
 
 # Install TA-Lib (required for technical analysis)
 echo "[3/6] Installing TA-Lib..."
