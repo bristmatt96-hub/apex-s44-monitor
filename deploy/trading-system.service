@@ -1,0 +1,26 @@
+[Unit]
+Description=Multi-Agent Trading System
+After=network.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/root/apex-s44-monitor
+Environment=PATH=/root/apex-s44-monitor/venv/bin:/usr/local/bin:/usr/bin:/bin
+ExecStart=/root/apex-s44-monitor/venv/bin/python main.py --scan
+
+# Auto-restart on failure
+Restart=always
+RestartSec=10
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+
+# Resource limits
+MemoryLimit=1G
+CPUQuota=80%
+
+[Install]
+WantedBy=multi-user.target
