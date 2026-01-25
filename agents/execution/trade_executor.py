@@ -11,6 +11,7 @@ from core.base_agent import BaseAgent, AgentMessage
 from core.broker import IBBroker
 from core.models import Trade, Position, OrderType, OrderStatus, MarketType
 from config.settings import config
+from utils.telegram_notifier import get_notifier
 
 
 class TradeExecutor(BaseAgent):
@@ -45,6 +46,9 @@ class TradeExecutor(BaseAgent):
 
         # Connection state
         self.connected = False
+
+        # Telegram notifications
+        self.notifier = get_notifier()
 
     async def start(self) -> None:
         """Start executor and connect to broker"""
@@ -183,6 +187,9 @@ class TradeExecutor(BaseAgent):
                 if market_type == MarketType.EQUITY:
                     self.day_trades_today += 1
 
+                # Send Telegram notification
+                await self._send_entry_notification(trade, order)
+
                 return trade
 
         else:
@@ -220,9 +227,95 @@ class TradeExecutor(BaseAgent):
             self.positions.append(position)
 
             logger.info(f"SIMULATED: {side.upper()} {quantity} {symbol} @ {entry_price:.2f}")
+
+            # Send Telegram notification
+            await self._send_entry_notification(trade, order)
+
             return trade
 
         return None
+
+    async def _send_entry_notification(self, trade: Trade, order: Dict) -> None:
+        """Send Telegram notification for trade entry"""
+        if not self.notifier:
+            return
+
+        try:
+            # Build rationale from signal data
+            signal = order.get('signal', order)
+            reasoning = signal.get('reasoning', [])
+            if isinstance(reasoning, list):
+                rationale = ' '.join(reasoning[:3]) if reasoning else "Signal matched entry criteria"
+            else:
+                rationale = str(reasoning) if reasoning else "Signal matched entry criteria"
+
+            metadata = signal.get('metadata', {})
+            strategy = metadata.get('strategy', signal.get('source', 'unknown'))
+
+            await self.notifier.notify_trade_entry(
+                symbol=trade.symbol,
+                side=trade.side,
+                quantity=trade.quantity,
+                entry_price=trade.fill_price or order.get('entry_price', 0),
+                market_type=trade.market_type.value,
+                strategy=strategy,
+                risk_reward=signal.get('risk_reward_ratio', 0),
+                confidence=signal.get('confidence', 0),
+                rationale=rationale,
+                stop_loss=order.get('stop_loss'),
+                target=order.get('target_price')
+            )
+        except Exception as e:
+            logger.error(f"Failed to send entry notification: {e}")
+
+    async def _send_exit_notification(
+        self,
+        symbol: str,
+        side: str,
+        quantity: float,
+        entry_price: float,
+        exit_price: float,
+        market_type: str,
+        entry_time: datetime,
+        exit_reason: str
+    ) -> None:
+        """Send Telegram notification for trade exit"""
+        if not self.notifier:
+            return
+
+        try:
+            # Calculate P&L
+            if side.lower() == 'buy':
+                pnl = (exit_price - entry_price) * quantity
+                pnl_pct = ((exit_price / entry_price) - 1) * 100
+            else:
+                pnl = (entry_price - exit_price) * quantity
+                pnl_pct = ((entry_price / exit_price) - 1) * 100
+
+            # Calculate hold time
+            hold_duration = datetime.now() - entry_time
+            days = hold_duration.days
+            hours = hold_duration.seconds // 3600
+            if days > 0:
+                hold_time = f"{days}d {hours}h"
+            else:
+                minutes = (hold_duration.seconds % 3600) // 60
+                hold_time = f"{hours}h {minutes}m"
+
+            await self.notifier.notify_trade_exit(
+                symbol=symbol,
+                side=side,
+                quantity=quantity,
+                entry_price=entry_price,
+                exit_price=exit_price,
+                market_type=market_type,
+                pnl=pnl,
+                pnl_pct=pnl_pct,
+                hold_time=hold_time,
+                exit_reason=exit_reason
+            )
+        except Exception as e:
+            logger.error(f"Failed to send exit notification: {e}")
 
     def _calculate_position_size(self, order: Dict) -> float:
         """Calculate position size based on risk parameters"""
@@ -294,7 +387,7 @@ class TradeExecutor(BaseAgent):
             # Remove from active trades in sim mode
             self.active_trades = [t for t in self.active_trades if t.id != order_id]
 
-    async def _close_position(self, symbol: str) -> None:
+    async def _close_position(self, symbol: str, exit_reason: str = "Manual close") -> None:
         """Close a position"""
         position = next((p for p in self.positions if p.symbol == symbol), None)
 
@@ -302,19 +395,35 @@ class TradeExecutor(BaseAgent):
             logger.warning(f"No position found for {symbol}")
             return
 
+        exit_price = position.current_price
+
         if self.connected:
             # Market sell order
-            await self.broker.place_order(
+            trade = await self.broker.place_order(
                 symbol=symbol,
                 market_type=position.market_type,
                 side='sell',
                 quantity=position.quantity,
                 order_type=OrderType.MARKET
             )
+            if trade and trade.fill_price:
+                exit_price = trade.fill_price
         else:
             # Simulation
             self.positions = [p for p in self.positions if p.symbol != symbol]
             logger.info(f"SIMULATED: Closed position in {symbol}")
+
+        # Send exit notification
+        await self._send_exit_notification(
+            symbol=symbol,
+            side='buy',  # Assuming we were long
+            quantity=position.quantity,
+            entry_price=position.entry_price,
+            exit_price=exit_price,
+            market_type=position.market_type.value,
+            entry_time=position.entry_time,
+            exit_reason=exit_reason
+        )
 
     async def _sync_positions(self) -> None:
         """Sync positions from broker"""
