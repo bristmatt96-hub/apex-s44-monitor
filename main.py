@@ -31,7 +31,7 @@ logger.add(
 
 from config.settings import config
 from agents.coordinator import Coordinator
-from agents.scanners import EquityScanner, CryptoScanner, ForexScanner, OptionsScanner
+from agents.scanners import EquityScanner, CryptoScanner, ForexScanner, OptionsScanner, EdgarInsiderScanner
 from agents.signals import TechnicalAnalyzer, MLPredictor, OpportunityRanker
 from agents.execution import TradeExecutor
 
@@ -60,6 +60,9 @@ class TradingSystem:
 
         if config.scanner.options_enabled:
             self.coordinator.register_agent(OptionsScanner())
+
+        # Event-Driven Scanners
+        self.coordinator.register_agent(EdgarInsiderScanner())
 
         # Signal Processing
         self.coordinator.register_agent(TechnicalAnalyzer())
@@ -140,7 +143,8 @@ async def run_scan_only():
     scanners = [
         EquityScanner(),
         CryptoScanner(),
-        ForexScanner()
+        ForexScanner(),
+        EdgarInsiderScanner()
     ]
 
     all_signals = []

@@ -47,6 +47,7 @@ class OpportunityRanker(BaseAgent):
         self.ranked_opportunities: List[ScoredOpportunity] = []
         self.current_positions: List[Dict] = []
         self.day_trades_used = 0
+        self.recent_insider_buys: Dict[str, Dict] = {}  # symbol -> insider data
 
         # Scoring weights
         self.weights = {
@@ -215,6 +216,27 @@ class OpportunityRanker(BaseAgent):
         if ml_predictions.get('up_probability', 0.5) > 0.65:
             composite *= 1.08
             reasoning.append("ML predicts upside")
+
+        # Insider buying confluence bonus
+        # If insiders are buying AND we have a technical signal, that's very strong
+        source = opportunity.get('source', '')
+        if source == 'edgar_insider_buying':
+            # Track this insider signal for confluence detection
+            self.recent_insider_buys[symbol] = {
+                'metadata': opportunity.get('metadata', {}),
+                'timestamp': datetime.now()
+            }
+        elif symbol in self.recent_insider_buys:
+            # Technical signal + insider buying = confluence
+            insider_data = self.recent_insider_buys[symbol]
+            age_hours = (datetime.now() - insider_data['timestamp']).total_seconds() / 3600
+            if age_hours < 168:  # Within 7 days
+                composite *= 1.15  # 15% confluence bonus
+                insider_meta = insider_data.get('metadata', {})
+                value = insider_meta.get('total_purchase_value', 0)
+                reasoning.append(
+                    f"Insider buying confluence: ${value:,.0f} purchased in last 7 days"
+                )
 
         return ScoredOpportunity(
             signal=opportunity,

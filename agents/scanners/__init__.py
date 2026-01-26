@@ -4,5 +4,7 @@ from .crypto_scanner import CryptoScanner
 from .forex_scanner import ForexScanner
 from .options_scanner import OptionsScanner
 from .base_scanner import BaseScanner
+from .edgar_insider_scanner import EdgarInsiderScanner
 
-__all__ = ['BaseScanner', 'EquityScanner', 'CryptoScanner', 'ForexScanner', 'OptionsScanner']
+__all__ = ['BaseScanner', 'EquityScanner', 'CryptoScanner', 'ForexScanner',
+           'OptionsScanner', 'EdgarInsiderScanner']
