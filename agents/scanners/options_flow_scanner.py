@@ -506,23 +506,23 @@ class OptionsFlowScanner(BaseAgent):
         confidence = min(confidence, 0.90)
 
         # Build signal
+        otm_values = [f.otm_pct for f in key_flows if f.otm_pct > 0]
+        avg_otm = float(np.mean(otm_values)) if otm_values else 5.0
+        target_pct = max(avg_otm, 3.0)  # At least 3% move
+
         if direction == 'bullish':
             signal_type = SignalType.BUY
-            # Target: average OTM target from flows
-            avg_otm = np.mean([f.otm_pct for f in key_flows if f.otm_pct > 0]) if key_flows else 5.0
-            target_pct = max(avg_otm, 3.0)  # At least 3% move
             target_price = stock_price * (1 + target_pct / 100)
             stop_loss = stock_price * 0.95  # 5% stop
         else:
             signal_type = SignalType.SELL
-            avg_otm = np.mean([f.otm_pct for f in key_flows if f.otm_pct > 0]) if key_flows else 5.0
-            target_pct = max(avg_otm, 3.0)
             target_price = stock_price * (1 - target_pct / 100)
             stop_loss = stock_price * 1.05  # 5% stop
 
-        rr_ratio = abs(target_price - stock_price) / abs(stock_price - stop_loss) if abs(stock_price - stop_loss) > 0 else 0
+        risk = abs(stock_price - stop_loss)
+        rr_ratio = abs(target_price - stock_price) / risk if risk > 0 else 0
 
-        if rr_ratio < 1.5:
+        if rr_ratio < 1.5 or np.isnan(rr_ratio):
             return None
 
         # Build flow details for metadata
