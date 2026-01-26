@@ -10,6 +10,7 @@ from loguru import logger
 
 from core.base_agent import BaseAgent, AgentMessage
 from core.models import Signal, Opportunity, MarketType
+from core.adaptive_weights import get_adaptive_weights
 from config.settings import config
 
 
@@ -60,8 +61,16 @@ class OpportunityRanker(BaseAgent):
         self.min_risk_reward = config.signals.min_risk_reward
         self.min_confidence = config.signals.min_confidence
 
+        # Adaptive market weights
+        self.adaptive_weights = get_adaptive_weights()
+
     async def process(self) -> None:
         """Process and rank opportunities"""
+        # Check if adaptive weights need recalculation
+        if self.adaptive_weights.should_adapt():
+            new_weights = self.adaptive_weights.adapt()
+            logger.info(f"Weights adapted: {new_weights}")
+
         if not self.pending_opportunities:
             await asyncio.sleep(1)
             return
@@ -167,6 +176,14 @@ class OpportunityRanker(BaseAgent):
             liquidity_score * self.weights['liquidity'] +
             diversification_score * self.weights['diversification']
         ) - pdt_penalty
+
+        # Apply adaptive market weight
+        market_weight = self.adaptive_weights.get_weight(market_type)
+        composite *= (0.7 + (market_weight * 0.6))  # Range: 0.7x to 1.3x multiplier
+        if market_weight >= 0.8:
+            reasoning.append(f"High priority market (weight: {market_weight:.2f})")
+        elif market_weight <= 0.3:
+            reasoning.append(f"Low priority market (weight: {market_weight:.2f})")
 
         # Bonus for crypto/forex (no PDT)
         if market_type in ['crypto', 'forex']:

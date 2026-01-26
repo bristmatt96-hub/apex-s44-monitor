@@ -8,6 +8,7 @@ from datetime import datetime
 from loguru import logger
 
 from core.base_agent import BaseAgent, AgentMessage, AgentState
+from core.adaptive_weights import get_adaptive_weights
 from config.settings import config
 
 
@@ -46,6 +47,9 @@ class Coordinator(BaseAgent):
         # Risk limits
         self.max_daily_loss = config.risk.max_daily_loss_pct * config.risk.starting_capital
         self.daily_pnl = 0
+
+        # Adaptive market weights
+        self.adaptive_weights = get_adaptive_weights()
 
     def register_agent(self, agent: BaseAgent) -> None:
         """Register an agent with the coordinator"""
@@ -111,6 +115,23 @@ class Coordinator(BaseAgent):
         elif msg_type == 'trade_executed':
             self.executed_trades.append(payload)
             logger.info(f"Trade executed: {payload.get('symbol')} - {payload.get('side')}")
+
+        elif msg_type == 'trade_closed':
+            # Record completed trade for adaptive weight learning
+            self.adaptive_weights.record_trade({
+                'market_type': payload.get('market_type'),
+                'symbol': payload.get('symbol'),
+                'side': payload.get('side'),
+                'entry_price': payload.get('entry_price'),
+                'exit_price': payload.get('exit_price'),
+                'pnl': payload.get('pnl'),
+                'pnl_pct': payload.get('pnl_pct'),
+                'risk_reward_achieved': payload.get('risk_reward_achieved', 0),
+                'hold_time_hours': payload.get('hold_time_hours', 0),
+                'strategy': payload.get('strategy', 'unknown'),
+                'timestamp': datetime.now().isoformat()
+            })
+            logger.info(f"Trade recorded for adaptive learning: {payload.get('symbol')}")
 
         elif msg_type == 'positions_update':
             self.positions = payload.get('positions', [])
