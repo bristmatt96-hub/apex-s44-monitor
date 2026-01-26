@@ -48,6 +48,7 @@ class OpportunityRanker(BaseAgent):
         self.current_positions: List[Dict] = []
         self.day_trades_used = 0
         self.recent_insider_buys: Dict[str, Dict] = {}  # symbol -> insider data
+        self.recent_options_flow: Dict[str, Dict] = {}  # symbol -> unusual flow data
 
         # Scoring weights
         self.weights = {
@@ -237,6 +238,33 @@ class OpportunityRanker(BaseAgent):
                 reasoning.append(
                     f"Insider buying confluence: ${value:,.0f} purchased in last 7 days"
                 )
+
+        # Unusual options flow confluence bonus
+        # If unusual bullish flow AND we have a technical buy signal, that's strong
+        if source == 'unusual_options_flow':
+            # Track flow signal for confluence detection
+            self.recent_options_flow[symbol] = {
+                'metadata': opportunity.get('metadata', {}),
+                'timestamp': datetime.now()
+            }
+        elif symbol in self.recent_options_flow:
+            # Technical signal + unusual options flow = confluence
+            flow_data = self.recent_options_flow[symbol]
+            age_hours = (datetime.now() - flow_data['timestamp']).total_seconds() / 3600
+            if age_hours < 72:  # Within 3 days (flow is more time-sensitive)
+                flow_meta = flow_data.get('metadata', {})
+                flow_dir = flow_meta.get('flow_direction', '')
+                # Only boost if flow direction matches signal direction
+                signal_type = opportunity.get('signal_type', '')
+                if (flow_dir == 'bullish' and signal_type == 'buy') or \
+                   (flow_dir == 'bearish' and signal_type == 'sell'):
+                    composite *= 1.12  # 12% confluence bonus
+                    premium = flow_meta.get('directional_premium', 0)
+                    has_sweep = flow_meta.get('has_sweep', False)
+                    sweep_note = " (includes sweeps)" if has_sweep else ""
+                    reasoning.append(
+                        f"Options flow confluence: ${premium:,.0f} {flow_dir} premium{sweep_note}"
+                    )
 
         return ScoredOpportunity(
             signal=opportunity,

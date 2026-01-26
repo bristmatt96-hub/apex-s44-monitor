@@ -95,6 +95,15 @@ class StrategyConfig(BaseModel):
             'score_bonus': 1.25,  # 25% boost - strongest fundamental signal
             'description': 'SEC Form 4 insider purchases (CEO/CFO/Directors)'
         },
+        'unusual_options_flow': {
+            'enabled': True,
+            'markets': ['equity', 'options'],
+            'best_market': 'options',
+            'avg_profit_factor': 2.00,  # Based on academic flow studies
+            'avg_win_rate': 0.55,
+            'score_bonus': 1.18,  # 18% boost - strong informed money signal
+            'description': 'Unusual options V/OI ratio, sweeps, and premium concentration'
+        },
     }
 
     # Disabled strategies (no proven edge)
