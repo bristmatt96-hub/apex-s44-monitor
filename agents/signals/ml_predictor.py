@@ -33,6 +33,7 @@ except ImportError:
 
 from core.base_agent import BaseAgent, AgentMessage
 from core.models import Signal, SignalType
+from core.model_manager import get_model_manager
 
 
 class MLPredictor(BaseAgent):
@@ -60,8 +61,18 @@ class MLPredictor(BaseAgent):
         self.pending_predictions: List[Dict] = []
         self.min_training_samples = 200
 
-        # Initialize models
-        self._init_models()
+        # Model manager for persistence and staleness detection
+        self.model_manager = get_model_manager()
+
+        # Try loading persisted models first
+        loaded = self.model_manager.load_models()
+        if loaded:
+            self.models = loaded["models"]
+            self.scalers = loaded["scalers"]
+            logger.info("Loaded persisted ML models from disk")
+        else:
+            # No saved models - initialize fresh
+            self._init_models()
 
     def _init_models(self):
         """Initialize ML models"""
@@ -100,6 +111,13 @@ class MLPredictor(BaseAgent):
 
     async def process(self) -> None:
         """Process pending prediction requests"""
+        # Check if models need retraining
+        retrain_check = self.model_manager.should_retrain()
+        if retrain_check["should_retrain"]:
+            reason = retrain_check["reason"]
+            logger.info(f"Model retrain triggered: {reason}")
+            await self._auto_retrain(reason)
+
         if not self.pending_predictions:
             await asyncio.sleep(1)
             return
@@ -168,6 +186,14 @@ class MLPredictor(BaseAgent):
                     predictions['up_probability'] = float(proba[1]) if len(proba) > 1 else 0.5
                 except:
                     predictions['up_probability'] = 0.5
+
+            # Track prediction for accuracy monitoring
+            if predictions.get('direction') in ['up', 'down']:
+                self.model_manager.record_prediction(
+                    symbol=symbol,
+                    predicted_direction=predictions['direction'],
+                    confidence=predictions.get('direction_confidence', 0.5)
+                )
 
             # Combine with original signal
             result = {
@@ -358,6 +384,17 @@ class MLPredictor(BaseAgent):
 
             logger.info(f"Models trained - Train acc: {train_acc:.2%}, Test acc: {test_acc:.2%}")
 
+            # Save models with versioning
+            self.model_manager.save_models(
+                models=self.models,
+                scalers=self.scalers,
+                train_accuracy=train_acc,
+                test_accuracy=test_acc,
+                training_samples=len(X_train),
+                feature_count=X_train.shape[1],
+                symbols=[data.attrs.get('symbol', 'unknown')] if hasattr(data, 'attrs') else ['unknown']
+            )
+
         except Exception as e:
             logger.error(f"Training error: {e}")
 
@@ -410,6 +447,46 @@ class MLPredictor(BaseAgent):
                 self.scalers['default'] = pickle.load(f)
 
         logger.info(f"Models loaded from {load_path}")
+
+    async def _auto_retrain(self, reason: str) -> None:
+        """Auto-retrain models when staleness detected"""
+        logger.info(f"Auto-retraining models (reason: {reason})")
+
+        # Train on a diverse set of liquid symbols
+        training_symbols = {
+            'equity': ['SPY', 'QQQ', 'AAPL', 'MSFT', 'NVDA', 'TSLA'],
+            'crypto': ['BTC-USD', 'ETH-USD'],
+        }
+
+        for market_type, symbols in training_symbols.items():
+            for symbol in symbols:
+                try:
+                    data = await self._fetch_data(symbol, market_type)
+                    if data is not None and len(data) >= self.min_training_samples:
+                        features = await self._extract_features(data)
+                        if features is not None:
+                            await self._train_on_history(features, data)
+                            logger.info(f"Retrained on {symbol}")
+                except Exception as e:
+                    logger.debug(f"Retrain error for {symbol}: {e}")
+
+        # Check if new model is better
+        accuracy = self.model_manager.get_rolling_accuracy()
+        if accuracy is not None:
+            logger.info(f"Post-retrain accuracy: {accuracy:.2%}")
+
+            # If still bad, rollback to previous version
+            if accuracy < 0.50:
+                logger.warning("New model worse than random - rolling back")
+                self.model_manager.rollback()
+                loaded = self.model_manager.load_models()
+                if loaded:
+                    self.models = loaded["models"]
+                    self.scalers = loaded["scalers"]
+
+    def record_outcome(self, symbol: str, actual_direction: str) -> None:
+        """Record actual outcome for prediction tracking"""
+        self.model_manager.record_outcome(symbol, actual_direction)
 
     async def _send_prediction(self, prediction: Dict) -> None:
         """Send prediction to coordinator"""
