@@ -75,6 +75,7 @@ class OptionsFlowScanner(BaseAgent):
 
         # Track recent unusual flow for confluence detection
         self.recent_flows: Dict[str, List[UnusualFlow]] = {}
+        self.signals_generated: List[Signal] = []
 
         # Watchlist - liquid options names where flow matters
         self.watchlist = [
@@ -128,6 +129,7 @@ class OptionsFlowScanner(BaseAgent):
                     signal = self._generate_signal(symbol, flows)
                     if signal:
                         signals_found += 1
+                        self.signals_generated.append(signal)
                         await self._broadcast_signal(signal)
 
                     # Track for confluence

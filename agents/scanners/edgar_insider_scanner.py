@@ -90,6 +90,7 @@ class EdgarInsiderScanner(BaseAgent):
         self.seen_filings: set = set()  # Track already-processed filings
         self.min_purchase_value = 10_000  # Minimum $10k purchase to signal
         self.insider_cache: Dict[str, List[InsiderTransaction]] = {}
+        self.signals_generated: List[Signal] = []
 
         # Watchlist from our backtest-proven symbols
         self.watchlist = list(TICKER_TO_CIK.keys())
@@ -133,6 +134,7 @@ class EdgarInsiderScanner(BaseAgent):
                     signal = self._generate_signal(symbol, recent_buys)
                     if signal:
                         signals_found += 1
+                        self.signals_generated.append(signal)
                         await self._broadcast_signal(signal)
 
                         # Mark as seen
