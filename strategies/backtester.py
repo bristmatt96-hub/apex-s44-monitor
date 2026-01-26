@@ -293,14 +293,19 @@ class Strategies:
         hold_days = params.get('hold_days', 7)
 
         df = data.copy()
-        bb = ta.bbands(df['close'], length=20) if PANDAS_TA_AVAILABLE else _calc_bbands(df['close'], 20)
-        df['bb_width'] = (bb['BBU_20_2.0'] - bb['BBL_20_2.0']) / bb['BBM_20_2.0']
+        # Always use manual calculation to avoid column naming issues
+        bb_mid = df['close'].rolling(20).mean()
+        bb_std = df['close'].rolling(20).std()
+        bb_upper = bb_mid + (bb_std * 2.0)
+        bb_lower = bb_mid - (bb_std * 2.0)
+
+        df['bb_width'] = (bb_upper - bb_lower) / bb_mid
         df['bb_width_pctile'] = df['bb_width'].rolling(100).rank(pct=True) * 100
 
         # Entry: squeeze (low width) then breakout above upper band
         df['in_squeeze'] = df['bb_width_pctile'] < squeeze_percentile
         df['squeeze_release'] = df['in_squeeze'].shift(1) & ~df['in_squeeze']
-        df['above_mid'] = df['close'] > bb['BBM_20_2.0']
+        df['above_mid'] = df['close'] > bb_mid
 
         df['entry'] = df['squeeze_release'] & df['above_mid']
         df['hold_days'] = hold_days
