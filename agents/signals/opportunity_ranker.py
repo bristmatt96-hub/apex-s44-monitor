@@ -190,6 +190,20 @@ class OpportunityRanker(BaseAgent):
             composite *= 1.05
             reasoning.append("No PDT restrictions")
 
+        # Strategy bonus (from backtest results)
+        strategy_name = opportunity.get('metadata', {}).get('strategy', '')
+        strategy_cfg = config.strategies
+        if strategy_name:
+            if strategy_cfg.is_strategy_enabled(strategy_name):
+                bonus = strategy_cfg.get_strategy_bonus(strategy_name)
+                composite *= bonus
+                strat_data = strategy_cfg.proven_strategies.get(strategy_name, {})
+                pf = strat_data.get('avg_profit_factor', 0)
+                reasoning.append(f"Proven strategy: {strategy_name} (avg PF: {pf:.1f})")
+            elif strategy_name in strategy_cfg.disabled_strategies:
+                composite *= 0.5  # Heavy penalty for disproven strategies
+                reasoning.append(f"Unproven strategy: {strategy_name} (disabled)")
+
         # TA bonus
         ta_scores = opportunity.get('ta_scores', {})
         if ta_scores.get('composite', 0) > 0.7:

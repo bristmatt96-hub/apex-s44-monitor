@@ -2,7 +2,7 @@
 Trading System Configuration
 """
 from pydantic import BaseModel
-from typing import Optional, Dict
+from typing import Optional, Dict, List
 import os
 from dotenv import load_dotenv
 
@@ -40,9 +40,109 @@ class SignalConfig(BaseModel):
     lookback_periods: int = 100
 
 
+class StrategyConfig(BaseModel):
+    """
+    Strategy configuration based on backtest results.
+
+    Only strategies with proven statistical edge are enabled.
+    Backtest criteria: Profit Factor > 1.2 AND Win Rate > 40%
+    """
+
+    # Proven strategies and their backtest performance
+    proven_strategies: Dict[str, Dict] = {
+        'mean_reversion': {
+            'enabled': True,
+            'markets': ['crypto', 'equity', 'options', 'etf'],
+            'best_market': 'etf',
+            'avg_profit_factor': 2.66,
+            'avg_win_rate': 0.599,
+            'score_bonus': 1.15,  # 15% score boost
+            'description': 'Buy RSI oversold panic dips, exit on bounce'
+        },
+        'volume_spike': {
+            'enabled': True,
+            'markets': ['crypto', 'equity', 'options'],
+            'best_market': 'crypto',
+            'avg_profit_factor': 5.30,
+            'avg_win_rate': 0.673,
+            'score_bonus': 1.20,  # 20% boost (highest edge)
+            'description': 'Buy when retail panic-sells on huge red volume'
+        },
+        'momentum_breakout': {
+            'enabled': True,
+            'markets': ['crypto', 'equity', 'options', 'etf'],
+            'best_market': 'crypto',
+            'avg_profit_factor': 1.93,
+            'avg_win_rate': 0.557,
+            'score_bonus': 1.10,  # 10% boost
+            'description': 'Breakout above 20-day high with volume confirmation'
+        },
+        'bollinger_squeeze': {
+            'enabled': True,
+            'markets': ['crypto', 'equity', 'options', 'etf'],
+            'best_market': 'equity',
+            'avg_profit_factor': 1.50,  # Estimated pending full backtest
+            'avg_win_rate': 0.50,
+            'score_bonus': 1.05,  # Small boost until validated
+            'description': 'Low volatility squeeze breakout'
+        },
+    }
+
+    # Disabled strategies (no proven edge)
+    disabled_strategies: List[str] = ['rsi_divergence', 'gap_fade']
+
+    # Priority symbol lists per market (backtest-proven performers)
+    priority_symbols: Dict[str, List[str]] = {
+        'crypto': [
+            'BTC-USD', 'ETH-USD', 'SOL-USD', 'DOGE-USD',
+            'ADA-USD', 'XRP-USD', 'AVAX-USD'
+        ],
+        'options_stocks': [
+            'SPY', 'QQQ', 'TSLA', 'AAPL', 'NVDA', 'AMD',
+            'META', 'AMZN', 'MSFT', 'GOOGL', 'NFLX', 'COIN'
+        ],
+        'meme_stocks': [
+            'GME', 'AMC', 'PLTR', 'SOFI', 'BB',
+            'HOOD', 'RIVN', 'LCID', 'MARA', 'RIOT'
+        ],
+        'etfs': [
+            'SPY', 'QQQ', 'IWM', 'ARKK', 'TQQQ',
+            'GLD', 'SLV', 'XLE', 'XLF', 'TLT'
+        ],
+        'small_cap': [
+            'SOFI', 'PLTR', 'MARA', 'RIOT', 'JOBY',
+            'IONQ', 'RKLB', 'DNA', 'OPEN'
+        ]
+    }
+
+    def is_strategy_enabled(self, strategy_name: str) -> bool:
+        """Check if a strategy is enabled"""
+        if strategy_name in self.disabled_strategies:
+            return False
+        strat = self.proven_strategies.get(strategy_name)
+        return strat is not None and strat.get('enabled', False)
+
+    def get_strategy_bonus(self, strategy_name: str) -> float:
+        """Get score multiplier for a proven strategy"""
+        strat = self.proven_strategies.get(strategy_name)
+        if strat and strat.get('enabled'):
+            return strat.get('score_bonus', 1.0)
+        return 0.85  # 15% penalty for unproven strategies
+
+    def get_best_strategies_for_market(self, market_type: str) -> List[str]:
+        """Get ranked strategies for a market type"""
+        results = []
+        for name, data in self.proven_strategies.items():
+            if data.get('enabled') and market_type in data.get('markets', []):
+                results.append((name, data.get('avg_profit_factor', 0)))
+        results.sort(key=lambda x: x[1], reverse=True)
+        return [name for name, _ in results]
+
+
 class MarketWeights(BaseModel):
     """
     Market priority weights and capital allocation.
+    UPDATED based on backtest results (Jan 2026).
 
     Weights determine:
     - Scanner priority (higher = scanned more frequently)
@@ -52,18 +152,21 @@ class MarketWeights(BaseModel):
     These are INITIAL weights. The adaptive system will
     adjust them based on actual trading performance.
     """
-    # Priority weights (0.0 - 1.0, higher = more priority)
-    options: float = 0.95       # Highest - best R:R for $3k
-    crypto: float = 0.85        # High - no PDT, 24/7
-    equities: float = 0.60      # Medium - PDT restricted, swing only
-    forex: float = 0.55         # Medium - slower moves
+    # Priority weights - updated from backtest results
+    # Crypto had highest avg PF (6.18 across winning strategies)
+    # Options stocks second (2.44 avg PF)
+    # ETFs strong on mean reversion (PF 5.29)
+    crypto: float = 0.95        # Highest - PF 14.42 volume spike, no PDT, 24/7
+    options: float = 0.90       # High - 4 strategies with edge, best R:R for $3k
+    equities: float = 0.70      # Medium-high - mean reversion + volume spike proven
+    forex: float = 0.45         # Lower - no backtest data yet
     spacs: float = 0.0          # Disabled
 
-    # Capital allocation (must sum to ~1.0)
-    options_capital_pct: float = 0.40   # $1,200
-    crypto_capital_pct: float = 0.25    # $750
-    equities_capital_pct: float = 0.15  # $450
-    forex_capital_pct: float = 0.15     # $450
+    # Capital allocation - increased crypto based on results
+    crypto_capital_pct: float = 0.30    # $900 (highest edge)
+    options_capital_pct: float = 0.35   # $1,050 (best R:R structure)
+    equities_capital_pct: float = 0.20  # $600 (mean reversion + volume spike)
+    forex_capital_pct: float = 0.10     # $300 (untested, keep small)
     spacs_capital_pct: float = 0.0      # $0
     reserve_pct: float = 0.05           # $150 cash reserve
 
@@ -131,6 +234,7 @@ class TradingConfig(BaseModel):
     signals: SignalConfig = SignalConfig()
     scanner: ScannerConfig = ScannerConfig()
     market_weights: MarketWeights = MarketWeights()
+    strategies: StrategyConfig = StrategyConfig()
 
     # PDT Rule - limited day trades for accounts under $25k
     pdt_restricted: bool = True

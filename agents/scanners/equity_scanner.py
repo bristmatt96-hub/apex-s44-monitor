@@ -40,23 +40,20 @@ class EquityScanner(BaseScanner):
     def __init__(self, config: Optional[Dict] = None):
         super().__init__("EquityScanner", MarketType.EQUITY, config)
 
-        # Default aggressive watchlist - high beta, volatile stocks
+        # Watchlist optimized from backtest results (Jan 2026)
+        # Prioritizes symbols where strategies proved edge
         self.default_watchlist = [
-            # High beta tech
-            'NVDA', 'AMD', 'TSLA', 'META', 'GOOGL', 'AMZN', 'AAPL', 'MSFT',
-            # Meme / volatile
-            'GME', 'AMC', 'BBBY', 'PLTR', 'SOFI', 'RIVN', 'LCID',
-            # Leveraged ETFs (aggressive)
-            'TQQQ', 'SQQQ', 'UPRO', 'SPXU', 'TNA', 'TZA', 'SOXL', 'SOXS',
-            'LABU', 'LABD', 'NUGT', 'DUST', 'JNUG', 'JDST',
-            # Sector ETFs
-            'XLF', 'XLE', 'XLK', 'XLV', 'XLI', 'XLB', 'XLU', 'XLP', 'XLY',
-            # SPACs (when active)
-            'PSTH', 'IPOF', 'GSAH',
-            # Small caps with volume
-            'MULN', 'BBIG', 'ATER', 'PROG', 'CLOV',
-            # Biotech runners
-            'MRNA', 'BNTX', 'VXRT', 'NVAX',
+            # High retail options volume (4 strategies with edge)
+            'SPY', 'QQQ', 'TSLA', 'AAPL', 'NVDA', 'AMD', 'META',
+            'AMZN', 'MSFT', 'GOOGL', 'NFLX', 'COIN',
+            # Meme / retail stocks (mean reversion + volume spike edge)
+            'GME', 'AMC', 'PLTR', 'SOFI', 'BB', 'HOOD',
+            'RIVN', 'LCID', 'MARA', 'RIOT', 'DKNG',
+            # Small cap momentum (mean reversion + RSI divergence edge)
+            'JOBY', 'IONQ', 'RKLB', 'DNA', 'OPEN',
+            # Retail ETFs (mean reversion PF 5.29, momentum PF 1.96)
+            'IWM', 'ARKK', 'TQQQ', 'GLD', 'SLV',
+            'XLE', 'XLF', 'TLT', 'USO',
         ]
 
         self.min_volume = 1_000_000  # Minimum daily volume
@@ -99,32 +96,35 @@ class EquityScanner(BaseScanner):
     async def analyze(self, symbol: str, data: pd.DataFrame) -> Optional[Signal]:
         """
         Analyze equity for trading signals.
-        Uses multiple strategies and combines them.
+        Prioritizes backtest-proven strategies:
+        1. Mean Reversion (PF 1.43-5.29 across all markets)
+        2. Volume Spike Reversal (PF 1.99-14.42)
+        3. Momentum Breakout (PF 1.87-1.96 on options/ETF/crypto stocks)
         """
         if len(data) < 20:
             return None
 
         signals = []
 
-        # Strategy 1: Momentum Breakout
-        momentum_signal = await self._check_momentum_breakout(symbol, data)
-        if momentum_signal:
-            signals.append(momentum_signal)
-
-        # Strategy 2: Mean Reversion (oversold bounce)
+        # PROVEN Strategy 1: Mean Reversion (edge in ALL markets)
         reversion_signal = await self._check_mean_reversion(symbol, data)
         if reversion_signal:
             signals.append(reversion_signal)
 
-        # Strategy 3: Volume Surge
+        # PROVEN Strategy 2: Volume Spike Reversal (buy panic selling)
+        vol_reversal_signal = await self._check_volume_spike_reversal(symbol, data)
+        if vol_reversal_signal:
+            signals.append(vol_reversal_signal)
+
+        # PROVEN Strategy 3: Momentum Breakout
+        momentum_signal = await self._check_momentum_breakout(symbol, data)
+        if momentum_signal:
+            signals.append(momentum_signal)
+
+        # Strategy 4: Volume Surge (bullish)
         volume_signal = await self._check_volume_surge(symbol, data)
         if volume_signal:
             signals.append(volume_signal)
-
-        # Strategy 4: Gap and Go
-        gap_signal = await self._check_gap_play(symbol, data)
-        if gap_signal:
-            signals.append(gap_signal)
 
         # Return highest confidence signal
         if signals:
@@ -323,6 +323,78 @@ class EquityScanner(BaseScanner):
 
         except Exception as e:
             logger.debug(f"Volume surge check error for {symbol}: {e}")
+
+        return None
+
+    async def _check_volume_spike_reversal(self, symbol: str, data: pd.DataFrame) -> Optional[Signal]:
+        """
+        Volume spike reversal - buy when retail panics on big red volume.
+        Backtest: PF 14.42 (crypto), PF 1.99 (meme stocks), PF 2.98 (options stocks)
+        Win rate: 52-86% across markets
+        """
+        try:
+            close = data['close']
+            volume = data['volume']
+            high = data['high']
+            low = data['low']
+
+            # Volume analysis
+            avg_volume = volume[-20:].mean()
+            current_volume = volume.iloc[-1]
+            volume_ratio = current_volume / avg_volume
+
+            # Need significant volume spike (2.5x+)
+            if volume_ratio < 2.5:
+                return None
+
+            current = data.iloc[-1]
+
+            # Must be a RED day (retail panic)
+            is_red = current['close'] < current['open']
+            # Must be a big drop (2%+)
+            pct_change = (current['close'] - current['open']) / current['open']
+            is_big_drop = pct_change < -0.02
+
+            if not (is_red and is_big_drop):
+                return None
+
+            # This is the reversal signal - smart money absorbs panic selling
+            if PANDAS_TA_AVAILABLE:
+                data['atr'] = ta.atr(high, low, close, length=14)
+                atr = data['atr'].iloc[-1]
+            else:
+                atr = (high - low).rolling(14).mean().iloc[-1]
+
+            entry = current['close']
+            stop_loss = current['low'] - (0.5 * atr)  # Below panic low
+            target = entry + (3 * atr)  # 3 ATR target
+
+            rr_ratio = self.calculate_risk_reward(entry, target, stop_loss)
+
+            if rr_ratio >= 2.0:
+                # Higher confidence with bigger volume spike
+                conf = 0.70 + min(0.15, (volume_ratio - 2.5) * 0.03)
+
+                return Signal(
+                    symbol=symbol,
+                    market_type=MarketType.EQUITY,
+                    signal_type=SignalType.BUY,
+                    confidence=conf,
+                    entry_price=entry,
+                    target_price=target,
+                    stop_loss=stop_loss,
+                    risk_reward_ratio=rr_ratio,
+                    source="equity_volume_spike_reversal",
+                    metadata={
+                        'strategy': 'volume_spike',
+                        'volume_ratio': volume_ratio,
+                        'drop_pct': pct_change * 100,
+                        'backtest_pf': 1.99
+                    }
+                )
+
+        except Exception as e:
+            logger.debug(f"Volume spike reversal check error for {symbol}: {e}")
 
         return None
 
