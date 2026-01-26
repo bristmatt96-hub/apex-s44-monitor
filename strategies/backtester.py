@@ -23,6 +23,26 @@ except ImportError:
     PANDAS_TA_AVAILABLE = False
 
 
+def _calc_rsi(series: pd.Series, length: int = 14) -> pd.Series:
+    """Manual RSI calculation - no pandas_ta needed"""
+    delta = series.diff()
+    gain = delta.where(delta > 0, 0.0)
+    loss = -delta.where(delta < 0, 0.0)
+    avg_gain = gain.ewm(alpha=1/length, min_periods=length).mean()
+    avg_loss = loss.ewm(alpha=1/length, min_periods=length).mean()
+    rs = avg_gain / avg_loss
+    return 100 - (100 / (1 + rs))
+
+
+def _calc_bbands(series: pd.Series, length: int = 20, std: float = 2.0) -> Dict:
+    """Manual Bollinger Bands calculation - no pandas_ta needed"""
+    mid = series.rolling(length).mean()
+    band_std = series.rolling(length).std()
+    upper = mid + (band_std * std)
+    lower = mid - (band_std * std)
+    return {f'BBU_{length}_{std}': upper, f'BBM_{length}_{std}': mid, f'BBL_{length}_{std}': lower}
+
+
 @dataclass
 class BacktestTrade:
     """A single trade in a backtest"""
@@ -167,16 +187,13 @@ class Strategies:
         Mean reversion - buy when RSI oversold, sell on bounce.
         Retail edge: Retail panic sells at lows, we buy the fear.
         """
-        if not PANDAS_TA_AVAILABLE:
-            return data
-
         params = params or {}
         rsi_entry = params.get('rsi_entry', 30)
         rsi_exit = params.get('rsi_exit', 50)
         hold_days = params.get('max_hold_days', 10)
 
         df = data.copy()
-        df['rsi'] = ta.rsi(df['close'], length=14)
+        df['rsi'] = ta.rsi(df['close'], length=14) if PANDAS_TA_AVAILABLE else _calc_rsi(df['close'], 14)
 
         # Entry: RSI below threshold
         df['entry'] = df['rsi'] < rsi_entry
@@ -193,15 +210,12 @@ class Strategies:
         RSI divergence - price makes new low but RSI makes higher low.
         Retail edge: Retail can't spot divergences, institutions can.
         """
-        if not PANDAS_TA_AVAILABLE:
-            return data
-
         params = params or {}
         lookback = params.get('lookback', 14)
         hold_days = params.get('hold_days', 7)
 
         df = data.copy()
-        df['rsi'] = ta.rsi(df['close'], length=lookback)
+        df['rsi'] = ta.rsi(df['close'], length=lookback) if PANDAS_TA_AVAILABLE else _calc_rsi(df['close'], lookback)
 
         # Find price lows and RSI lows
         df['price_low_5'] = df['close'].rolling(5).min()
@@ -272,17 +286,14 @@ class Strategies:
     def bollinger_squeeze(data: pd.DataFrame, params: Dict = None) -> pd.DataFrame:
         """
         Bollinger Band squeeze breakout.
-        Retail edge: Low volatility → explosion. Retail enters late.
+        Retail edge: Low volatility -> explosion. Retail enters late.
         """
-        if not PANDAS_TA_AVAILABLE:
-            return data
-
         params = params or {}
         squeeze_percentile = params.get('squeeze_percentile', 20)
         hold_days = params.get('hold_days', 7)
 
         df = data.copy()
-        bb = ta.bbands(df['close'], length=20)
+        bb = ta.bbands(df['close'], length=20) if PANDAS_TA_AVAILABLE else _calc_bbands(df['close'], 20)
         df['bb_width'] = (bb['BBU_20_2.0'] - bb['BBL_20_2.0']) / bb['BBM_20_2.0']
         df['bb_width_pctile'] = df['bb_width'].rolling(100).rank(pct=True) * 100
 
