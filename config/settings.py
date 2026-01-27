@@ -12,7 +12,7 @@ load_dotenv()
 class IBConfig(BaseModel):
     """Interactive Brokers Configuration"""
     host: str = "127.0.0.1"
-    port: int = 7497  # 7497 for TWS paper, 7496 for TWS live, 4001/4002 for Gateway
+    port: int = 4002  # 4002 for Gateway paper, 4001 for Gateway live, 7497/7496 for TWS
     client_id: int = 1
     account: Optional[str] = None
 
