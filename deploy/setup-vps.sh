@@ -16,7 +16,7 @@ sudo apt update && sudo apt upgrade -y
 
 # Install Python and dependencies
 echo "[2/6] Installing Python and tools..."
-sudo apt install -y python3 python3-pip python3-venv git screen htop ffmpeg
+sudo apt install -y python3 python3-pip python3-venv git screen htop ffmpeg xvfb default-jre unzip
 
 # Install TA-Lib (required for technical analysis)
 echo "[3/6] Installing TA-Lib..."
@@ -54,11 +54,13 @@ if [ ! -f ".env" ]; then
     echo "Created .env file - EDIT THIS WITH YOUR API KEYS!"
 fi
 
-# Install systemd service
-echo "[6/6] Installing systemd service..."
+# Install systemd services
+echo "[6/6] Installing systemd services..."
+sudo cp deploy/xvfb.service /etc/systemd/system/
+sudo cp deploy/ibgateway.service /etc/systemd/system/
 sudo cp deploy/trading-system.service /etc/systemd/system/
 sudo systemctl daemon-reload
-sudo systemctl enable trading-system
+sudo systemctl enable xvfb ibgateway trading-system
 
 echo ""
 echo "=========================================="
@@ -66,13 +68,14 @@ echo "  Setup Complete!"
 echo "=========================================="
 echo ""
 echo "Next steps:"
-echo "1. Edit your .env file:  nano ~/apex-s44-monitor/.env"
-echo "2. Start the service:    sudo systemctl start trading-system"
-echo "3. Check status:         sudo systemctl status trading-system"
-echo "4. View logs:            sudo journalctl -u trading-system -f"
+echo "1. Edit .env file:       nano ~/apex-s44-monitor/.env"
+echo "2. Configure IBC:        nano ~/ibc/config.ini (set IB credentials)"
+echo "3. Start services:       sudo systemctl start xvfb ibgateway trading-system"
+echo "4. Check status:         sudo systemctl status xvfb ibgateway trading-system"
+echo "5. View trading logs:    sudo journalctl -u trading-system -f"
 echo ""
 echo "To run manually instead:"
-echo "  cd ~/apex-s44-monitor"
-echo "  source venv/bin/activate"
-echo "  python main.py --scan"
+echo "  cd ~/apex-s44-monitor && source venv/bin/activate"
+echo "  python3 main.py --scan    # scan only"
+echo "  python3 main.py           # full system (manual approval)"
 echo ""

@@ -10,6 +10,7 @@ from loguru import logger
 from core.base_agent import BaseAgent, AgentMessage, AgentState
 from core.adaptive_weights import get_adaptive_weights
 from config.settings import config
+from utils.telegram_notifier import get_notifier
 
 
 class Coordinator(BaseAgent):
@@ -50,6 +51,9 @@ class Coordinator(BaseAgent):
 
         # Adaptive market weights
         self.adaptive_weights = get_adaptive_weights()
+
+        # Telegram notifications
+        self.notifier = get_notifier()
 
     def register_agent(self, agent: BaseAgent) -> None:
         """Register an agent with the coordinator"""
@@ -116,6 +120,22 @@ class Coordinator(BaseAgent):
             self.executed_trades.append(payload)
             logger.info(f"Trade executed: {payload.get('symbol')} - {payload.get('side')}")
 
+            # Telegram notification for executed trade
+            if self.notifier:
+                await self.notifier.notify_trade_entry(
+                    symbol=payload.get('symbol', ''),
+                    side=payload.get('side', 'buy'),
+                    quantity=payload.get('quantity', 0),
+                    entry_price=payload.get('entry_price', 0),
+                    market_type=payload.get('market_type', 'unknown'),
+                    strategy=payload.get('strategy', 'unknown'),
+                    risk_reward=payload.get('risk_reward', 0),
+                    confidence=payload.get('confidence', 0),
+                    rationale=payload.get('rationale', 'Signal-based entry'),
+                    stop_loss=payload.get('stop_loss'),
+                    target=payload.get('target_price')
+                )
+
         elif msg_type == 'trade_closed':
             # Record completed trade for adaptive weight learning
             self.adaptive_weights.record_trade({
@@ -133,11 +153,34 @@ class Coordinator(BaseAgent):
             })
             logger.info(f"Trade recorded for adaptive learning: {payload.get('symbol')}")
 
+            # Telegram notification for closed trade
+            if self.notifier:
+                await self.notifier.notify_trade_exit(
+                    symbol=payload.get('symbol', ''),
+                    side=payload.get('side', 'buy'),
+                    quantity=payload.get('quantity', 0),
+                    entry_price=payload.get('entry_price', 0),
+                    exit_price=payload.get('exit_price', 0),
+                    market_type=payload.get('market_type', 'unknown'),
+                    pnl=payload.get('pnl', 0),
+                    pnl_pct=payload.get('pnl_pct', 0),
+                    hold_time=payload.get('hold_time', 'unknown'),
+                    exit_reason=payload.get('exit_reason', 'unknown')
+                )
+
         elif msg_type == 'positions_update':
             self.positions = payload.get('positions', [])
 
         elif msg_type == 'order_rejected':
             logger.warning(f"Order rejected: {payload.get('symbol')} - {payload.get('reason')}")
+
+            if self.notifier:
+                await self.notifier.notify_alert(
+                    "ORDER REJECTED",
+                    f"<b>{payload.get('symbol')}</b>\n"
+                    f"Reason: {payload.get('reason', 'unknown')}",
+                    severity="warning"
+                )
 
     async def _forward_for_analysis(self, signal: Dict) -> None:
         """Forward signal to technical analyzer"""
@@ -220,6 +263,30 @@ class Coordinator(BaseAgent):
                 self.pending_executions.append(signal)
                 logger.info(f"Opportunity queued for review: {symbol} (score: {score:.2f})")
 
+                # Send Telegram alert for manual approval
+                if self.notifier:
+                    market = signal.get('market_type', 'unknown')
+                    strategy = signal.get('metadata', {}).get('strategy', signal.get('source', 'unknown'))
+                    confidence = signal.get('confidence', 0)
+                    entry = signal.get('entry_price', 0)
+                    target_px = signal.get('target_price', 0)
+                    stop = signal.get('stop_loss', 0)
+                    rr = signal.get('risk_reward_ratio', 0)
+
+                    await self.notifier.notify_alert(
+                        "TRADE OPPORTUNITY",
+                        f"<b>{symbol}</b> ({market.upper()})\n\n"
+                        f"<b>Score:</b> {score:.2f}/1.00\n"
+                        f"<b>Strategy:</b> {strategy}\n"
+                        f"<b>Confidence:</b> {confidence:.0%}\n"
+                        f"<b>Entry:</b> ${entry:.2f}\n"
+                        f"<b>Target:</b> ${target_px:.2f}\n"
+                        f"<b>Stop:</b> ${stop:.2f}\n"
+                        f"<b>Risk/Reward:</b> {rr:.1f}:1\n\n"
+                        f"Awaiting manual approval.",
+                        severity="info"
+                    )
+
     async def _execute_trade(self, signal: Dict) -> None:
         """Execute a trade"""
         if 'TradeExecutor' not in self.agents:
@@ -245,8 +312,16 @@ class Coordinator(BaseAgent):
             if self.trading_enabled:
                 logger.warning("Max daily loss reached - disabling trading")
                 self.trading_enabled = False
-                # Close all positions (optional - aggressive risk management)
-                # await self._close_all_positions()
+
+                if self.notifier:
+                    await self.notifier.notify_alert(
+                        "RISK LIMIT HIT",
+                        f"Daily loss limit reached ({config.risk.max_daily_loss_pct:.0%})\n"
+                        f"Current P&L: {total_pnl:+.2f}%\n\n"
+                        f"Trading has been DISABLED.\n"
+                        f"Positions: {len(self.positions)}",
+                        severity="error"
+                    )
 
         # Check position count
         if len(self.positions) >= config.risk.max_positions:
@@ -288,8 +363,31 @@ class Coordinator(BaseAgent):
         # Start coordinator
         await self.start()
 
+        # Notify via Telegram
+        if self.notifier:
+            agent_names = ', '.join(self.agents.keys())
+            await self.notifier.notify_alert(
+                "SYSTEM STARTED",
+                f"APEX Trading System is LIVE\n\n"
+                f"<b>Agents:</b> {len(self.agents)} registered\n"
+                f"<b>Capital:</b> ${config.risk.starting_capital:,.2f}\n"
+                f"<b>Auto-Execute:</b> {'ON' if self.auto_execute else 'OFF (manual approval)'}\n"
+                f"<b>Trading:</b> {'ENABLED' if self.trading_enabled else 'DISABLED'}",
+                severity="success"
+            )
+
     async def stop_all_agents(self) -> None:
         """Stop all agents"""
+        # Notify via Telegram before shutdown
+        if self.notifier:
+            await self.notifier.notify_alert(
+                "SYSTEM SHUTDOWN",
+                f"APEX Trading System shutting down\n\n"
+                f"<b>Trades today:</b> {len(self.executed_trades)}\n"
+                f"<b>Open positions:</b> {len(self.positions)}",
+                severity="warning"
+            )
+
         # Stop coordinator first
         await self.stop()
 
