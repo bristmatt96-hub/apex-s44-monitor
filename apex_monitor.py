@@ -184,7 +184,7 @@ def load_snapshot(company_name):
             session = get_session()
             # Database lookup logic would go here
             session.close()
-        except:
+        except Exception:
             pass
 
     # Fall back to JSON files
@@ -199,7 +199,7 @@ def load_snapshot(company_name):
                 data = json.load(file)
                 if data.get("company_name") == company_name:
                     return data
-        except:
+        except Exception:
             continue
     return None
 
@@ -216,7 +216,7 @@ def get_available_snapshots():
             with open(f, "r", encoding="utf-8") as file:
                 data = json.load(file)
                 snapshots.append(data.get("company_name", f.stem))
-        except:
+        except Exception:
             continue
     return snapshots
 

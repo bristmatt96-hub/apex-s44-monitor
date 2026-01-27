@@ -27,7 +27,7 @@ try:
     from knowledge.pdf_processor import KnowledgeBase
     _kb = KnowledgeBase()
     KB_AVAILABLE = True
-except:
+except Exception:
     _kb = None
     KB_AVAILABLE = False
 
@@ -46,7 +46,7 @@ def load_secrets():
                     if "=" in line and not line.startswith("#"):
                         key, value = line.split("=", 1)
                         secrets[key.strip()] = value.strip().strip('"').strip("'")
-        except:
+        except Exception:
             pass
     return secrets
 
@@ -473,7 +473,7 @@ def send_credit_alert(alert_type: str, company: str, message: str, level: str = 
             timeout=10
         )
         return response.status_code == 200
-    except:
+    except Exception:
         return False
 
 

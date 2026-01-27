@@ -328,7 +328,7 @@ def render_freshness_tracker():
         if last_updated:
             try:
                 update_date = datetime.strptime(last_updated, "%Y-%m-%d")
-            except:
+            except Exception:
                 pass
 
         # Calculate staleness

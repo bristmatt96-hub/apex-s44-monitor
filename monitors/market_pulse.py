@@ -10,7 +10,7 @@ import json
 import requests
 import feedparser
 import time
-from threading import Thread
+from threading import Thread, Lock
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import List, Dict, Optional, Set
@@ -69,7 +69,7 @@ def load_watchlist() -> List[str]:
                 aliases = data.get("search_aliases", {})
                 for name, alias_list in aliases.items():
                     watchlist.extend(alias_list)
-        except:
+        except Exception:
             pass
 
     return list(set(watchlist))
@@ -91,7 +91,7 @@ def load_seen_headlines() -> Set[str]:
             with open(SEEN_HEADLINES_FILE, "r") as f:
                 data = json.load(f)
                 return set(data.get("seen", []))
-        except:
+        except Exception:
             pass
     return set()
 
@@ -114,7 +114,7 @@ def load_alerts_log() -> List[Dict]:
         try:
             with open(ALERTS_LOG_FILE, "r") as f:
                 return json.load(f)
-        except:
+        except Exception:
             pass
     return []
 
@@ -145,7 +145,7 @@ def send_telegram_alert(message: str) -> bool:
     try:
         resp = requests.post(url, json=payload, timeout=10)
         return resp.ok
-    except:
+    except Exception:
         return False
 
 # ============== LLM SCORING ==============
@@ -242,7 +242,7 @@ def parse_score_response(text: str) -> Optional[Dict]:
 
         if "score" in result and "direction" in result:
             return result
-    except:
+    except Exception:
         pass
     return None
 
@@ -284,7 +284,7 @@ def fetch_rss_feed(feed_url: str, max_items: int = 20) -> List[Dict]:
                 'source': feed.feed.get('title', 'Unknown')
             })
         return articles
-    except:
+    except Exception:
         return []
 
 def check_headline_for_watchlist(headline: str, summary: str, watchlist: List[str]) -> Optional[str]:
@@ -404,15 +404,16 @@ def send_pulse_alert(alert: Dict):
 # ============== BACKGROUND SCANNER ==============
 
 _scanner_running = False
+_scanner_lock = Lock()
 
 def start_background_scanner(interval_minutes: int = 5, min_score: int = 3):
     """Start background RSS scanner"""
     global _scanner_running
 
-    if _scanner_running:
-        return
-
-    _scanner_running = True
+    with _scanner_lock:
+        if _scanner_running:
+            return
+        _scanner_running = True
 
     def scanner_loop():
         global _scanner_running
@@ -441,7 +442,8 @@ def start_background_scanner(interval_minutes: int = 5, min_score: int = 3):
 def stop_background_scanner():
     """Stop background scanner"""
     global _scanner_running
-    _scanner_running = False
+    with _scanner_lock:
+        _scanner_running = False
 
 # ============== STREAMLIT UI ==============
 

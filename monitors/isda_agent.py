@@ -49,7 +49,7 @@ def load_live_precedents() -> Dict:
         try:
             with open(LIVE_PRECEDENTS_FILE, "r", encoding="utf-8") as f:
                 return json.load(f)
-        except:
+        except Exception:
             pass
     return {"precedents": {}, "live_updates": []}
 
@@ -882,7 +882,7 @@ def query_isda_agent_openai(question: str, article_text: str = "") -> str:
 
     try:
         response = client.chat.completions.create(
-            model="gpt-4-turbo-preview",
+            model="gpt-4-turbo",
             messages=[
                 {"role": "system", "content": ISDA_SYSTEM_PROMPT + "\n\n" + precedent_context},
                 {"role": "user", "content": user_message}

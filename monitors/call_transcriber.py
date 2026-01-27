@@ -384,7 +384,7 @@ def render_call_transcriber():
             # Clean up temp file
             try:
                 os.unlink(audio_path)
-            except:
+            except Exception:
                 pass
 
             if error:

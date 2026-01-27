@@ -84,7 +84,7 @@ def calculate_doc_score(snapshot: Dict) -> Tuple[int, List[str]]:
                 elif oldest <= 2020:
                     score += 10
                     flags.append(f"Pre-blocker era docs ({vintage})")
-        except:
+        except Exception:
             pass
 
     # Complex structure = more LME tools available
@@ -267,7 +267,7 @@ def calculate_market_score(snapshot: Dict) -> Tuple[int, List[str]]:
                         flags.append(f"{debt.get('instrument', 'Bond')} at {price}")
                     elif low < 90:
                         score += 15
-                except:
+                except Exception:
                     pass
             elif isinstance(price, (int, float)) and price < 90:
                 score += 15
@@ -438,7 +438,7 @@ def load_all_snapshots() -> Dict[str, Dict]:
                 data = json.load(file)
                 name = data.get("company_name", f.stem)
                 snapshots[name] = data
-        except:
+        except Exception:
             continue
 
     return snapshots

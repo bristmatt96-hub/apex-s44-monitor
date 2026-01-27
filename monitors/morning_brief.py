@@ -21,7 +21,7 @@ try:
     import streamlit as st
     TELEGRAM_BOT_TOKEN = st.secrets.get("TELEGRAM_BOT_TOKEN", TELEGRAM_BOT_TOKEN)
     TELEGRAM_CHAT_ID = st.secrets.get("TELEGRAM_CHAT_ID", TELEGRAM_CHAT_ID)
-except:
+except Exception:
     pass
 
 # Paths
@@ -123,7 +123,7 @@ def get_near_term_maturities(snapshots: list, days: int = 180) -> list:
                 try:
                     maturity_date = datetime.strptime(maturity_str, fmt)
                     break
-                except:
+                except Exception:
                     continue
 
             # Handle year-only (e.g., "2026")

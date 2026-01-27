@@ -97,7 +97,7 @@ def get_prices():
                     if ticker in data['Close'].columns:
                         price = data['Close'][ticker].dropna().iloc[-1]
                         prices[ticker] = float(price)
-                except:
+                except Exception:
                     pass
         return prices
     except Exception as e:

@@ -100,7 +100,7 @@ def tradingview_webhook():
         # Convert change to float if string
         try:
             change = float(str(change).replace("%", ""))
-        except:
+        except Exception:
             change = 0
 
         # Get credit implication

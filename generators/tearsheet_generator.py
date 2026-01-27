@@ -277,7 +277,7 @@ def _format_number(value: Any) -> str:
         return "-"
     try:
         return f"{float(value):,.0f}"
-    except:
+    except Exception:
         return str(value)
 
 
@@ -287,7 +287,7 @@ def _format_ratio(value: Any) -> str:
         return "-"
     try:
         return f"{float(value):.1f}"
-    except:
+    except Exception:
         return str(value)
 
 
@@ -297,7 +297,7 @@ def _format_percent(value: Any) -> str:
         return "-"
     try:
         return f"{float(value) * 100:.1f}%"
-    except:
+    except Exception:
         return str(value)
 
 

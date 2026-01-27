@@ -238,7 +238,7 @@ def load_sent_alerts() -> set:
                 # Only keep alerts from last 24 hours
                 cutoff = (datetime.now() - timedelta(hours=24)).isoformat()
                 return set(h for h, t in data.items() if t > cutoff)
-    except:
+    except Exception:
         pass
     return set()
 

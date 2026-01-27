@@ -34,7 +34,7 @@ def load_all_snapshots() -> List[Dict]:
                 data = json.load(file)
                 data["_filename"] = f.stem
                 snapshots.append(data)
-        except:
+        except Exception:
             continue
     return snapshots
 
@@ -45,7 +45,7 @@ def load_catalysts() -> Dict:
         try:
             with open(CATALYSTS_FILE, "r") as f:
                 return json.load(f)
-        except:
+        except Exception:
             pass
     return {"events": []}
 
@@ -63,7 +63,7 @@ def load_trade_memos() -> List[Dict]:
         try:
             with open(TRADE_MEMOS_FILE, "r") as f:
                 return json.load(f)
-        except:
+        except Exception:
             pass
     return []
 
@@ -131,7 +131,7 @@ def extract_maturities_from_snapshots(snapshots: List[Dict]) -> List[Dict]:
                         "amount": amount,
                         "source": "auto"
                     })
-            except:
+            except Exception:
                 continue
 
     return events
@@ -201,7 +201,7 @@ def render_catalyst_calendar():
             event["_date_obj"] = event_date
             event["_days_away"] = (event_date - today).days
             filtered.append(event)
-        except:
+        except Exception:
             continue
 
     # Sort by date

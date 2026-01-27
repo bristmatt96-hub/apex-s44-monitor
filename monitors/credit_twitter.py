@@ -10,15 +10,23 @@ import os
 import json
 import requests
 import time
-from threading import Thread
+from threading import Thread, Lock
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import List, Dict, Optional, Set
 
+# Helper function to safely get secrets (handles missing secrets.toml)
+def get_secret(key, default=""):
+    """Get secret from Streamlit secrets or environment variables"""
+    try:
+        return st.secrets.get(key, os.environ.get(key, default))
+    except Exception:
+        return os.environ.get(key, default)
+
 # Load secrets
-TWITTER_BEARER_TOKEN = st.secrets.get("TWITTER_BEARER_TOKEN", st.secrets.get("Bearer token", os.environ.get("TWITTER_BEARER_TOKEN", "")))
-TELEGRAM_BOT_TOKEN = st.secrets.get("TELEGRAM_BOT_TOKEN", os.environ.get("TELEGRAM_BOT_TOKEN", ""))
-TELEGRAM_CHAT_ID = st.secrets.get("TELEGRAM_CHAT_ID", os.environ.get("TELEGRAM_CHAT_ID", ""))
+TWITTER_BEARER_TOKEN = get_secret("TWITTER_BEARER_TOKEN", "")
+TELEGRAM_BOT_TOKEN = get_secret("TELEGRAM_BOT_TOKEN", "")
+TELEGRAM_CHAT_ID = get_secret("TELEGRAM_CHAT_ID", "")
 
 # Config directory
 CONFIG_DIR = Path(__file__).parent.parent / "config"
@@ -50,7 +58,7 @@ def send_telegram_alert(message: str) -> bool:
     try:
         resp = requests.post(url, json=payload, timeout=10)
         return resp.ok
-    except:
+    except Exception:
         return False
 
 
@@ -61,7 +69,7 @@ def load_seen_tweets() -> Set[str]:
             with open(SEEN_TWEETS_FILE, "r") as f:
                 data = json.load(f)
                 return set(data.get("seen_ids", []))
-        except:
+        except Exception:
             pass
     return set()
 
@@ -96,7 +104,7 @@ def format_tweet_alert(tweet: Dict) -> str:
             if analysis.event_type != CreditEventType.WATCH:
                 isda_section = format_isda_alert(tweet_text, analysis)
                 msg += isda_section
-        except:
+        except Exception:
             pass  # Fail silently if ISDA analysis errors
 
     return msg
@@ -105,6 +113,7 @@ def format_tweet_alert(tweet: Dict) -> str:
 # ============== BACKGROUND MONITOR ==============
 
 _monitor_running = False
+_monitor_lock = Lock()
 
 def monitor_curated_accounts(interval_minutes: int = 5):
     """
@@ -184,8 +193,9 @@ def start_credit_twitter_monitor():
     """Start the background monitor thread"""
     global _monitor_running
 
-    if _monitor_running:
-        return  # Already running
+    with _monitor_lock:
+        if _monitor_running:
+            return  # Already running
 
     thread = Thread(target=monitor_curated_accounts, daemon=True)
     thread.start()
@@ -290,7 +300,7 @@ def load_custom_accounts() -> List[Dict]:
         try:
             with open(CUSTOM_ACCOUNTS_FILE, "r") as f:
                 return json.load(f)
-        except:
+        except Exception:
             pass
     return []
 

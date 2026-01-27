@@ -172,7 +172,7 @@ def _is_numeric(value: Any) -> bool:
         try:
             float(value.replace(",", "").replace("$", "").replace("€", "").replace("£", ""))
             return True
-        except:
+        except Exception:
             return False
     return False
 
@@ -242,7 +242,7 @@ def _parse_numeric(value: Any) -> Optional[float]:
             if cleaned.startswith("(") and cleaned.endswith(")"):
                 cleaned = "-" + cleaned[1:-1]
             return float(cleaned)
-        except:
+        except Exception:
             return None
     return None
 

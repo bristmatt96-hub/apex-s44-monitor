@@ -31,5 +31,8 @@ anthropic>=0.18.0
 # Timezone
 pytz>=2024.1
 
+# Webhook server
+flask>=3.0.0
+
 # Optional: Better HTTP
 httpx>=0.27.0

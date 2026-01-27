@@ -143,7 +143,7 @@ def fetch_sec_filings(cik: str, filing_types: List[str] = None, days_back: int =
                 filing_date = datetime.strptime(date_str, "%Y-%m-%d")
                 if filing_date < cutoff_date:
                     continue
-            except:
+            except Exception:
                 continue
 
             # Build filing URL
@@ -227,7 +227,7 @@ def estimate_transcript_timing(filing_date: str) -> str:
         earliest = date + timedelta(days=3)
         latest = date + timedelta(days=10)
         return f"{earliest.strftime('%d %b')} - {latest.strftime('%d %b')}"
-    except:
+    except Exception:
         return "Unknown"
 
 

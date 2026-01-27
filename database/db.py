@@ -211,7 +211,7 @@ def get_database_url():
     # Try Streamlit secrets first
     try:
         return st.secrets.get("DATABASE_URL")
-    except:
+    except Exception:
         pass
 
     # Try environment variable
@@ -225,7 +225,7 @@ def get_database_url():
         password = st.secrets.get("SUPABASE_PASSWORD")
         if host and password:
             return f"postgresql://postgres:{password}@{host}:5432/postgres"
-    except:
+    except Exception:
         pass
 
     return None

@@ -460,7 +460,7 @@ def search_news_for_company(company_name: str, ticker: str = None, include_twitt
                         'date': item.get('date', ''),
                         'type': 'news'
                     })
-            except:
+            except Exception:
                 pass
     except Exception as e:
         print(f"DuckDuckGo error: {e}")
