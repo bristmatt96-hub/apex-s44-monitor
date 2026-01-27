@@ -1,13 +1,18 @@
 import streamlit as st
 import tweepy
-from threading import Thread
+from threading import Thread, Event
 import time
 import requests
 import os
 import json
+import logging
 from pathlib import Path
 from datetime import datetime, timedelta
 import feedparser
+
+# ============== LOGGING ==============
+logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(name)s: %(message)s")
+logger = logging.getLogger("apex_monitor")
 
 # ============== CONFIGURATION ==============
 
@@ -26,104 +31,212 @@ TWITTER_BEARER_TOKEN = get_secret("TWITTER_BEARER_TOKEN", get_secret("Bearer tok
 NEWSAPI_KEY = get_secret("NEWSAPI_KEY", "")
 DATABASE_URL = get_secret("DATABASE_URL", "")
 
-# Try to import database module (optional - falls back to JSON if unavailable)
+# ============== MODULE IMPORTS (with error reporting) ==============
+# Each module is optional - failures are logged so loading issues are visible.
+
 DB_AVAILABLE = False
 try:
     if DATABASE_URL:
         from database import get_session, get_all_companies, get_latest_financials, get_debt_instruments
         DB_AVAILABLE = True
-except ImportError:
-    pass
+        logger.info("Database module loaded")
+except Exception as e:
+    logger.warning("Database module failed to load: %s", e)
 
-# Try to import tear sheet generator
 TEARSHEET_AVAILABLE = False
 try:
     from generators import generate_tearsheet_html
     TEARSHEET_AVAILABLE = True
-except ImportError:
-    pass
+    logger.info("Tear sheet generator loaded")
+except Exception as e:
+    logger.warning("Tear sheet generator failed to load: %s", e)
 
-# Try to import equity monitor
 EQUITY_MONITOR_AVAILABLE = False
+YFINANCE_AVAILABLE = False
 try:
     from monitors import render_equity_dashboard, YFINANCE_AVAILABLE
     EQUITY_MONITOR_AVAILABLE = True
-except ImportError:
-    YFINANCE_AVAILABLE = False
+    logger.info("Equity monitor loaded (yfinance=%s)", YFINANCE_AVAILABLE)
+except Exception as e:
+    logger.warning("Equity monitor failed to load: %s", e)
 
-# Try to import knowledge base
 KNOWLEDGE_BASE_AVAILABLE = False
 try:
     from knowledge.pdf_processor import KnowledgeBase, render_knowledge_base_ui
     KNOWLEDGE_BASE_AVAILABLE = True
-except ImportError:
-    pass
+    logger.info("Knowledge base loaded")
+except Exception as e:
+    logger.warning("Knowledge base failed to load: %s", e)
 
-# Try to import credit events monitor
 CREDIT_EVENTS_AVAILABLE = False
 try:
     from monitors.credit_events_monitor import render_credit_events_dashboard
     CREDIT_EVENTS_AVAILABLE = True
-except ImportError:
-    pass
+    logger.info("Credit events monitor loaded")
+except Exception as e:
+    logger.warning("Credit events monitor failed to load: %s", e)
 
-# Try to import morning brief
 MORNING_BRIEF_AVAILABLE = False
 try:
     from monitors.morning_brief import send_morning_brief, start_scheduler
     MORNING_BRIEF_AVAILABLE = True
-except ImportError:
-    pass
+    logger.info("Morning brief loaded")
+except Exception as e:
+    logger.warning("Morning brief failed to load: %s", e)
 
-# Try to import trading tools
 TRADING_TOOLS_AVAILABLE = False
 try:
     from monitors.trading_tools import render_trading_tools
     TRADING_TOOLS_AVAILABLE = True
-except ImportError:
-    pass
+    logger.info("Trading tools loaded")
+except Exception as e:
+    logger.warning("Trading tools failed to load: %s", e)
 
-# Try to import credit twitter
 CREDIT_TWITTER_AVAILABLE = False
 CREDIT_TWITTER_MONITOR_AVAILABLE = False
 try:
     from monitors.credit_twitter import render_credit_twitter, start_credit_twitter_monitor
     CREDIT_TWITTER_AVAILABLE = True
     CREDIT_TWITTER_MONITOR_AVAILABLE = True
-except ImportError:
-    pass
+    logger.info("Credit twitter loaded")
+except Exception as e:
+    logger.warning("Credit twitter failed to load: %s", e)
 
-# Try to import trade workbench
 TRADE_WORKBENCH_AVAILABLE = False
 try:
     from monitors.trade_workbench import render_trade_workbench
     TRADE_WORKBENCH_AVAILABLE = True
-except ImportError:
-    pass
+    logger.info("Trade workbench loaded")
+except Exception as e:
+    logger.warning("Trade workbench failed to load: %s", e)
 
-# Try to import ISDA analyzer
 ISDA_ANALYZER_AVAILABLE = False
 try:
     from monitors.isda_analyzer import render_isda_analyzer
     ISDA_ANALYZER_AVAILABLE = True
-except ImportError:
-    pass
+    logger.info("ISDA analyzer loaded")
+except Exception as e:
+    logger.warning("ISDA analyzer failed to load: %s", e)
 
-# Try to import ISDA agent (LLM-powered)
 ISDA_AGENT_AVAILABLE = False
 try:
     from monitors.isda_agent import render_isda_agent
     ISDA_AGENT_AVAILABLE = True
-except ImportError:
-    pass
+    logger.info("ISDA agent loaded")
+except Exception as e:
+    logger.warning("ISDA agent failed to load: %s", e)
 
-# Try to import Market Pulse
 MARKET_PULSE_AVAILABLE = False
 try:
     from monitors.market_pulse import render_market_pulse, start_background_scanner
     MARKET_PULSE_AVAILABLE = True
-except ImportError:
-    pass
+    logger.info("Market pulse loaded")
+except Exception as e:
+    logger.warning("Market pulse failed to load: %s", e)
+
+# ============== AGENT LIFECYCLE MANAGER ==============
+
+class AgentManager:
+    """Centralized manager for all background agents.
+
+    Tracks which agents have been started, whether their threads are alive,
+    and surfaces errors instead of silently swallowing them.
+    """
+
+    def __init__(self):
+        self._agents = {}  # name -> {"thread": Thread|None, "status": str, "error": str|None}
+        self._shutdown = Event()
+
+    def register(self, name, target, *args, **kwargs):
+        """Start a background agent thread with error capture."""
+        if name in self._agents and self._agents[name]["status"] == "running":
+            thread = self._agents[name].get("thread")
+            if thread and thread.is_alive():
+                logger.info("Agent '%s' already running, skipping", name)
+                return True
+
+        def _wrapper():
+            try:
+                logger.info("Agent '%s' starting", name)
+                target(*args, **kwargs)
+            except Exception as e:
+                logger.error("Agent '%s' crashed: %s", name, e, exc_info=True)
+                self._agents[name]["status"] = "crashed"
+                self._agents[name]["error"] = str(e)
+
+        thread = Thread(target=_wrapper, daemon=True, name=f"agent-{name}")
+        self._agents[name] = {"thread": thread, "status": "running", "error": None}
+        thread.start()
+        logger.info("Agent '%s' started (thread=%s)", name, thread.name)
+        return True
+
+    def get_status(self):
+        """Return current status of all agents for display."""
+        report = {}
+        for name, info in self._agents.items():
+            thread = info.get("thread")
+            if info["status"] == "crashed":
+                report[name] = {"status": "crashed", "error": info["error"]}
+            elif thread and thread.is_alive():
+                report[name] = {"status": "running", "error": None}
+            elif thread and not thread.is_alive():
+                # Thread exited without setting crashed — unexpected exit
+                info["status"] = "stopped"
+                report[name] = {"status": "stopped", "error": "Thread exited unexpectedly"}
+            else:
+                report[name] = {"status": info["status"], "error": info.get("error")}
+        return report
+
+    def request_shutdown(self):
+        """Signal all agents to stop (cooperative shutdown)."""
+        self._shutdown.set()
+
+    @property
+    def shutdown_requested(self):
+        return self._shutdown.is_set()
+
+
+@st.cache_resource
+def get_agent_manager():
+    """Singleton AgentManager — survives Streamlit reruns."""
+    return AgentManager()
+
+
+# ============== MODULE-LEVEL CACHED RESOURCE FUNCTIONS ==============
+# These are defined at module level (not inside if-blocks or with-blocks)
+# so Streamlit's cache machinery can track them reliably across reruns.
+
+@st.cache_resource
+def get_hound(index_name):
+    """Initialize NewsHound and start its background scanning thread."""
+    manager = get_agent_manager()
+    index_data = load_index(f"{index_name}.json")
+    hound = NewsHound(index_data)
+    manager.register("newshound", hound.constant_scour)
+    return hound
+
+
+@st.cache_resource
+def init_morning_scheduler():
+    """Start the morning brief scheduler agent."""
+    manager = get_agent_manager()
+    manager.register("morning_brief", start_scheduler)
+    return True
+
+
+@st.cache_resource
+def init_credit_twitter_monitor():
+    """Start the credit twitter background monitor agent."""
+    manager = get_agent_manager()
+    manager.register("credit_twitter_monitor", start_credit_twitter_monitor)
+    return True
+
+
+@st.cache_resource
+def get_knowledge_base():
+    """Initialize the PDF knowledge base."""
+    return KnowledgeBase()
+
 
 # ============== TELEGRAM FUNCTIONS ==============
 
@@ -961,33 +1074,33 @@ if TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID:
 else:
     st.sidebar.markdown("❌ Not configured")
 
-# Start morning brief scheduler (7am UK daily)
+# Start background agents (functions defined at module level, called conditionally)
 if MORNING_BRIEF_AVAILABLE and TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID:
-    @st.cache_resource
-    def init_morning_scheduler():
-        start_scheduler()
-        return True
     init_morning_scheduler()
 
-# Start Credit Twitter monitor (background alerts for curated accounts)
 if CREDIT_TWITTER_MONITOR_AVAILABLE and TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID:
-    @st.cache_resource
-    def init_credit_twitter_monitor():
-        start_credit_twitter_monitor()
-        return True
     init_credit_twitter_monitor()
+
+# ============== AGENT HEALTH CHECK (sidebar) ==============
+_agent_mgr = get_agent_manager()
+_agent_status = _agent_mgr.get_status()
+if _agent_status:
+    st.sidebar.markdown("---")
+    st.sidebar.markdown("### Agent Health")
+    for _name, _info in _agent_status.items():
+        if _info["status"] == "running":
+            st.sidebar.markdown(f"- {_name}: running")
+        elif _info["status"] == "crashed":
+            st.sidebar.error(f"{_name}: CRASHED - {_info['error']}")
+        elif _info["status"] == "stopped":
+            st.sidebar.warning(f"{_name}: stopped unexpectedly")
+        else:
+            st.sidebar.markdown(f"- {_name}: {_info['status']}")
 
 # Main content tabs
 tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9, tab10, tab11, tab12, tab13 = st.tabs(["Trading Signals", "Equity Monitor", "Credit Events", "News Monitor", "RSS & News", "Credit Snapshot", "Knowledge Base", "Trading Tools", "Credit Twitter", "Trade Workbench", "ISDA Analyzer", "ISDA Agent", "Market Pulse"])
 
-# Initialize NewsHound with selected index
-@st.cache_resource
-def get_hound(index_name):
-    index_data = load_index(f"{index_name}.json")
-    hound = NewsHound(index_data)
-    Thread(target=hound.constant_scour, daemon=True).start()
-    return hound
-
+# Initialize NewsHound with selected index (defined at module level via AgentManager)
 hound = get_hound(selected_index)
 
 with tab1:
@@ -1108,11 +1221,6 @@ with tab6:
 
 with tab7:
     if KNOWLEDGE_BASE_AVAILABLE:
-        # Initialize knowledge base
-        @st.cache_resource
-        def get_knowledge_base():
-            return KnowledgeBase()
-
         kb = get_knowledge_base()
         render_knowledge_base_ui(st, kb)
     else:
