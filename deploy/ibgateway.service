@@ -8,8 +8,9 @@ Wants=network-online.target
 Type=simple
 User=root
 Environment=DISPLAY=:1
+Environment=PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 WorkingDirectory=/root/ibc
-ExecStart=/root/ibc/gatewaystart.sh
+ExecStart=/bin/bash /root/ibc/gatewaystart.sh
 Restart=on-failure
 RestartSec=30
 
