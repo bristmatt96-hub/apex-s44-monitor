@@ -120,10 +120,19 @@ git push origin main
 |-------------|-------|-------|
 | `monitors/*.py` | Yes | All your code |
 | `snapshots/*.json` | Yes | Company data |
+| `sessions/*.json` | Yes | Saved session data (positions, transcripts) - syncs across devices |
 | `requirements.txt` | Yes | Dependencies |
 | `.env` | **NO** | API keys - different per machine |
 | `venv/` | **NO** | Virtual environment - rebuild |
 | `__pycache__/` | **NO** | Auto-generated |
+
+### Session Persistence
+
+Your trading positions and transcript data are now saved to `sessions/` as JSON files.
+This means:
+- **Positions survive browser refresh** - no more losing your position tracker
+- **Data syncs between Mac and Windows** - commit and push on one device, pull on the other
+- **No need to shut down first** - just push your changes before switching devices
 
 ## .gitignore (Already Configured)
 

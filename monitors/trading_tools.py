@@ -17,6 +17,8 @@ from datetime import datetime, timedelta
 from typing import Dict, List, Optional
 import pandas as pd
 
+from monitors.session_store import save_session_data, load_session_data
+
 SNAPSHOTS_DIR = Path(__file__).parent.parent / "snapshots"
 
 
@@ -402,9 +404,10 @@ def render_position_tracker():
     st.subheader("💰 Position Tracker")
     st.caption("Track your positions and estimate P&L from spread changes")
 
-    # Initialize session state for positions
+    # Initialize session state for positions (restore from disk if available)
     if "positions" not in st.session_state:
-        st.session_state.positions = []
+        saved = load_session_data("positions", default=[])
+        st.session_state.positions = saved
 
     snapshots = load_all_snapshots()
     company_names = [""] + [s.get("company_name", "Unknown") for s in snapshots]
@@ -431,6 +434,7 @@ def render_position_tracker():
             "entry_spread": new_entry,
             "current_spread": new_entry
         })
+        save_session_data("positions", st.session_state.positions)
         st.success(f"Added {new_direction} on {new_company}")
         st.rerun()
 
@@ -506,6 +510,7 @@ def render_position_tracker():
     st.markdown("---")
     if st.button("Clear All Positions"):
         st.session_state.positions = []
+        save_session_data("positions", [])
         st.rerun()
 
 

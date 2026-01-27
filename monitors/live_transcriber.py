@@ -10,9 +10,11 @@ import queue
 import time
 from datetime import datetime
 from typing import Optional, List, Dict, Callable
-from dataclasses import dataclass
+from dataclasses import dataclass, asdict
 import json
 import re
+
+from monitors.session_store import save_session_data, load_session_data
 
 # Check for optional dependencies
 DEEPGRAM_AVAILABLE = False
@@ -392,11 +394,15 @@ def render_live_transcriber():
 
     st.markdown("---")
 
-    # Initialize session state
+    # Initialize session state (restore from disk if available)
     if "live_transcript" not in st.session_state:
-        st.session_state.live_transcript = ""
+        saved = load_session_data("live_transcript", default={})
+        st.session_state.live_transcript = saved.get("transcript", "") if isinstance(saved, dict) else ""
     if "live_alerts" not in st.session_state:
-        st.session_state.live_alerts = []
+        saved_alerts = load_session_data("live_alerts", default=[])
+        st.session_state.live_alerts = [
+            LiveAlert(**a) for a in saved_alerts
+        ] if saved_alerts else []
     if "is_transcribing" not in st.session_state:
         st.session_state.is_transcribing = False
 
@@ -422,6 +428,8 @@ def render_live_transcriber():
     if clear_button:
         st.session_state.live_transcript = ""
         st.session_state.live_alerts = []
+        save_session_data("live_transcript", {"transcript": ""})
+        save_session_data("live_alerts", [])
         st.rerun()
 
     # Main display area
@@ -525,6 +533,10 @@ def render_live_transcriber():
                                 context=demo_text[:60] + "..."
                             )
                             st.session_state.live_alerts.append(alert)
+
+                # Persist to disk so data survives refresh/device switch
+                save_session_data("live_transcript", {"transcript": st.session_state.live_transcript})
+                save_session_data("live_alerts", [asdict(a) for a in st.session_state.live_alerts])
 
                 st.rerun()
 
