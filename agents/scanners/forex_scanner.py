@@ -253,9 +253,11 @@ class ForexScanner(BaseScanner):
             low = data['low']
 
             data['rsi'] = ta.rsi(close, length=14)
-            data['bb_upper'] = ta.bbands(close, length=20)['BBU_20_2.0']
-            data['bb_lower'] = ta.bbands(close, length=20)['BBL_20_2.0']
-            data['bb_mid'] = ta.bbands(close, length=20)['BBM_20_2.0']
+            _bb = ta.bbands(close, length=20)
+            _bb_cols = _bb.columns.tolist()
+            data['bb_upper'] = _bb[[c for c in _bb_cols if c.startswith('BBU')][0]]
+            data['bb_lower'] = _bb[[c for c in _bb_cols if c.startswith('BBL')][0]]
+            data['bb_mid'] = _bb[[c for c in _bb_cols if c.startswith('BBM')][0]]
             data['atr'] = ta.atr(high, low, close, length=14)
 
             current = data.iloc[-1]

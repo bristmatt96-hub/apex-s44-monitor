@@ -284,9 +284,13 @@ class MLPredictor(BaseAgent):
 
             # Bollinger Bands
             bb = ta.bbands(close, length=20)
-            df['bb_upper'] = bb['BBU_20_2.0']
-            df['bb_lower'] = bb['BBL_20_2.0']
-            df['bb_mid'] = bb['BBM_20_2.0']
+            bb_cols = bb.columns.tolist()
+            bb_upper_col = [c for c in bb_cols if c.startswith('BBU')][0]
+            bb_lower_col = [c for c in bb_cols if c.startswith('BBL')][0]
+            bb_mid_col = [c for c in bb_cols if c.startswith('BBM')][0]
+            df['bb_upper'] = bb[bb_upper_col]
+            df['bb_lower'] = bb[bb_lower_col]
+            df['bb_mid'] = bb[bb_mid_col]
             df['bb_width'] = (df['bb_upper'] - df['bb_lower']) / df['bb_mid']
             df['bb_position'] = (close - df['bb_lower']) / (df['bb_upper'] - df['bb_lower'])
 

@@ -256,8 +256,9 @@ class TechnicalAnalyzer(BaseAgent):
 
             # Bollinger Band width
             bb = ta.bbands(close, length=20)
-            bb_upper = bb['BBU_20_2.0'].iloc[-1]
-            bb_lower = bb['BBL_20_2.0'].iloc[-1]
+            bb_cols = bb.columns.tolist()
+            bb_upper = bb[[c for c in bb_cols if c.startswith('BBU')][0]].iloc[-1]
+            bb_lower = bb[[c for c in bb_cols if c.startswith('BBL')][0]].iloc[-1]
             bb_width = (bb_upper - bb_lower) / close.iloc[-1]
 
             # Historical volatility
