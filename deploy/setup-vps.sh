@@ -33,12 +33,12 @@ cd ~
 # Clone repository
 echo "[4/6] Cloning repository..."
 cd ~
-if [ -d "agentic-trader" ]; then
-    cd agentic-trader
+if [ -d "apex-s44-monitor" ]; then
+    cd apex-s44-monitor
     git pull
 else
-    git clone https://github.com/bristmatt96-hub/agentic-trader.git
-    cd agentic-trader
+    git clone https://github.com/bristmatt96-hub/apex-s44-monitor.git
+    cd apex-s44-monitor
 fi
 
 # Create virtual environment
@@ -68,14 +68,14 @@ echo "  Setup Complete!"
 echo "=========================================="
 echo ""
 echo "Next steps:"
-echo "1. Edit .env file:       nano ~/agentic-trader/.env"
+echo "1. Edit .env file:       nano ~/apex-s44-monitor/.env"
 echo "2. Configure IBC:        nano ~/ibc/config.ini (set IB credentials)"
 echo "3. Start services:       sudo systemctl start xvfb ibgateway trading-system"
 echo "4. Check status:         sudo systemctl status xvfb ibgateway trading-system"
 echo "5. View trading logs:    sudo journalctl -u trading-system -f"
 echo ""
 echo "To run manually instead:"
-echo "  cd ~/agentic-trader && source venv/bin/activate"
+echo "  cd ~/apex-s44-monitor && source venv/bin/activate"
 echo "  python3 main.py --scan    # scan only"
 echo "  python3 main.py           # full system (manual approval)"
 echo ""

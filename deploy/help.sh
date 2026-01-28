@@ -27,11 +27,11 @@ cat << 'EOF'
   Screen list:    screen -ls
 
 --- Manual Run ---
-  Scan only:      cd /root/agentic-trader && source venv/bin/activate && python3 main.py --scan
-  Full system:    cd /root/agentic-trader && source venv/bin/activate && python3 main.py
+  Scan only:      cd /root/apex-s44-monitor && source venv/bin/activate && python3 main.py --scan
+  Full system:    cd /root/apex-s44-monitor && source venv/bin/activate && python3 main.py
 
 --- Git ---
-  Pull updates:   cd /root/agentic-trader && git pull origin claude/setup-multi-agent-project-0URFA
+  Pull updates:   cd /root/apex-s44-monitor && git pull origin claude/setup-multi-agent-project-0URFA
 
 --- Troubleshooting ---
   Gateway stuck:  sudo systemctl restart ibgateway
