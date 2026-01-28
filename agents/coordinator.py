@@ -11,6 +11,7 @@ from core.base_agent import BaseAgent, AgentMessage, AgentState
 from core.adaptive_weights import get_adaptive_weights
 from config.settings import config
 from utils.telegram_notifier import get_notifier
+from knowledge.retriever import get_retriever
 
 
 class Coordinator(BaseAgent):
@@ -54,6 +55,9 @@ class Coordinator(BaseAgent):
 
         # Telegram notifications
         self.notifier = get_notifier()
+
+        # Knowledge retriever (loaded once into memory)
+        self.retriever = get_retriever()
 
     def register_agent(self, agent: BaseAgent) -> None:
         """Register an agent with the coordinator"""
@@ -273,6 +277,19 @@ class Coordinator(BaseAgent):
                     stop = signal.get('stop_loss', 0)
                     rr = signal.get('risk_reward_ratio', 0)
 
+                    # Get knowledge insight for this trade
+                    kb_insight = ""
+                    try:
+                        kb_results = self.retriever.get_context_for_trade(
+                            symbol=symbol,
+                            signal_type=strategy,
+                            market_type=market
+                        )
+                        if kb_results:
+                            kb_insight = f"\n<b>Book Insight:</b> <i>{kb_results[0].content[:150]}...</i>\n"
+                    except Exception:
+                        pass
+
                     await self.notifier.notify_alert(
                         "TRADE OPPORTUNITY",
                         f"<b>{symbol}</b> ({market.upper()})\n\n"
@@ -282,7 +299,8 @@ class Coordinator(BaseAgent):
                         f"<b>Entry:</b> ${entry:.2f}\n"
                         f"<b>Target:</b> ${target_px:.2f}\n"
                         f"<b>Stop:</b> ${stop:.2f}\n"
-                        f"<b>Risk/Reward:</b> {rr:.1f}:1\n\n"
+                        f"<b>Risk/Reward:</b> {rr:.1f}:1\n"
+                        f"{kb_insight}\n"
                         f"Awaiting manual approval.",
                         severity="info"
                     )
@@ -365,14 +383,16 @@ class Coordinator(BaseAgent):
 
         # Notify via Telegram
         if self.notifier:
-            agent_names = ', '.join(self.agents.keys())
+            kb_stats = self.retriever.get_stats()
+            kb_line = f"<b>Knowledge:</b> {kb_stats['total_chunks']} chunks loaded" if kb_stats['total_chunks'] > 0 else "<b>Knowledge:</b> No books ingested"
             await self.notifier.notify_alert(
                 "SYSTEM STARTED",
                 f"APEX Trading System is LIVE\n\n"
                 f"<b>Agents:</b> {len(self.agents)} registered\n"
                 f"<b>Capital:</b> ${config.risk.starting_capital:,.2f}\n"
                 f"<b>Auto-Execute:</b> {'ON' if self.auto_execute else 'OFF (manual approval)'}\n"
-                f"<b>Trading:</b> {'ENABLED' if self.trading_enabled else 'DISABLED'}",
+                f"<b>Trading:</b> {'ENABLED' if self.trading_enabled else 'DISABLED'}\n"
+                f"{kb_line}",
                 severity="success"
             )
 

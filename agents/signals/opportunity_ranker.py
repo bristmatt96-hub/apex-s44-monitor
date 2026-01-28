@@ -12,6 +12,7 @@ from core.base_agent import BaseAgent, AgentMessage
 from core.models import Signal, Opportunity, MarketType
 from core.adaptive_weights import get_adaptive_weights
 from config.settings import config
+from knowledge.retriever import get_retriever
 
 
 @dataclass
@@ -65,6 +66,80 @@ class OpportunityRanker(BaseAgent):
 
         # Adaptive market weights
         self.adaptive_weights = get_adaptive_weights()
+
+        # Knowledge retriever (loaded once into memory)
+        self.retriever = get_retriever()
+        self._psychology_cache = []
+        self._risk_mgmt_cache = []
+        self._knowledge_loaded = False
+
+    def _load_knowledge_cache(self) -> None:
+        """Cache psychology and risk management knowledge on first use"""
+        if self._knowledge_loaded:
+            return
+        self._psychology_cache = self.retriever.get_psychology_insights()
+        self._risk_mgmt_cache = self.retriever.get_risk_management_wisdom()
+        total = len(self._psychology_cache) + len(self._risk_mgmt_cache)
+        if total > 0:
+            logger.info(f"Knowledge loaded: {len(self._psychology_cache)} psychology, {len(self._risk_mgmt_cache)} risk mgmt insights")
+        self._knowledge_loaded = True
+
+    def _get_knowledge_adjustment(self, opportunity: Dict) -> tuple:
+        """
+        Apply knowledge-based scoring adjustments.
+        Returns (multiplier, list_of_reasoning_strings, knowledge_insight_text).
+        """
+        self._load_knowledge_cache()
+
+        multiplier = 1.0
+        reasoning = []
+        insight = ""
+
+        signal_type = opportunity.get('signal_type', '')
+        market_type = opportunity.get('market_type', '')
+        strategy = opportunity.get('metadata', {}).get('strategy', '')
+        rr_ratio = opportunity.get('risk_reward_ratio', 0)
+        confidence = opportunity.get('adjusted_confidence', opportunity.get('confidence', 0))
+
+        # 1. Get trade-specific knowledge
+        results = self.retriever.get_context_for_trade(
+            symbol=opportunity.get('symbol', ''),
+            signal_type=strategy or signal_type,
+            market_type=market_type
+        )
+
+        if results:
+            best = results[0]
+            insight = best.content[:200]
+
+            # Check for psychology red flags in the trade setup
+            # High confidence + extended move = potential overconfidence (greed)
+            if confidence > 0.85 and rr_ratio < 1.5:
+                for psych in self._psychology_cache:
+                    if any(w in psych.content.lower() for w in ['greed', 'overconfiden', 'fomo', 'chase']):
+                        multiplier *= 0.92  # 8% penalty for potential greed trap
+                        reasoning.append("Knowledge: high confidence but weak R:R - potential overconfidence")
+                        break
+
+        # 2. Risk management wisdom check
+        # Penalize trades that violate risk principles from the books
+        if rr_ratio < 1.5:
+            for rm in self._risk_mgmt_cache:
+                if any(w in rm.content.lower() for w in ['risk reward', 'risk/reward', 'minimum', 'at least 2']):
+                    multiplier *= 0.95  # 5% penalty for suboptimal R:R per knowledge
+                    reasoning.append("Knowledge: R:R below recommended minimum from risk books")
+                    break
+
+        # 3. Boost trades that align with knowledge principles
+        # Strong R:R + confirmation = disciplined setup
+        if rr_ratio >= 3.0 and confidence >= 0.7:
+            for psych in self._psychology_cache:
+                if any(w in psych.content.lower() for w in ['patience', 'discipline', 'wait', 'best setup']):
+                    multiplier *= 1.05  # 5% bonus for disciplined setup
+                    reasoning.append("Knowledge: disciplined setup matches book principles")
+                    break
+
+        return multiplier, reasoning, insight
 
     async def process(self) -> None:
         """Process and rank opportunities"""
@@ -265,6 +340,15 @@ class OpportunityRanker(BaseAgent):
                     reasoning.append(
                         f"Options flow confluence: ${premium:,.0f} {flow_dir} premium{sweep_note}"
                     )
+
+        # Knowledge-based adjustment (psychology + risk management from books)
+        kb_multiplier, kb_reasoning, kb_insight = self._get_knowledge_adjustment(opportunity)
+        composite *= kb_multiplier
+        reasoning.extend(kb_reasoning)
+
+        # Attach knowledge insight to the signal for Telegram alerts
+        if kb_insight:
+            opportunity.setdefault('metadata', {})['knowledge_insight'] = kb_insight
 
         return ScoredOpportunity(
             signal=opportunity,
