@@ -29,8 +29,8 @@
 
 ```bash
 # Clone the repository
-git clone https://github.com/YOUR_USERNAME/apex-s44-monitor.git
-cd apex-s44-monitor
+git clone https://github.com/YOUR_USERNAME/agentic-trader.git
+cd agentic-trader
 
 # Run setup script
 chmod +x setup_mac.sh
@@ -44,8 +44,8 @@ nano .env
 
 ```cmd
 # Clone the repository
-git clone https://github.com/YOUR_USERNAME/apex-s44-monitor.git
-cd apex-s44-monitor
+git clone https://github.com/YOUR_USERNAME/agentic-trader.git
+cd agentic-trader
 
 # Run setup script
 setup_windows.bat
@@ -159,7 +159,7 @@ Access your monitor from anywhere without local setup.
 
 1. Go to [share.streamlit.io](https://share.streamlit.io)
 2. Connect your GitHub account
-3. Select `apex-s44-monitor` repository
+3. Select `agentic-trader` repository
 4. Main file: `apex_monitor.py`
 5. Add secrets (Settings > Secrets):
 

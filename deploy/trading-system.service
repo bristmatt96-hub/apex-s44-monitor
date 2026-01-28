@@ -6,13 +6,13 @@ Wants=ibgateway.service network-online.target
 [Service]
 Type=simple
 User=root
-WorkingDirectory=/root/apex-s44-monitor
-Environment=PATH=/root/apex-s44-monitor/venv/bin:/usr/local/bin:/usr/bin:/bin
+WorkingDirectory=/root/agentic-trader
+Environment=PATH=/root/agentic-trader/venv/bin:/usr/local/bin:/usr/bin:/bin
 Environment=DISPLAY=:1
-EnvironmentFile=/root/apex-s44-monitor/.env
+EnvironmentFile=/root/agentic-trader/.env
 
 # Full trading system (manual approval mode - no --auto flag)
-ExecStart=/root/apex-s44-monitor/venv/bin/python main.py
+ExecStart=/root/agentic-trader/venv/bin/python main.py
 
 # Auto-restart on failure
 Restart=always
