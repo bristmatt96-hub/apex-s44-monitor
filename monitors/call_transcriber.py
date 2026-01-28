@@ -12,6 +12,9 @@ from datetime import datetime
 from typing import Optional, Tuple
 import json
 
+# Memory limit for stored transcripts
+MAX_TRANSCRIPT_CHARS = 500_000
+
 # Check for optional dependencies
 WHISPER_AVAILABLE = False
 OPENAI_AVAILABLE = False
@@ -398,7 +401,9 @@ def render_call_transcriber():
             # Success!
             st.success(f"Transcription complete! ({len(transcript)} characters)")
 
-            # Store in session state for sentiment analysis
+            # Store in session state for sentiment analysis (with memory cap)
+            if len(transcript) > MAX_TRANSCRIPT_CHARS:
+                transcript = transcript[-MAX_TRANSCRIPT_CHARS:]
             st.session_state["last_transcript"] = transcript
             st.session_state["last_transcript_company"] = company_name
             st.session_state["last_transcript_date"] = str(call_date)

@@ -231,23 +231,43 @@ def get_database_url():
     return None
 
 
+_engine = None
+_SessionFactory = None
+
+
 def get_engine():
-    """Create SQLAlchemy engine"""
+    """Get or create a singleton SQLAlchemy engine with connection pooling"""
+    global _engine
+    if _engine is not None:
+        return _engine
+
     db_url = get_database_url()
     if not db_url:
         raise ValueError("Database URL not configured. Set DATABASE_URL or SUPABASE_HOST/SUPABASE_PASSWORD in secrets.")
 
+    pool_kwargs = {
+        "pool_size": 3,
+        "max_overflow": 5,
+        "pool_timeout": 30,
+        "pool_recycle": 1800,
+        "pool_pre_ping": True,
+    }
+
     # Supabase requires SSL
     if "supabase" in db_url:
-        return create_engine(db_url, connect_args={"sslmode": "require"})
-    return create_engine(db_url)
+        _engine = create_engine(db_url, connect_args={"sslmode": "require"}, **pool_kwargs)
+    else:
+        _engine = create_engine(db_url, **pool_kwargs)
+    return _engine
 
 
 def get_session():
-    """Get a database session"""
-    engine = get_engine()
-    Session = sessionmaker(bind=engine)
-    return Session()
+    """Get a database session using a cached session factory"""
+    global _SessionFactory
+    if _SessionFactory is None:
+        engine = get_engine()
+        _SessionFactory = sessionmaker(bind=engine)
+    return _SessionFactory()
 
 
 def init_database():

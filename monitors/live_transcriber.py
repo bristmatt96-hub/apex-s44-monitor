@@ -14,6 +14,12 @@ from dataclasses import dataclass
 import json
 import re
 
+# ============================================================================
+# MEMORY LIMITS - prevent unbounded session_state growth
+# ============================================================================
+MAX_TRANSCRIPT_CHARS = 500_000   # ~80k words / ~4 hours of speech
+MAX_ALERTS = 500                 # max alerts kept in memory
+
 # Check for optional dependencies
 DEEPGRAM_AVAILABLE = False
 ASSEMBLYAI_RT_AVAILABLE = False
@@ -100,6 +106,13 @@ class LiveTranscriber:
         self.is_running = False
         self.alerts: List[LiveAlert] = []
 
+    def append_transcript(self, text: str):
+        """Append text to transcript with memory cap."""
+        self.full_transcript += text + " "
+        if len(self.full_transcript) > MAX_TRANSCRIPT_CHARS:
+            # Keep most recent portion
+            self.full_transcript = self.full_transcript[-MAX_TRANSCRIPT_CHARS:]
+
     def check_for_keywords(self, text: str, audio_time: float = 0):
         """Check new text for distress keywords."""
         text_lower = text.lower()
@@ -121,6 +134,9 @@ class LiveTranscriber:
                         audio_timestamp=audio_time
                     )
                     self.alerts.append(alert)
+                    # Cap alerts list to prevent unbounded growth
+                    if len(self.alerts) > MAX_ALERTS:
+                        self.alerts = self.alerts[-MAX_ALERTS:]
                     self.on_alert(alert)
 
     def start(self):
@@ -166,7 +182,7 @@ class DeepgramLiveTranscriber(LiveTranscriber):
             transcript = result.channel.alternatives[0].transcript
             if transcript:
                 if result.is_final:
-                    self.full_transcript += transcript + " "
+                    self.append_transcript(transcript)
                     self.check_for_keywords(transcript, result.start)
                 self.on_transcript(transcript, result.is_final)
 
@@ -211,7 +227,7 @@ class AssemblyAILiveTranscriber(LiveTranscriber):
             if transcript.text:
                 is_final = isinstance(transcript, aai.RealtimeFinalTranscript)
                 if is_final:
-                    self.full_transcript += transcript.text + " "
+                    self.append_transcript(transcript.text)
                     self.check_for_keywords(transcript.text)
                 self.on_transcript(transcript.text, is_final)
 
@@ -510,8 +526,10 @@ def render_live_transcriber():
 
         if st.button("🔍 Test Keyword Detection"):
             if demo_text:
-                # Simulate detection
+                # Simulate detection (with memory cap)
                 st.session_state.live_transcript += demo_text + " "
+                if len(st.session_state.live_transcript) > MAX_TRANSCRIPT_CHARS:
+                    st.session_state.live_transcript = st.session_state.live_transcript[-MAX_TRANSCRIPT_CHARS:]
 
                 # Check for keywords
                 text_lower = demo_text.lower()
@@ -525,6 +543,10 @@ def render_live_transcriber():
                                 context=demo_text[:60] + "..."
                             )
                             st.session_state.live_alerts.append(alert)
+
+                # Cap alerts list
+                if len(st.session_state.live_alerts) > MAX_ALERTS:
+                    st.session_state.live_alerts = st.session_state.live_alerts[-MAX_ALERTS:]
 
                 st.rerun()
 

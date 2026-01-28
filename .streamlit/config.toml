@@ -1,0 +1,18 @@
+[server]
+# Limit upload size to prevent memory spikes
+maxUploadSize = 50
+# Limit message size for WebSocket frames
+maxMessageSize = 50
+# Enable XSRF protection
+enableXsrfProtection = true
+
+[browser]
+gatherUsageStats = false
+
+[runner]
+# Use faster re-run mode
+fastReruns = true
+
+[global]
+# Suppress development mode warnings in production
+suppressDeprecationWarnings = true

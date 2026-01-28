@@ -5,9 +5,16 @@ import time
 import requests
 import os
 import json
+import gc
 from pathlib import Path
 from datetime import datetime, timedelta
 import feedparser
+
+# ============== MEMORY MANAGEMENT ==============
+# Limits to prevent session memory exhaustion on constrained hosts (e.g. DigitalOcean)
+MAX_ALERTS_PER_COMPANY = 20      # Max news alerts kept per company in NewsHound
+MAX_RSS_ALERTS_PER_COMPANY = 15  # Max RSS articles kept per company
+MAX_TRANSCRIPT_SESSION = 500_000 # Max chars for session_state transcripts
 
 # ============== CONFIGURATION ==============
 
@@ -180,12 +187,15 @@ def load_snapshot(company_name):
     """Load credit snapshot for a company - tries database first, then JSON"""
     # Try database first if available
     if DB_AVAILABLE:
+        session = None
         try:
             session = get_session()
             # Database lookup logic would go here
-            session.close()
-        except:
+        except Exception:
             pass
+        finally:
+            if session is not None:
+                session.close()
 
     # Fall back to JSON files
     snapshots_dir = Path(__file__).parent / "snapshots"
@@ -563,7 +573,7 @@ class NewsHound:
                     'link': ''
                 })
 
-            self.alerts[name] = new_alerts
+            self.alerts[name] = new_alerts[-MAX_ALERTS_PER_COMPANY:]
             self.sentiment_scores[name] = sentiment
 
         except Exception as e:
@@ -599,7 +609,7 @@ class NewsHound:
             newsapi_results = search_newsapi(f'"{short_name}" AND (debt OR bond OR rating)')
             matches.extend(newsapi_results)
 
-        self.rss_alerts[name] = matches[:10]
+        self.rss_alerts[name] = matches[:MAX_RSS_ALERTS_PER_COMPANY]
 
     def spot_pattern(self, name, text, sector):
         """Analyze tweet for credit impact"""
@@ -628,11 +638,16 @@ class NewsHound:
     def constant_scour(self):
         """Background thread for continuous monitoring"""
         while True:
-            for sector, names in self.index_data["sectors"].items():
-                for name in names:
-                    self.scour(name, sector)
-                    self.scour_rss(name, sector)
-                    time.sleep(2)
+            try:
+                for sector, names in self.index_data["sectors"].items():
+                    for name in names:
+                        self.scour(name, sector)
+                        self.scour_rss(name, sector)
+                        time.sleep(2)
+                # Free unreferenced objects after each full scan cycle
+                gc.collect()
+            except Exception as e:
+                print(f"[NewsHound] Scan cycle error: {e}")
             time.sleep(600)
 
 
@@ -878,6 +893,31 @@ def render_trading_signals(signals, hound=None):
 
 st.set_page_config(page_title="Trading Analysis Tool", layout="wide")
 st.title("Trading Analysis Tool")
+
+
+def _enforce_session_memory_limits():
+    """Cap session_state objects to prevent memory exhaustion on constrained hosts."""
+    # Cap live transcript
+    if "live_transcript" in st.session_state:
+        transcript = st.session_state.live_transcript
+        if isinstance(transcript, str) and len(transcript) > MAX_TRANSCRIPT_SESSION:
+            st.session_state.live_transcript = transcript[-MAX_TRANSCRIPT_SESSION:]
+
+    # Cap live alerts
+    if "live_alerts" in st.session_state:
+        alerts = st.session_state.live_alerts
+        if isinstance(alerts, list) and len(alerts) > MAX_ALERTS_PER_COMPANY:
+            st.session_state.live_alerts = alerts[-MAX_ALERTS_PER_COMPANY:]
+
+    # Cap stored transcript from call transcriber
+    if "last_transcript" in st.session_state:
+        transcript = st.session_state.get("last_transcript", "")
+        if isinstance(transcript, str) and len(transcript) > MAX_TRANSCRIPT_SESSION:
+            st.session_state["last_transcript"] = transcript[-MAX_TRANSCRIPT_SESSION:]
+
+
+# Enforce memory limits on every rerun
+_enforce_session_memory_limits()
 
 # Get available indices
 available_indices = get_available_indices()
