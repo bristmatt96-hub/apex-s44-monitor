@@ -6,6 +6,8 @@ from .options_scanner import OptionsScanner
 from .base_scanner import BaseScanner
 from .edgar_insider_scanner import EdgarInsiderScanner
 from .options_flow_scanner import OptionsFlowScanner
+from .substack_scanner import SubstackScanner
 
 __all__ = ['BaseScanner', 'EquityScanner', 'CryptoScanner', 'ForexScanner',
-           'OptionsScanner', 'EdgarInsiderScanner', 'OptionsFlowScanner']
+           'OptionsScanner', 'EdgarInsiderScanner', 'OptionsFlowScanner',
+           'SubstackScanner']
