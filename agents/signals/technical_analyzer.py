@@ -119,7 +119,7 @@ class TechnicalAnalyzer(BaseAgent):
             if market_type == 'forex':
                 symbol = f"{symbol}=X"
             elif market_type == 'crypto':
-                symbol = f"{symbol.replace('/', '-')}"
+                symbol = f"{symbol.replace('/', '-').replace('USDT', 'USD').replace('usdt', 'usd')}"
 
             ticker = yf.Ticker(symbol)
             df = ticker.history(period="3mo", interval="1d")

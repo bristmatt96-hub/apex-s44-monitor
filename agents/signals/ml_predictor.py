@@ -221,7 +221,7 @@ class MLPredictor(BaseAgent):
             if market_type == 'forex':
                 symbol = f"{symbol}=X"
             elif market_type == 'crypto':
-                symbol = symbol.replace('/', '-')
+                symbol = symbol.replace('/', '-').replace('USDT', 'USD').replace('usdt', 'usd')
 
             ticker = yf.Ticker(symbol)
             df = ticker.history(period="1y", interval="1d")
