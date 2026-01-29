@@ -12,6 +12,7 @@ Trading Tools for XO S44 Credit Monitor
 
 import streamlit as st
 import json
+import re
 from pathlib import Path
 from datetime import datetime, timedelta
 from typing import Dict, List, Optional
@@ -35,7 +36,7 @@ def load_all_snapshots() -> List[Dict]:
                 data["_filename"] = f.name
                 data["_filepath"] = str(f)
                 snapshots.append(data)
-        except Exception as e:
+        except Exception:
             pass
 
     return sorted(snapshots, key=lambda x: x.get("company_name", ""))
@@ -227,7 +228,6 @@ def render_maturity_wall():
                 year = int(mat_str)
             else:
                 # Try to find 4-digit year in string
-                import re
                 match = re.search(r'20\d{2}', mat_str)
                 if match:
                     year = int(match.group())
