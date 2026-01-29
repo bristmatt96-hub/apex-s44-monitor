@@ -295,11 +295,11 @@ class KnowledgeRetriever:
 _retriever_instance: Optional[KnowledgeRetriever] = None
 
 
-def get_retriever() -> KnowledgeRetriever:
+def get_retriever(knowledge_path: str = "trading_knowledge") -> KnowledgeRetriever:
     """Get or create the knowledge retriever instance"""
     global _retriever_instance
     if _retriever_instance is None:
-        _retriever_instance = KnowledgeRetriever()
+        _retriever_instance = KnowledgeRetriever(knowledge_path=knowledge_path)
     return _retriever_instance
 
 
