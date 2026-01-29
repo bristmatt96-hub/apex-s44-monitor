@@ -1,0 +1,44 @@
+# APEX Trading System - Isolated Dependencies
+# Use this for running main.py without the monitoring tool
+#
+# Setup:
+#   python -m venv venv-trading
+#   source venv-trading/bin/activate
+#   pip install -r requirements-trading.txt
+#
+# Run:
+#   python main.py --paper
+
+# Core
+pandas>=2.0.0
+numpy>=1.26.0
+pydantic>=2.5.0
+loguru>=0.7.2
+python-dotenv>=1.0.0
+
+# Market Data
+yfinance>=0.2.0
+
+# Crypto Exchange (Kraken)
+ccxt>=4.2.0
+
+# Interactive Brokers
+ib_insync>=0.9.86
+
+# Technical Analysis
+pandas-ta>=0.3.14b
+
+# Machine Learning
+scikit-learn>=1.4.0
+xgboost>=2.0.3
+
+# HTTP (for Telegram notifications)
+httpx>=0.27.0
+aiohttp>=3.9.0
+requests>=2.31.0
+
+# Async
+asyncio-throttle>=1.0.2
+
+# Database (for trade logging)
+aiosqlite>=0.19.0
