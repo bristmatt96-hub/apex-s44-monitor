@@ -4,7 +4,7 @@ Handles all broker communication and order execution
 """
 import asyncio
 from datetime import datetime
-from typing import Optional, List, Dict, Any, Callable
+from typing import Optional, List, Dict, Any, Callable, TYPE_CHECKING
 from loguru import logger
 
 try:
@@ -13,6 +13,10 @@ try:
     IB_AVAILABLE = True
 except ImportError:
     IB_AVAILABLE = False
+    # Define placeholder types for when ib_insync is not installed
+    Contract = Any  # type: ignore
+    IBTrade = Any  # type: ignore
+    IB = Any  # type: ignore
     logger.warning("ib_insync not installed - IB functionality disabled")
 
 from .models import (
