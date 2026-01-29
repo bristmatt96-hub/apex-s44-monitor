@@ -26,79 +26,22 @@ try:
 except ImportError:
     pass
 
-# Helper function to safely get secrets (handles missing secrets.toml)
+# Load API keys from secrets
 def get_secret(key, default=""):
-    """Get secret from Streamlit secrets or environment variables"""
     try:
         return st.secrets.get(key, os.environ.get(key, default))
     except Exception:
         return os.environ.get(key, default)
 
-# Load API keys from secrets
+def get_secret(key, default=""):
+    try:
+        return st.secrets.get(key, os.environ.get(key, default))
+    except Exception:
+        return os.environ.get(key, default)
+
 OPENAI_API_KEY = get_secret("OPENAI_API_KEY", "")
 ANTHROPIC_API_KEY = get_secret("ANTHROPIC_API_KEY", "")
 
-
-# ============== LIVE PRECEDENT MANAGEMENT ==============
-
-LIVE_PRECEDENTS_FILE = Path(__file__).parent.parent / "data" / "isda_precedents.json"
-
-def load_live_precedents() -> Dict:
-    """Load user-added precedents and live updates from JSON file"""
-    if LIVE_PRECEDENTS_FILE.exists():
-        try:
-            with open(LIVE_PRECEDENTS_FILE, "r", encoding="utf-8") as f:
-                return json.load(f)
-        except:
-            pass
-    return {"precedents": {}, "live_updates": []}
-
-def save_live_precedents(data: Dict):
-    """Save precedents and live updates to JSON file"""
-    LIVE_PRECEDENTS_FILE.parent.mkdir(parents=True, exist_ok=True)
-    with open(LIVE_PRECEDENTS_FILE, "w", encoding="utf-8") as f:
-        json.dump(data, f, indent=2, ensure_ascii=False)
-
-def add_precedent(name: str, year: int, events: List[str], summary: str,
-                  key_rulings: List[str], lessons: List[str]):
-    """Add a new precedent to the live database"""
-    data = load_live_precedents()
-    data["precedents"][name] = {
-        "year": year,
-        "events": events,
-        "summary": summary,
-        "key_rulings": key_rulings,
-        "lessons": lessons,
-        "added": datetime.now().isoformat()
-    }
-    save_live_precedents(data)
-
-def add_live_update(company: str, date: str, headline: str, details: str,
-                    potential_ce: str, source: str = ""):
-    """Add a live news update for tracking"""
-    data = load_live_precedents()
-    data["live_updates"].append({
-        "company": company,
-        "date": date,
-        "headline": headline,
-        "details": details,
-        "potential_ce": potential_ce,
-        "source": source,
-        "added": datetime.now().isoformat()
-    })
-    save_live_precedents(data)
-
-def get_all_precedents() -> Dict:
-    """Get all precedents (hardcoded + user-added)"""
-    all_precs = dict(ISDA_PRECEDENTS)  # Start with hardcoded
-    live_data = load_live_precedents()
-    all_precs.update(live_data.get("precedents", {}))  # Add user precedents
-    return all_precs
-
-def get_live_updates() -> List:
-    """Get all live updates"""
-    data = load_live_precedents()
-    return data.get("live_updates", [])
 
 
 # ============== ISDA DC PRECEDENT DATABASE ==============
@@ -154,10 +97,10 @@ ISDA_PRECEDENTS = {
         ]
     },
 
-    "Intrum (2023 LME)": {
+    "Intrum": {
         "year": 2023,
         "events": ["Potential Restructuring - LME"],
-        "summary": "Swedish debt collector. Liability Management Exercise (LME) with exchange offer. Key question: does modern LME structure trigger Restructuring? (Note: Company later filed Chapter 11 in 2024 - see separate entry)",
+        "summary": "Swedish debt collector. Liability Management Exercise (LME) with exchange offer. Key question: does modern LME structure trigger Restructuring?",
         "key_rulings": [
             "Exchange offers with coercive elements analyzed carefully",
             "Distinction between 'economically coercive' vs 'legally binding'",
@@ -525,143 +468,6 @@ ISDA_PRECEDENTS = {
             "Currency of payment must match obligation terms",
             "Force majeure arguments rejected"
         ]
-    },
-
-    # ============== 2023-2025 LME ERA PRECEDENTS ==============
-
-    "Credit Suisse": {
-        "year": 2023,
-        "events": ["Governmental Intervention"],
-        "summary": "Swiss regulator FINMA ordered full write-down of CHF 16bn AT1 bonds. Senior and Tier 2 bonds transferred to UBS intact.",
-        "key_rulings": [
-            "Question: Did Governmental Intervention CE occur on Subordinated CDS?",
-            "Answer: NO - because Reference Obligation (Tier 2) was not affected",
-            "AT1 write-down hit a junior layer but Tier 2 was transferred intact",
-            "Standard 'Subordinated CDS' contracts reference Tier 2, NOT AT1s"
-        ],
-        "lessons": [
-            "The 'Reference Obligation Trap' - GI must affect the Reference Obligation",
-            "For GI to trigger, must write down Reference Obligation or pari passu/senior",
-            "Hierarchy matters - junior layer write-down may NOT trigger CDS",
-            "Massive 'protection gap' exposed - AT1 holders lost everything, CDS paid zero",
-            "Bank capital structure hierarchy is critical for CDS analysis"
-        ]
-    },
-
-    "Casino Guichard-Perrachon": {
-        "year": 2023,
-        "events": ["Restructuring"],
-        "summary": "French retailer used Conciliation (amicable) then Safeguard (court-supervised) proceedings.",
-        "key_rulings": [
-            "Question: Does opening Conciliation trigger Bankruptcy?",
-            "Answer: NO - Conciliation is voluntary/consensual",
-            "BUT: Safeguard DOES trigger - it imposes mandatory stay on creditors",
-            "Key distinction between consensual and coercive proceedings"
-        ],
-        "lessons": [
-            "French Conciliation (consensual) = NOT a Credit Event",
-            "French Safeguard (coercive, court-supervised) = Bankruptcy/Restructuring CE",
-            "Only proceedings imposing mandatory stay trigger 'Bankruptcy' clause",
-            "Watch for: when does company move from Conciliation to Safeguard?"
-        ]
-    },
-
-    "Matalan": {
-        "year": 2020,
-        "events": ["Bankruptcy"],
-        "summary": "UK retailer filed Chapter 15 in US seeking recognition AND automatic stay.",
-        "key_rulings": [
-            "Compared to Thomas Cook (which only sought recognition - NO CE)",
-            "Matalan asked for recognition PLUS automatic stay",
-            "DC ruled: requesting broad stay = 'relief similar to judgment of insolvency'",
-            "Therefore: Bankruptcy CE confirmed"
-        ],
-        "lessons": [
-            "The 'Relief Sought' Test for Chapter 15",
-            "Chapter 15 with recognition only = NOT a Credit Event",
-            "Chapter 15 with recognition + stay = Bankruptcy CE",
-            "Read the actual Chapter 15 filing - what relief is requested?",
-            "Thomas Cook (recognition only) vs Matalan (recognition + stay)"
-        ]
-    },
-
-    "Intrum AB (2024)": {
-        "year": 2024,
-        "events": ["Bankruptcy"],
-        "summary": "Swedish debt collector filed for US Chapter 11 to implement pre-packaged reorganization.",
-        "key_rulings": [
-            "Chapter 11 filing by European entity = Bankruptcy CE",
-            "Pre-packaged/technical nature did not affect CE analysis",
-            "US Chapter 11 available to foreign debtors"
-        ],
-        "lessons": [
-            "US Chapter 11 by European company = clear Bankruptcy CE",
-            "Pre-pack nature irrelevant - filing is the trigger",
-            "Confirms foreign companies can use US Chapter 11",
-            "Jurisdiction of filing matters, not place of incorporation"
-        ]
-    },
-
-    "Altice France": {
-        "year": 2025,
-        "events": ["Bankruptcy"],
-        "summary": "Entered Accelerated Safeguard proceedings in France. ~95% of bonds locked up in restructuring agreement. Also aggressively used dropdown threats.",
-        "key_rulings": [
-            "Accelerated Safeguard = Bankruptcy CE (relief from creditors)",
-            "CRITICAL: ~95% bonds 'locked up' - could not be traded in auction",
-            "DC abandoned standard auction - used Section 3.2(d) Composite Price mechanism",
-            "Composite Price calculated from exit package (New Notes + Cash + Equity)"
-        ],
-        "lessons": [
-            "French Accelerated Safeguard = Bankruptcy CE",
-            "AUCTION FAILURE RISK when high lock-up percentage",
-            "Section 3.2(d) 'Composite Settlement' used when bonds un-auctionable",
-            "Composite Price = value of cash + new notes + equity in restructuring",
-            "'Locking up the float' is NO LONGER a valid avoidance tactic - DC will switch to cash settlement",
-            "Dropdown threats (moving assets to unrestricted subs) used to coerce creditors",
-            "Critical precedent for LME-era settlements"
-        ]
-    },
-
-    "Ardagh Packaging Finance": {
-        "year": 2025,
-        "events": ["Restructuring"],
-        "summary": "Distressed exchange with Transaction Support Agreement (TSA). External Review Panel ruled CE occurred at TSA signing, not deal close.",
-        "key_rulings": [
-            "Question: CE date = TSA signing (Oct 7) or deal close (Nov 12)?",
-            "Answer: TSA signing date (earlier date)",
-            "External Review Panel (3 KCs/Judges, NOT market participants) ruled: 'binding means inevitable'",
-            "Panel prioritized legal certainty over 'market custom' of waiting for closing"
-        ],
-        "lessons": [
-            "THE 'BINDING' TRIGGER - CE occurs when agreement is mathematically inevitable",
-            "'Binding Threshold' = LOWER of: Contractual CAC OR Statutory Scheme threshold",
-            "Senior Notes: 90% CAC required, 92% signed TSA → 92% > 90% = BOUND immediately",
-            "PIK Notes: 90% CAC required, only 82% signed → pivoted to English Scheme (75% threshold)",
-            "PIK result: 82% > 75% Scheme threshold = also BOUND",
-            "Protection sellers caught off guard by earlier trigger date",
-            "ERP = 'Supreme Court' of CDS - convened when DC can't reach 80% supermajority"
-        ]
-    },
-
-    "Adler Group": {
-        "year": 2023,
-        "events": ["LME - No Credit Event"],
-        "summary": "German real estate company. Used exit consents to strip covenants from old bonds, creating 'zombie bonds'. CDS remained attached to hollow shell.",
-        "key_rulings": [
-            "Exchange offer: Old Bonds for New Bonds with haircut",
-            "Exit consent mechanism: participating holders voted to strip old bond covenants",
-            "Old bonds left as 'zombie bonds' - worthless but technically not restructured",
-            "CDS did NOT trigger - no change to Ranking, Principal, Coupon, or Maturity"
-        ],
-        "lessons": [
-            "THE 'ZOMBIE BOND' / COVENANT STRIP TACTIC",
-            "ISDA Restructuring requires change to: Ranking, Principal, Coupon, or Maturity",
-            "Stripping covenants (Negative Pledge, Cross-Default) does NOT fit this list",
-            "Old bond remains outstanding with original payment terms - CDS references this zombie",
-            "CDS left 'orphaned' on hollow shell that won't technically default",
-            "Exit consents force 'voluntary' participation without triggering CDS"
-        ]
     }
 }
 
@@ -674,18 +480,19 @@ ISDA_SYSTEM_PROMPT = """You are an expert ISDA Credit Derivatives analyst with d
 2. Credit Derivatives Determinations Committee (DC) rulings and precedents
 3. How different restructuring types (Mod-R, Mod-Mod-R, Old-R) affect CDS
 4. Nuances of different bankruptcy/insolvency regimes globally
-5. Modern LME (Liability Management Exercise) structures and their CE implications
 
 You have studied all major DC determinations including:
 
-CORPORATE CASES (Classic):
+CORPORATE CASES:
 - Portugal Telecom (succession events, merger complexity)
 - Abengoa (Spanish homologación, Failure to Pay)
 - Isolux (voluntary vs binding restructuring - voluntary = NO CE)
+- Intrum (modern LME structures, coercive vs binding)
 - Codere (manufactured defaults - intent irrelevant)
 - Caesars (subsidiary vs parent, guarantees)
 - Noble Group (Singapore scheme of arrangement)
 - Windstream (covenant breach is NOT a CE)
+- Rallye/Casino (French sauvegarde)
 - Phones4U, Thomas Cook (UK administration)
 - Banco Espirito Santo (bank resolution, bail-in)
 - Europcar (French sauvegarde accélérée)
@@ -695,15 +502,6 @@ CORPORATE CASES (Classic):
 - Hertz, Avianca (COVID-era bankruptcies)
 - Garuda Indonesia (sukuk, emerging markets)
 - Evergrande (China property, offshore vs onshore)
-
-LME ERA CASES (2023-2025) - CRITICAL NEW PRECEDENTS:
-- Credit Suisse 2023 (AT1 write-down, Reference Obligation hierarchy gap)
-- Casino 2023 (Conciliation vs Safeguard - consensual vs coercive)
-- Adler 2023 (Exit consents, 'Zombie Bond' - covenant strip avoids CDS trigger)
-- Matalan 2020 (Chapter 15 'Relief Sought' test vs Thomas Cook)
-- Intrum 2024 (European company Chapter 11 in US)
-- Altice France 2025 (Accelerated Safeguard + Section 3.2(d) 'Composite Settlement')
-- Ardagh 2025 (TSA/Lock-Up signing = 'Binding Trigger', CAC vs Scheme threshold)
 
 SOVEREIGN CASES:
 - Russia 2022 (sanctions blocking payment = still FtP)
@@ -748,72 +546,6 @@ SUCCESSION EVENTS:
 - May result in contract splitting if multiple successors
 - Corporate restructurings must be tracked carefully (PT/Oi)
 
-============== 2023-2025 KEY INTERPRETIVE DEVELOPMENTS ==============
-
-THE "BINDING" TRIGGER (Ardagh 2025):
-- A Restructuring CE can occur at TSA/Lock-Up Agreement signing
-- NOT just when actual debt exchange closes
-- "Binding" is a MATHEMATICALLY DYNAMIC threshold, not a fixed ISDA number
-- The test: "Binding Threshold" = LOWER of: (1) Contractual CAC or (2) Statutory Scheme threshold
-- Ardagh Senior Notes: 90% CAC required, 92% signed TSA → 92% > 90% = BOUND immediately
-- Ardagh PIK Notes: 90% CAC required, only 82% signed → pivoted to English Scheme (75%)
-- PIK result: 82% > 75% Scheme threshold = also BOUND
-- EXTERNAL REVIEW PANEL (ERP) = "Supreme Court" of CDS (3 KCs/Judges, NOT market participants)
-- ERP prioritized "legal certainty" over "market custom" of waiting for closing
-
-THE "COMPOSITE SETTLEMENT" / BROKEN AUCTION (Altice 2025):
-- When 90%+ bonds are locked up in restructuring, auction may fail
-- Locked-up bonds cannot be freely traded in standard auction
-- DC abandoned auction - invoked Section 3.2(d) "Composite Price" mechanism
-- Composite = value of cash + new notes + equity from restructuring
-- "Locking up the float" is NO LONGER a valid avoidance tactic
-- DC will simply switch to cash settlement using Composite Price
-
-============== LME AVOIDANCE TACTICS (The "Playbook") ==============
-
-EXIT CONSENTS / "ZOMBIE BOND" (Adler 2023):
-- Issuer offers exchange: Old Bonds → New Bonds (often with haircut)
-- Exit consent: participating holders vote to strip Old Bond covenants
-- Covenants stripped: Negative Pledge, Cross-Default, etc.
-- Result: Old bond is "zombie" - worthless but payment terms unchanged
-- CDS does NOT trigger: no change to Ranking, Principal, Coupon, or Maturity
-- CDS left "orphaned" on hollow shell
-
-DROP-DOWN TRANSACTIONS (J.Crew / Envision / Altice style):
-- Company uses "Unrestricted Subsidiary" baskets
-- Transfers valuable assets (IP, operating units) out of credit group
-- Raises new debt secured by those assets
-- Reference Entity (original issuer) hasn't failed to pay or restructured
-- CDS attached to empty shell
-
-CAC MANIPULATION / "VOTE RIGGING":
-- Sponsor issues new debt to friendly affiliates
-- Dilutes voting pool mathematically
-- Crosses waiver threshold before ISDA Grace Period expires
-- Manufactured majority waives default retroactively
-- Prevents Failure to Pay trigger
-
-THE "REFERENCE OBLIGATION" HIERARCHY GAP (Credit Suisse 2023):
-- For bank CDS, standard "Subordinated CDS" references Tier 2, NOT AT1s
-- For Governmental Intervention CE to trigger, must affect Reference Obligation or senior
-- If write-down hits junior layer (AT1) but skips Tier 2 = NO CE
-- Creates massive "protection gap" - bonds written down but CDS pays zero
-- Bank capital structure hierarchy is critical
-
-CONCILIATION vs SAFEGUARD (Casino 2023):
-- French Conciliation (amicable, consensual) = NOT a Credit Event
-- French Safeguard (court-supervised, coercive) = Bankruptcy/Restructuring CE
-- Key test: Does proceeding impose MANDATORY stay on creditors?
-- Consensual proceedings without stay = no trigger
-- Watch for transition from Conciliation to Safeguard
-
-CHAPTER 15 "RELIEF SOUGHT" TEST (Matalan vs Thomas Cook):
-- Chapter 15 for recognition only = NOT a Credit Event (Thomas Cook)
-- Chapter 15 for recognition + automatic stay = Bankruptcy CE (Matalan)
-- Key: what relief is actually requested in the filing?
-- Broad stay request = "relief similar to judgment of insolvency"
-- Must read actual Chapter 15 petition to determine
-
 When analyzing a situation:
 1. Identify which Credit Event type is potentially relevant
 2. Apply the specific ISDA definition tests
@@ -832,13 +564,10 @@ If uncertain, say so and explain what additional information would be needed.
 
 
 def build_precedent_context() -> str:
-    """Build context string from precedent database (including live updates)"""
+    """Build context string from precedent database"""
     context = "RELEVANT ISDA DC PRECEDENTS:\n\n"
 
-    # Get all precedents (hardcoded + user-added)
-    all_precedents = get_all_precedents()
-
-    for name, data in all_precedents.items():
+    for name, data in ISDA_PRECEDENTS.items():
         context += f"=== {name} ({data['year']}) ===\n"
         context += f"Events: {', '.join(data['events'])}\n"
         context += f"Summary: {data['summary']}\n"
@@ -846,20 +575,6 @@ def build_precedent_context() -> str:
         for lesson in data['lessons']:
             context += f"  - {lesson}\n"
         context += "\n"
-
-    # Add live updates (recent news being tracked)
-    live_updates = get_live_updates()
-    if live_updates:
-        context += "\n\n============== LIVE SITUATION UPDATES ==============\n"
-        context += "(Recent news/events being tracked - may not yet be DC-determined)\n\n"
-        for update in live_updates[-10:]:  # Last 10 updates
-            context += f"=== {update['company']} ({update['date']}) ===\n"
-            context += f"Headline: {update['headline']}\n"
-            context += f"Details: {update['details']}\n"
-            context += f"Potential CE Type: {update['potential_ce']}\n"
-            if update.get('source'):
-                context += f"Source: {update['source']}\n"
-            context += "\n"
 
     return context
 
@@ -980,7 +695,7 @@ def render_isda_agent():
 
     st.markdown("---")
 
-    tab1, tab2, tab3, tab4 = st.tabs(["Ask Agent", "Analyze Article", "DC Precedents", "Add Live Update"])
+    tab1, tab2, tab3 = st.tabs(["Ask Agent", "Analyze Article", "DC Precedents"])
 
     with tab1:
         render_agent_query(provider)
@@ -990,9 +705,6 @@ def render_isda_agent():
 
     with tab3:
         render_precedent_browser()
-
-    with tab4:
-        render_live_update_manager()
 
 
 def render_agent_query(provider: str):
@@ -1065,12 +777,9 @@ def render_precedent_browser():
     st.markdown("### DC Precedent Database")
     st.caption("Key Credit Derivatives Determinations Committee rulings")
 
-    # Get all precedents (hardcoded + user-added)
-    all_precedents = get_all_precedents()
-
     # Filter by event type
     all_events = set()
-    for data in all_precedents.values():
+    for data in ISDA_PRECEDENTS.values():
         all_events.update(data["events"])
 
     event_filter = st.multiselect(
@@ -1079,10 +788,7 @@ def render_precedent_browser():
         default=[]
     )
 
-    # Show count
-    st.caption(f"Total precedents: {len(all_precedents)}")
-
-    for name, data in sorted(all_precedents.items(), key=lambda x: x[1]["year"], reverse=True):
+    for name, data in sorted(ISDA_PRECEDENTS.items(), key=lambda x: x[1]["year"], reverse=True):
         # Apply filter
         if event_filter and not any(e in data["events"] for e in event_filter):
             continue
@@ -1097,120 +803,3 @@ def render_precedent_browser():
             st.markdown("**Lessons for Future Cases:**")
             for lesson in data["lessons"]:
                 st.markdown(f"- {lesson}")
-
-
-def render_live_update_manager():
-    """UI for adding live updates and new precedents"""
-
-    st.markdown("### Live Situation Tracker")
-    st.caption("Add breaking news and developments to the agent's context")
-
-    update_type = st.radio(
-        "What do you want to add?",
-        ["Live News Update", "New DC Precedent"],
-        horizontal=True
-    )
-
-    if update_type == "Live News Update":
-        st.markdown("#### Add Live Update")
-        st.caption("Track a developing situation - the agent will consider this when answering questions")
-
-        col1, col2 = st.columns(2)
-        with col1:
-            company = st.text_input("Company Name", placeholder="e.g., Ardagh Packaging")
-            date = st.date_input("Date")
-        with col2:
-            potential_ce = st.selectbox(
-                "Potential Credit Event Type",
-                ["Unknown/Analyzing", "Failure to Pay", "Bankruptcy", "Restructuring",
-                 "Repudiation/Moratorium", "Governmental Intervention", "Not a Credit Event"]
-            )
-            source = st.text_input("Source (optional)", placeholder="e.g., Bloomberg, Reuters")
-
-        headline = st.text_input("Headline", placeholder="Brief headline of the development")
-        details = st.text_area(
-            "Details",
-            height=150,
-            placeholder="Paste the full article or describe the situation in detail..."
-        )
-
-        if st.button("Add Live Update", type="primary"):
-            if company and headline and details:
-                add_live_update(
-                    company=company,
-                    date=str(date),
-                    headline=headline,
-                    details=details,
-                    potential_ce=potential_ce,
-                    source=source
-                )
-                st.success(f"Added live update for {company}")
-                st.info("The agent will now consider this when answering questions.")
-            else:
-                st.warning("Please fill in Company, Headline, and Details")
-
-        # Show existing live updates
-        st.markdown("---")
-        st.markdown("#### Current Live Updates")
-        updates = get_live_updates()
-        if updates:
-            for i, update in enumerate(reversed(updates[-10:])):
-                with st.expander(f"{update['company']} - {update['date']}: {update['headline']}"):
-                    st.markdown(f"**Potential CE:** {update['potential_ce']}")
-                    st.markdown(f"**Details:** {update['details'][:500]}...")
-                    if update.get('source'):
-                        st.caption(f"Source: {update['source']}")
-        else:
-            st.info("No live updates yet. Add one above to track developing situations.")
-
-    else:  # New DC Precedent
-        st.markdown("#### Add New DC Precedent")
-        st.caption("Add a formally determined case to the precedent database")
-
-        col1, col2 = st.columns(2)
-        with col1:
-            name = st.text_input("Case Name", placeholder="e.g., Company Name (Year)")
-            year = st.number_input("Year", min_value=2000, max_value=2030, value=2024)
-        with col2:
-            events = st.multiselect(
-                "Credit Event Types",
-                ["Bankruptcy", "Failure to Pay", "Restructuring", "Repudiation/Moratorium",
-                 "Governmental Intervention", "Obligation Acceleration", "Obligation Default",
-                 "Succession Event", "LME - No Credit Event"]
-            )
-
-        summary = st.text_area(
-            "Summary",
-            height=100,
-            placeholder="Brief summary of what happened and how it was determined..."
-        )
-
-        key_rulings_text = st.text_area(
-            "Key Rulings (one per line)",
-            height=100,
-            placeholder="Enter each key ruling on a new line..."
-        )
-
-        lessons_text = st.text_area(
-            "Lessons for Future Cases (one per line)",
-            height=100,
-            placeholder="Enter each lesson on a new line..."
-        )
-
-        if st.button("Add Precedent", type="primary"):
-            if name and events and summary:
-                key_rulings = [r.strip() for r in key_rulings_text.split("\n") if r.strip()]
-                lessons = [l.strip() for l in lessons_text.split("\n") if l.strip()]
-
-                add_precedent(
-                    name=name,
-                    year=year,
-                    events=events,
-                    summary=summary,
-                    key_rulings=key_rulings,
-                    lessons=lessons
-                )
-                st.success(f"Added precedent: {name}")
-                st.info("This case will now be included in all future agent analyses.")
-            else:
-                st.warning("Please fill in Name, Events, and Summary")
