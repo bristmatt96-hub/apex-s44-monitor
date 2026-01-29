@@ -19,9 +19,9 @@ class IBConfig(BaseModel):
 
 class CryptoConfig(BaseModel):
     """Crypto Exchange Configuration"""
-    exchange: str = "binance"
-    api_key: str = os.getenv("CRYPTO_API_KEY", "")
-    api_secret: str = os.getenv("CRYPTO_API_SECRET", "")
+    exchange: str = "kraken"  # UK-friendly exchange
+    api_key: str = os.getenv("KRAKEN_API_KEY", "")
+    api_secret: str = os.getenv("KRAKEN_API_SECRET", "")
     testnet: bool = False
 
 

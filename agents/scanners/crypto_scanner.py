@@ -47,28 +47,28 @@ class CryptoScanner(BaseScanner):
     def __init__(self, config: Optional[Dict] = None):
         super().__init__("CryptoScanner", MarketType.CRYPTO, config)
 
-        # Exchange setup
-        self.exchange_id = config.get('exchange', 'binance') if config else 'binance'
+        # Exchange setup - Kraken for UK users (Binance restricted)
+        self.exchange_id = config.get('exchange', 'kraken') if config else 'kraken'
         self.exchange = None
 
-        # Aggressive crypto watchlist
+        # Kraken-compatible watchlist (uses XBT for Bitcoin, USD pairs)
         self.default_watchlist = [
-            # Major coins
-            'BTC/USDT', 'ETH/USDT', 'SOL/USDT', 'XRP/USDT', 'ADA/USDT',
-            'AVAX/USDT', 'DOT/USDT', 'MATIC/USDT', 'LINK/USDT', 'UNI/USDT',
+            # Major coins (Kraken uses XBT for Bitcoin)
+            'XBT/USD', 'ETH/USD', 'SOL/USD', 'XRP/USD', 'ADA/USD',
+            'AVAX/USD', 'DOT/USD', 'MATIC/USD', 'LINK/USD', 'UNI/USD',
             # High volatility alts
-            'DOGE/USDT', 'SHIB/USDT', 'PEPE/USDT', 'FLOKI/USDT', 'BONK/USDT',
+            'DOGE/USD', 'SHIB/USD', 'PEPE/USD',
             # DeFi
-            'AAVE/USDT', 'MKR/USDT', 'SNX/USDT', 'CRV/USDT', 'LDO/USDT',
+            'AAVE/USD', 'MKR/USD', 'SNX/USD', 'CRV/USD', 'LDO/USD',
             # Layer 2
-            'ARB/USDT', 'OP/USDT', 'IMX/USDT',
+            'ARB/USD', 'OP/USD',
             # Gaming/Metaverse
-            'AXS/USDT', 'SAND/USDT', 'MANA/USDT', 'GALA/USDT',
+            'AXS/USD', 'SAND/USD', 'MANA/USD', 'GALA/USD',
             # AI tokens
-            'FET/USDT', 'AGIX/USDT', 'OCEAN/USDT', 'RNDR/USDT',
+            'FET/USD', 'OCEAN/USD',
             # Other movers
-            'APE/USDT', 'LTC/USDT', 'BCH/USDT', 'ETC/USDT', 'FIL/USDT',
-            'NEAR/USDT', 'ATOM/USDT', 'ALGO/USDT', 'VET/USDT', 'HBAR/USDT'
+            'APE/USD', 'LTC/USD', 'BCH/USD', 'ETC/USD', 'FIL/USD',
+            'NEAR/USD', 'ATOM/USD', 'ALGO/USD'
         ]
 
         self.timeframe = '1h'  # 1 hour candles for signals
