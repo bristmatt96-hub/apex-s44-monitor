@@ -12,6 +12,15 @@ import threading
 import time
 import feedparser
 
+# Import multi-agent utilities
+try:
+    from utils.agent_utils import SafeScheduler, setup_logger
+    UTILS_AVAILABLE = True
+    brief_logger = setup_logger("morning_brief", "morning_brief.log")
+except ImportError:
+    UTILS_AVAILABLE = False
+    brief_logger = None
+
 # Telegram config - loaded from environment or secrets
 TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "")
 TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID", "")
@@ -306,10 +315,18 @@ def send_morning_brief() -> bool:
         return False
 
 
+# Global scheduler instance
+_scheduler = None
+SCHEDULER_STATE_FILE = Path(__file__).parent.parent / "data" / "morning_brief_scheduler.json"
+
+
 def schedule_daily_brief(hour: int = 7, minute: int = 0):
     """
     Run scheduler that sends brief at specified UK time daily.
     Call this in a background thread.
+
+    This is the legacy implementation kept for backward compatibility.
+    Use start_scheduler() for the improved version with double-send prevention.
     """
     import pytz
     uk_tz = pytz.timezone("Europe/London")
@@ -323,9 +340,18 @@ def schedule_daily_brief(hour: int = 7, minute: int = 0):
             target += timedelta(days=1)
 
         wait_seconds = (target - now_uk).total_seconds()
-        print(f"[Morning Brief] Next brief at {target}, waiting {wait_seconds/3600:.1f} hours")
 
-        time.sleep(wait_seconds)
+        if brief_logger:
+            brief_logger.info(f"Next brief at {target}, waiting {wait_seconds/3600:.1f} hours")
+        else:
+            print(f"[Morning Brief] Next brief at {target}, waiting {wait_seconds/3600:.1f} hours")
+
+        # Wait in smaller increments for more responsive shutdown
+        while wait_seconds > 0:
+            sleep_time = min(60, wait_seconds)
+            time.sleep(sleep_time)
+            wait_seconds -= sleep_time
+
         send_morning_brief()
 
         # Wait a minute to avoid double-sending
@@ -333,11 +359,43 @@ def schedule_daily_brief(hour: int = 7, minute: int = 0):
 
 
 def start_scheduler():
-    """Start the morning brief scheduler in a background thread"""
-    thread = threading.Thread(target=schedule_daily_brief, daemon=True)
-    thread.start()
-    print("[Morning Brief] Scheduler started for 7am UK daily")
-    return thread
+    """Start the morning brief scheduler with improved double-send prevention"""
+    global _scheduler
+
+    if UTILS_AVAILABLE:
+        # Use SafeScheduler for better reliability
+        _scheduler = SafeScheduler(SCHEDULER_STATE_FILE, logger=brief_logger)
+        thread = _scheduler.run_daily_at(
+            task_name="morning_brief",
+            task_func=send_morning_brief,
+            hour=7,
+            minute=0,
+            timezone_str="Europe/London"
+        )
+        if brief_logger:
+            brief_logger.info("Scheduler started (SafeScheduler) for 7am UK daily")
+        else:
+            print("[Morning Brief] Scheduler started (SafeScheduler) for 7am UK daily")
+        return thread
+    else:
+        # Fallback to legacy scheduler
+        thread = threading.Thread(target=schedule_daily_brief, daemon=True)
+        thread.start()
+        if brief_logger:
+            brief_logger.info("Scheduler started (legacy) for 7am UK daily")
+        else:
+            print("[Morning Brief] Scheduler started for 7am UK daily")
+        return thread
+
+
+def stop_scheduler():
+    """Stop the scheduler if running"""
+    global _scheduler
+    if _scheduler and UTILS_AVAILABLE:
+        _scheduler.stop()
+        if brief_logger:
+            brief_logger.info("Scheduler stopped")
+        _scheduler = None
 
 
 # CLI testing

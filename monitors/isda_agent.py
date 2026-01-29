@@ -26,6 +26,18 @@ try:
 except ImportError:
     pass
 
+# Import multi-agent utilities
+try:
+    from utils.agent_utils import (
+        safe_json_read, safe_json_write, safe_json_update,
+        retry_with_backoff, call_with_retry, setup_logger
+    )
+    UTILS_AVAILABLE = True
+    isda_logger = setup_logger("isda_agent", "isda_agent.log")
+except ImportError:
+    UTILS_AVAILABLE = False
+    isda_logger = None
+
 # Helper function to safely get secrets (handles missing secrets.toml)
 def get_secret(key, default=""):
     """Get secret from Streamlit secrets or environment variables"""
@@ -44,20 +56,33 @@ ANTHROPIC_API_KEY = get_secret("ANTHROPIC_API_KEY", "")
 LIVE_PRECEDENTS_FILE = Path(__file__).parent.parent / "data" / "isda_precedents.json"
 
 def load_live_precedents() -> Dict:
-    """Load user-added precedents and live updates from JSON file"""
-    if LIVE_PRECEDENTS_FILE.exists():
-        try:
-            with open(LIVE_PRECEDENTS_FILE, "r", encoding="utf-8") as f:
-                return json.load(f)
-        except:
-            pass
-    return {"precedents": {}, "live_updates": []}
+    """Load user-added precedents and live updates from JSON file (thread-safe)"""
+    default_data = {"precedents": {}, "live_updates": []}
+
+    if UTILS_AVAILABLE:
+        return safe_json_read(LIVE_PRECEDENTS_FILE, default=default_data)
+    else:
+        # Fallback to original implementation
+        if LIVE_PRECEDENTS_FILE.exists():
+            try:
+                with open(LIVE_PRECEDENTS_FILE, "r", encoding="utf-8") as f:
+                    return json.load(f)
+            except:
+                pass
+        return default_data
 
 def save_live_precedents(data: Dict):
-    """Save precedents and live updates to JSON file"""
+    """Save precedents and live updates to JSON file (thread-safe)"""
     LIVE_PRECEDENTS_FILE.parent.mkdir(parents=True, exist_ok=True)
-    with open(LIVE_PRECEDENTS_FILE, "w", encoding="utf-8") as f:
-        json.dump(data, f, indent=2, ensure_ascii=False)
+
+    if UTILS_AVAILABLE:
+        if not safe_json_write(LIVE_PRECEDENTS_FILE, data):
+            if isda_logger:
+                isda_logger.error("Failed to save live precedents")
+    else:
+        # Fallback to original implementation
+        with open(LIVE_PRECEDENTS_FILE, "w", encoding="utf-8") as f:
+            json.dump(data, f, indent=2, ensure_ascii=False)
 
 def add_precedent(name: str, year: int, events: List[str], summary: str,
                   key_rulings: List[str], lessons: List[str]):
@@ -864,8 +889,35 @@ def build_precedent_context() -> str:
     return context
 
 
+def _make_openai_request(client, system_content: str, user_message: str) -> str:
+    """Internal function for OpenAI API call (used with retry logic)"""
+    response = client.chat.completions.create(
+        model="gpt-4-turbo-preview",
+        messages=[
+            {"role": "system", "content": system_content},
+            {"role": "user", "content": user_message}
+        ],
+        temperature=0.3,
+        max_tokens=2000
+    )
+    return response.choices[0].message.content
+
+
+def _make_anthropic_request(client, system_content: str, user_message: str) -> str:
+    """Internal function for Anthropic API call (used with retry logic)"""
+    response = client.messages.create(
+        model="claude-sonnet-4-20250514",
+        max_tokens=2000,
+        system=system_content,
+        messages=[
+            {"role": "user", "content": user_message}
+        ]
+    )
+    return response.content[0].text
+
+
 def query_isda_agent_openai(question: str, article_text: str = "") -> str:
-    """Query the ISDA agent using OpenAI"""
+    """Query the ISDA agent using OpenAI with retry logic"""
     if not OPENAI_AVAILABLE or not OPENAI_API_KEY:
         return "OpenAI not available. Please add OPENAI_API_KEY to secrets."
 
@@ -879,24 +931,35 @@ def query_isda_agent_openai(question: str, article_text: str = "") -> str:
 
     # Add precedent context
     precedent_context = build_precedent_context()
+    system_content = ISDA_SYSTEM_PROMPT + "\n\n" + precedent_context
 
     try:
-        response = client.chat.completions.create(
-            model="gpt-4-turbo-preview",
-            messages=[
-                {"role": "system", "content": ISDA_SYSTEM_PROMPT + "\n\n" + precedent_context},
-                {"role": "user", "content": user_message}
-            ],
-            temperature=0.3,
-            max_tokens=2000
-        )
-        return response.choices[0].message.content
+        if UTILS_AVAILABLE:
+            # Use retry logic for API calls
+            if isda_logger:
+                isda_logger.info("Querying OpenAI with retry logic")
+            result = call_with_retry(
+                _make_openai_request,
+                client, system_content, user_message,
+                max_retries=3,
+                base_delay=2.0,
+                exceptions=(openai.APIError, openai.RateLimitError, openai.APIConnectionError)
+            )
+            if isda_logger:
+                isda_logger.info("OpenAI query successful")
+            return result
+        else:
+            # Fallback without retry
+            return _make_openai_request(client, system_content, user_message)
     except Exception as e:
-        return f"Error querying OpenAI: {str(e)}"
+        error_msg = f"Error querying OpenAI: {str(e)}"
+        if isda_logger:
+            isda_logger.error(error_msg)
+        return error_msg
 
 
 def query_isda_agent_anthropic(question: str, article_text: str = "") -> str:
-    """Query the ISDA agent using Anthropic Claude"""
+    """Query the ISDA agent using Anthropic Claude with retry logic"""
     if not ANTHROPIC_AVAILABLE or not ANTHROPIC_API_KEY:
         return "Anthropic not available. Please add ANTHROPIC_API_KEY to secrets."
 
@@ -910,19 +973,31 @@ def query_isda_agent_anthropic(question: str, article_text: str = "") -> str:
 
     # Add precedent context
     precedent_context = build_precedent_context()
+    system_content = ISDA_SYSTEM_PROMPT + "\n\n" + precedent_context
 
     try:
-        response = client.messages.create(
-            model="claude-sonnet-4-20250514",
-            max_tokens=2000,
-            system=ISDA_SYSTEM_PROMPT + "\n\n" + precedent_context,
-            messages=[
-                {"role": "user", "content": user_message}
-            ]
-        )
-        return response.content[0].text
+        if UTILS_AVAILABLE:
+            # Use retry logic for API calls
+            if isda_logger:
+                isda_logger.info("Querying Anthropic with retry logic")
+            result = call_with_retry(
+                _make_anthropic_request,
+                client, system_content, user_message,
+                max_retries=3,
+                base_delay=2.0,
+                exceptions=(anthropic.APIError, anthropic.RateLimitError, anthropic.APIConnectionError)
+            )
+            if isda_logger:
+                isda_logger.info("Anthropic query successful")
+            return result
+        else:
+            # Fallback without retry
+            return _make_anthropic_request(client, system_content, user_message)
     except Exception as e:
-        return f"Error querying Anthropic: {str(e)}"
+        error_msg = f"Error querying Anthropic: {str(e)}"
+        if isda_logger:
+            isda_logger.error(error_msg)
+        return error_msg
 
 
 def query_isda_agent(question: str, article_text: str = "", provider: str = "auto") -> str:

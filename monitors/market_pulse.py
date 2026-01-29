@@ -16,6 +16,18 @@ from pathlib import Path
 from typing import List, Dict, Optional, Set
 import hashlib
 
+# Import multi-agent utilities
+try:
+    from utils.agent_utils import (
+        safe_json_read, safe_json_write, safe_json_update,
+        thread_monitor, setup_logger, retry_with_backoff, ThreadSafeSet
+    )
+    UTILS_AVAILABLE = True
+    pulse_logger = setup_logger("market_pulse", "market_pulse.log")
+except ImportError:
+    UTILS_AVAILABLE = False
+    pulse_logger = None
+
 # Helper function to safely get secrets
 def get_secret(key, default=""):
     try:
@@ -85,22 +97,35 @@ def load_news_sources() -> Dict:
 # ============== HEADLINE TRACKING ==============
 
 def load_seen_headlines() -> Set[str]:
-    """Load set of already-seen headline hashes"""
-    if SEEN_HEADLINES_FILE.exists():
-        try:
-            with open(SEEN_HEADLINES_FILE, "r") as f:
-                data = json.load(f)
-                return set(data.get("seen", []))
-        except:
-            pass
-    return set()
+    """Load set of already-seen headline hashes (thread-safe)"""
+    if UTILS_AVAILABLE:
+        data = safe_json_read(SEEN_HEADLINES_FILE, default={"seen": []})
+        return set(data.get("seen", []))
+    else:
+        # Fallback to original implementation
+        if SEEN_HEADLINES_FILE.exists():
+            try:
+                with open(SEEN_HEADLINES_FILE, "r") as f:
+                    data = json.load(f)
+                    return set(data.get("seen", []))
+            except:
+                pass
+        return set()
 
 def save_seen_headlines(seen: Set[str]):
-    """Save seen headline hashes (keep last 5000)"""
+    """Save seen headline hashes with file locking (keep last 5000)"""
     DATA_DIR.mkdir(parents=True, exist_ok=True)
     recent = list(seen)[-5000:]
-    with open(SEEN_HEADLINES_FILE, "w") as f:
-        json.dump({"seen": recent, "updated": datetime.now().isoformat()}, f)
+    data = {"seen": recent, "updated": datetime.now().isoformat()}
+
+    if UTILS_AVAILABLE:
+        if not safe_json_write(SEEN_HEADLINES_FILE, data):
+            if pulse_logger:
+                pulse_logger.error("Failed to save seen headlines")
+    else:
+        # Fallback to original implementation
+        with open(SEEN_HEADLINES_FILE, "w") as f:
+            json.dump(data, f)
 
 def hash_headline(title: str, source: str) -> str:
     """Create unique hash for a headline"""
@@ -109,24 +134,40 @@ def hash_headline(title: str, source: str) -> str:
 # ============== ALERTS LOG ==============
 
 def load_alerts_log() -> List[Dict]:
-    """Load recent alerts"""
-    if ALERTS_LOG_FILE.exists():
-        try:
-            with open(ALERTS_LOG_FILE, "r") as f:
-                return json.load(f)
-        except:
-            pass
-    return []
+    """Load recent alerts (thread-safe)"""
+    if UTILS_AVAILABLE:
+        return safe_json_read(ALERTS_LOG_FILE, default=[])
+    else:
+        # Fallback to original implementation
+        if ALERTS_LOG_FILE.exists():
+            try:
+                with open(ALERTS_LOG_FILE, "r") as f:
+                    return json.load(f)
+            except:
+                pass
+        return []
 
 def save_alert(alert: Dict):
-    """Save an alert to the log"""
+    """Save an alert to the log (thread-safe with file locking)"""
     DATA_DIR.mkdir(parents=True, exist_ok=True)
-    alerts = load_alerts_log()
-    alerts.append(alert)
-    # Keep last 200 alerts
-    alerts = alerts[-200:]
-    with open(ALERTS_LOG_FILE, "w") as f:
-        json.dump(alerts, f, indent=2)
+
+    if UTILS_AVAILABLE:
+        def update_alerts(alerts):
+            if not isinstance(alerts, list):
+                alerts = []
+            alerts.append(alert)
+            return alerts[-200:]  # Keep last 200 alerts
+
+        if not safe_json_update(ALERTS_LOG_FILE, update_alerts, default=[]):
+            if pulse_logger:
+                pulse_logger.error("Failed to save alert")
+    else:
+        # Fallback to original implementation
+        alerts = load_alerts_log()
+        alerts.append(alert)
+        alerts = alerts[-200:]
+        with open(ALERTS_LOG_FILE, "w") as f:
+            json.dump(alerts, f, indent=2)
 
 # ============== TELEGRAM ==============
 
@@ -404,10 +445,11 @@ def send_pulse_alert(alert: Dict):
 # ============== BACKGROUND SCANNER ==============
 
 _scanner_running = False
+_scanner_thread = None
 
 def start_background_scanner(interval_minutes: int = 5, min_score: int = 3):
-    """Start background RSS scanner"""
-    global _scanner_running
+    """Start background RSS scanner with health monitoring"""
+    global _scanner_running, _scanner_thread
 
     if _scanner_running:
         return
@@ -420,28 +462,68 @@ def start_background_scanner(interval_minutes: int = 5, min_score: int = 3):
         news_sources = load_news_sources()
         seen = load_seen_headlines()
 
+        if pulse_logger:
+            pulse_logger.info(f"Scanner started - interval={interval_minutes}min, min_score={min_score}")
+
         while _scanner_running:
             try:
+                # Send heartbeat if thread monitoring is available
+                if UTILS_AVAILABLE:
+                    thread_monitor.heartbeat("market_pulse_scanner")
+
                 # Scan feeds
                 alerts = scan_feeds_once(watchlist, news_sources, seen, min_score)
+
+                if pulse_logger and alerts:
+                    pulse_logger.info(f"Scan complete - {len(alerts)} new alerts")
 
                 # Save seen headlines
                 save_seen_headlines(seen)
 
-                # Wait before next scan
-                time.sleep(interval_minutes * 60)
+                # Wait before next scan (in smaller intervals for responsive shutdown)
+                wait_time = interval_minutes * 60
+                while wait_time > 0 and _scanner_running:
+                    time.sleep(min(30, wait_time))
+                    wait_time -= 30
+                    # Send heartbeat during wait
+                    if UTILS_AVAILABLE:
+                        thread_monitor.heartbeat("market_pulse_scanner")
 
             except Exception as e:
-                print(f"Scanner error: {e}")
+                if pulse_logger:
+                    pulse_logger.error(f"Scanner error: {e}")
+                else:
+                    print(f"Scanner error: {e}")
                 time.sleep(60)  # Wait 1 min on error
 
-    thread = Thread(target=scanner_loop, daemon=True)
-    thread.start()
+    # Use thread monitor if available for auto-restart capability
+    if UTILS_AVAILABLE:
+        _scanner_thread = thread_monitor.register_thread(
+            name="market_pulse_scanner",
+            target=scanner_loop,
+            heartbeat_timeout=interval_minutes * 60 + 120,  # Allow extra time
+            auto_restart=True,
+            daemon=True
+        )
+        if pulse_logger:
+            pulse_logger.info("Scanner registered with health monitor")
+    else:
+        _scanner_thread = Thread(target=scanner_loop, daemon=True)
+        _scanner_thread.start()
 
 def stop_background_scanner():
     """Stop background scanner"""
     global _scanner_running
     _scanner_running = False
+    if pulse_logger:
+        pulse_logger.info("Scanner stop requested")
+
+def get_scanner_health() -> Dict:
+    """Get health status of the scanner thread"""
+    if UTILS_AVAILABLE:
+        status = thread_monitor.get_health_status()
+        return status.get("market_pulse_scanner", {"healthy": False, "status": "not_registered"})
+    return {"healthy": _scanner_running, "status": "running" if _scanner_running else "stopped"}
 
 # ============== STREAMLIT UI ==============
 
