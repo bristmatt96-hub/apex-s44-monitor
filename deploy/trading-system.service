@@ -1,0 +1,33 @@
+[Unit]
+Description=APEX Multi-Agent Trading System
+After=ibgateway.service network-online.target
+Wants=ibgateway.service network-online.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/root/apex-s44-monitor
+Environment=PATH=/root/apex-s44-monitor/venv/bin:/usr/local/bin:/usr/bin:/bin
+Environment=DISPLAY=:1
+EnvironmentFile=/root/apex-s44-monitor/.env
+
+# Full trading system (manual approval mode - no --auto flag)
+ExecStart=/root/apex-s44-monitor/venv/bin/python main.py
+
+# Auto-restart on failure
+Restart=always
+RestartSec=15
+
+# Wait for IB Gateway to be ready before starting
+ExecStartPre=/bin/sleep 30
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+
+# Resource limits
+MemoryLimit=1G
+CPUQuota=80%
+
+[Install]
+WantedBy=multi-user.target

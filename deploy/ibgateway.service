@@ -1,0 +1,25 @@
+[Unit]
+Description=Interactive Brokers Gateway (via IBC)
+After=xvfb.service network-online.target
+Requires=xvfb.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=root
+Environment=DISPLAY=:1
+Environment=PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+WorkingDirectory=/root/ibc
+ExecStart=/bin/bash /root/ibc/gatewaystart.sh -inline
+Restart=on-failure
+RestartSec=30
+
+# Give Gateway time to start up
+TimeoutStartSec=120
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

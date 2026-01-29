@@ -49,3 +49,14 @@ knowledge/books/*.pdf
 *.xlsx
 *.xls
 data/exports/
+
+# Trading System
+logs/
+models/*.pkl
+models/*.joblib
+trading.db
+*.sqlite3
+
+# Credentials
+credentials.json
+secrets.json
