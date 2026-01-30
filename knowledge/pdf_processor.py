@@ -11,6 +11,7 @@ This enables the system to learn from your books:
 import os
 import json
 import re
+import tempfile
 from datetime import datetime
 from pathlib import Path
 from typing import List, Dict, Optional, Any
@@ -446,8 +447,8 @@ def render_knowledge_base_ui(st, kb: KnowledgeBase):
         category = st.selectbox("Category", ["credit_analysis", "sector_report", "company_report", "general"])
 
         if uploaded_file and st.button("Index Document"):
-            # Save uploaded file temporarily
-            temp_path = Path(f"/tmp/{uploaded_file.name}")
+            # Save uploaded file temporarily (cross-platform)
+            temp_path = Path(tempfile.gettempdir()) / uploaded_file.name
             with open(temp_path, 'wb') as f:
                 f.write(uploaded_file.getbuffer())
 
