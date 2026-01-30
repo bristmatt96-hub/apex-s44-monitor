@@ -38,8 +38,10 @@ except ImportError:
 
 # IMAP server settings
 IMAP_SERVERS = {
-    'outlook': 'outlook.office365.com',
-    'hotmail': 'outlook.office365.com',
+    'outlook': 'imap-mail.outlook.com',      # Consumer Outlook/Hotmail
+    'hotmail': 'imap-mail.outlook.com',      # Consumer Hotmail
+    'live': 'imap-mail.outlook.com',         # Consumer Live.com
+    'office365': 'outlook.office365.com',    # Business Office 365
     'gmail': 'imap.gmail.com',
     'yahoo': 'imap.mail.yahoo.com',
 }
