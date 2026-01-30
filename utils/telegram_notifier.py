@@ -133,12 +133,54 @@ class TelegramNotifier:
             logger.info(f"Skipping duplicate trade entry notification for {symbol}")
             return False
 
-        # Emoji based on side
-        emoji = "🟢" if side.lower() == "buy" else "🔴"
-        direction = "LONG" if side.lower() == "buy" else "SHORT"
+        # Handle options trades specially
+        is_options = market_type.lower() == "options"
+        option_type = None
+        strike = None
+        expiry = None
+
+        if is_options and metadata:
+            option_type = metadata.get('option_type', '').upper()  # CALL or PUT
+            strike = metadata.get('strike')
+            expiry = metadata.get('expiry')
+
+        # Emoji and direction based on side and option type
+        if is_options and option_type:
+            if side.lower() == "buy":
+                emoji = "🟢" if option_type == "CALL" else "🔴"
+                direction = f"BUY {option_type}"
+            else:
+                emoji = "🔴" if option_type == "CALL" else "🟢"
+                direction = f"SELL {option_type}"
+        else:
+            emoji = "🟢" if side.lower() == "buy" else "🔴"
+            direction = "LONG" if side.lower() == "buy" else "SHORT"
 
         # Format message
-        message = f"""
+        if is_options and option_type:
+            # Options-specific format
+            message = f"""
+{emoji} <b>OPTIONS TRADE</b> {emoji}
+
+<b>Underlying:</b> {symbol}
+<b>Action:</b> {direction}
+"""
+            if strike:
+                message += f"<b>Strike:</b> ${strike}\n"
+            if expiry:
+                message += f"<b>Expiry:</b> {expiry}\n"
+
+            message += f"""<b>Contracts:</b> {quantity}
+<b>Premium:</b> ${entry_price:.2f}
+<b>Total Cost:</b> ${entry_price * quantity * 100:.2f}
+
+<b>Strategy:</b> {strategy}
+<b>Risk/Reward:</b> {risk_reward:.1f}:1
+<b>Confidence:</b> {confidence:.0%}
+"""
+        else:
+            # Stock/ETF format
+            message = f"""
 {emoji} <b>TRADE ENTRY</b> {emoji}
 
 <b>Symbol:</b> {symbol}
@@ -196,9 +238,50 @@ class TelegramNotifier:
             emoji = "➖"
             result = "BREAKEVEN"
 
-        direction = "LONG" if side.lower() == "buy" else "SHORT"
+        # Handle options trades specially
+        is_options = market_type.lower() == "options"
+        option_type = None
+        strike = None
 
-        message = f"""
+        if is_options and metadata:
+            option_type = metadata.get('option_type', '').upper()
+            strike = metadata.get('strike')
+
+        # Format direction
+        if is_options and option_type:
+            if side.lower() == "buy":
+                direction = f"BUY {option_type}"
+            else:
+                direction = f"SELL {option_type}"
+        else:
+            direction = "LONG" if side.lower() == "buy" else "SHORT"
+
+        if is_options and option_type:
+            # Options-specific exit format
+            message = f"""
+{emoji} <b>OPTIONS EXIT - {result}</b> {emoji}
+
+<b>Underlying:</b> {symbol}
+<b>Position:</b> {direction}
+"""
+            if strike:
+                message += f"<b>Strike:</b> ${strike}\n"
+
+            message += f"""<b>Contracts:</b> {quantity}
+
+<b>Entry Premium:</b> ${entry_price:.2f}
+<b>Exit Premium:</b> ${exit_price:.2f}
+
+<b>P&L:</b> ${pnl:+.2f} ({pnl_pct:+.2f}%)
+<b>Hold Time:</b> {hold_time}
+
+<b>Exit Reason:</b> {exit_reason}
+
+⏰ {datetime.now().strftime('%Y-%m-%d %H:%M:%S')} UTC
+"""
+        else:
+            # Stock/ETF exit format
+            message = f"""
 {emoji} <b>TRADE EXIT - {result}</b> {emoji}
 
 <b>Symbol:</b> {symbol}
