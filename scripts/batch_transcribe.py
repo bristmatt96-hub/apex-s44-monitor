@@ -46,6 +46,14 @@ def get_transcription_client():
     else:
         return None, None
 
+
+def get_whisper_model(provider: str) -> str:
+    """Get the correct Whisper model name for the provider"""
+    if provider == "groq":
+        return "whisper-large-v3"  # Groq's model name
+    else:
+        return "whisper-1"  # OpenAI's model name
+
 # Supported audio/video formats (including .m4b audiobooks)
 SUPPORTED_FORMATS = {'.mp4', '.mp3', '.m4a', '.m4b', '.wav', '.webm', '.mpeg', '.mpga', '.oga', '.ogg', '.flac'}
 
@@ -131,19 +139,23 @@ def split_audio_file(file_path: Path, chunk_dir: Path, chunk_minutes: int = 15) 
     return chunks
 
 
-def transcribe_file(client: OpenAI, file_path: Path) -> str:
+def transcribe_file(client: OpenAI, file_path: Path, provider: str = "openai") -> str:
     """
-    Transcribe a single audio/video file using OpenAI Whisper API.
+    Transcribe a single audio/video file using Whisper API.
 
     Args:
-        client: OpenAI client
+        client: OpenAI-compatible client
         file_path: Path to audio/video file
+        provider: 'groq' or 'openai'
 
     Returns:
         Transcribed text
     """
     file_size_mb = file_path.stat().st_size / (1024 * 1024)
     print(f"  Uploading {file_size_mb:.1f}MB...")
+
+    # Get correct model name for provider
+    model = get_whisper_model(provider)
 
     # Financial/trading context prompt improves accuracy for jargon
     TRADING_PROMPT = (
@@ -157,7 +169,7 @@ def transcribe_file(client: OpenAI, file_path: Path) -> str:
 
     with open(file_path, "rb") as audio_file:
         transcript = client.audio.transcriptions.create(
-            model="whisper-1",
+            model=model,
             file=audio_file,
             response_format="text",
             prompt=TRADING_PROMPT
@@ -166,13 +178,14 @@ def transcribe_file(client: OpenAI, file_path: Path) -> str:
     return transcript
 
 
-def transcribe_large_file(client: OpenAI, file_path: Path) -> str:
+def transcribe_large_file(client: OpenAI, file_path: Path, provider: str = "openai") -> str:
     """
     Transcribe a large audio file by splitting into chunks.
 
     Args:
-        client: OpenAI client
+        client: OpenAI-compatible client
         file_path: Path to audio file
+        provider: 'groq' or 'openai'
 
     Returns:
         Combined transcribed text
@@ -195,7 +208,7 @@ def transcribe_large_file(client: OpenAI, file_path: Path) -> str:
         for i, chunk_path in enumerate(chunks):
             print(f"  Transcribing chunk {i+1}/{len(chunks)}...")
             try:
-                transcript = transcribe_file(client, chunk_path)
+                transcript = transcribe_file(client, chunk_path, provider)
                 transcripts.append(transcript)
             except Exception as e:
                 print(f"  Warning: Chunk {i+1} failed: {e}")
@@ -339,9 +352,9 @@ def batch_transcribe(input_path: str, output_dir: str = None):
             if file_size_mb > MAX_CHUNK_SIZE_MB:
                 if not has_ffmpeg:
                     raise Exception(f"File too large ({file_size_mb:.1f}MB) and ffmpeg not installed")
-                transcript = transcribe_large_file(client, file_path)
+                transcript = transcribe_large_file(client, file_path, provider)
             else:
-                transcript = transcribe_file(client, file_path)
+                transcript = transcribe_file(client, file_path, provider)
 
             # Save
             transcript_path = save_transcript(transcript, file_path, output_dir)
