@@ -6,13 +6,21 @@ Sends alerts directly to Telegram
 
 import json
 import time
+import os
 import requests
 from datetime import datetime, timedelta
 from pathlib import Path
 
-# Configuration
-TELEGRAM_BOT_TOKEN = "YOUR_BOT_TOKEN"  # Get from @BotFather
-TELEGRAM_CHAT_ID = "YOUR_CHAT_ID"      # Get from @userinfobot
+# Load environment variables
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
+
+# Configuration - NEVER hardcode credentials
+TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "")
+TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID", "")
 CHECK_INTERVAL = 120  # seconds (2 minutes)
 THRESHOLD = 1.0  # percent
 
@@ -67,8 +75,8 @@ previous_prices = {}
 
 def send_telegram(message):
     """Send message to Telegram"""
-    if TELEGRAM_BOT_TOKEN == "YOUR_BOT_TOKEN":
-        print(f"[TELEGRAM] {message}")
+    if not TELEGRAM_BOT_TOKEN or not TELEGRAM_CHAT_ID:
+        print(f"[TELEGRAM - NOT CONFIGURED] {message}")
         return False
 
     url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
@@ -146,11 +154,12 @@ def main():
     print(f"Alert threshold: +/- {THRESHOLD}%")
     print("=" * 50)
 
-    if TELEGRAM_BOT_TOKEN == "YOUR_BOT_TOKEN":
+    if not TELEGRAM_BOT_TOKEN or not TELEGRAM_CHAT_ID:
         print("\n⚠️  Telegram not configured!")
-        print("Edit this file and set:")
-        print("  TELEGRAM_BOT_TOKEN = 'your_token'")
-        print("  TELEGRAM_CHAT_ID = 'your_chat_id'")
+        print("Set environment variables:")
+        print("  export TELEGRAM_BOT_TOKEN='your_token'")
+        print("  export TELEGRAM_CHAT_ID='your_chat_id'")
+        print("Or add to .env file")
         print("\nRunning in test mode (alerts printed to console)\n")
     else:
         send_telegram("🚀 XO S44 Monitor started\nMonitoring 42 credits for +/- 1% moves")

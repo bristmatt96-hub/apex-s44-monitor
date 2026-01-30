@@ -8,13 +8,42 @@ Receives TradingView alerts and forwards to your Telegram bot
 from flask import Flask, request, jsonify
 import requests
 import os
+import hmac
+import hashlib
 from datetime import datetime
+from functools import wraps
 
 app = Flask(__name__)
 
 # Get these from environment variables (set in your deployment platform)
 TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "")
 TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID", "")
+
+# Webhook authentication - set this in your deployment platform
+# Generate with: python -c "import secrets; print(secrets.token_hex(32))"
+WEBHOOK_SECRET = os.environ.get("WEBHOOK_SECRET", "")
+
+
+def require_auth(f):
+    """Decorator to require API key authentication"""
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        # If no secret configured, allow all (for backward compatibility)
+        if not WEBHOOK_SECRET:
+            return f(*args, **kwargs)
+
+        # Check for API key in header or query param
+        api_key = request.headers.get("X-API-Key") or request.args.get("api_key")
+
+        if not api_key:
+            return jsonify({"status": "error", "message": "Missing API key"}), 401
+
+        # Constant-time comparison to prevent timing attacks
+        if not hmac.compare_digest(api_key, WEBHOOK_SECRET):
+            return jsonify({"status": "error", "message": "Invalid API key"}), 403
+
+        return f(*args, **kwargs)
+    return decorated
 
 # Credit implications based on price move
 def get_credit_implication(change_pct: float) -> str:
@@ -66,6 +95,7 @@ def health():
 
 
 @app.route("/webhook", methods=["POST"])
+@require_auth
 def tradingview_webhook():
     """
     Receive TradingView webhook and forward to Telegram
@@ -135,8 +165,9 @@ _TradingView Alert • {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}_
         })
 
     except Exception as e:
+        # Log the actual error server-side, but don't expose details to clients
         print(f"Webhook error: {e}")
-        return jsonify({"status": "error", "message": str(e)}), 500
+        return jsonify({"status": "error", "message": "Internal server error"}), 500
 
 
 @app.route("/test", methods=["GET"])
@@ -153,4 +184,7 @@ def test_telegram():
 
 # For local testing
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    # SECURITY: Never use debug=True in production - exposes stack traces
+    debug_mode = os.environ.get("FLASK_DEBUG", "false").lower() == "true"
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port, debug=debug_mode)

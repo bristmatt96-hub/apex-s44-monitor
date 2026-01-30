@@ -38,10 +38,11 @@ def load_secrets():
     return secrets
 
 # Load from secrets.toml, fall back to environment variables
+# SECURITY: Never use placeholder defaults - use empty strings and check for them
 _secrets = load_secrets()
-XAI_API_KEY = _secrets.get("XAI_API_KEY") or os.environ.get("XAI_API_KEY", "YOUR_XAI_API_KEY")
-TELEGRAM_BOT_TOKEN = _secrets.get("TELEGRAM_BOT_TOKEN") or os.environ.get("TELEGRAM_BOT_TOKEN", "YOUR_BOT_TOKEN")
-TELEGRAM_CHAT_ID = _secrets.get("TELEGRAM_CHAT_ID") or os.environ.get("TELEGRAM_CHAT_ID", "YOUR_CHAT_ID")
+XAI_API_KEY = _secrets.get("XAI_API_KEY") or os.environ.get("XAI_API_KEY", "")
+TELEGRAM_BOT_TOKEN = _secrets.get("TELEGRAM_BOT_TOKEN") or os.environ.get("TELEGRAM_BOT_TOKEN", "")
+TELEGRAM_CHAT_ID = _secrets.get("TELEGRAM_CHAT_ID") or os.environ.get("TELEGRAM_CHAT_ID", "")
 
 # Scanning settings
 SCAN_INTERVAL = 900  # 15 minutes (in seconds)
@@ -72,7 +73,7 @@ def scan_twitter_with_grok(companies: list, api_key: str) -> dict:
     Ask Grok to scan Twitter for mentions of companies from credible accounts
     Returns structured findings
     """
-    if not api_key or api_key == "YOUR_XAI_API_KEY":
+    if not api_key:
         return None
 
     companies_str = ", ".join(companies)
@@ -182,8 +183,8 @@ def parse_grok_findings(content: str) -> dict:
 
 def send_telegram_alert(finding: dict) -> bool:
     """Send a finding to Telegram"""
-    if TELEGRAM_BOT_TOKEN == "YOUR_BOT_TOKEN":
-        print(f"[TELEGRAM MOCK] {finding}")
+    if not TELEGRAM_BOT_TOKEN or not TELEGRAM_CHAT_ID:
+        print(f"[TELEGRAM - NOT CONFIGURED] {finding}")
         return False
 
     # Format message
@@ -272,13 +273,13 @@ def run_scanner():
     print(f"Using Grok (xAI) for Twitter search")
     print("=" * 60)
 
-    if XAI_API_KEY == "YOUR_XAI_API_KEY":
+    if not XAI_API_KEY:
         print("\n⚠️  xAI API key not configured!")
-        print("Set XAI_API_KEY environment variable or edit this file")
+        print("Set XAI_API_KEY environment variable or add to .env file")
         print("Get your key from: console.x.ai")
         return
 
-    if TELEGRAM_BOT_TOKEN == "YOUR_BOT_TOKEN":
+    if not TELEGRAM_BOT_TOKEN or not TELEGRAM_CHAT_ID:
         print("\n⚠️  Telegram not configured - running in test mode")
         print("Alerts will be printed to console only\n")
     else:
