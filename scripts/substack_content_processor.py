@@ -80,26 +80,25 @@ class ContentClassifier:
         """Classify content type based on title and content"""
         text = (title + " " + content[:1000]).lower()
 
-        # Check for tutorial content first (highest priority for Capital Flows)
-        if source == 'capital_flows':
-            for keyword in cls.TUTORIAL_KEYWORDS:
-                if keyword in text:
-                    return ContentType.TUTORIAL
+        # Check for tutorial/educational content first (auto-ingest)
+        tutorial_score = sum(1 for kw in cls.TUTORIAL_KEYWORDS if kw in text)
+        if tutorial_score >= 1:
+            return ContentType.TUTORIAL
 
-        # Check for specific trade ideas
+        # Check for specific trade ideas (both Capital Flows AND Le Shrub)
         trade_signals = sum(1 for kw in cls.TRADE_IDEA_KEYWORDS if kw in text)
         if trade_signals >= 2:  # Multiple trade-related keywords
             return ContentType.TRADE_IDEA
 
-        # Check for market analysis
-        for keyword in cls.ANALYSIS_KEYWORDS:
-            if keyword in text:
-                return ContentType.MARKET_ANALYSIS
+        # Check for market analysis (background knowledge - auto-ingest)
+        analysis_score = sum(1 for kw in cls.ANALYSIS_KEYWORDS if kw in text)
+        if analysis_score >= 1:
+            return ContentType.MARKET_ANALYSIS
 
-        # Default based on source
-        if source == 'le_shrub':
-            return ContentType.TRADE_IDEA  # Le Shrub often has trade ideas
-        return ContentType.MARKET_ANALYSIS
+        # Default: Capital Flows backlog = knowledge, Le Shrub = evaluate
+        if source == 'capital_flows':
+            return ContentType.MARKET_ANALYSIS  # Capital Flows backlog is valuable knowledge
+        return ContentType.TRADE_IDEA  # Le Shrub defaults to trade idea evaluation
 
 
 class TradeIdeaEvaluator:
@@ -183,11 +182,15 @@ class TradeIdeaEvaluator:
             evaluation['checks']['specific_asset'] = False
             evaluation['reasoning'].append("No specific tradeable asset mentioned")
 
-        # Check 3: Author track record (Le Shrub generally has interesting ideas)
+        # Check 3: Author track record (both have good track records)
         if article.source == 'le_shrub':
             evaluation['checks']['reputable_source'] = True
             evaluation['score'] += 1
             evaluation['reasoning'].append("Le Shrub has track record of interesting macro plays")
+        elif article.source == 'capital_flows':
+            evaluation['checks']['reputable_source'] = True
+            evaluation['score'] += 1
+            evaluation['reasoning'].append("Capital Flows has strong analytical framework and track record")
 
         # Check 4: Content length (more detailed = more conviction)
         if len(article.content) > 2000:
