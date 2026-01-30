@@ -4,13 +4,15 @@ Handles model persistence, versioning, staleness detection, and auto-retraining
 """
 import json
 import os
-import pickle
 import shutil
 from pathlib import Path
 from typing import Dict, Optional, Any, List
 from datetime import datetime, timedelta
 from dataclasses import dataclass, asdict
 from loguru import logger
+
+# SECURITY: Use signed pickle to prevent arbitrary code execution from tampered files
+from core.secure_pickle import secure_dump, secure_load, PickleSecurityError
 
 
 @dataclass
@@ -137,30 +139,26 @@ class ModelManager:
         version = self.metadata["current_version"] + 1
         self.metadata["current_version"] = version
 
-        # Save to active directory
+        # Save to active directory (with HMAC signatures)
         for name, model in models.items():
             model_file = self.active_path / f"{name}_model.pkl"
-            with open(model_file, 'wb') as f:
-                pickle.dump(model, f)
+            secure_dump(model, str(model_file))
 
         for name, scaler in scalers.items():
             scaler_file = self.active_path / f"{name}_scaler.pkl"
-            with open(scaler_file, 'wb') as f:
-                pickle.dump(scaler, f)
+            secure_dump(scaler, str(scaler_file))
 
-        # Save versioned copy
+        # Save versioned copy (with HMAC signatures)
         version_dir = self.versions_path / f"v{version:03d}"
         version_dir.mkdir(exist_ok=True)
 
         for name, model in models.items():
             model_file = version_dir / f"{name}_model.pkl"
-            with open(model_file, 'wb') as f:
-                pickle.dump(model, f)
+            secure_dump(model, str(model_file))
 
         for name, scaler in scalers.items():
             scaler_file = version_dir / f"{name}_scaler.pkl"
-            with open(scaler_file, 'wb') as f:
-                pickle.dump(scaler, f)
+            secure_dump(scaler, str(scaler_file))
 
         # Update metadata
         model_meta = ModelMetadata(
@@ -199,24 +197,29 @@ class ModelManager:
 
     def load_models(self) -> Optional[Dict]:
         """
-        Load active models from disk.
+        Load active models from disk with signature verification.
         Returns dict with 'models' and 'scalers' keys, or None if not found.
+
+        Raises PickleSecurityError if files have been tampered with.
         """
         models = {}
         scalers = {}
 
-        # Load models
-        for name in ['direction', 'probability']:
-            model_file = self.active_path / f"{name}_model.pkl"
-            if model_file.exists():
-                with open(model_file, 'rb') as f:
-                    models[name] = pickle.load(f)
+        try:
+            # Load models (with HMAC verification)
+            for name in ['direction', 'probability']:
+                model_file = self.active_path / f"{name}_model.pkl"
+                if model_file.exists():
+                    models[name] = secure_load(str(model_file))
 
-        # Load scalers
-        scaler_file = self.active_path / "default_scaler.pkl"
-        if scaler_file.exists():
-            with open(scaler_file, 'rb') as f:
-                scalers['default'] = pickle.load(f)
+            # Load scalers (with HMAC verification)
+            scaler_file = self.active_path / "default_scaler.pkl"
+            if scaler_file.exists():
+                scalers['default'] = secure_load(str(scaler_file))
+
+        except PickleSecurityError as e:
+            logger.error(f"SECURITY: Model file tampering detected: {e}")
+            raise
 
         if not models:
             return None

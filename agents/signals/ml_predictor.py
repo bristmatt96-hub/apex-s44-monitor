@@ -8,8 +8,10 @@ from datetime import datetime
 import pandas as pd
 import numpy as np
 from loguru import logger
-import pickle
 import os
+
+# SECURITY: Use signed pickle to prevent arbitrary code execution from tampered files
+from core.secure_pickle import secure_dump, secure_load, PickleSecurityError
 
 try:
     from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
@@ -414,7 +416,7 @@ class MLPredictor(BaseAgent):
                     await self._train_on_history(features, data)
 
     def save_models(self, path: Optional[str] = None):
-        """Save trained models to disk"""
+        """Save trained models to disk with HMAC signatures"""
         save_path = path or self.model_dir
 
         if not os.path.exists(save_path):
@@ -422,35 +424,36 @@ class MLPredictor(BaseAgent):
 
         for name, model in self.models.items():
             model_file = os.path.join(save_path, f"{name}_model.pkl")
-            with open(model_file, 'wb') as f:
-                pickle.dump(model, f)
+            secure_dump(model, model_file)
 
         for name, scaler in self.scalers.items():
             scaler_file = os.path.join(save_path, f"{name}_scaler.pkl")
-            with open(scaler_file, 'wb') as f:
-                pickle.dump(scaler, f)
+            secure_dump(scaler, scaler_file)
 
         logger.info(f"Models saved to {save_path}")
 
     def load_models(self, path: Optional[str] = None):
-        """Load trained models from disk"""
+        """Load trained models from disk with signature verification"""
         load_path = path or self.model_dir
 
         if not os.path.exists(load_path):
             return
 
-        for name in ['direction', 'probability']:
-            model_file = os.path.join(load_path, f"{name}_model.pkl")
-            if os.path.exists(model_file):
-                with open(model_file, 'rb') as f:
-                    self.models[name] = pickle.load(f)
+        try:
+            for name in ['direction', 'probability']:
+                model_file = os.path.join(load_path, f"{name}_model.pkl")
+                if os.path.exists(model_file):
+                    self.models[name] = secure_load(model_file)
 
-        scaler_file = os.path.join(load_path, "default_scaler.pkl")
-        if os.path.exists(scaler_file):
-            with open(scaler_file, 'rb') as f:
-                self.scalers['default'] = pickle.load(f)
+            scaler_file = os.path.join(load_path, "default_scaler.pkl")
+            if os.path.exists(scaler_file):
+                self.scalers['default'] = secure_load(scaler_file)
 
-        logger.info(f"Models loaded from {load_path}")
+            logger.info(f"Models loaded from {load_path}")
+
+        except PickleSecurityError as e:
+            logger.error(f"SECURITY: Model file tampering detected: {e}")
+            raise
 
     async def _auto_retrain(self, reason: str) -> None:
         """Auto-retrain models when staleness detected"""

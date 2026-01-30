@@ -10,10 +10,75 @@ import requests
 import os
 import hmac
 import hashlib
+import time
 from datetime import datetime
 from functools import wraps
+from collections import defaultdict
 
 app = Flask(__name__)
+
+
+# ==================== Rate Limiting ====================
+# Simple in-memory rate limiter (no external dependencies)
+
+class RateLimiter:
+    """
+    Simple rate limiter using sliding window.
+    Limits requests per IP address.
+    """
+    def __init__(self, max_requests: int = 10, window_seconds: int = 60):
+        self.max_requests = max_requests
+        self.window_seconds = window_seconds
+        self.requests = defaultdict(list)  # IP -> list of timestamps
+
+    def is_allowed(self, ip: str) -> bool:
+        """Check if request from IP is allowed"""
+        now = time.time()
+        window_start = now - self.window_seconds
+
+        # Clean old requests
+        self.requests[ip] = [t for t in self.requests[ip] if t > window_start]
+
+        # Check limit
+        if len(self.requests[ip]) >= self.max_requests:
+            return False
+
+        # Record request
+        self.requests[ip].append(now)
+        return True
+
+    def get_remaining(self, ip: str) -> int:
+        """Get remaining requests for IP"""
+        now = time.time()
+        window_start = now - self.window_seconds
+        self.requests[ip] = [t for t in self.requests[ip] if t > window_start]
+        return max(0, self.max_requests - len(self.requests[ip]))
+
+
+# Rate limiter: 10 requests per minute per IP
+rate_limiter = RateLimiter(max_requests=10, window_seconds=60)
+
+
+def rate_limit(f):
+    """Decorator to apply rate limiting"""
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        ip = request.remote_addr or "unknown"
+
+        if not rate_limiter.is_allowed(ip):
+            return jsonify({
+                "status": "error",
+                "message": "Rate limit exceeded. Try again later."
+            }), 429
+
+        response = f(*args, **kwargs)
+
+        # Add rate limit headers to response
+        if hasattr(response, 'headers'):
+            response.headers['X-RateLimit-Remaining'] = str(rate_limiter.get_remaining(ip))
+
+        return response
+    return decorated
 
 # Get these from environment variables (set in your deployment platform)
 TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "")
@@ -95,6 +160,7 @@ def health():
 
 
 @app.route("/webhook", methods=["POST"])
+@rate_limit
 @require_auth
 def tradingview_webhook():
     """
