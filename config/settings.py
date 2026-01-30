@@ -126,10 +126,13 @@ class StrategyConfig(BaseModel):
         'etfs': [
             # Index ETFs (for market sentiment/hedging)
             'SPY', 'QQQ', 'IWM',
-            # Sector ETFs with behavioral patterns (NOT commodities/bonds)
+            # Sector ETFs with behavioral patterns
             'XLK', 'XLF', 'XLE',  # Tech, Financials, Energy sectors
             'ARKK',  # Innovation/growth (high retail activity)
-            # NO GLD, SLV, TLT, USO - macro driven, no behavioral edge
+            # Retail macro plays - LOOK macro but actually retail-heavy
+            'GLD', 'SLV',  # Precious metals (fear trade - retail piles in)
+            'TQQQ', 'SQQQ',  # Leveraged (pure retail speculation)
+            # NO TLT, bonds - truly Fed/rates driven, no behavioral edge
         ],
         'small_cap': [
             'SOFI', 'PLTR', 'MARA', 'RIOT', 'JOBY',

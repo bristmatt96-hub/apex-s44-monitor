@@ -58,9 +58,12 @@ class OptionsScanner(BaseScanner):
             'JPM', 'BAC', 'GS', 'MS',
             # Energy
             'XOM', 'CVX', 'OXY',
-            # Sector ETFs (NOT commodities - no behavioral edge)
-            'XLF', 'XLE', 'XLK'
-            # NO GLD, SLV, USO, TLT - macro driven, no retail behavioral edge
+            # Sector ETFs
+            'XLF', 'XLE', 'XLK',
+            # Retail macro plays - LOOK macro but actually retail speculation
+            'GLD', 'SLV',  # Precious metals (fear trade)
+            'TQQQ', 'SQQQ'  # Leveraged ETFs (pure retail speculation)
+            # NO TLT, bonds - truly Fed/rates driven
         ]
 
         self.max_option_price = 200  # Max $200 per contract

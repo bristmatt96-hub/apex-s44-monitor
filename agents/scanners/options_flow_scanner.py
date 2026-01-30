@@ -86,12 +86,13 @@ class OptionsFlowScanner(BaseAgent):
             'GME', 'AMC', 'PLTR', 'SOFI', 'RIVN', 'LCID', 'HOOD',
             # Crypto-related (correlated with our crypto positions)
             'COIN', 'MARA', 'RIOT',
-            # Sector ETFs (NOT commodities - no behavioral edge)
+            # Sector ETFs
             'XLE', 'XLF', 'XLK',
             # Biotech (event-driven flow)
             'MRNA', 'BNTX',
-            # Leveraged ETFs (flow = leveraged directional bet)
-            'TQQQ', 'SQQQ',
+            # Retail macro - LOOK macro but retail-heavy
+            'GLD', 'SLV',  # Precious metals (fear trade)
+            'TQQQ', 'SQQQ',  # Leveraged ETFs (pure retail speculation)
         ]
 
         # Detection thresholds

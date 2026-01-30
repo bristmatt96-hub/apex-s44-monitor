@@ -102,6 +102,7 @@ class ProductDiscoveryScanner:
         'spac': 1.0,         # Speculation plays
         'crypto_adjacent': 0.9,  # MSTR, COIN etc
         'retail_favorites': 1.2,  # What WSB loves
+        'retail_macro': 1.15,    # Gold/leveraged ETFs - fear/greed trades
     }
 
     # Sectors we avoid (algo-dominated or boring)
@@ -112,23 +113,28 @@ class ProductDiscoveryScanner:
         'mega_cap_tech': 0.6,  # Too efficient
     }
 
-    # BLACKLIST - Never recommend these (no behavioral edge)
-    # Commodities, bonds, macro ETFs - driven by macro factors, not retail emotion
+    # BLACKLIST - Only things with NO behavioral edge
+    # Keep it minimal - many "macro" products actually have retail patterns
     BLACKLIST = {
-        # Gold / Precious metals
-        'GLD', 'SLV', 'GDX', 'GDXJ', 'IAU', 'PHYS', 'PSLV',
-        # Oil / Energy commodities
-        'USO', 'UCO', 'SCO', 'XLE', 'OIH', 'XOP',
-        # Bonds / Fixed income
+        # Bonds / Fixed income - truly Fed/rates driven, no retail emotion
         'TLT', 'TBT', 'IEF', 'SHY', 'BND', 'AGG', 'LQD', 'HYG', 'JNK',
-        # Currencies / Forex
+        # Currencies / Forex - algo dominated, no retail edge
         'UUP', 'FXE', 'FXY', 'FXB',
-        # VIX products (we use VIX as indicator, not to trade)
+        # VIX products - we use VIX as indicator, dangerous to trade directly
         'VXX', 'UVXY', 'SVXY', 'VIXY',
-        # Broad market inverse/leveraged (not behavioral edge)
-        'SQQQ', 'TQQQ', 'SPXU', 'SPXS', 'SH', 'PSQ',
-        # Agriculture / Other commodities
+        # Agriculture - truly commodity/weather driven
         'DBA', 'CORN', 'WEAT', 'SOYB',
+    }
+
+    # RETAIL FAVORITES - Products that LOOK macro but are actually retail-heavy
+    # These DO have behavioral edges despite being ETFs
+    RETAIL_MACRO_PLAYS = {
+        # Gold/Silver - retail piles in during fear (emotional "safe haven")
+        'GLD', 'SLV', 'GDX', 'GDXJ',
+        # Leveraged ETFs - pure retail speculation, institutions don't hold these
+        'TQQQ', 'SQQQ', 'SPXU', 'SPXS', 'SOXL', 'SOXS',
+        # Oil - retail trades this on geopolitical headlines
+        'USO', 'UCO',
     }
 
     # Universe to scan (expand this as needed)
@@ -166,6 +172,15 @@ class ProductDiscoveryScanner:
         'options_heavy': [
             'SPY', 'QQQ', 'IWM', 'NVDA', 'AMD', 'AAPL', 'TSLA',
             'META', 'AMZN', 'GOOGL', 'MSFT', 'NFLX'
+        ],
+        # Retail macro plays - LOOK like macro but retail-heavy
+        # Gold/silver = fear trade, leveraged ETFs = pure speculation
+        'retail_macro': [
+            'GLD', 'SLV', 'GDX', 'GDXJ',  # Precious metals (fear trade)
+            'TQQQ', 'SQQQ',  # Leveraged Nasdaq (retail day trading)
+            'SPXU', 'SPXS',  # Leveraged S&P (retail speculation)
+            'SOXL', 'SOXS',  # Leveraged semiconductors
+            'USO',  # Oil (geopolitical headlines)
         ]
     }
 
