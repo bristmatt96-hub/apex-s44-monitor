@@ -25,8 +25,10 @@ from agents.brain.inefficiency_scanners import (
     RetailCrowdingScanner,
     VolatilityMispricingScanner,
     TimeZoneGapScanner,
-    LiquidityPatternScanner
+    LiquidityPatternScanner,
+    ExogenousShockScanner
 )
+from agents.brain.panic_risk_manager import get_panic_risk_manager
 
 # Configure logging
 logger.remove()
@@ -49,18 +51,25 @@ async def run_brain(telegram: bool = False, once: bool = False):
 ║  • Behavioral inefficiencies (human panic/greed)            ║
 ║  • Volatility mispricings                                    ║
 ║  • Time-based patterns (gaps, lunch dip, power hour)        ║
-║  • Liquidity windows                                         ║
+║  • Exogenous shocks (Trump headlines, etc.) → Recovery plays║
 ╚══════════════════════════════════════════════════════════════╝
     """)
 
     # Initialize brain
     brain = get_market_brain()
 
+    # Initialize panic risk manager
+    panic_rm = get_panic_risk_manager()
+
     # Register all scanners
     brain.register_scanner(RetailCrowdingScanner())
     brain.register_scanner(VolatilityMispricingScanner())
     brain.register_scanner(TimeZoneGapScanner())
     brain.register_scanner(LiquidityPatternScanner())
+
+    # Exogenous shock scanner (Trump headlines, geopolitical events, etc.)
+    shock_scanner = ExogenousShockScanner()
+    brain.register_scanner(shock_scanner)
 
     logger.info(f"Brain initialized with {len(brain.scanners)} scanners")
 
@@ -114,6 +123,13 @@ async def run_brain(telegram: bool = False, once: bool = False):
             # Display dashboard
             print("\033[2J\033[H")  # Clear screen
             print(brain.format_dashboard())
+
+            # Show panic status if active
+            panic_status = shock_scanner.get_panic_status()
+            if panic_status.get('is_panic'):
+                print(f"\n  🚨 PANIC MODE: VIX {panic_status['vix']:.1f} | SPY {panic_status['spy_drawdown']} from high")
+                print(panic_rm.format_risk_rules())
+
             print(f"\n  Scanners: {len(brain.scanners)} | Ideas Generated: {brain.ideas_generated}")
             print(f"  Press Ctrl+C to stop\n")
 
