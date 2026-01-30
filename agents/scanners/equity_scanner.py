@@ -21,6 +21,13 @@ try:
 except ImportError:
     PANDAS_TA_AVAILABLE = False
 
+# Unified market data provider with Finnhub/Twelve Data failover
+try:
+    from data.market_data_providers import MarketDataProvider, get_provider
+    MULTI_PROVIDER_AVAILABLE = True
+except ImportError:
+    MULTI_PROVIDER_AVAILABLE = False
+
 from .base_scanner import BaseScanner
 from core.models import Signal, MarketType, SignalType
 
@@ -71,7 +78,21 @@ class EquityScanner(BaseScanner):
         return universe
 
     async def fetch_data(self, symbol: str) -> Optional[pd.DataFrame]:
-        """Fetch OHLCV data from Yahoo Finance"""
+        """
+        Fetch OHLCV data with automatic failover.
+        Priority: yfinance (free) -> Finnhub -> Twelve Data
+        """
+        # Try unified provider first (has automatic failover)
+        if MULTI_PROVIDER_AVAILABLE:
+            try:
+                provider = get_provider()
+                df = await provider.get_candles_df(symbol, interval="1d", limit=90)
+                if df is not None and not df.empty:
+                    return df
+            except Exception as e:
+                logger.debug(f"Multi-provider fetch failed for {symbol}: {e}")
+
+        # Fallback to direct yfinance if provider failed
         if not YFINANCE_AVAILABLE:
             logger.warning("yfinance not available")
             return None
