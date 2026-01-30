@@ -390,8 +390,27 @@ def batch_transcribe(input_path: str, output_dir: str = None):
         print(f"Supported formats: {', '.join(sorted(SUPPORTED_FORMATS))}")
         sys.exit(1)
 
-    # Calculate total size and estimated time
-    total_size_mb = sum(f.stat().st_size for f in files) / (1024 * 1024)
+    # Check for already completed transcripts (resume capability)
+    output_dir.mkdir(parents=True, exist_ok=True)
+    pending_files = []
+    skipped_files = []
+
+    for f in files:
+        transcript_name = f.stem + "_transcript.txt"
+        transcript_path = output_dir / transcript_name
+
+        if transcript_path.exists():
+            # Check if transcript has actual content (not just failed chunks)
+            content = transcript_path.read_text(encoding='utf-8')
+            # Consider it complete if it has >1000 chars and no "[Chunk X failed]" markers
+            if len(content) > 1000 and "[Chunk" not in content and "failed]" not in content:
+                skipped_files.append(f)
+                continue
+
+        pending_files.append(f)
+
+    # Calculate total size and estimated time (only for pending files)
+    total_size_mb = sum(f.stat().st_size for f in pending_files) / (1024 * 1024) if pending_files else 0
 
     # Estimate total audio duration (rough: 1MB m4b ≈ 1 min audio at 128kbps)
     # Groq limit: 7200 seconds/hour = 2 hours of audio per hour of real time
@@ -403,24 +422,36 @@ def batch_transcribe(input_path: str, output_dir: str = None):
     print(f"{'='*60}")
     print(f"Input: {input_path}")
     print(f"Output: {output_dir}")
-    print(f"Files to process: {len(files)}")
-    print(f"Total size: {total_size_mb:.1f}MB")
-    print(f"ffmpeg available: {'Yes' if has_ffmpeg else 'No'}")
-    if provider == "groq":
-        print(f"Estimated audio: ~{est_audio_hours:.1f} hours")
-        print(f"Estimated time: ~{est_real_hours:.1f} hours (due to rate limits)")
-        print(f"Note: Script will auto-wait when rate limited - leave it running!")
+    print(f"Total files found: {len(files)}")
+    if skipped_files:
+        print(f"Already completed: {len(skipped_files)} (will skip)")
+    print(f"Files to process: {len(pending_files)}")
+    if pending_files:
+        print(f"Remaining size: {total_size_mb:.1f}MB")
+        print(f"ffmpeg available: {'Yes' if has_ffmpeg else 'No'}")
+        if provider == "groq":
+            print(f"Estimated audio: ~{est_audio_hours:.1f} hours")
+            print(f"Estimated time: ~{est_real_hours:.1f} hours (due to rate limits)")
+        print(f"\nResume support: YES - if interrupted, just run again!")
     print(f"{'='*60}\n")
 
-    # Process each file
+    if not pending_files:
+        print("All files already transcribed! Nothing to do.")
+        if skipped_files:
+            print(f"\nCompleted transcripts in: {output_dir}")
+            for f in skipped_files:
+                print(f"  - {f.stem}_transcript.txt")
+        return {'success': [f.name for f in skipped_files], 'failed': []}
+
+    # Process each pending file
     results = {
-        'success': [],
+        'success': [f.name for f in skipped_files],  # Count skipped as success
         'failed': []
     }
 
-    for i, file_path in enumerate(files, 1):
+    for i, file_path in enumerate(pending_files, 1):
         file_size_mb = file_path.stat().st_size / (1024 * 1024)
-        print(f"\n[{i}/{len(files)}] Processing: {file_path.name} ({file_size_mb:.1f}MB)")
+        print(f"\n[{i}/{len(pending_files)}] Processing: {file_path.name} ({file_size_mb:.1f}MB)")
 
         try:
             # Check if file needs splitting
@@ -448,11 +479,14 @@ def batch_transcribe(input_path: str, output_dir: str = None):
     print(f"\n{'='*60}")
     print(f"COMPLETE")
     print(f"{'='*60}")
-    print(f"Successful: {len(results['success'])}")
+    newly_completed = len(results['success']) - len(skipped_files)
+    print(f"Previously completed: {len(skipped_files)}")
+    print(f"Newly completed: {newly_completed}")
+    print(f"Total successful: {len(results['success'])}")
     print(f"Failed: {len(results['failed'])}")
 
     if results['failed']:
-        print(f"\nFailed files:")
+        print(f"\nFailed files (will retry on next run):")
         for name, error in results['failed']:
             print(f"  - {name}: {error}")
 
@@ -461,6 +495,9 @@ def batch_transcribe(input_path: str, output_dir: str = None):
     print(f"  1. Review transcripts in {output_dir}")
     print(f"  2. Run: git add knowledge/transcripts/ && git commit -m 'Add audiobook transcripts'")
     print(f"  3. Push to GitHub to sync across machines")
+
+    if results['failed']:
+        print(f"\nTo retry failed files, just run the script again!")
 
     return results
 
