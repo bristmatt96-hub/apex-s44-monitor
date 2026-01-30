@@ -58,9 +58,10 @@ class EquityScanner(BaseScanner):
             'RIVN', 'LCID', 'MARA', 'RIOT', 'DKNG',
             # Small cap momentum (mean reversion + RSI divergence edge)
             'JOBY', 'IONQ', 'RKLB', 'DNA', 'OPEN',
-            # Retail ETFs (mean reversion PF 5.29, momentum PF 1.96)
-            'IWM', 'ARKK', 'TQQQ', 'GLD', 'SLV',
-            'XLE', 'XLF', 'TLT', 'USO',
+            # ETFs with retail behavioral patterns (NOT commodities/bonds)
+            'IWM', 'ARKK', 'TQQQ',  # Index/innovation - retail favorites
+            'XLE', 'XLF', 'XLK',    # Sectors with behavioral patterns
+            # NO GLD, SLV, TLT, USO - macro/commodity driven, no behavioral edge
         ]
 
         self.min_volume = 1_000_000  # Minimum daily volume

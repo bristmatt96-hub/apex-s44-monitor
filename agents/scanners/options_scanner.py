@@ -58,8 +58,9 @@ class OptionsScanner(BaseScanner):
             'JPM', 'BAC', 'GS', 'MS',
             # Energy
             'XOM', 'CVX', 'OXY',
-            # ETFs
-            'XLF', 'XLE', 'XLK', 'GLD', 'SLV', 'USO'
+            # Sector ETFs (NOT commodities - no behavioral edge)
+            'XLF', 'XLE', 'XLK'
+            # NO GLD, SLV, USO, TLT - macro driven, no retail behavioral edge
         ]
 
         self.max_option_price = 200  # Max $200 per contract

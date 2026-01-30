@@ -86,8 +86,8 @@ class OptionsFlowScanner(BaseAgent):
             'GME', 'AMC', 'PLTR', 'SOFI', 'RIVN', 'LCID', 'HOOD',
             # Crypto-related (correlated with our crypto positions)
             'COIN', 'MARA', 'RIOT',
-            # Volatile sectors
-            'XLE', 'XLF', 'GLD', 'SLV',
+            # Sector ETFs (NOT commodities - no behavioral edge)
+            'XLE', 'XLF', 'XLK',
             # Biotech (event-driven flow)
             'MRNA', 'BNTX',
             # Leveraged ETFs (flow = leveraged directional bet)

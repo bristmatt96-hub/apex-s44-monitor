@@ -124,8 +124,12 @@ class StrategyConfig(BaseModel):
             'HOOD', 'RIVN', 'LCID', 'MARA', 'RIOT'
         ],
         'etfs': [
-            'SPY', 'QQQ', 'IWM', 'ARKK', 'TQQQ',
-            'GLD', 'SLV', 'XLE', 'XLF', 'TLT'
+            # Index ETFs (for market sentiment/hedging)
+            'SPY', 'QQQ', 'IWM',
+            # Sector ETFs with behavioral patterns (NOT commodities/bonds)
+            'XLK', 'XLF', 'XLE',  # Tech, Financials, Energy sectors
+            'ARKK',  # Innovation/growth (high retail activity)
+            # NO GLD, SLV, TLT, USO - macro driven, no behavioral edge
         ],
         'small_cap': [
             'SOFI', 'PLTR', 'MARA', 'RIOT', 'JOBY',

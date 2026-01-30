@@ -57,8 +57,9 @@ class VolatilityMispricingScanner:
             'AMZN', 'GOOGL', 'MSFT', 'NFLX',
             # High IV stocks
             'GME', 'AMC', 'COIN', 'MARA', 'RIOT',
-            # Sector ETFs
-            'XLF', 'XLE', 'GLD', 'SLV', 'TLT'
+            # Sector ETFs (NOT commodities/bonds - no behavioral edge)
+            'XLF', 'XLE', 'XLK'
+            # NO GLD, SLV, TLT - macro driven
         ]
 
         # Thresholds

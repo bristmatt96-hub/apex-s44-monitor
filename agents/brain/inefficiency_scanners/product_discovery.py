@@ -112,6 +112,25 @@ class ProductDiscoveryScanner:
         'mega_cap_tech': 0.6,  # Too efficient
     }
 
+    # BLACKLIST - Never recommend these (no behavioral edge)
+    # Commodities, bonds, macro ETFs - driven by macro factors, not retail emotion
+    BLACKLIST = {
+        # Gold / Precious metals
+        'GLD', 'SLV', 'GDX', 'GDXJ', 'IAU', 'PHYS', 'PSLV',
+        # Oil / Energy commodities
+        'USO', 'UCO', 'SCO', 'XLE', 'OIH', 'XOP',
+        # Bonds / Fixed income
+        'TLT', 'TBT', 'IEF', 'SHY', 'BND', 'AGG', 'LQD', 'HYG', 'JNK',
+        # Currencies / Forex
+        'UUP', 'FXE', 'FXY', 'FXB',
+        # VIX products (we use VIX as indicator, not to trade)
+        'VXX', 'UVXY', 'SVXY', 'VIXY',
+        # Broad market inverse/leveraged (not behavioral edge)
+        'SQQQ', 'TQQQ', 'SPXU', 'SPXS', 'SH', 'PSQ',
+        # Agriculture / Other commodities
+        'DBA', 'CORN', 'WEAT', 'SOYB',
+    }
+
     # Universe to scan (expand this as needed)
     SCAN_UNIVERSE = {
         # High retail interest stocks
@@ -234,6 +253,11 @@ class ProductDiscoveryScanner:
 
     async def _analyze_product(self, symbol: str, category: str) -> Optional[ProductCandidate]:
         """Analyze a single product for edge suitability"""
+        # Skip blacklisted symbols (commodities, bonds, macro - no behavioral edge)
+        if symbol in self.BLACKLIST:
+            logger.debug(f"Skipping {symbol} - blacklisted (no behavioral edge)")
+            return None
+
         try:
             ticker = yf.Ticker(symbol)
             info = ticker.info
