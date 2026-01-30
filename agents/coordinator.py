@@ -278,6 +278,7 @@ class Coordinator(BaseAgent):
                     rr = signal.get('risk_reward_ratio', 0)
 
                     # Get knowledge insight for this trade
+                    # Only include if highly relevant (score > 0.3) and matches symbol
                     kb_insight = ""
                     try:
                         kb_results = self.retriever.get_context_for_trade(
@@ -285,8 +286,14 @@ class Coordinator(BaseAgent):
                             signal_type=strategy,
                             market_type=market
                         )
-                        if kb_results:
-                            kb_insight = f"\n<b>Book Insight:</b> <i>{kb_results[0].content[:150]}...</i>\n"
+                        # Only use if result is actually relevant to this symbol
+                        if kb_results and kb_results[0].score > 0.3:
+                            content = kb_results[0].content.lower()
+                            # Skip if it mentions crypto/bitcoin for non-crypto trades
+                            if market != 'crypto' and ('bitcoin' in content or 'crypto' in content):
+                                kb_insight = ""
+                            else:
+                                kb_insight = f"\n<b>Insight:</b> <i>{kb_results[0].content[:150]}...</i>\n"
                     except Exception:
                         pass
 

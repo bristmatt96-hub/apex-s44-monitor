@@ -137,6 +137,29 @@ class ProductDiscoveryScanner:
         'USO', 'UCO',
     }
 
+    # ETF ticker to clear name mapping (for Telegram clarity)
+    ETF_NAMES = {
+        'GLD': 'SPDR Gold ETF (Gold)',
+        'SLV': 'iShares Silver ETF (Silver)',
+        'GDX': 'VanEck Gold Miners ETF',
+        'GDXJ': 'VanEck Junior Gold Miners ETF',
+        'TQQQ': 'ProShares 3x Long Nasdaq ETF',
+        'SQQQ': 'ProShares 3x Short Nasdaq ETF',
+        'SPXU': 'ProShares 3x Short S&P 500 ETF',
+        'SPXS': 'Direxion 3x Short S&P 500 ETF',
+        'SOXL': 'Direxion 3x Long Semiconductors ETF',
+        'SOXS': 'Direxion 3x Short Semiconductors ETF',
+        'USO': 'United States Oil Fund (Crude Oil)',
+        'UCO': 'ProShares 2x Long Crude Oil ETF',
+        'SPY': 'SPDR S&P 500 ETF',
+        'QQQ': 'Invesco Nasdaq 100 ETF',
+        'IWM': 'iShares Russell 2000 ETF (Small Cap)',
+        'ARKK': 'ARK Innovation ETF',
+        'XLF': 'Financial Select Sector ETF',
+        'XLE': 'Energy Select Sector ETF',
+        'XLK': 'Technology Select Sector ETF',
+    }
+
     # Universe to scan (expand this as needed)
     SCAN_UNIVERSE = {
         # High retail interest stocks
@@ -514,7 +537,19 @@ class ProductDiscoveryScanner:
                 # Score bar
                 score_pct = int(candidate.edge_fit_score * 100)
 
-                lines.append(f"*{candidate.symbol}* - {candidate.name}")
+                # Use clear ETF name if available, otherwise use fetched name
+                display_name = self.ETF_NAMES.get(candidate.symbol, candidate.name)
+
+                # Add product type indicator
+                if candidate.symbol in self.ETF_NAMES:
+                    product_type = "ETF"
+                elif candidate.symbol in self.RETAIL_MACRO_PLAYS:
+                    product_type = "ETF"
+                else:
+                    product_type = "Stock"
+
+                lines.append(f"*{candidate.symbol}* ({product_type})")
+                lines.append(f"  {display_name}")
                 lines.append(f"  Edge Fit: {score_pct}%")
 
                 # Top reasons (the key info)
