@@ -126,11 +126,22 @@ def transcribe_file(client: OpenAI, file_path: Path) -> str:
     file_size_mb = file_path.stat().st_size / (1024 * 1024)
     print(f"  Uploading {file_size_mb:.1f}MB...")
 
+    # Financial/trading context prompt improves accuracy for jargon
+    TRADING_PROMPT = (
+        "This is an audiobook about trading, investing, and financial markets. "
+        "Common terms include: EBITDA, P/E ratio, stop loss, take profit, "
+        "leverage, margin, candlestick, moving average, RSI, MACD, volume, "
+        "options, calls, puts, strike price, expiration, theta, delta, gamma, "
+        "bid-ask spread, liquidity, volatility, drawdown, Sharpe ratio, "
+        "position sizing, risk management, backtesting, algorithmic trading."
+    )
+
     with open(file_path, "rb") as audio_file:
         transcript = client.audio.transcriptions.create(
             model="whisper-1",
             file=audio_file,
-            response_format="text"
+            response_format="text",
+            prompt=TRADING_PROMPT
         )
 
     return transcript
