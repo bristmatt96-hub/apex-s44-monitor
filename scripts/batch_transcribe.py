@@ -3,6 +3,7 @@ Batch Video/Audio Transcription using OpenAI Whisper API
 Transcribes MP4/audio files and adds them to the knowledge base.
 
 Handles large files (audiobooks) by splitting into chunks automatically.
+Includes intelligent rate limiting for Groq's free tier (2 hours audio/hour).
 
 Usage:
     python scripts/batch_transcribe.py path/to/audiobooks/
@@ -14,6 +15,8 @@ import sys
 import subprocess
 import tempfile
 import shutil
+import re
+import time
 from pathlib import Path
 from datetime import datetime
 
@@ -36,6 +39,8 @@ def get_transcription_client():
     if groq_key:
         # Groq offers FREE Whisper transcription
         print("Using Groq (FREE Whisper transcription)")
+        print("  Rate limit: 7200 seconds (2 hours) of audio per hour")
+        print("  Script will automatically wait when rate limited\n")
         return OpenAI(
             api_key=groq_key,
             base_url="https://api.groq.com/openai/v1"
@@ -139,14 +144,37 @@ def split_audio_file(file_path: Path, chunk_dir: Path, chunk_minutes: int = 15) 
     return chunks
 
 
-def transcribe_file(client: OpenAI, file_path: Path, provider: str = "openai") -> str:
+def parse_rate_limit_wait_time(error_message: str) -> int:
+    """
+    Parse the wait time from a Groq rate limit error message.
+    Example: "Please try again in 6m27s" -> 387 seconds
+    """
+    # Look for patterns like "6m27s", "1m30.5s", "45s"
+    match = re.search(r'try again in (\d+)m(\d+\.?\d*)s', error_message)
+    if match:
+        minutes = int(match.group(1))
+        seconds = float(match.group(2))
+        return int(minutes * 60 + seconds) + 10  # Add 10s buffer
+
+    match = re.search(r'try again in (\d+\.?\d*)s', error_message)
+    if match:
+        return int(float(match.group(1))) + 10
+
+    # Default wait if we can't parse
+    return 420  # 7 minutes
+
+
+def transcribe_file(client: OpenAI, file_path: Path, provider: str = "openai",
+                    max_retries: int = 5) -> str:
     """
     Transcribe a single audio/video file using Whisper API.
+    Handles rate limiting with automatic waiting and retries.
 
     Args:
         client: OpenAI-compatible client
         file_path: Path to audio/video file
         provider: 'groq' or 'openai'
+        max_retries: Maximum number of retries for rate limiting
 
     Returns:
         Transcribed text
@@ -167,20 +195,45 @@ def transcribe_file(client: OpenAI, file_path: Path, provider: str = "openai") -
         "position sizing, risk management, backtesting, algorithmic trading."
     )
 
-    with open(file_path, "rb") as audio_file:
-        transcript = client.audio.transcriptions.create(
-            model=model,
-            file=audio_file,
-            response_format="text",
-            prompt=TRADING_PROMPT
-        )
+    for attempt in range(max_retries):
+        try:
+            with open(file_path, "rb") as audio_file:
+                transcript = client.audio.transcriptions.create(
+                    model=model,
+                    file=audio_file,
+                    response_format="text",
+                    prompt=TRADING_PROMPT
+                )
+            return transcript
 
-    return transcript
+        except Exception as e:
+            error_str = str(e)
+
+            # Check if it's a rate limit error (429)
+            if '429' in error_str or 'rate_limit' in error_str.lower():
+                wait_time = parse_rate_limit_wait_time(error_str)
+                print(f"  Rate limited. Waiting {wait_time//60}m {wait_time%60}s...")
+
+                # Show countdown for long waits
+                while wait_time > 0:
+                    mins, secs = divmod(wait_time, 60)
+                    print(f"\r  Resuming in {mins:02d}:{secs:02d}...", end="", flush=True)
+                    time.sleep(min(30, wait_time))  # Update every 30s or less
+                    wait_time -= min(30, wait_time)
+
+                print(f"\r  Retrying (attempt {attempt + 2}/{max_retries})...                ")
+                continue
+
+            # Non-rate-limit error, re-raise
+            raise e
+
+    raise Exception(f"Max retries ({max_retries}) exceeded due to rate limiting")
 
 
 def transcribe_large_file(client: OpenAI, file_path: Path, provider: str = "openai") -> str:
     """
     Transcribe a large audio file by splitting into chunks.
+    Handles rate limiting automatically with waiting and retries.
 
     Args:
         client: OpenAI-compatible client
@@ -203,16 +256,29 @@ def transcribe_large_file(client: OpenAI, file_path: Path, provider: str = "open
         if not chunks:
             raise Exception("Failed to split audio file")
 
-        # Transcribe each chunk
+        # Transcribe each chunk with rate limit handling
         transcripts = []
+        failed_chunks = []
+
         for i, chunk_path in enumerate(chunks):
             print(f"  Transcribing chunk {i+1}/{len(chunks)}...")
             try:
+                # transcribe_file now handles rate limiting internally
                 transcript = transcribe_file(client, chunk_path, provider)
                 transcripts.append(transcript)
+                print(f"  Chunk {i+1}/{len(chunks)} complete")
             except Exception as e:
-                print(f"  Warning: Chunk {i+1} failed: {e}")
-                transcripts.append(f"[Chunk {i+1} transcription failed]")
+                error_str = str(e)
+                # If still failing after retries, mark but continue
+                print(f"  Chunk {i+1} failed after retries: {e}")
+                transcripts.append(f"[Chunk {i+1} transcription failed: {e}]")
+                failed_chunks.append(i+1)
+
+        # Report completion status
+        if failed_chunks:
+            print(f"  Warning: {len(failed_chunks)} chunks failed: {failed_chunks}")
+        else:
+            print(f"  All {len(chunks)} chunks transcribed successfully!")
 
         # Combine transcripts
         return "\n\n".join(transcripts)
@@ -324,8 +390,13 @@ def batch_transcribe(input_path: str, output_dir: str = None):
         print(f"Supported formats: {', '.join(sorted(SUPPORTED_FORMATS))}")
         sys.exit(1)
 
-    # Calculate total size
+    # Calculate total size and estimated time
     total_size_mb = sum(f.stat().st_size for f in files) / (1024 * 1024)
+
+    # Estimate total audio duration (rough: 1MB m4b ≈ 1 min audio at 128kbps)
+    # Groq limit: 7200 seconds/hour = 2 hours of audio per hour of real time
+    est_audio_hours = total_size_mb / 60  # rough estimate
+    est_real_hours = est_audio_hours / 2  # due to rate limiting
 
     print(f"\n{'='*60}")
     print(f"BATCH TRANSCRIPTION - Whisper API ({provider.upper()})")
@@ -335,6 +406,10 @@ def batch_transcribe(input_path: str, output_dir: str = None):
     print(f"Files to process: {len(files)}")
     print(f"Total size: {total_size_mb:.1f}MB")
     print(f"ffmpeg available: {'Yes' if has_ffmpeg else 'No'}")
+    if provider == "groq":
+        print(f"Estimated audio: ~{est_audio_hours:.1f} hours")
+        print(f"Estimated time: ~{est_real_hours:.1f} hours (due to rate limits)")
+        print(f"Note: Script will auto-wait when rate limited - leave it running!")
     print(f"{'='*60}\n")
 
     # Process each file
