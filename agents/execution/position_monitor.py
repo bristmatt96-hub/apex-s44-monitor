@@ -14,6 +14,7 @@ from dataclasses import dataclass, field
 from loguru import logger
 
 from core.models import Position, MarketType
+from core.capital_tracker import get_capital_tracker
 from config.settings import config
 
 
@@ -87,6 +88,7 @@ class PositionMonitor:
         self.running = False
         self.broker = None  # Set externally
         self.notifier = None  # Set externally
+        self.capital_tracker = get_capital_tracker()  # Track capital updates
 
         # Configuration
         self.partial_take_profit_pct = 0.50  # Sell 50% at first target
@@ -260,6 +262,16 @@ class PositionMonitor:
             'timestamp': datetime.now().isoformat()
         })
 
+        # Record partial exit with capital tracker
+        self.capital_tracker.record_trade_close(
+            symbol=pos.symbol,
+            market_type=pos.market_type.value if hasattr(pos.market_type, 'value') else str(pos.market_type),
+            side='buy',
+            quantity=sell_qty,
+            entry_price=pos.entry_price,
+            exit_price=pos.current_price
+        )
+
         # Move stop to breakeven
         pos.stop_loss = managed.breakeven_stop
 
@@ -313,6 +325,16 @@ class PositionMonitor:
             except Exception as e:
                 logger.error(f"Exit order failed: {e}")
                 return
+
+        # Record remaining exit with capital tracker
+        self.capital_tracker.record_trade_close(
+            symbol=pos.symbol,
+            market_type=pos.market_type.value if hasattr(pos.market_type, 'value') else str(pos.market_type),
+            side='buy',
+            quantity=managed.remaining_quantity,
+            entry_price=pos.entry_price,
+            exit_price=pos.current_price
+        )
 
         # Notify
         if self.notifier:

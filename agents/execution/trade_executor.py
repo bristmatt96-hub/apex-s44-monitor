@@ -10,6 +10,7 @@ from loguru import logger
 from core.base_agent import BaseAgent, AgentMessage
 from core.broker import IBBroker
 from core.models import Trade, Position, OrderType, OrderStatus, MarketType
+from core.capital_tracker import get_capital_tracker
 from config.settings import config
 from utils.telegram_notifier import get_notifier
 
@@ -35,8 +36,9 @@ class TradeExecutor(BaseAgent):
         self.positions: List[Position] = []
         self.trade_history: List[Trade] = []
 
-        # Position sizing
-        self.capital = config.risk.starting_capital
+        # Capital tracking (persisted to disk)
+        self.capital_tracker = get_capital_tracker()
+        self.capital = self.capital_tracker.get_balance()  # Use tracked balance, not config
         self.max_position_pct = config.risk.max_position_pct
         self.max_positions = config.risk.max_positions
 
@@ -413,6 +415,19 @@ class TradeExecutor(BaseAgent):
             self.positions = [p for p in self.positions if p.symbol != symbol]
             logger.info(f"SIMULATED: Closed position in {symbol}")
 
+        # Record trade close and update capital balance
+        realized_pnl = self.capital_tracker.record_trade_close(
+            symbol=symbol,
+            market_type=position.market_type.value,
+            side='buy',  # Assuming we were long
+            quantity=position.quantity,
+            entry_price=position.entry_price,
+            exit_price=exit_price
+        )
+
+        # Update local capital from tracker
+        self.capital = self.capital_tracker.get_balance()
+
         # Send exit notification
         await self._send_exit_notification(
             symbol=symbol,
@@ -476,8 +491,16 @@ class TradeExecutor(BaseAgent):
     def get_portfolio_value(self) -> float:
         """Get total portfolio value"""
         positions_value = sum(p.market_value for p in self.positions)
-        return self.capital + positions_value
+        return self.capital_tracker.get_balance() + positions_value
 
     def get_unrealized_pnl(self) -> float:
         """Get total unrealized P&L"""
         return sum(p.unrealized_pnl for p in self.positions)
+
+    def get_capital_summary(self) -> Dict:
+        """Get full capital and performance summary"""
+        summary = self.capital_tracker.get_summary()
+        summary['unrealized_pnl'] = self.get_unrealized_pnl()
+        summary['portfolio_value'] = self.get_portfolio_value()
+        summary['positions_count'] = len(self.positions)
+        return summary
