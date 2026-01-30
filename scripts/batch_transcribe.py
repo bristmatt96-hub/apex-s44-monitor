@@ -27,6 +27,25 @@ load_dotenv(project_root / ".env")
 
 from openai import OpenAI
 
+# Check which API to use (Groq is free, OpenAI is paid)
+def get_transcription_client():
+    """Get the best available transcription client (Groq free, OpenAI paid)"""
+    groq_key = os.getenv("GROQ_API_KEY")
+    openai_key = os.getenv("OPENAI_API_KEY")
+
+    if groq_key:
+        # Groq offers FREE Whisper transcription
+        print("Using Groq (FREE Whisper transcription)")
+        return OpenAI(
+            api_key=groq_key,
+            base_url="https://api.groq.com/openai/v1"
+        ), "groq"
+    elif openai_key:
+        print("Using OpenAI (paid)")
+        return OpenAI(api_key=openai_key), "openai"
+    else:
+        return None, None
+
 # Supported audio/video formats (including .m4b audiobooks)
 SUPPORTED_FORMATS = {'.mp4', '.mp3', '.m4a', '.m4b', '.wav', '.webm', '.mpeg', '.mpga', '.oga', '.ogg', '.flac'}
 
@@ -252,11 +271,14 @@ def batch_transcribe(input_path: str, output_dir: str = None):
         input_path: Path to directory or single file
         output_dir: Output directory (defaults to knowledge/transcripts/)
     """
-    # Check for API key
-    api_key = os.getenv("OPENAI_API_KEY")
-    if not api_key:
-        print("ERROR: OPENAI_API_KEY not found in environment or .env file")
-        print("Add it to your .env file: OPENAI_API_KEY=sk-...")
+    # Get transcription client (Groq free, OpenAI paid)
+    client, provider = get_transcription_client()
+    if not client:
+        print("ERROR: No transcription API key found!")
+        print("Add one of these to your .env file:")
+        print("  GROQ_API_KEY=gsk_...  (FREE - recommended)")
+        print("  OPENAI_API_KEY=sk-... (paid)")
+        print("\nGet free Groq key at: https://console.groq.com/keys")
         sys.exit(1)
 
     # Check for ffmpeg (needed for large files)
@@ -266,8 +288,6 @@ def batch_transcribe(input_path: str, output_dir: str = None):
         print("Install ffmpeg: https://ffmpeg.org/download.html")
         print("On Windows with Chocolatey: choco install ffmpeg")
         print("")
-
-    client = OpenAI(api_key=api_key)
 
     # Set up paths
     input_path = Path(input_path)
@@ -295,7 +315,7 @@ def batch_transcribe(input_path: str, output_dir: str = None):
     total_size_mb = sum(f.stat().st_size for f in files) / (1024 * 1024)
 
     print(f"\n{'='*60}")
-    print(f"BATCH TRANSCRIPTION - OpenAI Whisper API")
+    print(f"BATCH TRANSCRIPTION - Whisper API ({provider.upper()})")
     print(f"{'='*60}")
     print(f"Input: {input_path}")
     print(f"Output: {output_dir}")
