@@ -2,13 +2,18 @@
 Batch Video/Audio Transcription using OpenAI Whisper API
 Transcribes MP4/audio files and adds them to the knowledge base.
 
+Handles large files (audiobooks) by splitting into chunks automatically.
+
 Usage:
-    python scripts/batch_transcribe.py path/to/videos/
-    python scripts/batch_transcribe.py path/to/single_file.mp4
+    python scripts/batch_transcribe.py path/to/audiobooks/
+    python scripts/batch_transcribe.py path/to/single_file.m4b
 """
 
 import os
 import sys
+import subprocess
+import tempfile
+import shutil
 from pathlib import Path
 from datetime import datetime
 
@@ -22,8 +27,90 @@ load_dotenv(project_root / ".env")
 
 from openai import OpenAI
 
-# Supported audio/video formats
-SUPPORTED_FORMATS = {'.mp4', '.mp3', '.m4a', '.wav', '.webm', '.mpeg', '.mpga', '.oga', '.ogg'}
+# Supported audio/video formats (including .m4b audiobooks)
+SUPPORTED_FORMATS = {'.mp4', '.mp3', '.m4a', '.m4b', '.wav', '.webm', '.mpeg', '.mpga', '.oga', '.ogg', '.flac'}
+
+# OpenAI file size limit (25MB, use 20MB to be safe)
+MAX_CHUNK_SIZE_MB = 20
+CHUNK_DURATION_MINUTES = 15  # Split into 15-minute chunks
+
+
+def check_ffmpeg():
+    """Check if ffmpeg is installed."""
+    try:
+        subprocess.run(['ffmpeg', '-version'], capture_output=True, check=True)
+        return True
+    except (subprocess.CalledProcessError, FileNotFoundError):
+        return False
+
+
+def get_audio_duration(file_path: Path) -> float:
+    """Get audio duration in seconds using ffprobe."""
+    try:
+        result = subprocess.run([
+            'ffprobe', '-v', 'error',
+            '-show_entries', 'format=duration',
+            '-of', 'default=noprint_wrappers=1:nokey=1',
+            str(file_path)
+        ], capture_output=True, text=True, check=True)
+        return float(result.stdout.strip())
+    except Exception:
+        return 0
+
+
+def split_audio_file(file_path: Path, chunk_dir: Path, chunk_minutes: int = 15) -> list:
+    """
+    Split a large audio file into smaller chunks using ffmpeg.
+
+    Args:
+        file_path: Path to audio file
+        chunk_dir: Directory to save chunks
+        chunk_minutes: Length of each chunk in minutes
+
+    Returns:
+        List of chunk file paths
+    """
+    chunk_dir.mkdir(parents=True, exist_ok=True)
+    chunk_seconds = chunk_minutes * 60
+
+    # Get total duration
+    duration = get_audio_duration(file_path)
+    if duration == 0:
+        print(f"  Warning: Could not determine duration, attempting full file...")
+        return [file_path]
+
+    num_chunks = int(duration // chunk_seconds) + 1
+    print(f"  Splitting into {num_chunks} chunks (~{chunk_minutes} min each)...")
+
+    chunks = []
+    for i in range(num_chunks):
+        start_time = i * chunk_seconds
+        chunk_name = f"{file_path.stem}_chunk{i:03d}.mp3"
+        chunk_path = chunk_dir / chunk_name
+
+        # Use ffmpeg to extract chunk and convert to mp3 (smaller, compatible)
+        cmd = [
+            'ffmpeg', '-y',  # Overwrite
+            '-i', str(file_path),
+            '-ss', str(start_time),
+            '-t', str(chunk_seconds),
+            '-vn',  # No video
+            '-acodec', 'libmp3lame',
+            '-ab', '64k',  # Lower bitrate for smaller files
+            '-ar', '16000',  # 16kHz sample rate (Whisper optimal)
+            '-ac', '1',  # Mono
+            str(chunk_path)
+        ]
+
+        try:
+            subprocess.run(cmd, capture_output=True, check=True)
+            if chunk_path.exists() and chunk_path.stat().st_size > 0:
+                chunks.append(chunk_path)
+        except subprocess.CalledProcessError as e:
+            print(f"  Warning: Failed to create chunk {i}: {e}")
+
+    return chunks
+
 
 def transcribe_file(client: OpenAI, file_path: Path) -> str:
     """
@@ -36,12 +123,8 @@ def transcribe_file(client: OpenAI, file_path: Path) -> str:
     Returns:
         Transcribed text
     """
-    print(f"  Transcribing: {file_path.name}...")
-
-    # Check file size (OpenAI limit is 25MB)
     file_size_mb = file_path.stat().st_size / (1024 * 1024)
-    if file_size_mb > 25:
-        print(f"  WARNING: File is {file_size_mb:.1f}MB (limit 25MB). Will attempt anyway...")
+    print(f"  Uploading {file_size_mb:.1f}MB...")
 
     with open(file_path, "rb") as audio_file:
         transcript = client.audio.transcriptions.create(
@@ -51,6 +134,49 @@ def transcribe_file(client: OpenAI, file_path: Path) -> str:
         )
 
     return transcript
+
+
+def transcribe_large_file(client: OpenAI, file_path: Path) -> str:
+    """
+    Transcribe a large audio file by splitting into chunks.
+
+    Args:
+        client: OpenAI client
+        file_path: Path to audio file
+
+    Returns:
+        Combined transcribed text
+    """
+    file_size_mb = file_path.stat().st_size / (1024 * 1024)
+    print(f"  Large file detected ({file_size_mb:.1f}MB). Splitting...")
+
+    # Create temp directory for chunks
+    temp_dir = Path(tempfile.mkdtemp(prefix="transcribe_"))
+
+    try:
+        # Split into chunks
+        chunks = split_audio_file(file_path, temp_dir, CHUNK_DURATION_MINUTES)
+
+        if not chunks:
+            raise Exception("Failed to split audio file")
+
+        # Transcribe each chunk
+        transcripts = []
+        for i, chunk_path in enumerate(chunks):
+            print(f"  Transcribing chunk {i+1}/{len(chunks)}...")
+            try:
+                transcript = transcribe_file(client, chunk_path)
+                transcripts.append(transcript)
+            except Exception as e:
+                print(f"  Warning: Chunk {i+1} failed: {e}")
+                transcripts.append(f"[Chunk {i+1} transcription failed]")
+
+        # Combine transcripts
+        return "\n\n".join(transcripts)
+
+    finally:
+        # Clean up temp directory
+        shutil.rmtree(temp_dir, ignore_errors=True)
 
 
 def save_transcript(transcript: str, source_file: Path, output_dir: Path) -> Path:
@@ -86,7 +212,7 @@ def save_transcript(transcript: str, source_file: Path, output_dir: Path) -> Pat
     return output_path
 
 
-def index_transcript(transcript_path: Path, category: str = "transcript"):
+def index_transcript(transcript_path: Path, category: str = "audiobook"):
     """
     Add transcript to the knowledge base.
 
@@ -100,8 +226,10 @@ def index_transcript(transcript_path: Path, category: str = "transcript"):
         print(f"  Indexed: {transcript_path.name} (ID: {doc_id})")
         return doc_id
     except ImportError:
-        # Fallback: create simple index entry
         print(f"  Note: text_indexer not available, transcript saved but not indexed")
+        return None
+    except Exception as e:
+        print(f"  Note: Indexing failed ({e}), transcript saved")
         return None
 
 
@@ -119,6 +247,14 @@ def batch_transcribe(input_path: str, output_dir: str = None):
         print("ERROR: OPENAI_API_KEY not found in environment or .env file")
         print("Add it to your .env file: OPENAI_API_KEY=sk-...")
         sys.exit(1)
+
+    # Check for ffmpeg (needed for large files)
+    has_ffmpeg = check_ffmpeg()
+    if not has_ffmpeg:
+        print("WARNING: ffmpeg not found. Large files (>25MB) will fail.")
+        print("Install ffmpeg: https://ffmpeg.org/download.html")
+        print("On Windows with Chocolatey: choco install ffmpeg")
+        print("")
 
     client = OpenAI(api_key=api_key)
 
@@ -141,8 +277,11 @@ def batch_transcribe(input_path: str, output_dir: str = None):
 
     if not files:
         print(f"No supported audio/video files found in {input_path}")
-        print(f"Supported formats: {', '.join(SUPPORTED_FORMATS)}")
+        print(f"Supported formats: {', '.join(sorted(SUPPORTED_FORMATS))}")
         sys.exit(1)
+
+    # Calculate total size
+    total_size_mb = sum(f.stat().st_size for f in files) / (1024 * 1024)
 
     print(f"\n{'='*60}")
     print(f"BATCH TRANSCRIPTION - OpenAI Whisper API")
@@ -150,6 +289,8 @@ def batch_transcribe(input_path: str, output_dir: str = None):
     print(f"Input: {input_path}")
     print(f"Output: {output_dir}")
     print(f"Files to process: {len(files)}")
+    print(f"Total size: {total_size_mb:.1f}MB")
+    print(f"ffmpeg available: {'Yes' if has_ffmpeg else 'No'}")
     print(f"{'='*60}\n")
 
     # Process each file
@@ -159,11 +300,17 @@ def batch_transcribe(input_path: str, output_dir: str = None):
     }
 
     for i, file_path in enumerate(files, 1):
-        print(f"\n[{i}/{len(files)}] Processing: {file_path.name}")
+        file_size_mb = file_path.stat().st_size / (1024 * 1024)
+        print(f"\n[{i}/{len(files)}] Processing: {file_path.name} ({file_size_mb:.1f}MB)")
 
         try:
-            # Transcribe
-            transcript = transcribe_file(client, file_path)
+            # Check if file needs splitting
+            if file_size_mb > MAX_CHUNK_SIZE_MB:
+                if not has_ffmpeg:
+                    raise Exception(f"File too large ({file_size_mb:.1f}MB) and ffmpeg not installed")
+                transcript = transcribe_large_file(client, file_path)
+            else:
+                transcript = transcribe_file(client, file_path)
 
             # Save
             transcript_path = save_transcript(transcript, file_path, output_dir)
@@ -193,7 +340,7 @@ def batch_transcribe(input_path: str, output_dir: str = None):
     print(f"\nTranscripts saved to: {output_dir}")
     print(f"\nNext steps:")
     print(f"  1. Review transcripts in {output_dir}")
-    print(f"  2. Run: git add knowledge/transcripts/ && git commit -m 'Add transcripts'")
+    print(f"  2. Run: git add knowledge/transcripts/ && git commit -m 'Add audiobook transcripts'")
     print(f"  3. Push to GitHub to sync across machines")
 
     return results
@@ -203,8 +350,8 @@ if __name__ == "__main__":
     if len(sys.argv) < 2:
         print(__doc__)
         print("\nExamples:")
-        print("  python scripts/batch_transcribe.py C:\\Videos\\earnings_calls\\")
-        print("  python scripts/batch_transcribe.py ~/Downloads/presentation.mp4")
+        print("  python scripts/batch_transcribe.py trading_knowledge\\audiobooks")
+        print("  python scripts/batch_transcribe.py C:\\Audiobooks\\trading_book.m4b")
         sys.exit(0)
 
     input_path = sys.argv[1]
