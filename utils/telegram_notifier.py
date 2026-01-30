@@ -1,11 +1,15 @@
 """
 Telegram Notifications for Trading System
 Sends alerts for trade entries and exits
+
+Includes rate limiting and deduplication to prevent spam.
 """
 import asyncio
 import aiohttp
+import hashlib
 from typing import Optional, Dict, Any
-from datetime import datetime
+from datetime import datetime, timedelta
+from collections import defaultdict
 from loguru import logger
 
 
@@ -21,14 +25,60 @@ class TelegramNotifier:
        https://api.telegram.org/bot<TOKEN>/getUpdates)
     """
 
-    def __init__(self, bot_token: str, chat_id: str):
+    def __init__(self, bot_token: str, chat_id: str, cooldown_minutes: int = 30):
         self.bot_token = bot_token
         self.chat_id = chat_id
         self.base_url = f"https://api.telegram.org/bot{bot_token}"
         self.enabled = bool(bot_token and chat_id)
 
+        # Rate limiting: prevent same opportunity being sent within cooldown period
+        self.cooldown_minutes = cooldown_minutes
+        self._sent_signals: Dict[str, datetime] = {}  # signal_hash -> last_sent_time
+        self._symbol_cooldowns: Dict[str, datetime] = {}  # symbol -> last_sent_time
+
         if not self.enabled:
             logger.warning("Telegram notifications disabled - missing bot_token or chat_id")
+        else:
+            logger.info(f"Telegram notifier initialized with {cooldown_minutes}min cooldown")
+
+    def _get_signal_hash(self, symbol: str, signal_type: str, extra: str = "") -> str:
+        """Generate a hash for deduplication"""
+        key = f"{symbol}:{signal_type}:{extra}"
+        return hashlib.md5(key.encode()).hexdigest()[:16]
+
+    def _is_duplicate(self, symbol: str, signal_type: str, extra: str = "") -> bool:
+        """Check if this signal was recently sent (within cooldown period)"""
+        signal_hash = self._get_signal_hash(symbol, signal_type, extra)
+        now = datetime.now()
+
+        # Clean up old entries (older than 2x cooldown)
+        cutoff = now - timedelta(minutes=self.cooldown_minutes * 2)
+        self._sent_signals = {k: v for k, v in self._sent_signals.items() if v > cutoff}
+        self._symbol_cooldowns = {k: v for k, v in self._symbol_cooldowns.items() if v > cutoff}
+
+        # Check if same signal was sent recently
+        if signal_hash in self._sent_signals:
+            last_sent = self._sent_signals[signal_hash]
+            if now - last_sent < timedelta(minutes=self.cooldown_minutes):
+                logger.debug(f"Skipping duplicate signal for {symbol} (sent {(now - last_sent).seconds // 60}min ago)")
+                return True
+
+        # Check symbol-level cooldown (prevent spam for same symbol)
+        if symbol in self._symbol_cooldowns:
+            last_sent = self._symbol_cooldowns[symbol]
+            # Use shorter cooldown for same symbol (5 minutes)
+            if now - last_sent < timedelta(minutes=5):
+                logger.debug(f"Skipping signal for {symbol} (symbol cooldown, sent {(now - last_sent).seconds}s ago)")
+                return True
+
+        return False
+
+    def _mark_sent(self, symbol: str, signal_type: str, extra: str = ""):
+        """Mark a signal as sent for deduplication"""
+        signal_hash = self._get_signal_hash(symbol, signal_type, extra)
+        now = datetime.now()
+        self._sent_signals[signal_hash] = now
+        self._symbol_cooldowns[symbol] = now
 
     async def send_message(self, text: str, parse_mode: str = "HTML") -> bool:
         """Send a message to the configured chat"""
@@ -73,9 +123,15 @@ class TelegramNotifier:
         rationale: str,
         stop_loss: Optional[float] = None,
         target: Optional[float] = None,
-        metadata: Optional[Dict] = None
+        metadata: Optional[Dict] = None,
+        skip_dedup: bool = False
     ) -> bool:
-        """Send trade entry notification"""
+        """Send trade entry notification (with deduplication)"""
+
+        # Check for duplicate (same symbol + strategy within cooldown)
+        if not skip_dedup and self._is_duplicate(symbol, f"entry:{strategy}", side):
+            logger.info(f"Skipping duplicate trade entry notification for {symbol}")
+            return False
 
         # Emoji based on side
         emoji = "🟢" if side.lower() == "buy" else "🔴"
@@ -108,7 +164,10 @@ class TelegramNotifier:
 ⏰ {datetime.now().strftime('%Y-%m-%d %H:%M:%S')} UTC
 """
 
-        return await self.send_message(message)
+        result = await self.send_message(message)
+        if result:
+            self._mark_sent(symbol, f"entry:{strategy}", side)
+        return result
 
     async def notify_trade_exit(
         self,
@@ -198,9 +257,17 @@ class TelegramNotifier:
         self,
         alert_type: str,
         message_text: str,
-        severity: str = "info"
+        severity: str = "info",
+        symbol: str = None,
+        skip_dedup: bool = False
     ) -> bool:
-        """Send general alert"""
+        """Send general alert (with deduplication)"""
+
+        # Check for duplicate alerts
+        dedup_key = symbol or hashlib.md5(message_text[:100].encode()).hexdigest()[:8]
+        if not skip_dedup and self._is_duplicate(dedup_key, f"alert:{alert_type}"):
+            logger.info(f"Skipping duplicate alert: {alert_type}")
+            return False
 
         emojis = {
             "info": "ℹ️",
@@ -219,7 +286,10 @@ class TelegramNotifier:
 ⏰ {datetime.now().strftime('%Y-%m-%d %H:%M:%S')} UTC
 """
 
-        return await self.send_message(message)
+        result = await self.send_message(message)
+        if result:
+            self._mark_sent(dedup_key, f"alert:{alert_type}")
+        return result
 
 
 # Singleton instance
