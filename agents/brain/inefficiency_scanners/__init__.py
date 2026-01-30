@@ -6,6 +6,7 @@ from .liquidity_patterns import LiquidityPatternScanner
 from .exogenous_shock import ExogenousShockScanner
 from .euphoria_detector import EuphoriaDetector
 from .product_discovery import ProductDiscoveryScanner
+from .news_scanner import GeopoliticalNewsScanner
 
 __all__ = [
     'RetailCrowdingScanner',
@@ -14,5 +15,6 @@ __all__ = [
     'LiquidityPatternScanner',
     'ExogenousShockScanner',
     'EuphoriaDetector',
-    'ProductDiscoveryScanner'
+    'ProductDiscoveryScanner',
+    'GeopoliticalNewsScanner'
 ]

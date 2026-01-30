@@ -28,7 +28,8 @@ from agents.brain.inefficiency_scanners import (
     LiquidityPatternScanner,
     ExogenousShockScanner,
     EuphoriaDetector,
-    ProductDiscoveryScanner
+    ProductDiscoveryScanner,
+    GeopoliticalNewsScanner
 )
 from agents.brain.panic_risk_manager import get_panic_risk_manager
 
@@ -56,6 +57,7 @@ async def run_brain(telegram: bool = False, once: bool = False):
 ║  • Exogenous shocks (Trump headlines, etc.) → Recovery plays║
 ║  • Euphoria detection → Know when to take profits           ║
 ║  • Product discovery → Find new instruments that fit us     ║
+║  • News scanner → China/US, war, geopolitical risks         ║
 ║                                                              ║
 ║  "Be fearful when others are greedy,                        ║
 ║   and greedy when others are fearful" - Buffett             ║
@@ -85,6 +87,10 @@ async def run_brain(telegram: bool = False, once: bool = False):
     # Product discovery (find new instruments that fit our edge)
     product_scanner = ProductDiscoveryScanner()
     brain.register_scanner(product_scanner)
+
+    # Geopolitical news scanner (China/US, war, tariffs, etc.)
+    news_scanner = GeopoliticalNewsScanner()
+    brain.register_scanner(news_scanner)
 
     logger.info(f"Brain initialized with {len(brain.scanners)} scanners")
 
@@ -152,6 +158,12 @@ async def run_brain(telegram: bool = False, once: bool = False):
                 print(f"\n  🎰 GREED MODE: VIX {greed_status['vix']:.1f} | RSI {greed_status['rsi']}")
                 print(f"  → Be FEARFUL when others are greedy - TAKE PROFITS")
                 print(euphoria_detector.format_greed_rules())
+
+            # Show geopolitical news risk status
+            news_status = news_scanner.get_risk_status()
+            if news_status.get('risk_level') not in ['NORMAL', None]:
+                print(f"\n  📰 NEWS RISK: {news_status['risk_level']} ({news_status['recent_alerts']} alerts)")
+                print(f"  → {news_status['action']}")
 
             # Show market sentiment summary
             if not panic_status.get('is_panic') and not greed_status.get('is_greedy'):
