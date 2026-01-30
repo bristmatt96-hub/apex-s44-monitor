@@ -43,6 +43,7 @@ class KnowledgeChunk:
     word_count: int
     topics: List[str]
     created_at: str
+    category: str = ""  # Book category folder (trading_psychology, technical_analysis, etc.)
 
 
 class KnowledgeIngestion:
@@ -51,11 +52,31 @@ class KnowledgeIngestion:
 
     Directory structure:
     knowledge/
-    ├── books/          # Drop PDFs here
-    ├── audiobooks/     # Drop M4B/MP3 files here
-    ├── processed/      # Extracted text stored here
-    └── vectors/        # Vector embeddings (future)
+    ├── books/                    # Drop PDFs here (or in topic subfolders)
+    │   ├── trading_psychology/   # Mental game, discipline, emotional control
+    │   ├── technical_analysis/   # Charts, patterns, indicators
+    │   ├── market_structure/     # How markets work, order flow
+    │   ├── risk_management/      # Position sizing, capital preservation
+    │   ├── options_strategies/   # Options trading, Greeks, volatility
+    │   ├── behavioral_finance/   # Market psychology, biases
+    │   ├── macro_economics/      # Fed, interest rates, economic cycles
+    │   └── classics/             # Timeless wisdom, foundational texts
+    ├── audiobooks/               # Drop M4B/MP3 files here
+    ├── processed/                # Extracted text stored here
+    └── vectors/                  # Vector embeddings (future)
     """
+
+    # Book category folders
+    BOOK_CATEGORIES = [
+        'trading_psychology',
+        'technical_analysis',
+        'market_structure',
+        'risk_management',
+        'options_strategies',
+        'behavioral_finance',
+        'macro_economics',
+        'classics'
+    ]
 
     def __init__(self, base_path: str = "knowledge"):
         self.base_path = Path(base_path)
@@ -67,6 +88,10 @@ class KnowledgeIngestion:
         # Create directories
         for path in [self.books_path, self.audiobooks_path, self.processed_path, self.vectors_path]:
             path.mkdir(parents=True, exist_ok=True)
+
+        # Create topic subfolders in books/
+        for category in self.BOOK_CATEGORIES:
+            (self.books_path / category).mkdir(parents=True, exist_ok=True)
 
         # Knowledge index
         self.index_file = self.processed_path / "index.json"
@@ -99,7 +124,7 @@ class KnowledgeIngestion:
                 hasher.update(chunk)
         return hasher.hexdigest()
 
-    def _chunk_text(self, text: str, source: str, source_type: str, title: str) -> List[KnowledgeChunk]:
+    def _chunk_text(self, text: str, source: str, source_type: str, title: str, category: str = "") -> List[KnowledgeChunk]:
         """Split text into overlapping chunks"""
         # Clean text
         text = re.sub(r'\s+', ' ', text).strip()
@@ -117,6 +142,10 @@ class KnowledgeIngestion:
             # Detect topics in chunk
             topics = self._detect_topics(chunk_text)
 
+            # Add category to topics if not already present
+            if category and category not in topics:
+                topics.insert(0, category)
+
             chunk = KnowledgeChunk(
                 id=f"{hashlib.md5(f'{source}_{chunk_index}'.encode()).hexdigest()[:12]}",
                 source=source,
@@ -126,7 +155,8 @@ class KnowledgeIngestion:
                 content=chunk_text,
                 word_count=len(chunk_words),
                 topics=topics,
-                created_at=datetime.now().isoformat()
+                created_at=datetime.now().isoformat(),
+                category=category
             )
             chunks.append(chunk)
 
@@ -161,14 +191,15 @@ class KnowledgeIngestion:
 
     # ==================== PDF Processing ====================
 
-    def process_pdf(self, filepath: Path) -> Optional[List[KnowledgeChunk]]:
+    def process_pdf(self, filepath: Path, category: str = "") -> Optional[List[KnowledgeChunk]]:
         """Extract text from PDF and chunk it"""
         if not PDF_AVAILABLE:
             logger.error("pypdf not installed")
             return None
 
         try:
-            logger.info(f"Processing PDF: {filepath.name}")
+            category_info = f" [{category}]" if category else ""
+            logger.info(f"Processing PDF: {filepath.name}{category_info}")
 
             reader = PdfReader(filepath)
             text_parts = []
@@ -190,8 +221,8 @@ class KnowledgeIngestion:
             # Get title from filename
             title = filepath.stem.replace('_', ' ').replace('-', ' ').title()
 
-            # Chunk the text
-            chunks = self._chunk_text(full_text, filepath.name, 'pdf', title)
+            # Chunk the text with category
+            chunks = self._chunk_text(full_text, filepath.name, 'pdf', title, category)
 
             logger.info(f"  Created {len(chunks)} chunks from {filepath.name}")
             return chunks
@@ -201,35 +232,60 @@ class KnowledgeIngestion:
             return None
 
     def process_all_pdfs(self) -> int:
-        """Process all PDFs in books folder"""
-        pdf_files = list(self.books_path.glob("*.pdf"))
+        """Process all PDFs in books folder and topic subfolders"""
+        # Collect all PDFs with their categories
+        pdf_files_with_category = []
 
-        if not pdf_files:
-            logger.info("No PDF files found in knowledge/books/")
+        # Root level PDFs (no category)
+        for pdf_path in self.books_path.glob("*.pdf"):
+            pdf_files_with_category.append((pdf_path, ""))
+
+        # PDFs in topic subfolders
+        for category in self.BOOK_CATEGORIES:
+            category_path = self.books_path / category
+            if category_path.exists():
+                for pdf_path in category_path.glob("*.pdf"):
+                    pdf_files_with_category.append((pdf_path, category))
+
+        if not pdf_files_with_category:
+            logger.info("No PDF files found in knowledge/books/ or its subfolders")
             return 0
 
-        logger.info(f"Found {len(pdf_files)} PDF files to process")
+        logger.info(f"Found {len(pdf_files_with_category)} PDF files to process")
+
+        # Show breakdown by category
+        by_category = {}
+        for _, cat in pdf_files_with_category:
+            cat_name = cat or "uncategorized"
+            by_category[cat_name] = by_category.get(cat_name, 0) + 1
+        for cat, count in by_category.items():
+            logger.info(f"  {cat}: {count} files")
+
         total_chunks = 0
 
-        for pdf_path in pdf_files:
+        for pdf_path, category in pdf_files_with_category:
             file_hash = self._get_file_hash(pdf_path)
 
+            # Use relative path as key to handle same filename in different folders
+            relative_key = str(pdf_path.relative_to(self.books_path))
+
             # Skip if already processed
-            if pdf_path.name in self.index["files"]:
-                if self.index["files"][pdf_path.name].get("hash") == file_hash:
-                    logger.info(f"Skipping {pdf_path.name} (already processed)")
+            if relative_key in self.index["files"]:
+                if self.index["files"][relative_key].get("hash") == file_hash:
+                    logger.info(f"Skipping {relative_key} (already processed)")
                     continue
 
-            chunks = self.process_pdf(pdf_path)
+            chunks = self.process_pdf(pdf_path, category)
 
             if chunks:
                 # Save chunks
                 self._save_chunks(chunks)
 
-                # Update index
-                self.index["files"][pdf_path.name] = {
+                # Update index with category info
+                self.index["files"][relative_key] = {
                     "hash": file_hash,
                     "type": "pdf",
+                    "category": category,
                     "chunks": len(chunks),
                     "processed_at": datetime.now().isoformat()
                 }
@@ -395,11 +451,18 @@ class KnowledgeIngestion:
 
     def get_stats(self) -> Dict:
         """Get knowledge base statistics"""
+        # Count by category
+        by_category = {}
+        for filename, info in self.index["files"].items():
+            category = info.get("category", "") or "uncategorized"
+            by_category[category] = by_category.get(category, 0) + 1
+
         return {
             "files_processed": len(self.index["files"]),
             "total_chunks": self.index["stats"].get("total_chunks", 0),
             "total_words": self.index["stats"].get("total_words", 0),
-            "files": list(self.index["files"].keys())
+            "files": list(self.index["files"].keys()),
+            "by_category": by_category
         }
 
 
@@ -409,6 +472,7 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description="Knowledge Ingestion System")
     parser.add_argument("--pdfs", action="store_true", help="Process PDFs only")
+    parser.add_argument("--process-books", action="store_true", help="Process all books (PDFs) in topic folders")
     parser.add_argument("--audiobooks", action="store_true", help="Process audiobooks only")
     parser.add_argument("--model", default="base", choices=["tiny", "base", "small", "medium", "large"],
                        help="Whisper model size (default: base)")
@@ -424,8 +488,12 @@ if __name__ == "__main__":
         print(f"  Files processed: {stats['files_processed']}")
         print(f"  Total chunks: {stats['total_chunks']}")
         print(f"  Total words: {stats['total_words']:,}")
-        print(f"  Files: {', '.join(stats['files']) if stats['files'] else 'None'}")
-    elif args.pdfs:
+        if stats.get('by_category'):
+            print("\n  By Category:")
+            for cat, count in stats['by_category'].items():
+                print(f"    {cat}: {count} files")
+        print(f"\n  Files: {', '.join(stats['files']) if stats['files'] else 'None'}")
+    elif args.pdfs or args.process_books:
         ingestion.process_all_pdfs()
     elif args.audiobooks:
         ingestion.process_all_audiobooks(args.model)
