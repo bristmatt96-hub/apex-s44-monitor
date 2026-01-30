@@ -143,14 +143,17 @@ async def run_scan_only():
     """Run a single market scan without trading"""
     logger.info("Running market scan (no execution)...")
 
-    # Create scanners
-    scanners = [
-        EquityScanner(),
-        CryptoScanner(),
-        ForexScanner(),
-        EdgarInsiderScanner(),
-        OptionsFlowScanner()
-    ]
+    # Create scanners based on config
+    scanners = []
+    if config.scanner.equities_enabled:
+        scanners.append(EquityScanner())
+    if config.scanner.crypto_enabled:
+        scanners.append(CryptoScanner())
+    if config.scanner.forex_enabled:
+        scanners.append(ForexScanner())
+    if config.scanner.options_enabled:
+        scanners.append(OptionsFlowScanner())
+    scanners.append(EdgarInsiderScanner())  # Always included for insider signals
 
     all_signals = []
 

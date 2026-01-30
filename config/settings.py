@@ -160,7 +160,7 @@ class StrategyConfig(BaseModel):
 class MarketWeights(BaseModel):
     """
     Market priority weights and capital allocation.
-    UPDATED based on backtest results (Jan 2026).
+    FOCUSED on Equities and Options only.
 
     Weights determine:
     - Scanner priority (higher = scanned more frequently)
@@ -170,23 +170,20 @@ class MarketWeights(BaseModel):
     These are INITIAL weights. The adaptive system will
     adjust them based on actual trading performance.
     """
-    # Priority weights - updated from backtest results
-    # Crypto had highest avg PF (6.18 across winning strategies)
-    # Options stocks second (2.44 avg PF)
-    # ETFs strong on mean reversion (PF 5.29)
-    crypto: float = 0.95        # Highest - PF 14.42 volume spike, no PDT, 24/7
-    options: float = 0.90       # High - 4 strategies with edge, best R:R for $3k
-    equities: float = 0.70      # Medium-high - mean reversion + volume spike proven
-    forex: float = 0.45         # Lower - no backtest data yet
+    # Priority weights - Equities and Options only
+    crypto: float = 0.0         # Disabled - not in scope
+    options: float = 0.90       # High priority - best R:R structure
+    equities: float = 0.85      # High priority - mean reversion + volume spike
+    forex: float = 0.0          # Disabled - not in scope
     spacs: float = 0.0          # Disabled
 
-    # Capital allocation - increased crypto based on results
-    crypto_capital_pct: float = 0.30    # $900 (highest edge)
-    options_capital_pct: float = 0.35   # $1,050 (best R:R structure)
-    equities_capital_pct: float = 0.20  # $600 (mean reversion + volume spike)
-    forex_capital_pct: float = 0.10     # $300 (untested, keep small)
-    spacs_capital_pct: float = 0.0      # $0
-    reserve_pct: float = 0.05           # $150 cash reserve
+    # Capital allocation - 100% to equities and options
+    crypto_capital_pct: float = 0.0     # Disabled
+    options_capital_pct: float = 0.50   # 50% to options
+    equities_capital_pct: float = 0.45  # 45% to equities
+    forex_capital_pct: float = 0.0      # Disabled
+    spacs_capital_pct: float = 0.0      # Disabled
+    reserve_pct: float = 0.05           # 5% cash reserve
 
     # Scan intervals (seconds) - lower = more frequent
     options_scan_interval: int = 30     # Every 30s
@@ -238,10 +235,10 @@ class ScannerConfig(BaseModel):
     """Market Scanner Configuration"""
     scan_interval_seconds: int = 60
     equities_enabled: bool = True
-    crypto_enabled: bool = True
-    forex_enabled: bool = True
+    crypto_enabled: bool = False  # Disabled - not in scope
+    forex_enabled: bool = False   # Disabled - not in scope
     options_enabled: bool = True
-    spacs_enabled: bool = False  # Disabled by default
+    spacs_enabled: bool = False   # Disabled by default
 
 
 class TradingConfig(BaseModel):
