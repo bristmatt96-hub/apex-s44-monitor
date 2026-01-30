@@ -27,7 +27,8 @@ from agents.brain.inefficiency_scanners import (
     TimeZoneGapScanner,
     LiquidityPatternScanner,
     ExogenousShockScanner,
-    EuphoriaDetector
+    EuphoriaDetector,
+    ProductDiscoveryScanner
 )
 from agents.brain.panic_risk_manager import get_panic_risk_manager
 
@@ -54,6 +55,7 @@ async def run_brain(telegram: bool = False, once: bool = False):
 ║  • Time-based patterns (gaps, lunch dip, power hour)        ║
 ║  • Exogenous shocks (Trump headlines, etc.) → Recovery plays║
 ║  • Euphoria detection → Know when to take profits           ║
+║  • Product discovery → Find new instruments that fit us     ║
 ║                                                              ║
 ║  "Be fearful when others are greedy,                        ║
 ║   and greedy when others are fearful" - Buffett             ║
@@ -79,6 +81,10 @@ async def run_brain(telegram: bool = False, once: bool = False):
     # Euphoria detector (know when to take profits)
     euphoria_detector = EuphoriaDetector()
     brain.register_scanner(euphoria_detector)
+
+    # Product discovery (find new instruments that fit our edge)
+    product_scanner = ProductDiscoveryScanner()
+    brain.register_scanner(product_scanner)
 
     logger.info(f"Brain initialized with {len(brain.scanners)} scanners")
 

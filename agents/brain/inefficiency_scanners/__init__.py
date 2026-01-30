@@ -5,6 +5,7 @@ from .time_zone_gaps import TimeZoneGapScanner
 from .liquidity_patterns import LiquidityPatternScanner
 from .exogenous_shock import ExogenousShockScanner
 from .euphoria_detector import EuphoriaDetector
+from .product_discovery import ProductDiscoveryScanner
 
 __all__ = [
     'RetailCrowdingScanner',
@@ -12,5 +13,6 @@ __all__ = [
     'TimeZoneGapScanner',
     'LiquidityPatternScanner',
     'ExogenousShockScanner',
-    'EuphoriaDetector'
+    'EuphoriaDetector',
+    'ProductDiscoveryScanner'
 ]
