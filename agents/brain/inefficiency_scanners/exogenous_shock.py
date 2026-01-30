@@ -44,6 +44,10 @@ except ImportError:
 from agents.brain.market_brain import (
     Inefficiency, InefficiencyType, EdgeReason
 )
+from agents.brain.crisis_memory import (
+    identify_crisis_type, get_recovery_patterns, get_all_lessons,
+    GFC_2008, COVID_2020, BEAR_2022
+)
 
 
 @dataclass
@@ -124,6 +128,12 @@ class ExogenousShockScanner:
         # Current panic state
         self.panic_state: Optional[PanicState] = None
         self.last_panic_check = None
+        self.days_declining = 0
+        self.crisis_analysis: Optional[Dict] = None
+
+        # Historical recovery patterns (from crisis memory)
+        self.recovery_patterns = get_recovery_patterns()
+        self.historical_lessons = get_all_lessons()
 
     async def scan(self) -> List[Inefficiency]:
         """Main scan - detect panic and find recovery plays"""
@@ -143,6 +153,20 @@ class ExogenousShockScanner:
             f"🚨 PANIC DETECTED: VIX {self.panic_state.vix_level:.1f} "
             f"(+{self.panic_state.vix_spike:.0%}), SPY {self.panic_state.spy_drawdown:.1%} from high"
         )
+
+        # Step 1b: Identify what type of crisis (using historical memory)
+        self.crisis_analysis = identify_crisis_type(
+            vix_level=self.panic_state.vix_level,
+            vix_spike_pct=self.panic_state.vix_spike,
+            spy_drawdown_pct=self.panic_state.spy_drawdown,
+            days_declining=self.days_declining
+        )
+
+        logger.info(
+            f"📚 CRISIS TYPE: {self.crisis_analysis['most_similar']} "
+            f"(similarity: {self.crisis_analysis['similarity_score']:.0%})"
+        )
+        logger.info(f"📚 EXPECTED PATTERN: {self.crisis_analysis['expected_pattern']}")
 
         # Step 2: Find recovery candidates
         candidates = await self._find_recovery_candidates()
@@ -504,11 +528,11 @@ class ExogenousShockScanner:
             return None
 
     def get_panic_status(self) -> Dict:
-        """Get current panic status"""
+        """Get current panic status with historical context"""
         if not self.panic_state:
             return {'is_panic': False, 'message': 'Not yet checked'}
 
-        return {
+        status = {
             'is_panic': self.panic_state.is_panic,
             'vix': self.panic_state.vix_level,
             'vix_spike': f"{self.panic_state.vix_spike:.1%}",
@@ -517,3 +541,37 @@ class ExogenousShockScanner:
             'panic_score': f"{self.panic_state.panic_score:.2f}",
             'detected_at': self.panic_state.detected_at
         }
+
+        # Add historical crisis analysis if available
+        if self.crisis_analysis:
+            status['crisis_type'] = self.crisis_analysis['most_similar']
+            status['similarity'] = f"{self.crisis_analysis['similarity_score']:.0%}"
+            status['expected_pattern'] = self.crisis_analysis['expected_pattern']
+            status['recommendations'] = self.crisis_analysis['recommendations']
+
+        return status
+
+    def get_historical_context(self) -> str:
+        """Get historical context for current conditions"""
+        if not self.crisis_analysis:
+            return "No crisis analysis available yet."
+
+        lines = [
+            f"\n📚 HISTORICAL CONTEXT: {self.crisis_analysis['most_similar']}",
+            f"   Similarity: {self.crisis_analysis['similarity_score']:.0%}",
+            f"   Expected: {self.crisis_analysis['expected_pattern']}",
+            "",
+            "   RECOMMENDATIONS (from history):"
+        ]
+
+        for rec in self.crisis_analysis.get('recommendations', []):
+            lines.append(f"   • {rec}")
+
+        # Add sector recovery expectations
+        lines.append("")
+        lines.append("   SECTOR RECOVERY ORDER (historical):")
+        lines.append("   • FIRST: Tech, Healthcare (quality names)")
+        lines.append("   • SLOW: Financials, Energy")
+        lines.append("   • AVOID: Whatever caused the crisis")
+
+        return "\n".join(lines)
