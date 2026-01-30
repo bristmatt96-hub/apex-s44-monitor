@@ -26,7 +26,8 @@ from agents.brain.inefficiency_scanners import (
     VolatilityMispricingScanner,
     TimeZoneGapScanner,
     LiquidityPatternScanner,
-    ExogenousShockScanner
+    ExogenousShockScanner,
+    EuphoriaDetector
 )
 from agents.brain.panic_risk_manager import get_panic_risk_manager
 
@@ -52,6 +53,10 @@ async def run_brain(telegram: bool = False, once: bool = False):
 ║  • Volatility mispricings                                    ║
 ║  • Time-based patterns (gaps, lunch dip, power hour)        ║
 ║  • Exogenous shocks (Trump headlines, etc.) → Recovery plays║
+║  • Euphoria detection → Know when to take profits           ║
+║                                                              ║
+║  "Be fearful when others are greedy,                        ║
+║   and greedy when others are fearful" - Buffett             ║
 ╚══════════════════════════════════════════════════════════════╝
     """)
 
@@ -70,6 +75,10 @@ async def run_brain(telegram: bool = False, once: bool = False):
     # Exogenous shock scanner (Trump headlines, geopolitical events, etc.)
     shock_scanner = ExogenousShockScanner()
     brain.register_scanner(shock_scanner)
+
+    # Euphoria detector (know when to take profits)
+    euphoria_detector = EuphoriaDetector()
+    brain.register_scanner(euphoria_detector)
 
     logger.info(f"Brain initialized with {len(brain.scanners)} scanners")
 
@@ -124,11 +133,23 @@ async def run_brain(telegram: bool = False, once: bool = False):
             print("\033[2J\033[H")  # Clear screen
             print(brain.format_dashboard())
 
-            # Show panic status if active
+            # Show panic status if active (BUY signal)
             panic_status = shock_scanner.get_panic_status()
             if panic_status.get('is_panic'):
                 print(f"\n  🚨 PANIC MODE: VIX {panic_status['vix']:.1f} | SPY {panic_status['spy_drawdown']} from high")
+                print("  → Be GREEDY when others are fearful - look for recovery plays")
                 print(panic_rm.format_risk_rules())
+
+            # Show greed status if active (SELL signal)
+            greed_status = euphoria_detector.get_greed_status()
+            if greed_status.get('is_greedy'):
+                print(f"\n  🎰 GREED MODE: VIX {greed_status['vix']:.1f} | RSI {greed_status['rsi']}")
+                print(f"  → Be FEARFUL when others are greedy - TAKE PROFITS")
+                print(euphoria_detector.format_greed_rules())
+
+            # Show market sentiment summary
+            if not panic_status.get('is_panic') and not greed_status.get('is_greedy'):
+                print("\n  📊 MARKET SENTIMENT: Neutral - normal operations")
 
             print(f"\n  Scanners: {len(brain.scanners)} | Ideas Generated: {brain.ideas_generated}")
             print(f"  Press Ctrl+C to stop\n")

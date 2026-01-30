@@ -4,11 +4,13 @@ from .volatility_mispricing import VolatilityMispricingScanner
 from .time_zone_gaps import TimeZoneGapScanner
 from .liquidity_patterns import LiquidityPatternScanner
 from .exogenous_shock import ExogenousShockScanner
+from .euphoria_detector import EuphoriaDetector
 
 __all__ = [
     'RetailCrowdingScanner',
     'VolatilityMispricingScanner',
     'TimeZoneGapScanner',
     'LiquidityPatternScanner',
-    'ExogenousShockScanner'
+    'ExogenousShockScanner',
+    'EuphoriaDetector'
 ]
