@@ -39,6 +39,13 @@ from agents.brain.market_brain import (
     Inefficiency, InefficiencyType, EdgeReason
 )
 
+# Try to import Telegram notifier
+try:
+    from utils.telegram_notifier import get_notifier
+    TELEGRAM_AVAILABLE = True
+except ImportError:
+    TELEGRAM_AVAILABLE = False
+
 
 @dataclass
 class ProductCandidate:
@@ -143,13 +150,17 @@ class ProductDiscoveryScanner:
         ]
     }
 
-    def __init__(self):
+    def __init__(self, send_telegram: bool = True):
         self.discovered_products: Dict[str, ProductCandidate] = {}
         self.sector_opportunities: List[SectorOpportunity] = []
         self.last_full_scan = None
+        self.send_telegram = send_telegram
 
         # Already tracked symbols (don't re-recommend)
         self.already_tracked: Set[str] = set()
+
+        # Track what we've already notified about (avoid spam)
+        self.notified_symbols: Set[str] = set()
 
     async def scan(self) -> List[Inefficiency]:
         """
@@ -216,6 +227,10 @@ class ProductDiscoveryScanner:
 
         self.last_full_scan = datetime.now()
         logger.info(f"🔍 Discovery complete: {len(self.discovered_products)} candidates found")
+
+        # Send Telegram notification for top discoveries
+        if self.send_telegram and self.discovered_products:
+            await self._send_telegram_discovery()
 
     async def _analyze_product(self, symbol: str, category: str) -> Optional[ProductCandidate]:
         """Analyze a single product for edge suitability"""
@@ -432,6 +447,78 @@ class ProductDiscoveryScanner:
             reverse=True
         )
         return sorted_candidates[:limit]
+
+    async def _send_telegram_discovery(self) -> None:
+        """Send Telegram notification about discovered products"""
+        if not TELEGRAM_AVAILABLE:
+            logger.debug("Telegram not available for discovery notifications")
+            return
+
+        try:
+            notifier = get_notifier()
+
+            # Get top candidates we haven't notified about yet
+            top = self._get_top_candidates(5)
+            new_discoveries = [
+                c for c in top
+                if c.symbol not in self.notified_symbols and c.edge_fit_score > 0.6
+            ]
+
+            if not new_discoveries:
+                return
+
+            # Build message
+            lines = ["🔍 *PRODUCT DISCOVERY*\n"]
+            lines.append("New instruments matching our edge:\n")
+
+            for candidate in new_discoveries:
+                # Score bar
+                score_pct = int(candidate.edge_fit_score * 100)
+
+                lines.append(f"*{candidate.symbol}* - {candidate.name}")
+                lines.append(f"  Edge Fit: {score_pct}%")
+
+                # Top reasons (the key info)
+                if candidate.why_suitable:
+                    reasons = candidate.why_suitable[:3]
+                    for reason in reasons:
+                        lines.append(f"  ✓ {reason}")
+
+                # Key stats
+                if candidate.volatility_30d > 0:
+                    lines.append(f"  📊 Vol: {candidate.volatility_30d:.0%} ann.")
+
+                lines.append("")  # Spacing
+
+                # Mark as notified
+                self.notified_symbols.add(candidate.symbol)
+
+            # Add philosophy reminder
+            lines.append("_Fish where retail emotion creates patterns_")
+
+            message = "\n".join(lines)
+
+            await notifier.send_message(message)
+            logger.info(f"📱 Sent Telegram: {len(new_discoveries)} product discoveries")
+
+        except Exception as e:
+            logger.debug(f"Error sending discovery Telegram: {e}")
+
+    def format_telegram_message(self) -> str:
+        """Format discovery results for Telegram (manual send)"""
+        top = self._get_top_candidates(5)
+
+        if not top:
+            return "🔍 No products discovered yet"
+
+        lines = ["🔍 *PRODUCT DISCOVERY REPORT*\n"]
+
+        for i, c in enumerate(top, 1):
+            lines.append(f"{i}. *{c.symbol}* ({c.edge_fit_score:.0%} fit)")
+            if c.why_suitable:
+                lines.append(f"   {c.why_suitable[0]}")
+
+        return "\n".join(lines)
 
     def _create_discovery_inefficiency(self, candidate: ProductCandidate) -> Optional[Inefficiency]:
         """Convert product candidate to inefficiency"""
