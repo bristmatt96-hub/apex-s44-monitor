@@ -42,6 +42,14 @@ try:
     PYDUB_AVAILABLE = True
 except ImportError:
     PYDUB_AVAILABLE = False
+except Exception:
+    # Python 3.13+ removed audioop, pydub may fail
+    PYDUB_AVAILABLE = False
+
+# Check for ffmpeg as fallback
+import subprocess
+import shutil
+FFMPEG_AVAILABLE = shutil.which('ffmpeg') is not None
 
 # Text processing
 import re
@@ -391,6 +399,22 @@ class KnowledgeIngestion:
             logger.error(f"Error transcribing {filepath.name}: {e}")
             return None
 
+    def _convert_to_wav_ffmpeg(self, filepath: Path, output_path: Path) -> bool:
+        """Convert audio file to WAV using ffmpeg directly"""
+        try:
+            cmd = [
+                'ffmpeg', '-y', '-i', str(filepath),
+                '-ar', '16000',  # 16kHz sample rate
+                '-ac', '1',      # mono
+                '-f', 'wav',
+                str(output_path)
+            ]
+            result = subprocess.run(cmd, capture_output=True, text=True)
+            return result.returncode == 0
+        except Exception as e:
+            logger.error(f"ffmpeg conversion failed: {e}")
+            return False
+
     def transcribe_with_google(self, filepath: Path) -> Optional[str]:
         """Transcribe audiobook using Google Cloud Speech-to-Text"""
         if not GOOGLE_SPEECH_AVAILABLE:
@@ -407,17 +431,24 @@ class KnowledgeIngestion:
             temp_wav = None
 
             if filepath.suffix.lower() not in ['.wav', '.flac']:
-                if not PYDUB_AVAILABLE:
-                    logger.error("pydub required for non-WAV files. Run: pip install pydub")
-                    return None
-
-                logger.info("  Converting audio to WAV format...")
-                audio = AudioSegment.from_file(str(filepath))
-                # Convert to mono, 16kHz for Google Speech
-                audio = audio.set_channels(1).set_frame_rate(16000)
+                # Try pydub first, fall back to ffmpeg
                 temp_wav = self.processed_path / f"{filepath.stem}_temp.wav"
-                audio.export(str(temp_wav), format="wav")
-                audio_path = temp_wav
+
+                if PYDUB_AVAILABLE:
+                    logger.info("  Converting audio to WAV format (pydub)...")
+                    audio = AudioSegment.from_file(str(filepath))
+                    audio = audio.set_channels(1).set_frame_rate(16000)
+                    audio.export(str(temp_wav), format="wav")
+                    audio_path = temp_wav
+                elif FFMPEG_AVAILABLE:
+                    logger.info("  Converting audio to WAV format (ffmpeg)...")
+                    if not self._convert_to_wav_ffmpeg(filepath, temp_wav):
+                        logger.error("Failed to convert audio with ffmpeg")
+                        return None
+                    audio_path = temp_wav
+                else:
+                    logger.error("No audio converter available. Install ffmpeg or pydub.")
+                    return None
 
             # For long audio files, use long_running_recognize
             file_size = audio_path.stat().st_size
@@ -464,30 +495,49 @@ class KnowledgeIngestion:
             return None
 
     def _transcribe_google_chunked(self, filepath: Path, client) -> Optional[str]:
-        """Transcribe large audio files in chunks"""
-        if not PYDUB_AVAILABLE:
-            logger.error("pydub required for chunked processing. Run: pip install pydub")
+        """Transcribe large audio files in chunks using ffmpeg"""
+        if not FFMPEG_AVAILABLE:
+            logger.error("ffmpeg required for chunked processing")
             return None
 
         try:
-            logger.info("  Loading audio for chunked processing...")
-            audio = AudioSegment.from_file(str(filepath))
-            audio = audio.set_channels(1).set_frame_rate(16000)
+            # Get audio duration using ffprobe
+            probe_cmd = [
+                'ffprobe', '-v', 'error', '-show_entries', 'format=duration',
+                '-of', 'default=noprint_wrappers=1:nokey=1', str(filepath)
+            ]
+            result = subprocess.run(probe_cmd, capture_output=True, text=True)
+            duration = float(result.stdout.strip())
 
-            # Split into 1-minute chunks (Google limit is ~1 min for sync, longer for async)
-            chunk_length_ms = 60 * 1000  # 1 minute
-            chunks = [audio[i:i + chunk_length_ms] for i in range(0, len(audio), chunk_length_ms)]
+            # Split into 55-second chunks (leaving margin for Google's 1-min limit)
+            chunk_duration = 55
+            num_chunks = int(duration / chunk_duration) + 1
 
-            logger.info(f"  Processing {len(chunks)} audio chunks...")
+            logger.info(f"  Processing {num_chunks} audio chunks ({duration:.0f}s total)...")
             transcript_parts = []
 
-            for i, chunk in enumerate(chunks):
-                logger.info(f"  Transcribing chunk {i + 1}/{len(chunks)}...")
+            for i in range(num_chunks):
+                start_time = i * chunk_duration
+                chunk_file = self.processed_path / f"_chunk_{i}.wav"
 
-                # Export chunk to bytes
-                buffer = io.BytesIO()
-                chunk.export(buffer, format="wav")
-                audio_content = buffer.getvalue()
+                logger.info(f"  Transcribing chunk {i + 1}/{num_chunks}...")
+
+                # Extract chunk with ffmpeg
+                cmd = [
+                    'ffmpeg', '-y', '-ss', str(start_time), '-i', str(filepath),
+                    '-t', str(chunk_duration), '-ar', '16000', '-ac', '1', '-f', 'wav',
+                    str(chunk_file)
+                ]
+                subprocess.run(cmd, capture_output=True)
+
+                if not chunk_file.exists():
+                    continue
+
+                # Read and transcribe chunk
+                with open(chunk_file, 'rb') as f:
+                    audio_content = f.read()
+
+                chunk_file.unlink()  # Clean up
 
                 audio_input = speech.RecognitionAudio(content=audio_content)
                 config = speech.RecognitionConfig(
@@ -497,11 +547,14 @@ class KnowledgeIngestion:
                     enable_automatic_punctuation=True,
                 )
 
-                response = client.recognize(config=config, audio=audio_input)
-
-                for result in response.results:
-                    if result.alternatives:
-                        transcript_parts.append(result.alternatives[0].transcript)
+                try:
+                    response = client.recognize(config=config, audio=audio_input)
+                    for result in response.results:
+                        if result.alternatives:
+                            transcript_parts.append(result.alternatives[0].transcript)
+                except Exception as chunk_error:
+                    logger.warning(f"  Chunk {i + 1} failed: {chunk_error}")
+                    continue
 
             full_transcript = ' '.join(transcript_parts)
             logger.info(f"  Chunked transcription complete: {len(full_transcript)} characters")
