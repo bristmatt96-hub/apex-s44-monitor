@@ -19,16 +19,34 @@ except ImportError:
     PDF_AVAILABLE = False
     logger.warning("pypdf not installed - PDF processing disabled")
 
-# Audio transcription
+# Audio transcription - Whisper (local)
 try:
     import whisper
     WHISPER_AVAILABLE = True
 except ImportError:
     WHISPER_AVAILABLE = False
-    logger.warning("whisper not installed - audio transcription disabled")
+    logger.warning("whisper not installed - local audio transcription disabled")
+
+# Audio transcription - Google Cloud Speech-to-Text
+try:
+    from google.cloud import speech_v1 as speech
+    from google.cloud.speech_v1 import types
+    GOOGLE_SPEECH_AVAILABLE = True
+except ImportError:
+    GOOGLE_SPEECH_AVAILABLE = False
+    logger.warning("google-cloud-speech not installed - Google transcription disabled")
+
+# Audio file handling for Google Cloud
+try:
+    from pydub import AudioSegment
+    PYDUB_AVAILABLE = True
+except ImportError:
+    PYDUB_AVAILABLE = False
 
 # Text processing
 import re
+import io
+import wave
 
 
 @dataclass
@@ -350,9 +368,9 @@ class KnowledgeIngestion:
         return self._whisper_model
 
     def transcribe_audiobook(self, filepath: Path, model_size: str = "base") -> Optional[str]:
-        """Transcribe audiobook to text"""
+        """Transcribe audiobook to text using local Whisper"""
         try:
-            logger.info(f"Transcribing: {filepath.name}")
+            logger.info(f"Transcribing with Whisper: {filepath.name}")
             logger.info("  This may take a while (roughly 1x audio duration)...")
 
             model = self._load_whisper_model(model_size)
@@ -369,8 +387,135 @@ class KnowledgeIngestion:
             logger.error(f"Error transcribing {filepath.name}: {e}")
             return None
 
-    def process_audiobook(self, filepath: Path, model_size: str = "base") -> Optional[List[KnowledgeChunk]]:
-        """Process audiobook: transcribe and chunk"""
+    def transcribe_with_google(self, filepath: Path) -> Optional[str]:
+        """Transcribe audiobook using Google Cloud Speech-to-Text"""
+        if not GOOGLE_SPEECH_AVAILABLE:
+            raise RuntimeError("google-cloud-speech not installed. Run: pip install google-cloud-speech")
+
+        try:
+            logger.info(f"Transcribing with Google Cloud: {filepath.name}")
+
+            # Initialize Google Speech client
+            client = speech.SpeechClient()
+
+            # Convert audio to WAV format if needed (Google requires specific formats)
+            audio_path = filepath
+            temp_wav = None
+
+            if filepath.suffix.lower() not in ['.wav', '.flac']:
+                if not PYDUB_AVAILABLE:
+                    logger.error("pydub required for non-WAV files. Run: pip install pydub")
+                    return None
+
+                logger.info("  Converting audio to WAV format...")
+                audio = AudioSegment.from_file(str(filepath))
+                # Convert to mono, 16kHz for Google Speech
+                audio = audio.set_channels(1).set_frame_rate(16000)
+                temp_wav = self.processed_path / f"{filepath.stem}_temp.wav"
+                audio.export(str(temp_wav), format="wav")
+                audio_path = temp_wav
+
+            # For long audio files, use long_running_recognize
+            file_size = audio_path.stat().st_size
+
+            if file_size > 10 * 1024 * 1024:  # > 10MB, use GCS (requires upload)
+                logger.info("  Large file detected - using chunked processing...")
+                return self._transcribe_google_chunked(audio_path, client)
+
+            # Read audio file
+            with open(audio_path, 'rb') as f:
+                audio_content = f.read()
+
+            audio = speech.RecognitionAudio(content=audio_content)
+            config = speech.RecognitionConfig(
+                encoding=speech.RecognitionConfig.AudioEncoding.LINEAR16,
+                sample_rate_hertz=16000,
+                language_code="en-US",
+                enable_automatic_punctuation=True,
+            )
+
+            logger.info("  Sending to Google Cloud Speech-to-Text...")
+
+            # Use long_running_recognize for longer audio
+            operation = client.long_running_recognize(config=config, audio=audio)
+            logger.info("  Waiting for transcription to complete...")
+            response = operation.result(timeout=3600)  # 1 hour timeout
+
+            # Combine all transcription results
+            transcript_parts = []
+            for result in response.results:
+                if result.alternatives:
+                    transcript_parts.append(result.alternatives[0].transcript)
+
+            # Clean up temp file
+            if temp_wav and temp_wav.exists():
+                temp_wav.unlink()
+
+            full_transcript = ' '.join(transcript_parts)
+            logger.info(f"  Transcription complete: {len(full_transcript)} characters")
+            return full_transcript
+
+        except Exception as e:
+            logger.error(f"Error transcribing with Google: {e}")
+            return None
+
+    def _transcribe_google_chunked(self, filepath: Path, client) -> Optional[str]:
+        """Transcribe large audio files in chunks"""
+        if not PYDUB_AVAILABLE:
+            logger.error("pydub required for chunked processing. Run: pip install pydub")
+            return None
+
+        try:
+            logger.info("  Loading audio for chunked processing...")
+            audio = AudioSegment.from_file(str(filepath))
+            audio = audio.set_channels(1).set_frame_rate(16000)
+
+            # Split into 1-minute chunks (Google limit is ~1 min for sync, longer for async)
+            chunk_length_ms = 60 * 1000  # 1 minute
+            chunks = [audio[i:i + chunk_length_ms] for i in range(0, len(audio), chunk_length_ms)]
+
+            logger.info(f"  Processing {len(chunks)} audio chunks...")
+            transcript_parts = []
+
+            for i, chunk in enumerate(chunks):
+                logger.info(f"  Transcribing chunk {i + 1}/{len(chunks)}...")
+
+                # Export chunk to bytes
+                buffer = io.BytesIO()
+                chunk.export(buffer, format="wav")
+                audio_content = buffer.getvalue()
+
+                audio_input = speech.RecognitionAudio(content=audio_content)
+                config = speech.RecognitionConfig(
+                    encoding=speech.RecognitionConfig.AudioEncoding.LINEAR16,
+                    sample_rate_hertz=16000,
+                    language_code="en-US",
+                    enable_automatic_punctuation=True,
+                )
+
+                response = client.recognize(config=config, audio=audio_input)
+
+                for result in response.results:
+                    if result.alternatives:
+                        transcript_parts.append(result.alternatives[0].transcript)
+
+            full_transcript = ' '.join(transcript_parts)
+            logger.info(f"  Chunked transcription complete: {len(full_transcript)} characters")
+            return full_transcript
+
+        except Exception as e:
+            logger.error(f"Error in chunked transcription: {e}")
+            return None
+
+    def process_audiobook(self, filepath: Path, model_size: str = "base", backend: str = "whisper") -> Optional[List[KnowledgeChunk]]:
+        """
+        Process audiobook: transcribe and chunk
+
+        Args:
+            filepath: Path to audio file
+            model_size: Whisper model size (only for whisper backend)
+            backend: 'whisper' for local, 'google' for Google Cloud Speech-to-Text
+        """
         # Check for cached transcription
         cache_file = self.processed_path / f"{filepath.stem}_transcript.txt"
 
@@ -379,7 +524,18 @@ class KnowledgeIngestion:
             with open(cache_file, 'r') as f:
                 text = f.read()
         else:
-            text = self.transcribe_audiobook(filepath, model_size)
+            # Choose transcription backend
+            if backend == "google":
+                if not GOOGLE_SPEECH_AVAILABLE:
+                    logger.error("Google Cloud Speech not available. Install: pip install google-cloud-speech")
+                    return None
+                text = self.transcribe_with_google(filepath)
+            else:
+                # Default to Whisper
+                if not WHISPER_AVAILABLE:
+                    logger.error("Whisper not available. Install: pip install openai-whisper")
+                    return None
+                text = self.transcribe_audiobook(filepath, model_size)
 
             if not text:
                 return None
@@ -398,8 +554,14 @@ class KnowledgeIngestion:
         logger.info(f"  Created {len(chunks)} chunks from {filepath.name}")
         return chunks
 
-    def process_all_audiobooks(self, model_size: str = "base") -> int:
-        """Process all audiobooks in audiobooks folder"""
+    def process_all_audiobooks(self, model_size: str = "base", backend: str = "whisper") -> int:
+        """
+        Process all audiobooks in audiobooks folder
+
+        Args:
+            model_size: Whisper model size (only for whisper backend)
+            backend: 'whisper' for local, 'google' for Google Cloud Speech-to-Text
+        """
         audio_extensions = ['.m4b', '.m4a', '.mp3', '.wav', '.flac']
         audio_files = []
 
@@ -411,6 +573,7 @@ class KnowledgeIngestion:
             return 0
 
         logger.info(f"Found {len(audio_files)} audiobook files to process")
+        logger.info(f"Using transcription backend: {backend}")
         total_chunks = 0
 
         for audio_path in audio_files:
@@ -422,7 +585,7 @@ class KnowledgeIngestion:
                     logger.info(f"Skipping {audio_path.name} (already processed)")
                     continue
 
-            chunks = self.process_audiobook(audio_path, model_size)
+            chunks = self.process_audiobook(audio_path, model_size, backend)
 
             if chunks:
                 # Save chunks
@@ -432,6 +595,7 @@ class KnowledgeIngestion:
                 self.index["files"][audio_path.name] = {
                     "hash": file_hash,
                     "type": "audiobook",
+                    "backend": backend,
                     "chunks": len(chunks),
                     "processed_at": datetime.now().isoformat()
                 }
@@ -454,14 +618,14 @@ class KnowledgeIngestion:
 
         self.index["stats"]["total_chunks"] = len(self.index["chunks"])
 
-    def process_all(self, whisper_model: str = "base") -> Dict:
+    def process_all(self, whisper_model: str = "base", backend: str = "whisper") -> Dict:
         """Process all books and audiobooks"""
         logger.info("=" * 50)
         logger.info("Starting Knowledge Ingestion")
         logger.info("=" * 50)
 
         pdf_chunks = self.process_all_pdfs()
-        audio_chunks = self.process_all_audiobooks(whisper_model)
+        audio_chunks = self.process_all_audiobooks(whisper_model, backend)
 
         # Calculate total words
         total_words = 0
@@ -535,6 +699,8 @@ if __name__ == "__main__":
     parser.add_argument("--audiobooks", action="store_true", help="Process audiobooks only")
     parser.add_argument("--model", default="base", choices=["tiny", "base", "small", "medium", "large"],
                        help="Whisper model size (default: base)")
+    parser.add_argument("--backend", default="whisper", choices=["whisper", "google"],
+                       help="Transcription backend: 'whisper' (local) or 'google' (Google Cloud Speech)")
     parser.add_argument("--stats", action="store_true", help="Show knowledge base stats")
 
     args = parser.parse_args()
@@ -565,9 +731,17 @@ if __name__ == "__main__":
             for cat, count in stats['by_category'].items():
                 print(f"    {cat}: {count} files")
         print(f"\n  Files: {', '.join(stats['files']) if stats['files'] else 'None'}")
+
+        # Show available backends
+        print("\n  Transcription Backends:")
+        whisper_status = "available" if WHISPER_AVAILABLE else "NOT INSTALLED (pip install openai-whisper)"
+        google_status = "available" if GOOGLE_SPEECH_AVAILABLE else "NOT INSTALLED (pip install google-cloud-speech)"
+        print(f"    whisper: {whisper_status}")
+        print(f"    google: {google_status}")
+
     elif args.pdfs or args.process_books:
         ingestion.process_all_pdfs()
     elif args.audiobooks:
-        ingestion.process_all_audiobooks(args.model)
+        ingestion.process_all_audiobooks(args.model, args.backend)
     else:
-        ingestion.process_all(args.model)
+        ingestion.process_all(args.model, args.backend)
