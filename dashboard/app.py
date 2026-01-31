@@ -1,5 +1,5 @@
 """
-APEX Trading Dashboard
+Agent Trading Dashboard
 Professional Portfolio Management Interface
 
 Features:
@@ -30,7 +30,7 @@ from portfolio.performance_analytics import get_performance_analytics
 
 # Page config
 st.set_page_config(
-    page_title="APEX Trading Dashboard",
+    page_title="Agent Trading Dashboard",
     page_icon="📈",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -119,7 +119,7 @@ def render_login_page():
     col1, col2, col3 = st.columns([1, 2, 1])
 
     with col2:
-        st.markdown("# 📈 APEX Trading")
+        st.markdown("# 📈 Agent Trading")
         st.markdown("#### Secure Access Required")
         st.markdown("---")
 
@@ -376,7 +376,7 @@ def main():
     # Header
     col1, col2, col3 = st.columns([2, 1, 1])
     with col1:
-        st.markdown('<p class="main-header">📈 APEX Trading Dashboard</p>', unsafe_allow_html=True)
+        st.markdown('<p class="main-header">📈 Agent Trading Dashboard</p>', unsafe_allow_html=True)
         st.markdown('<p class="sub-header">Capital Preservation • Behavioral Edge • Disciplined Execution</p>', unsafe_allow_html=True)
     with col2:
         st.metric("Total Capital", f"${st.session_state.system_state['total_capital']:,.0f}")
