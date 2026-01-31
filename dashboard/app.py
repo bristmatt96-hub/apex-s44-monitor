@@ -2,11 +2,17 @@
 APEX Trading Dashboard
 Professional Portfolio Management Interface
 
+Features:
+- Passcode authentication for security
+- Kill switch to disable all systems
+- Full portfolio management
+
 Run: streamlit run dashboard/app.py
 """
 import streamlit as st
 import pandas as pd
 import asyncio
+import hashlib
 from datetime import datetime, timedelta
 from pathlib import Path
 import sys
@@ -29,6 +35,152 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded"
 )
+
+# ============================================
+# SECURITY CONFIGURATION
+# ============================================
+# Change this passcode to your own secure code
+# For production, use environment variables or secrets management
+DEFAULT_PASSCODE = "apex2024"  # Change this!
+
+def get_passcode_hash():
+    """Get stored passcode hash or create default"""
+    config_file = Path("dashboard/security.json")
+    if config_file.exists():
+        with open(config_file, 'r') as f:
+            data = json.load(f)
+            return data.get('passcode_hash')
+    # Create default
+    default_hash = hashlib.sha256(DEFAULT_PASSCODE.encode()).hexdigest()
+    config_file.parent.mkdir(exist_ok=True)
+    with open(config_file, 'w') as f:
+        json.dump({'passcode_hash': default_hash}, f)
+    return default_hash
+
+def verify_passcode(entered_code: str) -> bool:
+    """Verify entered passcode"""
+    entered_hash = hashlib.sha256(entered_code.encode()).hexdigest()
+    return entered_hash == get_passcode_hash()
+
+def change_passcode(new_code: str):
+    """Change the passcode"""
+    config_file = Path("dashboard/security.json")
+    new_hash = hashlib.sha256(new_code.encode()).hexdigest()
+    config_file.parent.mkdir(exist_ok=True)
+    with open(config_file, 'w') as f:
+        json.dump({'passcode_hash': new_hash}, f)
+
+# ============================================
+# LOGIN PAGE
+# ============================================
+def render_login_page():
+    """Render the login page"""
+    st.markdown("""
+    <style>
+        .login-container {
+            max-width: 400px;
+            margin: 100px auto;
+            padding: 40px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        .login-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .login-subtitle {
+            text-align: center;
+            color: #888;
+            margin-bottom: 30px;
+        }
+    </style>
+    """, unsafe_allow_html=True)
+
+    col1, col2, col3 = st.columns([1, 2, 1])
+
+    with col2:
+        st.markdown("# 📈 APEX Trading")
+        st.markdown("#### Secure Access Required")
+        st.markdown("---")
+
+        passcode = st.text_input(
+            "Enter Passcode",
+            type="password",
+            placeholder="Enter your access code",
+            key="login_passcode"
+        )
+
+        col_a, col_b = st.columns(2)
+        with col_a:
+            if st.button("🔓 Login", type="primary", use_container_width=True):
+                if verify_passcode(passcode):
+                    st.session_state.authenticated = True
+                    st.session_state.login_time = datetime.now().isoformat()
+                    st.rerun()
+                else:
+                    st.error("❌ Invalid passcode")
+
+        with col_b:
+            if st.button("🔄 Reset", use_container_width=True):
+                st.rerun()
+
+        st.markdown("---")
+        st.markdown(
+            "<p style='text-align: center; color: #666; font-size: 0.8rem;'>"
+            "Capital Preservation • Behavioral Edge • Disciplined Execution"
+            "</p>",
+            unsafe_allow_html=True
+        )
+
+# ============================================
+# KILL SWITCH PAGE
+# ============================================
+def render_killed_page():
+    """Render page when system is killed"""
+    st.markdown("""
+    <style>
+        .killed-container {
+            text-align: center;
+            margin-top: 100px;
+        }
+    </style>
+    """, unsafe_allow_html=True)
+
+    col1, col2, col3 = st.columns([1, 2, 1])
+    with col2:
+        st.markdown("# 🛑 SYSTEM OFFLINE")
+        st.markdown("### All trading systems have been disabled")
+        st.markdown("---")
+
+        st.warning("""
+        **Kill Switch Activated**
+
+        All systems are currently disabled:
+        - ❌ Market Brain Scanner
+        - ❌ Stop Loss Monitor
+        - ❌ Telegram Notifications
+        - ❌ Trade Entry
+        - ❌ Position Management
+        """)
+
+        st.markdown("---")
+
+        reactivate_code = st.text_input(
+            "Enter Passcode to Reactivate",
+            type="password",
+            key="reactivate_code"
+        )
+
+        if st.button("🔓 Reactivate Systems", type="primary"):
+            if verify_passcode(reactivate_code):
+                st.session_state.system_state['killed'] = False
+                save_system_state(st.session_state.system_state)
+                st.success("✅ Systems reactivated!")
+                st.rerun()
+            else:
+                st.error("❌ Invalid passcode")
 
 # Custom CSS for professional look
 st.markdown("""
@@ -82,6 +234,14 @@ st.markdown("""
     div[data-testid="stMetricValue"] {
         font-size: 1.8rem;
     }
+    .kill-switch {
+        background-color: #dc3545;
+        color: white;
+        padding: 10px;
+        border-radius: 5px;
+        text-align: center;
+        margin: 10px 0;
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -107,7 +267,8 @@ def load_system_state():
         "stop_monitor_active": False,
         "telegram_active": True,
         "total_capital": 100000.0,
-        "risk_per_trade_pct": 1.0
+        "risk_per_trade_pct": 1.0,
+        "killed": False
     }
 
 
@@ -120,9 +281,22 @@ def save_system_state(state):
 
 
 def main():
-    # Initialize state
+    # Check authentication
+    if 'authenticated' not in st.session_state:
+        st.session_state.authenticated = False
+
+    if not st.session_state.authenticated:
+        render_login_page()
+        return
+
+    # Initialize system state
     if 'system_state' not in st.session_state:
         st.session_state.system_state = load_system_state()
+
+    # Check kill switch
+    if st.session_state.system_state.get('killed', False):
+        render_killed_page()
+        return
 
     # Header
     col1, col2, col3 = st.columns([2, 1, 1])
@@ -142,6 +316,49 @@ def main():
     # Sidebar - System Controls
     with st.sidebar:
         st.header("⚙️ System Controls")
+
+        # User info
+        st.caption(f"🔐 Logged in since: {st.session_state.get('login_time', 'Unknown')[:16]}")
+
+        if st.button("🚪 Logout", use_container_width=True):
+            st.session_state.authenticated = False
+            st.rerun()
+
+        st.divider()
+
+        # ============================================
+        # KILL SWITCH
+        # ============================================
+        st.subheader("🛑 Emergency Controls")
+
+        st.markdown("""
+        <div style='background-color: #2d2d2d; padding: 10px; border-radius: 5px; border: 1px solid #dc3545;'>
+        <p style='color: #dc3545; margin: 0; font-weight: bold;'>⚠️ KILL SWITCH</p>
+        <p style='color: #888; margin: 5px 0 0 0; font-size: 0.8rem;'>Immediately stops all systems</p>
+        </div>
+        """, unsafe_allow_html=True)
+
+        if st.button("🛑 KILL ALL SYSTEMS", type="primary", use_container_width=True):
+            st.session_state.show_kill_confirm = True
+
+        if st.session_state.get('show_kill_confirm', False):
+            st.warning("⚠️ Are you sure? This will disable ALL trading systems!")
+            col1, col2 = st.columns(2)
+            with col1:
+                if st.button("✅ Confirm", use_container_width=True):
+                    st.session_state.system_state['killed'] = True
+                    st.session_state.system_state['brain_active'] = False
+                    st.session_state.system_state['stop_monitor_active'] = False
+                    st.session_state.system_state['telegram_active'] = False
+                    save_system_state(st.session_state.system_state)
+                    st.session_state.show_kill_confirm = False
+                    st.rerun()
+            with col2:
+                if st.button("❌ Cancel", use_container_width=True):
+                    st.session_state.show_kill_confirm = False
+                    st.rerun()
+
+        st.divider()
 
         # Capital settings
         st.subheader("💰 Capital Settings")
@@ -214,6 +431,26 @@ def main():
             st.metric("Expectancy", f"${metrics.expectancy:+.2f}/trade")
         else:
             st.info("No trades in last 30 days")
+
+        st.divider()
+
+        # Change passcode section
+        with st.expander("🔐 Security Settings"):
+            st.caption("Change Access Passcode")
+            current_pass = st.text_input("Current Passcode", type="password", key="current_pass")
+            new_pass = st.text_input("New Passcode", type="password", key="new_pass")
+            confirm_pass = st.text_input("Confirm New Passcode", type="password", key="confirm_pass")
+
+            if st.button("Change Passcode"):
+                if not verify_passcode(current_pass):
+                    st.error("Current passcode is incorrect")
+                elif new_pass != confirm_pass:
+                    st.error("New passcodes don't match")
+                elif len(new_pass) < 4:
+                    st.error("Passcode must be at least 4 characters")
+                else:
+                    change_passcode(new_pass)
+                    st.success("✅ Passcode changed successfully!")
 
     # Main content tabs
     tab1, tab2, tab3, tab4, tab5 = st.tabs([
