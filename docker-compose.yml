@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  # 24/7 Market Watcher - Always running
+  market-watcher:
+    build: .
+    container_name: market-watcher
+    restart: always
+    environment:
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+      - TELEGRAM_CHAT_ID=${TELEGRAM_CHAT_ID}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./config:/app/config
+    command: python services/market_watcher.py --interval 5
+
+  # Web Dashboard (optional - can be started separately)
+  dashboard:
+    build: .
+    container_name: trading-dashboard
+    restart: unless-stopped
+    ports:
+      - "8501:8501"
+    environment:
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+      - TELEGRAM_CHAT_ID=${TELEGRAM_CHAT_ID}
+    volumes:
+      - ./data:/app/data
+      - ./dashboard:/app/dashboard
+      - ./portfolio:/app/portfolio
+    command: streamlit run dashboard/app.py --server.port 8501 --server.address 0.0.0.0
+
+  # Redis for inter-service communication (optional)
+  redis:
+    image: redis:alpine
+    container_name: trading-redis
+    restart: unless-stopped
+    volumes:
+      - redis-data:/data
+
+volumes:
+  redis-data:
