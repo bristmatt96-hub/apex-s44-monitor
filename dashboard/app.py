@@ -30,7 +30,7 @@ from portfolio.performance_analytics import get_performance_analytics
 
 # Page config
 st.set_page_config(
-    page_title="Agent Trading Dashboard",
+    page_title="Trading Dashboard",
     page_icon="📈",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -201,14 +201,6 @@ def render_login_page():
                     st.session_state.show_forgot_password = True
                     st.rerun()
 
-        st.markdown("---")
-        st.markdown(
-            "<p style='text-align: center; color: #666; font-size: 0.8rem;'>"
-            "Capital Preservation • Behavioral Edge • Disciplined Execution"
-            "</p>",
-            unsafe_allow_html=True
-        )
-
 # ============================================
 # KILL SWITCH PAGE
 # ============================================
@@ -376,8 +368,7 @@ def main():
     # Header
     col1, col2, col3 = st.columns([2, 1, 1])
     with col1:
-        st.markdown('<p class="main-header">📈 Agent Trading Dashboard</p>', unsafe_allow_html=True)
-        st.markdown('<p class="sub-header">Capital Preservation • Behavioral Edge • Disciplined Execution</p>', unsafe_allow_html=True)
+        st.markdown('<p class="main-header">📈 Trading Dashboard</p>', unsafe_allow_html=True)
     with col2:
         st.metric("Total Capital", f"${st.session_state.system_state['total_capital']:,.0f}")
     with col3:
