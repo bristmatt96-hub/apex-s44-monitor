@@ -87,8 +87,9 @@ class KnowledgeIngestion:
 
     Alternative location (also scanned if exists):
     trading_knowledge/
-    └── books/                    # PDFs here or in topic subfolders
-        └── [same topic subfolders as above]
+    ├── books/                    # PDFs here or in topic subfolders
+    │   └── [same topic subfolders as above]
+    └── audiobooks/               # M4B/MP3 audiobook files
     """
 
     # Book category folders
@@ -112,6 +113,9 @@ class KnowledgeIngestion:
 
         # Alternative books location (trading_knowledge/books)
         self.alt_books_path = Path("trading_knowledge/books")
+
+        # Alternative audiobooks location (trading_knowledge/audiobooks)
+        self.alt_audiobooks_path = Path("trading_knowledge/audiobooks")
 
         # Create directories
         for path in [self.books_path, self.audiobooks_path, self.processed_path, self.vectors_path]:
@@ -556,32 +560,56 @@ class KnowledgeIngestion:
 
     def process_all_audiobooks(self, model_size: str = "base", backend: str = "whisper") -> int:
         """
-        Process all audiobooks in audiobooks folder
+        Process all audiobooks in audiobooks folder and alternative locations
 
         Args:
             model_size: Whisper model size (only for whisper backend)
             backend: 'whisper' for local, 'google' for Google Cloud Speech-to-Text
         """
         audio_extensions = ['.m4b', '.m4a', '.mp3', '.wav', '.flac']
-        audio_files = []
+        audio_files_with_base = []  # (path, base_path) tuples
 
+        # Primary location: knowledge/audiobooks/
         for ext in audio_extensions:
-            audio_files.extend(self.audiobooks_path.glob(f"*{ext}"))
+            for audio_path in self.audiobooks_path.glob(f"*{ext}"):
+                audio_files_with_base.append((audio_path, self.audiobooks_path))
 
-        if not audio_files:
-            logger.info("No audiobook files found in knowledge/audiobooks/")
+        # Alternative location: trading_knowledge/audiobooks/
+        if self.alt_audiobooks_path.exists():
+            logger.info(f"Checking alternative audiobooks location: {self.alt_audiobooks_path}")
+            for ext in audio_extensions:
+                for audio_path in self.alt_audiobooks_path.glob(f"*{ext}"):
+                    audio_files_with_base.append((audio_path, self.alt_audiobooks_path))
+
+        if not audio_files_with_base:
+            logger.info("No audiobook files found in knowledge/audiobooks/ or trading_knowledge/audiobooks/")
             return 0
 
-        logger.info(f"Found {len(audio_files)} audiobook files to process")
+        # Show breakdown by location
+        primary_count = sum(1 for _, base in audio_files_with_base if base == self.audiobooks_path)
+        alt_count = sum(1 for _, base in audio_files_with_base if base == self.alt_audiobooks_path)
+
+        logger.info(f"Found {len(audio_files_with_base)} audiobook files to process")
+        if primary_count > 0:
+            logger.info(f"  knowledge/audiobooks/: {primary_count} files")
+        if alt_count > 0:
+            logger.info(f"  trading_knowledge/audiobooks/: {alt_count} files")
         logger.info(f"Using transcription backend: {backend}")
+
         total_chunks = 0
 
-        for audio_path in audio_files:
+        for audio_path, base_path in audio_files_with_base:
             file_hash = self._get_file_hash(audio_path)
 
+            # Use prefixed key to distinguish locations
+            if base_path == self.alt_audiobooks_path:
+                index_key = f"alt_audio:{audio_path.name}"
+            else:
+                index_key = audio_path.name
+
             # Skip if already processed
-            if audio_path.name in self.index["files"]:
-                if self.index["files"][audio_path.name].get("hash") == file_hash:
+            if index_key in self.index["files"]:
+                if self.index["files"][index_key].get("hash") == file_hash:
                     logger.info(f"Skipping {audio_path.name} (already processed)")
                     continue
 
@@ -592,10 +620,11 @@ class KnowledgeIngestion:
                 self._save_chunks(chunks)
 
                 # Update index
-                self.index["files"][audio_path.name] = {
+                self.index["files"][index_key] = {
                     "hash": file_hash,
                     "type": "audiobook",
                     "backend": backend,
+                    "source_path": str(audio_path),
                     "chunks": len(chunks),
                     "processed_at": datetime.now().isoformat()
                 }
