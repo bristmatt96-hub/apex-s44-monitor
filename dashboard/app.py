@@ -126,12 +126,12 @@ def render_login_page():
         # Check if showing forgot password form
         if st.session_state.get('show_forgot_password', False):
             st.markdown("### 🔑 Password Recovery")
-            st.info("Enter your master reset code to reset password to default.")
+            st.info("Answer your security question to reset your password.")
 
             master_code = st.text_input(
-                "Master Reset Code",
+                "What is your mother's maiden name?",
                 type="password",
-                placeholder="Enter master reset code",
+                placeholder="Enter answer",
                 key="master_reset_input"
             )
 
