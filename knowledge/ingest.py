@@ -50,7 +50,9 @@ class KnowledgeIngestion:
     """
     Ingests books and audiobooks into searchable knowledge base.
 
-    Directory structure:
+    Directory structure (scans both locations):
+
+    Primary location:
     knowledge/
     ├── books/                    # Drop PDFs here (or in topic subfolders)
     │   ├── trading_psychology/   # Mental game, discipline, emotional control
@@ -64,6 +66,11 @@ class KnowledgeIngestion:
     ├── audiobooks/               # Drop M4B/MP3 files here
     ├── processed/                # Extracted text stored here
     └── vectors/                  # Vector embeddings (future)
+
+    Alternative location (also scanned if exists):
+    trading_knowledge/
+    └── books/                    # PDFs here or in topic subfolders
+        └── [same topic subfolders as above]
     """
 
     # Book category folders
@@ -84,6 +91,9 @@ class KnowledgeIngestion:
         self.audiobooks_path = self.base_path / "audiobooks"
         self.processed_path = self.base_path / "processed"
         self.vectors_path = self.base_path / "vectors"
+
+        # Alternative books location (trading_knowledge/books)
+        self.alt_books_path = Path("trading_knowledge/books")
 
         # Create directories
         for path in [self.books_path, self.audiobooks_path, self.processed_path, self.vectors_path]:
@@ -232,42 +242,72 @@ class KnowledgeIngestion:
             return None
 
     def process_all_pdfs(self) -> int:
-        """Process all PDFs in books folder and topic subfolders"""
+        """Process all PDFs in books folder, topic subfolders, and alternative locations"""
         # Collect all PDFs with their categories
         pdf_files_with_category = []
 
         # Root level PDFs (no category)
         for pdf_path in self.books_path.glob("*.pdf"):
-            pdf_files_with_category.append((pdf_path, ""))
+            pdf_files_with_category.append((pdf_path, "", self.books_path))
 
         # PDFs in topic subfolders
         for category in self.BOOK_CATEGORIES:
             category_path = self.books_path / category
             if category_path.exists():
                 for pdf_path in category_path.glob("*.pdf"):
-                    pdf_files_with_category.append((pdf_path, category))
+                    pdf_files_with_category.append((pdf_path, category, self.books_path))
+
+        # Also check alternative books path (trading_knowledge/books/)
+        if self.alt_books_path.exists():
+            logger.info(f"Checking alternative books location: {self.alt_books_path}")
+
+            # Root level PDFs in alt path
+            for pdf_path in self.alt_books_path.glob("*.pdf"):
+                pdf_files_with_category.append((pdf_path, "", self.alt_books_path))
+
+            # PDFs in topic subfolders in alt path
+            for category in self.BOOK_CATEGORIES:
+                category_path = self.alt_books_path / category
+                if category_path.exists():
+                    for pdf_path in category_path.glob("*.pdf"):
+                        pdf_files_with_category.append((pdf_path, category, self.alt_books_path))
 
         if not pdf_files_with_category:
-            logger.info("No PDF files found in knowledge/books/ or its subfolders")
+            logger.info("No PDF files found in knowledge/books/ or trading_knowledge/books/")
             return 0
 
         logger.info(f"Found {len(pdf_files_with_category)} PDF files to process")
 
-        # Show breakdown by category
+        # Show breakdown by category and location
         by_category = {}
-        for _, cat in pdf_files_with_category:
+        by_location = {"knowledge/books": 0, "trading_knowledge/books": 0}
+        for pdf_path, cat, base_path in pdf_files_with_category:
             cat_name = cat or "uncategorized"
             by_category[cat_name] = by_category.get(cat_name, 0) + 1
+            if base_path == self.alt_books_path:
+                by_location["trading_knowledge/books"] += 1
+            else:
+                by_location["knowledge/books"] += 1
+
         for cat, count in by_category.items():
             logger.info(f"  {cat}: {count} files")
+        for loc, count in by_location.items():
+            if count > 0:
+                logger.info(f"  Location {loc}: {count} files")
 
         total_chunks = 0
 
-        for pdf_path, category in pdf_files_with_category:
+        for pdf_path, category, base_path in pdf_files_with_category:
             file_hash = self._get_file_hash(pdf_path)
 
             # Use relative path as key to handle same filename in different folders
-            relative_key = str(pdf_path.relative_to(self.books_path))
+            # Include location prefix to distinguish between knowledge/ and trading_knowledge/
+            try:
+                relative_key = str(pdf_path.relative_to(base_path))
+                if base_path == self.alt_books_path:
+                    relative_key = f"alt:{relative_key}"
+            except ValueError:
+                relative_key = pdf_path.name
 
             # Skip if already processed
             if relative_key in self.index["files"]:
@@ -286,6 +326,7 @@ class KnowledgeIngestion:
                     "hash": file_hash,
                     "type": "pdf",
                     "category": category,
+                    "source_path": str(pdf_path),
                     "chunks": len(chunks),
                     "processed_at": datetime.now().isoformat()
                 }
@@ -451,18 +492,36 @@ class KnowledgeIngestion:
 
     def get_stats(self) -> Dict:
         """Get knowledge base statistics"""
-        # Count by category
+        # Count by category and location
         by_category = {}
+        by_location = {"knowledge/books": 0, "trading_knowledge/books": 0}
+
         for filename, info in self.index["files"].items():
             category = info.get("category", "") or "uncategorized"
             by_category[category] = by_category.get(category, 0) + 1
+
+            # Check location based on key prefix
+            if filename.startswith("alt:"):
+                by_location["trading_knowledge/books"] += 1
+            else:
+                by_location["knowledge/books"] += 1
+
+        # Check for available PDF files in both locations
+        available_pdfs = []
+        if self.books_path.exists():
+            available_pdfs.extend(list(self.books_path.rglob("*.pdf")))
+        if self.alt_books_path.exists():
+            available_pdfs.extend(list(self.alt_books_path.rglob("*.pdf")))
 
         return {
             "files_processed": len(self.index["files"]),
             "total_chunks": self.index["stats"].get("total_chunks", 0),
             "total_words": self.index["stats"].get("total_words", 0),
             "files": list(self.index["files"].keys()),
-            "by_category": by_category
+            "by_category": by_category,
+            "by_location": by_location,
+            "pdfs_available": len(available_pdfs),
+            "alt_path_exists": self.alt_books_path.exists()
         }
 
 
@@ -488,6 +547,19 @@ if __name__ == "__main__":
         print(f"  Files processed: {stats['files_processed']}")
         print(f"  Total chunks: {stats['total_chunks']}")
         print(f"  Total words: {stats['total_words']:,}")
+        print(f"  PDFs available: {stats['pdfs_available']}")
+
+        print("\n  Locations:")
+        print(f"    knowledge/books/: exists")
+        alt_status = "exists" if stats['alt_path_exists'] else "NOT FOUND"
+        print(f"    trading_knowledge/books/: {alt_status}")
+
+        if stats.get('by_location'):
+            print("\n  By Location:")
+            for loc, count in stats['by_location'].items():
+                if count > 0:
+                    print(f"    {loc}: {count} files")
+
         if stats.get('by_category'):
             print("\n  By Category:")
             for cat, count in stats['by_category'].items():
