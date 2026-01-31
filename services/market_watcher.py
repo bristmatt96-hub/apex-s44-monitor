@@ -102,9 +102,21 @@ class MarketWatcher:
 
         # Telegram notifier
         try:
-            from utils.telegram_notifier import TelegramNotifier
-            self.telegram = TelegramNotifier()
-            logger.info("  ✓ Telegram Notifier loaded")
+            import os
+            from dotenv import load_dotenv
+            load_dotenv()
+
+            # Check both naming conventions for Telegram credentials
+            bot_token = os.getenv("TELEGRAM_BOT_TOKEN") or os.getenv("TELEGRAM_TRADE_BOT_TOKEN")
+            chat_id = os.getenv("TELEGRAM_CHAT_ID") or os.getenv("TELEGRAM_TRADE_CHAT_ID")
+
+            if bot_token and chat_id:
+                from utils.telegram_notifier import TelegramNotifier
+                self.telegram = TelegramNotifier(bot_token, chat_id)
+                logger.info("  ✓ Telegram Notifier loaded")
+            else:
+                logger.warning("  ✗ Telegram not configured (missing bot token or chat ID)")
+                self.telegram = None
         except Exception as e:
             logger.warning(f"  ✗ Telegram not available: {e}")
             self.telegram = None
