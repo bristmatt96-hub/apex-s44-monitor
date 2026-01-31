@@ -43,6 +43,20 @@ st.set_page_config(
 # For production, use environment variables or secrets management
 DEFAULT_PASSCODE = "apex2024"  # Change this!
 
+def get_master_reset_code():
+    """Get master reset code from Streamlit secrets"""
+    try:
+        return st.secrets.get("MASTER_RESET_CODE", None)
+    except:
+        return None
+
+def verify_master_reset(code: str) -> bool:
+    """Verify master reset code"""
+    master_code = get_master_reset_code()
+    if master_code and code == master_code:
+        return True
+    return False
+
 def get_passcode_hash():
     """Get stored passcode hash or create default"""
     config_file = Path("dashboard/security.json")
@@ -69,6 +83,10 @@ def change_passcode(new_code: str):
     config_file.parent.mkdir(exist_ok=True)
     with open(config_file, 'w') as f:
         json.dump({'passcode_hash': new_hash}, f)
+
+def reset_to_default():
+    """Reset passcode to default"""
+    change_passcode(DEFAULT_PASSCODE)
 
 # ============================================
 # LOGIN PAGE
@@ -105,26 +123,83 @@ def render_login_page():
         st.markdown("#### Secure Access Required")
         st.markdown("---")
 
-        passcode = st.text_input(
-            "Enter Passcode",
-            type="password",
-            placeholder="Enter your access code",
-            key="login_passcode"
-        )
+        # Check if showing forgot password form
+        if st.session_state.get('show_forgot_password', False):
+            st.markdown("### 🔑 Password Recovery")
+            st.info("Enter your master reset code to reset password to default.")
 
-        col_a, col_b = st.columns(2)
-        with col_a:
-            if st.button("🔓 Login", type="primary", use_container_width=True):
-                if verify_passcode(passcode):
-                    st.session_state.authenticated = True
-                    st.session_state.login_time = datetime.now().isoformat()
+            master_code = st.text_input(
+                "Master Reset Code",
+                type="password",
+                placeholder="Enter master reset code",
+                key="master_reset_input"
+            )
+
+            new_password = st.text_input(
+                "New Password",
+                type="password",
+                placeholder="Enter new password",
+                key="new_password_reset"
+            )
+
+            confirm_password = st.text_input(
+                "Confirm New Password",
+                type="password",
+                placeholder="Confirm new password",
+                key="confirm_password_reset"
+            )
+
+            col_a, col_b = st.columns(2)
+            with col_a:
+                if st.button("🔓 Reset Password", type="primary", use_container_width=True):
+                    if verify_master_reset(master_code):
+                        if new_password and new_password == confirm_password:
+                            if len(new_password) >= 4:
+                                change_passcode(new_password)
+                                st.success("✅ Password reset! You can now login.")
+                                st.session_state.show_forgot_password = False
+                                st.rerun()
+                            else:
+                                st.error("Password must be at least 4 characters")
+                        else:
+                            st.error("Passwords don't match")
+                    else:
+                        st.error("❌ Invalid master reset code")
+
+            with col_b:
+                if st.button("◀ Back to Login", use_container_width=True):
+                    st.session_state.show_forgot_password = False
                     st.rerun()
-                else:
-                    st.error("❌ Invalid passcode")
 
-        with col_b:
-            if st.button("🔄 Reset", use_container_width=True):
-                st.rerun()
+        else:
+            # Normal login form
+            passcode = st.text_input(
+                "Enter Passcode",
+                type="password",
+                placeholder="Enter your access code",
+                key="login_passcode"
+            )
+
+            col_a, col_b = st.columns(2)
+            with col_a:
+                if st.button("🔓 Login", type="primary", use_container_width=True):
+                    if verify_passcode(passcode):
+                        st.session_state.authenticated = True
+                        st.session_state.login_time = datetime.now().isoformat()
+                        st.rerun()
+                    else:
+                        st.error("❌ Invalid passcode")
+
+            with col_b:
+                if st.button("🔄 Reset", use_container_width=True):
+                    st.rerun()
+
+            # Forgot password link
+            if get_master_reset_code():
+                st.markdown("---")
+                if st.button("🔑 Forgot Password?", use_container_width=True):
+                    st.session_state.show_forgot_password = True
+                    st.rerun()
 
         st.markdown("---")
         st.markdown(
