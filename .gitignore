@@ -10,6 +10,7 @@ build/
 venv/
 .venv/
 env/
+credit_venv/
 
 # API keys and secrets (NEVER commit!)
 .env
