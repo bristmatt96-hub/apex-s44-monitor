@@ -221,6 +221,200 @@ class TelegramNotifier:
 
         return await self.send_message(message)
 
+    # =============================================
+    # CREDIT CATALYST SPECIFIC NOTIFICATIONS
+    # =============================================
+
+    async def notify_edge_score(
+        self,
+        company: str,
+        ticker: str,
+        total_score: float,
+        recommendation: str,
+        aggression: float,
+        direction: str,
+        components: Dict[str, float],
+        thesis: str
+    ) -> bool:
+        """Send edge score notification for credit opportunity"""
+
+        # Emoji based on score
+        if total_score >= 8:
+            emoji = "🔥"
+        elif total_score >= 7:
+            emoji = "📊"
+        elif total_score >= 6:
+            emoji = "📈"
+        else:
+            emoji = "👀"
+
+        message = f"""
+{emoji} <b>EDGE SCORE: {company}</b>
+
+<b>Ticker:</b> {ticker}
+<b>Total Score:</b> {total_score}/10
+<b>Recommendation:</b> {recommendation}
+<b>Aggression:</b> {aggression}x
+
+<b>COMPONENTS:</b>
+• Credit Signal: {components.get('credit', 0)}/10
+• Psychology: {components.get('psychology', 0)}/10
+• Options: {components.get('options', 0)}/10
+• Catalyst: {components.get('catalyst', 0)}/10
+• Pattern: {components.get('pattern', 0)}/10
+
+<b>TRADE:</b> {direction}
+<b>Size:</b> {aggression}x standard
+
+<b>THESIS:</b>
+<i>{thesis}</i>
+
+⏰ {datetime.now().strftime('%Y-%m-%d %H:%M:%S')} UTC
+"""
+        return await self.send_message(message)
+
+    async def notify_credit_event(
+        self,
+        company: str,
+        event_type: str,
+        headline: str,
+        source: str,
+        priority: str = "medium",
+        playbook: str = None,
+        action_required: bool = False
+    ) -> bool:
+        """Send credit event notification"""
+
+        priority_emojis = {
+            "high": "🚨",
+            "medium": "⚠️",
+            "low": "ℹ️"
+        }
+        emoji = priority_emojis.get(priority, "ℹ️")
+
+        message = f"""
+{emoji} <b>CREDIT EVENT</b>
+
+<b>Company:</b> {company}
+<b>Event:</b> {event_type}
+<b>Priority:</b> {priority.upper()}
+"""
+        if playbook:
+            message += f"<b>Playbook:</b> {playbook}\n"
+
+        message += f"""
+<b>Headline:</b>
+{headline}
+
+<b>Source:</b> {source}
+"""
+        if action_required:
+            message += "\n🎯 <b>ACTION REQUIRED</b> - Review opportunity"
+
+        message += f"\n⏰ {datetime.now().strftime('%Y-%m-%d %H:%M:%S')} UTC"
+
+        return await self.send_message(message)
+
+    async def notify_options_trade(
+        self,
+        company: str,
+        ticker: str,
+        direction: str,
+        strike: float,
+        expiry: str,
+        contracts: int,
+        premium: float,
+        total_cost: float,
+        edge_score: float,
+        components: Dict[str, float],
+        thesis: str,
+        max_loss: float
+    ) -> bool:
+        """Send options trade notification with full edge breakdown"""
+
+        emoji = "📈" if "CALL" in direction else "📉"
+
+        message = f"""
+{emoji} <b>TRADE OPENED</b> {emoji}
+
+<b>Ticker:</b> {ticker} ({company})
+<b>Direction:</b> {direction}
+<b>Strike:</b> ${strike:.2f}
+<b>Expiry:</b> {expiry}
+<b>Size:</b> {contracts} contracts
+<b>Cost:</b> ${total_cost:.2f}
+
+<b>EDGE SCORE: {edge_score}/10</b>
+
+Credit signal: {components.get('credit', 0)}/10
+Psychology: {components.get('psychology', 0)}/10
+Options: {components.get('options', 0)}/10
+Catalyst: {components.get('catalyst', 0)}/10
+Pattern: {components.get('pattern', 0)}/10
+
+<b>THESIS:</b>
+<i>{thesis}</i>
+
+<b>Max Loss:</b> ${max_loss:.2f}
+
+⏰ {datetime.now().strftime('%Y-%m-%d %H:%M:%S')} UTC
+"""
+        return await self.send_message(message)
+
+    async def notify_risk_breach(
+        self,
+        violation_type: str,
+        current_value: float,
+        limit_value: float,
+        action_taken: str
+    ) -> bool:
+        """Send risk limit breach notification"""
+
+        message = f"""
+🚨 <b>RISK LIMIT BREACH</b> 🚨
+
+<b>Violation:</b> {violation_type}
+<b>Current:</b> {current_value}
+<b>Limit:</b> {limit_value}
+
+<b>Action Taken:</b> {action_taken}
+
+⚠️ Trading may be suspended until limits are restored.
+
+⏰ {datetime.now().strftime('%Y-%m-%d %H:%M:%S')} UTC
+"""
+        return await self.send_message(message)
+
+    async def notify_morning_brief(
+        self,
+        date: str,
+        watchlist_count: int,
+        high_priority: List[Dict],
+        upcoming_catalysts: List[Dict],
+        market_conditions: str
+    ) -> bool:
+        """Send morning briefing with credit watchlist status"""
+
+        message = f"""
+☀️ <b>MORNING BRIEF - {date}</b>
+
+<b>Watchlist:</b> {watchlist_count} names
+<b>Market:</b> {market_conditions}
+
+<b>HIGH PRIORITY:</b>
+"""
+        for item in high_priority[:5]:
+            message += f"• {item['company']}: {item['note']}\n"
+
+        if upcoming_catalysts:
+            message += "\n<b>UPCOMING CATALYSTS:</b>\n"
+            for cat in upcoming_catalysts[:5]:
+                message += f"• {cat['company']}: {cat['event']} ({cat['date']})\n"
+
+        message += f"\n⏰ {datetime.now().strftime('%H:%M')} UTC"
+
+        return await self.send_message(message)
+
 
 # Singleton instance
 _notifier_instance: Optional[TelegramNotifier] = None
