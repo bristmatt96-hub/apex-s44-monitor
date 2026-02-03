@@ -1,0 +1,93 @@
+{
+  "overview": {
+    "last_updated": "2026-02-03",
+    "summary": "European HY facing €100bn+ refinancing in 2025-2026, €67bn in 2027. 40% of European HY matures in next 3 years vs historical norms.",
+    "key_stats": {
+      "2025_maturities_eur_bn": 100,
+      "2026_maturities_eur_bn": 106,
+      "2027_maturities_eur_bn": 67,
+      "five_year_avg_refi_issuance": 40.2,
+      "five_year_avg_maturities": 83.2,
+      "expected_default_rate_2025": "3%"
+    },
+    "sources": [
+      "White & Case Debt Explorer",
+      "9fin",
+      "S&P Global Ratings"
+    ]
+  },
+  "xo_s44_maturity_risk": {
+    "critical_2026": [
+      {
+        "company": "Telecom Italia S.p.A.",
+        "maturities": "Multiple bonds maturing 2026-2027",
+        "concern": "High leverage, Italian telco challenges",
+        "refinancing_risk": "medium"
+      }
+    ],
+    "critical_2027": [
+      {
+        "company": "Grifols, S.A.",
+        "maturities": "Significant debt wall 2027",
+        "concern": "Short seller attacks, governance issues, high leverage",
+        "refinancing_risk": "high"
+      },
+      {
+        "company": "INEOS entities",
+        "maturities": "2027-2028 maturities",
+        "concern": "Complex structure, multiple entities",
+        "refinancing_risk": "medium"
+      }
+    ],
+    "critical_2028": [
+      {
+        "company": "CPI Property Group",
+        "maturities": "Real estate debt maturing 2027-2028",
+        "concern": "European RE under pressure, CEE exposure",
+        "refinancing_risk": "high"
+      },
+      {
+        "company": "SBB (Samhallsbyggnadsbolaget)",
+        "maturities": "Major wall 2025-2028",
+        "concern": "Swedish RE crisis, multiple restructuring attempts",
+        "refinancing_risk": "very_high"
+      }
+    ],
+    "stressed_names_to_monitor": [
+      {
+        "company": "Grifols, S.A.",
+        "ticker": "GRLS.MC",
+        "issues": ["Short seller report", "Governance concerns", "High leverage"],
+        "catalyst": "Refinancing 2027 bonds",
+        "playbook": "B"
+      },
+      {
+        "company": "SBB",
+        "ticker": "SBB-B.ST",
+        "issues": ["Swedish RE crisis", "Multiple downgrades", "Asset sales"],
+        "catalyst": "2025-2026 maturities",
+        "playbook": "B"
+      },
+      {
+        "company": "CPI Property Group",
+        "ticker": "CPI.PR",
+        "issues": ["CEE real estate exposure", "Sponsor concentration"],
+        "catalyst": "2027-2028 refinancing",
+        "playbook": "B"
+      }
+    ]
+  },
+  "playbook_classification": {
+    "A_aggressive_sponsor": [
+      "INEOS Finance plc",
+      "INEOS Quattro Finance 2 plc"
+    ],
+    "B_maturity_wall": [
+      "Grifols, S.A.",
+      "SBB",
+      "CPI Property Group",
+      "Telecom Italia S.p.A."
+    ],
+    "notes": "Playbook A = sponsor may extract value, timing treacherous. Playbook B = more predictable deterioration, puts may work."
+  }
+}
