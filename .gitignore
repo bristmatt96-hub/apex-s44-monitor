@@ -28,7 +28,7 @@ Thumbs.db
 Desktop.ini
 
 # PDF books (too large for git)
-knowledge/books/*.pdf
+knowledge/**/*.pdf
 
 # Temp files
 *.tmp

@@ -1,0 +1,79 @@
+{
+  "knowledge_base": {
+    "last_updated": "2026-02-03",
+    "total_documents": 31
+  },
+
+  "credit": {
+    "path": "knowledge/credit/",
+    "count": 19,
+    "documents": [
+      {"file": "Covenants.pdf", "topic": "Covenant analysis and headroom", "agent": "Analyst"},
+      {"file": "distressed exchanges.pdf", "topic": "LME mechanics and precedents", "agent": "Analyst"},
+      {"file": "Ranking of Debt.pdf", "topic": "Capital structure seniority", "agent": "Analyst"},
+      {"file": "Maturities and Calls.pdf", "topic": "Maturity wall and refinancing", "agent": "Analyst"},
+      {"file": "CLO's.pdf", "topic": "CLO structure and mechanics", "agent": "Analyst"},
+      {"file": "Coupons.pdf", "topic": "Bond coupon analysis", "agent": "Analyst"},
+      {"file": "Credit Snapshot.pdf", "topic": "Quick credit assessment", "agent": "Analyst"},
+      {"file": "Valuation Process Moyer.pdf", "topic": "Distressed valuation (Moyer)", "agent": "Analyst"},
+      {"file": "amendments and consents.pdf", "topic": "Doc amendments and consent solicitations", "agent": "Analyst"},
+      {"file": "New Issues.pdf", "topic": "Primary market analysis", "agent": "Analyst"},
+      {"file": "Financial Issues.pdf", "topic": "Financial statement analysis", "agent": "Analyst"},
+      {"file": "business trend analysis.pdf", "topic": "Business fundamentals", "agent": "Analyst"},
+      {"file": "Decision Process.pdf", "topic": "Investment decision framework", "agent": "Analyst"},
+      {"file": "equity info.pdf", "topic": "Equity analysis for credit", "agent": "Analyst"},
+      {"file": "news events.pdf", "topic": "Event-driven catalysts", "agent": "Analyst"},
+      {"file": "Ownership and Management.pdf", "topic": "Sponsor and management analysis", "agent": "Analyst"},
+      {"file": "portfolio management.pdf", "topic": "Portfolio construction", "agent": "Risk Manager"},
+      {"file": "relative value analysis.pdf", "topic": "RV analysis methodology", "agent": "Analyst"},
+      {"file": "Data science and credit analysis.pdf", "topic": "Quantitative credit methods", "agent": "System Design"}
+    ]
+  },
+
+  "genai": {
+    "path": "knowledge/genai/",
+    "count": 12,
+    "documents": [
+      {"file": "GenAI Trading Strat Dev.pdf", "topic": "AI for trading strategies", "agent": "System Design"},
+      {"file": "GenAI ML in Asset Management.pdf", "topic": "ML applications in AM", "agent": "System Design"},
+      {"file": "GenAI Leveraging LLMs for Sentiment Analysis in Trading.pdf", "topic": "LLM sentiment analysis", "agent": "Psychologist"},
+      {"file": "GenAI Deep Gen models for Trading.pdf", "topic": "Deep generative models", "agent": "System Design"},
+      {"file": "GenAI Autoregressive models for sequence modeling.pdf", "topic": "Sequence modeling", "agent": "System Design"},
+      {"file": "GenAI Flow Models.pdf", "topic": "Flow-based models", "agent": "System Design"},
+      {"file": "GenAI Deep Latent Variable Models.pdf", "topic": "Latent variable models", "agent": "System Design"},
+      {"file": "Gen AI Efficient Inference.pdf", "topic": "Model inference optimization", "agent": "System Design"},
+      {"file": "Gen AI Generative Adversarial Networks.pdf", "topic": "GANs", "agent": "System Design"},
+      {"file": "Gen AI No Code Gen AI for Basic Quant Finance.pdf", "topic": "No-code AI tools", "agent": "System Design"},
+      {"file": "GenAI No Code Intro.pdf", "topic": "No-code AI intro", "agent": "System Design"},
+      {"file": "GenAI No-coe genAI for Trading strategies development.pdf", "topic": "No-code trading strategies", "agent": "System Design"}
+    ]
+  },
+
+  "pending": {
+    "audiobooks_to_transcribe": [
+      "Trading in the Zone - Mark Douglas",
+      "The Predictive Edge - Lopez-Lira",
+      "Inside the Black Box - Rishi Narang",
+      "Quantitative Trading - Ernie Chan",
+      "Best Loser Wins - Tom Hougaard",
+      "One Good Trade - Mike Bellafiore"
+    ],
+    "kindle_to_convert": [
+      "Trading Options Greeks - Dan Passarelli"
+    ],
+    "pdf_to_ocr": [
+      "Distressed Debt Analysis - Stephen Moyer"
+    ],
+    "paperback_to_digitize": [
+      "Option Volatility and Pricing - Sheldon Natenberg"
+    ]
+  },
+
+  "agent_mapping": {
+    "Analyst": ["credit/"],
+    "Psychologist": ["psychology/", "genai/GenAI Leveraging LLMs*"],
+    "Scanner": ["options/"],
+    "System Design": ["genai/", "credit/Data science*"],
+    "Risk Manager": ["credit/portfolio management*"]
+  }
+}
