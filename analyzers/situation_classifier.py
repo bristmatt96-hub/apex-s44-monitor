@@ -43,17 +43,15 @@ class SituationClassifier:
         Get sponsor name and aggression score for a company.
         Returns (sponsor_name, aggression_score) or (None, 0) if not found.
         """
-        # Check high risk mapping first
         xo_mapping = self.sponsors_data.get("xo_s44_sponsor_mapping", {})
+        company_lower = company.lower()
 
-        for risk_level in ["high_risk", "medium_risk"]:
+        # Check all risk categories
+        for risk_level in ["high_risk", "medium_risk", "lower_risk_pe", "public_companies", "stressed_real_estate"]:
             for entry in xo_mapping.get(risk_level, []):
-                if company.lower() in entry.get("company", "").lower():
+                entry_company = entry.get("company", "") if isinstance(entry, dict) else ""
+                if company_lower in entry_company.lower():
                     return entry.get("sponsor", "Unknown"), entry.get("aggression_score", 5)
-
-        # Check if in lower risk public list
-        if company in xo_mapping.get("lower_risk_public", []):
-            return "Public company", 2
 
         return None, 0
 
@@ -62,17 +60,29 @@ class SituationClassifier:
         Get maturity risk level and notes for a company.
         Returns (risk_level, notes) or (None, None) if not found.
         """
-        maturity_risk = self.maturity_data.get("xo_s44_maturity_risk", {})
+        maturity_profiles = self.maturity_data.get("xo_s44_maturity_profiles", {})
+        company_lower = company.lower()
 
-        for period in ["critical_2026", "critical_2027", "critical_2028"]:
-            for entry in maturity_risk.get(period, []):
-                if company.lower() in entry.get("company", "").lower():
+        # Check all maturity categories
+        for period in ["2025_2026_critical", "2027_maturities", "2028_maturities"]:
+            for entry in maturity_profiles.get(period, []):
+                if company_lower in entry.get("company", "").lower():
                     return entry.get("refinancing_risk", "unknown"), entry.get("concern", "")
 
-        # Check stressed names
-        for entry in maturity_risk.get("stressed_names_to_monitor", []):
-            if company.lower() in entry.get("company", "").lower():
-                return "high", ", ".join(entry.get("issues", []))
+        # Check maturities addressed (low risk)
+        for entry in maturity_profiles.get("maturities_addressed", []):
+            if company_lower in entry.get("company", "").lower():
+                return entry.get("refinancing_risk", "low"), entry.get("notes", "Maturities addressed")
+
+        # Check no near term concerns
+        for entry in maturity_profiles.get("no_near_term_concerns", []):
+            if company_lower in entry.get("company", "").lower():
+                return entry.get("refinancing_risk", "low"), entry.get("notes", "No near-term concerns")
+
+        # Check watch list
+        for entry in self.maturity_data.get("watch_list_priority", []):
+            if company_lower in entry.get("company", "").lower():
+                return "high", entry.get("reason", "")
 
         return None, None
 
@@ -142,19 +152,40 @@ class SituationClassifier:
                 ],
                 "options_approach": "case_by_case"
             }
-        elif sponsor == "Public company":
-            # Public company - usually Playbook B if stressed
-            if maturity_risk:
+        elif sponsor and aggression <= 4:
+            # Low aggression sponsor (public company or conservative PE)
+            if maturity_risk in ["high", "very_high"]:
                 result["playbook"] = "B"
-                result["reasoning"] = f"Public company with maturity pressure ({maturity_risk}). No aggressive sponsor."
+                result["reasoning"] = f"Low aggression sponsor ({sponsor}, {aggression}/10) + maturity pressure ({maturity_risk}). More predictable."
+                result["trading_implications"] = {
+                    "strategy": "PUTS_LIKELY_WORK",
+                    "notes": ["Puts likely work", "Timing tied to maturity/rating actions"],
+                    "options_approach": "puts"
+                }
+            elif maturity_risk == "medium":
+                result["playbook"] = "MONITOR"
+                result["reasoning"] = f"Low aggression sponsor ({sponsor}) with medium maturity risk. Monitor for deterioration."
+                result["trading_implications"] = {
+                    "strategy": "MONITOR",
+                    "notes": ["Watch for credit deterioration", "May become Playbook B opportunity"],
+                    "options_approach": "wait_for_signal"
+                }
+            elif maturity_risk == "low":
+                result["playbook"] = "LOW_RISK"
+                result["reasoning"] = f"Low aggression sponsor ({sponsor}), low maturity risk. Not a current opportunity."
+                result["trading_implications"] = {
+                    "strategy": "NO_ACTION",
+                    "notes": ["Low risk profile", "Monitor for changes"],
+                    "options_approach": "none"
+                }
             else:
                 result["playbook"] = "UNKNOWN"
-                result["reasoning"] = "Public company, no immediate stress signals detected."
-            result["trading_implications"] = {
-                "strategy": "MONITOR",
-                "notes": ["Monitor for credit deterioration signals"],
-                "options_approach": "wait_for_signal"
-            }
+                result["reasoning"] = f"Low aggression sponsor ({sponsor}), no immediate stress signals detected."
+                result["trading_implications"] = {
+                    "strategy": "MONITOR",
+                    "notes": ["Monitor for credit deterioration signals"],
+                    "options_approach": "wait_for_signal"
+                }
         else:
             result["playbook"] = "UNKNOWN"
             result["reasoning"] = "Insufficient data to classify. Need more research."
@@ -190,6 +221,8 @@ class SituationClassifier:
             "A": [],
             "B": [],
             "MIXED": [],
+            "MONITOR": [],
+            "LOW_RISK": [],
             "UNKNOWN": []
         }
 

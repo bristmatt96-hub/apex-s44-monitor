@@ -2,180 +2,182 @@
   "sponsors": {
     "Patrick Drahi / Altice": {
       "aggression_score": 10,
-      "tactics": [
-        "Asset transfers to unrestricted subsidiaries",
-        "Dividend recaps while distressed",
-        "Related party transactions",
-        "Aggressive covenant interpretation"
-      ],
-      "precedents": [
-        "Altice France 2024 - moved assets to unrestricted subs",
-        "Altice USA - similar playbook"
-      ],
+      "tactics": ["Asset transfers to unrestricted subsidiaries", "Dividend recaps while distressed", "Related party transactions", "Aggressive covenant interpretation"],
+      "precedents": ["Altice France 2024 - moved assets to unrestricted subs", "Altice USA - similar playbook"],
       "companies": ["Altice France", "Altice USA"],
-      "notes": "Considered most aggressive sponsor in European HY. Pioneered 'creditor-on-creditor violence' tactics."
-    },
-    "Apollo Global Management": {
-      "aggression_score": 7,
-      "tactics": [
-        "Uptier exchanges",
-        "Liability management exercises",
-        "Drop-down financing"
-      ],
-      "precedents": [],
-      "companies": [],
-      "notes": "Known for aggressive LME tactics but generally works within documentation."
-    },
-    "Blackstone": {
-      "aggression_score": 5,
-      "tactics": [
-        "Standard LBO leverage",
-        "Dividend recaps in good times"
-      ],
-      "precedents": [],
-      "companies": [],
-      "notes": "Generally more conservative, reputation-conscious."
-    },
-    "KKR": {
-      "aggression_score": 5,
-      "tactics": [
-        "Standard LBO playbook"
-      ],
-      "precedents": [],
-      "companies": [],
-      "notes": "Mainstream PE, generally works with creditors."
-    },
-    "CVC Capital Partners": {
-      "aggression_score": 6,
-      "tactics": [
-        "Aggressive leverage",
-        "Dividend recaps"
-      ],
-      "precedents": [],
-      "companies": ["Recordati (Rossini)", "Stada (Nidda)"],
-      "notes": "Active in European HY, moderate aggression."
-    },
-    "Bain Capital": {
-      "aggression_score": 6,
-      "tactics": [
-        "LME when needed"
-      ],
-      "precedents": [],
-      "companies": [],
-      "notes": "Middle-of-road approach."
-    },
-    "Cinven": {
-      "aggression_score": 5,
-      "tactics": [],
-      "precedents": [],
-      "companies": ["Stada (co-investor)"],
-      "notes": "European focused, generally reasonable."
+      "notes": "Most aggressive sponsor in European HY. Pioneered 'creditor-on-creditor violence' tactics."
     },
     "Jim Ratcliffe / INEOS": {
       "aggression_score": 7,
-      "tactics": [
-        "Complex corporate structures",
-        "Inter-company loans",
-        "Aggressive tax optimization"
-      ],
+      "tactics": ["Complex corporate structures", "Inter-company loans", "Aggressive tax optimization", "Multiple entity structures"],
       "precedents": [],
-      "companies": ["INEOS Finance", "INEOS Quattro"],
-      "notes": "Not traditional PE but billionaire-controlled with aggressive financial engineering."
+      "companies": ["INEOS Finance plc", "INEOS Quattro Finance 2 plc"],
+      "notes": "Billionaire-controlled with aggressive financial engineering. Not traditional PE but similar risk profile."
+    },
+    "Paul Coulson / Ardagh": {
+      "aggression_score": 8,
+      "tactics": ["Unrestricted subsidiary tactics", "Aggressive liability management", "Value extraction before restructuring"],
+      "precedents": ["Ardagh 2025-2026 restructuring - SUNs equitized, significant bondholder losses"],
+      "companies": ["Ardagh Packaging Finance"],
+      "notes": "Used Drahi-style tactics. Restructured 2025-2026."
+    },
+    "Bain Capital": {
+      "aggression_score": 6,
+      "tactics": ["Standard LBO playbook", "LME when needed"],
+      "precedents": [],
+      "companies": ["Nidda Healthcare (Stada) - with Cinven"],
+      "notes": "Mainstream PE, generally works with creditors."
+    },
+    "Cinven": {
+      "aggression_score": 5,
+      "tactics": ["Standard PE approach"],
+      "precedents": [],
+      "companies": ["Nidda Healthcare (Stada) - with Bain"],
+      "notes": "European focused, generally reasonable."
+    },
+    "TDR Capital": {
+      "aggression_score": 5,
+      "tactics": ["LBO leverage", "Operational improvement focus"],
+      "precedents": [],
+      "companies": ["Bellis Acquisition (Asda)"],
+      "notes": "UK focused PE. Now majority owner of Asda (67.5%). Generally constructive."
+    },
+    "Blackstone": {
+      "aggression_score": 5,
+      "tactics": ["Standard LBO leverage", "Dividend recaps in good times"],
+      "precedents": [],
+      "companies": ["Motion Bondco (Merlin) - with KIRKBI/CPPIB"],
+      "notes": "Generally conservative, reputation-conscious. Large-cap focus."
+    },
+    "KIRKBI (Lego Family)": {
+      "aggression_score": 3,
+      "tactics": ["Long-term holder", "Conservative approach"],
+      "precedents": [],
+      "companies": ["Motion Bondco (Merlin) - with Blackstone/CPPIB"],
+      "notes": "Family office, very long-term oriented. Low aggression."
+    },
+    "Hellman & Friedman": {
+      "aggression_score": 5,
+      "tactics": ["Growth equity focus", "IPO-oriented exits"],
+      "precedents": [],
+      "companies": ["Verisure Midholding AB"],
+      "notes": "Recently IPO'd Verisure on Nasdaq Stockholm. Now deleveraging to ~2.5x by 2026."
+    },
+    "CVC Capital Partners": {
+      "aggression_score": 6,
+      "tactics": ["Aggressive leverage", "Dividend recaps"],
+      "precedents": [],
+      "companies": ["Rossini (Recordati)"],
+      "notes": "Active in European HY, moderate aggression."
+    },
+    "Xavier Niel / NJJ": {
+      "aggression_score": 6,
+      "tactics": ["Take-private transactions", "Complex holdco structures", "Aggressive expansion"],
+      "precedents": ["Iliad 2021 take-private - €3.7bn bond offering"],
+      "companies": ["Iliad Holding"],
+      "notes": "French billionaire, founder of Free. Took Iliad private 2021. €13.6bn net debt."
+    },
+    "Liberty Global / John Malone": {
+      "aggression_score": 5,
+      "tactics": ["Complex corporate structures", "Tax optimization", "Ring-fenced debt"],
+      "precedents": [],
+      "companies": ["Virgin Media Finance plc"],
+      "notes": "Cable billionaire. Debt at opco level (VMO2 £22bn at 5.2x). No material maturities until 2028."
+    },
+    "Tata Group": {
+      "aggression_score": 3,
+      "tactics": ["Conservative Indian conglomerate approach"],
+      "precedents": [],
+      "companies": ["Jaguar Land Rover Automotive plc"],
+      "notes": "Indian conglomerate. JLR now investment grade. Conservative approach."
     },
     "PAI Partners": {
       "aggression_score": 5,
-      "tactics": [],
+      "tactics": ["Standard European PE"],
       "precedents": [],
-      "companies": ["Picard"],
+      "companies": ["Picard Bondco S.A."],
       "notes": "French PE, generally conservative."
     },
-    "TDR Capital": {
-      "aggression_score": 6,
-      "tactics": [],
-      "precedents": [],
-      "companies": ["Asda (Bellis)"],
-      "notes": "UK focused, moderate approach."
-    },
-    "CD&R (Clayton Dubilier & Rice)": {
+    "CD&R": {
       "aggression_score": 5,
-      "tactics": [],
+      "tactics": ["Operational improvement focus"],
       "precedents": [],
-      "companies": ["Belron"],
-      "notes": "US PE, generally works constructively."
+      "companies": ["Belron UK Finance plc"],
+      "notes": "US PE, generally works constructively with creditors."
     },
-    "Ardagh Group / Paul Coulson": {
-      "aggression_score": 8,
-      "tactics": [
-        "Unrestricted subsidiary tactics",
-        "Aggressive liability management",
-        "Value extraction before restructuring"
-      ],
-      "precedents": [
-        "Ardagh 2025-2026 restructuring - SUNs equitized, creditor losses"
-      ],
-      "companies": ["Ardagh Packaging Finance"],
-      "notes": "Used similar tactics to Drahi. Restructured 2025-2026 with significant bondholder losses."
+    "Apollo Global Management": {
+      "aggression_score": 7,
+      "tactics": ["Uptier exchanges", "Liability management exercises", "Drop-down financing"],
+      "precedents": [],
+      "companies": [],
+      "notes": "Known for aggressive LME tactics but works within documentation."
+    },
+    "KKR": {
+      "aggression_score": 5,
+      "tactics": ["Standard LBO playbook"],
+      "precedents": [],
+      "companies": [],
+      "notes": "Mainstream PE, generally works with creditors."
     }
   },
   "xo_s44_sponsor_mapping": {
     "high_risk": [
-      {
-        "company": "INEOS Finance plc",
-        "sponsor": "Jim Ratcliffe / INEOS",
-        "aggression_score": 7,
-        "notes": "Complex structure, billionaire-controlled"
-      },
-      {
-        "company": "INEOS Quattro Finance 2 plc",
-        "sponsor": "Jim Ratcliffe / INEOS",
-        "aggression_score": 7,
-        "notes": "Same owner as INEOS Finance"
-      }
+      {"company": "INEOS Finance plc", "sponsor": "Jim Ratcliffe / INEOS", "aggression_score": 7, "notes": "Complex structure, billionaire-controlled"},
+      {"company": "INEOS Quattro Finance 2 plc", "sponsor": "Jim Ratcliffe / INEOS", "aggression_score": 7, "notes": "Same owner as INEOS Finance"}
     ],
     "medium_risk": [
-      {
-        "company": "Nidda Healthcare Holding GmbH (Stada)",
-        "sponsor": "CVC/Cinven",
-        "aggression_score": 6,
-        "notes": "PE consortium ownership"
-      },
-      {
-        "company": "Rossini S.à r.l. (Recordati)",
-        "sponsor": "CVC Capital Partners",
-        "aggression_score": 6,
-        "notes": "CVC-backed pharma"
-      },
-      {
-        "company": "Bellis Acquisition Company plc (Asda)",
-        "sponsor": "TDR Capital / Issa Brothers",
-        "aggression_score": 6,
-        "notes": "UK supermarket, leveraged buyout 2021"
-      },
-      {
-        "company": "Picard Bondco S.A.",
-        "sponsor": "PAI Partners",
-        "aggression_score": 5,
-        "notes": "French frozen food retailer"
-      },
-      {
-        "company": "Motion Bondco Designated Activity Company (Merlin)",
-        "sponsor": "Blackstone/KIRKBI/CPPIB",
-        "aggression_score": 5,
-        "notes": "Theme parks, consortium ownership"
-      }
+      {"company": "Nidda Healthcare Holding GmbH (Stada)", "sponsor": "Bain Capital / Cinven", "aggression_score": 6, "notes": "PE consortium. Potential €10bn exit to GTCR or IPO."},
+      {"company": "Rossini S.à r.l. (Recordati)", "sponsor": "CVC Capital Partners", "aggression_score": 6, "notes": "CVC-backed pharma"},
+      {"company": "Bellis Acquisition Company plc (Asda)", "sponsor": "TDR Capital (67.5%) / Mohsin Issa (22.5%)", "aggression_score": 5, "notes": "Recently refinanced £3.2bn, maturities pushed to 2030s. Leverage 3.0x."},
+      {"company": "Picard Bondco S.A.", "sponsor": "PAI Partners", "aggression_score": 5, "notes": "French frozen food retailer"},
+      {"company": "Motion Bondco (Merlin)", "sponsor": "Blackstone / KIRKBI / CPPIB", "aggression_score": 4, "notes": "Theme parks. Conservative consortium. Bonds mature 2031."},
+      {"company": "Verisure Midholding AB", "sponsor": "Hellman & Friedman", "aggression_score": 5, "notes": "Recently IPO'd. Deleveraging to 2.5x by 2026. Rating Ba1."},
+      {"company": "Iliad Holding", "sponsor": "Xavier Niel / NJJ", "aggression_score": 6, "notes": "€13.6bn net debt. Take-private 2021."},
+      {"company": "Virgin Media Finance plc", "sponsor": "Liberty Global", "aggression_score": 5, "notes": "VMO2 JV with Telefonica. £22bn debt at 5.2x. No maturities until 2028."},
+      {"company": "Belron UK Finance plc", "sponsor": "CD&R / D'Ieteren", "aggression_score": 5, "notes": "Autoglass parent"}
     ],
-    "lower_risk_public": [
-      "Air France - KLM",
-      "Ceconomy AG",
-      "Grifols, S.A.",
-      "Nokia Oyj",
-      "Renault",
-      "ThyssenKrupp AG",
-      "Telecom Italia S.p.A."
+    "lower_risk_pe": [
+      {"company": "Albion Financing 1 S.à r.l. (Aggreko)", "sponsor": "TDR Capital / I Squared", "aggression_score": 5, "notes": "Power solutions. PE-backed but operational focus."},
+      {"company": "EG Global Finance plc", "sponsor": "TDR Capital", "aggression_score": 5, "notes": "Convenience retail"},
+      {"company": "Iceland Bondco plc", "sponsor": "Brait / Founder", "aggression_score": 5, "notes": "UK frozen food retailer"},
+      {"company": "Stonegate Pub Company", "sponsor": "TDR Capital", "aggression_score": 5, "notes": "UK pub operator"},
+      {"company": "Summer (BC) Holdco B.V. (The Very Group)", "sponsor": "Bain Capital Credit", "aggression_score": 5, "notes": "UK online retailer"},
+      {"company": "Techem Verwaltungsgesellschaft", "sponsor": "Partners Group / CDPQ", "aggression_score": 4, "notes": "German energy services"},
+      {"company": "Q-Park Holding I B.V.", "sponsor": "KKR", "aggression_score": 5, "notes": "European parking operator"},
+      {"company": "Loxam", "sponsor": "Family / PE minority", "aggression_score": 4, "notes": "Equipment rental. Family-controlled."},
+      {"company": "TeamSystem S.p.A.", "sponsor": "Hellman & Friedman", "aggression_score": 5, "notes": "Italian software"},
+      {"company": "United Group B.V.", "sponsor": "BC Partners / Summit Partners", "aggression_score": 6, "notes": "SEE telecom/media"}
+    ],
+    "public_companies": [
+      {"company": "Air France - KLM", "sponsor": "French/Dutch State + Public", "aggression_score": 2},
+      {"company": "Ceconomy AG", "sponsor": "Public", "aggression_score": 2},
+      {"company": "Grifols, S.A.", "sponsor": "Public (Grifols family)", "aggression_score": 3, "notes": "Family has significant stake. Short seller issues."},
+      {"company": "Nokia Oyj", "sponsor": "Public", "aggression_score": 2},
+      {"company": "Renault", "sponsor": "French State + Nissan + Public", "aggression_score": 2},
+      {"company": "ThyssenKrupp AG", "sponsor": "Krupp Foundation + Public", "aggression_score": 3},
+      {"company": "Telecom Italia S.p.A.", "sponsor": "Vivendi + KKR (NetCo) + Public", "aggression_score": 4, "notes": "Complex structure post-NetCo sale"},
+      {"company": "Jaguar Land Rover Automotive plc", "sponsor": "Tata Motors", "aggression_score": 3, "notes": "Now investment grade"},
+      {"company": "CMA CGM", "sponsor": "Saadé family", "aggression_score": 4, "notes": "French shipping. Family controlled."},
+      {"company": "Hapag-Lloyd", "sponsor": "CSAV / Kühne + Public", "aggression_score": 3},
+      {"company": "Volvo Car AB", "sponsor": "Geely + Public", "aggression_score": 3},
+      {"company": "Schaeffler AG", "sponsor": "Schaeffler family + Public", "aggression_score": 3},
+      {"company": "ZF Europe Finance B.V.", "sponsor": "Zeppelin Foundation + Public", "aggression_score": 3},
+      {"company": "Forvia", "sponsor": "Public", "aggression_score": 3},
+      {"company": "Valeo", "sponsor": "Public", "aggression_score": 2},
+      {"company": "SoftBank Group Corp.", "sponsor": "Masayoshi Son", "aggression_score": 5, "notes": "Complex structure, aggressive investments"},
+      {"company": "Worldline", "sponsor": "Public", "aggression_score": 2},
+      {"company": "Nexi S.p.A.", "sponsor": "Public (PE minority)", "aggression_score": 3},
+      {"company": "SES", "sponsor": "Luxembourg State + Public", "aggression_score": 2},
+      {"company": "Eutelsat S.A.", "sponsor": "Public (French State minority)", "aggression_score": 3}
+    ],
+    "stressed_real_estate": [
+      {"company": "CPI Property Group", "sponsor": "Radovan Vítek", "aggression_score": 6, "notes": "CEE RE. Billionaire controlled. Maturity wall 2027-2028."},
+      {"company": "Samhallsbyggnadsbolaget i Norden AB (SBB)", "sponsor": "Public (Ilija Batljan founder)", "aggression_score": 4, "notes": "Swedish RE crisis. CCC rated. Key maturities 2026-2027."}
     ]
   },
   "metadata": {
     "last_updated": "2026-02-03",
-    "notes": "Aggression scores are subjective 1-10 scale based on historical behavior. 10 = most aggressive (Drahi-level). Research ongoing."
+    "sources": ["Web research", "Company filings", "Rating agency reports", "9fin", "Debtwire"],
+    "notes": "Aggression scores 1-10. 10=Drahi level. Scores are subjective based on historical behavior."
   }
 }
