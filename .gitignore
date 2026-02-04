@@ -60,3 +60,4 @@ trading.db
 # Credentials
 credentials.json
 secrets.json
+web/node_modules/

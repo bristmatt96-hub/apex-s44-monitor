@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 10 10 10;
+  --foreground: 250 250 250;
+  --card: 20 20 20;
+  --border: 39 39 42;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  background-color: #0a0a0a;
+  color: #fafafa;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Safe area padding for iPhone notch */
+@supports (padding-top: env(safe-area-inset-top)) {
+  body {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* P&L Colors */
+.pnl-positive {
+  @apply text-accent-green;
+}
+
+.pnl-negative {
+  @apply text-accent-red;
+}
+
+.pnl-neutral {
+  @apply text-foreground-muted;
+}
+
+/* Card styles */
+.card {
+  @apply bg-background-card rounded-xl border border-border p-4;
+}
+
+.card-elevated {
+  @apply bg-background-elevated rounded-xl border border-border p-4;
+}
+
+/* Touch-friendly tap targets */
+.tap-target {
+  @apply min-h-[44px] min-w-[44px];
+}
+
+/* Smooth page transitions */
+.page-transition {
+  @apply transition-all duration-200 ease-in-out;
+}
+
+/* Loading skeleton */
+.skeleton {
+  @apply animate-pulse bg-background-elevated rounded;
+}
+
+/* Hide scrollbar but keep functionality */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
