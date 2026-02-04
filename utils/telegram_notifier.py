@@ -4,7 +4,7 @@ Sends alerts for trade entries and exits
 """
 import asyncio
 import aiohttp
-from typing import Optional, Dict, Any
+from typing import Optional, Dict, Any, List
 from datetime import datetime
 from loguru import logger
 
