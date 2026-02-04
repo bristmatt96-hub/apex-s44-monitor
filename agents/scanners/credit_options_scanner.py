@@ -30,6 +30,8 @@ except ImportError:
     YFINANCE_AVAILABLE = False
     logger.warning("yfinance not installed - options data limited")
 
+from .base_scanner import BaseScanner
+from core.models import Signal, MarketType, SignalType
 from analyzers.situation_classifier import SituationClassifier
 
 
@@ -72,12 +74,14 @@ class OptionsOpportunity:
             self.notes = []
 
 
-class CreditOptionsScanner:
+class CreditOptionsScanner(BaseScanner):
     """
     Scans credit situations for options opportunities.
 
     Maps XO S44 companies to tradeable tickers and identifies
     optimal options strategies based on playbook classification.
+
+    THE EDGE: Credit signals precede equity repricing by weeks/months.
     """
 
     # XO S44 companies with tradeable equity options
@@ -129,8 +133,25 @@ class CreditOptionsScanner:
     }
 
     def __init__(self, data_path: str = None):
+        super().__init__(
+            name="CreditOptionsScanner",
+            market_type=MarketType.OPTIONS,
+            config={'scan_interval': 300}  # 5 minutes - credit moves slowly
+        )
         self.classifier = SituationClassifier(data_path)
         self.iv_history: Dict[str, List[float]] = {}  # Cache for IV percentile calc
+
+    async def get_universe(self) -> List[str]:
+        """Get list of tickers to scan - XO S44 companies with tradeable options"""
+        return [info["ticker"] for info in self.TRADEABLE_TICKERS.values()]
+
+    async def fetch_data(self, symbol: str) -> Optional[pd.DataFrame]:
+        """Not used - this scanner uses scan_all_opportunities() for credit-driven logic"""
+        return None
+
+    async def analyze(self, symbol: str, data: pd.DataFrame) -> Optional[Signal]:
+        """Not used - this scanner generates OptionsOpportunity objects instead"""
+        return None
 
     def get_tradeable_companies(self) -> List[Dict]:
         """Get list of XO S44 companies with tradeable options."""
