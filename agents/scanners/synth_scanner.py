@@ -7,6 +7,7 @@ import asyncio
 from typing import List, Optional, Dict, Any
 from datetime import datetime
 import httpx
+import pandas as pd
 from loguru import logger
 
 from .base_scanner import BaseScanner
@@ -48,6 +49,18 @@ class SynthScanner(BaseScanner):
 
         # Cache for predictions
         self.predictions_cache: Dict[str, Dict] = {}
+
+    async def get_universe(self) -> List[str]:
+        """Get list of assets to scan - required by BaseScanner"""
+        return self.assets
+
+    async def fetch_data(self, symbol: str) -> Optional[pd.DataFrame]:
+        """Not used - SynthScanner uses its own scan() method with API calls"""
+        return None
+
+    async def analyze(self, symbol: str, data: pd.DataFrame) -> Optional[Signal]:
+        """Not used - SynthScanner uses _analyze_liquidation_insight instead"""
+        return None
 
     async def start(self):
         """Initialize HTTP client"""
