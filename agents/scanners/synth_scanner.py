@@ -30,7 +30,7 @@ class SynthScanner(BaseScanner):
         super().__init__(
             name="SynthScanner",
             market_type=MarketType.CRYPTO,
-            scan_interval=60  # 1 minute - respect rate limits
+            config={'scan_interval': 60}  # 1 minute - respect rate limits
         )
 
         # API endpoints
