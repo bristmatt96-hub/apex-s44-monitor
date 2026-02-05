@@ -20,6 +20,9 @@ from enum import Enum
 import json
 from pathlib import Path
 
+from core.edge_component_learner import get_edge_learner
+from core.pattern_learner import get_pattern_learner
+
 
 class SignalStrength(Enum):
     """Signal strength levels."""
@@ -60,6 +63,10 @@ class EdgeScore:
     aggression_multiplier: float = 0.0
     trade_recommendation: str = "NO_TRADE"
     confidence_level: str = "low"
+
+    # Context for learning
+    playbook: Optional[str] = None
+    sector: Optional[str] = None
 
     # Trade parameters (if recommended)
     recommended_direction: Optional[str] = None  # LONG_PUT, LONG_CALL, STRADDLE
@@ -124,6 +131,8 @@ class EdgeScore:
             "trade_recommendation": self.trade_recommendation,
             "confidence_level": self.confidence_level,
             "recommended_direction": self.recommended_direction,
+            "playbook": self.playbook,
+            "sector": self.sector,
             "components": {
                 "credit_signal": {
                     "score": self.credit_signal.score,
@@ -193,20 +202,18 @@ class EdgeScorer:
     - Pattern database
     """
 
-    # Component weights (must sum to 1.0)
-    WEIGHTS = {
-        "credit_signal": 0.25,
-        "psychology_alignment": 0.25,
-        "options_mispricing": 0.20,
-        "catalyst_clarity": 0.15,
-        "pattern_match": 0.15
-    }
-
     def __init__(self, data_path: str = None):
         if data_path is None:
             data_path = Path(__file__).parent.parent / "data"
         self.data_path = Path(data_path)
         self.pattern_db: List[Dict] = self._load_patterns()
+        self._edge_learner = get_edge_learner()
+        self._pattern_learner = get_pattern_learner()
+
+    @property
+    def weights(self) -> Dict[str, float]:
+        """Get current component weights (learned or default)."""
+        return self._edge_learner.get_current_weights()
 
     def _load_patterns(self) -> List[Dict]:
         """Load historical patterns for matching."""
@@ -279,7 +286,7 @@ class EdgeScorer:
         return SignalComponent(
             name="credit_signal",
             score=round(score, 1),
-            weight=self.WEIGHTS["credit_signal"],
+            weight=self.weights["credit_signal"],
             reasoning="; ".join(reasons) if reasons else "No significant credit concerns",
             data_points=data_points
         )
@@ -352,7 +359,7 @@ class EdgeScorer:
         return SignalComponent(
             name="psychology_alignment",
             score=round(score, 1),
-            weight=self.WEIGHTS["psychology_alignment"],
+            weight=self.weights["psychology_alignment"],
             reasoning="; ".join(reasons) if reasons else "Neutral market positioning"
         )
 
@@ -428,7 +435,7 @@ class EdgeScorer:
         return SignalComponent(
             name="options_mispricing",
             score=round(score, 1),
-            weight=self.WEIGHTS["options_mispricing"],
+            weight=self.weights["options_mispricing"],
             reasoning="; ".join(reasons) if reasons else "Options fairly priced"
         )
 
@@ -492,7 +499,7 @@ class EdgeScorer:
         return SignalComponent(
             name="catalyst_clarity",
             score=round(score, 1),
-            weight=self.WEIGHTS["catalyst_clarity"],
+            weight=self.weights["catalyst_clarity"],
             reasoning="; ".join(reasons) if reasons else "No clear catalyst identified"
         )
 
@@ -500,10 +507,14 @@ class EdgeScorer:
         self,
         company: str,
         playbook: str,
-        sector: str
+        sector: str,
+        component_scores: Optional[Dict[str, float]] = None
     ) -> SignalComponent:
         """
         Score historical pattern match (0-10).
+
+        Uses the pattern learner for enhanced matching against the full
+        pattern database (seed + learned patterns).
 
         1-3: No similar patterns in database
         4-5: Weak pattern match
@@ -511,80 +522,30 @@ class EdgeScorer:
         8-9: Very close match to successful past trades
         10: Almost identical to high-conviction winner
         """
-        score = 3.0  # Default: no strong patterns
-        reasons = []
-        matched_patterns = []
+        score = self._pattern_learner.get_pattern_match_score(
+            company=company,
+            playbook=playbook,
+            sector=sector,
+            component_scores=component_scores
+        )
 
-        # Known successful patterns (hardcoded for now, will be learned)
-        known_patterns = [
-            {
-                "name": "Altice/Drahi 2024",
-                "playbook": "A",
-                "characteristics": ["aggressive_sponsor", "unrestricted_subs", "asset_stripping"],
-                "outcome": "success",
-                "notes": "Sponsor moved assets, equity eventually collapsed"
-            },
-            {
-                "name": "Ardagh 2025",
-                "playbook": "A",
-                "characteristics": ["aggressive_sponsor", "lme_tactics", "bondholder_losses"],
-                "outcome": "success",
-                "notes": "SUNs equitized, significant losses for bondholders"
-            },
-            {
-                "name": "Maturity Wall Classic",
-                "playbook": "B",
-                "characteristics": ["high_maturity_risk", "limited_refi_options", "rating_pressure"],
-                "outcome": "success",
-                "notes": "Predictable deterioration as maturities approached"
-            },
-            {
-                "name": "Swedish RE Crisis",
-                "playbook": "B",
-                "sector": "Financials",
-                "characteristics": ["real_estate_stress", "rate_sensitivity", "capital_markets_closed"],
-                "outcome": "ongoing",
-                "notes": "SBB and similar names under pressure"
-            }
+        stats = self._pattern_learner.get_stats()
+        reasons = [
+            f"Matched against {stats['total_patterns']} patterns "
+            f"({stats['learned_patterns']} learned)"
         ]
 
-        # Check for pattern matches
-        for pattern in known_patterns:
-            match_score = 0
-
-            # Playbook match
-            if pattern.get("playbook") == playbook:
-                match_score += 3
-
-            # Sector match
-            if pattern.get("sector") and pattern["sector"].lower() in sector.lower():
-                match_score += 2
-
-            # Outcome bonus
-            if pattern.get("outcome") == "success":
-                match_score += 1
-
-            if match_score >= 3:
-                matched_patterns.append(pattern["name"])
-                score += match_score / 2
-
-        if matched_patterns:
-            reasons.append(f"Matches: {', '.join(matched_patterns)}")
+        if score >= 7:
+            reasons.append("Strong historical precedent found")
+        elif score >= 5:
+            reasons.append("Moderate pattern match")
         else:
-            reasons.append("No strong historical pattern match")
-
-        # Check database patterns
-        for pattern in self.pattern_db:
-            if pattern.get("playbook") == playbook:
-                score += 0.5
-                reasons.append(f"DB match: {pattern.get('name', 'unnamed')}")
-
-        score = min(10, max(0, score))
+            reasons.append("Weak or no pattern match")
 
         return SignalComponent(
             name="pattern_match",
-            score=round(score, 1),
-            weight=self.WEIGHTS["pattern_match"],
+            score=round(min(10, max(0, score)), 1),
+            weight=self.weights["pattern_match"],
             reasoning="; ".join(reasons)
         )
 
@@ -635,10 +596,19 @@ class EdgeScorer:
             days_to_catalyst=days_to_catalyst
         )
 
+        # Collect component scores for pattern matching
+        component_scores = {
+            "credit_signal": credit.score,
+            "psychology_alignment": psychology.score,
+            "options_mispricing": options.score,
+            "catalyst_clarity": catalyst.score
+        }
+
         pattern = self.score_pattern(
             company=company,
             playbook=playbook,
-            sector=sector
+            sector=sector,
+            component_scores=component_scores
         )
 
         # Determine recommended direction based on playbook
@@ -661,6 +631,8 @@ class EdgeScorer:
             options_mispricing=options,
             catalyst_clarity=catalyst,
             pattern_match=pattern,
+            playbook=playbook,
+            sector=sector,
             recommended_direction=direction
         )
 

@@ -9,6 +9,9 @@ from loguru import logger
 
 from core.base_agent import BaseAgent, AgentMessage, AgentState
 from core.adaptive_weights import get_adaptive_weights
+from core.edge_component_learner import get_edge_learner
+from core.pattern_learner import get_pattern_learner
+from core.model_manager import get_model_manager
 from config.settings import config
 from utils.telegram_notifier import get_notifier
 from knowledge.retriever import get_retriever
@@ -53,6 +56,11 @@ class Coordinator(BaseAgent):
         # Adaptive market weights
         self.adaptive_weights = get_adaptive_weights()
 
+        # Learning systems
+        self.edge_learner = get_edge_learner()
+        self.pattern_learner = get_pattern_learner()
+        self.model_manager = get_model_manager()
+
         # Telegram notifications
         self.notifier = get_notifier()
 
@@ -90,6 +98,22 @@ class Coordinator(BaseAgent):
 
         # Monitor risk limits
         await self._check_risk_limits()
+
+        # Check if edge component weights need adaptation
+        if self.edge_learner.should_adapt():
+            new_weights = self.edge_learner.adapt()
+            logger.info(f"Edge component weights adapted: {new_weights}")
+            if self.notifier:
+                weight_lines = "\n".join(
+                    f"  {comp}: {w:.1%}" for comp, w in new_weights.items()
+                )
+                await self.notifier.notify_alert(
+                    "EDGE WEIGHTS ADAPTED",
+                    f"Edge component weights recalculated:\n\n"
+                    f"<pre>{weight_lines}</pre>\n\n"
+                    f"Based on {len(self.edge_learner.outcomes)} trade outcomes",
+                    severity="info"
+                )
 
         await asyncio.sleep(1)
 
@@ -141,7 +165,7 @@ class Coordinator(BaseAgent):
                 )
 
         elif msg_type == 'trade_closed':
-            # Record completed trade for adaptive weight learning
+            # 1. Record for adaptive market weight learning
             self.adaptive_weights.record_trade({
                 'market_type': payload.get('market_type'),
                 'symbol': payload.get('symbol'),
@@ -155,7 +179,25 @@ class Coordinator(BaseAgent):
                 'strategy': payload.get('strategy', 'unknown'),
                 'timestamp': datetime.now().isoformat()
             })
-            logger.info(f"Trade recorded for adaptive learning: {payload.get('symbol')}")
+
+            # 2. Record for edge component weight learning
+            self.edge_learner.record_outcome(payload)
+
+            # 3. Record for pattern database growth
+            self.pattern_learner.record_trade_pattern(payload)
+
+            # 4. Record for ML model accuracy tracking
+            pnl = payload.get('pnl', 0)
+            actual_direction = 'up' if pnl > 0 else 'down'
+            self.model_manager.record_outcome(
+                symbol=payload.get('symbol', ''),
+                actual_direction=actual_direction
+            )
+
+            logger.info(
+                f"Trade recorded for all learning systems: {payload.get('symbol')} "
+                f"(P&L: {payload.get('pnl_pct', 0):+.2f}%)"
+            )
 
             # Telegram notification for closed trade
             if self.notifier:

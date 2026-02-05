@@ -1,0 +1,74 @@
+[
+  {
+    "id": "seed_001",
+    "name": "Altice/Drahi 2024",
+    "company": "Altice France",
+    "playbook": "A",
+    "sector": "TMT",
+    "characteristics": ["aggressive_sponsor", "unrestricted_subs", "asset_stripping"],
+    "outcome": "success",
+    "component_scores": {
+      "credit_signal": 8.5,
+      "psychology_alignment": 7.0,
+      "options_mispricing": 6.0,
+      "catalyst_clarity": 7.5,
+      "pattern_match": 5.0
+    },
+    "notes": "Sponsor moved assets, equity eventually collapsed",
+    "source": "seed"
+  },
+  {
+    "id": "seed_002",
+    "name": "Ardagh 2025",
+    "company": "Ardagh Group",
+    "playbook": "A",
+    "sector": "Autos & Industrials",
+    "characteristics": ["aggressive_sponsor", "lme_tactics", "bondholder_losses"],
+    "outcome": "success",
+    "component_scores": {
+      "credit_signal": 9.0,
+      "psychology_alignment": 6.5,
+      "options_mispricing": 5.5,
+      "catalyst_clarity": 8.0,
+      "pattern_match": 6.0
+    },
+    "notes": "SUNs equitized, significant losses for bondholders",
+    "source": "seed"
+  },
+  {
+    "id": "seed_003",
+    "name": "Maturity Wall Classic",
+    "company": "Generic",
+    "playbook": "B",
+    "sector": "Cross-Sector",
+    "characteristics": ["high_maturity_risk", "limited_refi_options", "rating_pressure"],
+    "outcome": "success",
+    "component_scores": {
+      "credit_signal": 7.0,
+      "psychology_alignment": 6.0,
+      "options_mispricing": 5.0,
+      "catalyst_clarity": 8.5,
+      "pattern_match": 4.0
+    },
+    "notes": "Predictable deterioration as maturities approached",
+    "source": "seed"
+  },
+  {
+    "id": "seed_004",
+    "name": "Swedish RE Crisis",
+    "company": "SBB",
+    "playbook": "B",
+    "sector": "Financials",
+    "characteristics": ["real_estate_stress", "rate_sensitivity", "capital_markets_closed"],
+    "outcome": "ongoing",
+    "component_scores": {
+      "credit_signal": 8.0,
+      "psychology_alignment": 5.5,
+      "options_mispricing": 6.5,
+      "catalyst_clarity": 7.0,
+      "pattern_match": 5.0
+    },
+    "notes": "SBB and similar names under pressure",
+    "source": "seed"
+  }
+]

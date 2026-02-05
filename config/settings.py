@@ -234,6 +234,21 @@ class MarketWeights(BaseModel):
         return intervals.get(market_type, 60)
 
 
+class EdgeLearningConfig(BaseModel):
+    """
+    Edge Component Learning Configuration.
+    Controls how the system learns optimal edge score component weights
+    from trade outcomes.
+    """
+    enabled: bool = True
+    min_trades_to_adapt: int = 20       # Need 20 trades before adapting
+    adapt_interval_hours: int = 24      # Re-evaluate weights daily
+    max_weight_shift: float = 0.15      # Max 15% shift per adaptation cycle
+    min_component_weight: float = 0.05  # Never disable a component (5% floor)
+    max_component_weight: float = 0.40  # No single component dominates (40% cap)
+    lookback_days: int = 90             # Lookback window for performance calc
+
+
 class ScannerConfig(BaseModel):
     """Market Scanner Configuration"""
     scan_interval_seconds: int = 60
@@ -253,6 +268,7 @@ class TradingConfig(BaseModel):
     scanner: ScannerConfig = ScannerConfig()
     market_weights: MarketWeights = MarketWeights()
     strategies: StrategyConfig = StrategyConfig()
+    edge_learning: EdgeLearningConfig = EdgeLearningConfig()
 
     # PDT Rule - limited day trades for accounts under $25k
     pdt_restricted: bool = True

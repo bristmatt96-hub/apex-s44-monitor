@@ -178,6 +178,8 @@ class TradeExecutor(BaseAgent):
                 trade.metadata['stop_loss'] = stop_loss
                 trade.metadata['target_price'] = target_price
                 trade.metadata['signal'] = order
+                trade.metadata['edge_score'] = order.get('edge_score')
+                trade.metadata['entry_time'] = datetime.now().isoformat()
 
                 # Place stop loss order
                 if stop_loss:
@@ -209,7 +211,9 @@ class TradeExecutor(BaseAgent):
                     'stop_loss': stop_loss,
                     'target_price': target_price,
                     'simulated': True,
-                    'signal': order
+                    'signal': order,
+                    'edge_score': order.get('edge_score'),
+                    'entry_time': datetime.now().isoformat()
                 }
             )
 
@@ -388,7 +392,7 @@ class TradeExecutor(BaseAgent):
             self.active_trades = [t for t in self.active_trades if t.id != order_id]
 
     async def _close_position(self, symbol: str, exit_reason: str = "Manual close") -> None:
-        """Close a position"""
+        """Close a position and emit trade_closed for learning systems."""
         position = next((p for p in self.positions if p.symbol == symbol), None)
 
         if not position:
@@ -408,6 +412,8 @@ class TradeExecutor(BaseAgent):
             )
             if trade and trade.fill_price:
                 exit_price = trade.fill_price
+            # Remove position in live mode
+            self.positions = [p for p in self.positions if p.symbol != symbol]
         else:
             # Simulation
             self.positions = [p for p in self.positions if p.symbol != symbol]
@@ -424,6 +430,76 @@ class TradeExecutor(BaseAgent):
             entry_time=position.entry_time,
             exit_reason=exit_reason
         )
+
+        # Find the matching active trade and move to history
+        closed_trade = None
+        for t in self.active_trades:
+            if t.symbol == symbol:
+                closed_trade = t
+                break
+
+        if closed_trade:
+            self.active_trades.remove(closed_trade)
+            self.trade_history.append(closed_trade)
+
+        # Calculate P&L
+        side = 'buy'  # Assuming long
+        if side == 'buy':
+            pnl = (exit_price - position.entry_price) * position.quantity
+            pnl_pct = ((exit_price / position.entry_price) - 1) * 100 if position.entry_price > 0 else 0
+        else:
+            pnl = (position.entry_price - exit_price) * position.quantity
+            pnl_pct = ((position.entry_price / exit_price) - 1) * 100 if exit_price > 0 else 0
+
+        # Calculate hold time
+        hold_duration = datetime.now() - position.entry_time
+        hold_time_hours = hold_duration.total_seconds() / 3600
+
+        # Calculate risk/reward achieved
+        stop_loss = None
+        edge_score_data = None
+        strategy = 'unknown'
+        company = symbol
+
+        if closed_trade and closed_trade.metadata:
+            stop_loss = closed_trade.metadata.get('stop_loss')
+            edge_score_data = closed_trade.metadata.get('edge_score')
+            signal = closed_trade.metadata.get('signal', {})
+            strategy = signal.get('metadata', {}).get('strategy', signal.get('source', 'unknown'))
+            if edge_score_data:
+                company = edge_score_data.get('company', symbol)
+
+        risk_reward_achieved = 0
+        if stop_loss and position.entry_price != stop_loss:
+            risk = abs(position.entry_price - stop_loss)
+            reward = abs(exit_price - position.entry_price)
+            risk_reward_achieved = round(reward / risk, 2) if risk > 0 else 0
+
+        # Emit trade_closed message to coordinator for all learning systems
+        await self.send_message(
+            target='coordinator',
+            msg_type='trade_closed',
+            payload={
+                'symbol': symbol,
+                'company': company,
+                'market_type': position.market_type.value,
+                'side': side,
+                'quantity': position.quantity,
+                'entry_price': position.entry_price,
+                'exit_price': exit_price,
+                'pnl': round(pnl, 2),
+                'pnl_pct': round(pnl_pct, 2),
+                'risk_reward_achieved': risk_reward_achieved,
+                'hold_time_hours': round(hold_time_hours, 2),
+                'hold_time': f"{int(hold_time_hours)}h {int((hold_time_hours % 1) * 60)}m",
+                'strategy': strategy,
+                'exit_reason': exit_reason,
+                'edge_score': edge_score_data,
+                'timestamp': datetime.now().isoformat()
+            },
+            priority=1
+        )
+        logger.info(f"trade_closed emitted for {symbol} (P&L: {pnl_pct:+.2f}%)")
 
     async def _sync_positions(self) -> None:
         """Sync positions from broker"""
