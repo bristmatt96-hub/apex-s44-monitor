@@ -130,7 +130,7 @@ class TechnicalAnalyzer(BaseAgent):
             df.columns = [c.lower() for c in df.columns]
             return df
 
-        except Exception as e:
+        except (ImportError, ConnectionError, ValueError) as e:
             logger.debug(f"Error fetching data for {symbol}: {e}")
             return None
 
@@ -179,7 +179,7 @@ class TechnicalAnalyzer(BaseAgent):
 
             return min(sum(scores), 1.0)
 
-        except Exception as e:
+        except (ValueError, TypeError, KeyError) as e:
             logger.debug(f"Trend analysis error: {e}")
             return 0.5
 
@@ -235,7 +235,7 @@ class TechnicalAnalyzer(BaseAgent):
 
             return min(sum(scores), 1.0)
 
-        except Exception as e:
+        except (ValueError, TypeError, KeyError) as e:
             logger.debug(f"Momentum analysis error: {e}")
             return 0.5
 
@@ -276,7 +276,7 @@ class TechnicalAnalyzer(BaseAgent):
                 'risk_score': risk_score
             }
 
-        except Exception as e:
+        except (ValueError, TypeError, KeyError) as e:
             logger.debug(f"Volatility analysis error: {e}")
             return {'atr': 0, 'bb_width': 0, 'risk_score': 0.5}
 
@@ -332,7 +332,7 @@ class TechnicalAnalyzer(BaseAgent):
 
             return min(sum(scores), 1.0)
 
-        except Exception as e:
+        except (ValueError, TypeError, ZeroDivisionError) as e:
             logger.debug(f"Volume analysis error: {e}")
             return 0.5
 
@@ -385,7 +385,7 @@ class TechnicalAnalyzer(BaseAgent):
                 'distance_to_support_pct': (current_price - nearest_support) / current_price * 100
             }
 
-        except Exception as e:
+        except (ValueError, TypeError, IndexError) as e:
             logger.debug(f"S/R analysis error: {e}")
             return {}
 

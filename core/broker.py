@@ -68,7 +68,7 @@ class IBBroker:
             logger.info(f"Connected to IB - Account: {self.account_id}")
             return True
 
-        except Exception as e:
+        except (ConnectionError, OSError, TimeoutError) as e:
             logger.error(f"Failed to connect to IB: {e}")
             return False
 
@@ -125,7 +125,7 @@ class IBBroker:
                 bid=ticker.bid,
                 ask=ticker.ask
             )
-        except Exception as e:
+        except (ConnectionError, TimeoutError, AttributeError) as e:
             logger.error(f"Error getting quote for {symbol}: {e}")
             return None
 
@@ -166,7 +166,7 @@ class IBBroker:
                 }
                 for bar in bars
             ]
-        except Exception as e:
+        except (ConnectionError, TimeoutError, AttributeError) as e:
             logger.error(f"Error getting historical data for {symbol}: {e}")
             return []
 
@@ -224,7 +224,7 @@ class IBBroker:
             logger.info(f"Order placed: {side} {quantity} {symbol} @ {order_type.value}")
             return trade
 
-        except Exception as e:
+        except (ConnectionError, TimeoutError, ValueError, AttributeError) as e:
             logger.error(f"Error placing order: {e}")
             return None
 
@@ -240,7 +240,7 @@ class IBBroker:
                     logger.info(f"Order {order_id} cancelled")
                     return True
             return False
-        except Exception as e:
+        except (ConnectionError, AttributeError, ValueError) as e:
             logger.error(f"Error cancelling order: {e}")
             return False
 
@@ -265,13 +265,18 @@ class IBBroker:
                 else:
                     market_type = MarketType.EQUITY
 
+                # Infer side from position sign (IB returns negative for shorts)
+                position_side = 'short' if pos.position < 0 else 'long'
+                qty = abs(pos.position)
+
                 positions.append(Position(
                     symbol=pos.contract.symbol,
                     market_type=market_type,
-                    quantity=pos.position,
+                    quantity=qty,
                     entry_price=pos.avgCost,
                     current_price=pos.avgCost,  # Will be updated with market data
-                    entry_time=datetime.now()
+                    entry_time=datetime.now(),
+                    side=position_side
                 ))
 
         return positions

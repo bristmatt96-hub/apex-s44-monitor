@@ -266,7 +266,7 @@ class CreditOptionsScanner(BaseScanner):
                 "stock_price": round(current_price, 2),
             }
 
-        except Exception as e:
+        except (ConnectionError, ValueError, KeyError, IndexError) as e:
             logger.debug(f"Error getting IV data for {ticker}: {e}")
             return {"iv_percentile": None, "iv_rank": None, "atm_iv": None}
 

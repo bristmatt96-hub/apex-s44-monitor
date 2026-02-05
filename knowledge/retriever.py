@@ -85,7 +85,7 @@ class KnowledgeRetriever:
                 with open(chunk_file, 'r') as f:
                     chunk = json.load(f)
                     self.chunks[chunk["id"]] = chunk
-            except Exception as e:
+            except (json.JSONDecodeError, KeyError, OSError) as e:
                 logger.warning(f"Error loading chunk {chunk_file}: {e}")
 
         logger.info(f"Loaded {len(self.chunks)} knowledge chunks")

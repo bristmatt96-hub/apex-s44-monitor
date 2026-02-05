@@ -3,6 +3,8 @@ Trade Execution Agent
 Handles order execution, position management, and trade tracking
 """
 import asyncio
+import json
+from pathlib import Path
 from typing import List, Optional, Dict, Any
 from datetime import datetime
 from loguru import logger
@@ -50,6 +52,9 @@ class TradeExecutor(BaseAgent):
         # Telegram notifications
         self.notifier = get_notifier()
 
+        # Load persisted state from previous run
+        self._load_state()
+
     async def start(self) -> None:
         """Start executor and connect to broker"""
         await super().start()
@@ -87,6 +92,7 @@ class TradeExecutor(BaseAgent):
 
             if trade:
                 self.active_trades.append(trade)
+                self._save_state()
                 await self._notify_trade_status(trade)
 
     async def handle_message(self, message: AgentMessage) -> None:
@@ -182,8 +188,9 @@ class TradeExecutor(BaseAgent):
                 trade.metadata['entry_time'] = datetime.now().isoformat()
 
                 # Place stop loss order
+                position_side = 'short' if side == 'sell' else 'long'
                 if stop_loss:
-                    await self._place_stop_order(symbol, market_type, quantity, stop_loss)
+                    await self._place_stop_order(symbol, market_type, quantity, stop_loss, position_side)
 
                 # Track day trades
                 if market_type == MarketType.EQUITY:
@@ -218,6 +225,7 @@ class TradeExecutor(BaseAgent):
             )
 
             # Create simulated position
+            position_side = 'short' if side == 'sell' else 'long'
             position = Position(
                 symbol=symbol,
                 market_type=market_type,
@@ -225,10 +233,12 @@ class TradeExecutor(BaseAgent):
                 entry_price=entry_price,
                 current_price=entry_price,
                 entry_time=datetime.now(),
+                side=position_side,
                 stop_loss=stop_loss,
                 take_profit=target_price
             )
             self.positions.append(position)
+            self._save_state()
 
             logger.info(f"SIMULATED: {side.upper()} {quantity} {symbol} @ {entry_price:.2f}")
 
@@ -269,7 +279,7 @@ class TradeExecutor(BaseAgent):
                 stop_loss=order.get('stop_loss'),
                 target=order.get('target_price')
             )
-        except Exception as e:
+        except (ValueError, TypeError, OSError) as e:
             logger.error(f"Failed to send entry notification: {e}")
 
     async def _send_exit_notification(
@@ -289,7 +299,7 @@ class TradeExecutor(BaseAgent):
 
         try:
             # Calculate P&L
-            if side.lower() == 'buy':
+            if side.lower() in ('buy', 'long'):
                 pnl = (exit_price - entry_price) * quantity
                 pnl_pct = ((exit_price / entry_price) - 1) * 100
             else:
@@ -318,7 +328,7 @@ class TradeExecutor(BaseAgent):
                 hold_time=hold_time,
                 exit_reason=exit_reason
             )
-        except Exception as e:
+        except (ValueError, TypeError, OSError) as e:
             logger.error(f"Failed to send exit notification: {e}")
 
     def _calculate_position_size(self, order: Dict) -> float:
@@ -365,21 +375,25 @@ class TradeExecutor(BaseAgent):
         symbol: str,
         market_type: MarketType,
         quantity: float,
-        stop_price: float
+        stop_price: float,
+        position_side: str = 'long'
     ) -> None:
         """Place a stop loss order"""
         if not self.connected:
             return
 
+        # Stop order closes the position: sell to close long, buy to close short
+        stop_side = 'sell' if position_side == 'long' else 'buy'
+
         await self.broker.place_order(
             symbol=symbol,
             market_type=market_type,
-            side='sell',
+            side=stop_side,
             quantity=quantity,
             order_type=OrderType.STOP,
             stop_price=stop_price
         )
-        logger.info(f"Stop loss placed for {symbol} @ {stop_price:.2f}")
+        logger.info(f"Stop loss placed for {symbol} @ {stop_price:.2f} ({stop_side} to close {position_side})")
 
     async def _cancel_order(self, order_id: str) -> None:
         """Cancel an order"""
@@ -390,6 +404,7 @@ class TradeExecutor(BaseAgent):
         else:
             # Remove from active trades in sim mode
             self.active_trades = [t for t in self.active_trades if t.id != order_id]
+            self._save_state()
 
     async def _close_position(self, symbol: str, exit_reason: str = "Manual close") -> None:
         """Close a position and emit trade_closed for learning systems."""
@@ -401,12 +416,14 @@ class TradeExecutor(BaseAgent):
 
         exit_price = position.current_price
 
+        # Determine closing side from position side
+        close_side = 'sell' if position.side == 'long' else 'buy'
+
         if self.connected:
-            # Market sell order
             trade = await self.broker.place_order(
                 symbol=symbol,
                 market_type=position.market_type,
-                side='sell',
+                side=close_side,
                 quantity=position.quantity,
                 order_type=OrderType.MARKET
             )
@@ -417,12 +434,12 @@ class TradeExecutor(BaseAgent):
         else:
             # Simulation
             self.positions = [p for p in self.positions if p.symbol != symbol]
-            logger.info(f"SIMULATED: Closed position in {symbol}")
+            logger.info(f"SIMULATED: Closed {position.side} position in {symbol}")
 
         # Send exit notification
         await self._send_exit_notification(
             symbol=symbol,
-            side='buy',  # Assuming we were long
+            side=position.side,
             quantity=position.quantity,
             entry_price=position.entry_price,
             exit_price=exit_price,
@@ -441,10 +458,10 @@ class TradeExecutor(BaseAgent):
         if closed_trade:
             self.active_trades.remove(closed_trade)
             self.trade_history.append(closed_trade)
+            self._save_state()
 
-        # Calculate P&L
-        side = 'buy'  # Assuming long
-        if side == 'buy':
+        # Calculate P&L using actual position side
+        if position.side == 'long':
             pnl = (exit_price - position.entry_price) * position.quantity
             pnl_pct = ((exit_price / position.entry_price) - 1) * 100 if position.entry_price > 0 else 0
         else:
@@ -483,7 +500,7 @@ class TradeExecutor(BaseAgent):
                 'symbol': symbol,
                 'company': company,
                 'market_type': position.market_type.value,
-                'side': side,
+                'side': position.side,
                 'quantity': position.quantity,
                 'entry_price': position.entry_price,
                 'exit_price': exit_price,
@@ -505,6 +522,7 @@ class TradeExecutor(BaseAgent):
         """Sync positions from broker"""
         if self.connected:
             self.positions = await self.broker.get_positions()
+            self._save_state()
             logger.info(f"Synced {len(self.positions)} positions from IB")
 
     async def _send_positions(self) -> None:
@@ -520,6 +538,7 @@ class TradeExecutor(BaseAgent):
                         'quantity': p.quantity,
                         'entry_price': p.entry_price,
                         'current_price': p.current_price,
+                        'side': p.side,
                         'pnl_pct': p.pnl_pct,
                         'stop_loss': p.stop_loss,
                         'take_profit': p.take_profit
@@ -548,6 +567,124 @@ class TradeExecutor(BaseAgent):
             },
             priority=1
         )
+
+    # --- State persistence ---
+
+    def _state_file(self) -> Path:
+        """Path to state persistence file"""
+        path = Path("data")
+        path.mkdir(parents=True, exist_ok=True)
+        return path / "executor_state.json"
+
+    def _serialize_trade(self, trade: Trade) -> Dict:
+        """Serialize a Trade to dict for JSON storage"""
+        return {
+            'id': trade.id,
+            'symbol': trade.symbol,
+            'market_type': trade.market_type.value,
+            'side': trade.side,
+            'quantity': trade.quantity,
+            'order_type': trade.order_type.value,
+            'limit_price': trade.limit_price,
+            'stop_price': trade.stop_price,
+            'status': trade.status.value,
+            'fill_price': trade.fill_price,
+            'fill_quantity': trade.fill_quantity,
+            'commission': trade.commission,
+            'created_at': trade.created_at.isoformat(),
+            'filled_at': trade.filled_at.isoformat() if trade.filled_at else None,
+            'signal_id': trade.signal_id,
+            'metadata': trade.metadata
+        }
+
+    def _deserialize_trade(self, data: Dict) -> Trade:
+        """Deserialize a dict back to Trade"""
+        return Trade(
+            id=data['id'],
+            symbol=data['symbol'],
+            market_type=MarketType(data['market_type']),
+            side=data['side'],
+            quantity=data['quantity'],
+            order_type=OrderType(data['order_type']),
+            limit_price=data.get('limit_price'),
+            stop_price=data.get('stop_price'),
+            status=OrderStatus(data['status']),
+            fill_price=data.get('fill_price'),
+            fill_quantity=data.get('fill_quantity'),
+            commission=data.get('commission', 0.0),
+            created_at=datetime.fromisoformat(data['created_at']),
+            filled_at=datetime.fromisoformat(data['filled_at']) if data.get('filled_at') else None,
+            signal_id=data.get('signal_id'),
+            metadata=data.get('metadata', {})
+        )
+
+    def _serialize_position(self, pos: Position) -> Dict:
+        """Serialize a Position to dict for JSON storage"""
+        return {
+            'symbol': pos.symbol,
+            'market_type': pos.market_type.value,
+            'quantity': pos.quantity,
+            'entry_price': pos.entry_price,
+            'current_price': pos.current_price,
+            'entry_time': pos.entry_time.isoformat(),
+            'side': pos.side,
+            'stop_loss': pos.stop_loss,
+            'take_profit': pos.take_profit,
+            'unrealized_pnl': pos.unrealized_pnl,
+            'realized_pnl': pos.realized_pnl
+        }
+
+    def _deserialize_position(self, data: Dict) -> Position:
+        """Deserialize a dict back to Position"""
+        return Position(
+            symbol=data['symbol'],
+            market_type=MarketType(data['market_type']),
+            quantity=data['quantity'],
+            entry_price=data['entry_price'],
+            current_price=data['current_price'],
+            entry_time=datetime.fromisoformat(data['entry_time']),
+            side=data.get('side', 'long'),
+            stop_loss=data.get('stop_loss'),
+            take_profit=data.get('take_profit'),
+            unrealized_pnl=data.get('unrealized_pnl', 0.0),
+            realized_pnl=data.get('realized_pnl', 0.0)
+        )
+
+    def _load_state(self) -> None:
+        """Load persisted state from disk"""
+        state_file = self._state_file()
+        if not state_file.exists():
+            return
+
+        try:
+            with open(state_file, 'r') as f:
+                state = json.load(f)
+
+            self.active_trades = [self._deserialize_trade(t) for t in state.get('active_trades', [])]
+            self.positions = [self._deserialize_position(p) for p in state.get('positions', [])]
+            self.trade_history = [self._deserialize_trade(t) for t in state.get('trade_history', [])]
+
+            logger.info(
+                f"State restored: {len(self.active_trades)} active trades, "
+                f"{len(self.positions)} positions, {len(self.trade_history)} history"
+            )
+        except (json.JSONDecodeError, KeyError, ValueError, OSError) as e:
+            logger.error(f"Failed to load executor state: {e}")
+
+    def _save_state(self) -> None:
+        """Save current state to disk"""
+        state = {
+            'active_trades': [self._serialize_trade(t) for t in self.active_trades],
+            'positions': [self._serialize_position(p) for p in self.positions],
+            'trade_history': [self._serialize_trade(t) for t in self.trade_history[-100:]],
+            'saved_at': datetime.now().isoformat()
+        }
+
+        try:
+            with open(self._state_file(), 'w') as f:
+                json.dump(state, f, indent=2, default=str)
+        except OSError as e:
+            logger.error(f"Failed to save executor state: {e}")
 
     def get_portfolio_value(self) -> float:
         """Get total portfolio value"""

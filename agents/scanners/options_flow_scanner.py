@@ -138,7 +138,7 @@ class OptionsFlowScanner(BaseAgent):
                 # Small delay to avoid hammering yfinance
                 await asyncio.sleep(0.3)
 
-            except Exception as e:
+            except (ConnectionError, ValueError, KeyError) as e:
                 logger.debug(f"[OptionsFlow] Error scanning {symbol}: {e}")
                 continue
 
@@ -164,7 +164,7 @@ class OptionsFlowScanner(BaseAgent):
             # Get available expirations
             try:
                 expirations = ticker.options
-            except Exception:
+            except (ValueError, AttributeError):
                 return unusual_flows
 
             if not expirations:
@@ -182,7 +182,7 @@ class OptionsFlowScanner(BaseAgent):
 
                 try:
                     chain = ticker.option_chain(exp_str)
-                except Exception:
+                except (ValueError, KeyError):
                     continue
 
                 # Analyze calls
@@ -206,7 +206,7 @@ class OptionsFlowScanner(BaseAgent):
                 # Rate limit between expirations
                 await asyncio.sleep(0.1)
 
-        except Exception as e:
+        except (ConnectionError, ValueError, KeyError) as e:
             logger.debug(f"[OptionsFlow] Chain scan error for {symbol}: {e}")
 
         # Sort by significance (premium spent)
@@ -424,7 +424,7 @@ class OptionsFlowScanner(BaseAgent):
                 ))
                 self.seen_flows.add(flow_key)
 
-        except Exception as e:
+        except (ValueError, TypeError, KeyError, IndexError) as e:
             logger.debug(f"[OptionsFlow] Straddle detection error for {symbol}: {e}")
 
         return flows

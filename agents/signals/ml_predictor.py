@@ -177,8 +177,9 @@ class MLPredictor(BaseAgent):
                     direction_proba = self.models['direction'].predict_proba(X_current)[0]
                     predictions['direction'] = 'up' if direction == 1 else 'down'
                     predictions['direction_confidence'] = float(max(direction_proba))
-                except:
+                except (ValueError, AttributeError) as e:
                     # Model not fitted - train on historical data
+                    logger.debug(f"Direction model not fitted for prediction: {e}")
                     await self._train_on_history(features, data)
                     predictions['direction'] = 'unknown'
                     predictions['direction_confidence'] = 0.5
@@ -188,7 +189,8 @@ class MLPredictor(BaseAgent):
                 try:
                     proba = self.models['probability'].predict_proba(X_current)[0]
                     predictions['up_probability'] = float(proba[1]) if len(proba) > 1 else 0.5
-                except:
+                except (ValueError, AttributeError) as e:
+                    logger.debug(f"Probability model not fitted: {e}")
                     predictions['up_probability'] = 0.5
 
             # Track prediction for accuracy monitoring
@@ -213,7 +215,7 @@ class MLPredictor(BaseAgent):
 
             return result
 
-        except Exception as e:
+        except (ValueError, KeyError, IndexError) as e:
             logger.error(f"Prediction error: {e}")
             return None
 
@@ -236,7 +238,7 @@ class MLPredictor(BaseAgent):
             df.columns = [c.lower() for c in df.columns]
             return df
 
-        except Exception as e:
+        except (ImportError, ConnectionError, ValueError) as e:
             logger.debug(f"Data fetch error: {e}")
             return None
 
@@ -358,7 +360,7 @@ class MLPredictor(BaseAgent):
 
             return features
 
-        except Exception as e:
+        except (ValueError, KeyError, IndexError, TypeError) as e:
             logger.error(f"Feature extraction error: {e}")
             return None
 
@@ -406,7 +408,7 @@ class MLPredictor(BaseAgent):
                 symbols=[data.attrs.get('symbol', 'unknown')] if hasattr(data, 'attrs') else ['unknown']
             )
 
-        except Exception as e:
+        except (ValueError, RuntimeError) as e:
             logger.error(f"Training error: {e}")
 
     async def train_models(self, config: Dict) -> None:
@@ -478,7 +480,7 @@ class MLPredictor(BaseAgent):
                         if features is not None:
                             await self._train_on_history(features, data)
                             logger.info(f"Retrained on {symbol}")
-                except Exception as e:
+                except (ConnectionError, ValueError) as e:
                     logger.debug(f"Retrain error for {symbol}: {e}")
 
         # Check if new model is better

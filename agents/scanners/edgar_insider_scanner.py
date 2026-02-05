@@ -144,7 +144,7 @@ class EdgarInsiderScanner(BaseAgent):
                 # Rate limit
                 await asyncio.sleep(EDGAR_RATE_LIMIT)
 
-            except Exception as e:
+            except (ConnectionError, ValueError, KeyError) as e:
                 logger.debug(f"[EdgarInsider] Error scanning {symbol}: {e}")
                 continue
 
@@ -193,7 +193,7 @@ class EdgarInsiderScanner(BaseAgent):
 
                 await asyncio.sleep(EDGAR_RATE_LIMIT)
 
-        except Exception as e:
+        except (ConnectionError, requests.RequestException, ValueError, KeyError) as e:
             logger.debug(f"[EdgarInsider] Fetch error for {symbol}: {e}")
 
         return transactions
@@ -246,7 +246,7 @@ class EdgarInsiderScanner(BaseAgent):
                 except (ValueError, TypeError):
                     pass
 
-        except Exception as e:
+        except (ConnectionError, requests.RequestException, ValueError) as e:
             logger.debug(f"[EdgarInsider] Parse error: {e}")
 
         return transactions
@@ -270,7 +270,7 @@ class EdgarInsiderScanner(BaseAgent):
                 end = xml.find(f'</{tag}>')
                 if start > len(f'<{tag}>') - 1 and end > start:
                     return xml[start:end].strip()
-        except Exception:
+        except (ValueError, TypeError, IndexError):
             pass
         return None
 

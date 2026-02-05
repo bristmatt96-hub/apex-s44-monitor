@@ -108,6 +108,7 @@ class Position:
     entry_price: float
     current_price: float
     entry_time: datetime
+    side: str = 'long'  # 'long' or 'short'
     stop_loss: Optional[float] = None
     take_profit: Optional[float] = None
     unrealized_pnl: float = 0.0
@@ -116,6 +117,8 @@ class Position:
     @property
     def pnl_pct(self) -> float:
         """Unrealized P&L percentage"""
+        if self.side == 'short':
+            return ((self.entry_price - self.current_price) / self.entry_price) * 100
         return ((self.current_price - self.entry_price) / self.entry_price) * 100
 
     @property

@@ -61,6 +61,10 @@ class Coordinator(BaseAgent):
         self.pattern_learner = get_pattern_learner()
         self.model_manager = get_model_manager()
 
+        # Throttle learning checks (every 5 minutes instead of every 1 second)
+        self._last_learning_check: Optional[datetime] = None
+        self._learning_check_interval = 300  # seconds
+
         # Telegram notifications
         self.notifier = get_notifier()
 
@@ -99,21 +103,25 @@ class Coordinator(BaseAgent):
         # Monitor risk limits
         await self._check_risk_limits()
 
-        # Check if edge component weights need adaptation
-        if self.edge_learner.should_adapt():
-            new_weights = self.edge_learner.adapt()
-            logger.info(f"Edge component weights adapted: {new_weights}")
-            if self.notifier:
-                weight_lines = "\n".join(
-                    f"  {comp}: {w:.1%}" for comp, w in new_weights.items()
-                )
-                await self.notifier.notify_alert(
-                    "EDGE WEIGHTS ADAPTED",
-                    f"Edge component weights recalculated:\n\n"
-                    f"<pre>{weight_lines}</pre>\n\n"
-                    f"Based on {len(self.edge_learner.outcomes)} trade outcomes",
-                    severity="info"
-                )
+        # Check if edge component weights need adaptation (throttled to every 5 min)
+        now = datetime.now()
+        if (self._last_learning_check is None or
+                (now - self._last_learning_check).total_seconds() >= self._learning_check_interval):
+            self._last_learning_check = now
+            if self.edge_learner.should_adapt():
+                new_weights = self.edge_learner.adapt()
+                logger.info(f"Edge component weights adapted: {new_weights}")
+                if self.notifier:
+                    weight_lines = "\n".join(
+                        f"  {comp}: {w:.1%}" for comp, w in new_weights.items()
+                    )
+                    await self.notifier.notify_alert(
+                        "EDGE WEIGHTS ADAPTED",
+                        f"Edge component weights recalculated:\n\n"
+                        f"<pre>{weight_lines}</pre>\n\n"
+                        f"Based on {len(self.edge_learner.outcomes)} trade outcomes",
+                        severity="info"
+                    )
 
         await asyncio.sleep(1)
 
@@ -329,7 +337,7 @@ class Coordinator(BaseAgent):
                         )
                         if kb_results:
                             kb_insight = f"\n<b>Book Insight:</b> <i>{kb_results[0].content[:150]}...</i>\n"
-                    except Exception:
+                    except (ValueError, AttributeError, TypeError):
                         pass
 
                     await self.notifier.notify_alert(
