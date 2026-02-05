@@ -1,7 +1,7 @@
 {
   "knowledge_base": {
-    "last_updated": "2026-02-03",
-    "total_documents": 31
+    "last_updated": "2026-02-05",
+    "total_documents": 39
   },
 
   "credit": {
@@ -49,31 +49,56 @@
     ]
   },
 
+  "psychology": {
+    "path": "knowledge/psychology/",
+    "count": 4,
+    "documents": [
+      {"file": "Thinking_In_Bets.pdf", "topic": "Decision-making under uncertainty, probabilistic thinking", "agent": "Psychologist", "author": "Annie Duke", "chunks": 3},
+      {"file": "The_Ideal_Mindset.pdf", "topic": "Trading psychology and mental frameworks", "agent": "Psychologist", "chunks": 3},
+      {"file": "Trade_Mindfully.pdf", "topic": "Mindfulness-based trading psychology, emotional regulation", "agent": "Psychologist", "chunks": 49},
+      {"file": "Updated_Text_For_Market_Wizards.pdf", "topic": "Top trader psychology and decision-making", "agent": "Psychologist", "author": "Jack Schwager", "chunks": 33}
+    ]
+  },
+
+  "options": {
+    "path": "knowledge/options/",
+    "count": 3,
+    "documents": [
+      {"file": "Option_Volatility_And_Pricing_Natenberg.pdf", "topic": "Options pricing theory, volatility, Greeks, strategies, risk management", "agent": "Scanner", "author": "Sheldon Natenberg", "chunks": 198},
+      {"file": "The_Art_And_Science_of_Technical_Analysis.pdf", "topic": "Technical analysis patterns, support/resistance, market structure", "agent": "Scanner", "author": "Adam Grimes", "chunks": 122},
+      {"file": "Volume_Price_Analysis.pdf", "topic": "Volume-price relationships, market manipulation detection", "agent": "Scanner", "author": "Anna Coulling", "chunks": 5}
+    ]
+  },
+
+  "system_design": {
+    "path": "knowledge/system_design/",
+    "count": 2,
+    "documents": [
+      {"file": "Inside_The_Black_Box.pdf", "topic": "Quantitative trading systems architecture", "agent": "System Design", "author": "Rishi Narang", "chunks": 4},
+      {"file": "Quantitative_Trading.pdf", "topic": "Quantitative trading strategies and backtesting", "agent": "System Design", "author": "Ernie Chan", "chunks": 53}
+    ]
+  },
+
   "pending": {
     "audiobooks_to_transcribe": [
-      "Trading in the Zone - Mark Douglas",
-      "The Predictive Edge - Lopez-Lira",
-      "Inside the Black Box - Rishi Narang",
-      "Quantitative Trading - Ernie Chan",
-      "Best Loser Wins - Tom Hougaard",
-      "One Good Trade - Mike Bellafiore"
+      "Trading in the Zone - Mark Douglas (Psychology)",
+      "The Predictive Edge - Lopez-Lira (System Design)",
+      "Best Loser Wins - Tom Hougaard (Psychology)",
+      "One Good Trade - Mike Bellafiore (Psychology + System)",
+      "Alpha Trader - Brent Donnelly (Psychology + Risk)"
     ],
     "kindle_to_convert": [
-      "Trading Options Greeks - Dan Passarelli"
+      "Trading Options Greeks - Dan Passarelli (Scanner)"
     ],
-    "pdf_to_ocr": [
-      "Distressed Debt Analysis - Stephen Moyer"
-    ],
-    "paperback_to_digitize": [
-      "Option Volatility and Pricing - Sheldon Natenberg"
-    ]
+    "paperback_to_digitize": [],
+    "note": "Distressed Debt Analysis (Moyer) is ALREADY INGESTED as 9 individual chapter PDFs in knowledge/credit/"
   },
 
   "agent_mapping": {
     "Analyst": ["credit/"],
     "Psychologist": ["psychology/", "genai/GenAI Leveraging LLMs*"],
     "Scanner": ["options/"],
-    "System Design": ["genai/", "credit/Data science*"],
+    "System Design": ["system_design/", "genai/", "credit/Data science*"],
     "Risk Manager": ["credit/portfolio management*"]
   }
 }
