@@ -159,8 +159,12 @@ class MLPredictor(BaseAgent):
             # Get latest features
             X = features.iloc[-1:].values
 
-            # Scale features
-            X_scaled = self.scalers['default'].fit_transform(features.values)
+            # Scale features (use transform if scaler is already fitted, else fit_transform)
+            scaler = self.scalers['default']
+            if hasattr(scaler, 'mean_') and scaler.mean_ is not None:
+                X_scaled = scaler.transform(features.values)
+            else:
+                X_scaled = scaler.fit_transform(features.values)
             X_current = X_scaled[-1:]
 
             predictions = {}
@@ -348,6 +352,9 @@ class MLPredictor(BaseAgent):
             features = df[feature_cols].copy()
             features = features.replace([np.inf, -np.inf], np.nan)
             features = features.dropna()
+
+            if features.empty:
+                return None
 
             return features
 
