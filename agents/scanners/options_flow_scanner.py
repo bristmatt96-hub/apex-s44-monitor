@@ -31,6 +31,7 @@ try:
 except ImportError:
     YFINANCE_AVAILABLE = False
 
+from core.data_cache import get_data_cache
 from core.base_agent import BaseAgent, AgentMessage
 from core.models import Signal, MarketType, SignalType
 
@@ -153,13 +154,15 @@ class OptionsFlowScanner(BaseAgent):
         unusual_flows = []
 
         try:
-            ticker = yf.Ticker(symbol)
-
-            # Get current stock price
-            hist = ticker.history(period="2d")
-            if hist.empty:
+            # Get stock price via shared cache
+            cache = get_data_cache()
+            hist = await cache.get_history(symbol, 'equity', '5d', '1d')
+            if hist is None or hist.empty:
                 return unusual_flows
-            stock_price = hist['Close'].iloc[-1]
+            stock_price = hist['close'].iloc[-1]
+
+            # Use yf.Ticker for options chain access (not cached)
+            ticker = yf.Ticker(symbol)
 
             # Get available expirations
             try:

@@ -30,6 +30,7 @@ except ImportError:
     YFINANCE_AVAILABLE = False
     logger.warning("yfinance not installed - options data limited")
 
+from core.data_cache import get_data_cache
 from .base_scanner import BaseScanner
 from core.models import Signal, MarketType, SignalType
 from analyzers.situation_classifier import SituationClassifier
@@ -180,6 +181,11 @@ class CreditOptionsScanner(BaseScanner):
             return {"iv_percentile": None, "iv_rank": None, "atm_iv": None}
 
         try:
+            # Get current price via shared cache
+            cache = get_data_cache()
+            hist = await cache.get_history(ticker, 'equity', '5d', '1d')
+
+            # Use yf.Ticker for options chain access (not cached)
             stock = yf.Ticker(ticker)
 
             # Get options chain for nearest expiry
@@ -201,7 +207,11 @@ class CreditOptionsScanner(BaseScanner):
                 target_expiry = expirations[0]
 
             chain = stock.option_chain(target_expiry)
-            current_price = stock.history(period="1d")['Close'].iloc[-1]
+
+            # Get current price from cached data (fetched above)
+            if hist is None or hist.empty:
+                return {"iv_percentile": None, "iv_rank": None, "atm_iv": None}
+            current_price = hist['close'].iloc[-1]
 
             # Get ATM options
             calls = chain.calls
@@ -223,12 +233,11 @@ class CreditOptionsScanner(BaseScanner):
             else:
                 atm_iv = None
 
-            # Calculate IV percentile using historical IV
-            # For now, use a simplified approach with recent data
-            hist = stock.history(period="1y")
-            if len(hist) > 20:
+            # Calculate IV percentile using historical IV from cache (1y data)
+            hist_1y = await cache.get_history(ticker, 'equity', '1y', '1d')
+            if hist_1y is not None and len(hist_1y) > 20:
                 # Estimate historical volatility as proxy
-                returns = hist['Close'].pct_change().dropna()
+                returns = hist_1y['close'].pct_change().dropna()
                 hv_20 = returns[-20:].std() * np.sqrt(252) * 100
                 hv_60 = returns[-60:].std() * np.sqrt(252) * 100 if len(returns) >= 60 else hv_20
                 hv_252 = returns.std() * np.sqrt(252) * 100

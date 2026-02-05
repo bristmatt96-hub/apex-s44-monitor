@@ -10,11 +10,7 @@ import pandas as pd
 import numpy as np
 from loguru import logger
 
-try:
-    import yfinance as yf
-    YFINANCE_AVAILABLE = True
-except ImportError:
-    YFINANCE_AVAILABLE = False
+from core.data_cache import get_data_cache
 
 try:
     import pandas_ta as ta
@@ -71,27 +67,9 @@ class OptionsScanner(BaseScanner):
         return self.default_watchlist
 
     async def fetch_data(self, symbol: str) -> Optional[pd.DataFrame]:
-        """Fetch stock data for options analysis"""
-        if not YFINANCE_AVAILABLE:
-            return None
-
-        try:
-            ticker = yf.Ticker(symbol)
-            df = ticker.history(period="3mo", interval="1d")
-
-            if df.empty:
-                return None
-
-            df.columns = [c.lower() for c in df.columns]
-
-            # Store ticker for options data access
-            df.attrs['ticker'] = ticker
-
-            return df
-
-        except Exception as e:
-            logger.debug(f"Error fetching {symbol}: {e}")
-            return None
+        """Fetch stock data for options analysis via shared cache"""
+        cache = get_data_cache()
+        return await cache.get_history(symbol, 'equity', '3mo', '1d')
 
     async def analyze(self, symbol: str, data: pd.DataFrame) -> Optional[Signal]:
         """Analyze for options opportunities"""
@@ -126,14 +104,10 @@ class OptionsScanner(BaseScanner):
         return None
 
     async def _get_option_chain(self, symbol: str, data: pd.DataFrame) -> Optional[Dict]:
-        """Get options chain data"""
-        if not YFINANCE_AVAILABLE:
-            return None
-
+        """Get options chain data via shared cache"""
         try:
-            ticker = data.attrs.get('ticker')
-            if not ticker:
-                ticker = yf.Ticker(symbol)
+            import yfinance as yf
+            ticker = yf.Ticker(symbol)
 
             # Get expiration dates
             expirations = ticker.options

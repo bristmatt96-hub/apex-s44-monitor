@@ -34,6 +34,7 @@ except ImportError:
 from core.base_agent import BaseAgent, AgentMessage
 from core.models import Signal, SignalType
 from core.model_manager import get_model_manager
+from core.data_cache import get_data_cache
 
 
 class MLPredictor(BaseAgent):
@@ -220,27 +221,9 @@ class MLPredictor(BaseAgent):
             return None
 
     async def _fetch_data(self, symbol: str, market_type: str) -> Optional[pd.DataFrame]:
-        """Fetch historical data for prediction"""
-        try:
-            import yfinance as yf
-
-            if market_type == 'forex':
-                symbol = f"{symbol}=X"
-            elif market_type == 'crypto':
-                symbol = symbol.replace('/', '-').replace('USDT', 'USD').replace('usdt', 'usd')
-
-            ticker = yf.Ticker(symbol)
-            df = ticker.history(period="1y", interval="1d")
-
-            if df.empty:
-                return None
-
-            df.columns = [c.lower() for c in df.columns]
-            return df
-
-        except (ImportError, ConnectionError, ValueError) as e:
-            logger.debug(f"Data fetch error: {e}")
-            return None
+        """Fetch historical data for prediction via shared cache"""
+        cache = get_data_cache()
+        return await cache.get_history(symbol, market_type, '1y', '1d')
 
     async def _extract_features(self, data: pd.DataFrame) -> Optional[pd.DataFrame]:
         """Extract ML features from price data"""
@@ -412,15 +395,40 @@ class MLPredictor(BaseAgent):
             logger.error(f"Training error: {e}")
 
     async def train_models(self, config: Dict) -> None:
-        """Train models with custom configuration"""
+        """Train models with custom configuration on aggregated data"""
         symbols = config.get('symbols', [])
+        market_type = config.get('market_type', 'equity')
+
+        # Collect features and targets from all symbols
+        all_features = []
+        all_targets = []
+        symbols_used = []
 
         for symbol in symbols:
-            data = await self._fetch_data(symbol, config.get('market_type', 'equity'))
-            if data is not None:
-                features = await self._extract_features(data)
-                if features is not None:
-                    await self._train_on_history(features, data)
+            data = await self._fetch_data(symbol, market_type)
+            if data is None or len(data) < self.min_training_samples:
+                continue
+
+            features = await self._extract_features(data)
+            if features is None or features.empty:
+                continue
+
+            # Create target (1 if price up next day, 0 if down)
+            y = (data['close'].shift(-1) > data['close']).astype(int)
+            y = y.loc[features.index[:-1]]  # Exclude last row
+            X = features.iloc[:-1]
+
+            if len(X) > 50:  # Minimum per symbol
+                all_features.append(X)
+                all_targets.append(y)
+                symbols_used.append(symbol)
+
+        if not all_features:
+            logger.warning("No valid training data collected")
+            return
+
+        # Train on aggregated data
+        await self._train_on_aggregated(all_features, all_targets, symbols_used)
 
     def save_models(self, path: Optional[str] = None):
         """Save trained models to disk"""
@@ -461,8 +469,60 @@ class MLPredictor(BaseAgent):
 
         logger.info(f"Models loaded from {load_path}")
 
+    async def _train_on_aggregated(
+        self,
+        all_features: List[pd.DataFrame],
+        all_targets: List[pd.Series],
+        symbols_used: List[str]
+    ) -> None:
+        """Train models on aggregated data from multiple symbols"""
+        if not all_features or not all_targets:
+            return
+
+        try:
+            # Concatenate all data
+            X = pd.concat(all_features, axis=0, ignore_index=True)
+            y = pd.concat(all_targets, axis=0, ignore_index=True)
+
+            logger.info(f"Training on aggregated data: {len(X)} samples from {len(symbols_used)} symbols")
+
+            # Split data
+            X_train, X_test, y_train, y_test = train_test_split(
+                X, y, test_size=0.2, shuffle=False
+            )
+
+            # Scale
+            X_train_scaled = self.scalers['default'].fit_transform(X_train)
+            X_test_scaled = self.scalers['default'].transform(X_test)
+
+            # Train direction model
+            self.models['direction'].fit(X_train_scaled, y_train)
+
+            # Train probability model
+            self.models['probability'].fit(X_train_scaled, y_train)
+
+            # Log accuracy
+            train_acc = self.models['direction'].score(X_train_scaled, y_train)
+            test_acc = self.models['direction'].score(X_test_scaled, y_test)
+
+            logger.info(f"Aggregated training complete - Train acc: {train_acc:.2%}, Test acc: {test_acc:.2%}")
+
+            # Save models with versioning
+            self.model_manager.save_models(
+                models=self.models,
+                scalers=self.scalers,
+                train_accuracy=train_acc,
+                test_accuracy=test_acc,
+                training_samples=len(X_train),
+                feature_count=X_train.shape[1],
+                symbols=symbols_used
+            )
+
+        except (ValueError, RuntimeError) as e:
+            logger.error(f"Aggregated training error: {e}")
+
     async def _auto_retrain(self, reason: str) -> None:
-        """Auto-retrain models when staleness detected"""
+        """Auto-retrain models when staleness detected, using aggregated data"""
         logger.info(f"Auto-retraining models (reason: {reason})")
 
         # Train on a diverse set of liquid symbols
@@ -471,17 +531,38 @@ class MLPredictor(BaseAgent):
             'crypto': ['BTC-USD', 'ETH-USD'],
         }
 
+        # Collect features and targets from all symbols
+        all_features = []
+        all_targets = []
+        symbols_used = []
+
         for market_type, symbols in training_symbols.items():
             for symbol in symbols:
                 try:
                     data = await self._fetch_data(symbol, market_type)
-                    if data is not None and len(data) >= self.min_training_samples:
-                        features = await self._extract_features(data)
-                        if features is not None:
-                            await self._train_on_history(features, data)
-                            logger.info(f"Retrained on {symbol}")
+                    if data is None or len(data) < self.min_training_samples:
+                        continue
+
+                    features = await self._extract_features(data)
+                    if features is None or features.empty:
+                        continue
+
+                    # Create target
+                    y = (data['close'].shift(-1) > data['close']).astype(int)
+                    y = y.loc[features.index[:-1]]
+                    X = features.iloc[:-1]
+
+                    if len(X) > 50:
+                        all_features.append(X)
+                        all_targets.append(y)
+                        symbols_used.append(symbol)
+                        logger.debug(f"Collected {len(X)} samples from {symbol}")
+
                 except (ConnectionError, ValueError) as e:
                     logger.debug(f"Retrain error for {symbol}: {e}")
+
+        if all_features:
+            await self._train_on_aggregated(all_features, all_targets, symbols_used)
 
         # Check if new model is better
         accuracy = self.model_manager.get_rolling_accuracy()

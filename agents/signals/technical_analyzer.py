@@ -15,6 +15,7 @@ try:
 except ImportError:
     PANDAS_TA_AVAILABLE = False
 
+from core.data_cache import get_data_cache
 from core.base_agent import BaseAgent, AgentMessage
 from core.models import Signal, SignalType, MarketType
 
@@ -111,28 +112,9 @@ class TechnicalAnalyzer(BaseAgent):
         }
 
     async def _fetch_data(self, symbol: str, market_type: str) -> Optional[pd.DataFrame]:
-        """Fetch data for analysis"""
-        try:
-            import yfinance as yf
-
-            # Adjust symbol format
-            if market_type == 'forex':
-                symbol = f"{symbol}=X"
-            elif market_type == 'crypto':
-                symbol = f"{symbol.replace('/', '-').replace('USDT', 'USD').replace('usdt', 'usd')}"
-
-            ticker = yf.Ticker(symbol)
-            df = ticker.history(period="3mo", interval="1d")
-
-            if df.empty:
-                return None
-
-            df.columns = [c.lower() for c in df.columns]
-            return df
-
-        except (ImportError, ConnectionError, ValueError) as e:
-            logger.debug(f"Error fetching data for {symbol}: {e}")
-            return None
+        """Fetch data for analysis via shared cache"""
+        cache = get_data_cache()
+        return await cache.get_history(symbol, market_type, '3mo', '1d')
 
     async def _analyze_trend(self, data: pd.DataFrame) -> float:
         """Analyze trend strength - returns score 0-1"""

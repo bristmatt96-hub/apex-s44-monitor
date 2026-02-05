@@ -9,11 +9,7 @@ import pandas as pd
 import numpy as np
 from loguru import logger
 
-try:
-    import yfinance as yf
-    YFINANCE_AVAILABLE = True
-except ImportError:
-    YFINANCE_AVAILABLE = False
+from core.data_cache import get_data_cache
 
 try:
     import pandas_ta as ta
@@ -71,27 +67,9 @@ class EquityScanner(BaseScanner):
         return universe
 
     async def fetch_data(self, symbol: str) -> Optional[pd.DataFrame]:
-        """Fetch OHLCV data from Yahoo Finance"""
-        if not YFINANCE_AVAILABLE:
-            logger.warning("yfinance not available")
-            return None
-
-        try:
-            ticker = yf.Ticker(symbol)
-            # Get 3 months of daily data + intraday
-            df = ticker.history(period="3mo", interval="1d")
-
-            if df.empty:
-                return None
-
-            # Standardize column names
-            df.columns = [c.lower() for c in df.columns]
-
-            return df
-
-        except Exception as e:
-            logger.error(f"Error fetching {symbol}: {e}")
-            return None
+        """Fetch OHLCV data via shared cache"""
+        cache = get_data_cache()
+        return await cache.get_history(symbol, 'equity', '3mo', '1d')
 
     async def analyze(self, symbol: str, data: pd.DataFrame) -> Optional[Signal]:
         """
