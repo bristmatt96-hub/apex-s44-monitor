@@ -149,6 +149,9 @@ class TechnicalAnalyzer(BaseAgent):
             ema50 = ta.ema(close, length=50)
             sma200 = ta.sma(close, length=200) if len(data) >= 200 else ta.sma(close, length=100)
 
+            if ema20 is None or ema50 is None or sma200 is None:
+                return 0.5
+
             # ADX for trend strength
             adx_data = ta.adx(high, low, close, length=14)
             adx = adx_data['ADX_14'].iloc[-1] if adx_data is not None else 20
@@ -193,16 +196,22 @@ class TechnicalAnalyzer(BaseAgent):
 
             # RSI
             rsi = ta.rsi(close, length=14)
+            if rsi is None:
+                return 0.5
             rsi_val = rsi.iloc[-1]
 
             # MACD
             macd_data = ta.macd(close)
+            if macd_data is None:
+                return 0.5
             macd = macd_data['MACD_12_26_9'].iloc[-1]
             macd_signal = macd_data['MACDs_12_26_9'].iloc[-1]
             macd_hist = macd_data['MACDh_12_26_9'].iloc[-1]
 
             # Stochastic
             stoch = ta.stoch(data['high'], data['low'], close)
+            if stoch is None:
+                return 0.5
             stoch_k = stoch['STOCHk_14_3_3'].iloc[-1]
             stoch_d = stoch['STOCHd_14_3_3'].iloc[-1]
 
@@ -230,7 +239,7 @@ class TechnicalAnalyzer(BaseAgent):
 
             # Momentum (rate of change)
             roc = ta.roc(close, length=10)
-            if roc.iloc[-1] > 0:
+            if roc is not None and roc.iloc[-1] > 0:
                 scores.append(0.1)
 
             return min(sum(scores), 1.0)
@@ -251,11 +260,15 @@ class TechnicalAnalyzer(BaseAgent):
 
             # ATR
             atr = ta.atr(high, low, close, length=14)
+            if atr is None:
+                return {'atr': 0, 'bb_width': 0, 'risk_score': 0.5}
             atr_val = atr.iloc[-1]
             atr_pct = atr_val / close.iloc[-1]
 
             # Bollinger Band width
             bb = ta.bbands(close, length=20)
+            if bb is None:
+                return {'atr': atr_val, 'bb_width': 0, 'risk_score': 0.5}
             bb_cols = bb.columns.tolist()
             bb_upper = bb[[c for c in bb_cols if c.startswith('BBU')][0]].iloc[-1]
             bb_lower = bb[[c for c in bb_cols if c.startswith('BBL')][0]].iloc[-1]
