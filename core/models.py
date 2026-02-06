@@ -60,11 +60,15 @@ class Signal:
     @property
     def expected_gain_pct(self) -> float:
         """Expected percentage gain if target hit"""
+        if self.signal_type == SignalType.SELL:
+            return ((self.entry_price - self.target_price) / self.entry_price) * 100
         return ((self.target_price - self.entry_price) / self.entry_price) * 100
 
     @property
     def expected_loss_pct(self) -> float:
         """Expected percentage loss if stop hit"""
+        if self.signal_type == SignalType.SELL:
+            return ((self.stop_loss - self.entry_price) / self.entry_price) * 100
         return ((self.entry_price - self.stop_loss) / self.entry_price) * 100
 
 

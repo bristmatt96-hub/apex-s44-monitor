@@ -115,14 +115,23 @@ class TradeExecutor(BaseAgent):
         elif message.msg_type == 'sync_positions':
             await self._sync_positions()
 
+    def _resolve_side(self, order: Dict) -> str:
+        """Derive trade side from order dict, falling back to signal_type"""
+        if side := order.get('side'):
+            return side
+        signal_type = order.get('signal_type', 'buy').lower()
+        if signal_type in ('sell', 'short', 'short_put', 'short_call'):
+            return 'sell'
+        return 'buy'
+
     async def _validate_order(self, order: Dict) -> bool:
         """Validate order before execution"""
         symbol = order.get('symbol')
         market_type = order.get('market_type')
-        side = order.get('side', 'buy')
+        side = self._resolve_side(order)
 
         # Check position limits
-        if len(self.positions) >= self.max_positions and side == 'buy':
+        if len(self.positions) >= self.max_positions:
             logger.warning(f"Max positions ({self.max_positions}) reached")
             return False
 
@@ -156,7 +165,7 @@ class TradeExecutor(BaseAgent):
         """Execute a trade order"""
         symbol = order.get('symbol')
         market_type = MarketType(order.get('market_type', 'equity'))
-        side = order.get('side', 'buy')
+        side = self._resolve_side(order)
         entry_price = order.get('entry_price', 0)
         stop_loss = order.get('stop_loss')
         target_price = order.get('target_price')

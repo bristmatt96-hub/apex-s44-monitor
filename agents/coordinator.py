@@ -160,7 +160,7 @@ class Coordinator(BaseAgent):
             if self.notifier:
                 await self.notifier.notify_trade_entry(
                     symbol=payload.get('symbol', ''),
-                    side=payload.get('side', 'buy'),
+                    side=payload.get('side') or ('sell' if payload.get('signal_type', '').lower() in ('sell', 'short', 'short_put', 'short_call') else 'buy'),
                     quantity=payload.get('quantity', 0),
                     entry_price=payload.get('entry_price', 0),
                     market_type=payload.get('market_type', 'unknown'),
@@ -211,7 +211,7 @@ class Coordinator(BaseAgent):
             if self.notifier:
                 await self.notifier.notify_trade_exit(
                     symbol=payload.get('symbol', ''),
-                    side=payload.get('side', 'buy'),
+                    side=payload.get('side') or ('sell' if payload.get('signal_type', '').lower() in ('sell', 'short', 'short_put', 'short_call') else 'buy'),
                     quantity=payload.get('quantity', 0),
                     entry_price=payload.get('entry_price', 0),
                     exit_price=payload.get('exit_price', 0),
