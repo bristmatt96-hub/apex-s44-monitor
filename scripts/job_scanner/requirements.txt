@@ -1,0 +1,17 @@
+# Core dependencies for Job Application Scanner
+# Install: pip install -r scripts/job_scanner/requirements.txt
+
+# PDF parsing (pick one — PyPDF2 is lighter)
+PyPDF2>=3.0.0
+
+# Word document parsing
+python-docx>=0.8.11
+
+# RTF parsing
+striprtf>=0.0.22
+
+# HTML text extraction (optional, improves HTML parsing)
+beautifulsoup4>=4.12.0
+
+# OpenDocument format (optional)
+odfpy>=1.4.1
