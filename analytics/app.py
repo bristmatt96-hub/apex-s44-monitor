@@ -8,6 +8,9 @@ Flask application serving all analytical tools:
   /dispersion        - Dispersion & Correlation Monitor
   /distressed        - Distressed / LME Monitor (iTraxx Crossover Universe)
   /ecb-lending       - ECB Lending Conditions Monitor
+  /equity-signals    - Equity-Implied Credit Signals (iTraxx Crossover)
+  /credit-cycle      - European Credit Cycle Dashboard (iTraxx Focus)
+  /fallen-angels     - Fallen Angel / Rising Star Screener (iTraxx Crossover)
 """
 
 from flask import Flask, render_template
@@ -32,6 +35,12 @@ def index():
          "desc": "iTraxx Crossover liquidity stress, cash burn & sector distress"},
         {"path": "/ecb-lending", "name": "ECB Lending Conditions Monitor",
          "desc": "BLS survey, NFC loan growth, sector production & country heatmap"},
+        {"path": "/equity-signals", "name": "Equity-Implied Credit Signals",
+         "desc": "iTraxx Crossover composite from Vol, Momentum, Drawdown, Leverage, Beta"},
+        {"path": "/credit-cycle", "name": "European Credit Cycle Dashboard",
+         "desc": "FRED-sourced regime classification: Expansion/Recovery/Downturn/Crisis"},
+        {"path": "/fallen-angels", "name": "Fallen Angel / Rising Star Screener",
+         "desc": "FA risk scoring, RS potential, component breakdowns & alert table"},
     ]
     return render_template("index.html", tools=tools)
 
@@ -43,6 +52,9 @@ from analytics.cross_asset_signals import signals_bp
 from analytics.dispersion_monitor import dispersion_bp
 from analytics.distressed_monitor import distressed_bp
 from analytics.ecb_lending import ecb_bp
+from analytics.equity_signals import equity_signals_bp
+from analytics.credit_cycle import credit_cycle_bp
+from analytics.fallen_angels import fallen_angels_bp
 
 app.register_blueprint(cds_bp)
 app.register_blueprint(backtest_bp)
@@ -50,6 +62,9 @@ app.register_blueprint(signals_bp)
 app.register_blueprint(dispersion_bp)
 app.register_blueprint(distressed_bp)
 app.register_blueprint(ecb_bp)
+app.register_blueprint(equity_signals_bp)
+app.register_blueprint(credit_cycle_bp)
+app.register_blueprint(fallen_angels_bp)
 
 
 if __name__ == "__main__":
