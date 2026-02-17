@@ -11,6 +11,10 @@ Flask application serving all analytical tools:
   /equity-signals    - Equity-Implied Credit Signals (iTraxx Crossover)
   /credit-cycle      - European Credit Cycle Dashboard (iTraxx Focus)
   /fallen-angels     - Fallen Angel / Rising Star Screener (iTraxx Crossover)
+  /risk-manager      - Portfolio Risk Manager
+  /fundamentals      - Fundamental Credit Analysis (iTraxx Crossover)
+  /maturity-wall     - HY Maturity Wall & Refinancing Dashboard
+  /relative-value    - Relative Value Analysis (iTraxx Crossover)
 """
 
 from flask import Flask, render_template
@@ -41,6 +45,14 @@ def index():
          "desc": "FRED-sourced regime classification: Expansion/Recovery/Downturn/Crisis"},
         {"path": "/fallen-angels", "name": "Fallen Angel / Rising Star Screener",
          "desc": "FA risk scoring, RS potential, component breakdowns & alert table"},
+        {"path": "/risk-manager", "name": "Portfolio Risk Manager",
+         "desc": "Greeks, risk limits, JTD, VaR/CVaR, stress tests, margin utilization"},
+        {"path": "/fundamentals", "name": "Fundamental Credit Analysis",
+         "desc": "Leverage, coverage, FCF/Debt, sector quality heatmap for 61 names"},
+        {"path": "/maturity-wall", "name": "HY Maturity Wall & Refinancing",
+         "desc": "US/EUR HY maturity walls, refi yields, stress scenarios, ICR, FA risk"},
+        {"path": "/relative-value", "name": "Relative Value Analysis",
+         "desc": "Rich/cheap scoring, Merton spreads, spread per leverage, sector RV"},
     ]
     return render_template("index.html", tools=tools)
 
@@ -55,6 +67,10 @@ from analytics.ecb_lending import ecb_bp
 from analytics.equity_signals import equity_signals_bp
 from analytics.credit_cycle import credit_cycle_bp
 from analytics.fallen_angels import fallen_angels_bp
+from analytics.risk_manager import risk_bp
+from analytics.fundamentals import fundamentals_bp
+from analytics.maturity_wall import maturity_bp
+from analytics.relative_value import rv_bp
 
 app.register_blueprint(cds_bp)
 app.register_blueprint(backtest_bp)
@@ -65,6 +81,10 @@ app.register_blueprint(ecb_bp)
 app.register_blueprint(equity_signals_bp)
 app.register_blueprint(credit_cycle_bp)
 app.register_blueprint(fallen_angels_bp)
+app.register_blueprint(risk_bp)
+app.register_blueprint(fundamentals_bp)
+app.register_blueprint(maturity_bp)
+app.register_blueprint(rv_bp)
 
 
 if __name__ == "__main__":
