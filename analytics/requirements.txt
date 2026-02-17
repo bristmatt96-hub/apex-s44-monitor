@@ -1,4 +1,4 @@
 flask>=3.0
 matplotlib>=3.8
-numpy>=1.24
-scipy>=1.11
+numpy>=1.26
+gunicorn>=21.2
