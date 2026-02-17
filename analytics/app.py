@@ -15,6 +15,8 @@ Flask application serving all analytical tools:
   /fundamentals      - Fundamental Credit Analysis (iTraxx Crossover)
   /maturity-wall     - HY Maturity Wall & Refinancing Dashboard
   /relative-value    - Relative Value Analysis (iTraxx Crossover)
+  /scenario-analysis - Scenario Analysis Engine
+  /tranche-strategy  - Tranche Strategy Engine
 """
 
 from flask import Flask, render_template
@@ -53,6 +55,10 @@ def index():
          "desc": "US/EUR HY maturity walls, refi yields, stress scenarios, ICR, FA risk"},
         {"path": "/relative-value", "name": "Relative Value Analysis",
          "desc": "Rich/cheap scoring, Merton spreads, spread per leverage, sector RV"},
+        {"path": "/scenario-analysis", "name": "Scenario Analysis Engine",
+         "desc": "Macro scenario P&L, probability-weighted returns, hedge effectiveness"},
+        {"path": "/tranche-strategy", "name": "Tranche Strategy Engine",
+         "desc": "P&L waterfall, signal dashboard, delta hedge, stress & carry analysis"},
     ]
     return render_template("index.html", tools=tools)
 
@@ -71,6 +77,8 @@ from analytics.risk_manager import risk_bp
 from analytics.fundamentals import fundamentals_bp
 from analytics.maturity_wall import maturity_bp
 from analytics.relative_value import rv_bp
+from analytics.scenario_analysis import scenario_bp
+from analytics.tranche_strategy import tranche_bp
 
 app.register_blueprint(cds_bp)
 app.register_blueprint(backtest_bp)
@@ -85,6 +93,8 @@ app.register_blueprint(risk_bp)
 app.register_blueprint(fundamentals_bp)
 app.register_blueprint(maturity_bp)
 app.register_blueprint(rv_bp)
+app.register_blueprint(scenario_bp)
+app.register_blueprint(tranche_bp)
 
 
 if __name__ == "__main__":
