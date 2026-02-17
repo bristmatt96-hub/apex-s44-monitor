@@ -46,29 +46,44 @@ PALETTE = [COLORS["cyan"], COLORS["purple"], COLORS["green"],
 
 
 def setup_dark_style():
-    """Apply APEX dark theme to matplotlib."""
+    """Apply APEX dark theme to matplotlib — modern terminal aesthetic."""
     plt.rcParams.update({
         "figure.facecolor": COLORS["bg"],
         "axes.facecolor": COLORS["panel"],
         "axes.edgecolor": COLORS["grid"],
-        "axes.labelcolor": COLORS["text"],
+        "axes.labelcolor": COLORS["text_dim"],
         "axes.grid": True,
+        "axes.linewidth": 0.4,
+        "axes.spines.top": False,
+        "axes.spines.right": False,
         "grid.color": COLORS["grid"],
-        "grid.alpha": 0.5,
+        "grid.alpha": 0.3,
+        "grid.linewidth": 0.4,
+        "grid.linestyle": "--",
         "text.color": COLORS["text"],
         "xtick.color": COLORS["text_dim"],
         "ytick.color": COLORS["text_dim"],
-        "legend.facecolor": COLORS["panel"],
-        "legend.edgecolor": COLORS["grid"],
-        "font.family": "sans-serif",
-        "font.size": 10,
+        "xtick.major.size": 0,
+        "ytick.major.size": 0,
+        "xtick.major.pad": 6,
+        "ytick.major.pad": 6,
+        "legend.facecolor": COLORS["bg"],
+        "legend.edgecolor": "none",
+        "legend.framealpha": 0.6,
+        "legend.fontsize": 7,
+        "font.family": "monospace",
+        "font.size": 9,
+        "lines.linewidth": 1.5,
+        "lines.antialiased": True,
+        "patch.linewidth": 0,
+        "savefig.pad_inches": 0.15,
     })
 
 
 def fig_to_base64(fig):
     """Convert matplotlib figure to base64 PNG for embedding in HTML."""
     buf = io.BytesIO()
-    fig.savefig(buf, format="png", dpi=150, bbox_inches="tight",
+    fig.savefig(buf, format="png", dpi=180, bbox_inches="tight",
                 facecolor=fig.get_facecolor(), edgecolor="none")
     buf.seek(0)
     b64 = base64.b64encode(buf.read()).decode("utf-8")
@@ -89,15 +104,21 @@ def make_figure(rows=2, cols=3, figsize=(18, 10), title=None):
 
 
 def style_ax(ax, title=None, xlabel=None, ylabel=None):
-    """Apply consistent styling to an axis."""
+    """Apply consistent styling to an axis — clean terminal look."""
     if title:
-        ax.set_title(title, fontsize=11, fontweight="bold",
-                     color=COLORS["text"], pad=8)
+        ax.set_title(title.upper(), fontsize=8, fontweight="bold",
+                     color=COLORS["cyan"], pad=10, loc="left")
     if xlabel:
-        ax.set_xlabel(xlabel, fontsize=9)
+        ax.set_xlabel(xlabel, fontsize=7.5, color=COLORS["text_dim"],
+                      labelpad=8)
     if ylabel:
-        ax.set_ylabel(ylabel, fontsize=9)
-    ax.tick_params(labelsize=8)
+        ax.set_ylabel(ylabel, fontsize=7.5, color=COLORS["text_dim"],
+                      labelpad=8)
+    ax.tick_params(labelsize=7, colors=COLORS["text_dim"])
+    # Ensure left/bottom spines are subtle
+    for spine in ("left", "bottom"):
+        ax.spines[spine].set_color(COLORS["grid"])
+        ax.spines[spine].set_linewidth(0.4)
 
 
 # ---------------------------------------------------------------------------
