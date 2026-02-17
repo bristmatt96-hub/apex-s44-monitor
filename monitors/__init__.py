@@ -1,27 +1,13 @@
 """
-Monitors module for Apex Credit Monitor
+Credit Catalyst - Monitor Layer
+
+Data ingestion monitors for credit-relevant information:
+- regulatory_filings: EU filings (RNS, Companies House, ESMA)
+- rating_actions: via ISDA agent and analyzer
+- credit_events: Covenant breaches, ISDA triggers
+- earnings: Earnings releases and SEC/EU filings
+- earnings_sentiment: Transcript NLP analysis
+- news_sentiment: Bond-moving news from RSS feeds
+- social_sentiment: Twitter/X credit chatter
+- market_data: CDS spreads, bond prices (via isda_news_checker)
 """
-
-from .equity_monitor import (
-    get_ticker_for_company,
-    get_all_public_tickers,
-    fetch_price_yfinance,
-    calculate_equity_signal,
-    scan_all_equities,
-    get_movers,
-    TradingViewWebhookHandler,
-    render_equity_dashboard,
-    YFINANCE_AVAILABLE
-)
-
-__all__ = [
-    'get_ticker_for_company',
-    'get_all_public_tickers',
-    'fetch_price_yfinance',
-    'calculate_equity_signal',
-    'scan_all_equities',
-    'get_movers',
-    'TradingViewWebhookHandler',
-    'render_equity_dashboard',
-    'YFINANCE_AVAILABLE'
-]

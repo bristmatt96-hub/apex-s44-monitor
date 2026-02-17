@@ -1,10 +1,31 @@
-# Core trading system components
-from .base_agent import BaseAgent, AgentMessage, AgentState
-from .broker import IBBroker
-from .models import Trade, Signal, Position, Opportunity
+"""
+Credit Catalyst - Core Infrastructure
+
+Shared models, configuration, caching, and database access.
+"""
+
+from core.config import settings
+from core.models import (
+    CreditEntity,
+    CreditSignal,
+    CreditPosition,
+    CreditAlert,
+    CDSSpread,
+    Direction,
+    Conviction,
+    RatingBucket,
+    AlertPriority,
+)
 
 __all__ = [
-    'BaseAgent', 'AgentMessage', 'AgentState',
-    'IBBroker',
-    'Trade', 'Signal', 'Position', 'Opportunity'
+    "settings",
+    "CreditEntity",
+    "CreditSignal",
+    "CreditPosition",
+    "CreditAlert",
+    "CDSSpread",
+    "Direction",
+    "Conviction",
+    "RatingBucket",
+    "AlertPriority",
 ]

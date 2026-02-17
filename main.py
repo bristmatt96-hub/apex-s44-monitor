@@ -1,17 +1,27 @@
 #!/usr/bin/env python3
 """
-APEX Trading System - Multi-Agent Trading Bot
-Aggressive risk/reward trading across all markets
+Credit Catalyst - Strategic Credit Analysis System
+
+Identifies mispriced credits in iTraxx Main and Crossover,
+outputs long/short/flat recommendations for single-name CDS,
+and analyses index tranches.
 
 Usage:
-    python main.py              # Start the trading system
-    python main.py --scan       # Run market scan only (no execution)
-    python main.py --status     # Show system status
+    python main.py                  # Show system status
+    python main.py --assess NAME    # Assess a single credit
+    python main.py --universe       # Assess full universe
+    python main.py --brief          # Generate morning brief
+    python main.py --rv             # Run relative value screen
+    python main.py --scenarios      # Run scenario analysis
+    python main.py --config         # Show configuration
 """
+
 import asyncio
 import argparse
+import json
 import signal
 import sys
+from pathlib import Path
 from datetime import datetime
 from loguru import logger
 
@@ -20,196 +30,194 @@ logger.remove()
 logger.add(
     sys.stderr,
     format="<green>{time:HH:mm:ss}</green> | <level>{level: <8}</level> | <cyan>{name}</cyan> - <level>{message}</level>",
-    level="INFO"
+    level="INFO",
 )
 logger.add(
-    "logs/trading_{time:YYYY-MM-DD}.log",
+    "logs/credit_catalyst_{time:YYYY-MM-DD}.log",
     rotation="1 day",
     retention="30 days",
-    level="DEBUG"
+    level="DEBUG",
 )
 
-from config.settings import config
-from agents.coordinator import Coordinator
-from agents.scanners import EquityScanner, CryptoScanner, ForexScanner, OptionsScanner, EdgarInsiderScanner, OptionsFlowScanner, SynthScanner
-from agents.scanners.credit_options_scanner import CreditOptionsScanner
-from agents.signals import TechnicalAnalyzer, MLPredictor, OpportunityRanker
-from agents.execution import TradeExecutor
+
+from core.config import settings
 
 
-class TradingSystem:
-    """Main trading system controller"""
+def load_universe() -> list:
+    """Load the credit universe from indices/xover_s44.json."""
+    xover_path = Path("indices/xover_s44.json")
+    if not xover_path.exists():
+        logger.warning("Index file not found: {}", xover_path)
+        return []
 
-    def __init__(self):
-        self.coordinator = Coordinator()
-        self.running = False
+    with open(xover_path) as f:
+        data = json.load(f)
 
-        # Initialize agents
-        self._setup_agents()
+    # Handle both list and dict formats
+    if isinstance(data, list):
+        return [item.get("name", item.get("entity", "")) for item in data if isinstance(item, dict)]
+    elif isinstance(data, dict):
+        return list(data.get("constituents", data.get("names", data)).keys()) if isinstance(
+            data.get("constituents", data.get("names", data)), dict
+        ) else data.get("constituents", data.get("names", []))
 
-    def _setup_agents(self):
-        """Set up all trading agents"""
-        # Market Scanners
-        if config.scanner.equities_enabled:
-            self.coordinator.register_agent(EquityScanner())
-
-        if config.scanner.crypto_enabled:
-            self.coordinator.register_agent(CryptoScanner())
-
-        if config.scanner.forex_enabled:
-            self.coordinator.register_agent(ForexScanner())
-
-        if config.scanner.options_enabled:
-            self.coordinator.register_agent(OptionsScanner())
-
-        # Event-Driven Scanners
-        self.coordinator.register_agent(EdgarInsiderScanner())
-
-        # Flow-Based Scanners
-        if config.scanner.options_enabled:
-            self.coordinator.register_agent(OptionsFlowScanner())
-
-        # Bittensor SN50 Synth API Scanner (liquidation predictions)
-        self.coordinator.register_agent(SynthScanner(use_testnet=True))
-
-        # Credit-to-Equity Scanner (THE EDGE - XO S44 credit signals)
-        self.coordinator.register_agent(CreditOptionsScanner())
-
-        # Signal Processing
-        self.coordinator.register_agent(TechnicalAnalyzer())
-        self.coordinator.register_agent(MLPredictor())
-        self.coordinator.register_agent(OpportunityRanker())
-
-        # Execution
-        self.coordinator.register_agent(TradeExecutor())
-
-        logger.info(f"Registered {len(self.coordinator.agents)} agents")
-
-    async def start(self, auto_execute: bool = False):
-        """Start the trading system"""
-        logger.info("=" * 60)
-        logger.info("APEX Trading System Starting")
-        logger.info(f"Capital: ${config.risk.starting_capital:,.2f}")
-        logger.info(f"Max Position: {config.risk.max_position_pct:.0%}")
-        logger.info(f"PDT Restricted: {config.pdt_restricted}")
-        logger.info(f"Auto-Execute: {auto_execute}")
-        logger.info("=" * 60)
-
-        self.coordinator.set_auto_execute(auto_execute)
-        self.running = True
-
-        # Start all agents
-        await self.coordinator.start_all_agents()
-
-        logger.info("All agents started - System is LIVE")
-
-        # Main loop
-        try:
-            while self.running:
-                await asyncio.sleep(10)
-                self._print_status()
-
-        except asyncio.CancelledError:
-            logger.info("Shutdown signal received")
-
-        finally:
-            await self.stop()
-
-    async def stop(self):
-        """Stop the trading system"""
-        logger.info("Stopping trading system...")
-        self.running = False
-        await self.coordinator.stop_all_agents()
-        logger.info("Trading system stopped")
-
-    def _print_status(self):
-        """Print current status"""
-        status = self.coordinator.get_status()
-
-        signals = status['signals']
-        trading = status['trading']
-
-        logger.info(
-            f"Status: Signals[raw:{signals['raw']}, analyzed:{signals['analyzed']}, ranked:{signals['ranked']}] | "
-            f"Positions: {trading['positions']} | "
-            f"Pending: {trading['pending_executions']}"
-        )
-
-        # Show top opportunities
-        top = self.coordinator.get_top_opportunities(3)
-        if top:
-            logger.info("Top Opportunities:")
-            for opp in top:
-                logger.info(
-                    f"  #{opp['rank']} {opp['symbol']} ({opp['market_type']}) - "
-                    f"Score: {opp['composite_score']:.2f}, R:R: {opp['risk_reward']:.1f}"
-                )
+    return []
 
 
-async def run_scan_only():
-    """Run a single market scan without trading"""
-    logger.info("Running market scan (no execution)...")
+async def assess_single(name: str):
+    """Assess a single credit name."""
+    from agents.analyst import CreditAnalyst
 
-    # Create scanners
-    scanners = [
-        EquityScanner(),
-        CryptoScanner(),
-        ForexScanner(),
-        EdgarInsiderScanner(),
-        OptionsFlowScanner()
-    ]
+    analyst = CreditAnalyst()
+    analyst.load_knowledge(max_chunks=30)
 
-    all_signals = []
+    logger.info("Assessing credit: {}", name)
+    assessment = await analyst.assess_credit(name)
 
-    for scanner in scanners:
-        await scanner.start()
-        await scanner.process()
-        all_signals.extend(scanner.signals_generated)
-        await scanner.stop()
+    print(f"\n{'='*60}")
+    print(f"CREDIT ASSESSMENT: {assessment.entity_name}")
+    print(f"{'='*60}")
+    print(f"Date:         {assessment.assessment_date}")
+    print(f"Credit Score: {assessment.credit_score:.0f}/100")
+    print(f"Fair Spread:  {assessment.fair_spread_bps:.0f}bps")
+    print(f"Direction:    {assessment.direction.upper()}")
+    print(f"Conviction:   {assessment.conviction}/5")
+    print(f"Rating:       {assessment.rating or 'N/A'}")
+    print(f"Sector:       {assessment.sector or 'N/A'}")
+    if assessment.risk_factors:
+        print(f"\nRisk Factors:")
+        for rf in assessment.risk_factors:
+            print(f"  - {rf}")
+    if assessment.catalysts:
+        print(f"\nCatalysts:")
+        for c in assessment.catalysts:
+            print(f"  - {c}")
+    print(f"\nSummary: {assessment.summary}")
+    print(f"{'='*60}\n")
 
-    # Display results
-    logger.info(f"\nScan complete - Found {len(all_signals)} signals:\n")
 
-    for signal in sorted(all_signals, key=lambda s: s.risk_reward_ratio, reverse=True)[:10]:
-        logger.info(
-            f"{signal.symbol:12} | {signal.market_type.value:8} | "
-            f"R:R: {signal.risk_reward_ratio:5.1f} | "
-            f"Conf: {signal.confidence:.0%} | "
-            f"Entry: ${signal.entry_price:.2f} | "
-            f"Target: ${signal.target_price:.2f} | "
-            f"Stop: ${signal.stop_loss:.2f}"
-        )
+async def assess_universe():
+    """Assess the full credit universe."""
+    from agents.analyst import CreditAnalyst
+    from agents.strategist import PortfolioStrategist
+
+    universe = load_universe()
+    if not universe:
+        logger.error("No names in universe")
+        return
+
+    analyst = CreditAnalyst()
+    analyst.load_knowledge(max_chunks=30)
+
+    logger.info("Assessing {} credits...", len(universe))
+    assessments = await analyst.assess_universe(universe)
+
+    # Portfolio-level view
+    strategist = PortfolioStrategist()
+    recommendation = await strategist.build_portfolio_view(assessments)
+
+    print(f"\n{'='*60}")
+    print(f"PORTFOLIO RECOMMENDATION")
+    print(f"{'='*60}")
+    print(f"Regime: {recommendation.regime} (confidence: {recommendation.regime_confidence:.0%})")
+    print(f"\nTop Longs (buy protection):")
+    for l in recommendation.top_longs[:5]:
+        print(f"  - {l.get('name', 'N/A')} (conviction: {l.get('conviction', 'N/A')})")
+    print(f"\nTop Shorts (sell protection):")
+    for s in recommendation.top_shorts[:5]:
+        print(f"  - {s.get('name', 'N/A')} (conviction: {s.get('conviction', 'N/A')})")
+    print(f"\n{recommendation.summary}")
+    print(f"{'='*60}\n")
+
+
+async def generate_brief():
+    """Generate and optionally send morning brief."""
+    from agents.briefing import BriefingAgent
+
+    briefer = BriefingAgent()
+    brief = await briefer.generate_morning_brief()
+
+    print(brief.replace("<b>", "").replace("</b>", "").replace("<i>", "").replace("</i>", ""))
+
+    # Send via Telegram if configured
+    if settings.telegram.is_configured:
+        sent = await briefer.send_morning_brief()
+        if sent:
+            logger.info("Morning brief sent via Telegram")
 
 
 def show_config():
-    """Display current configuration"""
-    print("\n" + "=" * 60)
-    print("APEX Trading System Configuration")
-    print("=" * 60)
-    print(f"\nCapital: ${config.risk.starting_capital:,.2f}")
-    print(f"Max Position Size: {config.risk.max_position_pct:.0%} (${config.risk.starting_capital * config.risk.max_position_pct:,.2f})")
-    print(f"Max Positions: {config.risk.max_positions}")
-    print(f"Max Daily Loss: {config.risk.max_daily_loss_pct:.0%}")
-    print(f"\nPDT Restricted: {config.pdt_restricted}")
-    print(f"Min Risk/Reward: {config.signals.min_risk_reward}:1")
-    print(f"Min Confidence: {config.signals.min_confidence:.0%}")
-    print(f"\nMarkets Enabled:")
-    print(f"  - Equities: {config.scanner.equities_enabled}")
-    print(f"  - Crypto: {config.scanner.crypto_enabled}")
-    print(f"  - Forex: {config.scanner.forex_enabled}")
-    print(f"  - Options: {config.scanner.options_enabled}")
-    print(f"\nIB Connection:")
-    print(f"  - Host: {config.ib.host}")
-    print(f"  - Port: {config.ib.port} (TWS Live=7496, Paper=7497, Gateway=4001/4002)")
-    print("=" * 60 + "\n")
+    """Display current configuration."""
+    print(f"\n{'='*60}")
+    print("Credit Catalyst Configuration")
+    print(f"{'='*60}")
+    print(f"\nLLM Model:    {settings.llm.model}")
+    print(f"Database:     {settings.database.url}")
+    print(f"Telegram:     {'configured' if settings.telegram.is_configured else 'not configured'}")
+    print(f"Debug:        {settings.debug}")
+    print(f"Log Level:    {settings.log_level}")
+    print(f"\nIndex Config:")
+    print(f"  iTraxx Main S{settings.indices.itraxx_main_series}: {settings.indices.itraxx_main_names} names")
+    print(f"  iTraxx Xover S{settings.indices.itraxx_xover_series}: {settings.indices.itraxx_xover_names} names")
+    print(f"\nAnalytics:")
+    print(f"  Recovery Rate: {settings.analytics.default_recovery_rate:.0%}")
+    print(f"  Discount Rate: {settings.analytics.default_discount_rate:.0%}")
+    print(f"  Scenarios:     {settings.analytics.scenario_count}")
+
+    # Show universe
+    universe = load_universe()
+    print(f"\nUniverse: {len(universe)} names loaded")
+
+    # Show snapshots
+    snapshots = list(Path("snapshots").glob("*.json")) if Path("snapshots").exists() else []
+    print(f"Snapshots: {len(snapshots)} credit profiles")
+
+    # Show knowledge base
+    kb_path = Path("knowledge/processed")
+    chunks = list(kb_path.glob("*.json")) if kb_path.exists() else []
+    print(f"Knowledge: {len(chunks)} chunks")
+
+    print(f"{'='*60}\n")
+
+
+def show_status():
+    """Show system status overview."""
+    print(f"\n{'='*60}")
+    print("Credit Catalyst - System Status")
+    print(f"{'='*60}")
+    print(f"Time: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+
+    # Check directories
+    dirs_status = {
+        "analytics": Path("analytics").exists(),
+        "agents": Path("agents").exists(),
+        "monitors": Path("monitors").exists(),
+        "knowledge": Path("knowledge").exists(),
+        "snapshots": Path("snapshots").exists(),
+        "data": Path("data").exists(),
+        "indices": Path("indices").exists(),
+        "app": Path("app").exists(),
+        "alerts": Path("alerts").exists(),
+    }
+
+    print("\nComponents:")
+    for name, exists in dirs_status.items():
+        status = "OK" if exists else "MISSING"
+        print(f"  {name:20s} [{status}]")
+
+    show_config()
 
 
 def main():
-    parser = argparse.ArgumentParser(description='APEX Multi-Agent Trading System')
-    parser.add_argument('--scan', action='store_true', help='Run market scan only (no execution)')
-    parser.add_argument('--config', action='store_true', help='Show configuration')
-    parser.add_argument('--auto', action='store_true', help='Enable auto-execution (DANGEROUS)')
-    parser.add_argument('--paper', action='store_true', help='Use paper trading port (7497)')
+    parser = argparse.ArgumentParser(
+        description="Credit Catalyst - Strategic Credit Analysis System"
+    )
+    parser.add_argument("--assess", type=str, metavar="NAME", help="Assess a single credit name")
+    parser.add_argument("--universe", action="store_true", help="Assess full credit universe")
+    parser.add_argument("--brief", action="store_true", help="Generate morning brief")
+    parser.add_argument("--rv", action="store_true", help="Run relative value screen")
+    parser.add_argument("--scenarios", action="store_true", help="Run scenario analysis")
+    parser.add_argument("--config", action="store_true", help="Show configuration")
 
     args = parser.parse_args()
 
@@ -217,30 +225,21 @@ def main():
         show_config()
         return
 
-    if args.paper:
-        config.ib.port = 7497  # Paper trading
-
-    if args.scan:
-        asyncio.run(run_scan_only())
+    if args.assess:
+        asyncio.run(assess_single(args.assess))
         return
 
-    # Create and run trading system
-    system = TradingSystem()
+    if args.universe:
+        asyncio.run(assess_universe())
+        return
 
-    # Handle shutdown gracefully
-    def signal_handler(sig, frame):
-        logger.info("Interrupt received, shutting down...")
-        system.running = False
+    if args.brief:
+        asyncio.run(generate_brief())
+        return
 
-    signal.signal(signal.SIGINT, signal_handler)
-    signal.signal(signal.SIGTERM, signal_handler)
-
-    # Run
-    try:
-        asyncio.run(system.start(auto_execute=args.auto))
-    except KeyboardInterrupt:
-        pass
+    # Default: show status
+    show_status()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
