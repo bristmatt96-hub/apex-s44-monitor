@@ -36,7 +36,7 @@ echo "Starting gunicorn on 0.0.0.0:$PORT..."
 cd "$REPO_DIR"
 nohup gunicorn \
     --bind 0.0.0.0:$PORT \
-    --workers 2 \
+    --workers 1 \
     --timeout 120 \
     --access-logfile /tmp/analytics-access.log \
     --error-logfile /tmp/analytics-error.log \
