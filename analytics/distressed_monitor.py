@@ -262,5 +262,6 @@ TEMPLATE = """
 
 @distressed_bp.route("/distressed")
 def distressed():
-    chart = generate_distressed_charts()
+    from analytics.chart_utils import chart_cache
+    chart = chart_cache.get_or_compute("distressed", generate_distressed_charts)
     return render_template_string(TEMPLATE, chart=chart)

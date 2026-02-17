@@ -368,5 +368,6 @@ TEMPLATE = """
 
 @tranche_bp.route("/tranche-strategy")
 def tranche_strategy():
-    chart = generate_tranche_charts()
+    from analytics.chart_utils import chart_cache
+    chart = chart_cache.get_or_compute("tranche-strategy", generate_tranche_charts)
     return render_template_string(TEMPLATE, chart=chart)

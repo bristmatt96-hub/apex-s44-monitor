@@ -343,8 +343,8 @@ TEMPLATE = """
 """
 
 
-@cds_bp.route("/hy-fair-value")
-def hy_fair_value():
+def compute_cds_chart():
+    """Full CDS chart computation (engines + charts) for caching."""
     main_engine = GaussianCopulaEngine(
         ITRAXX_MAIN["n_names"], ITRAXX_MAIN["avg_spread_bps"],
         ITRAXX_MAIN["recovery"], ITRAXX_MAIN["maturity"]
@@ -353,9 +353,13 @@ def hy_fair_value():
         ITRAXX_XOVER["n_names"], ITRAXX_XOVER["avg_spread_bps"],
         ITRAXX_XOVER["recovery"], ITRAXX_XOVER["maturity"]
     )
-
     main_results = main_engine.price_all_tranches(ITRAXX_MAIN["tranches"])
     xover_results = xover_engine.price_all_tranches(ITRAXX_XOVER["tranches"])
+    return generate_cds_charts(main_results, xover_results, main_engine, xover_engine)
 
-    chart = generate_cds_charts(main_results, xover_results, main_engine, xover_engine)
+
+@cds_bp.route("/hy-fair-value")
+def hy_fair_value():
+    from analytics.chart_utils import chart_cache
+    chart = chart_cache.get_or_compute("hy-fair-value", compute_cds_chart)
     return render_template_string(TEMPLATE, chart=chart)

@@ -1,15 +1,24 @@
 """
 Shared chart utilities for all analytics modules.
 Dark-themed matplotlib helpers matching the APEX visual style.
+
+Includes ChartCache for TTL-based caching, stale-while-revalidate,
+and background pre-computation of all analytics charts.
 """
 
 import io
+import time
 import base64
+import logging
+import threading
+from concurrent.futures import ThreadPoolExecutor
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import matplotlib.ticker as mticker
 import numpy as np
+
+logger = logging.getLogger(__name__)
 
 
 # APEX dark theme colors
@@ -89,3 +98,106 @@ def style_ax(ax, title=None, xlabel=None, ylabel=None):
     if ylabel:
         ax.set_ylabel(ylabel, fontsize=9)
     ax.tick_params(labelsize=8)
+
+
+# ---------------------------------------------------------------------------
+# Chart cache with TTL, stale-while-revalidate, and background workers
+# ---------------------------------------------------------------------------
+class ChartCache:
+    """
+    In-memory chart cache with TTL and background refresh.
+
+    - Fresh cache hit: return immediately (zero compute cost)
+    - Stale cache hit: return stale data, refresh in background thread
+    - Cache miss: compute synchronously (first request only)
+    """
+
+    def __init__(self, ttl=300, max_workers=2):
+        self._cache = {}       # {name: {"data": str, "expires": float}}
+        self._lock = threading.Lock()
+        self._executor = ThreadPoolExecutor(
+            max_workers=max_workers, thread_name_prefix="chart-worker")
+        self._refreshing = set()
+        self.ttl = ttl
+
+    def get(self, name):
+        """Get cached chart data, or None if not cached."""
+        with self._lock:
+            entry = self._cache.get(name)
+            return entry["data"] if entry else None
+
+    def is_fresh(self, name):
+        """Check if cache entry is still within TTL."""
+        with self._lock:
+            entry = self._cache.get(name)
+            return bool(entry and time.time() < entry["expires"])
+
+    def set(self, name, data):
+        """Store chart data with TTL."""
+        with self._lock:
+            self._cache[name] = {
+                "data": data,
+                "expires": time.time() + self.ttl,
+            }
+            self._refreshing.discard(name)
+
+    def get_or_compute(self, name, generate_fn):
+        """
+        Get cached chart, computing if needed.
+
+        - Fresh: return immediately
+        - Stale: return stale data, refresh in background
+        - Miss: compute synchronously (first request)
+        """
+        if self.is_fresh(name):
+            return self.get(name)
+
+        cached = self.get(name)
+        if cached is not None:
+            self._refresh_in_background(name, generate_fn)
+            return cached
+
+        # No cache — compute synchronously
+        data = generate_fn()
+        self.set(name, data)
+        return data
+
+    def _refresh_in_background(self, name, generate_fn):
+        """Submit background refresh if not already in progress."""
+        with self._lock:
+            if name in self._refreshing:
+                return
+            self._refreshing.add(name)
+
+        def _do_refresh():
+            try:
+                data = generate_fn()
+                self.set(name, data)
+                logger.info("Chart cache refreshed: %s", name)
+            except Exception:
+                logger.exception("Chart cache refresh failed: %s", name)
+                with self._lock:
+                    self._refreshing.discard(name)
+
+        self._executor.submit(_do_refresh)
+
+    def precompute_all(self, generators):
+        """
+        Pre-compute all charts in background threads.
+        generators: dict of {name: generate_fn}
+        """
+        for name, fn in generators.items():
+            self._executor.submit(self._precompute_one, name, fn)
+
+    def _precompute_one(self, name, generate_fn):
+        """Compute and cache a single chart."""
+        try:
+            data = generate_fn()
+            self.set(name, data)
+            logger.info("Chart pre-computed: %s", name)
+        except Exception:
+            logger.exception("Chart pre-computation failed: %s", name)
+
+
+# Global cache instance — 5 min TTL, 2 background workers
+chart_cache = ChartCache(ttl=300, max_workers=2)

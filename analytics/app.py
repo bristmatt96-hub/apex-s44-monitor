@@ -19,8 +19,13 @@ Flask application serving all analytical tools:
   /tranche-strategy  - Tranche Strategy Engine
 """
 
+import logging
+import threading
+import time
+
 from flask import Flask, render_template
-import os
+
+logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
 
@@ -95,6 +100,68 @@ app.register_blueprint(maturity_bp)
 app.register_blueprint(rv_bp)
 app.register_blueprint(scenario_bp)
 app.register_blueprint(tranche_bp)
+
+
+# ---------------------------------------------------------------------------
+# Chart pre-computation — warm cache on startup, refresh every 5 minutes
+# ---------------------------------------------------------------------------
+def _get_chart_generators():
+    """Registry of all chart generator functions keyed by route name."""
+    from analytics.cds_pricer import compute_cds_chart
+    from analytics.backtest_engine import generate_backtest_charts
+    from analytics.cross_asset_signals import generate_signal_charts
+    from analytics.dispersion_monitor import generate_dispersion_charts
+    from analytics.distressed_monitor import generate_distressed_charts
+    from analytics.ecb_lending import generate_ecb_charts
+    from analytics.equity_signals import generate_equity_signal_charts
+    from analytics.credit_cycle import generate_credit_cycle_charts
+    from analytics.fallen_angels import generate_fallen_angel_charts
+    from analytics.risk_manager import generate_risk_charts
+    from analytics.fundamentals import generate_fundamentals_charts
+    from analytics.maturity_wall import generate_maturity_charts
+    from analytics.relative_value import generate_rv_charts
+    from analytics.scenario_analysis import generate_scenario_charts
+    from analytics.tranche_strategy import generate_tranche_charts
+
+    return {
+        "hy-fair-value": compute_cds_chart,
+        "backtest": generate_backtest_charts,
+        "signals": generate_signal_charts,
+        "dispersion": generate_dispersion_charts,
+        "distressed": generate_distressed_charts,
+        "ecb-lending": generate_ecb_charts,
+        "equity-signals": generate_equity_signal_charts,
+        "credit-cycle": generate_credit_cycle_charts,
+        "fallen-angels": generate_fallen_angel_charts,
+        "risk-manager": generate_risk_charts,
+        "fundamentals": generate_fundamentals_charts,
+        "maturity-wall": generate_maturity_charts,
+        "relative-value": generate_rv_charts,
+        "scenario-analysis": generate_scenario_charts,
+        "tranche-strategy": generate_tranche_charts,
+    }
+
+
+def _precompute_loop(interval=300):
+    """Background loop that pre-computes all charts on a schedule."""
+    from analytics.chart_utils import chart_cache
+
+    # Initial warm-up
+    generators = _get_chart_generators()
+    logger.info("Pre-computing %d analytics charts...", len(generators))
+    chart_cache.precompute_all(generators)
+
+    # Refresh loop
+    while True:
+        time.sleep(interval)
+        logger.info("Refreshing analytics chart cache...")
+        chart_cache.precompute_all(generators)
+
+
+# Start background pre-computation thread (daemon so it dies with the app)
+_precompute_thread = threading.Thread(
+    target=_precompute_loop, daemon=True, name="chart-precompute")
+_precompute_thread.start()
 
 
 if __name__ == "__main__":

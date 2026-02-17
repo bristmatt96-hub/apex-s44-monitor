@@ -218,5 +218,6 @@ TEMPLATE = """
 
 @dispersion_bp.route("/dispersion")
 def dispersion():
-    chart = generate_dispersion_charts()
+    from analytics.chart_utils import chart_cache
+    chart = chart_cache.get_or_compute("dispersion", generate_dispersion_charts)
     return render_template_string(TEMPLATE, chart=chart)

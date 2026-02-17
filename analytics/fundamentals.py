@@ -367,5 +367,6 @@ TEMPLATE = """
 
 @fundamentals_bp.route("/fundamentals")
 def fundamentals():
-    chart = generate_fundamentals_charts()
+    from analytics.chart_utils import chart_cache
+    chart = chart_cache.get_or_compute("fundamentals", generate_fundamentals_charts)
     return render_template_string(TEMPLATE, chart=chart)

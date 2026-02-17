@@ -381,5 +381,6 @@ TEMPLATE = """
 
 @credit_cycle_bp.route("/credit-cycle")
 def credit_cycle():
-    chart = generate_credit_cycle_charts()
+    from analytics.chart_utils import chart_cache
+    chart = chart_cache.get_or_compute("credit-cycle", generate_credit_cycle_charts)
     return render_template_string(TEMPLATE, chart=chart)

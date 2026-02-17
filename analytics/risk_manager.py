@@ -353,5 +353,6 @@ TEMPLATE = """
 
 @risk_bp.route("/risk-manager")
 def risk_manager():
-    chart = generate_risk_charts()
+    from analytics.chart_utils import chart_cache
+    chart = chart_cache.get_or_compute("risk-manager", generate_risk_charts)
     return render_template_string(TEMPLATE, chart=chart)

@@ -327,5 +327,6 @@ TEMPLATE = """
 
 @rv_bp.route("/relative-value")
 def relative_value():
-    chart = generate_rv_charts()
+    from analytics.chart_utils import chart_cache
+    chart = chart_cache.get_or_compute("relative-value", generate_rv_charts)
     return render_template_string(TEMPLATE, chart=chart)

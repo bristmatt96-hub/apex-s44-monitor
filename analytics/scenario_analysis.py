@@ -282,5 +282,6 @@ TEMPLATE = """
 
 @scenario_bp.route("/scenario-analysis")
 def scenario_analysis():
-    chart = generate_scenario_charts()
+    from analytics.chart_utils import chart_cache
+    chart = chart_cache.get_or_compute("scenario-analysis", generate_scenario_charts)
     return render_template_string(TEMPLATE, chart=chart)

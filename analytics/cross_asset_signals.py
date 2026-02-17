@@ -247,5 +247,6 @@ TEMPLATE = """
 
 @signals_bp.route("/signals")
 def signals():
-    chart = generate_signal_charts()
+    from analytics.chart_utils import chart_cache
+    chart = chart_cache.get_or_compute("signals", generate_signal_charts)
     return render_template_string(TEMPLATE, chart=chart)

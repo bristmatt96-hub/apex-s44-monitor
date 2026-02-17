@@ -371,5 +371,6 @@ TEMPLATE = """
 
 @ecb_bp.route("/ecb-lending")
 def ecb_lending():
-    chart = generate_ecb_charts()
+    from analytics.chart_utils import chart_cache
+    chart = chart_cache.get_or_compute("ecb-lending", generate_ecb_charts)
     return render_template_string(TEMPLATE, chart=chart)

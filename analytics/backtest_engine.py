@@ -163,5 +163,6 @@ TEMPLATE = """
 
 @backtest_bp.route("/backtest")
 def backtest():
-    chart = generate_backtest_charts()
+    from analytics.chart_utils import chart_cache
+    chart = chart_cache.get_or_compute("backtest", generate_backtest_charts)
     return render_template_string(TEMPLATE, chart=chart)

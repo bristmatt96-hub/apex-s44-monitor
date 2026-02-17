@@ -384,5 +384,6 @@ TEMPLATE = """
 
 @fallen_angels_bp.route("/fallen-angels")
 def fallen_angels():
-    chart = generate_fallen_angel_charts()
+    from analytics.chart_utils import chart_cache
+    chart = chart_cache.get_or_compute("fallen-angels", generate_fallen_angel_charts)
     return render_template_string(TEMPLATE, chart=chart)

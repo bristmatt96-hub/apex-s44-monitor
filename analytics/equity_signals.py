@@ -329,5 +329,6 @@ TEMPLATE = """
 
 @equity_signals_bp.route("/equity-signals")
 def equity_signals():
-    chart = generate_equity_signal_charts()
+    from analytics.chart_utils import chart_cache
+    chart = chart_cache.get_or_compute("equity-signals", generate_equity_signal_charts)
     return render_template_string(TEMPLATE, chart=chart)

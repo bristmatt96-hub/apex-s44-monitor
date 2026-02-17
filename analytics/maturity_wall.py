@@ -310,5 +310,6 @@ TEMPLATE = """
 
 @maturity_bp.route("/maturity-wall")
 def maturity_wall():
-    chart = generate_maturity_charts()
+    from analytics.chart_utils import chart_cache
+    chart = chart_cache.get_or_compute("maturity-wall", generate_maturity_charts)
     return render_template_string(TEMPLATE, chart=chart)
