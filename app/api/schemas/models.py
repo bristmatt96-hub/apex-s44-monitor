@@ -1,5 +1,5 @@
 """
-Pydantic schemas for Dashboard API
+Pydantic schemas for Credit Catalyst API
 """
 from pydantic import BaseModel
 from typing import List, Optional, Dict, Any
@@ -7,102 +7,120 @@ from datetime import datetime
 from enum import Enum
 
 
-class MarketType(str, Enum):
-    EQUITY = "equity"
-    CRYPTO = "crypto"
-    FOREX = "forex"
-    OPTIONS = "options"
+class Direction(str, Enum):
+    LONG = "long"
+    SHORT = "short"
+    FLAT = "flat"
 
 
-class PositionResponse(BaseModel):
-    """Position data for dashboard"""
-    symbol: str
-    market_type: str
-    quantity: float
-    entry_price: float
-    current_price: float
-    entry_time: datetime
-    stop_loss: Optional[float] = None
-    take_profit: Optional[float] = None
-    unrealized_pnl: float
-    unrealized_pnl_pct: float
-    market_value: float
-    reasoning: List[str] = []
-    composite_score: Optional[float] = None
-    strategy: Optional[str] = None
-
-    class Config:
-        from_attributes = True
+class Conviction(str, Enum):
+    HIGH = "high"
+    MEDIUM = "medium"
+    LOW = "low"
 
 
-class PositionDetailResponse(PositionResponse):
-    """Position with thesis history for drill-down"""
-    thesis_history: List["ThesisEvent"] = []
+# ── Credit Assessment ────────────────────────────────────────────
+
+class CreditAssessmentResponse(BaseModel):
+    entity_name: str
+    assessment_date: str
+    credit_score: float
+    fair_spread_bps: float
+    direction: str
+    conviction: int
+    rating: Optional[str] = None
+    sector: Optional[str] = None
+    summary: str = ""
+    risk_factors: List[str] = []
+    catalysts: List[str] = []
 
 
-class ThesisEvent(BaseModel):
-    """A point in the thesis evolution timeline"""
-    timestamp: datetime
-    event_type: str  # 'entry', 'score_update', 'confluence_added', 'stop_adjusted'
-    reasoning: List[str]
-    composite_score: float
-    confidence: float
-    notes: Optional[str] = None
+class UniverseOverviewResponse(BaseModel):
+    total_names: int
+    assessed: int
+    longs: int
+    shorts: int
+    flats: int
+    avg_score: float
+    assessments: List[CreditAssessmentResponse] = []
 
 
-class PnLSummary(BaseModel):
-    """P&L summary for dashboard"""
-    daily_pnl: float
-    daily_pnl_pct: float
-    ytd_pnl: float
-    ytd_pnl_pct: float
-    realized_today: float
-    unrealized_today: float
-    total_positions: int
-    winning_positions: int
-    losing_positions: int
+# ── Relative Value ───────────────────────────────────────────────
+
+class RVScoreResponse(BaseModel):
+    entity_name: str
+    current_spread_bps: float
+    fair_spread_bps: float
+    rv_score: float
+    signal: str   # "RICH", "CHEAP", "FAIR"
+    sector: str = ""
+    z_score: Optional[float] = None
 
 
-class OpportunityResponse(BaseModel):
-    """Ranked opportunity for dashboard"""
-    symbol: str
-    market_type: str
-    signal_type: str
-    composite_score: float
-    risk_reward: float
-    confidence: float
-    entry_price: float
-    target_price: float
-    stop_loss: float
-    rank: int
-    reasoning: List[str] = []
-    strategy: Optional[str] = None
+class RVScreenResponse(BaseModel):
+    count: int
+    scores: List[RVScoreResponse]
 
 
-class SystemStatus(BaseModel):
-    """System health status"""
-    state: str
-    trading_enabled: bool
-    auto_execute: bool
-    agents_active: int
-    signals_raw: int
-    signals_analyzed: int
-    signals_ranked: int
-    positions_count: int
-    pending_trades: int
+# ── Scenario Analysis ────────────────────────────────────────────
+
+class ScenarioResultResponse(BaseModel):
+    scenario_name: str
+    probability: float
+    total_pnl: float
+    worst_position: str
+    position_pnls: Dict[str, float] = {}
+
+
+class ScenarioAnalysisResponse(BaseModel):
+    position_count: int
+    scenarios: List[ScenarioResultResponse]
+    weighted_expected_pnl: float
+
+
+# ── Risk Metrics ─────────────────────────────────────────────────
+
+class RiskMetricsResponse(BaseModel):
+    total_dv01: float
+    total_cs01: float
+    spread_var_95: float
+    spread_var_99: float
+    expected_shortfall: float
+    jump_to_default_worst: float
+    position_count: int
+
+
+# ── Fundamental ──────────────────────────────────────────────────
+
+class FundamentalResponse(BaseModel):
+    entity_name: str
+    fundamental_score: float
+    playbook: str
+    sponsor: Optional[str] = None
+    sponsor_aggression: int = 0
+    maturity_risk: Optional[str] = None
+    leverage: Optional[float] = None
+    interest_coverage: Optional[float] = None
+    reasoning: str = ""
+    risk_factors: List[str] = []
+
+
+# ── System ───────────────────────────────────────────────────────
+
+class HealthResponse(BaseModel):
+    status: str
+    service: str
+    version: str
+    timestamp: str
+    components: Dict[str, bool] = {}
 
 
 class WebSocketMessage(BaseModel):
-    """WebSocket message format"""
     event: str
     data: Dict[str, Any]
     timestamp: datetime = None
 
     def __init__(self, **data):
-        if 'timestamp' not in data:
-            data['timestamp'] = datetime.now()
+        if "timestamp" not in data:
+            data["timestamp"] = datetime.now()
         super().__init__(**data)
-
-
-# Update forward references
-PositionDetailResponse.model_rebuild()

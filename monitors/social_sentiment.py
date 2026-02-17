@@ -4,7 +4,6 @@ Monitors trusted accounts for credit-relevant signals
 Sends Telegram alerts for high-priority credit tweets
 """
 
-import streamlit as st
 import tweepy
 import os
 import json
@@ -15,13 +14,13 @@ from datetime import datetime, timedelta
 from pathlib import Path
 from typing import List, Dict, Optional, Set
 
-# Load secrets
-TWITTER_BEARER_TOKEN = st.secrets.get("TWITTER_BEARER_TOKEN", st.secrets.get("Bearer token", os.environ.get("TWITTER_BEARER_TOKEN", "")))
-TELEGRAM_BOT_TOKEN = st.secrets.get("TELEGRAM_BOT_TOKEN", os.environ.get("TELEGRAM_BOT_TOKEN", ""))
-TELEGRAM_CHAT_ID = st.secrets.get("TELEGRAM_CHAT_ID", os.environ.get("TELEGRAM_CHAT_ID", ""))
+# Load secrets from environment
+TWITTER_BEARER_TOKEN = os.environ.get("TWITTER_BEARER_TOKEN", "")
+TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "")
+TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID", "")
 
 # Config directory
-CONFIG_DIR = Path(__file__).parent.parent / "config"
+CONFIG_DIR = Path(__file__).parent.parent / "data"
 SEEN_TWEETS_FILE = CONFIG_DIR / "seen_tweets.json"
 CUSTOM_ACCOUNTS_FILE = CONFIG_DIR / "credit_twitter_accounts.json"
 

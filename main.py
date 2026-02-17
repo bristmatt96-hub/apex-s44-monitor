@@ -13,6 +13,8 @@ Usage:
     python main.py --brief          # Generate morning brief
     python main.py --rv             # Run relative value screen
     python main.py --scenarios      # Run scenario analysis
+    python main.py --report         # Generate Excel report
+    python main.py --server         # Start API server
     python main.py --config         # Show configuration
 """
 
@@ -146,6 +148,133 @@ async def generate_brief():
             logger.info("Morning brief sent via Telegram")
 
 
+async def run_relative_value():
+    """Run relative value screen across the universe."""
+    from analytics.relative_value import compute_rv_score, rank_universe
+
+    universe = load_universe()
+    if not universe:
+        logger.error("No names in universe")
+        return
+
+    # Load snapshots for spread data
+    snapshots_dir = Path("snapshots")
+    scores = []
+    for name in universe:
+        # Try to find snapshot
+        spread = 0.0
+        fair = 0.0
+        sector = ""
+        for f in snapshots_dir.glob("*.json"):
+            try:
+                with open(f) as fh:
+                    data = json.load(fh)
+                if data.get("company_name", "").lower() == name.lower() or name.lower() in f.stem.lower():
+                    spread = data.get("cds_spread_bps", data.get("spread_bps", 0.0))
+                    fair = data.get("fair_spread_bps", spread * 0.95)
+                    sector = data.get("sector", "")
+                    break
+            except Exception:
+                continue
+
+        if spread > 0:
+            score = compute_rv_score(
+                current_spread_bps=spread,
+                fair_spread_bps=fair,
+                sector=sector,
+                entity_name=name,
+            )
+            scores.append(score)
+
+    if not scores:
+        logger.warning("No spread data found in snapshots — using placeholder data")
+        print("No CDS spread data available in snapshots. Populate spread_bps fields to enable RV screening.")
+        return
+
+    ranked = rank_universe(scores)
+
+    print(f"\n{'='*80}")
+    print(f"RELATIVE VALUE SCREEN — {len(ranked)} names")
+    print(f"{'='*80}")
+    print(f"{'Name':<30} {'Spread':>8} {'Fair':>8} {'RV Score':>10} {'Signal':>8} {'Sector':<15}")
+    print("-" * 80)
+    for s in ranked[:20]:
+        print(
+            f"{s.entity_name:<30} {s.current_spread_bps:>7.0f} {s.fair_spread_bps:>7.0f} "
+            f"{s.rv_score:>+9.1f} {s.signal:>8} {s.sector:<15}"
+        )
+    print(f"{'='*80}\n")
+
+
+async def run_scenarios():
+    """Run scenario analysis on sample positions."""
+    from analytics.scenario_analysis import SCENARIOS, run_all_scenarios
+
+    # Build positions from snapshots
+    snapshots_dir = Path("snapshots")
+    positions = []
+    for f in sorted(snapshots_dir.glob("*.json"))[:20]:  # Top 20 for display
+        try:
+            with open(f) as fh:
+                data = json.load(fh)
+            name = data.get("company_name", f.stem)
+            spread = data.get("cds_spread_bps", data.get("spread_bps", 0.0))
+            rating = data.get("ratings", {}).get("composite", "B")
+            if spread > 0:
+                positions.append({
+                    "entity_name": name,
+                    "rating": rating,
+                    "spread_bps": spread,
+                    "notional": 10_000_000.0,
+                    "direction": "flat",
+                })
+        except Exception:
+            continue
+
+    if not positions:
+        logger.warning("No position data available from snapshots")
+        print("No CDS spread data in snapshots. Populate spread_bps to enable scenario analysis.")
+        return
+
+    results = run_all_scenarios(positions)
+
+    print(f"\n{'='*80}")
+    print(f"SCENARIO ANALYSIS — {len(positions)} positions")
+    print(f"{'='*80}")
+    print(f"{'Scenario':<30} {'Probability':>12} {'Total P&L':>15} {'Worst Name':<20}")
+    print("-" * 80)
+    for r in results:
+        scenario = next((s for s in SCENARIOS if s.name == r.scenario_name), None)
+        prob_str = f"{scenario.probability:.0%}" if scenario else "N/A"
+        print(
+            f"{r.scenario_name:<30} {prob_str:>12} "
+            f"${r.total_pnl:>+14,.0f} {r.worst_position:<20}"
+        )
+    print(f"{'='*80}\n")
+
+    # Weighted expected P&L
+    weighted_pnl = sum(
+        r.total_pnl * next((s.probability for s in SCENARIOS if s.name == r.scenario_name), 0)
+        for r in results
+    )
+    print(f"Probability-weighted expected P&L: ${weighted_pnl:+,.0f}\n")
+
+
+def generate_excel_report():
+    """Generate Excel report with all analytics."""
+    from app.excel.report import generate_report
+    path = generate_report()
+    if path:
+        print(f"Excel report generated: {path}")
+
+
+def start_server():
+    """Start the FastAPI API server."""
+    import uvicorn
+    logger.info("Starting Credit Catalyst API server on port 8000...")
+    uvicorn.run("app.api.main:app", host="0.0.0.0", port=8000, log_level="info")
+
+
 def show_config():
     """Display current configuration."""
     print(f"\n{'='*60}")
@@ -217,6 +346,8 @@ def main():
     parser.add_argument("--brief", action="store_true", help="Generate morning brief")
     parser.add_argument("--rv", action="store_true", help="Run relative value screen")
     parser.add_argument("--scenarios", action="store_true", help="Run scenario analysis")
+    parser.add_argument("--report", action="store_true", help="Generate Excel report")
+    parser.add_argument("--server", action="store_true", help="Start API server (default port 8000)")
     parser.add_argument("--config", action="store_true", help="Show configuration")
 
     args = parser.parse_args()
@@ -235,6 +366,22 @@ def main():
 
     if args.brief:
         asyncio.run(generate_brief())
+        return
+
+    if args.rv:
+        asyncio.run(run_relative_value())
+        return
+
+    if args.scenarios:
+        asyncio.run(run_scenarios())
+        return
+
+    if args.report:
+        generate_excel_report()
+        return
+
+    if args.server:
+        start_server()
         return
 
     # Default: show status

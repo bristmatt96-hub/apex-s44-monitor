@@ -4,7 +4,6 @@ Scans RSS feeds and scores headlines for potential price impact
 Sends Telegram alerts for high-impact news
 """
 
-import streamlit as st
 import os
 import json
 import requests
@@ -16,18 +15,11 @@ from pathlib import Path
 from typing import List, Dict, Optional, Set
 import hashlib
 
-# Helper function to safely get secrets
-def get_secret(key, default=""):
-    try:
-        return st.secrets.get(key, os.environ.get(key, default))
-    except Exception:
-        return os.environ.get(key, default)
-
-# Load secrets
-TELEGRAM_BOT_TOKEN = get_secret("TELEGRAM_BOT_TOKEN", "")
-TELEGRAM_CHAT_ID = get_secret("TELEGRAM_CHAT_ID", "")
-OPENAI_API_KEY = get_secret("OPENAI_API_KEY", "")
-ANTHROPIC_API_KEY = get_secret("ANTHROPIC_API_KEY", "")
+# Load secrets from environment
+TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "")
+TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID", "")
+OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY", "")
+ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 
 # Try to import LLM libraries
 OPENAI_AVAILABLE = False

@@ -1,2 +1,2 @@
 # Services package
-from .coordinator_bridge import get_bridge, CoordinatorBridge
+from .coordinator_bridge import get_service, CreditDataService

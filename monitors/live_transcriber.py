@@ -4,7 +4,7 @@ Real-time streaming transcription with live distress keyword detection
 Analyze while the call is happening - don't wait for it to end
 """
 
-import streamlit as st
+
 import threading
 import queue
 import time

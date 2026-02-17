@@ -16,13 +16,7 @@ import feedparser
 TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "")
 TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID", "")
 
-# Try to load from Streamlit secrets
-try:
-    import streamlit as st
-    TELEGRAM_BOT_TOKEN = st.secrets.get("TELEGRAM_BOT_TOKEN", TELEGRAM_BOT_TOKEN)
-    TELEGRAM_CHAT_ID = st.secrets.get("TELEGRAM_CHAT_ID", TELEGRAM_CHAT_ID)
-except:
-    pass
+# Secrets loaded from environment variables above
 
 # Paths
 SNAPSHOTS_DIR = Path(__file__).parent.parent / "snapshots"
