@@ -49,10 +49,7 @@ No markdown, no explanation, no code fences. Just the JSON object."""
 
 def get_knowledge_context(entity_name: str, index: str) -> str:
     """Query the knowledge base for relevant credit analysis context."""
-    try:
-        retriever = KnowledgeRetriever(knowledge_path="trading_knowledge")
-    except Exception:
-        retriever = KnowledgeRetriever(knowledge_path="knowledge")
+    retriever = KnowledgeRetriever(knowledge_path="knowledge")
 
     queries = [
         f"{entity_name} credit analysis CDS spread",
