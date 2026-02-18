@@ -39,7 +39,7 @@ if [ ! -f ".env" ]; then
     echo "⚠️  No .env file found!"
     echo ""
     echo "Option 1: Copy from VPS"
-    echo "   ssh root@157.245.36.127 'cat /root/apex-s44-monitor/.env' > .env"
+    echo "   ssh root@143.198.56.117 'cat /root/apex-s44-monitor/.env' > .env"
     echo ""
     echo "Option 2: Create manually with these keys:"
     cat << 'EOF'
