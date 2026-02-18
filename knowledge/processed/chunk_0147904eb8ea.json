@@ -1,0 +1,16 @@
+{
+  "id": "0147904eb8ea",
+  "source": "Quantitative_Trading.pdf",
+  "source_type": "pdf",
+  "title": "Quantitative Trading",
+  "chunk_index": 1,
+  "content": ". . . 40 T able 4.1 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 42 Summary . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 43 References . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .44 Chapter 5 45 W hat an Automated Trading System Can Do for You . . . . . . . . . 45 F igure 5.1. . . . . . . . . . . . . . . . . . . . . . . . . . . . . .45 F igure 5.2. . . . . . . . . . . . . . . . . . . . . . . . . . . . . .46 Summary . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 47 Chapter 6 49 Optimal Capital Al location and Leverage . . . . . . . . . . . . . . . 50 Example 6.1: An Interesting Puzzle (or Why Risk Is Bad For You)\u2019 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 50 Example 6.2: Calculating the Optimal Leverage Based on the Kelly Formula . . . . . . . . . . . . . . . . . . . . . . . . . 51 Example 6.3: Calculating the Optimal Allocation Using the Kelly Formula . . . . . . . . . . . . . . . . . . . . . . . . . 52 P sychological Preparedness . . . . . . . . . . . . . . . . . . . . . . . 58 Bo x 6.1 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 58 Summary . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 60 A ppendix: A Simple Derivation of the Kelly Formula When Return Distribution is Gaussian. . . . . . . . . . . . . . . . . . . . . . . . .61 References . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .62 Chapter 7 63 Regime Chang e and Conditional Parameter Optimization. . . . . . .64 Example 7.1: Conditional Parameter Optimization applied to an ETF trading strategy . . . . . . . . . . . . . . . . . . . . .64 F igure 7.1. . . . . . . . . . . . . . . . . . . . . . . . . . . . . .70 S tationarity and Cointegration . . . . . . . . . . . . . . . . . . . . . 71 F igure 7.2. . . . . . . . . . . . . . . . . . . . . . . . . . . . . .71 v Example 7.2: How to Form a Good Cointegrating (and Mean-Reverting) Pair of Stocks . . . . . . . . . . . . . . . 72 F igure 7.3. . . . . . . . . . . . . . . . . . . . . . . . . . . . . .76 F igure 7.4. . . . . . . . . . . . . . . . . . . . . . . . . . . . . .77 Example 7.3: Testing to Cointegration versus Correlation Properties between KO and PEP. . . . . . . . . . . . . . . . . .77 F actor Models . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .82 Example 7.4: Principal Component Analysis as an Example of the Factor Model . . . . . . . . . . . . . . . . . . . . . . . . 82 W hat is Your Exit Strategy?. . . . . . . . . . . . . . . . . . . . . . .88 Example 7.5: Calculation of the Half-Life of a Mean-Reverting Time Series. . . . . . . . . . . . . . . . . . . . . . . . . . . . .88 S easonal Trading Strategies . . . . . . . . . . . . . . . . . . . . . . . 90 Example 7.6: Backtesting the January Effect. . . . . . . . . . . .90 Example 7.7: Backtesting a Year-on-Year Seasonal Trending Strategy . . . . . . . . . . . . . . .",
+  "word_count": 1000,
+  "topics": [
+    "technical_analysis",
+    "risk_management",
+    "strategies",
+    "forex"
+  ],
+  "created_at": "2026-02-05T00:37:43.603366"
+}

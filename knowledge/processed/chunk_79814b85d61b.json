@@ -1,0 +1,17 @@
+{
+  "id": "79814b85d61b",
+  "source": "Option_Volatility_And_Pricing_Natenberg.pdf",
+  "source_type": "pdf",
+  "title": "Option Volatility And Pricing Natenberg",
+  "chunk_index": 197,
+  "content": "346 implied, 120 of volatility spreads, 160-161 Index risk, 179, 353 Three-way, 229 Time box, 233 Time decay. See Theta Time premium. See Value, time Time spread, 148-154, 237, 452, 458 bull and bear, 201 effect of dividends, 155 effect of interest rates, 154-155 effect of price change, 150-151 effect of time passage, 149-150 effect of volatility, 151-153, 168 in hedging strategies, 267 in futures option markets, 153-154 Transaction costs, 87, 181, 387 Tunnel, 264 \u201c U & Underlying, 1-4, 45 Up-tick, 93 \u201c V & Value extrinsic. See Value, time intrinsic, 6-7, 13 of an underlying contract, 84n time, 6-7, 261 theoretical, 37-38, 40 Variation, 11, 387n Vega, 113-115, 361-362 dollar ($vega}, 114n, 347 effect of time passage, 115 characteristics, 119-120 implied, 120 of volatility spreads, 160-161, 166 tisk, 179-180, 353 Vertical spread, 202-211, 235-236, 252 in hedging strategies, 267 importance of implied volatility, 208 Volatility, 45, 49, 390-393, 399-400 and observed price changes, 67-68 as a standard deviation, 60-61 calculation of historical, 443-446 calculation of implied, 446 469 cone, 275 effect of changes. See Vega forecast, 70-71 future, 69 historical, 69-70, 71 implied, 72-74, 89, 166, 177, 208, 266, 355 implied versus historical, 290-295 implied versus future, 295-299 mean reverting, 275 of interest rate products, 68-69, 393 realized, 70 relationships, 342-345 seasonal, 76 serial correlation, 280 skew, 407 stochastic, 393 trends, 275 Volume Investors, 105 % W Se Wall Street journal, The, 31n Whaley, Robert, 248, 438n White, Alan, 393n Wiggins, J.B., 393n Wilcox, Darrell, 352, 434",
+  "word_count": 249,
+  "topics": [
+    "technical_analysis",
+    "options",
+    "risk_management",
+    "market_structure",
+    "macro"
+  ],
+  "created_at": "2026-02-05T08:09:54.452535"
+}

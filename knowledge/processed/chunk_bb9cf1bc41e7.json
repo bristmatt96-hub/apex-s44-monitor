@@ -1,0 +1,17 @@
+{
+  "id": "bb9cf1bc41e7",
+  "source": "Maturities and Calls.pdf",
+  "source_type": "pdf",
+  "title": "Maturities And Calls",
+  "chunk_index": 4,
+  "content": "company. Holding Bonds Rather Than Retiring 'Nhen buybacks happen, the bonds are not always retired. For various structural reasons, companies sometimes hold onto the repurchased bonds rather than retire them. Additionally, when a company is owned by a PE firm, the PE firm may buy back the company's bonds. Remember not to confuse the sponsor buying the bonds with the company buying back the bonds. The sponsor is a separate legal entity, and if it owns the notes (or the bank debt}, they remain outstanding. The sponsor can also buy loans without the various par and pro rota restrictions that might apply to the company if it were purchasing them. A Pragmatic Point on Early Debt Retirement When a bond is trading at a yield much lower than its coupon, analysts often try to analyze whether the company will look to refinance the debt. Typically, this is done by running a net present value of leaving the bonds outstanding versus a net present value of issuing the new debt and retiring the old debt. This must include any premium payments necessary to call the old bonds and fees associated with issuing the new bonds and an assumption on the interest rate of the new financing. A quick way to get a glimpse of whether it makes sense to do this is to take the existing bonds' caJI price; this gives a proxy for how much funding is needed to retire the existing bonds. Then multiply this amount by the likely new\u00ad issue coupon. (The YTW on the existing bonds is a good proxy.) Finally, see if this new figure, which is a proxy for new financing costs, is meaningfully 146 l CH ~ PtB 12 1 SH UCTU HI ISSUE MA1u \u2022 1rtn AN O C All1 less than the bond s' existing coup on. If It is, then it I usually wort h explorin g refin ancing possibiliti es in mo re detail. Exhib it 12.4 shows ~n examp le. Exhibit 12.4: Quick Check on ReRnancing Existing Bonds Senior notes Cost to retire bonds Assumed new coupon Annual interest cost on new notes ( 104 >< .07) Annual interest cost on old notes Coupon Call Price Recent YTW 10% 104.00 7% 104.00 7% 7.28 10.00 Also, if a bond is not callable, or is not callable yet, the company can tender for the bonds. This offer to repurchase bonds is made to all holders. Typically, the company prices this offer so that the yield on the bonds would equate to a yield that is at a spread of only 50 to 100 bps wide of the equivalent maturity Treasury or other government bond . Most bonds, even noncall bonds, have a make-whole provision that lets them call bonds at an equi valent Treasury note plus a 50 bps spread (typically referred to as T + 50) at any time. Closing Comment Call structures have a significant impact on the yield and duration of debt instruments and the return profile of these investments. Unders tanding how call prices impact the potential return profile of different debt instruments can be a major part of relative value analysis. Call structures also influence what corporate finance actions a compan y might look to pursue . While there are some standard aspects in call structures, each document can vary. Diligence is needed when analyzing the terms and definitions in the loan documents. 147",
+  "word_count": 569,
+  "topics": [
+    "options",
+    "market_structure",
+    "crypto",
+    "macro"
+  ],
+  "created_at": "2026-02-01T16:54:52.509351",
+  "category": ""
+}

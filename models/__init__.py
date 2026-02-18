@@ -1,1 +1,0 @@
-# Trained ML models storage

@@ -8,6 +8,7 @@ build/
 
 # Virtual environment (rebuild on each machine)
 venv/
+venv-trading/
 .venv/
 env/
 
@@ -28,7 +29,7 @@ Thumbs.db
 Desktop.ini
 
 # PDF books (too large for git)
-knowledge/books/*.pdf
+knowledge/**/*.pdf
 
 # Temp files
 *.tmp
@@ -50,6 +51,9 @@ knowledge/books/*.pdf
 *.xls
 data/exports/
 
+# Generated outputs (PDFs, reports)
+outputs/
+
 # Trading System
 logs/
 models/*.pkl
@@ -60,3 +64,4 @@ trading.db
 # Credentials
 credentials.json
 secrets.json
+web/node_modules/

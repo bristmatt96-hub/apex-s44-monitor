@@ -1,0 +1,88 @@
+{
+  "company": "Altice France",
+  "sponsor": "Patrick Drahi",
+  "playbook": "A",
+  "outcome": "restructuring",
+
+  "timeline": {
+    "2024_Q1": {
+      "date": "March 2024",
+      "event": "Bondholder call - Drahi signals radical restructuring plan",
+      "credit_signal": "CreditSights: Drahi 'burning bridges with bond market'",
+      "market_reaction": "Bonds begin sliding"
+    },
+    "2024_Q2": {
+      "date": "April-June 2024",
+      "event": "Restructuring advisors appointed",
+      "details": [
+        "Altice France: Lazard + JPMorgan",
+        "Senior secured creditors: Gibson Dunn + Rothschild",
+        "Junior creditors: Milbank + Houlihan Lokey"
+      ],
+      "credit_signal": "Formal restructuring process begins"
+    },
+    "2024_Q4": {
+      "date": "November 2024",
+      "event": "Cleansing statement shows progress",
+      "credit_signal": "Negotiations ongoing, initial Drahi offer: haircut + little equity"
+    },
+    "2025_Q1": {
+      "date": "January-February 2025",
+      "event": "Agreement reached - 3 months of negotiation",
+      "details": [
+        "Creditors get 45% equity (vs initial offer of 'little equity')",
+        "Drahi retains >50% common equity",
+        "Senior secured: 31% equity",
+        "AFH creditors: 14% equity",
+        "€8.6bn debt eliminated",
+        "Net debt reduced to €15.5bn from €24bn"
+      ],
+      "credit_signal": "Deal terms finalized"
+    },
+    "2025_Q3": {
+      "date": "August 4, 2025",
+      "event": "Paris Economic Activities Tribunal approves restructuring"
+    },
+    "2025_Q4": {
+      "date": "October 1, 2025",
+      "event": "Transaction closes",
+      "outcome": "Maturities extended to 2028-2033, €400m annual interest savings"
+    }
+  },
+
+  "key_lessons": [
+    "Drahi's aggressive tactics were telegraphed early (March 2024 call)",
+    "Credit analysts flagged 'burning bridges' before full price impact",
+    "Initial offer was worse than final deal - creditors negotiated up",
+    "BlackRock, Pimco, Fidelity among major creditors",
+    "Total time from signal to close: ~18 months",
+    "Asset Package Delivery precedent set for CDS"
+  ],
+
+  "options_research_needed": {
+    "questions": [
+      "What was Altice France equity IV in March 2024 vs October 2025?",
+      "When did put skew steepen?",
+      "Was there a tradeable lag between credit signal and options repricing?"
+    ],
+    "note": "Altice France is private, but Altice USA (ATUS) is public - can analyze as proxy"
+  },
+
+  "related_entities": {
+    "Altice USA (ATUS)": {
+      "ticker": "ATUS",
+      "relationship": "Sister company, same sponsor",
+      "status": "Public, options tradeable",
+      "notes": "Can use ATUS options as proxy for Drahi risk"
+    }
+  },
+
+  "sources": [
+    "BSIC Bocconi",
+    "PitchBook",
+    "IFR Awards 2024",
+    "CreditSights",
+    "Ropes & Gray",
+    "Octus"
+  ]
+}

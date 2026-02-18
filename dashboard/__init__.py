@@ -1,1 +1,1 @@
-# APEX Trading Dashboard
+# Credit Catalyst Dashboard

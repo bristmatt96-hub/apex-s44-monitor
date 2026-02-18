@@ -1,0 +1,14 @@
+{
+  "id": "7d71a27f457e",
+  "source": "GenAI Deep Latent Variable Models.pdf",
+  "source_type": "pdf",
+  "title": "Genai Deep Latent Variable Models",
+  "chunk_index": 10,
+  "content": "generating financial data, or other sequential problems or data. The latent representation learned by VAEs is highly versatile and can be used to train downstream models to solve a wide variety of applications. While we have seen its use in time-serie s generation, it can also be used for tasks such as classification, anomaly detection, and forecasting. In the next chapters, we will continue expanding our toolbox of deep generative models for high-dimensional data-models that were originally successful in NLP and computer vision. More importantly, for our use cases in Trading and Asset Management, we will explore techniques to show how these models can be further extended and adapted for time-series and sequential data applications.",
+  "word_count": 115,
+  "topics": [
+    "options"
+  ],
+  "created_at": "2026-02-01T16:54:45.824491",
+  "category": ""
+}

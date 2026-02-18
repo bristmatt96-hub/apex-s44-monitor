@@ -31,7 +31,8 @@ logger.add(
 
 from config.settings import config
 from agents.coordinator import Coordinator
-from agents.scanners import EquityScanner, CryptoScanner, ForexScanner, OptionsScanner, EdgarInsiderScanner, OptionsFlowScanner
+from agents.scanners import EquityScanner, CryptoScanner, ForexScanner, OptionsScanner, EdgarInsiderScanner, OptionsFlowScanner, SynthScanner
+from agents.scanners.credit_options_scanner import CreditOptionsScanner
 from agents.signals import TechnicalAnalyzer, MLPredictor, OpportunityRanker
 from agents.execution import TradeExecutor
 
@@ -67,6 +68,12 @@ class TradingSystem:
         # Flow-Based Scanners
         if config.scanner.options_enabled:
             self.coordinator.register_agent(OptionsFlowScanner())
+
+        # Bittensor SN50 Synth API Scanner (liquidation predictions)
+        self.coordinator.register_agent(SynthScanner(use_testnet=True))
+
+        # Credit-to-Equity Scanner (THE EDGE - XO S44 credit signals)
+        self.coordinator.register_agent(CreditOptionsScanner())
 
         # Signal Processing
         self.coordinator.register_agent(TechnicalAnalyzer())

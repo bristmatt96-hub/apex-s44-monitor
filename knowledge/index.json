@@ -1,0 +1,104 @@
+{
+  "knowledge_base": {
+    "last_updated": "2026-02-05",
+    "total_documents": 39
+  },
+
+  "credit": {
+    "path": "knowledge/credit/",
+    "count": 19,
+    "documents": [
+      {"file": "Covenants.pdf", "topic": "Covenant analysis and headroom", "agent": "Analyst"},
+      {"file": "distressed exchanges.pdf", "topic": "LME mechanics and precedents", "agent": "Analyst"},
+      {"file": "Ranking of Debt.pdf", "topic": "Capital structure seniority", "agent": "Analyst"},
+      {"file": "Maturities and Calls.pdf", "topic": "Maturity wall and refinancing", "agent": "Analyst"},
+      {"file": "CLO's.pdf", "topic": "CLO structure and mechanics", "agent": "Analyst"},
+      {"file": "Coupons.pdf", "topic": "Bond coupon analysis", "agent": "Analyst"},
+      {"file": "Credit Snapshot.pdf", "topic": "Quick credit assessment", "agent": "Analyst"},
+      {"file": "Valuation Process Moyer.pdf", "topic": "Distressed valuation (Moyer)", "agent": "Analyst"},
+      {"file": "amendments and consents.pdf", "topic": "Doc amendments and consent solicitations", "agent": "Analyst"},
+      {"file": "New Issues.pdf", "topic": "Primary market analysis", "agent": "Analyst"},
+      {"file": "Financial Issues.pdf", "topic": "Financial statement analysis", "agent": "Analyst"},
+      {"file": "business trend analysis.pdf", "topic": "Business fundamentals", "agent": "Analyst"},
+      {"file": "Decision Process.pdf", "topic": "Investment decision framework", "agent": "Analyst"},
+      {"file": "equity info.pdf", "topic": "Equity analysis for credit", "agent": "Analyst"},
+      {"file": "news events.pdf", "topic": "Event-driven catalysts", "agent": "Analyst"},
+      {"file": "Ownership and Management.pdf", "topic": "Sponsor and management analysis", "agent": "Analyst"},
+      {"file": "portfolio management.pdf", "topic": "Portfolio construction", "agent": "Risk Manager"},
+      {"file": "relative value analysis.pdf", "topic": "RV analysis methodology", "agent": "Analyst"},
+      {"file": "Data science and credit analysis.pdf", "topic": "Quantitative credit methods", "agent": "System Design"}
+    ]
+  },
+
+  "genai": {
+    "path": "knowledge/genai/",
+    "count": 12,
+    "documents": [
+      {"file": "GenAI Trading Strat Dev.pdf", "topic": "AI for trading strategies", "agent": "System Design"},
+      {"file": "GenAI ML in Asset Management.pdf", "topic": "ML applications in AM", "agent": "System Design"},
+      {"file": "GenAI Leveraging LLMs for Sentiment Analysis in Trading.pdf", "topic": "LLM sentiment analysis", "agent": "Psychologist"},
+      {"file": "GenAI Deep Gen models for Trading.pdf", "topic": "Deep generative models", "agent": "System Design"},
+      {"file": "GenAI Autoregressive models for sequence modeling.pdf", "topic": "Sequence modeling", "agent": "System Design"},
+      {"file": "GenAI Flow Models.pdf", "topic": "Flow-based models", "agent": "System Design"},
+      {"file": "GenAI Deep Latent Variable Models.pdf", "topic": "Latent variable models", "agent": "System Design"},
+      {"file": "Gen AI Efficient Inference.pdf", "topic": "Model inference optimization", "agent": "System Design"},
+      {"file": "Gen AI Generative Adversarial Networks.pdf", "topic": "GANs", "agent": "System Design"},
+      {"file": "Gen AI No Code Gen AI for Basic Quant Finance.pdf", "topic": "No-code AI tools", "agent": "System Design"},
+      {"file": "GenAI No Code Intro.pdf", "topic": "No-code AI intro", "agent": "System Design"},
+      {"file": "GenAI No-coe genAI for Trading strategies development.pdf", "topic": "No-code trading strategies", "agent": "System Design"}
+    ]
+  },
+
+  "psychology": {
+    "path": "knowledge/psychology/",
+    "count": 4,
+    "documents": [
+      {"file": "Thinking_In_Bets.pdf", "topic": "Decision-making under uncertainty, probabilistic thinking", "agent": "Psychologist", "author": "Annie Duke", "chunks": 3},
+      {"file": "The_Ideal_Mindset.pdf", "topic": "Trading psychology and mental frameworks", "agent": "Psychologist", "chunks": 3},
+      {"file": "Trade_Mindfully.pdf", "topic": "Mindfulness-based trading psychology, emotional regulation", "agent": "Psychologist", "chunks": 49},
+      {"file": "Updated_Text_For_Market_Wizards.pdf", "topic": "Top trader psychology and decision-making", "agent": "Psychologist", "author": "Jack Schwager", "chunks": 33}
+    ]
+  },
+
+  "options": {
+    "path": "knowledge/options/",
+    "count": 3,
+    "documents": [
+      {"file": "Option_Volatility_And_Pricing_Natenberg.pdf", "topic": "Options pricing theory, volatility, Greeks, strategies, risk management", "agent": "Scanner", "author": "Sheldon Natenberg", "chunks": 198},
+      {"file": "The_Art_And_Science_of_Technical_Analysis.pdf", "topic": "Technical analysis patterns, support/resistance, market structure", "agent": "Scanner", "author": "Adam Grimes", "chunks": 122},
+      {"file": "Volume_Price_Analysis.pdf", "topic": "Volume-price relationships, market manipulation detection", "agent": "Scanner", "author": "Anna Coulling", "chunks": 5}
+    ]
+  },
+
+  "system_design": {
+    "path": "knowledge/system_design/",
+    "count": 2,
+    "documents": [
+      {"file": "Inside_The_Black_Box.pdf", "topic": "Quantitative trading systems architecture", "agent": "System Design", "author": "Rishi Narang", "chunks": 4},
+      {"file": "Quantitative_Trading.pdf", "topic": "Quantitative trading strategies and backtesting", "agent": "System Design", "author": "Ernie Chan", "chunks": 53}
+    ]
+  },
+
+  "pending": {
+    "audiobooks_to_transcribe": [
+      "Trading in the Zone - Mark Douglas (Psychology)",
+      "The Predictive Edge - Lopez-Lira (System Design)",
+      "Best Loser Wins - Tom Hougaard (Psychology)",
+      "One Good Trade - Mike Bellafiore (Psychology + System)",
+      "Alpha Trader - Brent Donnelly (Psychology + Risk)"
+    ],
+    "kindle_to_convert": [
+      "Trading Options Greeks - Dan Passarelli (Scanner)"
+    ],
+    "paperback_to_digitize": [],
+    "note": "Distressed Debt Analysis (Moyer) is ALREADY INGESTED as 9 individual chapter PDFs in knowledge/credit/"
+  },
+
+  "agent_mapping": {
+    "Analyst": ["credit/"],
+    "Psychologist": ["psychology/", "genai/GenAI Leveraging LLMs*"],
+    "Scanner": ["options/"],
+    "System Design": ["system_design/", "genai/", "credit/Data science*"],
+    "Risk Manager": ["credit/portfolio management*"]
+  }
+}

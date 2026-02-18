@@ -1,1 +1,0 @@
-# Custom trading strategies

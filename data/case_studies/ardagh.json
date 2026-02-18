@@ -1,0 +1,71 @@
+{
+  "company": "Ardagh Packaging Finance",
+  "sponsor": "Paul Coulson",
+  "playbook": "A",
+  "outcome": "restructuring",
+
+  "timeline": {
+    "2024_early": {
+      "event": "Credit deterioration accelerates",
+      "credit_signal": "Leverage concerns, packaging sector headwinds"
+    },
+    "2025_Q3": {
+      "date": "July 2025",
+      "event": "Transaction Support Agreement (TSA) signed",
+      "details": "90%+ creditor support achieved",
+      "credit_signal": "Restructuring CE trigger date (per DC ruling)"
+    },
+    "2025_Q4": {
+      "date": "October 7, 2025",
+      "event": "External Review Panel rules Restructuring CE occurred at TSA signing",
+      "cds_impact": "Credit Event officially triggered"
+    },
+    "2026_Q1": {
+      "date": "January 9, 2026",
+      "event": "DC rules 9-2 in favour of including SUNs as deliverables",
+      "details": "Rejected 'Schrödinger's Obligations' argument from Arini"
+    }
+  },
+
+  "restructuring_terms": {
+    "total_debt": "USD 10bn",
+    "sun_treatment": "SUNs (USD 4.3bn) equitized for 92.5% equity",
+    "ssn_treatment": "SSNs exchanged into second-lien notes maturing Dec 2030",
+    "pik_treatment": "PIK Notes received 7.5% equity",
+    "shareholder_payout": "Paul Coulson received ~USD 100m of USD 300m payout",
+    "control": "Coulson ceded control to bondholders"
+  },
+
+  "cds_lessons": {
+    "key_rulings": [
+      "Restructuring CE triggered at TSA signing (binding threshold) not implementation",
+      "SUNs deliverable despite being equitized before auction",
+      "Asset Package Delivery mechanism used for equitized bonds",
+      "DC rejected 'agreement to restructure ≠ implementation' argument"
+    ],
+    "protection_seller_warning": "Timing gap between agreement and implementation creates risk",
+    "cheapest_to_deliver": "SUNs at steep discount vs SSNs at 90+ cents - CTD matters"
+  },
+
+  "from_project_doc": {
+    "lesson": "Buying CDS protection on LME candidates doesn't work as expected",
+    "reason": "Asset Package Delivery mechanism fails for corporate LMEs - protection buyers ended up with illiquid equity",
+    "conclusion": "Focus on equity options, not CDS basis trades"
+  },
+
+  "options_research_needed": {
+    "questions": [
+      "What was equity IV before TSA announcement?",
+      "How did puts perform vs CDS protection?",
+      "Was equity options the better trade than CDS?"
+    ],
+    "note": "Ardagh is now restructured - historical analysis needed"
+  },
+
+  "sources": [
+    "ISDA Determinations Committee rulings",
+    "Debtwire",
+    "9fin",
+    "Project doc - Key Learnings section"
+  ]
+}

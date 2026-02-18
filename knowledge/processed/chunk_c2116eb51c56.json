@@ -1,0 +1,16 @@
+{
+  "id": "c2116eb51c56",
+  "source": "GenAI Leveraging LLMs for Sentiment Analysis in Trading.pdf",
+  "source_type": "pdf",
+  "title": "Genai Leveraging Llms For Sentiment Analysis In Trading",
+  "chunk_index": 8,
+  "content": "Applied FinBERT to compute sentiment scores for each audio bar Leveraging LLMs for Sentiment Analysis in Trading 233 ~eration ding sign di 'b . h fra d he sentiment score stn ution to set t resholds 3\u2022 , j\\nalyze ; buy or sell signals based on sentiment scores Generate 1 shows the SPY forward return and sentiment score time series produced figure 9.1 Ystern: h 1 b h \u00b7 \u00b7 bY cbe s. 9_ 12 we present t e scatter pot etween t e sentiment score and the SPY In figure which reveals a positive correlation between them. d returns, fof\\,nr 0.006 ...., Forward Return -.- Sentiment Score 0.004 0.6 0.4 0.002 Q) C ,_ 0 :i 0.2 CJ .., (/) Cl) -a: 0.000 C Q) 'O 0.0 E ... ca .. ~ C 0 -0.002 Q) ~ -0.2 (I) -0.004 -0.4 -0.006 -0.6 0 100 200 300 400 Figure 9.11 Time-series sentiment signal and forward returns. 0.006 0.004 -1--1-----l--- -+-.=---+---t- . .-----t--,- --0.004 --0.006 -0.6 -0.4 -0.2 0.0 0.2 Sentiment Score Bigure 9.12 Scatter plot of sentiment signal vs forward returns. \u2022 .. \u2022 0.4 0.6 234 G E N E R A T I V B A I P O R T R A D I N G A N D A S S E T M A N A G E M E N T Table 9.1 Performance table. Unnormalized Sharpe ratio Accuracy 11.3844% 53.1532% Pearson Correlation of Sentiment Signal vs SPY 14.1458% p-value 0.1999\"/o Finally, Table 9.1 summarizes the key performance results of the strategy. T hese results include a simple constant model for transaction costs, assuming 5 basis poi n ts (bps) per transaction. Overall, across all videos, the trading signal predicts the sign of th e SPY forward returns with an accuracy of 53.15%. The correlation between the senti\u00ad ment score and the SPY forward returns is 14.14% with a p-value of 0.199%. 9.6 Conclusion The experimental results demonstrate how we can effectively process alternative data , in this case, audio, to generate actionable trading signals. By collecting high- quali ty audio from the internet, using appropriate audio segmentation, and employing comple x models for transcription and sentiment score computation, we were able to generate profitable high-frequency trading signals to trade the next 30 seconds of the SPY This application highlights the power of deep autoregressive transformer models for mode\u00ad ling audio and text, as covered in Chapter 5. Our experiments demonstrated the critic al role of FinBERT, a fine-tuned BERT model for financial data. Unlike general sentiment analysis models, which often miss financial nuances, FinBERT outperformed other tested models not trained on financial data, significantly improving our performance metrics. The next chapter explores methods for customizing LLMs for specialized tasks . This approach highlights the potential for composing very complex deep learning mod \u00ad els to address complex financial applications.",
+  "word_count": 477,
+  "topics": [
+    "options",
+    "strategies",
+    "forex"
+  ],
+  "created_at": "2026-02-01T16:54:47.219145",
+  "category": ""
+}
