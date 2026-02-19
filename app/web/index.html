@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Catalyst | European Credit Relative Value</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.8/purify.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: { DEFAULT: '#1B2A4A', light: '#243656', dark: '#121E36', card: '#1E3254' },
+                        accent: { green: '#28A745', red: '#DC3545', amber: '#FFC107', blue: '#4A9FFF', teal: '#20C997' },
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background: #121E36; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; }
+        .card { background: #1E3254; border: 1px solid #2A4060; border-radius: 8px; }
+        .card-header { border-bottom: 1px solid #2A4060; padding: 12px 16px; }
+        .table-row:hover { background: rgba(74,159,255,0.08); }
+        .traffic-green { color: #28A745; }
+        .traffic-amber { color: #FFC107; }
+        .traffic-red { color: #DC3545; }
+        .badge { padding: 2px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+        .badge-long { background: rgba(40,167,69,0.15); color: #28A745; border: 1px solid rgba(40,167,69,0.3); }
+        .badge-short { background: rgba(220,53,69,0.15); color: #DC3545; border: 1px solid rgba(220,53,69,0.3); }
+        .badge-green { background: rgba(40,167,69,0.15); color: #28A745; }
+        .badge-amber { background: rgba(255,193,7,0.15); color: #FFC107; }
+        .badge-red { background: rgba(220,53,69,0.15); color: #DC3545; }
+        .badge-regime { background: rgba(74,159,255,0.15); color: #4A9FFF; border: 1px solid rgba(74,159,255,0.3); }
+        .pulse { animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #121E36; }
+        ::-webkit-scrollbar-thumb { background: #2A4060; border-radius: 3px; }
+    </style>
+</head>
+<body class="text-gray-200 min-h-screen">
+
+    <!-- HEADER -->
+    <header class="bg-navy border-b border-[#2A4060] sticky top-0 z-50">
+        <div class="max-w-[1600px] mx-auto px-6 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <h1 class="text-xl font-bold text-white tracking-tight">
+                    <span class="text-accent-blue">Credit</span> Catalyst
+                </h1>
+                <span class="text-gray-500 text-sm">|</span>
+                <span class="text-gray-400 text-sm">European Credit Relative Value</span>
+            </div>
+            <div class="flex items-center gap-4">
+                <span id="regime-badge" class="badge badge-regime">--</span>
+                <div class="text-xs text-gray-500" id="header-stats">Loading...</div>
+                <div class="text-xs text-gray-500" id="header-date"></div>
+                <div class="w-2 h-2 rounded-full bg-accent-green pulse" title="Live"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN GRID -->
+    <main class="max-w-[1600px] mx-auto px-6 py-4 grid grid-cols-12 gap-4">
+
+        <!-- TOP IDEAS -->
+        <section class="col-span-12 card">
+            <div class="card-header flex justify-between items-center">
+                <h2 class="text-sm font-semibold text-white">Top Ideas</h2>
+                <div class="flex gap-2 text-xs">
+                    <span class="badge badge-long">LONGS</span>
+                    <span class="badge badge-short">SHORTS</span>
+                </div>
+            </div>
+            <div class="grid grid-cols-2 divide-x divide-[#2A4060]">
+                <div class="p-3">
+                    <table class="w-full text-xs">
+                        <thead><tr class="text-gray-500 border-b border-[#2A4060]">
+                            <th class="text-left py-1.5 px-2 font-medium">Entity</th>
+                            <th class="text-center py-1.5 px-1 font-medium">Conv</th>
+                            <th class="text-right py-1.5 px-1 font-medium">Spread</th>
+                            <th class="text-right py-1.5 px-1 font-medium">Fair</th>
+                            <th class="text-right py-1.5 px-1 font-medium">Misprc</th>
+                            <th class="text-left py-1.5 px-2 font-medium">Thesis</th>
+                        </tr></thead>
+                        <tbody id="top-longs"></tbody>
+                    </table>
+                </div>
+                <div class="p-3">
+                    <table class="w-full text-xs">
+                        <thead><tr class="text-gray-500 border-b border-[#2A4060]">
+                            <th class="text-left py-1.5 px-2 font-medium">Entity</th>
+                            <th class="text-center py-1.5 px-1 font-medium">Conv</th>
+                            <th class="text-right py-1.5 px-1 font-medium">Spread</th>
+                            <th class="text-right py-1.5 px-1 font-medium">Fair</th>
+                            <th class="text-right py-1.5 px-1 font-medium">Misprc</th>
+                            <th class="text-left py-1.5 px-2 font-medium">Thesis</th>
+                        </tr></thead>
+                        <tbody id="top-shorts"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- PORTFOLIO (8 cols) -->
+        <section class="col-span-8 card">
+            <div class="card-header flex justify-between items-center">
+                <h2 class="text-sm font-semibold text-white">Portfolio</h2>
+                <div class="flex gap-3 text-xs text-gray-400" id="portfolio-summary"></div>
+            </div>
+            <div class="p-3 overflow-x-auto">
+                <table class="w-full text-xs">
+                    <thead><tr class="text-gray-500 border-b border-[#2A4060]">
+                        <th class="text-left py-1.5 px-2 font-medium">Entity</th>
+                        <th class="text-center py-1.5 px-1 font-medium">Dir</th>
+                        <th class="text-center py-1.5 px-1 font-medium">Conv</th>
+                        <th class="text-right py-1.5 px-1 font-medium">Size %</th>
+                        <th class="text-right py-1.5 px-1 font-medium">Notl $M</th>
+                        <th class="text-right py-1.5 px-1 font-medium">Spread</th>
+                        <th class="text-right py-1.5 px-1 font-medium">Fair</th>
+                        <th class="text-left py-1.5 px-2 font-medium">Sector</th>
+                        <th class="text-center py-1.5 px-1 font-medium">Rating</th>
+                    </tr></thead>
+                    <tbody id="portfolio-table"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- RISK METRICS (4 cols) -->
+        <section class="col-span-4 space-y-4">
+            <div class="card">
+                <div class="card-header"><h2 class="text-sm font-semibold text-white">Risk Metrics</h2></div>
+                <div class="p-3 space-y-2" id="risk-metrics"></div>
+            </div>
+            <div class="card">
+                <div class="card-header"><h2 class="text-sm font-semibold text-white">Risk Limits</h2></div>
+                <div class="p-3" id="risk-limits"></div>
+            </div>
+        </section>
+
+        <!-- FILING ALERTS (6 cols) -->
+        <section class="col-span-6 card">
+            <div class="card-header flex justify-between items-center">
+                <h2 class="text-sm font-semibold text-white">Filing Alerts</h2>
+                <span class="text-xs text-gray-500" id="filing-count"></span>
+            </div>
+            <div class="p-3 max-h-64 overflow-y-auto">
+                <div id="filing-list" class="space-y-2"></div>
+            </div>
+        </section>
+
+        <!-- RELATIVE VALUE (6 cols) -->
+        <section class="col-span-6 card">
+            <div class="card-header flex justify-between items-center">
+                <h2 class="text-sm font-semibold text-white">Relative Value Screen</h2>
+                <div class="flex gap-2 text-xs" id="rv-summary"></div>
+            </div>
+            <div class="grid grid-cols-2 divide-x divide-[#2A4060] p-3">
+                <div>
+                    <div class="text-xs text-accent-green font-semibold mb-2">CHEAPEST</div>
+                    <div id="rv-cheap" class="space-y-1"></div>
+                </div>
+                <div class="pl-3">
+                    <div class="text-xs text-accent-red font-semibold mb-2">RICHEST</div>
+                    <div id="rv-rich" class="space-y-1"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MATURITY WALL (4 cols) -->
+        <section class="col-span-4 card">
+            <div class="card-header"><h2 class="text-sm font-semibold text-white">Maturity Wall -- Refi Risk</h2></div>
+            <div class="p-3" id="maturity-wall"></div>
+        </section>
+
+        <!-- STRESS SCENARIOS (8 cols) -->
+        <section class="col-span-8 card">
+            <div class="card-header flex justify-between items-center">
+                <h2 class="text-sm font-semibold text-white">Stress Scenarios</h2>
+                <div class="text-xs text-gray-500" id="scenario-summary"></div>
+            </div>
+            <div class="p-3 overflow-x-auto">
+                <table class="w-full text-xs">
+                    <thead><tr class="text-gray-500 border-b border-[#2A4060]">
+                        <th class="text-left py-1.5 px-2 font-medium">Scenario</th>
+                        <th class="text-right py-1.5 px-2 font-medium">Portfolio</th>
+                        <th class="text-right py-1.5 px-2 font-medium">Hedges</th>
+                        <th class="text-right py-1.5 px-2 font-medium">Combined</th>
+                        <th class="text-right py-1.5 px-2 font-medium">% NAV</th>
+                        <th class="text-left py-1.5 px-2 font-medium">Worst Position</th>
+                    </tr></thead>
+                    <tbody id="scenario-table"></tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-[#2A4060] mt-4 py-3">
+        <div class="max-w-[1600px] mx-auto px-6 flex justify-between text-xs text-gray-600">
+            <span>Credit Catalyst v1.0 | iTraxx Xover S44</span>
+            <span id="last-updated"></span>
+        </div>
+    </footer>
+
+    <script>
+    // ---------------------------------------------------------------
+    // Helpers -- all rendering uses DOMPurify for safety
+    // ---------------------------------------------------------------
+    const fmt = (n, dp=0) => n != null ? Number(n).toLocaleString(undefined, {minimumFractionDigits:dp, maximumFractionDigits:dp}) : '--';
+    const fmtPnl = (n) => {
+        if (n == null) return '--';
+        const v = Math.round(n/1000);
+        return v >= 0 ? `+$${fmt(Math.abs(v))}k` : `-$${fmt(Math.abs(v))}k`;
+    };
+    const pnlClass = (n) => n > 0 ? 'text-accent-green' : n < 0 ? 'text-accent-red' : 'text-gray-400';
+    const esc = (s) => { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; };
+    const truncate = (s, n=80) => { const t = s || ''; return t.length > n ? t.substring(0, n) + '...' : t; };
+
+    function safeHTML(el, html) {
+        el.innerHTML = DOMPurify.sanitize(html, { ALLOWED_TAGS: ['span','div','tr','td','th','table','thead','tbody','br'], ALLOWED_ATTR: ['class','style','title'] });
+    }
+
+    function dirBadge(d) {
+        return d === 'SHORT_RISK'
+            ? '<span class="badge badge-short">SHORT</span>'
+            : '<span class="badge badge-long">LONG</span>';
+    }
+    function convDots(c) {
+        return '<span class="text-accent-blue">' + '&#9679;'.repeat(c) + '</span><span class="text-gray-700">' + '&#9679;'.repeat(5-c) + '</span>';
+    }
+    function trafficDot(s) {
+        const cls = s === 'GREEN' ? 'traffic-green' : s === 'AMBER' ? 'traffic-amber' : 'traffic-red';
+        return '<span class="' + cls + '">&#9679;</span>';
+    }
+
+    // ---------------------------------------------------------------
+    // Data fetch
+    // ---------------------------------------------------------------
+    async function fetchJSON(url) {
+        try { const r = await fetch(url); return await r.json(); }
+        catch (e) { console.error('Fetch error ' + url, e); return null; }
+    }
+
+    // ---------------------------------------------------------------
+    // Renderers
+    // ---------------------------------------------------------------
+    function renderHeader(data) {
+        document.getElementById('header-date').textContent = new Date().toLocaleDateString('en-GB', {weekday:'short', day:'numeric', month:'short', year:'numeric'});
+        if (data) {
+            safeHTML(document.getElementById('header-stats'),
+                '<span class="text-white font-medium">' + data.count + '</span> names &middot; ' +
+                '<span class="text-accent-green">' + data.long_count + 'L</span> / ' +
+                '<span class="text-accent-red">' + data.short_count + 'S</span> &middot; ' +
+                'Avg conv <span class="text-white">' + data.avg_conviction + '</span> &middot; ' +
+                'Avg spread <span class="text-white">' + fmt(data.avg_spread) + 'bp</span>');
+        }
+    }
+
+    function renderTopIdeas(data) {
+        const renderRow = (n) =>
+            '<tr class="table-row border-b border-[#2A4060]/50">' +
+            '<td class="py-1.5 px-2 text-white font-medium">' + esc(truncate(n.entity_name, 28)) + '</td>' +
+            '<td class="py-1.5 px-1 text-center">' + convDots(n.conviction) + '</td>' +
+            '<td class="py-1.5 px-1 text-right text-white">' + fmt(n.current_spread) + 'bp</td>' +
+            '<td class="py-1.5 px-1 text-right text-gray-400">' + fmt(n.fair_spread) + 'bp</td>' +
+            '<td class="py-1.5 px-1 text-right ' + (n.mispricing_bps > 0 ? 'text-accent-green' : 'text-accent-red') + '">' + (n.mispricing_bps > 0 ? '+' : '') + fmt(n.mispricing_bps) + 'bp</td>' +
+            '<td class="py-1.5 px-2 text-gray-400">' + esc(truncate(n.thesis, 60)) + '</td></tr>';
+        safeHTML(document.getElementById('top-longs'), (data.top_longs || []).map(renderRow).join(''));
+        safeHTML(document.getElementById('top-shorts'), (data.top_shorts || []).map(renderRow).join(''));
+    }
+
+    function renderPortfolio(data) {
+        if (!data || data.error) return;
+        const risk = data.risk_summary || {};
+        safeHTML(document.getElementById('portfolio-summary'),
+            '<span>NAV <span class="text-white">$' + data.nav_millions + 'M</span></span>' +
+            '<span>Gross <span class="text-white">' + (risk.gross_exposure_pct || 0) + '%</span></span>' +
+            '<span>Net <span class="' + ((risk.net_exposure_pct||0) < 0 ? 'text-accent-red' : 'text-accent-green') + '">' + (risk.net_exposure_pct || 0) + '%</span></span>' +
+            '<span>Carry <span class="' + ((risk.estimated_carry_bps||0) < 0 ? 'text-accent-red' : 'text-accent-green') + '">' + (risk.estimated_carry_bps || 0) + 'bp</span></span>');
+
+        const rows = (data.positions || []).map(p =>
+            '<tr class="table-row border-b border-[#2A4060]/50">' +
+            '<td class="py-1.5 px-2 text-white font-medium">' + esc(truncate(p.entity_name, 30)) + '</td>' +
+            '<td class="py-1.5 px-1 text-center">' + dirBadge(p.direction) + '</td>' +
+            '<td class="py-1.5 px-1 text-center">' + convDots(p.conviction) + '</td>' +
+            '<td class="py-1.5 px-1 text-right text-gray-300">' + p.size_pct + '%</td>' +
+            '<td class="py-1.5 px-1 text-right text-white">$' + p.notional_millions + 'M</td>' +
+            '<td class="py-1.5 px-1 text-right text-white">' + fmt(p.current_spread) + 'bp</td>' +
+            '<td class="py-1.5 px-1 text-right text-gray-400">' + fmt(p.fair_spread) + 'bp</td>' +
+            '<td class="py-1.5 px-2 text-gray-400">' + esc(p.sector || '') + '</td>' +
+            '<td class="py-1.5 px-1 text-center text-gray-400">' + esc(p.estimated_rating || '') + '</td></tr>'
+        ).join('');
+        safeHTML(document.getElementById('portfolio-table'), rows);
+    }
+
+    function renderRisk(data) {
+        if (!data) return;
+        safeHTML(document.getElementById('risk-metrics'),
+            '<div class="grid grid-cols-2 gap-2 text-xs">' +
+            '<div class="bg-navy-dark rounded p-2"><div class="text-gray-500">Net DV01</div>' +
+            '<div class="text-lg font-bold ' + pnlClass(data.total_dv01) + '">' + (data.total_dv01 > 0 ? '+' : '') + '$' + fmt(data.total_dv01) + '</div></div>' +
+            '<div class="bg-navy-dark rounded p-2"><div class="text-gray-500">JTD Gross</div>' +
+            '<div class="text-lg font-bold text-white">$' + fmt(Math.round(data.total_jtd_gross/1000000)) + 'M</div></div>' +
+            '<div class="bg-navy-dark rounded p-2"><div class="text-gray-500">Gross Exp</div>' +
+            '<div class="text-lg font-bold text-white">' + data.gross_exposure + '%</div></div>' +
+            '<div class="bg-navy-dark rounded p-2"><div class="text-gray-500">Net Exp</div>' +
+            '<div class="text-lg font-bold ' + pnlClass(data.net_exposure) + '">' + data.net_exposure + '%</div></div></div>' +
+            '<div class="mt-2"><div class="text-xs text-gray-500 mb-1">Sector Concentration</div>' +
+            Object.entries(data.sector_concentration || {}).map(function(e) {
+                var k = e[0], v = e[1];
+                return '<div class="flex justify-between text-xs py-0.5">' +
+                    '<span class="text-gray-400">' + esc(k) + '</span>' +
+                    '<div class="flex items-center gap-2">' +
+                    '<div class="w-20 bg-navy-dark rounded-full" style="height:6px">' +
+                    '<div class="rounded-full ' + (v > 25 ? 'bg-accent-red' : v > 20 ? 'bg-accent-amber' : 'bg-accent-blue') + '" style="height:6px;width:' + Math.min(v*2, 100) + '%"></div></div>' +
+                    '<span class="text-white" style="width:32px;text-align:right">' + v + '%</span></div></div>';
+            }).join('') + '</div>');
+
+        safeHTML(document.getElementById('risk-limits'),
+            (data.risk_limits || []).map(function(lim) {
+                var val = typeof lim.current === 'number'
+                    ? (lim.unit === '$' ? '$' + fmt(lim.current) : fmt(lim.current, 1) + '%')
+                    : String(lim.current);
+                var limVal = lim.unit === '$' ? '$' + fmt(lim.limit) : fmt(lim.limit) + '%';
+                return '<div class="flex items-center justify-between text-xs py-1.5 border-b border-[#2A4060]/50">' +
+                    '<div class="flex items-center gap-2">' + trafficDot(lim.status) +
+                    '<span class="text-gray-300">' + esc(lim.metric) + '</span></div>' +
+                    '<div class="text-right"><span class="text-white font-medium">' + val +
+                    '</span><span class="text-gray-600" style="margin-left:4px">/ ' + limVal + '</span></div></div>';
+            }).join(''));
+    }
+
+    function renderFilings(data) {
+        document.getElementById('filing-count').textContent = (data.count || 0) + ' filings';
+        var list = document.getElementById('filing-list');
+        if (!data.filings || data.filings.length === 0) {
+            list.textContent = 'No recent filings';
+            return;
+        }
+        safeHTML(list, data.filings.map(function(f) {
+            var sevClass = f.severity >= 4 ? 'border-accent-red' : f.severity >= 3 ? 'border-accent-amber' : 'border-[#2A4060]';
+            var impactBadge = f.credit_impact === 'negative' ? 'badge-red' : f.credit_impact === 'positive' ? 'badge-green' : 'badge-amber';
+            return '<div class="border-l-2 ' + sevClass + '" style="padding-left:12px;padding-top:4px;padding-bottom:4px">' +
+                '<div class="flex justify-between items-start">' +
+                '<div><span class="text-white text-xs font-medium">' + esc(f.matched_entity || f.company_name) + '</span>' +
+                '<span class="badge ' + impactBadge + '" style="margin-left:8px">' + esc(f.credit_impact || 'neutral') + '</span></div>' +
+                '<span class="text-gray-600" style="font-size:10px">' + esc(f.date) + '</span></div>' +
+                '<div class="text-gray-400" style="font-size:11px;margin-top:2px">' + esc(truncate(f.credit_summary || f.headline, 120)) + '</div>' +
+                '<div class="text-gray-600" style="font-size:10px;margin-top:2px">' + esc(f.source) + ' | sev ' + f.severity + '/5</div></div>';
+        }).join(''));
+    }
+
+    function renderRV(data) {
+        if (!data || data.error) return;
+        safeHTML(document.getElementById('rv-summary'),
+            '<span class="text-accent-green">' + (data.total_cheap || 0) + ' cheap</span>' +
+            '<span class="text-gray-500">' + (data.total_fair || 0) + ' fair</span>' +
+            '<span class="text-accent-red">' + (data.total_rich || 0) + ' rich</span>');
+
+        var renderName = function(n, type) {
+            var cls = type === 'cheap' ? 'text-accent-green' : 'text-accent-red';
+            return '<div class="flex justify-between items-center text-xs py-1 border-b border-[#2A4060]/30">' +
+                '<div><span class="text-white">' + esc(truncate(n.entity_name, 24)) + '</span>' +
+                '<span class="text-gray-600" style="font-size:10px;margin-left:4px">' + esc(n.sector) + '</span></div>' +
+                '<div class="text-right"><span class="text-gray-300">' + fmt(n.spread) + 'bp</span>' +
+                '<span class="' + cls + ' font-medium" style="margin-left:4px">' + (n.composite_score > 0 ? '+' : '') + n.composite_score + '</span></div></div>';
+        };
+        safeHTML(document.getElementById('rv-cheap'), (data.top_cheap || []).map(function(n) { return renderName(n, 'cheap'); }).join(''));
+        safeHTML(document.getElementById('rv-rich'), (data.top_rich || []).map(function(n) { return renderName(n, 'rich'); }).join(''));
+    }
+
+    function renderMaturityWall(data) {
+        var el = document.getElementById('maturity-wall');
+        if (!data || !data.entries || data.entries.length === 0) {
+            el.textContent = 'No maturity data';
+            return;
+        }
+        safeHTML(el, data.entries.map(function(e) {
+            var risk = e.refi_risk || (e.risk_score >= 7 ? 'HIGH' : e.risk_score >= 4 ? 'MEDIUM' : 'LOW');
+            var riskCls = risk === 'HIGH' ? 'text-accent-red' : risk === 'MEDIUM' ? 'text-accent-amber' : 'text-accent-green';
+            var spread = e.current_spread || e.spread || '';
+            return '<div class="flex justify-between items-center text-xs py-1.5 border-b border-[#2A4060]/50">' +
+                '<span class="text-white">' + esc(truncate(e.entity_name || e.company_name || '', 25)) + '</span>' +
+                '<div class="flex items-center gap-3">' +
+                (spread ? '<span class="text-gray-400">' + fmt(spread) + 'bp</span>' : '') +
+                '<span class="' + riskCls + ' font-semibold">' + esc(risk) + '</span></div></div>';
+        }).join(''));
+    }
+
+    function renderScenarios(data) {
+        if (!data || data.error) return;
+        safeHTML(document.getElementById('scenario-summary'),
+            'Worst: <span class="text-accent-red">' + esc(data.worst_scenario) + '</span> &middot; ' +
+            'Best: <span class="text-accent-green">' + esc(data.best_scenario) + '</span>');
+
+        var rows = (data.scenarios || []).map(function(s) {
+            var cls = pnlClass(s.combined_pnl);
+            return '<tr class="table-row border-b border-[#2A4060]/50">' +
+                '<td class="py-1.5 px-2 text-white">' + esc(s.name) + '</td>' +
+                '<td class="py-1.5 px-2 text-right ' + pnlClass(s.portfolio_pnl) + '">' + fmtPnl(s.portfolio_pnl) + '</td>' +
+                '<td class="py-1.5 px-2 text-right ' + pnlClass(s.hedge_pnl) + '">' + fmtPnl(s.hedge_pnl) + '</td>' +
+                '<td class="py-1.5 px-2 text-right font-medium ' + cls + '">' + fmtPnl(s.combined_pnl) + '</td>' +
+                '<td class="py-1.5 px-2 text-right ' + cls + '">' + (s.pct_nav > 0 ? '+' : '') + s.pct_nav + '%</td>' +
+                '<td class="py-1.5 px-2 text-gray-400">' + esc(truncate(s.worst_position, 35)) + '</td></tr>';
+        }).join('');
+        safeHTML(document.getElementById('scenario-table'), rows);
+    }
+
+    // ---------------------------------------------------------------
+    // Init -- load all panels in parallel
+    // ---------------------------------------------------------------
+    async function loadDashboard() {
+        var results = await Promise.all([
+            fetchJSON('/api/universe'),
+            fetchJSON('/api/portfolio'),
+            fetchJSON('/api/risk'),
+            fetchJSON('/api/filings'),
+            fetchJSON('/api/relative-value'),
+            fetchJSON('/api/maturity-wall'),
+            fetchJSON('/api/dispersion'),
+            fetchJSON('/api/scenarios'),
+        ]);
+
+        renderHeader(results[0]);
+        renderTopIdeas(results[0]);
+        renderPortfolio(results[1]);
+        renderRisk(results[2]);
+        renderFilings(results[3]);
+        renderRV(results[4]);
+        renderMaturityWall(results[5]);
+        renderScenarios(results[7]);
+
+        // Dispersion regime badge
+        if (results[6] && results[6].regime) {
+            var badge = document.getElementById('regime-badge');
+            badge.textContent = results[6].regime + ' DISPERSION';
+            badge.className = 'badge ' + (
+                results[6].regime === 'HIGH' ? 'badge-green' :
+                results[6].regime === 'LOW' ? 'badge-red' : 'badge-regime'
+            );
+        }
+
+        document.getElementById('last-updated').textContent = 'Updated: ' + new Date().toLocaleTimeString('en-GB');
+    }
+
+    loadDashboard();
+    setInterval(loadDashboard, 300000);
+    </script>
+</body>
+</html>
