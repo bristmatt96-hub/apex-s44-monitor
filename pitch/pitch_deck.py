@@ -687,8 +687,190 @@ def slide_hedges(prs, portfolio, date_str):
                    [Inches(2.5), Inches(1.5), Inches(1.5), Inches(6.8)])
 
 
+def slide_tranche_analytics(prs, portfolio, assessments, date_str):
+    """Slide 12: Tranche Analytics -- Convexity Edge."""
+    from analytics.tranche_pricer import (
+        price_tranche,
+        tranche_strategy_analysis,
+        STANDARD_TRANCHES,
+    )
+    from analytics.cds_pricer import _risky_annuity as cds_rpv01
+
+    slide = prs.slides.add_slide(prs.slide_layouts[6])
+    _set_slide_bg(slide, WHITE)
+    _add_title_bar(slide, "Tranche Analytics -- Convexity Edge",
+                   "Gaussian copula pricing of standard iTraxx Xover tranches")
+    _add_footer(slide, date_str)
+
+    # Compute weighted average index spread from assessments
+    total_spread = sum(a.current_spread for a in assessments if a.current_spread)
+    count = sum(1 for a in assessments if a.current_spread)
+    avg_spread = total_spread / count if count > 0 else 350.0
+
+    # Base correlations (standard market levels)
+    rho_eq, rho_mz, rho_sn = 0.25, 0.45, 0.65
+
+    # Price all three tranches
+    eq = price_tranche(0.00, 0.10, avg_spread, rho_eq, notional=10_000_000,
+                       running_coupon_bps=500)
+    mz = price_tranche(0.10, 0.25, avg_spread, rho_mz, notional=10_000_000)
+    sn = price_tranche(0.25, 1.00, avg_spread, rho_sn, notional=10_000_000)
+
+    # ---- Section 1: Tranche summary table ----
+    _add_textbox(slide, Inches(0.5), Inches(1.35), Inches(6), Inches(0.35),
+                 f"Standard Xover Tranches (Index @ {avg_spread:.0f}bps)",
+                 font_size=12, bold=True, color=NAVY)
+
+    tranche_data = [
+        ["Tranche", "Attach", "EL%", "Fair Spread", "Upfront", "Delta", "Gamma", "Leverage"],
+        ["0-10% Equity", "0-10%", f"{eq.expected_loss_pct:.1f}%",
+         f"{eq.fair_spread_bps:.0f}bp", f"{eq.upfront_pct:.0f}%+500r",
+         f"{eq.delta:.1f}", f"{eq.gamma:.2f}", f"{eq.leverage:.0f}x"],
+        ["10-25% Mezz", "10-25%", f"{mz.expected_loss_pct:.1f}%",
+         f"{mz.fair_spread_bps:.0f}bp", "--",
+         f"{mz.delta:.1f}", f"{mz.gamma:.2f}", f"{mz.leverage:.0f}x"],
+        ["25-100% Senior", "25-100%", f"{sn.expected_loss_pct:.1f}%",
+         f"{sn.fair_spread_bps:.0f}bp", "--",
+         f"{sn.delta:.1f}", f"{sn.gamma:.2f}", f"{sn.leverage:.0f}x"],
+    ]
+    _add_table(slide, Inches(0.5), Inches(1.75), Inches(8.0), tranche_data,
+               [Inches(1.4), Inches(0.8), Inches(0.7), Inches(1.1),
+                Inches(1.1), Inches(0.7), Inches(0.8), Inches(1.0)])
+
+    # ---- Section 2: Convexity P&L grid ----
+    _add_textbox(slide, Inches(0.5), Inches(3.35), Inches(6), Inches(0.35),
+                 "Combined Hedge P&L -- Convexity Demonstration",
+                 font_size=12, bold=True, color=NAVY)
+
+    # Get hedge positions from portfolio
+    hedges = portfolio.get("hedges", [])
+    idx_notional = 0.0
+    tranche_notional = 0.0
+    tranche_name = "mezzanine"
+    idx_is_long = True
+
+    for h in hedges:
+        inst = h.get("instrument", "").lower()
+        if "tranche" in inst or "equity" in inst:
+            tranche_notional = h["notional_millions"] * 1_000_000
+            if "equity" in inst or "0-10" in inst:
+                tranche_name = "equity"
+            else:
+                tranche_name = "mezzanine"
+        elif "index" in inst:
+            idx_notional = h["notional_millions"] * 1_000_000
+            idx_is_long = h["direction"] == "LONG_RISK"
+
+    # Default if no hedges
+    if tranche_notional == 0:
+        tranche_notional = 15_000_000
+    if idx_notional == 0:
+        idx_notional = 30_000_000
+
+    # Compute P&L for each bump
+    bumps = [-50, +50, +100, +200]
+    tranche_def = STANDARD_TRANCHES[tranche_name]
+    rho_map = {"equity": rho_eq, "mezzanine": rho_mz, "senior": rho_sn}
+    rho = rho_map[tranche_name]
+    running = tranche_def["coupon_bps"]
+    att = tranche_def["attachment"]
+    det = tranche_def["detachment"]
+
+    base_analytics = price_tranche(att, det, avg_spread, rho,
+                                   notional=tranche_notional,
+                                   running_coupon_bps=running)
+    base_mtm = base_analytics.mtm
+    rpv01 = cds_rpv01(avg_spread)
+    idx_dv01 = idx_notional * rpv01 / 10_000
+
+    idx_pnl_row = ["Index hedge ($30M long)"]
+    trn_pnl_row = [f"Tranche hedge (${tranche_notional/1e6:.0f}M {tranche_name})"]
+    combined_row = ["COMBINED"]
+
+    for bump in bumps:
+        new_spread = max(1.0, avg_spread + bump)
+        bumped = price_tranche(att, det, new_spread, rho,
+                               notional=tranche_notional,
+                               running_coupon_bps=running)
+        t_pnl = bumped.mtm - base_mtm  # Protection buyer gains on widening
+        i_pnl = idx_dv01 * bump * (-1 if idx_is_long else 1)
+        c_pnl = t_pnl + i_pnl
+
+        sign_t = "+" if t_pnl >= 0 else ""
+        sign_i = "+" if i_pnl >= 0 else ""
+        sign_c = "+" if c_pnl >= 0 else ""
+        idx_pnl_row.append(f"${sign_i}{i_pnl/1000:.0f}k")
+        trn_pnl_row.append(f"${sign_t}{t_pnl/1000:.0f}k")
+        combined_row.append(f"${sign_c}{c_pnl/1000:.0f}k")
+
+    bump_headers = ["Position"] + [f"{b:+d}bp" for b in bumps]
+    pnl_data = [bump_headers, idx_pnl_row, trn_pnl_row, combined_row]
+    _add_table(slide, Inches(0.5), Inches(3.75), Inches(8.0), pnl_data,
+               [Inches(3.2), Inches(1.2), Inches(1.2), Inches(1.2), Inches(1.2)])
+
+    # Highlight combined row with green/red
+    # (handled by table styling - bold row label is sufficient)
+
+    # ---- Section 3: Key delta/convexity metrics ----
+    _add_textbox(slide, Inches(9.0), Inches(1.35), Inches(4), Inches(0.35),
+                 "Key Risk Metrics", font_size=12, bold=True, color=NAVY)
+
+    metrics = [
+        ("Equity Delta", f"{eq.delta:.1f}x"),
+        ("Equity Leverage", f"{eq.leverage:.0f}x"),
+        ("Mezz Delta", f"{mz.delta:.1f}x"),
+        ("Mezz Leverage", f"{mz.leverage:.0f}x"),
+        ("Index Spread", f"{avg_spread:.0f}bps"),
+        ("Portfolio Names", f"{count}"),
+    ]
+    for i, (label, val) in enumerate(metrics):
+        row_y = Inches(1.8) + Inches(0.4) * i
+        _add_textbox(slide, Inches(9.0), row_y, Inches(2.2), Inches(0.35),
+                     label, font_size=10, bold=True, color=STEEL)
+        _add_textbox(slide, Inches(11.2), row_y, Inches(1.8), Inches(0.35),
+                     val, font_size=10, bold=True, color=DARK_NAVY)
+
+    # ---- Section 4: Convexity callout ----
+    # Compute convexity ratio
+    bumped_50 = price_tranche(att, det, avg_spread + 50, rho,
+                              notional=tranche_notional,
+                              running_coupon_bps=running)
+    bumped_100 = price_tranche(att, det, avg_spread + 100, rho,
+                               notional=tranche_notional,
+                               running_coupon_bps=running)
+    pnl_50 = bumped_50.mtm - base_mtm
+    pnl_100 = bumped_100.mtm - base_mtm
+    convexity_ratio = pnl_100 / pnl_50 if pnl_50 != 0 else 0
+
+    convexity_box = slide.shapes.add_shape(
+        1, Inches(9.0), Inches(4.2), Inches(4.0), Inches(0.8))
+    convexity_box.fill.solid()
+    convexity_box.fill.fore_color.rgb = RGBColor(0xE8, 0xF5, 0xE9)
+    convexity_box.line.fill.background()
+    _add_textbox(slide, Inches(9.1), Inches(4.25), Inches(3.8), Inches(0.35),
+                 f"Convexity: +100bp gains {convexity_ratio:.1f}x the +50bp gains",
+                 font_size=11, bold=True, color=LONG_GREEN)
+    _add_textbox(slide, Inches(9.1), Inches(4.6), Inches(3.8), Inches(0.3),
+                 "Gains accelerate on widening",
+                 font_size=10, color=STEEL)
+
+    # ---- Key message at bottom ----
+    msg_box = slide.shapes.add_shape(
+        1, Inches(0.5), Inches(5.5), Inches(12.3), Inches(1.2))
+    msg_box.fill.solid()
+    msg_box.fill.fore_color.rgb = DARK_NAVY
+    msg_box.line.fill.background()
+    _add_textbox(slide, Inches(0.7), Inches(5.6), Inches(11.9), Inches(0.45),
+                 "Tranches provide convex hedging unavailable in bonds",
+                 font_size=14, bold=True, color=WHITE, alignment=PP_ALIGN.CENTER)
+    _add_textbox(slide, Inches(0.7), Inches(6.1), Inches(11.9), Inches(0.45),
+                 "Gains accelerate as spreads widen, providing asymmetric risk/reward "
+                 "for tail scenarios. This is the core structural edge of the tranche franchise.",
+                 font_size=11, color=LIGHT_STEEL, alignment=PP_ALIGN.CENTER)
+
+
 def slide_stress_scenarios(prs, portfolio, date_str):
-    """Slide 12: Stress Scenarios."""
+    """Slide 13: Stress Scenarios."""
     slide = prs.slides.add_slide(prs.slide_layouts[6])
     _set_slide_bg(slide, WHITE)
     _add_title_bar(slide, "Stress Scenarios", "Three downside/upside scenarios with P&L impact")
@@ -729,7 +911,7 @@ def slide_stress_scenarios(prs, portfolio, date_str):
 
 
 def slide_risk_limits(prs, portfolio, snapshot, date_str):
-    """Slide 13: Risk Limits & Compliance."""
+    """Slide 14: Risk Limits & Compliance."""
     slide = prs.slides.add_slide(prs.slide_layouts[6])
     _set_slide_bg(slide, WHITE)
     _add_title_bar(slide, "Risk Limits & Compliance", "Hard constraints and current utilisation")
@@ -765,7 +947,7 @@ def slide_risk_limits(prs, portfolio, snapshot, date_str):
 
 
 def slide_key_risks(prs, portfolio, date_str):
-    """Slide 14: Key Portfolio Risks."""
+    """Slide 15: Key Portfolio Risks."""
     slide = prs.slides.add_slide(prs.slide_layouts[6])
     _set_slide_bg(slide, WHITE)
     _add_title_bar(slide, "Key Portfolio Risks")
@@ -786,7 +968,7 @@ def slide_key_risks(prs, portfolio, date_str):
 
 
 def slide_filing_monitor(prs, filings, date_str):
-    """Slide 15: Recent Filing Activity."""
+    """Slide 16: Recent Filing Activity."""
     slide = prs.slides.add_slide(prs.slide_layouts[6])
     _set_slide_bg(slide, WHITE)
     _add_title_bar(slide, "Filing Monitor", "Recent regulatory events (last 7 days)")
@@ -811,7 +993,7 @@ def slide_filing_monitor(prs, filings, date_str):
 
 
 def slide_knowledge_base(prs, date_str):
-    """Slide 16: Knowledge Base."""
+    """Slide 17: Knowledge Base."""
     slide = prs.slides.add_slide(prs.slide_layouts[6])
     _set_slide_bg(slide, WHITE)
     _add_title_bar(slide, "Knowledge Base", "848 indexed chunks across 39 reference texts")
@@ -842,7 +1024,7 @@ def slide_knowledge_base(prs, date_str):
 
 
 def slide_technology_stack(prs, date_str):
-    """Slide 17: Technology Stack."""
+    """Slide 18: Technology Stack."""
     slide = prs.slides.add_slide(prs.slide_layouts[6])
     _set_slide_bg(slide, WHITE)
     _add_title_bar(slide, "Technology Stack")
@@ -872,7 +1054,7 @@ def slide_technology_stack(prs, date_str):
 
 
 def slide_commentary(prs, portfolio, date_str):
-    """Slide 18: PM Commentary."""
+    """Slide 19: PM Commentary."""
     slide = prs.slides.add_slide(prs.slide_layouts[6])
     _set_slide_bg(slide, DARK_NAVY)
 
@@ -896,7 +1078,7 @@ def slide_commentary(prs, portfolio, date_str):
 
 
 def slide_portfolio_manager(prs, date_str):
-    """Slide 19: Portfolio Manager Biography."""
+    """Slide 20: Portfolio Manager Biography."""
     slide = prs.slides.add_slide(prs.slide_layouts[6])
     _set_slide_bg(slide, WHITE)
     _add_title_bar(slide, "Portfolio Manager")
@@ -959,7 +1141,7 @@ def slide_portfolio_manager(prs, date_str):
 
 
 def slide_disclaimer(prs, date_str):
-    """Slide 20: Disclaimer."""
+    """Slide 21: Disclaimer."""
     slide = prs.slides.add_slide(prs.slide_layouts[6])
     _set_slide_bg(slide, DARK_NAVY)
 
@@ -985,7 +1167,7 @@ def slide_disclaimer(prs, date_str):
 
 
 def slide_contact(prs, date_str):
-    """Slide 21: Contact / Back page."""
+    """Slide 22: Contact / Back page."""
     slide = prs.slides.add_slide(prs.slide_layouts[6])
     _set_slide_bg(slide, DARK_NAVY)
 
@@ -1035,16 +1217,17 @@ def generate_pitch_deck(
     slide_sector_allocation(prs, portfolio, date_str)             # 9
     slide_pair_trades(prs, portfolio, date_str)                   # 10
     slide_hedges(prs, portfolio, date_str)                        # 11
-    slide_stress_scenarios(prs, portfolio, date_str)              # 12
-    slide_risk_limits(prs, portfolio, snapshot, date_str)         # 13
-    slide_key_risks(prs, portfolio, date_str)                     # 14
-    slide_filing_monitor(prs, filings, date_str)                  # 15
-    slide_knowledge_base(prs, date_str)                           # 16
-    slide_technology_stack(prs, date_str)                         # 17
-    slide_commentary(prs, portfolio, date_str)                    # 18
-    slide_portfolio_manager(prs, date_str)                        # 19
-    slide_disclaimer(prs, date_str)                               # 20
-    slide_contact(prs, date_str)                                  # 21
+    slide_tranche_analytics(prs, portfolio, assessments, date_str) # 12
+    slide_stress_scenarios(prs, portfolio, date_str)              # 13
+    slide_risk_limits(prs, portfolio, snapshot, date_str)         # 14
+    slide_key_risks(prs, portfolio, date_str)                     # 15
+    slide_filing_monitor(prs, filings, date_str)                  # 16
+    slide_knowledge_base(prs, date_str)                           # 17
+    slide_technology_stack(prs, date_str)                         # 18
+    slide_commentary(prs, portfolio, date_str)                    # 19
+    slide_portfolio_manager(prs, date_str)                        # 20
+    slide_disclaimer(prs, date_str)                               # 21
+    slide_contact(prs, date_str)                                  # 22
 
     prs.save(filepath)
     return filepath
@@ -1106,7 +1289,7 @@ def main():
     print("\nGenerating pitch deck...")
     filepath = generate_pitch_deck(assessments, portfolio, snapshot, filings)
     print(f"Pitch deck saved: {filepath}")
-    print(f"Slides: 21")
+    print(f"Slides: 22")
     print("\nDone.")
 
 
