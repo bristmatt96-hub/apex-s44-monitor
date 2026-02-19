@@ -2,10 +2,11 @@
 Credit Analyst Agent
 
 Takes a company name and iTraxx index, queries the knowledge base for context,
-calls Claude API for credit assessment, and returns a CreditAssessment object.
+loads real market data (CDS spreads), calls Claude API for credit assessment,
+and returns a CreditAssessment object.
 
 Usage:
-    python -m agents.analyst "Ardagh Group" --index Xover
+    python -m agents.analyst "INEOS Finance PLC" --index Xover
 """
 
 import argparse
@@ -18,6 +19,7 @@ import anthropic
 from dotenv import load_dotenv
 
 from core.models import CreditAssessment, Direction, ItraxxIndex
+from data.market_data_loader import load_market_data, get_spread_context
 from knowledge.retriever import KnowledgeRetriever
 
 load_dotenv(override=True)
@@ -25,15 +27,40 @@ load_dotenv(override=True)
 SYSTEM_PROMPT = """You are a senior European credit analyst with 25 years experience in CDS markets.
 You specialise in iTraxx Main (125 investment-grade names) and iTraxx Crossover (75 high-yield names).
 
-When given a company name and index, produce a credit assessment in JSON format.
-Use your expertise to estimate reasonable values where exact market data is not available.
-Be specific about catalysts — they must be time-bound (e.g. "Q3 earnings on 15 Nov" not "earnings").
+Today's date is {today}. All catalysts must be forward-looking from this date.
+Do not reference events before February 2026 unless they are historical context.
+
+You have been provided with real market data including the current 5Y CDS spread.
+Use this as the current_spread in your output — do NOT estimate it.
+Your fair_spread estimate should differ from the current spread based on your fundamental analysis.
+If no market data is provided, estimate the spread based on rating/sector and mark your thesis accordingly.
+
+Vary your fair value estimates based on rating, sector, and company-specific factors.
+Use your knowledge of typical CDS spread ranges:
+AAA/AA 20-50bps, A 50-100bps, BBB 100-200bps, BB 200-400bps, B 400-700bps, CCC 700-1500bps.
+
+CONVICTION SCORING - THIS IS CRITICAL:
+- 1/5: No edge, insufficient information, no clear catalyst
+- 2/5: Slight lean but low confidence, generic thesis
+- 3/5: Moderate view with some supporting evidence
+- 4/5: Strong conviction with clear catalyst and multiple supporting factors
+- 5/5: Exceptional — only for the most obvious mispricings with imminent catalysts
+MANDATORY DISTRIBUTION: Out of 75 names, you MUST score approximately:
+- 5/5: 0-2 names maximum
+- 4/5: 5-10 names maximum
+- 3/5: 20-30 names (this is the default for a name with a reasonable view)
+- 2/5: 20-30 names (slight lean, limited edge)
+- 1/5: 5-15 names (no meaningful view)
+If you are giving 4/5 to more than 15% of names, you are not being discriminating enough.
+A conviction of 4 means you would put significant capital behind this trade.
+
+Be specific about catalysts — they must be time-bound (e.g. "Q2 2026 earnings on 15 May" not "earnings").
 
 Respond with ONLY valid JSON matching this exact schema:
-{
+{{
     "entity_name": "string",
     "itraxx_index": "Main" or "Xover",
-    "current_spread": float (5Y CDS spread in bps, your best estimate),
+    "current_spread": float (5Y CDS spread in bps — use the MARKET DATA value provided),
     "fair_spread": float (your model fair value in bps),
     "direction": "LONG_RISK" or "SHORT_RISK" or "FLAT",
     "conviction": int 1-5,
@@ -41,10 +68,22 @@ Respond with ONLY valid JSON matching this exact schema:
     "thesis": "2-3 sentence thesis",
     "catalyst": "specific time-bound catalyst",
     "key_risks": ["risk 1", "risk 2", "risk 3"],
-    "fundamental_metrics": {"leverage": float, "coverage": float, "fcf_yield": float}
-}
+    "fundamental_metrics": {{"leverage": float, "coverage": float, "fcf_yield": float}}
+}}
 
 No markdown, no explanation, no code fences. Just the JSON object."""
+
+
+# Cache market data so we don't reload per call during batch runs
+_market_data_cache: dict[str, dict] = {}
+
+
+def _get_market_data(index: str) -> dict:
+    """Load and cache market data for the given index."""
+    key = index.lower()
+    if key not in _market_data_cache:
+        _market_data_cache[key] = load_market_data(index=key)
+    return _market_data_cache[key]
 
 
 def get_knowledge_context(entity_name: str, index: str) -> str:
@@ -75,7 +114,7 @@ def assess_credit(entity_name: str, index: str) -> CreditAssessment:
     """Run the analyst agent for a single name.
 
     Args:
-        entity_name: Company name (e.g. "Ardagh Group")
+        entity_name: Company name (e.g. "INEOS Finance PLC")
         index: iTraxx index — "Main" or "Xover"
 
     Returns:
@@ -90,17 +129,27 @@ def assess_credit(entity_name: str, index: str) -> CreditAssessment:
     # Build context from knowledge base
     knowledge_context = get_knowledge_context(entity_name, index)
 
+    # Load real market data
+    market_data = _get_market_data(index)
+    spread_context = get_spread_context(entity_name, market_data)
+
+    # Inject today's date into system prompt
+    today_str = datetime.now().strftime("%d %B %Y")
+    system_prompt = SYSTEM_PROMPT.format(today=today_str)
+
     user_message_parts = [
         f"Produce a credit assessment for: {entity_name}",
         f"Index: iTraxx {index}",
     ]
+    if spread_context:
+        user_message_parts.append(f"\n{spread_context}")
     if knowledge_context:
         user_message_parts.append(f"\n{knowledge_context}")
 
     message = client.messages.create(
         model="claude-sonnet-4-5-20250929",
         max_tokens=1024,
-        system=SYSTEM_PROMPT,
+        system=system_prompt,
         messages=[{"role": "user", "content": "\n".join(user_message_parts)}],
     )
 
@@ -122,17 +171,23 @@ def assess_credit(entity_name: str, index: str) -> CreditAssessment:
 
 def main():
     parser = argparse.ArgumentParser(description="Credit Analyst Agent")
-    parser.add_argument("entity", type=str, help="Company name (e.g. 'Ardagh Group')")
+    parser.add_argument("entity", type=str, help="Company name (e.g. 'INEOS Finance PLC')")
     parser.add_argument(
         "--index",
         type=str,
         choices=["Main", "Xover"],
-        default="Main",
-        help="iTraxx index (default: Main)",
+        default="Xover",
+        help="iTraxx index (default: Xover)",
     )
     args = parser.parse_args()
 
     print(f"Analysing {args.entity} (iTraxx {args.index})...\n")
+
+    # Show market data if available
+    market_data = _get_market_data(args.index)
+    spread_ctx = get_spread_context(args.entity, market_data)
+    if spread_ctx:
+        print(f"Market: {spread_ctx}\n")
 
     try:
         assessment = assess_credit(args.entity, args.index)
