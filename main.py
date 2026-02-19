@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-APEX Trading System - Multi-Agent Trading Bot
-Aggressive risk/reward trading across all markets
+Credit Catalyst — AI-Augmented European Credit Analysis
+Identifies mispriced credits in iTraxx Crossover S44
 
 Usage:
     python main.py              # Start the trading system
@@ -88,7 +88,7 @@ class TradingSystem:
     async def start(self, auto_execute: bool = False):
         """Start the trading system"""
         logger.info("=" * 60)
-        logger.info("APEX Trading System Starting")
+        logger.info("Credit Catalyst System Starting")
         logger.info(f"Capital: ${config.risk.starting_capital:,.2f}")
         logger.info(f"Max Position: {config.risk.max_position_pct:.0%}")
         logger.info(f"PDT Restricted: {config.pdt_restricted}")
@@ -187,7 +187,7 @@ async def run_scan_only():
 def show_config():
     """Display current configuration"""
     print("\n" + "=" * 60)
-    print("APEX Trading System Configuration")
+    print("Credit Catalyst Configuration")
     print("=" * 60)
     print(f"\nCapital: ${config.risk.starting_capital:,.2f}")
     print(f"Max Position Size: {config.risk.max_position_pct:.0%} (${config.risk.starting_capital * config.risk.max_position_pct:,.2f})")
@@ -208,7 +208,7 @@ def show_config():
 
 
 def main():
-    parser = argparse.ArgumentParser(description='APEX Multi-Agent Trading System')
+    parser = argparse.ArgumentParser(description='Credit Catalyst — AI-Augmented European Credit Analysis')
     parser.add_argument('--scan', action='store_true', help='Run market scan only (no execution)')
     parser.add_argument('--config', action='store_true', help='Show configuration')
     parser.add_argument('--auto', action='store_true', help='Enable auto-execution (DANGEROUS)')

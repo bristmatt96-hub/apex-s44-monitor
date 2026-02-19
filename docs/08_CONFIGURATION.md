@@ -2,7 +2,7 @@
 
 ## Overview
 
-All APEX configuration lives in `config/settings.py` as Pydantic models. This provides type safety, validation, and clear documentation for all settings.
+All Credit Catalyst configuration lives in `config/settings.py` as Pydantic models. This provides type safety, validation, and clear documentation for all settings.
 
 **Location**: `config/settings.py`
 

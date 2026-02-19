@@ -1,7 +1,7 @@
 """
-APEX Trading Dashboard API
+Credit Catalyst Dashboard API
 
-FastAPI backend for the trading dashboard.
+FastAPI backend for the credit analysis dashboard.
 Provides REST endpoints and WebSocket for real-time updates.
 """
 import asyncio
@@ -31,7 +31,7 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(
-    title="APEX Trading Dashboard",
+    title="Credit Catalyst Dashboard",
     description="Real-time trading dashboard API",
     version="1.0.0",
     lifespan=lifespan
@@ -43,7 +43,7 @@ app.add_middleware(
     allow_origins=[
         "http://localhost:3000",      # Local Next.js dev
         "http://127.0.0.1:3000",
-        "https://dashboard.apex.trade",  # Production domain
+        "https://dashboard.creditcatalyst.io",  # Production domain
         "*"  # Allow all for development - restrict in production
     ],
     allow_credentials=True,
@@ -61,7 +61,7 @@ async def root():
     """Health check endpoint"""
     return {
         "status": "ok",
-        "service": "APEX Trading Dashboard",
+        "service": "Credit Catalyst Dashboard",
         "version": "1.0.0"
     }
 
@@ -100,7 +100,7 @@ async def websocket_endpoint(websocket: WebSocket):
         bridge = get_bridge()
 
         await manager.send_personal(websocket, "connected", {
-            "message": "Connected to APEX Dashboard",
+            "message": "Connected to Credit Catalyst Dashboard",
             "coordinator_connected": bridge.is_connected()
         })
 

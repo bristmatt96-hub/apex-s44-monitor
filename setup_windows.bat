@@ -1,11 +1,11 @@
 @echo off
 REM ============================================================================
-REM APEX S44 Monitor - Windows Setup Script
+REM Credit Catalyst - Windows Setup Script
 REM Run this on Windows to get everything working
 REM ============================================================================
 
 echo ======================================
-echo   APEX S44 Monitor - Windows Setup
+echo   Credit Catalyst - Windows Setup
 echo ======================================
 echo.
 

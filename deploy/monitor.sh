@@ -1,10 +1,10 @@
 #!/bin/bash
 # ============================================
-# Quick monitoring script for APEX Trading System
+# Quick monitoring script for Credit Catalyst
 # ============================================
 
 echo "=========================================="
-echo "  APEX Trading System Status"
+echo "  Credit Catalyst System Status"
 echo "=========================================="
 echo ""
 

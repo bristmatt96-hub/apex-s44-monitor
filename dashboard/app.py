@@ -41,7 +41,7 @@ st.set_page_config(
 # ============================================
 # Change this passcode to your own secure code
 # For production, use environment variables or secrets management
-DEFAULT_PASSCODE = "apex2024"  # Change this!
+DEFAULT_PASSCODE = "catalyst2024"  # Change this!
 
 def get_master_reset_code():
     """Get master reset code from Streamlit secrets"""

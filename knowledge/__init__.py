@@ -1,5 +1,5 @@
 """
-Knowledge Base module for Apex Credit Monitor
+Knowledge Base module for Credit Catalyst
 Includes trading knowledge ingestion and retrieval
 """
 

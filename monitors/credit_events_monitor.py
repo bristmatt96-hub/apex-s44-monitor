@@ -1,5 +1,5 @@
 """
-Credit Events Monitor for Apex Credit Monitor
+Credit Events Monitor for Credit Catalyst
 Tracks earnings, covenants, and maturities for alpha generation
 
 Features:

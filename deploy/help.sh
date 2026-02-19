@@ -1,12 +1,12 @@
 #!/bin/bash
 # ============================================
-# APEX Trading System - Quick Reference
+# Credit Catalyst - Quick Reference
 # Run: bash deploy/help.sh
 # ============================================
 
 cat << 'EOF'
 ==========================================
-  APEX Trading System - Cheat Sheet
+  Credit Catalyst - Cheat Sheet
 ==========================================
 
 --- Services ---

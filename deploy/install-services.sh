@@ -1,6 +1,6 @@
 #!/bin/bash
 # ============================================
-# Install all systemd services for APEX Trading
+# Install all systemd services for Credit Catalyst
 # Run from the project root: bash deploy/install-services.sh
 # ============================================
 
@@ -10,7 +10,7 @@ DEPLOY_DIR="$(cd "$(dirname "$0")" && pwd)"
 PROJECT_DIR="$(dirname "$DEPLOY_DIR")"
 
 echo "=========================================="
-echo "  Installing APEX Trading Services"
+echo "  Installing Credit Catalyst Services"
 echo "=========================================="
 
 # Copy service files

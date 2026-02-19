@@ -1,5 +1,5 @@
 [Unit]
-Description=APEX Multi-Agent Trading System
+Description=Credit Catalyst Analysis System
 After=ibgateway.service network-online.target
 Wants=ibgateway.service network-online.target
 

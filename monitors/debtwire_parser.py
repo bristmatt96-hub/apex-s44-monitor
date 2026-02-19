@@ -1,5 +1,5 @@
 """
-Debtwire Excel Parser for Apex Credit Monitor
+Debtwire Excel Parser for Credit Catalyst
 Converts Debtwire Excel exports to JSON snapshots and database records
 """
 

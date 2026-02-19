@@ -1,5 +1,5 @@
 """
-Database module for Apex Credit Monitor
+Database module for Credit Catalyst
 """
 
 from .db import (

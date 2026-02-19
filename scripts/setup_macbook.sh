@@ -1,10 +1,10 @@
 #!/bin/bash
-# MacBook Setup Script for Apex Trading System
+# MacBook Setup Script for Credit Catalyst
 # Run this after cloning the repo on your MacBook
 
 set -e
 
-echo "🍎 Setting up Apex Trading System on MacBook..."
+echo "🍎 Setting up Credit Catalyst on MacBook..."
 echo ""
 
 # Check Python

@@ -1,5 +1,5 @@
 """
-Tear Sheet Generator for Apex Credit Monitor
+Tear Sheet Generator for Credit Catalyst
 Generates professional credit tear sheets from company data
 """
 

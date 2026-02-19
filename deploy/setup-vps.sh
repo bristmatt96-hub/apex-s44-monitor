@@ -1,16 +1,16 @@
 #!/bin/bash
-# VPS Setup Script for APEX Dashboard
+# VPS Setup Script for Credit Catalyst Dashboard
 # Run on the VPS: bash setup-vps.sh
 
 set -e
 
-echo "=== Setting up APEX Dashboard on VPS ==="
+echo "=== Setting up Credit Catalyst Dashboard on VPS ==="
 
 # Create dashboard systemd service
 echo "Creating dashboard service..."
 cat > /etc/systemd/system/dashboard.service << 'EOF'
 [Unit]
-Description=APEX Trading Dashboard API
+Description=Credit Catalyst Dashboard API
 After=trading-system.service network-online.target
 Wants=trading-system.service
 

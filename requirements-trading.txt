@@ -1,4 +1,4 @@
-# APEX Trading System - Isolated Dependencies
+# Credit Catalyst - Isolated Dependencies
 # Use this for running main.py without the monitoring tool
 #
 # Setup:

@@ -1,10 +1,10 @@
-# APEX Trading System — Architecture & Recommendations
+# Credit Catalyst — Architecture & Recommendations
 
 ## How It Works (Top to Bottom)
 
 ### The Big Picture
 
-APEX is a multi-agent trading system. Eight scanners watch markets 24/7, looking for opportunities. When one finds something, the signal passes through three validation stages — technical analysis, ML prediction, and multi-factor ranking — before landing on a decision: execute or reject. Closed trades feed back into four learning systems that adjust the system's behaviour over time.
+Credit Catalyst is an AI-augmented credit analysis system. Eight scanners watch markets 24/7, looking for opportunities. When one finds something, the signal passes through three validation stages — technical analysis, ML prediction, and multi-factor ranking — before landing on a decision: execute or reject. Closed trades feed back into four learning systems that adjust the system's behaviour over time.
 
 Everything runs as async Python tasks coordinated by a central message bus.
 

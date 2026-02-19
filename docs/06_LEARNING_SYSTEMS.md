@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Learning Systems layer closes the feedback loop in APEX. When trades close, the outcome data feeds into four learning systems that gradually adjust the system's behavior over time.
+The Learning Systems layer closes the feedback loop in Credit Catalyst. When trades close, the outcome data feeds into four learning systems that gradually adjust the system's behavior over time.
 
 This creates an adaptive system that:
 - Weights profitable markets higher

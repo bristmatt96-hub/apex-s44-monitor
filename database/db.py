@@ -1,5 +1,5 @@
 """
-Database connection and models for Apex Credit Monitor
+Database connection and models for Credit Catalyst
 Uses SQLAlchemy with Supabase PostgreSQL
 """
 

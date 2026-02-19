@@ -3,12 +3,12 @@ import '@/styles/globals.css'
 import { NavBar } from '@/components/layout/nav-bar'
 
 export const metadata: Metadata = {
-  title: 'APEX Dashboard',
-  description: 'Trading system dashboard',
+  title: 'Credit Catalyst Dashboard',
+  description: 'AI-Augmented European Credit Analysis',
   appleWebApp: {
     capable: true,
     statusBarStyle: 'black-translucent',
-    title: 'APEX',
+    title: 'Credit Catalyst',
   },
 }
 

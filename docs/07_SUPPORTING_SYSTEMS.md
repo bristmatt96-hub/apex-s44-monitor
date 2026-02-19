@@ -2,7 +2,7 @@
 
 ## Overview
 
-Beyond the core signal pipeline, APEX includes several supporting systems that enhance functionality:
+Beyond the core signal pipeline, Credit Catalyst includes several supporting systems that enhance functionality:
 
 1. **Knowledge Retriever** — TF-IDF search over trading books for psychology adjustments
 2. **Telegram Notifier** — Real-time alerts and daily summaries
@@ -281,7 +281,7 @@ async def handle_command(self, command: str, args: List[str]) -> None:
 
 ```
 ┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
-│   Next.js       │────▶│   FastAPI       │────▶│   APEX Core    │
+│   Next.js       │────▶│   FastAPI       │────▶│ Credit Catalyst│
 │   (Vercel)      │     │   (VPS)         │     │   (VPS)        │
 └─────────────────┘     └─────────────────┘     └─────────────────┘
 ```
@@ -294,11 +294,11 @@ async def handle_command(self, command: str, args: List[str]) -> None:
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
-app = FastAPI(title="APEX Trading API")
+app = FastAPI(title="Credit Catalyst API")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://apex-dashboard.vercel.app"],
+    allow_origins=["https://credit-catalyst.vercel.app"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -583,7 +583,7 @@ def get_stats(self) -> Dict:
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                        APEX Core System                          │
+│                    Credit Catalyst Core System                    │
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                   │
 │  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐              │

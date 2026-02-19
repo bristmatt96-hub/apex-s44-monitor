@@ -1,5 +1,5 @@
 """
-PDF Knowledge Base Processor for Apex Credit Monitor
+PDF Knowledge Base Processor for Credit Catalyst
 Extracts and indexes content from credit/finance PDFs for reference
 
 This enables the system to learn from your books:

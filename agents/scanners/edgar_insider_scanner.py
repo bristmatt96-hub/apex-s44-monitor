@@ -30,7 +30,7 @@ from core.models import Signal, MarketType, SignalType
 
 # SEC requires User-Agent with name and email
 EDGAR_HEADERS = {
-    'User-Agent': 'ApexTrader trading-bot@example.com',
+    'User-Agent': 'CreditCatalyst credit-analysis@example.com',
     'Accept': 'application/json'
 }
 

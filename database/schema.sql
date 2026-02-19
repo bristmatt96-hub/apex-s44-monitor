@@ -1,4 +1,4 @@
--- Apex Credit Monitor Database Schema
+-- Credit Catalyst Database Schema
 -- For Supabase (PostgreSQL)
 
 -- ============================================
