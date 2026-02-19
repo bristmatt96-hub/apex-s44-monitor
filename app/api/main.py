@@ -309,6 +309,24 @@ async def api_filings():
     return {"filings": filings, "count": len(filings)}
 
 
+@app.get("/api/screen")
+async def api_screen():
+    """Alias for /api/universe -- top ideas data."""
+    return await api_universe()
+
+
+@app.get("/api/rv")
+async def api_rv():
+    """Alias for /api/relative-value."""
+    return await api_relative_value()
+
+
+@app.get("/api/maturity")
+async def api_maturity():
+    """Alias for /api/maturity-wall."""
+    return await api_maturity_wall()
+
+
 @app.get("/api/relative-value")
 async def api_relative_value():
     """Rich/cheap screen from relative value module."""
