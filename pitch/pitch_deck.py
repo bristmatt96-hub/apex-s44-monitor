@@ -639,30 +639,87 @@ def slide_sector_allocation(prs, portfolio, date_str):
                  font_size=11, color=BODY_GRAY)
 
 
-def slide_pair_trades(prs, portfolio, date_str):
-    """Slide 10: Pair Trades."""
+def slide_pair_trades(prs, portfolio, assessments, date_str):
+    """Slide 10: Pair Trades -- RV-sourced from relative value screener."""
+    from analytics.relative_value import run_full_analysis
+
     slide = prs.slides.add_slide(prs.slide_layouts[6])
     _set_slide_bg(slide, WHITE)
-    _add_title_bar(slide, "Pair Trades", "Relative value within sectors")
+    _add_title_bar(slide, "Pair Trades",
+                   "Quantitative relative value -- sector z-score + rating z-score + momentum")
     _add_footer(slide, date_str)
 
-    pairs = portfolio.get("pair_trades", [])
-    data = [["Long Leg", "Short Leg", "Spread Diff", "Rationale"]]
-    for p in pairs:
-        data.append([
-            p.get("long_name", "")[:30],
-            p.get("short_name", "")[:30],
-            f'{p.get("spread_differential", 0):.0f}bps',
-            p.get("rationale", "")[:70],
-        ])
+    # Run full RV analysis to get scored pairs
+    try:
+        rv_names, rv_pairs = run_full_analysis()
+    except Exception:
+        rv_names, rv_pairs = [], []
 
-    if len(data) > 1:
-        _add_table(slide, Inches(0.5), Inches(1.6), Inches(12.3), data,
-                   [Inches(2.8), Inches(2.8), Inches(1.2), Inches(5.5)])
+    if rv_pairs:
+        # Show top 5 RV-sourced pairs
+        _add_textbox(slide, Inches(0.5), Inches(1.35), Inches(8), Inches(0.3),
+                     "Top Relative Value Pair Trades (ranked by composite score differential)",
+                     font_size=11, bold=True, color=NAVY)
+
+        data = [["#", "Cheap Leg (Buy Prot)", "Score", "Rich Leg (Sell Prot)",
+                 "Score", "Sector", "Spread Diff"]]
+        for i, p in enumerate(rv_pairs[:5], 1):
+            data.append([
+                str(i),
+                p.cheap_name[:28],
+                f"{p.cheap_score:+.2f}",
+                p.rich_name[:28],
+                f"{p.rich_score:+.2f}",
+                p.sector[:16],
+                f"{p.spread_diff:+.0f}bp",
+            ])
+
+        _add_table(slide, Inches(0.5), Inches(1.7), Inches(12.3), data,
+                   [Inches(0.4), Inches(2.8), Inches(0.8), Inches(2.8),
+                    Inches(0.8), Inches(1.8), Inches(1.1)])
+
+        # RV universe summary
+        cheap_count = sum(1 for n in rv_names if "CHEAP" in n.rv_signal.upper())
+        rich_count = sum(1 for n in rv_names if "RICH" in n.rv_signal.upper())
+        fair_count = sum(1 for n in rv_names if n.rv_signal == "FAIR")
+
+        summary_text = (
+            f"Universe: {len(rv_names)} names scored  |  "
+            f"{cheap_count} CHEAP  |  {rich_count} RICH  |  {fair_count} FAIR"
+        )
+        _add_textbox(slide, Inches(0.5), Inches(4.0), Inches(12.3), Inches(0.35),
+                     summary_text, font_size=10, color=STEEL)
+
+        # Key insight box
+        if rv_pairs:
+            top = rv_pairs[0]
+            insight = (
+                f"Strongest signal: {top.cheap_name[:25]} ({top.cheap_spread:.0f}bp) "
+                f"vs {top.rich_name[:25]} ({top.rich_spread:.0f}bp) -- "
+                f"composite differential {top.composite_diff:+.2f}"
+            )
+            box = slide.shapes.add_shape(
+                1, Inches(0.5), Inches(4.5), Inches(12.3), Inches(0.6))
+            box.fill.solid()
+            box.fill.fore_color.rgb = RGBColor(0xE8, 0xF5, 0xE9)
+            box.line.fill.background()
+            _add_textbox(slide, Inches(0.7), Inches(4.55), Inches(11.9), Inches(0.45),
+                         insight, font_size=11, bold=True, color=LONG_GREEN)
+
     else:
-        _add_textbox(slide, Inches(1), Inches(3), Inches(10), Inches(1),
-                     "No pair trades identified in current portfolio.",
-                     font_size=16, color=STEEL)
+        # Fallback to strategist pairs
+        pairs = portfolio.get("pair_trades", [])
+        data = [["Long Leg", "Short Leg", "Spread Diff", "Rationale"]]
+        for p in pairs:
+            data.append([
+                p.get("long_name", "")[:30],
+                p.get("short_name", "")[:30],
+                f'{p.get("spread_differential", 0):.0f}bps',
+                p.get("rationale", "")[:70],
+            ])
+        if len(data) > 1:
+            _add_table(slide, Inches(0.5), Inches(1.6), Inches(12.3), data,
+                       [Inches(2.8), Inches(2.8), Inches(1.2), Inches(5.5)])
 
 
 def slide_hedges(prs, portfolio, date_str):
@@ -1215,7 +1272,7 @@ def generate_pitch_deck(
     slide_top_shorts(prs, assessments, date_str)                  # 7
     slide_portfolio_construction(prs, portfolio, date_str)        # 8
     slide_sector_allocation(prs, portfolio, date_str)             # 9
-    slide_pair_trades(prs, portfolio, date_str)                   # 10
+    slide_pair_trades(prs, portfolio, assessments, date_str)       # 10
     slide_hedges(prs, portfolio, date_str)                        # 11
     slide_tranche_analytics(prs, portfolio, assessments, date_str) # 12
     slide_stress_scenarios(prs, portfolio, date_str)              # 13
