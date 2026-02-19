@@ -65,7 +65,10 @@ def load_assessments_from_excel(filepath: str) -> list[CreditAssessment]:
             continue
 
         # Parse updated_at
-        updated_str = row[10] or ""
+        # Column layout: 0:Entity, 1:Direction, 2:Conviction, 3:Raw Conviction,
+        # 4:Current Spread, 5:Fair Spread, 6:Mispricing, 7:Rel Mispricing%,
+        # 8:Thesis, 9:Catalyst, 10:Risks, 11:Signal Sources, 12:Updated At
+        updated_str = row[12] or ""
         if isinstance(updated_str, datetime):
             updated_at = updated_str
         elif updated_str:
@@ -76,17 +79,20 @@ def load_assessments_from_excel(filepath: str) -> list[CreditAssessment]:
         else:
             updated_at = datetime.now()
 
+        raw_conv = int(row[3]) if row[3] is not None else None
+
         assessments.append(CreditAssessment(
             entity_name=row[0],
             itraxx_index=itraxx_index,
-            current_spread=float(row[3]),
-            fair_spread=float(row[4]),
+            current_spread=float(row[4]),
+            fair_spread=float(row[5]),
             direction=Direction(row[1]),
             conviction=int(row[2]),
-            signal_sources=[s.strip() for s in (row[9] or "").split(",") if s.strip()],
-            thesis=row[6] or "",
-            catalyst=row[7] or "",
-            key_risks=[r.strip() for r in (row[8] or "").split(";") if r.strip()],
+            raw_conviction=raw_conv,
+            signal_sources=[s.strip() for s in (row[11] or "").split(",") if s.strip()],
+            thesis=row[8] or "",
+            catalyst=row[9] or "",
+            key_risks=[r.strip() for r in (row[10] or "").split(";") if r.strip()],
             fundamental_metrics={},
             updated_at=updated_at,
         ))

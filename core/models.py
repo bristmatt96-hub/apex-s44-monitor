@@ -44,6 +44,7 @@ class CreditAssessment(BaseModel):
     fair_spread: float
     direction: Direction
     conviction: int = Field(ge=1, le=5)
+    raw_conviction: Optional[int] = Field(default=None, ge=1, le=5)
     signal_sources: list[str]
     thesis: str
     catalyst: str

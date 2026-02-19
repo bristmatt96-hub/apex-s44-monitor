@@ -85,6 +85,77 @@ def run_screen(
     return assessments
 
 
+def force_rank_convictions(assessments: list[CreditAssessment]) -> list[CreditAssessment]:
+    """Force-rank conviction by relative mispricing magnitude.
+
+    Instead of relying on Claude's subjective conviction (which clusters at 4/5),
+    rank all names by |fair_spread - current_spread| / current_spread and assign
+    conviction based on percentile buckets:
+        Top 5%   -> 5  (3-4 names out of 75)
+        Next 10% -> 4  (7-8 names)
+        Mid 50%  -> 3  (35-38 names)
+        Next 25% -> 2  (18-19 names)
+        Bot 10%  -> 1  (7-8 names)
+
+    Claude's original conviction is preserved in raw_conviction.
+    """
+    if not assessments:
+        return assessments
+
+    n = len(assessments)
+
+    # Compute relative mispricing for each assessment
+    ranked = []
+    for a in assessments:
+        if a.current_spread > 0:
+            rel_mispricing = abs(a.fair_spread - a.current_spread) / a.current_spread
+        else:
+            rel_mispricing = abs(a.fair_spread - a.current_spread) / max(a.fair_spread, 1.0)
+        ranked.append((a, rel_mispricing))
+
+    # Sort descending by relative mispricing (biggest edge first)
+    ranked.sort(key=lambda x: x[1], reverse=True)
+
+    # Percentile cutoffs
+    cut_5 = max(1, round(n * 0.05))         # top 5%   -> conv 5
+    cut_15 = max(cut_5 + 1, round(n * 0.15))  # next 10% -> conv 4
+    cut_65 = max(cut_15 + 1, round(n * 0.65))  # mid 50%  -> conv 3
+    cut_90 = max(cut_65 + 1, round(n * 0.90))  # next 25% -> conv 2
+    # bottom 10% -> conv 1
+
+    print(f"\n  Force-ranking convictions across {n} names:")
+    print(f"    Conv 5: ranks 1-{cut_5}  ({cut_5} names)")
+    print(f"    Conv 4: ranks {cut_5+1}-{cut_15}  ({cut_15 - cut_5} names)")
+    print(f"    Conv 3: ranks {cut_15+1}-{cut_65}  ({cut_65 - cut_15} names)")
+    print(f"    Conv 2: ranks {cut_65+1}-{cut_90}  ({cut_90 - cut_65} names)")
+    print(f"    Conv 1: ranks {cut_90+1}-{n}  ({n - cut_90} names)")
+
+    for idx, (a, rel_misp) in enumerate(ranked):
+        # Save Claude's original conviction
+        a.raw_conviction = a.conviction
+
+        # Assign force-ranked conviction
+        if idx < cut_5:
+            a.conviction = 5
+        elif idx < cut_15:
+            a.conviction = 4
+        elif idx < cut_65:
+            a.conviction = 3
+        elif idx < cut_90:
+            a.conviction = 2
+        else:
+            a.conviction = 1
+
+    # Distribution summary
+    dist = {}
+    for a, _ in ranked:
+        dist[a.conviction] = dist.get(a.conviction, 0) + 1
+    print(f"    Distribution: " + ", ".join(f"{k}/5={v}" for k, v in sorted(dist.items(), reverse=True)))
+
+    # Return as flat list (original order doesn't matter, sort_assessments handles final order)
+    return [a for a, _ in ranked]
+
+
 def sort_assessments(assessments: list[CreditAssessment]) -> list[CreditAssessment]:
     """Sort by conviction desc, then absolute mispricing desc."""
     return sorted(
@@ -114,9 +185,11 @@ def write_excel(
         "Entity Name",
         "Direction",
         "Conviction",
+        "Raw Conviction",
         "Current Spread",
         "Fair Spread",
         "Spread Mispricing",
+        "Rel Mispricing %",
         "Thesis",
         "Catalyst",
         "Key Risks",
@@ -146,18 +219,24 @@ def write_excel(
 
     for row_idx, a in enumerate(sorted_assessments, 2):
         mispricing = a.fair_spread - a.current_spread
+        if a.current_spread > 0:
+            rel_misp = abs(mispricing) / a.current_spread * 100
+        else:
+            rel_misp = abs(mispricing) / max(a.fair_spread, 1.0) * 100
 
         ws.cell(row=row_idx, column=1, value=a.entity_name)
         dir_cell = ws.cell(row=row_idx, column=2, value=a.direction.value)
         ws.cell(row=row_idx, column=3, value=a.conviction)
-        ws.cell(row=row_idx, column=4, value=round(a.current_spread, 1))
-        ws.cell(row=row_idx, column=5, value=round(a.fair_spread, 1))
-        ws.cell(row=row_idx, column=6, value=round(mispricing, 1))
-        ws.cell(row=row_idx, column=7, value=a.thesis)
-        ws.cell(row=row_idx, column=8, value=a.catalyst)
-        ws.cell(row=row_idx, column=9, value="; ".join(a.key_risks))
-        ws.cell(row=row_idx, column=10, value=", ".join(a.signal_sources))
-        ws.cell(row=row_idx, column=11, value=a.updated_at.strftime("%Y-%m-%d %H:%M"))
+        ws.cell(row=row_idx, column=4, value=a.raw_conviction if a.raw_conviction else a.conviction)
+        ws.cell(row=row_idx, column=5, value=round(a.current_spread, 1))
+        ws.cell(row=row_idx, column=6, value=round(a.fair_spread, 1))
+        ws.cell(row=row_idx, column=7, value=round(mispricing, 1))
+        ws.cell(row=row_idx, column=8, value=round(rel_misp, 1))
+        ws.cell(row=row_idx, column=9, value=a.thesis)
+        ws.cell(row=row_idx, column=10, value=a.catalyst)
+        ws.cell(row=row_idx, column=11, value="; ".join(a.key_risks))
+        ws.cell(row=row_idx, column=12, value=", ".join(a.signal_sources))
+        ws.cell(row=row_idx, column=13, value=a.updated_at.strftime("%Y-%m-%d %H:%M"))
 
         # Color the direction cell
         if a.direction.value == "LONG_RISK":
@@ -172,13 +251,13 @@ def write_excel(
             ws.cell(row=row_idx, column=col).border = thin_border
 
     # Column widths
-    col_widths = [35, 14, 12, 14, 12, 16, 60, 50, 60, 40, 18]
+    col_widths = [35, 14, 12, 14, 14, 12, 16, 16, 60, 50, 60, 40, 18]
     for i, w in enumerate(col_widths, 1):
         ws.column_dimensions[get_column_letter(i)].width = w
 
     # Wrap text on thesis/catalyst/risks columns
     for row_idx in range(2, len(sorted_assessments) + 2):
-        for col in [7, 8, 9]:
+        for col in [9, 10, 11]:
             ws.cell(row=row_idx, column=col).alignment = Alignment(wrap_text=True, vertical="top")
 
     # Freeze header row
@@ -300,6 +379,9 @@ def main():
     if not assessments:
         print("No assessments produced. Exiting.", file=sys.stderr)
         sys.exit(1)
+
+    # Force-rank convictions by relative mispricing instead of Claude's subjective scoring
+    assessments = force_rank_convictions(assessments)
 
     filepath = write_excel(assessments, args.index)
     print(f"\nExcel saved: {filepath}")

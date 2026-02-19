@@ -86,20 +86,45 @@ def _get_market_data(index: str) -> dict:
     return _market_data_cache[key]
 
 
+CREDIT_SOURCES = {
+    "Covenants.pdf", "distressed exchanges.pdf", "Ranking of Debt.pdf",
+    "Maturities and Calls.pdf", "CLO\u2019s.pdf", "Coupons.pdf",
+    "Credit Snapshot.pdf", "Valuation Process Moyer.pdf",
+    "amendments and consents.pdf", "New Issues.pdf", "Financial Issues.pdf",
+    "business trend analysis.pdf", "Decision Process.pdf", "equity info.pdf",
+    "news events.pdf", "Ownership and Management.pdf",
+    "portfolio management.pdf", "relative value analysis.pdf",
+    "Data science and credit analysis.pdf",
+}
+
+MAX_CHUNKS = 12
+MIN_CREDIT_CHUNKS = 4
+
+
 def get_knowledge_context(entity_name: str, index: str) -> str:
-    """Query the knowledge base for relevant credit analysis context."""
+    """Query the knowledge base for relevant credit analysis context.
+
+    Biases retrieval towards credit-specific chunks: always includes a
+    dedicated credit query and guarantees at least MIN_CREDIT_CHUNKS
+    from credit category sources out of MAX_CHUNKS total.
+    """
     retriever = KnowledgeRetriever(knowledge_path="knowledge")
 
     queries = [
+        # Entity-specific
         f"{entity_name} credit analysis CDS spread",
+        # Index-level context
         f"{index} index credit default swap relative value",
+        # General credit fundamentals
         "credit analysis leverage coverage ratio fundamental assessment",
+        # Dedicated credit-bias query (always included)
+        "credit covenants leverage distressed debt restructuring CDS spread analysis",
     ]
 
     all_results = []
     seen_ids = set()
     for q in queries:
-        for r in retriever.query(q, top_k=3, min_score=0.05):
+        for r in retriever.query(q, top_k=4, min_score=0.05):
             if r.chunk_id not in seen_ids:
                 seen_ids.add(r.chunk_id)
                 all_results.append(r)
@@ -107,7 +132,25 @@ def get_knowledge_context(entity_name: str, index: str) -> str:
     if not all_results:
         return ""
 
-    return retriever.format_context_for_agent(all_results[:8])
+    # Split into credit and non-credit results
+    credit_results = [r for r in all_results if r.source in CREDIT_SOURCES]
+    other_results = [r for r in all_results if r.source not in CREDIT_SOURCES]
+
+    # Sort each group by relevance descending
+    credit_results.sort(key=lambda r: r.relevance_score, reverse=True)
+    other_results.sort(key=lambda r: r.relevance_score, reverse=True)
+
+    # Guarantee at least MIN_CREDIT_CHUNKS credit results, fill rest by relevance
+    final = credit_results[:MIN_CREDIT_CHUNKS]
+    remaining_slots = MAX_CHUNKS - len(final)
+
+    # Merge leftover credit + all other, sorted by score, to fill remaining
+    leftover_credit = credit_results[MIN_CREDIT_CHUNKS:]
+    pool = leftover_credit + other_results
+    pool.sort(key=lambda r: r.relevance_score, reverse=True)
+    final.extend(pool[:remaining_slots])
+
+    return retriever.format_context_for_agent(final)
 
 
 def assess_credit(entity_name: str, index: str) -> CreditAssessment:

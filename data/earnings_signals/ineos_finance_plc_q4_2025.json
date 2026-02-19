@@ -1,0 +1,68 @@
+{
+  "entity_name": "INEOS Finance PLC",
+  "quarter": "Q4 2025",
+  "signal": "negative",
+  "severity": 4,
+  "covenant_language": {
+    "current_tone": "adequate headroom on springing covenant at 6.2x vs 7.5x test level",
+    "prior_tone": "comfortable headroom (Q4 2024)",
+    "direction": "deteriorating",
+    "specific_ratios_mentioned": [
+      "net leverage 5.8x",
+      "springing covenant 6.2x vs 7.5x test",
+      "target below 5.0x by end 2027"
+    ],
+    "key_observation": "Explicit downgrade from 'comfortable' to 'adequate' headroom with CFO acknowledging need for 'different conversation' if EBITDA falls below \u20ac1.8bn."
+  },
+  "leverage_guidance": {
+    "current_leverage": "5.8x net debt/EBITDA",
+    "target_leverage": "below 5.0x",
+    "timeline": "end of 2027",
+    "trajectory": "deleveraging",
+    "key_observation": "Leverage improved modestly from 6.1x to 5.8x but remains elevated; deleveraging timeline pushed to 2027 and explicitly qualified with 'subject to macro environment'."
+  },
+  "refinancing": {
+    "upcoming_maturities_mentioned": [
+      "\u20ac1.8bn term loans due 2027",
+      "\u20ac750mm secured notes due March 2028"
+    ],
+    "plans": "Commenced bank discussions for extension, exploring high yield market for 2027 maturities, plan to address in H1 2026",
+    "status": "in_progress",
+    "red_flags": [
+      "exploring options in high yield market (not secured)",
+      "subject to market conditions caveat repeated twice",
+      "analyst question implies market surprised refinancing not already completed",
+      "60-90 day timeline given for market access (not imminent)"
+    ],
+    "green_flags": [
+      "preliminary bank conversations described as constructive",
+      "proactive approach to 2028 maturities mentioned"
+    ]
+  },
+  "liquidity": {
+    "cash_position": "\u20ac1.2bn cash and equivalents",
+    "revolver_availability": "\u20ac1.5bn fully undrawn RCF",
+    "runway_months": 24,
+    "concerns": [
+      "free cash flow of \u20ac380mm significantly below expectations",
+      "liquidity described as 'solid' not 'strong' (defensive language)",
+      "working capital timing issues in Q4 negatively impacted FCF"
+    ],
+    "key_observation": "Liquidity position appears adequate at \u20ac2.7bn total but FCF generation well below expectations raises questions about cash generation sustainability."
+  },
+  "capex_signals": {
+    "direction": "cutting",
+    "asset_disposals": "Composites business sale in advanced discussions with two buyers, expected Q2 2026 completion, \u20ac400-500mm proceeds earmarked entirely for debt reduction",
+    "is_defensive": true,
+    "key_observation": "\u20ac200mm growth capex deferred in Q3 2025 from Acetyls division; management retains flexibility to defer additional capex if conditions deteriorate further, indicating defensive posture."
+  },
+  "tone_shift": "deteriorating",
+  "key_quotes": [
+    "Our springing covenant net leverage ratio was 6.2 times against a test level of 7.5 times, so we have adequate headroom. I would note that at the same point last year, we described this headroom as comfortable, and the movement reflects the broader margin environment rather than any structural deterioration in our business.",
+    "If EBITDA were to deteriorate materially from here, say below 1.8 billion on a trailing basis, then we would need to be having a different conversation. But that is not our base case. We are monitoring the situation closely and we have levers we can pull if needed.",
+    "We have commenced discussions with our bank group regarding an extension and are exploring options in the high yield market. We expect to address these maturities in the first half of 2026, though I would caveat that this is subject to market conditions."
+  ],
+  "summary": "Significant credit deterioration signals across multiple dimensions: explicit covenant language downgrade from 'comfortable' to 'adequate', elevated 5.8x leverage with deleveraging timeline pushed to 2027 and heavily qualified, \u20ac1.8bn 2027 refinancing wall still unaddressed with management 'exploring options' and caveatting market conditions, defensive capex cuts of \u20ac200mm with more possible, and FCF generation materially below expectations. Asset disposal proceeds earmarked for debt reduction confirms deleveraging stress. Management tone heavily hedged with repeated 'subject to' qualifiers and acknowledgment they are 'monitoring closely' - classic stress language at 908bps spread levels.",
+  "analysed_at": "2026-02-19T11:24:04.855675",
+  "prior_quarter_file": ""
+}

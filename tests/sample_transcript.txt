@@ -1,0 +1,42 @@
+INEOS Finance PLC -- Q4 2025 Earnings Call Transcript
+19 February 2026
+
+PARTICIPANTS:
+- Jim Ratcliffe, Chairman
+- John Reece, CFO
+- Andrew Currie, Head of Capital Markets
+
+PREPARED REMARKS:
+
+John Reece, CFO:
+Thank you. Good morning everyone and thank you for joining us for our Q4 and full year 2025 results presentation.
+
+Starting with the headline numbers. Full year EBITDA came in at 2.1 billion euros, broadly in line with our guidance of 2 to 2.2 billion. Free cash flow generation was 380 million, which was somewhat below our initial expectations due to the timing of working capital movements in Q4.
+
+On leverage, our net debt to EBITDA ratio ended the year at 5.8 times. This is a modest improvement from the 6.1 times we reported at Q3, driven by the EBITDA recovery in our petrochemicals division. Our medium-term target remains to bring this below 5 times, and we continue to believe we can achieve this by the end of 2027, subject to the macro environment.
+
+Turning to covenants. We remain in compliance with all maintenance covenants under our senior secured facilities. Our springing covenant net leverage ratio was 6.2 times against a test level of 7.5 times, so we have adequate headroom. I would note that at the same point last year, we described this headroom as comfortable, and the movement reflects the broader margin environment rather than any structural deterioration in our business.
+
+On refinancing, we have approximately 1.8 billion euros of term loan maturities falling due in 2027. We have commenced discussions with our bank group regarding an extension and are exploring options in the high yield market. We expect to address these maturities in the first half of 2026, though I would caveat that this is subject to market conditions. We also have 750 million of secured notes maturing in March 2028, which we plan to address proactively.
+
+Liquidity remains solid. We ended the year with 1.2 billion in cash and cash equivalents, plus a fully undrawn revolving credit facility of 1.5 billion. We have no near-term maturities and our liquidity runway extends comfortably beyond 24 months.
+
+On capital expenditure, we spent 890 million in 2025, down from our original budget of 1.1 billion. We made the decision in Q3 to defer approximately 200 million of growth capex in our Acetyls division to 2026. This was a prudent decision given the margin environment and is not indicative of any change in our strategic ambitions. We are also progressing with the potential sale of our composites business, which we believe could generate proceeds in the range of 400 to 500 million euros.
+
+Q&A SESSION:
+
+Analyst (Goldman Sachs): John, on the covenant language, you mentioned "adequate headroom" this quarter versus "comfortable" previously. Can you walk us through what would need to happen for that to become a concern?
+
+John Reece: Sure. Look, the covenant is tested quarterly and the 7.5 times threshold gives us significant buffer. I would say that adequate reflects where we are in the cycle. If EBITDA were to deteriorate materially from here, say below 1.8 billion on a trailing basis, then we would need to be having a different conversation. But that is not our base case. We are monitoring the situation closely and we have levers we can pull if needed.
+
+Analyst (JP Morgan): On the 2027 maturities, you said "exploring options". Should we read anything into the fact that you haven't already refinanced given the market has been open?
+
+Andrew Currie: I would say it is a matter of timing and optimising terms rather than access. We have had preliminary conversations with several banks and the reception has been constructive. We want to ensure we get the right structure and pricing. I would expect us to be in market within the next 60 to 90 days, subject to conditions.
+
+Analyst (Barclays): Can you give us more colour on the composites disposal? Is this a strategic review or have you received indicative offers?
+
+Jim Ratcliffe: We have received several indicative offers and are in advanced discussions with two potential buyers. I would expect this to complete in Q2 2026. The proceeds would be used entirely for debt reduction.
+
+Analyst (Deutsche Bank): The capex deferral of 200 million -- is this truly timing or are you pulling back on growth because of the leverage situation?
+
+John Reece: It is genuinely timing. The projects in question are still going ahead, we have simply pushed the spend into 2026 and 2027. If conditions deteriorate further, we have the flexibility to defer additional capex, but that would be a decision we hope not to have to make.
