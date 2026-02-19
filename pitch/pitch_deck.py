@@ -895,8 +895,71 @@ def slide_commentary(prs, portfolio, date_str):
                  font_size=10, color=STEEL)
 
 
+def slide_portfolio_manager(prs, date_str):
+    """Slide 19: Portfolio Manager Biography."""
+    slide = prs.slides.add_slide(prs.slide_layouts[6])
+    _set_slide_bg(slide, WHITE)
+    _add_title_bar(slide, "Portfolio Manager")
+    _add_footer(slide, date_str)
+
+    # Name
+    _add_textbox(slide, Inches(0.8), Inches(1.5), Inches(11), Inches(0.6),
+                 "Matt Bristow", font_size=28, bold=True, color=DARK_NAVY)
+
+    # Experience headline
+    _add_textbox(slide, Inches(0.8), Inches(2.2), Inches(11), Inches(0.4),
+                 "28 Years Sell-Side Credit Trading", font_size=16,
+                 bold=True, color=STEEL)
+
+    # Career timeline
+    career = [
+        ("Bear Stearns", "Credit Trading",
+         "Foundation in credit markets through Bear Stearns' proprietary credit trading desk"),
+        ("Barclays Capital", "European Index Tranche Franchise Builder",
+         "Built and ran the European index tranche business from scratch, combining fundamental "
+         "credit analysis with quantitative structuring"),
+        ("Bank of America Merrill Lynch", "Significant P&L Generation",
+         "Senior credit trader delivering consistent alpha through single-name CDS and "
+         "index tranche strategies across European high yield"),
+    ]
+
+    for i, (firm, role, desc) in enumerate(career):
+        top = Inches(2.9) + Inches(1.15) * i
+
+        # Firm name bar
+        shape = slide.shapes.add_shape(1, Inches(0.8), top, Inches(3.5), Inches(0.4))
+        shape.fill.solid()
+        shape.fill.fore_color.rgb = DARK_NAVY
+        shape.line.fill.background()
+        _add_textbox(slide, Inches(0.9), top + Inches(0.02), Inches(3.3), Inches(0.35),
+                     firm, font_size=13, bold=True, color=WHITE)
+
+        # Role
+        _add_textbox(slide, Inches(4.5), top, Inches(8), Inches(0.35),
+                     role, font_size=13, bold=True, color=NAVY)
+
+        # Description
+        _add_textbox(slide, Inches(4.5), top + Inches(0.4), Inches(8), Inches(0.7),
+                     desc, font_size=11, color=BODY_GRAY)
+
+    # Expertise section
+    _add_textbox(slide, Inches(0.8), Inches(6.0), Inches(3), Inches(0.4),
+                 "Core Expertise", font_size=14, bold=True, color=NAVY)
+    _add_textbox(slide, Inches(4.0), Inches(6.0), Inches(8.5), Inches(0.4),
+                 "iTraxx indices  |  Single-name CDS  |  Index tranches  |  European HY credit",
+                 font_size=12, color=BODY_GRAY)
+
+    # Current focus
+    _add_textbox(slide, Inches(0.8), Inches(6.5), Inches(3), Inches(0.4),
+                 "Current Focus", font_size=14, bold=True, color=NAVY)
+    _add_textbox(slide, Inches(4.0), Inches(6.5), Inches(8.5), Inches(0.4),
+                 "Developing proprietary AI-assisted credit analysis technology targeting "
+                 "multi-manager platforms",
+                 font_size=12, color=BODY_GRAY)
+
+
 def slide_disclaimer(prs, date_str):
-    """Slide 19: Disclaimer."""
+    """Slide 20: Disclaimer."""
     slide = prs.slides.add_slide(prs.slide_layouts[6])
     _set_slide_bg(slide, DARK_NAVY)
 
@@ -922,7 +985,7 @@ def slide_disclaimer(prs, date_str):
 
 
 def slide_contact(prs, date_str):
-    """Slide 20: Contact / Back page."""
+    """Slide 21: Contact / Back page."""
     slide = prs.slides.add_slide(prs.slide_layouts[6])
     _set_slide_bg(slide, DARK_NAVY)
 
@@ -979,8 +1042,9 @@ def generate_pitch_deck(
     slide_knowledge_base(prs, date_str)                           # 16
     slide_technology_stack(prs, date_str)                         # 17
     slide_commentary(prs, portfolio, date_str)                    # 18
-    slide_disclaimer(prs, date_str)                               # 19
-    slide_contact(prs, date_str)                                  # 20
+    slide_portfolio_manager(prs, date_str)                        # 19
+    slide_disclaimer(prs, date_str)                               # 20
+    slide_contact(prs, date_str)                                  # 21
 
     prs.save(filepath)
     return filepath
@@ -1042,7 +1106,7 @@ def main():
     print("\nGenerating pitch deck...")
     filepath = generate_pitch_deck(assessments, portfolio, snapshot, filings)
     print(f"Pitch deck saved: {filepath}")
-    print(f"Slides: 20")
+    print(f"Slides: 21")
     print("\nDone.")
 
 
