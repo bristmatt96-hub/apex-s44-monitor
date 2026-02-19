@@ -1,0 +1,343 @@
+{
+  "_template": {
+    "_comment": "Copy this template to add a new profile. Remove _template prefix.",
+    "entity_name": "Company Name PLC",
+    "xover_name": "Exact name from indices/xover_s44.json",
+    "last_updated": "2026-02-19",
+    "source": "Debtwire / OM / Companies House / Offering Circular",
+    "documentation_vintage": "2021",
+    "documentation_type": "covenant-lite",
+    "sponsor": null,
+    "capital_structure": {
+      "total_debt_eur_m": null,
+      "ebitda_eur_m": null,
+      "net_leverage": null,
+      "secured_leverage": null,
+      "instruments": []
+    },
+    "covenants": {
+      "maintenance_covenants": false,
+      "springing_covenant": null,
+      "springing_test_level": null,
+      "springing_trigger": null,
+      "incurrence_covenants": {
+        "leverage_test": null,
+        "coverage_test": null,
+        "fixed_charge_test": null
+      },
+      "key_baskets": {
+        "unrestricted_sub_capacity": null,
+        "permitted_investments": null,
+        "restricted_payments": null,
+        "permitted_debt": null
+      }
+    },
+    "lme_provisions": {
+      "j_crew_blocker": null,
+      "uptier_protection": null,
+      "asset_stripping_risk": null,
+      "intercreditor_type": null,
+      "amendment_threshold": null,
+      "sacred_rights": []
+    },
+    "maturity_profile": {
+      "nearest_maturity": null,
+      "nearest_maturity_size_eur_m": null,
+      "total_maturities_within_24m_eur_m": null
+    },
+    "notes": ""
+  },
+
+  "Bellis Acquisition Co PLC": {
+    "entity_name": "Asda Group Ltd",
+    "xover_name": "Bellis Acquisition Co PLC",
+    "last_updated": "2026-01-09",
+    "source": "Debtwire export",
+    "documentation_vintage": "2021-2025",
+    "documentation_type": "mixed (2021 original + 2024-2025 refi)",
+    "sponsor": "TDR Capital LLP",
+    "capital_structure": {
+      "total_debt_eur_m": 8500,
+      "ebitda_eur_m": null,
+      "net_leverage": null,
+      "secured_leverage": null,
+      "instruments": [
+        {"type": "Bond", "desc": "GBP 2,250m Sr Secd Notes", "maturity": "2026-02-16", "currency": "GBP"},
+        {"type": "Bond", "desc": "GBP 500m Sr Secd Notes", "maturity": "2026-02-16", "currency": "GBP"},
+        {"type": "Bond", "desc": "GBP 1,750m Sr Secd Notes", "maturity": "2030-05-14", "currency": "GBP"},
+        {"type": "Bond", "desc": "EUR 700m Sr Secd Notes", "maturity": "2031-07-01", "currency": "EUR"},
+        {"type": "Loan", "desc": "GBP 770m Term Loan", "maturity": "2029-10-20", "currency": "GBP"},
+        {"type": "Loan", "desc": "GBP 793m RCF First Lien", "maturity": "2028-10-23", "currency": "GBP"},
+        {"type": "Loan", "desc": "EUR 1,285m TLB First Lien", "maturity": "2031-05-22", "currency": "EUR"},
+        {"type": "Loan", "desc": "GBP 162m TLA", "maturity": "2028-10-16", "currency": "GBP"}
+      ]
+    },
+    "covenants": {
+      "maintenance_covenants": false,
+      "springing_covenant": null,
+      "springing_test_level": null,
+      "springing_trigger": null,
+      "incurrence_covenants": {
+        "leverage_test": null,
+        "coverage_test": null,
+        "fixed_charge_test": null
+      },
+      "key_baskets": {
+        "unrestricted_sub_capacity": null,
+        "permitted_investments": null,
+        "restricted_payments": null,
+        "permitted_debt": null
+      }
+    },
+    "lme_provisions": {
+      "j_crew_blocker": null,
+      "uptier_protection": null,
+      "asset_stripping_risk": null,
+      "intercreditor_type": null,
+      "amendment_threshold": null,
+      "sacred_rights": []
+    },
+    "maturity_profile": {
+      "nearest_maturity": "2026-02-16",
+      "nearest_maturity_size_eur_m": 3200,
+      "total_maturities_within_24m_eur_m": 3200
+    },
+    "distress_probability_pct": 25.3,
+    "lifecycle_status": "Performing",
+    "notes": "GBP 2,750m of Sr Secd Notes maturing Feb 2026 -- IMMINENT. Sponsored by TDR Capital. Covenant data not available in Debtwire export. Needs OM review for covenant detail."
+  },
+
+  "Albion Financing 1 SARL": {
+    "entity_name": "Iceland Foods Ltd",
+    "xover_name": "Albion Financing 1 SARL",
+    "last_updated": "2026-01-09",
+    "source": "Debtwire export",
+    "documentation_vintage": "2020-2023",
+    "documentation_type": "standard HY",
+    "sponsor": null,
+    "capital_structure": {
+      "total_debt_eur_m": null,
+      "ebitda_eur_m": null,
+      "net_leverage": null,
+      "secured_leverage": null,
+      "instruments": [
+        {"type": "Bond", "desc": "GBP 265m Sr Secd Notes", "maturity": "2027-12-15", "currency": "GBP"},
+        {"type": "Bond", "desc": "EUR 250m Sr Secd Notes", "maturity": null, "currency": "EUR"},
+        {"type": "Loan", "desc": "GBP 75m RCF", "maturity": null, "currency": "GBP"}
+      ]
+    },
+    "covenants": {
+      "maintenance_covenants": false,
+      "springing_covenant": null,
+      "springing_test_level": null,
+      "springing_trigger": null,
+      "incurrence_covenants": {
+        "leverage_test": null,
+        "coverage_test": null,
+        "fixed_charge_test": null
+      },
+      "key_baskets": {
+        "unrestricted_sub_capacity": null,
+        "permitted_investments": null,
+        "restricted_payments": null,
+        "permitted_debt": null
+      }
+    },
+    "lme_provisions": {
+      "j_crew_blocker": null,
+      "uptier_protection": null,
+      "asset_stripping_risk": null,
+      "intercreditor_type": null,
+      "amendment_threshold": null,
+      "sacred_rights": []
+    },
+    "maturity_profile": {
+      "nearest_maturity": "2027-12-15",
+      "nearest_maturity_size_eur_m": 265,
+      "total_maturities_within_24m_eur_m": 265
+    },
+    "distress_probability_pct": 9.6,
+    "lifecycle_status": "Performing",
+    "notes": "Family-owned UK food retailer. Covenant data not available in Debtwire export. Moderate distress probability at 9.6%."
+  },
+
+  "INEOS Quattro Finance 2 Plc": {
+    "entity_name": "INEOS Quattro Holdings Ltd",
+    "xover_name": "INEOS Quattro Finance 2 Plc",
+    "last_updated": "2026-01-09",
+    "source": "Debtwire export",
+    "documentation_vintage": "2020-2024",
+    "documentation_type": "standard HY secured",
+    "sponsor": "INEOS (Jim Ratcliffe)",
+    "capital_structure": {
+      "total_debt_eur_m": 7500,
+      "ebitda_eur_m": 690,
+      "net_leverage": -2.8,
+      "secured_leverage": null,
+      "instruments": [
+        {"type": "Bond", "desc": "EUR 600m Sr Secd Notes", "maturity": "2027-01-16", "currency": "EUR"},
+        {"type": "Bond", "desc": "EUR 525m Sr Secd Notes", "maturity": "2029-03-15", "currency": "EUR"},
+        {"type": "Bond", "desc": "EUR 250m Sr Secd Notes", "maturity": "2029-03-15", "currency": "EUR"},
+        {"type": "Bond", "desc": "USD 400m Sr Secd Notes", "maturity": "2029-03-15", "currency": "USD"},
+        {"type": "Bond", "desc": "EUR 675m Sr Secd Notes", "maturity": "2030-04-15", "currency": "EUR"},
+        {"type": "Loan", "desc": "EUR 435m TLB First Lien", "maturity": "2031-10-01", "currency": "EUR"},
+        {"type": "Loan", "desc": "USD 575m TLB First Lien", "maturity": "2031-10-01", "currency": "USD"},
+        {"type": "Loan", "desc": "EUR 875m TLB First Lien", "maturity": "2029-03-31", "currency": "EUR"},
+        {"type": "Loan", "desc": "USD 1,100m TLB First Lien", "maturity": "2029-03-31", "currency": "USD"},
+        {"type": "Loan", "desc": "CNY 3,300m Term Loan", "maturity": "2032-01-21", "currency": "CNY"}
+      ]
+    },
+    "covenants": {
+      "maintenance_covenants": false,
+      "springing_covenant": "Net Leverage",
+      "springing_test_level": "7.5x (estimated from earnings call)",
+      "springing_trigger": "RCF draw >40% (estimated)",
+      "incurrence_covenants": {
+        "leverage_test": null,
+        "coverage_test": null,
+        "fixed_charge_test": null
+      },
+      "key_baskets": {
+        "unrestricted_sub_capacity": null,
+        "permitted_investments": null,
+        "restricted_payments": null,
+        "permitted_debt": null
+      }
+    },
+    "lme_provisions": {
+      "j_crew_blocker": null,
+      "uptier_protection": null,
+      "asset_stripping_risk": "HIGH -- INEOS Group structure allows inter-entity transfers",
+      "intercreditor_type": null,
+      "amendment_threshold": null,
+      "sacred_rights": []
+    },
+    "maturity_profile": {
+      "nearest_maturity": "2027-01-16",
+      "nearest_maturity_size_eur_m": 600,
+      "total_maturities_within_24m_eur_m": 600
+    },
+    "distress_probability_pct": 81.8,
+    "lifecycle_status": "Stressed",
+    "notes": "Debtwire EBITDA USD 749m (Sep 2025). Net LTD/EBITDA shows -2.8x (negative = excess cash over reported debt, likely intercompany). 81.8% distress probability. EUR 600m notes mature Jan 2027. Springing covenant at 7.5x estimated from INEOS Finance PLC Q4 2025 earnings call. INEOS Group structure creates inter-entity transfer risk."
+  },
+
+  "Samhallsbyggnadsbolaget i Norden AB": {
+    "entity_name": "Samhallsbyggnadsbolaget i Norden AB",
+    "xover_name": "Samhallsbyggnadsbolaget i Norden AB",
+    "last_updated": "2026-01-09",
+    "source": "Debtwire export",
+    "documentation_vintage": "2019-2024",
+    "documentation_type": "unsecured IG-style (fallen angel)",
+    "sponsor": null,
+    "capital_structure": {
+      "total_debt_eur_m": 5100,
+      "ebitda_eur_m": 166,
+      "net_leverage": 29.7,
+      "secured_leverage": 0,
+      "instruments": [
+        {"type": "Bond", "desc": "EUR 508m Sr Unsecd Notes", "maturity": "2026-08-04", "currency": "EUR"},
+        {"type": "Bond", "desc": "EUR 683m Sr Unsecd Notes", "maturity": "2027-07-12", "currency": "EUR"},
+        {"type": "Bond", "desc": "SEK 413m Sr Unsecd Notes", "maturity": "2027-01-29", "currency": "SEK"},
+        {"type": "Bond", "desc": "EUR 111m Sr Unsecd Notes", "maturity": "2027-01-29", "currency": "EUR"},
+        {"type": "Bond", "desc": "EUR 700m Sr Unsecd Notes", "maturity": "2028-12-14", "currency": "EUR"},
+        {"type": "Bond", "desc": "EUR 663m Sr Unsecd Notes", "maturity": "2028-11-14", "currency": "EUR"},
+        {"type": "Bond", "desc": "EUR 750m Sr Unsecd Notes", "maturity": "2029-11-26", "currency": "EUR"},
+        {"type": "Bond", "desc": "EUR 200m Sr Notes", "maturity": "2029-11-26", "currency": "EUR"},
+        {"type": "Bond", "desc": "EUR 154m Sr Unsecd Notes", "maturity": "2029-10-20", "currency": "EUR"},
+        {"type": "Bond", "desc": "EUR 773m Sr Unsecd Notes", "maturity": "2029-09-26", "currency": "EUR"},
+        {"type": "Bond", "desc": "EUR 500m Subordinated Notes", "maturity": "Perpetual", "currency": "EUR"},
+        {"type": "Bond", "desc": "EUR 500m Subordinated Notes", "maturity": "Perpetual", "currency": "EUR"},
+        {"type": "Bond", "desc": "EUR 50m Sr Unsecd Notes", "maturity": "2040-04-03", "currency": "EUR"}
+      ]
+    },
+    "covenants": {
+      "maintenance_covenants": false,
+      "springing_covenant": null,
+      "springing_test_level": null,
+      "springing_trigger": null,
+      "incurrence_covenants": {
+        "leverage_test": null,
+        "coverage_test": null,
+        "fixed_charge_test": null
+      },
+      "key_baskets": {
+        "unrestricted_sub_capacity": "HIGH RISK -- IG-style docs with minimal restrictions",
+        "permitted_investments": "HIGH RISK -- broad baskets typical of IG issuers",
+        "restricted_payments": "HIGH RISK -- limited restrictions, dividend payments continued despite distress",
+        "permitted_debt": "HIGH RISK -- incurrence test likely at 2.0x or similar IG-level threshold"
+      }
+    },
+    "lme_provisions": {
+      "j_crew_blocker": false,
+      "uptier_protection": false,
+      "asset_stripping_risk": "CRITICAL -- unsecured bonds, assets can be encumbered or sold",
+      "intercreditor_type": "None (all unsecured pari passu)",
+      "amendment_threshold": "75% (estimated for IG-style)",
+      "sacred_rights": ["payment terms", "ranking"]
+    },
+    "maturity_profile": {
+      "nearest_maturity": "2026-08-04",
+      "nearest_maturity_size_eur_m": 508,
+      "total_maturities_within_24m_eur_m": 1715
+    },
+    "distress_probability_pct": 99.0,
+    "lifecycle_status": "Distressed",
+    "notes": "99% distress probability. EV/EBITDA 38.4x. Net leverage 29.7x. All bonds unsecured -- fallen angel with IG-style documentation providing minimal creditor protections. EUR 508m maturing Aug 2026 (6 months). Total EUR 1.7bn within 24 months. EUR 1bn of perpetual subordinated notes. Asset disposals ongoing to service debt but structural subordination risk is extreme. LME vulnerability is maximum."
+  },
+
+  "Ziggo Bond Co BV": {
+    "entity_name": "VodafoneZiggo Group Holding BV",
+    "xover_name": "Ziggo Bond Co BV",
+    "last_updated": "2026-01-09",
+    "source": "Debtwire export",
+    "documentation_vintage": "2019-2024",
+    "documentation_type": "leveraged finance (cable)",
+    "sponsor": "Liberty Global / Vodafone JV",
+    "capital_structure": {
+      "total_debt_eur_m": null,
+      "ebitda_eur_m": null,
+      "net_leverage": null,
+      "secured_leverage": null,
+      "instruments": [
+        {"type": "Loan", "desc": "USD 2,525m Term Loan B", "maturity": "2028-04-30", "currency": "USD"},
+        {"type": "Bond", "desc": "USD Sr Notes", "maturity": null, "currency": "USD"},
+        {"type": "Bond", "desc": "EUR Sr Secd Notes", "maturity": null, "currency": "EUR"},
+        {"type": "Bond", "desc": "USD Sr Secd Notes", "maturity": null, "currency": "USD"}
+      ]
+    },
+    "covenants": {
+      "maintenance_covenants": false,
+      "springing_covenant": null,
+      "springing_test_level": null,
+      "springing_trigger": null,
+      "incurrence_covenants": {
+        "leverage_test": null,
+        "coverage_test": null,
+        "fixed_charge_test": null
+      },
+      "key_baskets": {
+        "unrestricted_sub_capacity": null,
+        "permitted_investments": null,
+        "restricted_payments": null,
+        "permitted_debt": null
+      }
+    },
+    "lme_provisions": {
+      "j_crew_blocker": null,
+      "uptier_protection": null,
+      "asset_stripping_risk": null,
+      "intercreditor_type": null,
+      "amendment_threshold": null,
+      "sacred_rights": []
+    },
+    "maturity_profile": {
+      "nearest_maturity": "2028-04-30",
+      "nearest_maturity_size_eur_m": 2300,
+      "total_maturities_within_24m_eur_m": 2300
+    },
+    "distress_probability_pct": 6.5,
+    "lifecycle_status": "Performing",
+    "notes": "Liberty Global / Vodafone JV. USD 2.5bn TLB maturing Apr 2028. Covenant data not in Debtwire export. Cable-style docs likely have broad permitted debt and restricted payment baskets."
+  }
+}
