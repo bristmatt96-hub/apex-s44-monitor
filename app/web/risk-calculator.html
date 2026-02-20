@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Risk Calculator | Strategies in Credit</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        :root {
+            --bg-base: #0a0e17; --bg-card: #111827; --bg-card-alt: #151d2e;
+            --bg-hover: #1a2436; --border: #1e293b; --border-dim: rgba(30,41,59,0.5);
+            --text-primary: #f1f5f9; --text-secondary: #94a3b8;
+            --text-muted: #64748b; --text-dim: #475569;
+            --accent-green: #22c55e; --accent-red: #ef4444;
+            --accent-amber: #f59e0b; --accent-blue: #3b82f6;
+            --accent-teal: #14b8a6; --accent-purple: #a78bfa;
+            --green-bg: rgba(34,197,94,0.10); --green-bdr: rgba(34,197,94,0.25);
+            --red-bg: rgba(239,68,68,0.10); --red-bdr: rgba(239,68,68,0.25);
+            --amber-bg: rgba(245,158,11,0.10); --blue-bg: rgba(59,130,246,0.10);
+            --font-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { -webkit-font-smoothing: antialiased; }
+        body { background: var(--bg-base); color: var(--text-primary); font-family: var(--font-sans); font-size: 13px; line-height: 1.5; min-height: 100vh; }
+        ::-webkit-scrollbar { width: 5px; height: 5px; }
+        ::-webkit-scrollbar-track { background: var(--bg-base); }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+        #root { max-width: 1440px; margin: 0 auto; padding: 16px 20px; }
+        input[type="number"] {
+            background: var(--bg-base); border: 1px solid var(--border); color: var(--text-primary);
+            font-family: var(--font-mono); font-size: 12px; padding: 4px 8px; border-radius: 4px;
+            width: 80px; text-align: right; outline: none;
+        }
+        input[type="number"]:focus { border-color: var(--accent-blue); }
+        input[type="number"]::-webkit-inner-spin-button { opacity: 0.3; }
+    </style>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+/* =====================================================================
+   ISDA CDS PRICING ENGINE (ported from analytics/cds_pricer.py)
+   ===================================================================== */
+const ISDA_RECOVERY = 0.40;
+const COUPON_FREQ = 4;
+const RISK_FREE = 0.03;
+const MATURITY = 5.0;
+
+function hazardRate(spreadBps, R = ISDA_RECOVERY) {
+    return (spreadBps / 10000) / (1 - R);
+}
+
+function survivalProb(h, t) {
+    return Math.exp(-h * t);
+}
+
+function discountFactor(r, t) {
+    return Math.exp(-r * t);
+}
+
+function riskyAnnuity(spreadBps, R = ISDA_RECOVERY, T = MATURITY, rf = RISK_FREE) {
+    const h = hazardRate(spreadBps, R);
+    const n = Math.round(T * COUPON_FREQ);
+    const dt = 1.0 / COUPON_FREQ;
+    let rpv01 = 0;
+    for (let i = 1; i <= n; i++) {
+        const t = i * dt;
+        rpv01 += discountFactor(rf, t) * survivalProb(h, t) * dt;
+    }
+    // Accrued interest on default
+    for (let i = 1; i <= n; i++) {
+        const tS = (i - 1) * dt, tE = i * dt, tM = (tS + tE) / 2;
+        const dp = survivalProb(h, tS) - survivalProb(h, tE);
+        rpv01 += discountFactor(rf, tM) * dp * (dt / 2);
+    }
+    return rpv01;
+}
+
+function cdsDV01(spreadBps, notional) {
+    return notional * riskyAnnuity(spreadBps) / 10000;
+}
+
+function jumpToDefault(spreadBps, R, notional, isBuyer) {
+    const lgd = (1 - R) * notional;
+    const accrued = notional * (spreadBps / 10000) * 0.125;
+    return isBuyer ? (lgd - accrued) : -(lgd - accrued);
+}
+
+function priceCDS(tradeSpread, marketSpread, notional, isBuyer) {
+    const rpv01 = riskyAnnuity(marketSpread);
+    const mtm = (marketSpread - tradeSpread) * rpv01 / 10000 * notional;
+    return isBuyer ? mtm : -mtm;
+}
+
+function impliedPD(spreadBps, R = ISDA_RECOVERY, T = MATURITY) {
+    const h = hazardRate(spreadBps, R);
+    return 1 - Math.exp(-h * T);
+}
+
+/* =====================================================================
+   PORTFOLIO DATA
+   ===================================================================== */
+const NAV = 500000000;
+const DEFAULT_POSITIONS = [
+    { name: "CECONOMY",           direction: "SHORT", sizePct: 5.0,  spreadBps: 64 },
+    { name: "Kaixo Bondco",       direction: "SHORT", sizePct: 5.0,  spreadBps: 50 },
+    { name: "INEOS Quattro",      direction: "LONG",  sizePct: 2.0,  spreadBps: 1224 },
+    { name: "Worldline",          direction: "LONG",  sizePct: 2.0,  spreadBps: 1027 },
+    { name: "Sunrise HoldCo",     direction: "SHORT", sizePct: 4.5,  spreadBps: 75 },
+    { name: "Syngenta",           direction: "SHORT", sizePct: 4.0,  spreadBps: 90 },
+    { name: "Cirsa Finance",      direction: "SHORT", sizePct: 3.5,  spreadBps: 200 },
+    { name: "INEOS Finance",      direction: "LONG",  sizePct: 1.5,  spreadBps: 908 },
+    { name: "Eutelsat",           direction: "SHORT", sizePct: 3.0,  spreadBps: 106 },
+    { name: "Sherwood Financing", direction: "LONG",  sizePct: 1.5,  spreadBps: 585 },
+];
+
+const BUMPS = [-50, 100, 200];
+
+/* =====================================================================
+   COMPUTE ALL RISK METRICS
+   ===================================================================== */
+function computeRisk(positions) {
+    const nameRisks = positions.map(pos => {
+        const notional = NAV * pos.sizePct / 100;
+        const isLong = pos.direction === "LONG";
+        const dv01 = cdsDV01(pos.spreadBps, notional);
+        const signedDV01 = isLong ? dv01 : -dv01;
+        const cs01 = dv01;
+        const jtd = jumpToDefault(pos.spreadBps, ISDA_RECOVERY, notional, isLong);
+        const carry = pos.spreadBps / 10000 * notional;
+        const signedCarry = isLong ? -carry : carry;
+        const pd5y = impliedPD(pos.spreadBps);
+
+        const stressPnL = {};
+        BUMPS.forEach(bump => {
+            const bumped = Math.max(1, pos.spreadBps + bump);
+            stressPnL[bump] = priceCDS(pos.spreadBps, bumped, notional, isLong);
+        });
+
+        return { ...pos, notional, dv01, signedDV01, cs01, jtd, signedCarry, pd5y, stressPnL };
+    });
+
+    const netDV01 = nameRisks.reduce((s, r) => s + r.signedDV01, 0);
+    const grossCS01 = nameRisks.reduce((s, r) => s + Math.abs(r.cs01), 0);
+    const grossJTD = nameRisks.reduce((s, r) => s + Math.abs(r.jtd), 0);
+    const netCarry = nameRisks.reduce((s, r) => s + r.signedCarry, 0);
+
+    const maxJTDEntry = nameRisks.reduce((mx, r) => Math.abs(r.jtd) > Math.abs(mx.jtd) ? r : mx);
+    const maxJTD = Math.abs(maxJTDEntry.jtd);
+    const maxJTDPct = maxJTD / NAV * 100;
+
+    const stressTotals = {};
+    BUMPS.forEach(b => { stressTotals[b] = nameRisks.reduce((s, r) => s + r.stressPnL[b], 0); });
+
+    const shortsDefaultPnL = nameRisks.filter(r => r.direction === "SHORT").reduce((s, r) => s + r.jtd, 0);
+    const longsDefaultPnL = nameRisks.filter(r => r.direction === "LONG").reduce((s, r) => s + r.jtd, 0);
+
+    const longNotional = nameRisks.filter(r => r.direction === "LONG").reduce((s, r) => s + r.notional, 0);
+    const shortNotional = nameRisks.filter(r => r.direction === "SHORT").reduce((s, r) => s + r.notional, 0);
+
+    return {
+        nameRisks, netDV01, grossCS01, grossJTD, netCarry,
+        maxJTD, maxJTDName: maxJTDEntry.name, maxJTDPct,
+        stressTotals, shortsDefaultPnL, longsDefaultPnL,
+        longNotional, shortNotional,
+        grossNotional: longNotional + shortNotional,
+        netNotional: shortNotional - longNotional,
+    };
+}
+
+/* =====================================================================
+   FORMAT HELPERS
+   ===================================================================== */
+const fmt = (n, dp=0) => Math.abs(n) < 0.005 && dp === 0 ? '0' : n.toLocaleString(undefined, { minimumFractionDigits: dp, maximumFractionDigits: dp });
+const fmtK = (n) => Math.abs(n) >= 1e6 ? '$' + fmt(n / 1e6, 2) + 'M' : '$' + fmt(n / 1000, 1) + 'k';
+const fmtSigned = (n) => (n >= 0 ? '+' : '') + fmtK(n);
+const pnlColor = (n) => n > 0 ? 'var(--accent-green)' : n < 0 ? 'var(--accent-red)' : 'var(--text-secondary)';
+
+/* =====================================================================
+   REACT COMPONENTS
+   ===================================================================== */
+const { useState, useMemo } = React;
+
+function Card({ title, badge, children }) {
+    return (
+        <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 8, overflow: 'hidden' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 14px', borderBottom: '1px solid var(--border)' }}>
+                <h2 style={{ fontSize: 12, fontWeight: 600, textTransform: 'uppercase', letterSpacing: 0.5, color: 'var(--text-secondary)', fontFamily: 'var(--font-mono)' }}>{title}</h2>
+                {badge}
+            </div>
+            <div style={{ padding: '12px 14px' }}>{children}</div>
+        </div>
+    );
+}
+
+function MetricBox({ label, value, color, sub }) {
+    return (
+        <div style={{ background: 'var(--bg-base)', borderRadius: 6, padding: '10px 12px' }}>
+            <div style={{ fontSize: 10, fontWeight: 500, color: 'var(--text-dim)', textTransform: 'uppercase', letterSpacing: 0.4, fontFamily: 'var(--font-mono)', marginBottom: 4 }}>{label}</div>
+            <div style={{ fontSize: 20, fontWeight: 700, fontFamily: 'var(--font-mono)', lineHeight: 1.1, color: color || 'var(--text-primary)' }}>{value}</div>
+            {sub && <div style={{ fontSize: 10, color: 'var(--text-muted)', fontFamily: 'var(--font-mono)', marginTop: 2 }}>{sub}</div>}
+        </div>
+    );
+}
+
+function DirBadge({ dir }) {
+    const isShort = dir === "SHORT";
+    return (
+        <span style={{
+            display: 'inline-block', padding: '2px 9px', borderRadius: 10,
+            fontSize: 10, fontWeight: 600, letterSpacing: 0.4, textTransform: 'uppercase',
+            fontFamily: 'var(--font-mono)',
+            background: isShort ? 'var(--red-bg)' : 'var(--green-bg)',
+            color: isShort ? 'var(--accent-red)' : 'var(--accent-green)',
+            border: `1px solid ${isShort ? 'var(--red-bdr)' : 'var(--green-bdr)'}`,
+        }}>{dir}</span>
+    );
+}
+
+function ExposureSummary({ risk }) {
+    return (
+        <Card title="Exposure Summary">
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 8 }}>
+                <MetricBox label="Long" value={'$' + fmt(risk.longNotional/1e6, 1) + 'M'} sub={fmt(risk.longNotional/NAV*100, 1) + '% of NAV'} />
+                <MetricBox label="Short" value={'$' + fmt(risk.shortNotional/1e6, 1) + 'M'} sub={fmt(risk.shortNotional/NAV*100, 1) + '% of NAV'} />
+                <MetricBox label="Gross" value={'$' + fmt(risk.grossNotional/1e6, 1) + 'M'} sub={fmt(risk.grossNotional/NAV*100, 1) + '% of NAV'} />
+                <MetricBox label="Net" value={'$' + fmt(risk.netNotional/1e6, 1) + 'M'} color="var(--accent-red)" sub="net short risk" />
+            </div>
+        </Card>
+    );
+}
+
+function KeyMetrics({ risk }) {
+    return (
+        <Card title="Key Risk Metrics">
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 8 }}>
+                <MetricBox label="1. Net DV01" value={(risk.netDV01 >= 0 ? '+' : '') + '$' + fmt(Math.round(risk.netDV01))}
+                    color={pnlColor(risk.netDV01)}
+                    sub={fmt(risk.netDV01/NAV*10000, 2) + ' bp/NAV per 1bp'} />
+                <MetricBox label="2. Gross CS01" value={'$' + fmt(Math.round(risk.grossCS01))}
+                    sub={fmt(risk.grossCS01/NAV*10000, 2) + ' bp/NAV per 1bp'} />
+                <MetricBox label="3. Gross JTD" value={'$' + fmt(Math.round(risk.grossJTD/1e6), 1) + 'M'}
+                    sub={fmt(risk.grossJTD/NAV*100, 1) + '% of NAV'} />
+                <MetricBox label="4. Max Name JTD" value={'$' + fmt(Math.round(risk.maxJTD/1e6), 1) + 'M'}
+                    color="var(--accent-amber)"
+                    sub={risk.maxJTDName + ' (' + fmt(risk.maxJTDPct, 1) + '% NAV)'} />
+                <MetricBox label="5. Net Carry p.a." value={(risk.netCarry >= 0 ? '+' : '') + '$' + fmt(Math.round(risk.netCarry/1000)) + 'k'}
+                    color={pnlColor(risk.netCarry)}
+                    sub={fmt(risk.netCarry/NAV*10000, 0) + ' bp of NAV'} />
+            </div>
+        </Card>
+    );
+}
+
+function PositionTable({ positions, onSpreadChange, risk }) {
+    const thStyle = { textAlign: 'left', padding: '6px 8px', fontSize: 10, fontWeight: 500, textTransform: 'uppercase', letterSpacing: 0.5, color: 'var(--text-dim)', borderBottom: '1px solid var(--border)', fontFamily: 'var(--font-mono)' };
+    const thR = { ...thStyle, textAlign: 'right' };
+    const tdStyle = { padding: '7px 8px', fontSize: 12, borderBottom: '1px solid var(--border-dim)' };
+    const tdR = { ...tdStyle, textAlign: 'right', fontFamily: 'var(--font-mono)' };
+    const tdMono = { ...tdStyle, fontFamily: 'var(--font-mono)' };
+
+    return (
+        <Card title="Per-Name Risk Detail" badge={<span style={{ fontSize: 10, color: 'var(--text-dim)', fontFamily: 'var(--font-mono)' }}>Edit spreads to recalculate live</span>}>
+            <div style={{ overflowX: 'auto', margin: '-12px -14px', padding: 0 }}>
+                <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                    <thead><tr>
+                        <th style={thStyle}>Name</th>
+                        <th style={{ ...thStyle, textAlign: 'center' }}>Dir</th>
+                        <th style={thR}>Size</th>
+                        <th style={thR}>Spread</th>
+                        <th style={thR}>DV01</th>
+                        <th style={thR}>Signed DV01</th>
+                        <th style={thR}>JTD</th>
+                        <th style={thR}>Carry p.a.</th>
+                        <th style={thR}>5Y PD</th>
+                    </tr></thead>
+                    <tbody>
+                        {risk.nameRisks.map((r, i) => (
+                            <tr key={r.name} style={{ cursor: 'default' }}
+                                onMouseEnter={e => e.currentTarget.style.background = 'var(--bg-hover)'}
+                                onMouseLeave={e => e.currentTarget.style.background = ''}>
+                                <td style={{ ...tdStyle, fontWeight: 500, color: 'var(--text-primary)' }}>{r.name}</td>
+                                <td style={{ ...tdStyle, textAlign: 'center' }}><DirBadge dir={r.direction} /></td>
+                                <td style={tdR}>{r.sizePct}%</td>
+                                <td style={{ ...tdR, padding: '4px 8px' }}>
+                                    <input type="number" value={positions[i].spreadBps} min={1} max={5000} step={1}
+                                        onChange={e => onSpreadChange(i, Number(e.target.value) || 1)} />
+                                    <span style={{ color: 'var(--text-dim)', fontSize: 10, marginLeft: 2 }}>bp</span>
+                                </td>
+                                <td style={tdR}>${fmt(Math.round(r.dv01))}</td>
+                                <td style={{ ...tdR, color: pnlColor(r.signedDV01), fontWeight: 500 }}>{r.signedDV01 >= 0 ? '+' : ''}${fmt(Math.round(r.signedDV01))}</td>
+                                <td style={{ ...tdR, color: pnlColor(r.jtd), fontWeight: 500 }}>{fmtSigned(r.jtd)}</td>
+                                <td style={{ ...tdR, color: pnlColor(r.signedCarry) }}>{fmtSigned(r.signedCarry)}</td>
+                                <td style={tdR}>{(r.pd5y * 100).toFixed(1)}%</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </Card>
+    );
+}
+
+function StressTable({ risk }) {
+    const thStyle = { textAlign: 'left', padding: '6px 8px', fontSize: 10, fontWeight: 500, textTransform: 'uppercase', letterSpacing: 0.5, color: 'var(--text-dim)', borderBottom: '1px solid var(--border)', fontFamily: 'var(--font-mono)' };
+    const thR = { ...thStyle, textAlign: 'right' };
+    const tdStyle = { padding: '7px 8px', fontSize: 12, borderBottom: '1px solid var(--border-dim)' };
+    const tdR = { ...tdStyle, textAlign: 'right', fontFamily: 'var(--font-mono)' };
+
+    const scenarios = [
+        { label: 'Spreads -50bp', sublabel: 'rally', value: risk.stressTotals[-50] },
+        { label: 'Spreads +100bp', sublabel: 'selloff', value: risk.stressTotals[100] },
+        { label: 'Spreads +200bp', sublabel: 'crisis', value: risk.stressTotals[200] },
+        { label: 'All Shorts Default', sublabel: 'worst case', value: risk.shortsDefaultPnL },
+        { label: 'All Longs Default', sublabel: 'prot payout', value: risk.longsDefaultPnL },
+    ];
+
+    return (
+        <Card title="Stress P&L Scenarios">
+            <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                <thead><tr>
+                    <th style={thStyle}>Scenario</th>
+                    <th style={thR}>P&L</th>
+                    <th style={thR}>% of NAV</th>
+                    <th style={{ ...thStyle, width: '35%' }}>Impact</th>
+                </tr></thead>
+                <tbody>
+                    {scenarios.map(s => {
+                        const pct = s.value / NAV * 100;
+                        const barWidth = Math.min(Math.abs(pct) / 20 * 100, 100);
+                        const barColor = s.value >= 0 ? 'var(--accent-green)' : 'var(--accent-red)';
+                        return (
+                            <tr key={s.label}
+                                onMouseEnter={e => e.currentTarget.style.background = 'var(--bg-hover)'}
+                                onMouseLeave={e => e.currentTarget.style.background = ''}>
+                                <td style={tdStyle}>
+                                    <span style={{ fontWeight: 500 }}>{s.label}</span>
+                                    <span style={{ color: 'var(--text-dim)', fontSize: 10, marginLeft: 6 }}>({s.sublabel})</span>
+                                </td>
+                                <td style={{ ...tdR, color: pnlColor(s.value), fontWeight: 600, fontSize: 13 }}>{fmtSigned(s.value)}</td>
+                                <td style={{ ...tdR, color: pnlColor(s.value), fontWeight: 500 }}>{pct >= 0 ? '+' : ''}{pct.toFixed(2)}%</td>
+                                <td style={{ ...tdStyle, paddingRight: 16 }}>
+                                    <div style={{ height: 6, borderRadius: 3, background: 'var(--bg-base)', overflow: 'hidden' }}>
+                                        <div style={{ height: '100%', width: barWidth + '%', borderRadius: 3, background: barColor, transition: 'width 0.3s' }} />
+                                    </div>
+                                </td>
+                            </tr>
+                        );
+                    })}
+                </tbody>
+            </table>
+
+            {/* Per-name breakdown */}
+            <div style={{ marginTop: 16 }}>
+                <div style={{ fontSize: 10, fontWeight: 600, textTransform: 'uppercase', letterSpacing: 0.5, color: 'var(--text-dim)', fontFamily: 'var(--font-mono)', marginBottom: 8 }}>Per-Name Stress Breakdown</div>
+                <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                    <thead><tr>
+                        <th style={thStyle}>Name</th>
+                        {BUMPS.map(b => <th key={b} style={thR}>{b > 0 ? '+' : ''}{b}bp</th>)}
+                        <th style={thR}>If Default</th>
+                    </tr></thead>
+                    <tbody>
+                        {risk.nameRisks.map(r => (
+                            <tr key={r.name}
+                                onMouseEnter={e => e.currentTarget.style.background = 'var(--bg-hover)'}
+                                onMouseLeave={e => e.currentTarget.style.background = ''}>
+                                <td style={{ ...tdStyle, fontWeight: 500, fontSize: 11 }}>{r.name}</td>
+                                {BUMPS.map(b => (
+                                    <td key={b} style={{ ...tdR, color: pnlColor(r.stressPnL[b]), fontSize: 11 }}>{fmtSigned(r.stressPnL[b])}</td>
+                                ))}
+                                <td style={{ ...tdR, color: pnlColor(r.jtd), fontSize: 11, fontWeight: 500 }}>{fmtSigned(r.jtd)}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </Card>
+    );
+}
+
+/* =====================================================================
+   MAIN APP
+   ===================================================================== */
+function App() {
+    const [positions, setPositions] = useState(DEFAULT_POSITIONS.map(p => ({ ...p })));
+
+    const risk = useMemo(() => computeRisk(positions), [positions]);
+
+    const onSpreadChange = (idx, newSpread) => {
+        setPositions(prev => {
+            const next = [...prev];
+            next[idx] = { ...next[idx], spreadBps: Math.max(1, newSpread) };
+            return next;
+        });
+    };
+
+    const resetSpreads = () => setPositions(DEFAULT_POSITIONS.map(p => ({ ...p })));
+
+    const today = new Date().toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' });
+
+    return (
+        <div>
+            {/* Header */}
+            <header style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
+                <div>
+                    <h1 style={{ fontSize: 18, fontWeight: 700, letterSpacing: -0.3 }}>
+                        <span style={{ color: 'var(--accent-blue)' }}>Strategies</span> in Credit
+                        <span style={{ color: 'var(--text-dim)', fontWeight: 300, margin: '0 10px' }}>|</span>
+                        <span style={{ color: 'var(--text-muted)', fontSize: 13, fontWeight: 400 }}>Portfolio Risk Calculator</span>
+                    </h1>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+                    <button onClick={resetSpreads} style={{
+                        background: 'var(--blue-bg)', color: 'var(--accent-blue)', border: '1px solid rgba(59,130,246,0.3)',
+                        padding: '5px 12px', borderRadius: 6, fontSize: 11, fontWeight: 600, cursor: 'pointer',
+                        fontFamily: 'var(--font-mono)', letterSpacing: 0.3,
+                    }}>RESET SPREADS</button>
+                    <span style={{ fontSize: 11, color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>
+                        NAV <strong style={{ color: 'var(--text-primary)' }}>$500M</strong>
+                        <span style={{ margin: '0 6px', color: 'var(--text-dim)' }}>|</span>
+                        R = 40%
+                        <span style={{ margin: '0 6px', color: 'var(--text-dim)' }}>|</span>
+                        5Y CDS
+                        <span style={{ margin: '0 6px', color: 'var(--text-dim)' }}>|</span>
+                        {today}
+                    </span>
+                </div>
+            </header>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+                <ExposureSummary risk={risk} />
+                <KeyMetrics risk={risk} />
+                <PositionTable positions={positions} onSpreadChange={onSpreadChange} risk={risk} />
+                <StressTable risk={risk} />
+            </div>
+
+            {/* Footer */}
+            <footer style={{ borderTop: '1px solid var(--border)', marginTop: 16, padding: '10px 0', display: 'flex', justifyContent: 'space-between', fontSize: 11, color: 'var(--text-dim)', fontFamily: 'var(--font-mono)' }}>
+                <span>ISDA Standard CDS Model | 40% Recovery | 5Y Maturity | 3% EUR Risk-Free Rate</span>
+                <span>Strategies in Credit v1.0</span>
+            </footer>
+        </div>
+    );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>
