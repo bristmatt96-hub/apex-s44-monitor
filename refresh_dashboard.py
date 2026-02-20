@@ -18,7 +18,7 @@ from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 from openpyxl.formatting.rule import CellIsRule
 
 API_BASE = "https://app.mb-trading.co.uk"
-XLSX_PATH = "/Users/matt/Projects/credit-catalyst/Credit_Catalyst_Dashboard.xlsx"
+XLSX_PATH = "/Users/matt/Projects/strategies-in-credit/Strategies_In_Credit_Dashboard.xlsx"
 
 # --- Colors ---
 DARK_BG = "1A1A2E"

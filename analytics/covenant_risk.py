@@ -539,7 +539,7 @@ DQ_ICONS = {"verified": "[V]", "partial": "[P]", "inferred": "[?]"}
 def print_report(assessments: list[CovenantRiskAssessment]):
     """Print formatted terminal report."""
     print("=" * 110)
-    print("  CREDIT CATALYST -- COVENANT RISK ANALYSIS")
+    print("  STRATEGIES IN CREDIT -- COVENANT RISK ANALYSIS")
     print(f"  {datetime.now().strftime('%d %B %Y %H:%M')}")
     print("=" * 110)
 

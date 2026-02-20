@@ -1,10 +1,10 @@
-# Credit Catalyst — Architecture & Recommendations
+# Strategies in Credit — Architecture & Recommendations
 
 ## How It Works (Top to Bottom)
 
 ### The Big Picture
 
-Credit Catalyst is an AI-augmented credit analysis system. Eight scanners watch markets 24/7, looking for opportunities. When one finds something, the signal passes through three validation stages — technical analysis, ML prediction, and multi-factor ranking — before landing on a decision: execute or reject. Closed trades feed back into four learning systems that adjust the system's behaviour over time.
+Strategies in Credit is an AI-augmented credit analysis system. Eight scanners watch markets 24/7, looking for opportunities. When one finds something, the signal passes through three validation stages — technical analysis, ML prediction, and multi-factor ranking — before landing on a decision: execute or reject. Closed trades feed back into four learning systems that adjust the system's behaviour over time.
 
 Everything runs as async Python tasks coordinated by a central message bus.
 
@@ -187,7 +187,7 @@ There are no unit tests or integration tests. The edge scorer has a `main()` wit
 
 **12. Two git repos for the same system**
 
-The VPS runs from `/root/apex-s44-monitor` (cloned from `bristmatt96-hub/apex-s44-monitor`) while development happens in `credit-catalyst`. This causes confusion during deploys.
+The VPS runs from `/root/apex-s44-monitor` (cloned from `bristmatt96-hub/apex-s44-monitor`) while development happens in `strategies-in-credit`. This causes confusion during deploys.
 
 *Fix*: Consolidate to one repo. Update the systemd service to point at the canonical directory.
 

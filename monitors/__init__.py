@@ -1,1 +1,1 @@
-# Credit Catalyst Monitors
+# Strategies in Credit Monitors

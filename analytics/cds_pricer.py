@@ -613,7 +613,7 @@ def main():
             matches = {n: d for n, d in md.items() if d.get("spread")}
 
         print("=" * 110)
-        print(f"  CREDIT CATALYST -- CDS ANALYTICS  ({today})")
+        print(f"  STRATEGIES IN CREDIT -- CDS ANALYTICS  ({today})")
         print("=" * 110)
         print(f"\n  {'Entity':<35} {'Spread':>7} {'PU':>7} {'RPV01':>6} "
               f"{'DV01':>9} {'JTD Buy':>10} {'5Y PD':>6} {'1Y PD':>6}")

@@ -30,7 +30,7 @@ from core.models import Signal, MarketType, SignalType
 
 # SEC requires User-Agent with name and email
 EDGAR_HEADERS = {
-    'User-Agent': 'CreditCatalyst credit-analysis@example.com',
+    'User-Agent': 'StrategiesInCredit credit-analysis@example.com',
     'Accept': 'application/json'
 }
 

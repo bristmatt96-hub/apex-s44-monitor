@@ -2,7 +2,7 @@
 
 ## Overview
 
-Beyond the core signal pipeline, Credit Catalyst includes several supporting systems that enhance functionality:
+Beyond the core signal pipeline, Strategies in Credit includes several supporting systems that enhance functionality:
 
 1. **Knowledge Retriever** — TF-IDF search over trading books for psychology adjustments
 2. **Telegram Notifier** — Real-time alerts and daily summaries
@@ -281,7 +281,7 @@ async def handle_command(self, command: str, args: List[str]) -> None:
 
 ```
 ┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
-│   Next.js       │────▶│   FastAPI       │────▶│ Credit Catalyst│
+│   Next.js       │────▶│   FastAPI       │────▶│ Strategies in Credit│
 │   (Vercel)      │     │   (VPS)         │     │   (VPS)        │
 └─────────────────┘     └─────────────────┘     └─────────────────┘
 ```
@@ -294,11 +294,11 @@ async def handle_command(self, command: str, args: List[str]) -> None:
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
-app = FastAPI(title="Credit Catalyst API")
+app = FastAPI(title="Strategies in Credit API")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://credit-catalyst.vercel.app"],
+    allow_origins=["https://strategies-in-credit.vercel.app"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -583,7 +583,7 @@ def get_stats(self) -> Dict:
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                    Credit Catalyst Core System                    │
+│                    Strategies in Credit Core System                    │
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                   │
 │  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐              │

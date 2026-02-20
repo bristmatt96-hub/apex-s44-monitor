@@ -18,7 +18,7 @@ import openpyxl
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 
 API_BASE = "https://app.mb-trading.co.uk"
-XLSX_PATH = "/Users/matt/Projects/credit-catalyst/Credit_Catalyst_Dashboard.xlsx"
+XLSX_PATH = "/Users/matt/Projects/strategies-in-credit/Strategies_In_Credit_Dashboard.xlsx"
 
 # --- Colors ---
 DARK_BG = "1A1A2E"
@@ -216,7 +216,7 @@ def reload_numbers():
     tell application "Numbers"
         set theDoc to missing value
         repeat with d in documents
-            if name of d contains "Credit_Catalyst_Dashboard" then
+            if name of d contains "Strategies_In_Credit_Dashboard" then
                 set theDoc to d
                 exit repeat
             end if
@@ -233,7 +233,7 @@ def reload_numbers():
 def main():
     interval = int(sys.argv[1]) if len(sys.argv) > 1 else 30
 
-    print(f"Credit Catalyst Live Dashboard")
+    print(f"Strategies in Credit Live Dashboard")
     print(f"Refreshing every {interval}s. Press Ctrl+C to stop.\n")
 
     # Open in Numbers initially

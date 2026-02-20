@@ -261,7 +261,7 @@ def generate_risk_report(portfolio: dict, nav_override: float | None = None) -> 
     ws1 = wb.active
     ws1.title = "Portfolio Summary"
 
-    ws1.cell(row=1, column=1, value="CREDIT CATALYST — WEEKLY RISK REPORT").font = Font(
+    ws1.cell(row=1, column=1, value="STRATEGIES IN CREDIT — WEEKLY RISK REPORT").font = Font(
         bold=True, size=14, color="1F4E79")
     ws1.merge_cells("A1:F1")
     ws1.cell(row=2, column=1, value=f"Report Date: {today}").font = Font(
@@ -787,7 +787,7 @@ def print_summary(portfolio: dict, positions: list[dict], filepath: str, nav_m: 
     pnl_neg50 = compute_stress_pnl(positions, -50)
 
     print(f"\n{'='*70}")
-    print("  CREDIT CATALYST — WEEKLY RISK REPORT")
+    print("  STRATEGIES IN CREDIT — WEEKLY RISK REPORT")
     print(f"{'='*70}")
     print(f"  NAV:                    ${nav_m:,.0f}M")
     print(f"  Positions:              {len(positions)}")

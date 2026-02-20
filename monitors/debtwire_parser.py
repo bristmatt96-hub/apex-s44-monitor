@@ -1,5 +1,5 @@
 """
-Debtwire Excel Parser for Credit Catalyst
+Debtwire Excel Parser for Strategies in Credit
 Converts Debtwire Excel exports to JSON snapshots and database records
 """
 

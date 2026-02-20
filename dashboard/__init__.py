@@ -1,1 +1,1 @@
-# Credit Catalyst Dashboard
+# Strategies in Credit Dashboard

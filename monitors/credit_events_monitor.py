@@ -1,5 +1,5 @@
 """
-Credit Events Monitor for Credit Catalyst
+Credit Events Monitor for Strategies in Credit
 Tracks earnings, covenants, and maturities for alpha generation
 
 Features:

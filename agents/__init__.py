@@ -1,1 +1,1 @@
-# Credit Catalyst Agents
+# Strategies in Credit Agents

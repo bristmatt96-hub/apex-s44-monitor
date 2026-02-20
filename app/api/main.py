@@ -1,8 +1,8 @@
 """
-Credit Catalyst -- FastAPI Web Dashboard Backend
+Strategies in Credit -- FastAPI Web Dashboard Backend
 
 Serves a single-page HTML dashboard and JSON API endpoints
-for the Credit Catalyst European credit relative value platform.
+for the Strategies in Credit European credit relative value platform.
 
 API Endpoints:
     GET /                          -- Dashboard HTML
@@ -44,7 +44,7 @@ from openpyxl import load_workbook
 # ---------------------------------------------------------------------------
 
 app = FastAPI(
-    title="Credit Catalyst",
+    title="Strategies in Credit",
     description="European Credit Relative Value Dashboard",
     version="1.0.0",
 )
@@ -491,7 +491,7 @@ async def api_scenarios():
 
 def main():
     print("\n" + "=" * 60)
-    print("  CREDIT CATALYST -- Web Dashboard")
+    print("  STRATEGIES IN CREDIT -- Web Dashboard")
     print("  http://localhost:8000")
     print("=" * 60 + "\n")
     uvicorn.run(

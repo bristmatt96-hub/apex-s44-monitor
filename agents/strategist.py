@@ -806,7 +806,7 @@ def generate_portfolio_pdf(portfolio: dict) -> str:
         canvas.setFillColor(LIGHT_STEEL)
         canvas.setFont("Helvetica", 6.5)
         canvas.drawCentredString(width / 2, 7,
-                                 "Credit Catalyst  |  Confidential  |  Not Investment Advice")
+                                 "Strategies in Credit  |  Confidential  |  Not Investment Advice")
 
     frame = Frame(1.5 * cm, 1.0 * cm, width - 3.0 * cm, height - 5.5 * cm, id="main")
     doc = BaseDocTemplate(filepath, pagesize=A4,
@@ -1053,7 +1053,7 @@ def build_telegram_summary(portfolio: dict) -> str:
                          f"(${s.get('estimated_pnl_millions', 0):+.1f}M)")
         lines.append("")
 
-    lines.append(f"Credit Catalyst | {datetime.now().strftime('%H:%M')} UTC")
+    lines.append(f"Strategies in Credit | {datetime.now().strftime('%H:%M')} UTC")
     return "\n".join(lines)
 
 

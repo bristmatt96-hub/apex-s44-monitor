@@ -147,7 +147,7 @@ class SubstackScanner(BaseAgent):
 
         try:
             response = requests.get(info['feed_url'], timeout=15, headers={
-                'User-Agent': 'CreditCatalyst/1.0'
+                'User-Agent': 'StrategiesInCredit/1.0'
             })
 
             if response.status_code != 200:

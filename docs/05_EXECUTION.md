@@ -35,7 +35,7 @@ The Decision & Execution layer handles the final steps of the signal pipeline: d
 
 ## Coordinator
 
-The Coordinator is the central hub of the Credit Catalyst system. It:
+The Coordinator is the central hub of the Strategies in Credit system. It:
 - Routes signals between agents
 - Makes execution decisions
 - Manages the main event loop

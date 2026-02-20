@@ -243,7 +243,7 @@ def print_scan_report(
     today = datetime.now().strftime("%d %B %Y %H:%M")
 
     print("=" * 110)
-    print("  CREDIT CATALYST -- EQUITY-CDS LAG MONITOR")
+    print("  STRATEGIES IN CREDIT -- EQUITY-CDS LAG MONITOR")
     print(f"  {today}")
     print("=" * 110)
 

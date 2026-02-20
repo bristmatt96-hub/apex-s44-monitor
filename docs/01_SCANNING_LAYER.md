@@ -2,7 +2,7 @@
 
 ## Overview
 
-The scanning layer is the entry point of the Credit Catalyst system. It continuously monitors multiple markets for trading opportunities using eight specialized scanners. Each scanner watches a defined universe of symbols, fetches market data, applies strategy-specific analysis, and emits signals when trading criteria are met.
+The scanning layer is the entry point of the Strategies in Credit system. It continuously monitors multiple markets for trading opportunities using eight specialized scanners. Each scanner watches a defined universe of symbols, fetches market data, applies strategy-specific analysis, and emits signals when trading criteria are met.
 
 All scanners inherit from `BaseScanner` and run independently on configurable intervals. This architecture allows the system to monitor equities, options, forex, and crypto markets simultaneously without blocking.
 

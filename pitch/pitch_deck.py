@@ -1,5 +1,5 @@
 """
-Credit Catalyst Pitch Deck Generator
+Strategies in Credit Pitch Deck Generator
 
 Auto-generates a 15-20 slide PowerPoint pitch deck from live system data:
 - Latest universe screen (81 Xover names)
@@ -7,7 +7,7 @@ Auto-generates a 15-20 slide PowerPoint pitch deck from live system data:
 - Filing monitor data
 - RiskSnapshot
 
-Output: outputs/pitch/credit_catalyst_pitch_YYYYMMDD.pptx
+Output: outputs/pitch/strategies_in_credit_pitch_YYYYMMDD.pptx
 
 Usage:
     python -m pitch.pitch_deck
@@ -116,16 +116,16 @@ def _add_title_bar(slide, title_text, subtitle_text=""):
         _add_textbox(slide, Inches(0.6), Inches(0.65), Inches(10), Inches(0.4),
                      subtitle_text, font_size=13, color=LIGHT_STEEL)
 
-    # Credit Catalyst badge right
+    # Strategies in Credit badge right
     _add_textbox(slide, Inches(10.5), Inches(0.25), Inches(2.5), Inches(0.4),
-                 "Credit Catalyst", font_size=11, bold=True, color=LIGHT_STEEL,
+                 "Strategies in Credit", font_size=11, bold=True, color=LIGHT_STEEL,
                  alignment=PP_ALIGN.RIGHT)
 
 
 def _add_footer(slide, date_str):
     """Add confidential footer."""
     _add_textbox(slide, Inches(0.6), Inches(7.0), Inches(12), Inches(0.35),
-                 f"Credit Catalyst  |  Confidential  |  Not Investment Advice  |  {date_str}",
+                 f"Strategies in Credit  |  Confidential  |  Not Investment Advice  |  {date_str}",
                  font_size=8, color=LIGHT_STEEL, alignment=PP_ALIGN.CENTER)
 
 
@@ -256,7 +256,7 @@ def slide_title(prs, date_str):
     _set_slide_bg(slide, DARK_NAVY)
 
     _add_textbox(slide, Inches(1.5), Inches(1.8), Inches(10), Inches(1.0),
-                 "Credit Catalyst", font_size=48, bold=True, color=WHITE)
+                 "Strategies in Credit", font_size=48, bold=True, color=WHITE)
     _add_textbox(slide, Inches(1.5), Inches(2.9), Inches(10), Inches(0.6),
                  "European Credit Relative Value", font_size=28, color=LIGHT_STEEL)
     _add_textbox(slide, Inches(1.5), Inches(3.7), Inches(10), Inches(0.5),
@@ -1130,7 +1130,7 @@ def slide_commentary(prs, portfolio, date_str):
                  font_size=14, bold=True, color=AMBER)
 
     _add_textbox(slide, Inches(1.5), Inches(6.5), Inches(10), Inches(0.3),
-                 f"Credit Catalyst | {date_str}",
+                 f"Strategies in Credit | {date_str}",
                  font_size=10, color=STEEL)
 
 
@@ -1215,7 +1215,7 @@ def slide_disclaimer(prs, date_str):
         "The strategy involves trading credit default swaps which carry significant risks including "
         "counterparty risk, basis risk, liquidity risk, and the potential for total loss of invested capital. "
         "CDS trading is only suitable for qualified institutional investors.\n\n"
-        "Credit Catalyst is a research and portfolio analytics platform. It does not execute trades "
+        "Strategies in Credit is a research and portfolio analytics platform. It does not execute trades "
         "or manage client assets. All investment decisions remain the sole responsibility of the investor."
     )
 
@@ -1229,7 +1229,7 @@ def slide_contact(prs, date_str):
     _set_slide_bg(slide, DARK_NAVY)
 
     _add_textbox(slide, Inches(1.5), Inches(2.5), Inches(10), Inches(1.0),
-                 "Credit Catalyst", font_size=44, bold=True, color=WHITE,
+                 "Strategies in Credit", font_size=44, bold=True, color=WHITE,
                  alignment=PP_ALIGN.CENTER)
     _add_textbox(slide, Inches(1.5), Inches(3.7), Inches(10), Inches(0.5),
                  "European Credit Relative Value", font_size=20,
@@ -1256,7 +1256,7 @@ def generate_pitch_deck(
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     date_str = datetime.now().strftime("%d %B %Y")
     date_file = datetime.now().strftime("%Y%m%d")
-    filepath = str(OUTPUT_DIR / f"credit_catalyst_pitch_{date_file}.pptx")
+    filepath = str(OUTPUT_DIR / f"strategies_in_credit_pitch_{date_file}.pptx")
 
     prs = Presentation()
     prs.slide_width = SLIDE_WIDTH
@@ -1295,7 +1295,7 @@ def generate_pitch_deck(
 # ---------------------------------------------------------------------------
 
 def main():
-    parser = argparse.ArgumentParser(description="Credit Catalyst Pitch Deck Generator")
+    parser = argparse.ArgumentParser(description="Strategies in Credit Pitch Deck Generator")
     parser.add_argument(
         "--index", type=str, choices=["xover", "main"], default="xover",
         help="Index to load screen for (default: xover)",

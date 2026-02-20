@@ -1,5 +1,5 @@
 """
-Database connection and models for Credit Catalyst
+Database connection and models for Strategies in Credit
 Uses SQLAlchemy with Supabase PostgreSQL
 """
 

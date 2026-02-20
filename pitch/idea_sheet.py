@@ -192,7 +192,7 @@ def _draw_header(canvas, doc, assessment: CreditAssessment):
     canvas.setFillColor(LIGHT_STEEL)
     canvas.setFont("Helvetica", 7)
     canvas.drawCentredString(width / 2, 8,
-                             "Credit Catalyst  |  Confidential  |  Not Investment Advice")
+                             "Strategies in Credit  |  Confidential  |  Not Investment Advice")
 
 
 def generate_idea_sheet(assessment: CreditAssessment) -> str:

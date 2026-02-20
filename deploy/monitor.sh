@@ -1,10 +1,10 @@
 #!/bin/bash
 # ============================================
-# Quick monitoring script for Credit Catalyst
+# Quick monitoring script for Strategies in Credit
 # ============================================
 
 echo "=========================================="
-echo "  Credit Catalyst System Status"
+echo "  Strategies in Credit System Status"
 echo "=========================================="
 echo ""
 

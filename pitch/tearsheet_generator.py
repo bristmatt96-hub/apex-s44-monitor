@@ -1,5 +1,5 @@
 """
-Tear Sheet Generator for Credit Catalyst
+Tear Sheet Generator for Strategies in Credit
 Generates professional credit tear sheets from company data
 """
 

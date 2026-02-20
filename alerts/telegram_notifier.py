@@ -375,7 +375,7 @@ class TelegramNotifier:
         return result
 
     # =============================================
-    # CREDIT CATALYST SPECIFIC NOTIFICATIONS
+    # STRATEGIES IN CREDIT SPECIFIC NOTIFICATIONS
     # =============================================
 
     async def notify_edge_score(

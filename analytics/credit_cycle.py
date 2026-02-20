@@ -1,5 +1,5 @@
 """
-Credit Cycle Regime Classifier — Credit Catalyst
+Credit Cycle Regime Classifier — Strategies in Credit
 
 Determines the current credit regime from market data using a multi-factor
 scoring model across four phases:
@@ -1115,7 +1115,7 @@ def print_report(report: CycleReport, detail: bool = False) -> None:
 
     print()
     print("=" * W)
-    print("  CREDIT CATALYST — Credit Cycle Regime Classifier")
+    print("  STRATEGIES IN CREDIT — Credit Cycle Regime Classifier")
     print(f"  {report.report_date}")
     print("=" * W)
 
@@ -1270,7 +1270,7 @@ def _wrap(text: str, width: int) -> list[str]:
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Credit Catalyst — Credit Cycle Regime Classifier"
+        description="Strategies in Credit — Credit Cycle Regime Classifier"
     )
     parser.add_argument("--json", action="store_true",
                         help="Output as JSON")

@@ -1,10 +1,10 @@
 #!/bin/bash
-# MacBook Setup Script for Credit Catalyst
+# MacBook Setup Script for Strategies in Credit
 # Run this after cloning the repo on your MacBook
 
 set -e
 
-echo "🍎 Setting up Credit Catalyst on MacBook..."
+echo "🍎 Setting up Strategies in Credit on MacBook..."
 echo ""
 
 # Check Python

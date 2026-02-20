@@ -1,12 +1,12 @@
 #!/bin/bash
 # ============================================
-# Credit Catalyst - Quick Reference
+# Strategies in Credit - Quick Reference
 # Run: bash deploy/help.sh
 # ============================================
 
 cat << 'EOF'
 ==========================================
-  Credit Catalyst - Cheat Sheet
+  Strategies in Credit - Cheat Sheet
 ==========================================
 
 --- Services ---

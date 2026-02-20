@@ -1,5 +1,5 @@
 """
-Rating Action Monitor — Credit Catalyst
+Rating Action Monitor — Strategies in Credit
 
 Scrapes public rating agency pages for rating actions affecting our 75
 iTraxx Crossover S44 names. Uses RSS feeds and public research pages
@@ -778,7 +778,7 @@ def show_stats() -> None:
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Credit Catalyst — Rating Action Monitor"
+        description="Strategies in Credit — Rating Action Monitor"
     )
     parser.add_argument("--agency", type=str, default=None,
                         help="Scan specific agency: sp, moodys, fitch")
@@ -806,7 +806,7 @@ def main():
     agencies = [args.agency] if args.agency else None
 
     print()
-    print("  CREDIT CATALYST — Rating Action Monitor")
+    print("  STRATEGIES IN CREDIT — Rating Action Monitor")
     print("  " + "=" * 50)
 
     new_actions = run_scan(agencies=agencies, demo=args.demo)

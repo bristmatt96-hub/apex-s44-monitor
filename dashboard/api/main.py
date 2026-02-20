@@ -1,5 +1,5 @@
 """
-Credit Catalyst Dashboard API
+Strategies in Credit Dashboard API
 
 FastAPI backend for the credit analysis dashboard.
 Provides REST endpoints and WebSocket for real-time updates.
@@ -31,7 +31,7 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(
-    title="Credit Catalyst Dashboard",
+    title="Strategies in Credit Dashboard",
     description="Real-time trading dashboard API",
     version="1.0.0",
     lifespan=lifespan
@@ -61,7 +61,7 @@ async def root():
     """Health check endpoint"""
     return {
         "status": "ok",
-        "service": "Credit Catalyst Dashboard",
+        "service": "Strategies in Credit Dashboard",
         "version": "1.0.0"
     }
 
@@ -100,7 +100,7 @@ async def websocket_endpoint(websocket: WebSocket):
         bridge = get_bridge()
 
         await manager.send_personal(websocket, "connected", {
-            "message": "Connected to Credit Catalyst Dashboard",
+            "message": "Connected to Strategies in Credit Dashboard",
             "coordinator_connected": bridge.is_connected()
         })
 

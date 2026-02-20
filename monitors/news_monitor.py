@@ -1,5 +1,5 @@
 """
-News Monitor — Credit Catalyst Continuous Learning
+News Monitor — Strategies in Credit Continuous Learning
 
 Scrapes Google News RSS for each iTraxx Crossover S44 name, classifies
 articles via Claude API (credit impact, severity 1-5, novelty), and stores
@@ -903,7 +903,7 @@ def show_signal_changes() -> None:
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Credit Catalyst — News Monitor (Google News RSS)"
+        description="Strategies in Credit — News Monitor (Google News RSS)"
     )
     parser.add_argument("--entity", type=str, default=None,
                         help="Scan a specific entity (partial match)")
@@ -935,7 +935,7 @@ def main():
 
     # Run scan
     print()
-    print("  CREDIT CATALYST — News Monitor")
+    print("  STRATEGIES IN CREDIT — News Monitor")
     print("  " + "=" * 50)
 
     new_articles = run_scan(

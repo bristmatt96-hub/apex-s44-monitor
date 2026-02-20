@@ -1,5 +1,5 @@
 """
-Core Data Models for Credit Catalyst
+Core Data Models for Strategies in Credit
 
 These models are consumed by every downstream component:
 dashboard, Excel reports, pitch decks, idea sheets, Telegram alerts.

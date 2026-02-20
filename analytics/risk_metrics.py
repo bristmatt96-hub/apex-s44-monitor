@@ -1,5 +1,5 @@
 """
-Standalone Risk Metrics Calculator — Credit Catalyst
+Standalone Risk Metrics Calculator — Strategies in Credit
 
 Comprehensive risk metrics for any single name or the full portfolio:
 
@@ -617,7 +617,7 @@ def print_portfolio_risk(metrics: PortfolioRiskMetrics, detail: bool = False) ->
 
     print()
     print("=" * W)
-    print("  CREDIT CATALYST — Portfolio Risk Dashboard")
+    print("  STRATEGIES IN CREDIT — Portfolio Risk Dashboard")
     print(f"  {metrics.report_date}  |  NAV: ${metrics.nav_millions:.0f}M  |  "
           f"{metrics.position_count} positions")
     print("=" * W)
@@ -786,7 +786,7 @@ def find_name_in_screen(name: str) -> dict | None:
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Credit Catalyst — Standalone Risk Metrics Calculator"
+        description="Strategies in Credit — Standalone Risk Metrics Calculator"
     )
     parser.add_argument("--name", type=str, default=None,
                         help='Entity name (e.g., "INEOS Finance PLC")')

@@ -254,7 +254,7 @@ def print_report(entries: list[dict], watch_list: list[dict], min_risk: int = 1)
     today = datetime.now().strftime("%d %B %Y")
 
     print("=" * 110)
-    print(f"  CREDIT CATALYST — MATURITY WALL ANALYSIS")
+    print(f"  STRATEGIES IN CREDIT — MATURITY WALL ANALYSIS")
     print(f"  {today}")
     print("=" * 110)
 

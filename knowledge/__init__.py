@@ -1,5 +1,5 @@
 """
-Knowledge Base module for Credit Catalyst
+Knowledge Base module for Strategies in Credit
 Includes trading knowledge ingestion and retrieval
 """
 

@@ -1,4 +1,4 @@
-"""Shared fixtures & mocks for Credit Catalyst tests.
+"""Shared fixtures & mocks for Strategies in Credit tests.
 
 The conftest must pre-patch heavy transitive imports (ib_insync, pandas, etc.)
 so that test collection never fails due to missing optional dependencies.

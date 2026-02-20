@@ -1,5 +1,5 @@
 """
-Situation Classifier for Credit Catalyst
+Situation Classifier for Strategies in Credit
 
 Classifies companies into:
 - Playbook A: Aggressive Sponsor (timing treacherous, equity may spike before collapse)

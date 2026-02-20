@@ -1,5 +1,5 @@
 """
-Simulated Track Record Generator — Credit Catalyst Backtest
+Simulated Track Record Generator — Strategies in Credit Backtest
 
 Takes today's 75 assessments + strategist portfolio and simulates a 3-month
 forward P&L track assuming spreads mean-revert 50% toward fair value with
@@ -602,7 +602,7 @@ def write_excel(
     ws = wb.active
     ws.title = "Summary"
 
-    ws.cell(row=1, column=1, value="Credit Catalyst — Backtest Summary").font = SECTION_FONT
+    ws.cell(row=1, column=1, value="Strategies in Credit — Backtest Summary").font = SECTION_FONT
     ws.cell(row=2, column=1, value=f"Generated: {datetime.now().strftime('%Y-%m-%d %H:%M')}")
     ws.cell(row=3, column=1, value=f"Simulation: {n_days} trading days | NAV: ${NAV_MILLIONS:.0f}M")
 
@@ -833,7 +833,7 @@ def _draw_header(canvas, doc, n_days):
 
     canvas.setFillColor(colors.white)
     canvas.setFont("Helvetica-Bold", 16)
-    canvas.drawString(1.5 * cm, height - 24, "Credit Catalyst")
+    canvas.drawString(1.5 * cm, height - 24, "Strategies in Credit")
 
     canvas.setFillColor(LIGHT_STEEL)
     canvas.setFont("Helvetica", 9)
@@ -859,7 +859,7 @@ def _draw_footer(canvas, doc):
     canvas.setFont("Helvetica", 6.5)
     canvas.drawCentredString(
         width / 2, 15,
-        "Credit Catalyst  |  Simulated results do not represent actual trading  |  Past simulated performance is not indicative of future results"
+        "Strategies in Credit  |  Simulated results do not represent actual trading  |  Past simulated performance is not indicative of future results"
     )
 
 
@@ -1177,7 +1177,7 @@ def print_report(
 
     print()
     print("=" * W)
-    print("  CREDIT CATALYST — SIMULATED TRACK RECORD")
+    print("  STRATEGIES IN CREDIT — SIMULATED TRACK RECORD")
     print(f"  {n_days} trading days | NAV: ${NAV_MILLIONS:.0f}M | "
           f"{datetime.now().strftime('%Y-%m-%d')}")
     print("=" * W)
@@ -1272,7 +1272,7 @@ def print_report(
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Credit Catalyst — Simulated Track Record Generator"
+        description="Strategies in Credit — Simulated Track Record Generator"
     )
     parser.add_argument("--days", type=int, default=DEFAULT_TRADING_DAYS,
                         help=f"Trading days to simulate (default: {DEFAULT_TRADING_DAYS})")

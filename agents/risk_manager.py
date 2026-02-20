@@ -1,5 +1,5 @@
 """
-Risk Manager for Credit Catalyst
+Risk Manager for Strategies in Credit
 
 Enforces hard guardrails that CANNOT be overridden:
 - Max single position: 5% of account

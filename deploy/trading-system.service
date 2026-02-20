@@ -1,5 +1,5 @@
 [Unit]
-Description=Credit Catalyst Analysis System
+Description=Strategies in Credit Analysis System
 After=ibgateway.service network-online.target
 Wants=ibgateway.service network-online.target
 

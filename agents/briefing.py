@@ -267,7 +267,7 @@ def build_telegram_message(brief: dict) -> str:
     )
 
     lines.append("")
-    lines.append(f"Credit Catalyst | {datetime.now().strftime('%H:%M')} UTC")
+    lines.append(f"Strategies in Credit | {datetime.now().strftime('%H:%M')} UTC")
 
     return "\n".join(lines)
 
@@ -390,7 +390,7 @@ def generate_brief_pdf(brief: dict) -> str:
         canvas.setFillColor(LIGHT_STEEL)
         canvas.setFont("Helvetica", 7)
         canvas.drawCentredString(width / 2, 8,
-                                 "Credit Catalyst  |  Confidential  |  Not Investment Advice")
+                                 "Strategies in Credit  |  Confidential  |  Not Investment Advice")
 
     frame = Frame(1.8 * cm, 1.2 * cm, width - 3.6 * cm, height - 6.0 * cm, id="main")
     doc = BaseDocTemplate(filepath, pagesize=A4,

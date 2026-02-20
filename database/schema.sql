@@ -1,4 +1,4 @@
--- Credit Catalyst Database Schema
+-- Strategies in Credit Database Schema
 -- For Supabase (PostgreSQL)
 
 -- ============================================

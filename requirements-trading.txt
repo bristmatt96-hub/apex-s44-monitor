@@ -1,4 +1,4 @@
-# Credit Catalyst - Isolated Dependencies
+# Strategies in Credit - Isolated Dependencies
 # Use this for running main.py without the monitoring tool
 #
 # Setup:

@@ -1,16 +1,16 @@
 #!/bin/bash
-# VPS Setup Script for Credit Catalyst Dashboard
+# VPS Setup Script for Strategies in Credit Dashboard
 # Run on the VPS: bash setup-vps.sh
 
 set -e
 
-echo "=== Setting up Credit Catalyst Dashboard on VPS ==="
+echo "=== Setting up Strategies in Credit Dashboard on VPS ==="
 
 # Create dashboard systemd service
 echo "Creating dashboard service..."
 cat > /etc/systemd/system/dashboard.service << 'EOF'
 [Unit]
-Description=Credit Catalyst Dashboard API
+Description=Strategies in Credit Dashboard API
 After=trading-system.service network-online.target
 Wants=trading-system.service
 

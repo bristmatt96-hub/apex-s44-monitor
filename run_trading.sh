@@ -1,5 +1,5 @@
 #!/bin/bash
-# Credit Catalyst - Isolated Runner
+# Strategies in Credit - Isolated Runner
 # Runs the trading bot in its own virtual environment, separate from the monitoring tool
 
 set -e
@@ -14,7 +14,7 @@ YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
 echo -e "${GREEN}========================================${NC}"
-echo -e "${GREEN}  Credit Catalyst - Isolated Mode  ${NC}"
+echo -e "${GREEN}  Strategies in Credit - Isolated Mode  ${NC}"
 echo -e "${GREEN}========================================${NC}"
 
 # Check if virtual environment exists

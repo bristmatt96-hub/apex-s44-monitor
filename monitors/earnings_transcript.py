@@ -383,7 +383,7 @@ def print_report(sig: EarningsSignal):
     bar = SEVERITY_BAR.get(sig.severity, "?????")
 
     print("=" * 100)
-    print("  CREDIT CATALYST -- EARNINGS TRANSCRIPT ANALYSIS")
+    print("  STRATEGIES IN CREDIT -- EARNINGS TRANSCRIPT ANALYSIS")
     print(f"  {datetime.now().strftime('%d %B %Y %H:%M')}")
     print("=" * 100)
 

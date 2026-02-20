@@ -1,5 +1,5 @@
 """
-Credit Options Scanner for Credit Catalyst
+Credit Options Scanner for Strategies in Credit
 
 Maps credit deterioration signals to tradeable options positions.
 Integrates with situation classifier to select appropriate strategy:

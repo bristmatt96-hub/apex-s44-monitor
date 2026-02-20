@@ -1,5 +1,5 @@
 """
-Database module for Credit Catalyst
+Database module for Strategies in Credit
 """
 
 from .db import (

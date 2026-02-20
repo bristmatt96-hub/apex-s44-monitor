@@ -1,5 +1,5 @@
 """
-Trade Case Study Generator — Credit Catalyst
+Trade Case Study Generator — Strategies in Credit
 
 Generates a 1–2 page PDF documenting a single trade from thesis to outcome.
 This is the "walk me through a trade" deliverable that allocators ask for.
@@ -623,7 +623,7 @@ def _draw_footer(canvas, doc):
     canvas.setFont("Helvetica", 6.5)
     canvas.drawCentredString(
         width / 2, 15,
-        "Credit Catalyst  |  Confidential — For Investor Discussion Only  |  "
+        "Strategies in Credit  |  Confidential — For Investor Discussion Only  |  "
         + datetime.now().strftime("%d %b %Y"),
     )
 
@@ -1052,7 +1052,7 @@ def _wrap_text(text: str, width: int) -> list[str]:
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Credit Catalyst — Trade Case Study Generator"
+        description="Strategies in Credit — Trade Case Study Generator"
     )
     parser.add_argument("entity", nargs="?", default=None,
                         help="Entity name (or partial match)")
