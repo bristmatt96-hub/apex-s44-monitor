@@ -116,6 +116,24 @@ async def dashboard():
     return HTMLResponse(content="<h1>Dashboard not found</h1>", status_code=404)
 
 
+@app.get("/cockpit", response_class=HTMLResponse)
+async def cockpit():
+    """Serve the cockpit command center."""
+    html_path = PROJECT_ROOT / "app" / "web" / "cockpit.html"
+    if html_path.exists():
+        return HTMLResponse(content=html_path.read_text(encoding="utf-8"))
+    return HTMLResponse(content="<h1>Cockpit not found</h1>", status_code=404)
+
+
+@app.get("/risk-calculator", response_class=HTMLResponse)
+async def risk_calculator():
+    """Serve the portfolio risk calculator."""
+    html_path = PROJECT_ROOT / "app" / "web" / "risk-calculator.html"
+    if html_path.exists():
+        return HTMLResponse(content=html_path.read_text(encoding="utf-8"))
+    return HTMLResponse(content="<h1>Risk calculator not found</h1>", status_code=404)
+
+
 # ---------------------------------------------------------------------------
 # Routes -- API Endpoints
 # ---------------------------------------------------------------------------
