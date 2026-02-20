@@ -1,0 +1,24 @@
+{
+  "entity": "INEOS Finance PLC",
+  "last_updated": "2026-02-20T08:59:01.593034",
+  "filings": [],
+  "news": [
+    {
+      "article_id": "214397b5bc9b5dc9",
+      "title": "INEOS Group explores sale of composites division to reduce debt pile",
+      "source": "Financial Times",
+      "published_date": "2026-02-20",
+      "credit_impact": "positive",
+      "severity": 4,
+      "is_new_info": true,
+      "claim_summary": "INEOS exploring composites division sale for EUR 500m to reduce debt",
+      "credit_relevance": "Asset disposal proceeds for debt paydown would reduce leverage and improve credit metrics",
+      "added_at": "2026-02-20T08:59:01.593034"
+    }
+  ],
+  "rating_actions": [],
+  "earnings_signals": [],
+  "social_sentiment": [],
+  "analyst_assessments": [],
+  "signal_changes": []
+}

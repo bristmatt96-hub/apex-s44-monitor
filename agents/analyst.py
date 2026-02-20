@@ -176,6 +176,14 @@ def assess_credit(entity_name: str, index: str) -> CreditAssessment:
     market_data = _get_market_data(index)
     spread_context = get_spread_context(entity_name, market_data)
 
+    # Load accumulated entity profile
+    profile_summary = ""
+    try:
+        from data.entity_profile_manager import get_profile_summary
+        profile_summary = get_profile_summary(entity_name)
+    except Exception:
+        pass
+
     # Inject today's date into system prompt
     today_str = datetime.now().strftime("%d %B %Y")
     system_prompt = SYSTEM_PROMPT.format(today=today_str)
@@ -186,6 +194,8 @@ def assess_credit(entity_name: str, index: str) -> CreditAssessment:
     ]
     if spread_context:
         user_message_parts.append(f"\n{spread_context}")
+    if profile_summary:
+        user_message_parts.append(f"\n{profile_summary}")
     if knowledge_context:
         user_message_parts.append(f"\n{knowledge_context}")
 
@@ -208,6 +218,21 @@ def assess_credit(entity_name: str, index: str) -> CreditAssessment:
 
     data = json.loads(raw)
     data["updated_at"] = datetime.now().isoformat()
+
+    # Store assessment in entity profile
+    try:
+        from data.entity_profile_manager import update_profile
+        update_profile(entity_name, "analyst_assessments", {
+            "direction": data.get("direction"),
+            "conviction": data.get("conviction"),
+            "current_spread": data.get("current_spread"),
+            "fair_spread": data.get("fair_spread"),
+            "thesis": data.get("thesis"),
+            "catalyst": data.get("catalyst"),
+            "updated_at": data.get("updated_at"),
+        })
+    except Exception:
+        pass
 
     return CreditAssessment(**data)
 

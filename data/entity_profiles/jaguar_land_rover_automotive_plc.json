@@ -1,0 +1,24 @@
+{
+  "entity": "Jaguar Land Rover Automotive PLC",
+  "last_updated": "2026-02-20T09:01:52.877667",
+  "filings": [],
+  "news": [],
+  "rating_actions": [
+    {
+      "action_id": "28eb32ab3f00e482",
+      "agency": "moodys",
+      "action_type": "UPGRADE",
+      "headline": "Moody's upgrades Jaguar Land Rover outlook to positive",
+      "date": "2026-02-20",
+      "severity": 4,
+      "credit_impact": "positive",
+      "rating_from": "",
+      "rating_to": "",
+      "added_at": "2026-02-20T09:01:52.877667"
+    }
+  ],
+  "earnings_signals": [],
+  "social_sentiment": [],
+  "analyst_assessments": [],
+  "signal_changes": []
+}

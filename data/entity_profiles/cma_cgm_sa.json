@@ -1,0 +1,24 @@
+{
+  "entity": "CMA CGM SA",
+  "last_updated": "2026-02-20T09:01:52.884568",
+  "filings": [],
+  "news": [],
+  "rating_actions": [
+    {
+      "action_id": "28c6e2f957157f63",
+      "agency": "sp",
+      "action_type": "OUTLOOK_STABLE",
+      "headline": "S&P affirms CMA CGM at BB+; outlook stable",
+      "date": "2026-02-20",
+      "severity": 2,
+      "credit_impact": "neutral",
+      "rating_from": "",
+      "rating_to": "",
+      "added_at": "2026-02-20T09:01:52.884568"
+    }
+  ],
+  "earnings_signals": [],
+  "social_sentiment": [],
+  "analyst_assessments": [],
+  "signal_changes": []
+}

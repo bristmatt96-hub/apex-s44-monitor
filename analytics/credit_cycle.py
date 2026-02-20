@@ -9,20 +9,34 @@ scoring model across four phases:
     DISTRESS    — Spreads widening, high dispersion, defaults rising
     RECOVERY    — Spreads tightening from wide levels, high carry
 
+Four-Layer Macro Stack:
+    Layer 1 (Howell):  Global liquidity — LQD/HYG quality rotation signal
+    Layer 2 (Pal):     ISM sequencing — PMI level relative to 50
+    Layer 3 (Steno):   Commodity thematic — copper futures trend
+    Layer 4 (Visser):  AI disruption — per-entity risk classification
+
 Inputs:
     1. Current Xover index spread level
     2. Dispersion stats (from analytics.dispersion)
     3. Fallen angel / rising star counts (from analytics.fallen_angels)
     4. Spread distribution shape (skewness, kurtosis)
     5. Rating migration signals
+    6. LQD/HYG ETF price ratio trend (Layer 1)
+    7. ISM PMI level (Layer 2)
+    8. Copper futures trend (Layer 3)
+    9. AI disruption risk per entity (Layer 4)
 
 Output:
     Regime classification with confidence + recommended positioning
+    + liquidity_signal, quality_rotation, recommended_net_exposure,
+      sector_tilts, ai_disruption_flags
 
 Usage:
     python -m analytics.credit_cycle                    # Full analysis
     python -m analytics.credit_cycle --json             # JSON output
     python -m analytics.credit_cycle --detail           # Verbose factor breakdown
+    python -m analytics.credit_cycle --set-regime LATE_CYCLE --confidence 80 --note "Pal/Bittel Feb 2026: ISM decelerating, liquidity cresting Q2"
+    python -m analytics.credit_cycle --clear-override   # Remove manual override
 """
 
 import argparse
@@ -36,6 +50,12 @@ from pathlib import Path
 from statistics import mean, median, stdev
 
 from openpyxl import load_workbook
+
+try:
+    import yfinance as yf
+    YFINANCE_AVAILABLE = True
+except ImportError:
+    YFINANCE_AVAILABLE = False
 
 # ---------------------------------------------------------------------------
 # Constants
@@ -69,6 +89,73 @@ RATING_BUCKETS = [
     ("B-",   500,  800),
     ("CCC",  800,  9999),
 ]
+
+# ---------------------------------------------------------------------------
+# Layer 1 (Howell): Liquidity — LQD/HYG quality rotation
+# ---------------------------------------------------------------------------
+
+LQD_TICKER = "LQD"     # iShares IG Corporate Bond ETF
+HYG_TICKER = "HYG"     # iShares HY Corporate Bond ETF
+QUALITY_LOOKBACK_DAYS = 60  # 3-month rolling window
+
+# ---------------------------------------------------------------------------
+# Layer 2 (Pal): ISM PMI
+# ---------------------------------------------------------------------------
+
+# We store ISM data in a simple config file; no API needed
+ISM_DATA_PATH = Path("data/ism_pmi.json")
+ISM_EXPANSION_THRESHOLD = 50.0
+
+# ---------------------------------------------------------------------------
+# Layer 3 (Steno): Copper thematic
+# ---------------------------------------------------------------------------
+
+COPPER_TICKER = "HG=F"  # Copper futures via yfinance
+COPPER_LOOKBACK_DAYS = 60
+
+# ---------------------------------------------------------------------------
+# Layer 4 (Visser): AI disruption risk classification
+# ---------------------------------------------------------------------------
+
+# Per-sector AI disruption risk: names in these sectors face automation/
+# digital disruption headwinds. Mapped to HIGH/MEDIUM/LOW.
+AI_DISRUPTION_MAP = {
+    # HIGH: sectors where AI/automation directly disrupts core business
+    "Worldline SA/France": "HIGH",            # Payment processing — fintech disruption
+    "Nexi SpA": "HIGH",                       # Payment processing
+    "TeamSystem SpA": "HIGH",                 # Enterprise software — AI competition
+    "Nokia Oyj": "HIGH",                      # Telecom equipment — commoditisation
+    "Telefonaktiebolaget LM Ericsson": "HIGH",  # Telecom equipment
+    "CECONOMY AG": "HIGH",                    # Consumer electronics retail — e-commerce
+    "EG Global Finance PLC": "HIGH",          # Convenience retail — automated retail
+    # MEDIUM: moderate AI/digital exposure
+    "Eutelsat SA": "MEDIUM",                  # Satellite — Starlink competition
+    "SES SA": "MEDIUM",                       # Satellite — LEO competition
+    "Telecom Italia SpA/Milano": "MEDIUM",    # Telco — capex pressure from AI infra
+    "Fibercop SpA": "MEDIUM",                 # Fiber infra — capex intensive
+    "Virgin Media Finance PLC": "MEDIUM",     # Cable — cord-cutting
+    "Ziggo Bond Co BV": "MEDIUM",             # Cable — cord-cutting
+    "Zegona Finance PLC": "MEDIUM",           # Telecom
+    "Kaixo Bondco Telecom SA": "MEDIUM",      # Telecom
+    "Maya SAS/Paris France": "MEDIUM",        # Telecom (Iliad)
+    "NJJ Continental SA": "MEDIUM",           # Telecom (Salt)
+    "Sunrise HoldCo IV BV": "MEDIUM",         # Telecom
+    "United Group BV": "MEDIUM",              # Telecom
+    "Lagardere SA": "MEDIUM",                 # Media/publishing — AI content
+    "Picard Bondco SA": "MEDIUM",             # Frozen food retail
+    "Iceland Bondco PLC": "MEDIUM",           # Frozen food retail
+    "Pachelbel Bidco SpA": "MEDIUM",          # Education (Pegaso) — AI learning
+    "Forvia SE": "MEDIUM",                    # Auto parts — EV transition
+    "Valeo SE": "MEDIUM",                     # Auto parts — EV transition
+    "Schaeffler AG": "MEDIUM",                # Auto parts — EV transition
+    "ZF Europe Finance BV": "MEDIUM",         # Auto parts — EV transition
+    "Jaguar Land Rover Automotive PLC": "MEDIUM",  # OEM — EV transition
+    "Volvo Car AB": "MEDIUM",                 # OEM — EV transition
+    "Renault SA": "MEDIUM",                   # OEM — EV transition
+}
+
+# Everything not listed = LOW risk (chemicals, shipping, gaming, travel, etc.)
+DEFAULT_AI_DISRUPTION = "LOW"
 
 
 # ---------------------------------------------------------------------------
@@ -104,6 +191,24 @@ class CycleFactors:
     # Name count
     total_names: int = 0
 
+    # Layer 1 (Howell): Liquidity / quality rotation
+    lqd_hyg_ratio: float = 0.0               # Current LQD/HYG price ratio
+    lqd_hyg_ratio_change: float = 0.0        # Change over lookback (%)
+    liquidity_signal: str = ""               # expanding, decelerating, contracting
+    quality_rotation: str = ""               # underway, not_yet, reversed
+
+    # Layer 2 (Pal): ISM PMI
+    ism_pmi: float = 0.0
+    ism_direction: str = ""                  # above_50, at_50, below_50
+
+    # Layer 3 (Steno): Copper
+    copper_trend: float = 0.0                # % change over lookback
+    copper_signal: str = ""                  # rising, flat, falling
+
+    # Layer 4 (Visser): AI disruption
+    high_ai_disruption_count: int = 0
+    medium_ai_disruption_count: int = 0
+
 
 @dataclass
 class CycleScore:
@@ -133,6 +238,11 @@ class CycleReport:
     regime: str = ""                  # EXPANSION, LATE_CYCLE, DISTRESS, RECOVERY
     confidence: float = 0.0           # 0-100%
     secondary_regime: str = ""
+    liquidity_signal: str = ""        # expanding, decelerating, contracting
+    quality_rotation: str = ""        # underway, not_yet, reversed
+    recommended_net_exposure: float = 0.0   # % net long/short
+    sector_tilts: dict = field(default_factory=dict)   # sector -> OW/UW/N
+    ai_disruption_flags: list = field(default_factory=list)  # highest risk names
     factors: CycleFactors = field(default_factory=CycleFactors)
     scores: CycleScore = field(default_factory=CycleScore)
     positioning: PositioningAdvice = field(default_factory=PositioningAdvice)
@@ -221,6 +331,135 @@ def load_spreads(screen_path: str = None) -> list[dict]:
 
 
 # ---------------------------------------------------------------------------
+# Macro layer data loading
+# ---------------------------------------------------------------------------
+
+def fetch_lqd_hyg_ratio() -> tuple[float, float, str, str]:
+    """Layer 1 (Howell): Fetch LQD/HYG price ratio to detect quality rotation.
+
+    When LQD outperforms HYG (ratio rising), investors are rotating to quality
+    = liquidity contracting.  When HYG outperforms (ratio falling), risk
+    appetite expanding = liquidity expanding.
+
+    Returns (current_ratio, pct_change, liquidity_signal, quality_rotation).
+    """
+    if not YFINANCE_AVAILABLE:
+        return 0.0, 0.0, "unknown", "unknown"
+
+    try:
+        period = f"{QUALITY_LOOKBACK_DAYS}d"
+        lqd = yf.Ticker(LQD_TICKER).history(period=period)
+        hyg = yf.Ticker(HYG_TICKER).history(period=period)
+
+        if lqd.empty or hyg.empty or len(lqd) < 5 or len(hyg) < 5:
+            return 0.0, 0.0, "unknown", "unknown"
+
+        current_ratio = float(lqd["Close"].iloc[-1] / hyg["Close"].iloc[-1])
+        start_ratio = float(lqd["Close"].iloc[0] / hyg["Close"].iloc[0])
+        pct_change = (current_ratio / start_ratio - 1) * 100
+
+        # Quality rotation: ratio rising = flight to quality
+        if pct_change > 1.0:
+            liquidity = "contracting"
+            quality = "underway"
+        elif pct_change < -1.0:
+            liquidity = "expanding"
+            quality = "reversed"
+        else:
+            liquidity = "decelerating"
+            quality = "not_yet"
+
+        return round(current_ratio, 4), round(pct_change, 2), liquidity, quality
+
+    except Exception as e:
+        print(f"  Warning: LQD/HYG fetch failed: {e}", file=sys.stderr)
+        return 0.0, 0.0, "unknown", "unknown"
+
+
+def load_ism_pmi() -> tuple[float, str]:
+    """Layer 2 (Pal): Load ISM Manufacturing PMI.
+
+    Reads from data/ism_pmi.json which should be updated manually or via
+    a separate data feed.  Format: {"date": "2026-02-01", "pmi": 49.2}
+
+    Returns (pmi_value, direction: above_50/at_50/below_50).
+    """
+    if not ISM_DATA_PATH.exists():
+        return 0.0, "unknown"
+
+    try:
+        with open(ISM_DATA_PATH) as f:
+            data = json.load(f)
+        pmi = float(data.get("pmi", 0))
+        if pmi > ISM_EXPANSION_THRESHOLD:
+            direction = "above_50"
+        elif pmi == ISM_EXPANSION_THRESHOLD:
+            direction = "at_50"
+        else:
+            direction = "below_50"
+        return pmi, direction
+    except Exception:
+        return 0.0, "unknown"
+
+
+def fetch_copper_trend() -> tuple[float, str]:
+    """Layer 3 (Steno): Fetch copper futures trend.
+
+    Copper as a leading indicator for global industrial activity.
+    Rising copper = expansion signal; falling = contraction.
+
+    Returns (pct_change, signal: rising/flat/falling).
+    """
+    if not YFINANCE_AVAILABLE:
+        return 0.0, "unknown"
+
+    try:
+        period = f"{COPPER_LOOKBACK_DAYS}d"
+        cu = yf.Ticker(COPPER_TICKER).history(period=period)
+
+        if cu.empty or len(cu) < 5:
+            return 0.0, "unknown"
+
+        current = float(cu["Close"].iloc[-1])
+        start = float(cu["Close"].iloc[0])
+        pct_change = (current / start - 1) * 100
+
+        if pct_change > 5:
+            signal = "rising"
+        elif pct_change < -5:
+            signal = "falling"
+        else:
+            signal = "flat"
+
+        return round(pct_change, 2), signal
+
+    except Exception as e:
+        print(f"  Warning: Copper fetch failed: {e}", file=sys.stderr)
+        return 0.0, "unknown"
+
+
+def classify_ai_disruption(names: list[dict]) -> tuple[int, int, list[str]]:
+    """Layer 4 (Visser): Classify AI disruption risk per entity.
+
+    Returns (high_count, medium_count, list_of_high_risk_names).
+    """
+    high_names = []
+    high_count = 0
+    medium_count = 0
+
+    for n in names:
+        entity = n["entity_name"]
+        risk = AI_DISRUPTION_MAP.get(entity, DEFAULT_AI_DISRUPTION)
+        if risk == "HIGH":
+            high_count += 1
+            high_names.append(entity)
+        elif risk == "MEDIUM":
+            medium_count += 1
+
+    return high_count, medium_count, high_names
+
+
+# ---------------------------------------------------------------------------
 # Factor computation
 # ---------------------------------------------------------------------------
 
@@ -276,6 +515,20 @@ def compute_factors(names: list[dict]) -> CycleFactors:
     iqr = q3 - q1
     compression = iqr / med_spread if med_spread > 0 else 0.0
 
+    # Layer 1 (Howell): LQD/HYG quality rotation
+    lqd_hyg_ratio, lqd_hyg_change, liquidity_sig, quality_rot = (
+        fetch_lqd_hyg_ratio()
+    )
+
+    # Layer 2 (Pal): ISM PMI
+    ism_pmi, ism_dir = load_ism_pmi()
+
+    # Layer 3 (Steno): Copper trend
+    copper_change, copper_sig = fetch_copper_trend()
+
+    # Layer 4 (Visser): AI disruption
+    ai_high, ai_med, _ = classify_ai_disruption(names)
+
     return CycleFactors(
         index_spread=round(avg_spread, 1),
         index_spread_percentile=round(percentile, 1),
@@ -291,6 +544,16 @@ def compute_factors(names: list[dict]) -> CycleFactors:
         avg_carry_bps=round(avg_spread, 1),
         spread_compression=round(compression, 3),
         total_names=n,
+        lqd_hyg_ratio=lqd_hyg_ratio,
+        lqd_hyg_ratio_change=lqd_hyg_change,
+        liquidity_signal=liquidity_sig,
+        quality_rotation=quality_rot,
+        ism_pmi=ism_pmi,
+        ism_direction=ism_dir,
+        copper_trend=copper_change,
+        copper_signal=copper_sig,
+        high_ai_disruption_count=ai_high,
+        medium_ai_disruption_count=ai_med,
     )
 
 
@@ -335,6 +598,14 @@ def score_regimes(factors: CycleFactors) -> CycleScore:
     elif factors.rising_star_count > 5:
         s += 5
 
+    # Macro overlays for expansion
+    if factors.liquidity_signal == "expanding":
+        s += 10
+    if factors.ism_direction == "above_50":
+        s += 8
+    if factors.copper_signal == "rising":
+        s += 7
+
     scores.expansion = min(100, s)
 
     # ── LATE CYCLE scoring ───────────────────────────────────────────
@@ -364,6 +635,14 @@ def score_regimes(factors: CycleFactors) -> CycleScore:
         s += 15
     elif factors.pct_above_500 > 2:
         s += 8
+
+    # Macro overlays for late cycle
+    if factors.liquidity_signal == "decelerating":
+        s += 8
+    if factors.quality_rotation == "underway":
+        s += 10
+    if factors.ism_direction == "below_50":
+        s += 7
 
     scores.late_cycle = min(100, s)
 
@@ -395,6 +674,16 @@ def score_regimes(factors: CycleFactors) -> CycleScore:
     elif factors.pct_above_500 > 8:
         s += 5
 
+    # Macro overlays for distress
+    if factors.liquidity_signal == "contracting":
+        s += 10
+    if factors.quality_rotation == "underway":
+        s += 5
+    if factors.copper_signal == "falling":
+        s += 8
+    if factors.ism_direction == "below_50":
+        s += 5
+
     scores.distress = min(100, s)
 
     # ── RECOVERY scoring ─────────────────────────────────────────────
@@ -424,6 +713,14 @@ def score_regimes(factors: CycleFactors) -> CycleScore:
     elif factors.spread_compression > 0.5:
         s += 8
 
+    # Macro overlays for recovery
+    if factors.liquidity_signal == "expanding":
+        s += 8
+    if factors.copper_signal == "rising":
+        s += 7
+    if factors.ism_direction == "above_50":
+        s += 5
+
     scores.recovery = min(100, s)
 
     return scores
@@ -449,6 +746,115 @@ def classify_regime(scores: CycleScore) -> tuple[str, float, str]:
     confidence = primary[1] / total * 100 if total > 0 else 25.0
 
     return primary[0], round(confidence, 1), secondary[0]
+
+
+# ---------------------------------------------------------------------------
+# Manual regime override (human judgment > model)
+# ---------------------------------------------------------------------------
+
+REGIME_OVERRIDE_PATH = Path("data/macro_regime_override.json")
+
+VALID_REGIMES = {"EXPANSION", "LATE_CYCLE", "DISTRESS", "RECOVERY"}
+
+
+def load_regime_override() -> dict | None:
+    """Load manual regime override if set.
+
+    Returns dict with regime, confidence, note, set_at or None.
+    """
+    if not REGIME_OVERRIDE_PATH.exists():
+        return None
+    try:
+        with open(REGIME_OVERRIDE_PATH) as f:
+            data = json.load(f)
+        if data.get("regime") in VALID_REGIMES:
+            return data
+    except (json.JSONDecodeError, OSError):
+        pass
+    return None
+
+
+def save_regime_override(regime: str, confidence: float, note: str) -> None:
+    """Save a manual regime override."""
+    REGIME_OVERRIDE_PATH.parent.mkdir(parents=True, exist_ok=True)
+    data = {
+        "regime": regime,
+        "confidence": confidence,
+        "note": note,
+        "set_at": datetime.now().isoformat(),
+        "set_by": "manual",
+    }
+    with open(REGIME_OVERRIDE_PATH, "w") as f:
+        json.dump(data, f, indent=2)
+    print(f"  Regime override saved: {regime} ({confidence}%)")
+    print(f"  Note: {note}")
+
+
+def clear_regime_override() -> None:
+    """Remove any active regime override."""
+    if REGIME_OVERRIDE_PATH.exists():
+        REGIME_OVERRIDE_PATH.unlink()
+        print("  Regime override cleared.")
+    else:
+        print("  No regime override active.")
+
+
+# ---------------------------------------------------------------------------
+# Sector tilts & net exposure
+# ---------------------------------------------------------------------------
+
+# Net exposure targets by regime (% of NAV, positive = net long)
+REGIME_NET_EXPOSURE = {
+    "EXPANSION": 40.0,
+    "LATE_CYCLE": 10.0,
+    "DISTRESS": -20.0,
+    "RECOVERY": 50.0,
+}
+
+
+def compute_sector_tilts(
+    regime: str,
+    factors: CycleFactors,
+    names: list[dict],
+) -> dict[str, str]:
+    """Compute sector overweight/underweight/neutral recommendations."""
+    tilts: dict[str, str] = {}
+
+    # Count names per sector
+    sector_counts: dict[str, int] = {}
+    sector_avg_spread: dict[str, list[float]] = {}
+    for n in names:
+        sec = n.get("sector", "Unknown")
+        sector_counts[sec] = sector_counts.get(sec, 0) + 1
+        sector_avg_spread.setdefault(sec, []).append(n["current_spread"])
+
+    for sec, spreads in sector_avg_spread.items():
+        avg = mean(spreads)
+
+        if regime == "EXPANSION":
+            # In expansion: OW tight sectors (carry), UW wide sectors
+            tilts[sec] = "OVERWEIGHT" if avg < 300 else "NEUTRAL"
+        elif regime == "LATE_CYCLE":
+            # In late cycle: UW cyclicals (Autos), OW defensives
+            if sec in ("Autos & Industrials",):
+                tilts[sec] = "UNDERWEIGHT"
+            elif sec in ("TMT", "Consumers"):
+                tilts[sec] = "NEUTRAL"
+            else:
+                tilts[sec] = "OVERWEIGHT"
+        elif regime == "DISTRESS":
+            # In distress: UW everything except secured/senior
+            tilts[sec] = "UNDERWEIGHT"
+        elif regime == "RECOVERY":
+            # In recovery: OW wide sectors (tightening potential)
+            tilts[sec] = "OVERWEIGHT" if avg > 400 else "NEUTRAL"
+
+    # AI disruption adjustment: downgrade HIGH-AI sectors
+    if factors.high_ai_disruption_count > 3:
+        if "TMT" in tilts and tilts["TMT"] != "UNDERWEIGHT":
+            tilts["TMT"] = "UNDERWEIGHT"
+
+    return tilts
 
 
 # ---------------------------------------------------------------------------
@@ -536,8 +942,10 @@ def generate_positioning(regime: str, factors: CycleFactors) -> PositioningAdvic
 # ---------------------------------------------------------------------------
 
 def generate_commentary(regime: str, confidence: float,
-                         factors: CycleFactors, scores: CycleScore) -> str:
-    """Generate human-readable regime commentary."""
+                         factors: CycleFactors, scores: CycleScore,
+                         override: dict = None,
+                         model_regime: str = None) -> str:
+    """Generate human-readable regime commentary including macro layers."""
 
     regime_labels = {
         "EXPANSION": "Expansion",
@@ -549,14 +957,31 @@ def generate_commentary(regime: str, confidence: float,
     label = regime_labels.get(regime, regime)
     cv_label = factors.universe_dispersion_regime
 
-    parts = [
-        f"The European HY credit cycle is in {label} phase "
-        f"(confidence: {confidence:.0f}%).",
+    parts = []
 
+    # Override notice
+    if override:
+        parts.append(
+            f"MANUAL OVERRIDE ACTIVE: Regime set to {label} "
+            f"({confidence:.0f}%) by analyst on {override.get('set_at', 'unknown')[:10]}."
+        )
+        if model_regime and model_regime != regime:
+            model_label = regime_labels.get(model_regime, model_regime)
+            parts.append(
+                f"DIVERGENCE WARNING: Automated model classifies {model_label} — "
+                f"review whether override remains valid."
+            )
+    else:
+        parts.append(
+            f"The European HY credit cycle is in {label} phase "
+            f"(confidence: {confidence:.0f}%)."
+        )
+
+    parts.append(
         f"The iTraxx Xover universe average spread is {factors.index_spread:.0f}bp "
         f"(historical median: {XOVER_HISTORICAL_MEDIAN}bp), "
-        f"with {cv_label} dispersion (CV={factors.universe_cv:.2f}).",
-    ]
+        f"with {cv_label} dispersion (CV={factors.universe_cv:.2f})."
+    )
 
     if factors.distressed_count > 0:
         parts.append(
@@ -577,6 +1002,25 @@ def generate_commentary(regime: str, confidence: float,
             f"a right tail of distressed names pulling the distribution wider."
         )
 
+    # Macro layer summary
+    macro_parts = []
+    if factors.liquidity_signal and factors.liquidity_signal != "unknown":
+        macro_parts.append(f"Liquidity {factors.liquidity_signal}")
+    if factors.quality_rotation and factors.quality_rotation != "unknown":
+        macro_parts.append(f"quality rotation {factors.quality_rotation}")
+    if factors.ism_pmi > 0:
+        macro_parts.append(f"ISM PMI {factors.ism_pmi:.1f} ({factors.ism_direction})")
+    if factors.copper_signal and factors.copper_signal != "unknown":
+        macro_parts.append(f"copper {factors.copper_signal} ({factors.copper_trend:+.1f}%)")
+    if macro_parts:
+        parts.append(f"Macro stack: {', '.join(macro_parts)}.")
+
+    if factors.high_ai_disruption_count > 0:
+        parts.append(
+            f"AI disruption: {factors.high_ai_disruption_count} HIGH-risk, "
+            f"{factors.medium_ai_disruption_count} MEDIUM-risk names."
+        )
+
     score_breakdown = (
         f"Regime scores: Expansion={scores.expansion:.0f}, "
         f"Late Cycle={scores.late_cycle:.0f}, "
@@ -593,7 +1037,12 @@ def generate_commentary(regime: str, confidence: float,
 # ---------------------------------------------------------------------------
 
 def run_credit_cycle_analysis(screen_path: str = None) -> CycleReport:
-    """Run full credit cycle regime classification."""
+    """Run full credit cycle regime classification.
+
+    Checks for a manual regime override first (human judgment > model).
+    If an override is active, uses the override regime/confidence but still
+    computes model scores for comparison and divergence warnings.
+    """
 
     names = load_spreads(screen_path)
     if not names:
@@ -606,15 +1055,42 @@ def run_credit_cycle_analysis(screen_path: str = None) -> CycleReport:
 
     factors = compute_factors(names)
     scores = score_regimes(factors)
-    regime, confidence, secondary = classify_regime(scores)
+    model_regime, model_confidence, secondary = classify_regime(scores)
+
+    # Check for manual regime override (human judgment > model)
+    override = load_regime_override()
+    if override:
+        regime = override["regime"]
+        confidence = override.get("confidence", 75.0)
+        # Keep model secondary for divergence info
+        if model_regime != regime:
+            secondary = model_regime  # Show what model would have chosen
+    else:
+        regime = model_regime
+        confidence = model_confidence
+
     positioning = generate_positioning(regime, factors)
-    commentary = generate_commentary(regime, confidence, factors, scores)
+
+    # Sector tilts & AI disruption
+    sector_tilts = compute_sector_tilts(regime, factors, names)
+    _, _, ai_high_names = classify_ai_disruption(names)
+    net_exposure = REGIME_NET_EXPOSURE.get(regime, 0.0)
+
+    commentary = generate_commentary(
+        regime, confidence, factors, scores, override=override,
+        model_regime=model_regime,
+    )
 
     return CycleReport(
         report_date=datetime.now().strftime("%Y-%m-%d"),
         regime=regime,
         confidence=confidence,
         secondary_regime=secondary,
+        liquidity_signal=factors.liquidity_signal,
+        quality_rotation=factors.quality_rotation,
+        recommended_net_exposure=net_exposure,
+        sector_tilts=sector_tilts,
+        ai_disruption_flags=ai_high_names,
         factors=factors,
         scores=scores,
         positioning=positioning,
@@ -643,13 +1119,28 @@ def print_report(report: CycleReport, detail: bool = False) -> None:
     print(f"  {report.report_date}")
     print("=" * W)
 
+    # Override notice
+    override = load_regime_override()
+    if override:
+        print()
+        print("  ** MANUAL OVERRIDE ACTIVE **")
+        print(f"  Set by: {override.get('set_by', 'analyst')} "
+              f"on {override.get('set_at', '')[:10]}")
+        if override.get("note"):
+            for line in _wrap(override["note"], 62):
+                print(f"    {line}")
+
     # Regime classification
     icon = regime_emoji.get(report.regime, "?")
     print()
     print(f"  [{icon}] REGIME: {report.regime}  "
           f"(confidence: {report.confidence:.0f}%)")
     if report.secondary_regime:
-        print(f"      Secondary: {report.secondary_regime}")
+        label = "Model says" if override else "Secondary"
+        print(f"      {label}: {report.secondary_regime}")
+
+    # Recommended net exposure
+    print(f"  Net Exposure:     {report.recommended_net_exposure:+.0f}%")
 
     # Score breakdown
     print()
@@ -684,12 +1175,52 @@ def print_report(report: CycleReport, detail: bool = False) -> None:
     print(f"  Compression:      {f.spread_compression:>7.3f}")
     print(f"  Total Names:      {f.total_names:>7d}")
 
+    # Macro layers
+    print()
+    print("  MACRO STACK")
+    print("  " + "-" * 45)
+    liq = f.liquidity_signal if f.liquidity_signal != "unknown" else "n/a"
+    qr = f.quality_rotation if f.quality_rotation != "unknown" else "n/a"
+    print(f"  L1 Howell  Liquidity:  {liq:<15} "
+          f"(LQD/HYG ratio: {f.lqd_hyg_ratio:.4f}, "
+          f"chg: {f.lqd_hyg_ratio_change:+.2f}%)")
+    print(f"             Quality Rot: {qr}")
+
+    ism_str = f"{f.ism_pmi:.1f} ({f.ism_direction})" if f.ism_pmi > 0 else "n/a"
+    print(f"  L2 Pal     ISM PMI:     {ism_str}")
+
+    cu_str = f"{f.copper_signal} ({f.copper_trend:+.1f}%)" if f.copper_signal != "unknown" else "n/a"
+    print(f"  L3 Steno   Copper:      {cu_str}")
+
+    print(f"  L4 Visser  AI Disruption: "
+          f"{f.high_ai_disruption_count} HIGH, "
+          f"{f.medium_ai_disruption_count} MEDIUM")
+
+    # Sector tilts
+    if report.sector_tilts:
+        print()
+        print("  SECTOR TILTS")
+        print("  " + "-" * 45)
+        for sec in sorted(report.sector_tilts.keys()):
+            tilt = report.sector_tilts[sec]
+            marker = {"OVERWEIGHT": "OW", "UNDERWEIGHT": "UW", "NEUTRAL": " N"}
+            print(f"  [{marker.get(tilt, ' ?')}] {sec}")
+
+    # AI disruption flags
+    if report.ai_disruption_flags:
+        print()
+        print("  AI DISRUPTION — HIGH RISK NAMES")
+        print("  " + "-" * 45)
+        for name in report.ai_disruption_flags:
+            print(f"    ! {name}")
+
     # Positioning
     p = report.positioning
     print()
     print("  RECOMMENDED POSITIONING")
     print("  " + "-" * 45)
     print(f"  Direction Bias:   {p.direction_bias} ({p.bias_strength})")
+    print(f"  Net Exposure:     {report.recommended_net_exposure:+.0f}%")
     print(f"  Tranche Pref:     {p.tranche_preference}")
     print(f"  Single-Name Alpha:{p.single_name_alpha:>5}")
     print(f"  Carry Strategy:   {p.carry_strategy}")
@@ -747,7 +1278,36 @@ def main():
                         help="Show detailed factor breakdown")
     parser.add_argument("--screen", type=str, default=None,
                         help="Path to xover_screen Excel file")
+
+    # Manual regime override (human judgment > model)
+    parser.add_argument(
+        "--set-regime", type=str, choices=sorted(VALID_REGIMES),
+        metavar="REGIME",
+        help="Set manual regime override (EXPANSION, LATE_CYCLE, DISTRESS, RECOVERY)",
+    )
+    parser.add_argument(
+        "--confidence", type=float, default=75.0,
+        help="Confidence level for the override (0-100, default: 75)",
+    )
+    parser.add_argument(
+        "--note", type=str, default="",
+        help="Analyst note for the override (e.g. 'Pal/Bittel Feb 2026: ISM decelerating')",
+    )
+    parser.add_argument(
+        "--clear-override", action="store_true",
+        help="Remove any active regime override",
+    )
+
     args = parser.parse_args()
+
+    # Handle override commands first
+    if args.clear_override:
+        clear_regime_override()
+        return
+
+    if args.set_regime:
+        save_regime_override(args.set_regime, args.confidence, args.note)
+        return
 
     report = run_credit_cycle_analysis(args.screen)
 

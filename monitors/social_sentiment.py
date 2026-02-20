@@ -70,6 +70,12 @@ CREDIT_ACCOUNTS = [
     "ResearchReorg",
     "debaborad",
     "CreditSights",
+    "RasijWadji",
+    "JulienBittel",
+    "AndreasSteno",
+    "MikkelRosenvold",
+    "jvisserlabs",
+    "CrossBorderCap",
 ]
 
 # Search aliases for entity names (short names for Twitter search)
@@ -694,6 +700,20 @@ def run_scan(
         if signal:
             store_signal(conn, signal)
             signals.append(signal)
+            try:
+                from data.entity_profile_manager import update_profile
+                update_profile(signal.entity_name, "social_sentiment", {
+                    "post_id": signal.post_id,
+                    "sentiment": signal.sentiment,
+                    "severity": signal.severity,
+                    "is_new_info": signal.is_new_info,
+                    "claim_summary": signal.claim_summary,
+                    "credit_relevance": signal.credit_relevance,
+                    "author": signal.author,
+                    "posted_at": signal.posted_at,
+                })
+            except Exception:
+                pass  # Profile update is non-critical
             # Progress indicator
             severity_icon = {
                 1: ".", 2: "o", 3: "*", 4: "!", 5: "!!",

@@ -553,6 +553,21 @@ def process_entries(
         is_new = store_action(conn, action)
         if is_new:
             new_actions.append(action)
+            try:
+                from data.entity_profile_manager import update_profile
+                update_profile(entity, "rating_actions", {
+                    "action_id": action.action_id,
+                    "agency": action.agency,
+                    "action_type": action.action_type,
+                    "headline": action.headline,
+                    "date": action.date,
+                    "severity": action.severity,
+                    "credit_impact": action.credit_impact,
+                    "rating_from": action.rating_from,
+                    "rating_to": action.rating_to,
+                })
+            except Exception:
+                pass  # Profile update is non-critical
 
     return new_actions
 

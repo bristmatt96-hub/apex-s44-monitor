@@ -1,0 +1,24 @@
+{
+  "entity": "Worldline SA/France",
+  "last_updated": "2026-02-20T09:01:52.865642",
+  "filings": [],
+  "news": [],
+  "rating_actions": [
+    {
+      "action_id": "e65e6bd7c6efbd98",
+      "agency": "sp",
+      "action_type": "DOWNGRADE",
+      "headline": "S&P downgrades Worldline to BB- from BB; outlook negative",
+      "date": "2026-02-20",
+      "severity": 4,
+      "credit_impact": "negative",
+      "rating_from": "BB",
+      "rating_to": "BB-",
+      "added_at": "2026-02-20T09:01:52.865642"
+    }
+  ],
+  "earnings_signals": [],
+  "social_sentiment": [],
+  "analyst_assessments": [],
+  "signal_changes": []
+}

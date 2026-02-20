@@ -1,0 +1,24 @@
+{
+  "entity": "Cirsa Finance International Sarl",
+  "last_updated": "2026-02-20T09:01:52.891090",
+  "filings": [],
+  "news": [],
+  "rating_actions": [
+    {
+      "action_id": "5809546de61166d9",
+      "agency": "fitch",
+      "action_type": "DOWNGRADE",
+      "headline": "Fitch downgrades Cirsa Finance to B from B+; outlook stable",
+      "date": "2026-02-20",
+      "severity": 4,
+      "credit_impact": "negative",
+      "rating_from": "B+",
+      "rating_to": "B",
+      "added_at": "2026-02-20T09:01:52.891090"
+    }
+  ],
+  "earnings_signals": [],
+  "social_sentiment": [],
+  "analyst_assessments": [],
+  "signal_changes": []
+}

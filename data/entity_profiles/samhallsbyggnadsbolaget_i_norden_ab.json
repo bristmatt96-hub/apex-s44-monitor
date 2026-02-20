@@ -1,0 +1,24 @@
+{
+  "entity": "Samhallsbyggnadsbolaget i Norden AB",
+  "last_updated": "2026-02-20T09:01:52.872653",
+  "filings": [],
+  "news": [],
+  "rating_actions": [
+    {
+      "action_id": "071291ad5072ff06",
+      "agency": "fitch",
+      "action_type": "WATCH_NEGATIVE",
+      "headline": "Fitch places SBB on Rating Watch Negative",
+      "date": "2026-02-20",
+      "severity": 4,
+      "credit_impact": "negative",
+      "rating_from": "",
+      "rating_to": "",
+      "added_at": "2026-02-20T09:01:52.872653"
+    }
+  ],
+  "earnings_signals": [],
+  "social_sentiment": [],
+  "analyst_assessments": [],
+  "signal_changes": []
+}
