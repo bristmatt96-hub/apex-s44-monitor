@@ -459,25 +459,50 @@ def run_equity_bridge(
 
     results: list[EquityBridgeResult] = []
 
-    for screen_name, sdata in screen_data.items():
-        # Get spread data
-        if isinstance(sdata, dict):
+    # Build unified name list: prefer screen data, fall back to equity map
+    # This ensures the bridge works even when no Excel screen data is present
+    name_entries: list[tuple[str, str, dict, dict]] = []
+    # (screen_name, map_key, spread_data, map_info)
+
+    if screen_data and isinstance(screen_data, dict):
+        for screen_name, sdata in screen_data.items():
+            if not isinstance(sdata, dict):
+                continue
             spread = sdata.get("spread", 0)
-            fair_spread = sdata.get("fair_spread", spread)
-            direction = sdata.get("direction", "")
-            conviction = sdata.get("conviction", 3)
-        else:
-            continue
+            if not spread or spread <= 0:
+                continue
+            map_key = _fuzzy_match_name(screen_name, equity_map)
+            if not map_key:
+                continue
+            name_entries.append((screen_name, map_key, sdata, equity_map[map_key]))
+    else:
+        # Fallback: use equity map directly with index average spread
+        avg_xover_spread = 250.0  # iTraxx Xover S44 average as default
+        for map_key, info in equity_map.items():
+            if not info.get("is_public", False):
+                continue
+            screen_name = info.get("screen_name", map_key)
+            # Use sector heuristic for spread
+            sector = info.get("sector", "Other")
+            sector_spread_map = {
+                "Consumers": 280, "Autos & Industrials": 310,
+                "TMT": 240, "Energy": 350, "Financials": 200,
+            }
+            spread = sector_spread_map.get(sector, avg_xover_spread)
+            sdata = {
+                "spread": spread,
+                "fair_spread": spread,
+                "direction": "",
+                "conviction": 3,
+            }
+            name_entries.append((screen_name, map_key, sdata, info))
 
-        if not spread or spread <= 0:
-            continue
+    for screen_name, map_key, sdata, info in name_entries:
+        spread = sdata.get("spread", 0)
+        fair_spread = sdata.get("fair_spread", spread)
+        direction = sdata.get("direction", "")
+        conviction = sdata.get("conviction", 3)
 
-        # Match to equity map
-        map_key = _fuzzy_match_name(screen_name, equity_map)
-        if not map_key:
-            continue
-
-        info = equity_map[map_key]
         ticker = info.get("equity_ticker")
         is_public = info.get("is_public", False)
         options_available = info.get("options_available", False)
