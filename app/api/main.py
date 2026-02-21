@@ -536,6 +536,75 @@ async def api_scenarios():
         return {"error": str(e)}
 
 
+@app.get("/api/equity-bridge")
+async def api_equity_bridge():
+    """Credit-Equity Options Bridge -- all scored public names."""
+    try:
+        from analytics.credit_equity_bridge import run_equity_bridge
+
+        # Don't fetch live equity data on server (slow) -- use credit-only mode
+        # Set fetch_equity=True when yfinance is available on VPS
+        results = run_equity_bridge(fetch_equity=False)
+        return {
+            "names": [r.to_dict() for r in results],
+            "count": len(results),
+            "timestamp": datetime.now().isoformat(),
+        }
+    except Exception as e:
+        return {"error": str(e), "names": [], "count": 0}
+
+
+@app.get("/api/equity-bridge/{name}")
+async def api_equity_bridge_detail(name: str):
+    """Detailed equity bridge view for a single name."""
+    try:
+        from analytics.credit_equity_bridge import run_equity_bridge
+
+        results = run_equity_bridge(name_filter=name, fetch_equity=False)
+        if not results:
+            return {"error": f"No match for '{name}'"}
+        return results[0].to_dict()
+    except Exception as e:
+        return {"error": str(e)}
+
+
+@app.get("/api/trade-structure/{name}")
+async def api_trade_structure(name: str):
+    """Trade structure recommendation for a name."""
+    try:
+        from analytics.credit_equity_bridge import run_equity_bridge
+        from analytics.trade_structurer import recommend_trade, classify_catalyst
+
+        results = run_equity_bridge(name_filter=name, fetch_equity=False)
+        if not results:
+            return {"error": f"No match for '{name}'"}
+
+        r = results[0]
+        catalyst = classify_catalyst(
+            spread_bps=r.cds_spread,
+        )
+        rec = recommend_trade(
+            catalyst_type=catalyst,
+            iv_percentile=r.iv_percentile,
+            gap_signal=r.gap_signal,
+            spread_bps=r.cds_spread,
+            options_available=r.options_available,
+        )
+        return {
+            "entity_name": r.entity_name,
+            "ticker": r.equity_ticker,
+            "cds_spread": r.cds_spread,
+            "credit_score": r.credit_signal_score,
+            "equity_score": r.equity_repricing_score,
+            "gap_score": r.gap_score,
+            "gap_signal": r.gap_signal,
+            "catalyst_type": catalyst,
+            "recommendation": rec.to_dict(),
+        }
+    except Exception as e:
+        return {"error": str(e)}
+
+
 # ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
