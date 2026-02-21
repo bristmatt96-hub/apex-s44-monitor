@@ -186,7 +186,7 @@ const pnlColor = (n) => n > 0 ? 'var(--accent-green)' : n < 0 ? 'var(--accent-re
 /* =====================================================================
    REACT COMPONENTS
    ===================================================================== */
-const { useState, useMemo } = React;
+const { useState, useMemo, useEffect } = React;
 
 function Card({ title, badge, children }) {
     return (
@@ -390,8 +390,30 @@ function StressTable({ risk }) {
    ===================================================================== */
 function App() {
     const [positions, setPositions] = useState(DEFAULT_POSITIONS.map(p => ({ ...p })));
+    const [apiLoaded, setApiLoaded] = useState(false);
+    const [origPositions, setOrigPositions] = useState(null);
 
     const risk = useMemo(() => computeRisk(positions), [positions]);
+
+    // Load real portfolio data from API on mount
+    useEffect(() => {
+        fetch('/api/risk')
+            .then(r => r.ok ? r.json() : null)
+            .then(data => {
+                if (data && data.position_risks && data.position_risks.length > 0) {
+                    const apiPositions = data.position_risks.map(p => ({
+                        name: p.entity_name,
+                        direction: p.direction === 'SHORT_RISK' ? 'SHORT' : 'LONG',
+                        sizePct: Math.abs(p.notional_m) / 5, // $500M NAV -> pct
+                        spreadBps: Math.round(p.spread),
+                    }));
+                    setPositions(apiPositions);
+                    setOrigPositions(apiPositions);
+                    setApiLoaded(true);
+                }
+            })
+            .catch(() => {}); // Fall back to defaults silently
+    }, []);
 
     const onSpreadChange = (idx, newSpread) => {
         setPositions(prev => {
@@ -401,7 +423,7 @@ function App() {
         });
     };
 
-    const resetSpreads = () => setPositions(DEFAULT_POSITIONS.map(p => ({ ...p })));
+    const resetSpreads = () => setPositions((origPositions || DEFAULT_POSITIONS).map(p => ({ ...p })));
 
     const today = new Date().toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' });
 
@@ -417,12 +439,25 @@ function App() {
                     </h1>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+                    <div style={{ display: 'flex', gap: 6 }}>
+                        <a href="/cockpit" style={{
+                            background: 'transparent', color: 'var(--text-muted)', border: '1px solid var(--border)',
+                            padding: '5px 10px', borderRadius: 4, fontSize: 10, fontWeight: 500, cursor: 'pointer',
+                            fontFamily: 'var(--font-mono)', textDecoration: 'none', letterSpacing: 0.3,
+                        }}>Cockpit</a>
+                        <a href="/tranches" style={{
+                            background: 'transparent', color: 'var(--text-muted)', border: '1px solid var(--border)',
+                            padding: '5px 10px', borderRadius: 4, fontSize: 10, fontWeight: 500, cursor: 'pointer',
+                            fontFamily: 'var(--font-mono)', textDecoration: 'none', letterSpacing: 0.3,
+                        }}>Tranches</a>
+                    </div>
                     <button onClick={resetSpreads} style={{
                         background: 'var(--blue-bg)', color: 'var(--accent-blue)', border: '1px solid rgba(59,130,246,0.3)',
                         padding: '5px 12px', borderRadius: 6, fontSize: 11, fontWeight: 600, cursor: 'pointer',
                         fontFamily: 'var(--font-mono)', letterSpacing: 0.3,
                     }}>RESET SPREADS</button>
                     <span style={{ fontSize: 11, color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>
+                        {apiLoaded && <span style={{ color: 'var(--accent-green)', marginRight: 6 }}>{'\u25CF'} LIVE</span>}
                         NAV <strong style={{ color: 'var(--text-primary)' }}>$500M</strong>
                         <span style={{ margin: '0 6px', color: 'var(--text-dim)' }}>|</span>
                         R = 40%
@@ -444,7 +479,7 @@ function App() {
             {/* Footer */}
             <footer style={{ borderTop: '1px solid var(--border)', marginTop: 16, padding: '10px 0', display: 'flex', justifyContent: 'space-between', fontSize: 11, color: 'var(--text-dim)', fontFamily: 'var(--font-mono)' }}>
                 <span>ISDA Standard CDS Model | 40% Recovery | 5Y Maturity | 3% EUR Risk-Free Rate</span>
-                <span>Strategies in Credit v1.0</span>
+                <span>Strategies in Credit v1.0{apiLoaded ? ' | Live Portfolio' : ''}</span>
             </footer>
         </div>
     );

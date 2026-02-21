@@ -21,6 +21,8 @@
             --red-bg:rgba(239,68,68,0.10); --red-bdr:rgba(239,68,68,0.25);
             --amber-bg:rgba(245,158,11,0.10); --amber-bdr:rgba(245,158,11,0.25);
             --blue-bg:rgba(59,130,246,0.10); --blue-bdr:rgba(59,130,246,0.25);
+            --purple-bg:rgba(167,139,250,0.10); --purple-bdr:rgba(167,139,250,0.25);
+            --teal-bg:rgba(20,184,166,0.10); --teal-bdr:rgba(20,184,166,0.25);
             --font-sans:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
             --font-mono:'JetBrains Mono','Fira Code','SF Mono',monospace;
         }
@@ -47,6 +49,12 @@
         .nav-link{font-size:10px;font-family:var(--font-mono);padding:4px 10px;border-radius:4px;color:var(--text-muted);text-decoration:none;border:1px solid var(--border);transition:all .15s}
         .nav-link:hover{color:var(--text-primary);border-color:var(--accent-blue);background:var(--blue-bg)}
 
+        /* Tab bar */
+        .tab-bar{background:var(--bg-card);border-bottom:1px solid var(--border);position:sticky;top:47px;z-index:49;display:flex;padding:0 24px;gap:0}
+        .tab-btn{font-family:var(--font-mono);font-size:11px;font-weight:500;padding:10px 18px;color:var(--text-muted);background:none;border:none;cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;letter-spacing:.2px}
+        .tab-btn:hover{color:var(--text-secondary);background:var(--bg-hover)}
+        .tab-btn.active{color:var(--accent-blue);border-bottom-color:var(--accent-blue)}
+
         /* Layout */
         .ck-main{max-width:1700px;margin:0 auto;padding:16px 20px 8px}
         .ck-grid{display:grid;gap:14px}
@@ -66,6 +74,8 @@
         .badge-green{background:var(--green-bg);color:var(--accent-green)}
         .badge-amber{background:var(--amber-bg);color:var(--accent-amber)}
         .badge-red{background:var(--red-bg);color:var(--accent-red)}
+        .badge-blue{background:var(--blue-bg);color:var(--accent-blue);border:1px solid var(--blue-bdr)}
+        .badge-purple{background:var(--purple-bg);color:var(--accent-purple);border:1px solid var(--purple-bdr)}
 
         /* Table */
         table{width:100%;border-collapse:collapse}
@@ -118,6 +128,27 @@
         .loading{display:flex;align-items:center;justify-content:center;padding:40px;color:var(--text-muted)}
         .spin{width:20px;height:20px;border:2px solid var(--border);border-top-color:var(--accent-blue);border-radius:50%;animation:spin .8s linear infinite;margin-right:10px}
         @keyframes spin{to{transform:rotate(360deg)}}
+
+        /* Placeholder panels */
+        .placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 20px;text-align:center}
+        .placeholder .icon{font-size:40px;margin-bottom:12px;opacity:0.4}
+        .placeholder h3{font-size:15px;font-weight:600;margin-bottom:8px;color:var(--text-secondary)}
+        .placeholder p{font-size:12px;color:var(--text-muted);max-width:400px;line-height:1.6}
+
+        /* Tranche lab */
+        .tranche-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+        @media(max-width:1200px){.tranche-grid{grid-template-columns:1fr}}
+        .calib-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px}
+        .calib-box{background:var(--bg-base);border-radius:6px;padding:8px 10px}
+        .calib-box .tranche-name{font-size:11px;font-weight:600;margin-bottom:5px}
+        .calib-box .metric{display:flex;justify-content:space-between;padding:2px 0;font-size:10px}
+        .calib-box .metric .k{color:var(--text-muted)}
+        .calib-box .metric .v{color:var(--text-primary);font-family:var(--font-mono);font-weight:500}
+
+        .pnl-pos{color:var(--accent-green);font-weight:600}
+        .pnl-neg{color:var(--accent-red);font-weight:600}
+        .pnl-zero{color:var(--text-muted)}
+        .bump-tight{color:var(--accent-green)}.bump-wide{color:var(--accent-red)}.bump-base{color:var(--accent-amber)}
     </style>
 </head>
 <body>
@@ -128,11 +159,13 @@ const { useState, useEffect, useCallback } = React;
 /* ================================================================
    HELPERS
    ================================================================ */
-const API = '';  // same origin
+const API = '';
 const fmt = (n, dp=0) => n != null ? Number(n).toLocaleString(undefined,{minimumFractionDigits:dp,maximumFractionDigits:dp}) : '--';
 const fmtK = n => { if(n==null) return '--'; const v=Math.round(n/1000); return v>=0?'+$'+fmt(Math.abs(v))+'k':'-$'+fmt(Math.abs(v))+'k'; };
 const fmtM = n => { if(n==null) return '--'; const v=n/1e6; return (v>=0?'+':'')+'$'+fmt(Math.abs(v),2)+'M'; };
+const fmtEK = n => { if(n==null||n==='') return '--'; const v=Math.round(Number(n)/1000); return (v>0?'+':'')+'\u20AC'+fmt(v)+'k'; };
 const pnlCls = n => n>0?'tg':n<0?'tr':'ts';
+const pnlCls2 = n => { const v=Number(n); return v>0?'pnl-pos':v<0?'pnl-neg':'pnl-zero'; };
 const trunc = (s,n=80) => { const t=s||''; return t.length>n?t.substring(0,n)+'\u2026':t; };
 const convDots = c => Array.from({length:5},(_,i) => <span key={i} className={i<c?'on':'off'}>{'\u25CF'}</span>);
 
@@ -142,7 +175,7 @@ async function fetchJSON(url) {
 }
 
 /* ================================================================
-   COMPONENTS
+   SHARED COMPONENTS
    ================================================================ */
 
 function Badge({type,children}) {
@@ -161,7 +194,6 @@ function MetricBox({label,value,sub,cls}) {
 
 function RiskBar({current,limit,status}) {
     const pct = Math.min(Math.abs(current)/limit*100,100);
-    const cls = status==='GREEN'?'tg':status==='AMBER'?'ta':'tr';
     return <div className="rbar"><div className="fill" style={{width:pct+'%',background:status==='GREEN'?'var(--accent-green)':status==='AMBER'?'var(--accent-amber)':'var(--accent-red)'}}></div></div>;
 }
 
@@ -170,10 +202,12 @@ function TrafficDot({status}) {
     return <span className={cls}>{'\u25CF'}</span>;
 }
 
-/* === REGIME PANEL === */
+/* ================================================================
+   TAB 1: DASHBOARD
+   ================================================================ */
+
 function RegimePanel({dispersion}) {
     if(!dispersion) return null;
-    const regimeCls = dispersion.regime==='HIGH'?'badge-green':dispersion.regime==='LOW'?'badge-red':'badge-regime';
     return (
         <div className="card c12">
             <div className="card-hdr">
@@ -192,7 +226,6 @@ function RegimePanel({dispersion}) {
     );
 }
 
-/* === TOP IDEAS PANEL === */
 function TopIdeasPanel({screen}) {
     if(!screen) return null;
     const IdeaRow = ({n}) => (
@@ -225,109 +258,6 @@ function TopIdeasPanel({screen}) {
     );
 }
 
-/* === PORTFOLIO PANEL === */
-function PortfolioPanel({portfolio}) {
-    if(!portfolio||portfolio.error) return null;
-    const risk = portfolio.risk_summary||{};
-    const positions = portfolio.positions||[];
-    return (
-        <div className="card c8">
-            <div className="card-hdr">
-                <h2>Portfolio</h2>
-                <div className="ck-stat">
-                    NAV <strong>${portfolio.nav_millions||500}M</strong>
-                    <span style={{margin:'0 6px'}}>|</span>
-                    Gross <strong>{risk.gross_exposure_pct||0}%</strong>
-                    <span style={{margin:'0 6px'}}>|</span>
-                    Net <strong className={pnlCls(risk.net_exposure_pct||0)}>{risk.net_exposure_pct||0}%</strong>
-                    <span style={{margin:'0 6px'}}>|</span>
-                    Carry <strong className={pnlCls(risk.estimated_carry_bps||0)}>{risk.estimated_carry_bps||0}bp</strong>
-                </div>
-            </div>
-            <div style={{overflowX:'auto'}}>
-                <table>
-                    <thead><tr><th>Entity</th><th className="tac">Dir</th><th className="tac">Conv</th><th className="tar">Size %</th><th className="tar">Notl $M</th><th className="tar">Spread</th><th className="tar">Fair</th><th>Sector</th><th className="tac">Rating</th></tr></thead>
-                    <tbody>{positions.map((p,i) => (
-                        <tr key={i}>
-                            <td className="tw fm">{trunc(p.entity_name,28)}</td>
-                            <td className="tac"><Badge type={p.direction==='SHORT_RISK'?'short':'long'}>{p.direction==='SHORT_RISK'?'Short':'Long'}</Badge></td>
-                            <td className="tac"><span className="dots">{convDots(p.conviction)}</span></td>
-                            <td className="tar mono ts">{p.size_pct}%</td>
-                            <td className="tar mono tw">${p.notional_millions}M</td>
-                            <td className="tar mono tw">{fmt(p.current_spread)}<span className="td">bp</span></td>
-                            <td className="tar mono ts">{fmt(p.fair_spread)}</td>
-                            <td className="ts" style={{fontSize:11}}>{p.sector||''}</td>
-                            <td className="tac mono ts" style={{fontSize:11}}>{p.estimated_rating||''}</td>
-                        </tr>
-                    ))}</tbody>
-                </table>
-            </div>
-        </div>
-    );
-}
-
-/* === RISK PANEL === */
-function RiskPanel({risk}) {
-    if(!risk) return null;
-    const sectorEntries = Object.entries(risk.sector_concentration||{});
-    return (
-        <div className="c4" style={{display:'flex',flexDirection:'column',gap:14}}>
-            <div className="card" style={{flex:1}}>
-                <div className="card-hdr"><h2>Risk Metrics</h2></div>
-                <div className="card-body">
-                    <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:8}}>
-                        <MetricBox label="Net DV01" value={`${risk.total_dv01>0?'+':''}$${fmt(risk.total_dv01)}`} cls={pnlCls(risk.total_dv01)} />
-                        <MetricBox label="JTD Gross" value={`$${fmt(Math.round(risk.total_jtd_gross/1e6))}M`} sub={`${risk.jtd_pct_nav||0}% of NAV`} />
-                        <MetricBox label="Gross Exp" value={`${risk.gross_exposure}%`} />
-                        <MetricBox label="Net Exp" value={`${risk.net_exposure}%`} cls={pnlCls(risk.net_exposure)} />
-                    </div>
-                    {sectorEntries.length>0 && (
-                        <div style={{marginTop:12}}>
-                            <div className="mono td" style={{fontSize:10,marginBottom:6,textTransform:'uppercase',letterSpacing:'.4px'}}>Sector Concentration</div>
-                            {sectorEntries.map(([k,v]) => {
-                                const pct = Math.min(v*2,100);
-                                const cls = v>25?'var(--accent-red)':v>20?'var(--accent-amber)':'var(--accent-blue)';
-                                return (
-                                    <div key={k} style={{display:'flex',alignItems:'center',justifyContent:'space-between',padding:'3px 0',fontSize:11}}>
-                                        <span className="ts" style={{flex:'0 0 100px'}}>{k}</span>
-                                        <span style={{flex:1,margin:'0 10px'}}><div className="rbar"><div className="fill" style={{width:pct+'%',background:cls}}></div></div></span>
-                                        <span className="mono tw fm" style={{width:38,textAlign:'right'}}>{v}%</span>
-                                    </div>
-                                );
-                            })}
-                        </div>
-                    )}
-                </div>
-            </div>
-            <div className="card">
-                <div className="card-hdr"><h2>Risk Limits</h2></div>
-                <div className="card-body">
-                    {(risk.risk_limits||[]).map((lim,i) => {
-                        const val = typeof lim.current==='number'?(lim.unit==='$'?'$'+fmt(lim.current):fmt(lim.current,1)+'%'):String(lim.current);
-                        const limVal = lim.unit==='$'?'$'+fmt(lim.limit):fmt(lim.limit)+'%';
-                        return (
-                            <div key={i} style={{padding:'6px 0',borderBottom:'1px solid var(--border-dim)'}}>
-                                <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:4}}>
-                                    <div style={{display:'flex',alignItems:'center',gap:6}}>
-                                        <TrafficDot status={lim.status} />
-                                        <span className="ts" style={{fontSize:12}}>{lim.metric}</span>
-                                    </div>
-                                    <div className="tar mono" style={{fontSize:12}}>
-                                        <span className="tw fm">{val}</span>
-                                        <span className="td" style={{marginLeft:4}}>/ {limVal}</span>
-                                    </div>
-                                </div>
-                                <RiskBar current={lim.current} limit={lim.limit} status={lim.status} />
-                            </div>
-                        );
-                    })}
-                </div>
-            </div>
-        </div>
-    );
-}
-
-/* === FILINGS PANEL === */
 function FilingsPanel({filings}) {
     const data = filings||{filings:[],count:0};
     return (
@@ -340,7 +270,6 @@ function FilingsPanel({filings}) {
                 {(data.filings||[]).length===0 ? <div className="td" style={{padding:12,textAlign:'center'}}>No recent filings</div>
                 : (data.filings||[]).map((f,i) => {
                     const sevCls = f.severity>=4?'sev-high':f.severity>=3?'sev-medium':'sev-low';
-                    const impCls = f.credit_impact==='negative'?'badge-red':f.credit_impact==='positive'?'badge-green':'badge-amber';
                     return (
                         <div key={i} className={`sev ${sevCls}`}>
                             <div style={{display:'flex',alignItems:'center',justifyContent:'space-between'}}>
@@ -360,7 +289,6 @@ function FilingsPanel({filings}) {
     );
 }
 
-/* === RELATIVE VALUE PANEL === */
 function RVPanel({rv}) {
     if(!rv||rv.error) return null;
     const RVName = ({n,type}) => {
@@ -402,7 +330,6 @@ function RVPanel({rv}) {
     );
 }
 
-/* === MATURITY WALL PANEL === */
 function MaturityPanel({maturity}) {
     if(!maturity) return null;
     return (
@@ -429,7 +356,6 @@ function MaturityPanel({maturity}) {
     );
 }
 
-/* === SCENARIOS PANEL === */
 function ScenariosPanel({scenarios}) {
     if(!scenarios||scenarios.error) return null;
     return (
@@ -460,12 +386,339 @@ function ScenariosPanel({scenarios}) {
     );
 }
 
+function DashboardTab({d}) {
+    return (
+        <div className="ck-grid g12">
+            <RegimePanel dispersion={d.dispersion} />
+            <TopIdeasPanel screen={d.screen} />
+            <FilingsPanel filings={d.filings} />
+            <RVPanel rv={d.rv} />
+            <MaturityPanel maturity={d.maturity} />
+            <ScenariosPanel scenarios={d.scenarios} />
+        </div>
+    );
+}
+
+/* ================================================================
+   TAB 2: PORTFOLIO & RISK
+   ================================================================ */
+
+function PortfolioRiskTab({d}) {
+    const portfolio = d.portfolio;
+    const risk = d.risk;
+    if(!portfolio&&!risk) return <div className="td tac" style={{padding:40}}>No portfolio data</div>;
+
+    const positions = portfolio?.positions||[];
+    const riskSummary = portfolio?.risk_summary||{};
+    const sectorEntries = Object.entries(risk?.sector_concentration||{});
+    const posRisks = risk?.position_risks||[];
+
+    return (
+        <div className="ck-grid g12">
+            {/* Portfolio summary */}
+            <div className="card c12">
+                <div className="card-hdr">
+                    <h2>Portfolio Overview</h2>
+                    <div className="ck-stat">
+                        NAV <strong>${portfolio?.nav_millions||500}M</strong>
+                        <span style={{margin:'0 6px'}}>|</span>
+                        Gross <strong>{riskSummary.gross_exposure_pct||0}%</strong>
+                        <span style={{margin:'0 6px'}}>|</span>
+                        Net <strong className={pnlCls(riskSummary.net_exposure_pct||0)}>{riskSummary.net_exposure_pct||0}%</strong>
+                        <span style={{margin:'0 6px'}}>|</span>
+                        Carry <strong className={pnlCls(riskSummary.estimated_carry_bps||0)}>{riskSummary.estimated_carry_bps||0}bp</strong>
+                    </div>
+                </div>
+                <div style={{overflowX:'auto'}}>
+                    <table>
+                        <thead><tr><th>Entity</th><th className="tac">Dir</th><th className="tac">Conv</th><th className="tar">Size %</th><th className="tar">Notl $M</th><th className="tar">Spread</th><th className="tar">Fair</th><th>Sector</th><th className="tac">Rating</th></tr></thead>
+                        <tbody>{positions.map((p,i) => (
+                            <tr key={i}>
+                                <td className="tw fm">{trunc(p.entity_name,28)}</td>
+                                <td className="tac"><Badge type={p.direction==='SHORT_RISK'?'short':'long'}>{p.direction==='SHORT_RISK'?'Short':'Long'}</Badge></td>
+                                <td className="tac"><span className="dots">{convDots(p.conviction)}</span></td>
+                                <td className="tar mono ts">{p.size_pct}%</td>
+                                <td className="tar mono tw">${p.notional_millions}M</td>
+                                <td className="tar mono tw">{fmt(p.current_spread)}<span className="td">bp</span></td>
+                                <td className="tar mono ts">{fmt(p.fair_spread)}</td>
+                                <td className="ts" style={{fontSize:11}}>{p.sector||''}</td>
+                                <td className="tac mono ts" style={{fontSize:11}}>{p.estimated_rating||''}</td>
+                            </tr>
+                        ))}</tbody>
+                    </table>
+                </div>
+            </div>
+
+            {/* Risk Metrics */}
+            <div className="card c8">
+                <div className="card-hdr"><h2>Risk Metrics</h2></div>
+                <div className="card-body">
+                    <div style={{display:'grid',gridTemplateColumns:'1fr 1fr 1fr 1fr',gap:10,marginBottom:16}}>
+                        <MetricBox label="Net DV01" value={`${(risk?.total_dv01||0)>0?'+':''}$${fmt(risk?.total_dv01||0)}`} cls={pnlCls(risk?.total_dv01||0)} />
+                        <MetricBox label="JTD Gross" value={`$${fmt(Math.round((risk?.total_jtd_gross||0)/1e6))}M`} sub={`${risk?.jtd_pct_nav||0}% of NAV`} />
+                        <MetricBox label="Gross Exp" value={`${risk?.gross_exposure||0}%`} />
+                        <MetricBox label="Net Exp" value={`${risk?.net_exposure||0}%`} cls={pnlCls(risk?.net_exposure||0)} />
+                    </div>
+                    {posRisks.length>0 && (
+                        <div>
+                            <div className="mono td" style={{fontSize:10,marginBottom:6,textTransform:'uppercase',letterSpacing:'.4px'}}>Position Risk Detail</div>
+                            <table>
+                                <thead><tr><th>Entity</th><th className="tac">Dir</th><th className="tar">Notional</th><th className="tar">Spread</th><th className="tar">DV01</th><th className="tar">JTD</th></tr></thead>
+                                <tbody>{posRisks.map((p,i) => (
+                                    <tr key={i}>
+                                        <td className="tw fm">{p.entity_name}</td>
+                                        <td className="tac"><Badge type={p.direction==='SHORT_RISK'?'short':'long'}>{p.direction==='SHORT_RISK'?'S':'L'}</Badge></td>
+                                        <td className="tar mono ts">${p.notional_m}M</td>
+                                        <td className="tar mono tw">{fmt(p.spread)}bp</td>
+                                        <td className={`tar mono ${pnlCls(p.signed_dv01)}`}>{p.signed_dv01>0?'+':''}${fmt(p.dv01)}</td>
+                                        <td className={`tar mono ${pnlCls(p.jtd)}`}>{fmtK(p.jtd)}</td>
+                                    </tr>
+                                ))}</tbody>
+                            </table>
+                        </div>
+                    )}
+                </div>
+            </div>
+
+            {/* Risk Limits + Sector */}
+            <div className="c4" style={{display:'flex',flexDirection:'column',gap:14}}>
+                <div className="card" style={{flex:1}}>
+                    <div className="card-hdr"><h2>Risk Limits</h2></div>
+                    <div className="card-body">
+                        {(risk?.risk_limits||[]).map((lim,i) => {
+                            const val = typeof lim.current==='number'?(lim.unit==='$'?'$'+fmt(lim.current):fmt(lim.current,1)+'%'):String(lim.current);
+                            const limVal = lim.unit==='$'?'$'+fmt(lim.limit):fmt(lim.limit)+'%';
+                            return (
+                                <div key={i} style={{padding:'6px 0',borderBottom:'1px solid var(--border-dim)'}}>
+                                    <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:4}}>
+                                        <div style={{display:'flex',alignItems:'center',gap:6}}>
+                                            <TrafficDot status={lim.status} />
+                                            <span className="ts" style={{fontSize:12}}>{lim.metric}</span>
+                                        </div>
+                                        <div className="tar mono" style={{fontSize:12}}>
+                                            <span className="tw fm">{val}</span>
+                                            <span className="td" style={{marginLeft:4}}>/ {limVal}</span>
+                                        </div>
+                                    </div>
+                                    <RiskBar current={lim.current} limit={lim.limit} status={lim.status} />
+                                </div>
+                            );
+                        })}
+                    </div>
+                </div>
+                {sectorEntries.length>0 && (
+                    <div className="card">
+                        <div className="card-hdr"><h2>Sector Concentration</h2></div>
+                        <div className="card-body">
+                            {sectorEntries.map(([k,v]) => {
+                                const pct = Math.min(v*2,100);
+                                const cls = v>25?'var(--accent-red)':v>20?'var(--accent-amber)':'var(--accent-blue)';
+                                return (
+                                    <div key={k} style={{display:'flex',alignItems:'center',justifyContent:'space-between',padding:'3px 0',fontSize:11}}>
+                                        <span className="ts" style={{flex:'0 0 100px'}}>{k}</span>
+                                        <span style={{flex:1,margin:'0 10px'}}><div className="rbar"><div className="fill" style={{width:pct+'%',background:cls}}></div></div></span>
+                                        <span className="mono tw fm" style={{width:38,textAlign:'right'}}>{v}%</span>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </div>
+                )}
+            </div>
+        </div>
+    );
+}
+
+/* ================================================================
+   TAB 3: SIGNAL FEED
+   ================================================================ */
+function SignalFeedTab() {
+    return (
+        <div className="card">
+            <div className="card-body">
+                <div className="placeholder">
+                    <div className="icon">&#x1F4E1;</div>
+                    <h3>Signal Feed</h3>
+                    <p>Real-time credit signals from spread monitors, filing alerts, and market regime changes. Aggregates cross-asset signals into a unified event stream with severity scoring and auto-classification.</p>
+                    <div style={{marginTop:16}}>
+                        <Badge type="blue">COMING SOON</Badge>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+/* ================================================================
+   TAB 4: DOC ANALYSIS
+   ================================================================ */
+function DocAnalysisTab() {
+    return (
+        <div className="card">
+            <div className="card-body">
+                <div className="placeholder">
+                    <div className="icon">&#x1F4C4;</div>
+                    <h3>Document Analysis</h3>
+                    <p>AI-powered analysis of credit documents: bond prospectuses, covenant packages, earnings transcripts, and regulatory filings. Extracts key credit metrics, covenant triggers, and risk factors with automated credit impact scoring.</p>
+                    <div style={{marginTop:16}}>
+                        <Badge type="blue">COMING SOON</Badge>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+/* ================================================================
+   TAB 5: TRANCHE LAB
+   ================================================================ */
+function TrancheLabTab({tranches}) {
+    if(!tranches) return <div className="loading"><div className="spin"></div>Loading tranche data...</div>;
+
+    function TrancheCard({title, subtitle, badge, data}) {
+        if(!data||data.length===0) return (
+            <div className="card"><div className="card-body"><div className="td tac" style={{padding:30}}>No {title} data. Run pricer with --real flag to generate.</div></div></div>
+        );
+
+        const allKeys = Object.keys(data[0]);
+        const pnlKeys = allKeys.filter(k => k.startsWith('PnL_'));
+        const bumps = pnlKeys.map(k => {
+            const match = k.match(/PnL_([+-]?\d+)bp/);
+            return { key: k, label: match ? match[1]+'bp' : k, value: match ? parseInt(match[1]) : 0 };
+        });
+
+        return (
+            <div className="card">
+                <div className="card-hdr">
+                    <div>
+                        <h2>{title}</h2>
+                        <span className="mono td" style={{fontSize:10}}>{subtitle}</span>
+                    </div>
+                    <Badge type={badge}>{data.length} TRANCHES</Badge>
+                </div>
+                <div className="card-body">
+                    <div className="calib-grid">
+                        {data.map((t,i) => (
+                            <div key={i} className="calib-box">
+                                <div className="tranche-name">{t.Tranche}</div>
+                                <div className="metric"><span className="k">Corr</span><span className="v tb">{t.BaseCorrelation}</span></div>
+                                <div className="metric"><span className="k">Spread</span><span className="v">{fmt(Number(t.FairSpread_bps))}bp</span></div>
+                                <div className="metric"><span className="k">Upfront</span><span className={`v ${Number(t.Upfront_pct)>0?'tg':'tr'}`}>{Number(t.Upfront_pct)>0?'+':''}{t.Upfront_pct}%</span></div>
+                                <div className="metric"><span className="k">EL</span><span className="v ta">{t.ExpectedLoss_pct}%</span></div>
+                            </div>
+                        ))}
+                    </div>
+                    <div style={{overflowX:'auto'}}>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th style={{minWidth:120}}>Tranche</th>
+                                    <th className="tar">Corr</th>
+                                    <th className="tar">Upfront</th>
+                                    {bumps.map(b => (
+                                        <th key={b.key} className={`tar ${b.value<0?'bump-tight':b.value>0?'bump-wide':'bump-base'}`}>{b.value>0?'+':''}{b.label}</th>
+                                    ))}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {data.map((t,i) => (
+                                    <tr key={i}>
+                                        <td className="tw fm">{t.Tranche}</td>
+                                        <td className="tar tb mono">{t.BaseCorrelation}</td>
+                                        <td className={`tar fm mono ${Number(t.Upfront_pct)>0?'tg':'tr'}`}>{Number(t.Upfront_pct)>0?'+':''}{t.Upfront_pct}%</td>
+                                        {bumps.map(b => (
+                                            <td key={b.key} className={`tar mono ${pnlCls2(Number(t[b.key]))}`} style={{fontSize:11}}>{fmtEK(t[b.key])}</td>
+                                        ))}
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    return (
+        <div className="tranche-grid">
+            <TrancheCard title="iTraxx Xover S44" subtitle="250bp mid | 500bp running | HY" badge="blue" data={tranches.xover} />
+            <TrancheCard title="iTraxx Main S44" subtitle="53bp mid | 100bp running | IG" badge="purple" data={tranches.main} />
+        </div>
+    );
+}
+
+/* ================================================================
+   TAB 6: MACRO REGIME
+   ================================================================ */
+function MacroRegimeTab({d}) {
+    const dispersion = d.dispersion;
+    return (
+        <div className="ck-grid g12">
+            {dispersion && (
+                <div className="card c12">
+                    <div className="card-hdr">
+                        <h2>Spread Dispersion Regime</h2>
+                        <Badge type={dispersion.regime==='HIGH'?'green':dispersion.regime==='LOW'?'red':'regime'}>{dispersion.regime} DISPERSION</Badge>
+                    </div>
+                    <div className="card-body">
+                        <div style={{display:'grid',gridTemplateColumns:'1fr 1fr 1fr 1fr',gap:10,marginBottom:16}}>
+                            <MetricBox label="Dispersion CV" value={dispersion.universe_cv||'--'} sub={dispersion.regime_description} />
+                            <MetricBox label="Universe Mean" value={(dispersion.universe_mean||0)+'bp'} sub={`\u00B1${dispersion.universe_stdev||0}bp stdev`} />
+                            <MetricBox label="Pair Trade Sectors" value={(dispersion.pair_trade_sectors||[]).length}
+                                sub={(dispersion.pair_trade_sectors||[]).slice(0,3).join(', ')||'None'} cls="tp" />
+                            <MetricBox label="Sector Dispersion" value={(dispersion.sectors||[]).filter(s=>s.regime==='HIGH').length+' HIGH'}
+                                sub={`of ${(dispersion.sectors||[]).length} sectors`} cls="ta" />
+                        </div>
+                        {(dispersion.sectors||[]).length>0 && (
+                            <table>
+                                <thead><tr><th>Sector</th><th className="tar">Count</th><th className="tar">Mean Spread</th><th className="tar">CV</th><th className="tac">Regime</th></tr></thead>
+                                <tbody>{(dispersion.sectors||[]).map((s,i) => (
+                                    <tr key={i}>
+                                        <td className="tw fm">{s.name}</td>
+                                        <td className="tar mono ts">{s.count}</td>
+                                        <td className="tar mono tw">{fmt(s.mean)}bp</td>
+                                        <td className="tar mono tw">{s.cv}</td>
+                                        <td className="tac"><Badge type={s.regime==='HIGH'?'green':s.regime==='LOW'?'red':'regime'}>{s.regime}</Badge></td>
+                                    </tr>
+                                ))}</tbody>
+                            </table>
+                        )}
+                    </div>
+                </div>
+            )}
+            <div className="card c12">
+                <div className="card-body">
+                    <div className="placeholder">
+                        <div className="icon">&#x1F30D;</div>
+                        <h3>Macro Indicators</h3>
+                        <p>Cross-asset macro regime analysis: rates curves, FX vol, equity risk premium, IG/HY spreads ratio, CDX-iTraxx basis, and central bank policy signals. Regime classification drives portfolio positioning and hedge sizing.</p>
+                        <div style={{marginTop:16}}>
+                            <Badge type="blue">COMING SOON</Badge>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
 /* ================================================================
    APP
    ================================================================ */
+const TABS = [
+    { id: 'dashboard', label: 'Dashboard' },
+    { id: 'portfolio', label: 'Portfolio & Risk' },
+    { id: 'signals', label: 'Signal Feed' },
+    { id: 'docs', label: 'Doc Analysis' },
+    { id: 'tranches', label: 'Tranche Lab' },
+    { id: 'macro', label: 'Macro Regime' },
+];
+
 function App() {
     const [data, setData] = useState(null);
+    const [tranches, setTranches] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [activeTab, setActiveTab] = useState('dashboard');
     const [lastUpdated, setLastUpdated] = useState('');
 
     const loadAll = useCallback(async () => {
@@ -484,11 +737,17 @@ function App() {
         setLastUpdated(new Date().toLocaleTimeString('en-GB'));
     }, []);
 
+    const loadTranches = useCallback(async () => {
+        const t = await fetchJSON('/api/tranche-scenarios?index=both');
+        setTranches(t);
+    }, []);
+
     useEffect(() => {
         loadAll();
+        loadTranches();
         const interval = setInterval(loadAll, 300000);
         return () => clearInterval(interval);
-    }, [loadAll]);
+    }, [loadAll, loadTranches]);
 
     if (loading) return <div className="loading"><div className="spin"></div>Loading cockpit data...</div>;
 
@@ -506,7 +765,8 @@ function App() {
                 </div>
                 <div className="ck-status">
                     <div className="nav-links">
-                        <a href="/" className="nav-link">Dashboard</a>
+                        <a href="/" className="nav-link">Screen</a>
+                        <a href="/tranches" className="nav-link">Tranches</a>
                         <a href="/risk-calculator" className="nav-link">Risk Calc</a>
                     </div>
                     {d.dispersion && d.dispersion.regime &&
@@ -526,33 +786,30 @@ function App() {
                 </div>
             </header>
 
-            {/* MAIN GRID */}
+            {/* TAB BAR */}
+            <nav className="tab-bar">
+                {TABS.map(tab => (
+                    <button key={tab.id} className={`tab-btn ${activeTab===tab.id?'active':''}`}
+                        onClick={() => setActiveTab(tab.id)}>
+                        {tab.label}
+                    </button>
+                ))}
+            </nav>
+
+            {/* MAIN CONTENT */}
             <main className="ck-main">
-                <div className="ck-grid g12">
-                    {/* Row 1: Regime */}
-                    <RegimePanel dispersion={d.dispersion} />
-
-                    {/* Row 2: Top Ideas */}
-                    <TopIdeasPanel screen={d.screen} />
-
-                    {/* Row 3: Portfolio + Risk */}
-                    <PortfolioPanel portfolio={d.portfolio} />
-                    <RiskPanel risk={d.risk} />
-
-                    {/* Row 4: Filings + RV */}
-                    <FilingsPanel filings={d.filings} />
-                    <RVPanel rv={d.rv} />
-
-                    {/* Row 5: Maturity + Scenarios */}
-                    <MaturityPanel maturity={d.maturity} />
-                    <ScenariosPanel scenarios={d.scenarios} />
-                </div>
+                {activeTab === 'dashboard' && <DashboardTab d={d} />}
+                {activeTab === 'portfolio' && <PortfolioRiskTab d={d} />}
+                {activeTab === 'signals' && <SignalFeedTab />}
+                {activeTab === 'docs' && <DocAnalysisTab />}
+                {activeTab === 'tranches' && <TrancheLabTab tranches={tranches} />}
+                {activeTab === 'macro' && <MacroRegimeTab d={d} />}
             </main>
 
             {/* FOOTER */}
             <footer className="ck-footer">
                 <div className="inner">
-                    <span>Strategies in Credit v1.0 &mdash; iTraxx Xover S44 Cockpit</span>
+                    <span>Strategies in Credit v2.0 &mdash; iTraxx Xover S44 Cockpit</span>
                     <span>Updated {lastUpdated}</span>
                 </div>
             </footer>

@@ -20,6 +20,7 @@ Usage:
     -> http://localhost:8000
 """
 
+import csv
 import json
 import os
 import sqlite3
@@ -132,6 +133,15 @@ async def risk_calculator():
     if html_path.exists():
         return HTMLResponse(content=html_path.read_text(encoding="utf-8"))
     return HTMLResponse(content="<h1>Risk calculator not found</h1>", status_code=404)
+
+
+@app.get("/tranches", response_class=HTMLResponse)
+async def tranches():
+    """Serve the tranche scenario tables page."""
+    html_path = PROJECT_ROOT / "app" / "web" / "tranches.html"
+    if html_path.exists():
+        return HTMLResponse(content=html_path.read_text(encoding="utf-8"))
+    return HTMLResponse(content="<h1>Tranches page not found</h1>", status_code=404)
 
 
 # ---------------------------------------------------------------------------
@@ -462,6 +472,29 @@ async def api_dispersion():
         }
     except Exception as e:
         return {"error": str(e)}
+
+
+@app.get("/api/tranche-scenarios")
+async def api_tranche_scenarios(index: str = "both"):
+    """Real market tranche scenario tables from calibrated CSVs."""
+    results = {}
+
+    files = {
+        "xover": "outputs/tranche_scenarios_xover_real.csv",
+        "main": "outputs/tranche_scenarios_main_real.csv",
+    }
+
+    for key, filepath in files.items():
+        if index != "both" and index != key:
+            continue
+        p = PROJECT_ROOT / filepath
+        if not p.exists():
+            continue
+        with open(p, newline="") as f:
+            reader = csv.DictReader(f)
+            results[key] = [dict(row) for row in reader]
+
+    return results
 
 
 @app.get("/api/scenarios")
