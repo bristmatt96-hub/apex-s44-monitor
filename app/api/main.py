@@ -542,9 +542,8 @@ async def api_equity_bridge():
     try:
         from analytics.credit_equity_bridge import run_equity_bridge
 
-        # Don't fetch live equity data on server (slow) -- use credit-only mode
-        # Set fetch_equity=True when yfinance is available on VPS
-        results = run_equity_bridge(fetch_equity=False)
+        # Fetch live equity data from yfinance (cached 15 min)
+        results = run_equity_bridge(fetch_equity=True)
         return {
             "names": [r.to_dict() for r in results],
             "count": len(results),
@@ -560,7 +559,7 @@ async def api_equity_bridge_detail(name: str):
     try:
         from analytics.credit_equity_bridge import run_equity_bridge
 
-        results = run_equity_bridge(name_filter=name, fetch_equity=False)
+        results = run_equity_bridge(name_filter=name, fetch_equity=True)
         if not results:
             return {"error": f"No match for '{name}'"}
         return results[0].to_dict()
@@ -575,7 +574,7 @@ async def api_trade_structure(name: str):
         from analytics.credit_equity_bridge import run_equity_bridge
         from analytics.trade_structurer import recommend_trade, classify_catalyst
 
-        results = run_equity_bridge(name_filter=name, fetch_equity=False)
+        results = run_equity_bridge(name_filter=name, fetch_equity=True)
         if not results:
             return {"error": f"No match for '{name}'"}
 
