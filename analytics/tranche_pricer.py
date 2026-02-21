@@ -311,11 +311,33 @@ def gaussian_copula_base_correlation(
             model_spread = prot / rpv01 * 10_000
             return model_spread - tranche_spread
 
+    # Try standard bracket first
     try:
         return brentq(objective, 0.001, 0.999, xtol=1e-6, maxiter=200)
     except ValueError:
-        # If root not bracketed, return the guess
-        return correlation_guess
+        pass
+
+    # Root not bracketed by [0.001, 0.999] — common for IG tranches where
+    # the objective is non-monotonic (negative at both endpoints).
+    # Scan for sign changes across the correlation range.
+    scan_points = [0.001, 0.005, 0.01, 0.02, 0.03, 0.05, 0.08, 0.10,
+                   0.15, 0.20, 0.30, 0.40, 0.50, 0.60, 0.70, 0.80,
+                   0.90, 0.95, 0.99, 0.999]
+    vals = [(rho, objective(rho)) for rho in scan_points]
+
+    for i in range(len(vals) - 1):
+        rho_a, f_a = vals[i]
+        rho_b, f_b = vals[i + 1]
+        if f_a * f_b < 0:
+            # Found a sign change — root is bracketed here
+            try:
+                return brentq(objective, rho_a, rho_b, xtol=1e-6, maxiter=200)
+            except ValueError:
+                continue
+
+    # If no sign change found, return closest point
+    closest = min(vals, key=lambda x: abs(x[1]))
+    return closest[0]
 
 
 def price_tranche(

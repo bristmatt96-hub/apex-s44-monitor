@@ -23,6 +23,7 @@ Usage:
     python -m analytics.tranche_scenario_table --index main             # Main only
     python -m analytics.tranche_scenario_table --index main --main-spread 55
     python -m analytics.tranche_scenario_table --spread 300 --notional 25
+    python -m analytics.tranche_scenario_table --real                   # real market quotes
 """
 
 import argparse
@@ -119,7 +120,101 @@ MAIN_TRANCHES = [
     },
 ]
 
-# Standard spread scenarios (bps bump from current)
+# ---------------------------------------------------------------------------
+# Real market data — iTraxx Xover S44 dealer quotes
+# All tranches trade with 500bp ISDA standard HY running coupon.
+# Upfront is signed: +ve = protection buyer pays, -ve = buyer receives.
+# Super Senior quoted at 72bp conventional spread ≈ -19.3% upfront.
+# ---------------------------------------------------------------------------
+
+XOVER_TRANCHES_REAL = [
+    {
+        "name": "0-10% Equity",
+        "attachment": 0.00,
+        "detachment": 0.10,
+        "coupon_bps": 500,
+        "traded_upfront": True,
+        "market_upfront_pct": 43.0,       # +43% buyer pays
+    },
+    {
+        "name": "10-20% Mezzanine",
+        "attachment": 0.10,
+        "detachment": 0.20,
+        "coupon_bps": 500,
+        "traded_upfront": True,
+        "market_upfront_pct": -2.9,        # -2.9% buyer receives
+    },
+    {
+        "name": "20-35% Senior",
+        "attachment": 0.20,
+        "detachment": 0.35,
+        "coupon_bps": 500,
+        "traded_upfront": True,
+        "market_upfront_pct": -13.45,      # -13.45% buyer receives
+    },
+    {
+        "name": "35-100% Super Senior",
+        "attachment": 0.35,
+        "detachment": 1.00,
+        "coupon_bps": 500,
+        "traded_upfront": True,
+        "market_upfront_pct": -19.3,       # 72bp conv spread → -19.3% upfront
+        "conventional_spread_bps": 72,
+    },
+]
+
+XOVER_REAL_INDEX_SPREAD = 250.0  # bps — real market mid
+
+# ---------------------------------------------------------------------------
+# Real market data — iTraxx Main S44 dealer quotes
+# All tranches trade with 100bp ISDA standard IG running coupon.
+# Upfront is signed: +ve = protection buyer pays, -ve = buyer receives.
+# Senior/Super quoted as conventional spreads, converted to approximate upfront.
+# ---------------------------------------------------------------------------
+
+MAIN_TRANCHES_REAL = [
+    {
+        "name": "0-3% Equity",
+        "attachment": 0.00,
+        "detachment": 0.03,
+        "coupon_bps": 100,
+        "traded_upfront": True,
+        "market_upfront_pct": 23.75,       # +23.75% buyer pays
+    },
+    {
+        "name": "3-6% Mezzanine",
+        "attachment": 0.03,
+        "detachment": 0.06,
+        "coupon_bps": 100,
+        "traded_upfront": True,
+        "market_upfront_pct": 3.4,          # +3.4% buyer pays
+    },
+    {
+        "name": "6-12% Senior",
+        "attachment": 0.06,
+        "detachment": 0.12,
+        "coupon_bps": 100,
+        "traded_upfront": True,
+        "market_upfront_pct": -0.2,         # 95.3bp conv spread -> ~-0.2% upfront
+        "conventional_spread_bps": 95.3,
+    },
+    {
+        "name": "12-100% Super Senior",
+        "attachment": 0.12,
+        "detachment": 1.00,
+        "coupon_bps": 100,
+        "traded_upfront": True,
+        "market_upfront_pct": -3.3,         # 27bp conv spread -> ~-3.3% upfront
+        "conventional_spread_bps": 27,
+    },
+]
+
+MAIN_REAL_INDEX_SPREAD = 53.0   # bps — real market mid
+
+# IG scenario bumps (tighter range than HY)
+MAIN_BUMPS = [-25, -10, 0, +10, +25, +50, +100]
+
+# Standard HY spread scenarios (bps bump from current)
 DEFAULT_BUMPS = [-50, -25, 0, +25, +50, +100, +200]
 
 
@@ -299,6 +394,82 @@ def calibrate_base_correlations(
     return result
 
 
+def calibrate_from_market_upfronts(
+    index_spread: float,
+    tranches: list[dict],
+) -> dict[str, float]:
+    """Calibrate base correlations from real market upfront quotes.
+
+    Each tranche is calibrated independently by solving for the base
+    correlation that reproduces the dealer-quoted upfront percentage.
+    All tranches use 500bp running coupon (ISDA HY standard).
+
+    This replaces the synthetic calibration (calibrate_base_correlations)
+    which estimates equity upfront from spread regime and interpolates
+    non-equity tranches.
+
+    Returns:
+        {tranche_name: base_correlation}
+    """
+    print("  Calibrating from real market upfronts...", flush=True)
+
+    result = {}
+    for t in tranches:
+        name = t["name"]
+        market_uf = t["market_upfront_pct"]
+        coupon = t["coupon_bps"]
+
+        print(f"    {name:<26} target={market_uf:+.2f}% ...", end="", flush=True)
+
+        try:
+            rho = gaussian_copula_base_correlation(
+                tranche_spread=market_uf,
+                attachment=t["attachment"],
+                detachment=t["detachment"],
+                index_spread=index_spread,
+                is_upfront=True,
+                running_coupon=coupon,
+            )
+            # Clamp to valid range
+            rho = max(0.01, min(0.99, rho))
+        except Exception as e:
+            print(f" FAILED ({e}), using fallback")
+            # Fallback: monotonically increasing with seniority
+            if t["attachment"] == 0.0:
+                rho = 0.40
+            elif t["attachment"] <= 0.15:
+                rho = 0.55
+            elif t["attachment"] <= 0.30:
+                rho = 0.70
+            else:
+                rho = 0.85
+
+        result[name] = round(rho, 4)
+
+        # Verify: compute model upfront at calibrated rho
+        prot = _protection_leg_tranche(
+            index_spread, rho, t["attachment"], t["detachment"],
+            ISDA_RECOVERY, 5.0,
+        )
+        rpv01 = _risky_annuity_tranche(
+            index_spread, rho, t["attachment"], t["detachment"],
+            ISDA_RECOVERY, 5.0,
+        )
+        model_uf = (prot - coupon / 10_000 * rpv01) * 100
+        print(f" rho={rho:.2%}  model_uf={model_uf:+.2f}%  "
+              f"err={model_uf - market_uf:+.3f}%")
+
+    # Monotonicity check
+    rhos = list(result.values())
+    if rhos == sorted(rhos):
+        print("  [OK] Base correlations monotonically increasing (standard HY)")
+    else:
+        print("  [NOTE] Base correlation smile detected (non-monotonic)")
+        print("         This is typical when calibrating to real market quotes")
+
+    return result
+
+
 # ---------------------------------------------------------------------------
 # Scenario analysis
 # ---------------------------------------------------------------------------
@@ -309,11 +480,16 @@ def generate_scenario_table(
     bumps: list[float] | None = None,
     tranches: list[dict] | None = None,
     index_name: str = "iTraxx Xover S44",
+    correlations: dict[str, float] | None = None,
 ) -> tuple[list[tuple[dict, TrancheAnalytics]], list[dict]]:
     """Generate the full scenario P&L table.
 
     Prices base case with full analytics (for CS01/delta/gamma), then uses
     the fast MTM-only pricer for each scenario bump.
+
+    If correlations dict is provided, uses those directly (e.g. from
+    calibrate_from_market_upfronts). Otherwise calls
+    calibrate_base_correlations() for synthetic calibration.
 
     Returns:
         (base_analytics, scenario_rows)
@@ -327,7 +503,8 @@ def generate_scenario_table(
     print(f"  Generating table for {index_name} @ {index_spread:.0f}bp")
     print(f"{'='*60}")
 
-    correlations = calibrate_base_correlations(index_spread, tranches)
+    if correlations is None:
+        correlations = calibrate_base_correlations(index_spread, tranches)
 
     # Price each tranche at base case (full analytics — slower but only N calls)
     print(f"\n  Pricing base case (full analytics)...", flush=True)
@@ -517,8 +694,13 @@ def print_table(
     print("=" * W)
     print("  Model: One-factor Gaussian copula (LHP), ISDA 40% recovery, "
           "flat term structure, 3% risk-free rate")
-    print("  Base correlations calibrated from equity upfront "
-          "with standard curve interpolation (O'Kane 2008)")
+    # Check if real market calibration was used
+    has_market = any(t.get("market_upfront_pct") is not None for t, _ in base_analytics)
+    if has_market:
+        print("  Base correlations calibrated from real dealer upfront quotes")
+    else:
+        print("  Base correlations calibrated from equity upfront "
+              "with standard curve interpolation (O'Kane 2008)")
     print("=" * W)
 
 
@@ -585,8 +767,8 @@ def main():
         help="Which index to run (default: both)",
     )
     parser.add_argument(
-        "--spread", type=float, default=253.0,
-        help="Current iTraxx Xover index spread in bps (default: 253)",
+        "--spread", type=float, default=None,
+        help="Current iTraxx Xover index spread in bps (default: 250 for --real, 253 otherwise)",
     )
     parser.add_argument(
         "--main-spread", type=float, default=50.0,
@@ -600,10 +782,82 @@ def main():
         "--csv-dir", type=str, default="outputs",
         help="Output directory for CSVs (default: outputs)",
     )
+    parser.add_argument(
+        "--real", action="store_true",
+        help="Use real market upfront quotes for calibration "
+             "(Xover 250bp/500bp running, Main 53bp/100bp running)",
+    )
     args = parser.parse_args()
 
     notional = args.notional * 1_000_000
     bumps = DEFAULT_BUMPS
+
+    # --- Real market mode ---
+    if args.real:
+        run_xover = args.index in ("xover", "both")
+        run_main = args.index in ("main", "both")
+
+        print("\n" + "=" * 60)
+        print("  REAL MARKET CALIBRATION MODE")
+        print("  Using dealer upfront quotes for iTraxx S44")
+        print("=" * 60)
+
+        # --- Xover real ---
+        if run_xover:
+            xover_spread = args.spread if args.spread is not None else XOVER_REAL_INDEX_SPREAD
+
+            xover_corrs = calibrate_from_market_upfronts(
+                index_spread=xover_spread,
+                tranches=XOVER_TRANCHES_REAL,
+            )
+            xover_base, xover_rows = generate_scenario_table(
+                index_spread=xover_spread,
+                notional=notional,
+                bumps=DEFAULT_BUMPS,
+                tranches=XOVER_TRANCHES_REAL,
+                index_name="iTraxx Xover S44",
+                correlations=xover_corrs,
+            )
+            print_table(
+                xover_spread, xover_base, xover_rows, DEFAULT_BUMPS, notional,
+                index_name="iTraxx Xover S44 (Real Market)",
+            )
+            xover_csv = str(Path(args.csv_dir) / "tranche_scenarios_xover_real.csv")
+            export_csv(
+                xover_rows, DEFAULT_BUMPS, xover_spread, xover_csv,
+                index_name="iTraxx Xover S44 (Real Market)",
+            )
+
+        # --- Main real ---
+        if run_main:
+            main_spread = args.main_spread if args.main_spread != 50.0 else MAIN_REAL_INDEX_SPREAD
+
+            main_corrs = calibrate_from_market_upfronts(
+                index_spread=main_spread,
+                tranches=MAIN_TRANCHES_REAL,
+            )
+            main_base, main_rows = generate_scenario_table(
+                index_spread=main_spread,
+                notional=notional,
+                bumps=MAIN_BUMPS,
+                tranches=MAIN_TRANCHES_REAL,
+                index_name="iTraxx Main S44",
+                correlations=main_corrs,
+            )
+            print_table(
+                main_spread, main_base, main_rows, MAIN_BUMPS, notional,
+                index_name="iTraxx Main S44 (Real Market)",
+            )
+            main_csv = str(Path(args.csv_dir) / "tranche_scenarios_main_real.csv")
+            export_csv(
+                main_rows, MAIN_BUMPS, main_spread, main_csv,
+                index_name="iTraxx Main S44 (Real Market)",
+            )
+
+        return
+
+    # --- Standard synthetic mode ---
+    spread = args.spread if args.spread is not None else 253.0
 
     run_xover = args.index in ("xover", "both")
     run_main = args.index in ("main", "both")
@@ -611,19 +865,19 @@ def main():
     # --- Xover ---
     if run_xover:
         xover_base, xover_rows = generate_scenario_table(
-            index_spread=args.spread,
+            index_spread=spread,
             notional=notional,
             bumps=bumps,
             tranches=XOVER_TRANCHES,
             index_name="iTraxx Xover S44",
         )
         print_table(
-            args.spread, xover_base, xover_rows, bumps, notional,
+            spread, xover_base, xover_rows, bumps, notional,
             index_name="iTraxx Xover S44",
         )
         xover_csv = str(Path(args.csv_dir) / "tranche_scenarios_xover.csv")
         export_csv(
-            xover_rows, bumps, args.spread, xover_csv,
+            xover_rows, bumps, spread, xover_csv,
             index_name="iTraxx Xover S44",
         )
 
