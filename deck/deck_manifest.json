@@ -1,0 +1,214 @@
+{
+  "_README": "This file lives in your credit-catalyst project. Update it whenever you add a capability. The pitch deck reads from this file so it always reflects what the system actually does.",
+  "_LAST_UPDATED": "2026-02-22",
+  "_HOW_TO_REGENERATE_DECK": "Copy this file next to deck.js, then run: node deck.js",
+  "system_status": {
+    "companies_monitored": 200,
+    "index": "iTraxx Europe Series 44",
+    "sub_indices": [
+      "Main (125 names)",
+      "Crossover (75 names)"
+    ],
+    "sec_filers_covered": 14,
+    "european_filers_covered": 0,
+    "uptime": "24/7 on DigitalOcean VPS",
+    "alert_channel": "Telegram",
+    "database": "SQLite with 6 tables",
+    "ai_engine": "Claude API for filing analysis",
+    "spread_data_date": "2026-02-18"
+  },
+  "capabilities": {
+    "live": [
+      {
+        "name": "SEC Filing Monitor",
+        "description": "Scans SEC EDGAR every 1-10 minutes for 10-K, 10-Q, 8-K filings from iTraxx watchlist companies",
+        "detail": "Covers 14 US-listed companies from the 202-name universe. Auto-restarts on reboot.",
+        "since": "2025-12"
+      },
+      {
+        "name": "AI Filing Analysis",
+        "description": "Claude API summarises each filing and flags credit-relevant language, covenant triggers, and management red flags",
+        "detail": "Basic analysis \u2014 scores severity and extracts key phrases",
+        "since": "2025-12"
+      },
+      {
+        "name": "Telegram Alerts",
+        "description": "Real-time alerts sent to phone when a monitored company files with the SEC",
+        "detail": "Includes filing type, AI summary, and severity flag",
+        "since": "2025-12"
+      },
+      {
+        "name": "Company Watchlist Database",
+        "description": "202 companies tracked with ticker, CIK, credit rating, and priority scoring",
+        "detail": "Covers full iTraxx Main and Crossover indices",
+        "since": "2025-12"
+      }
+    ],
+    "in_progress": [
+      {
+        "name": "FCA/European Filing Monitor",
+        "description": "Extend monitoring to European regulatory filings for the 188 non-US companies",
+        "status": "planned"
+      },
+      {
+        "name": "Documentation Analysis Engine",
+        "description": "AI-powered scrubbing of credit agreements, indentures, and restricted payment baskets",
+        "status": "planned"
+      },
+      {
+        "name": "Liquidity Regime Dashboard",
+        "description": "Howell-inspired global liquidity framework for regime-based position sizing",
+        "status": "planned"
+      },
+      {
+        "name": "Bittensor Subnet Integration",
+        "description": "Alternative data from decentralised AI network for sentiment and early signals",
+        "status": "exploring"
+      },
+      {
+        "name": "Covenant Status Tracking",
+        "description": "Headroom monitoring across all watched companies with breach alerts",
+        "status": "planned"
+      },
+      {
+        "name": "Credit Rating History",
+        "description": "Track rating changes over time with fallen angel detection",
+        "status": "schema exists, not populated"
+      }
+    ],
+    "future": [
+      {
+        "name": "IBKR API Integration",
+        "description": "Automated trade execution via Interactive Brokers",
+        "status": "account exists, API not connected"
+      },
+      {
+        "name": "Options Scanner",
+        "description": "Find mispriced equity puts on names showing credit deterioration",
+        "status": "not started"
+      },
+      {
+        "name": "Risk Manager Agent",
+        "description": "Automated position sizing, exposure limits, and pre-mortems",
+        "status": "not started"
+      }
+    ]
+  },
+  "architecture": {
+    "current": "Single monitor script + Claude API analysis on VPS",
+    "target": "3-agent system: Analyst, Strategist, Briefer",
+    "agents": [
+      {
+        "name": "Analyst (The Watcher)",
+        "role": "Monitors filings, ratings, spreads \u2014 generates signals",
+        "status": "running"
+      },
+      {
+        "name": "Strategist",
+        "role": "Evaluates signals, cross-references with docs and regime, sizes positions",
+        "status": "planned"
+      },
+      {
+        "name": "Briefer",
+        "role": "Produces daily briefing with actionable trade ideas",
+        "status": "planned"
+      }
+    ]
+  },
+  "infrastructure": {
+    "vps": {
+      "provider": "DigitalOcean",
+      "purpose": "24/7 production monitoring",
+      "status": "running"
+    },
+    "dev": {
+      "device": "Mac Mini M4 Pro",
+      "purpose": "Development and agent orchestration",
+      "status": "setting up"
+    },
+    "github": {
+      "synced": false,
+      "note": "Will become source of truth once synced"
+    }
+  },
+  "spread_snapshot": {
+    "date": "2026-02-18",
+    "main": {
+      "count": 125,
+      "avg_spread_bp": 53,
+      "median_spread_bp": 46,
+      "min_spread_bp": 20,
+      "max_spread_bp": 167,
+      "widest_5": [
+        {
+          "name": "Suedzucker AG",
+          "spread": 167
+        },
+        {
+          "name": "Stellantis NV",
+          "spread": 150
+        },
+        {
+          "name": "WPP 2005 Ltd",
+          "spread": 149
+        },
+        {
+          "name": "PostNL NV",
+          "spread": 147
+        },
+        {
+          "name": "Electrolux AB",
+          "spread": 110
+        }
+      ],
+      "distribution": {
+        "under_30bp": 26,
+        "30_50bp": 40,
+        "50_75bp": 32,
+        "75_100bp": 17,
+        "100_150bp": 8,
+        "over_150bp": 2
+      }
+    },
+    "xover": {
+      "count": 75,
+      "avg_spread_bp": 250,
+      "median_spread_bp": 195,
+      "min_spread_bp": 50,
+      "max_spread_bp": 1224,
+      "widest_5": [
+        {
+          "name": "INEOS Quattro Finance 2 Plc",
+          "spread": 1224,
+          "pts_upfront": 20.8
+        },
+        {
+          "name": "Worldline SA/France",
+          "spread": 1027,
+          "pts_upfront": 15.95
+        },
+        {
+          "name": "INEOS Finance PLC",
+          "spread": 908,
+          "pts_upfront": 12.95
+        },
+        {
+          "name": "Bellis Acquisition Co PLC",
+          "spread": 650
+        },
+        {
+          "name": "Sherwood Financing PLC",
+          "spread": 585
+        }
+      ],
+      "names_trading_upfront": 4,
+      "distribution": {
+        "under_150bp": 19,
+        "150_250bp": 21,
+        "250_400bp": 22,
+        "400_600bp": 6,
+        "over_600bp": 5
+      }
+    }
+  }
+}
