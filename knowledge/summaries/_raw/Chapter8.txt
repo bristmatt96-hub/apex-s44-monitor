@@ -1,0 +1,1516 @@
+••• 8 ••• • ♦ 
+Volatility Spreads 
+To take advantage of a theoretically mlsprlced option, It Is necessary to hedge the 
+purchase or sale of the option by simultaneously taklng an opposing market posltlon. In 
+the examples ln Chapter 5, the opposing market position was always taken In the 
+underlying instrument It ls also possible to hedge an option posltlon With other options 
+which are theoretically equivalent to the underlying Instrument. For example, suppose 
+we feel a certain call with a delta of 50 ls underprtced In the marketplace. If we buy 1 o 
+calls, glvtng us a total delta position of +500, we can hedge our position In any of the 
+following ways: 
+♦ Sell five underlying contracts 
+♦ Buy puts with a total delta of -500 
+♦ Sell calls, different than those which we purchased, wlth a total delta of +500 
+♦ Combine several of these strategies, such that we create a total delta of -500 
+With many different calls and puts available, as well as the underlying contract, 
+there are many different ways of hedging our ten calls. Regardless of which method we 
+choose, each spread will have certain features In common: 
+♦ Each spread wlll be approximately delta neutral. 
+♦ Each spread will be sensitive to changes in the price of the underlying 
+Instrument 
+♦ Each spread will be sensitive to changes in implied volatlllty. 
+♦ Each spread will be sensitive to the passage of tlme. 
+Spreads with the foregoing characteristics fall under the general heading of volatll· 
+ity spreads. In this chapter we will define the basic types of volatility spreads and look 
+at their characteristics, initially by examining the expiration values of the spread, and 
+then by considering the delta, gamma, theta, vega, and rho associated with each spread. 
+Before defining the primary types of spreads, It should be noted that spreading 
+terminology ls not uniform. Traders sometimes use different terms when referrtng to the 
+same spread; they sometimes use the same term when referring to different spreads. An 
+attempt has been made to use the most common terminology, but alternative spread 
+definitions are also given where appropriate. 
+137 
+
+--- PAGE BREAK ---
+
+UI 
+UI 
+.9 138 
+BACKSPREAD 
+{also referred to as a ratio backspread or long ratto spread) 
+A backspread Is a delta neutral spread which consists of more long (purchased) optJons 
+than short (sold) options where all optlons expire at the same tlme. In order to achJeve 
+this, options with smaller deltas must be purchased and optlons wtth larger delw must 
+be sold. A call backspread consists of long calls at a higher exercise prtce and shon cans 
+at a lower exercise price. A put backspread consists of long puts at a lower exercise pr1ce 
+and short puts at a higher exercise price. 
+Typical backspreads and their values at expiration are shown In Agures 8-1 and 
+8·2. (These, and the example spreads In the following sections, are taken from the 
+option evaluation table In Agure 8-20.) In each case, a move away from the Jong 
+option's exercise price will Increase the value of the spread. Depending on the type of 
+backspread, movement In one direction may be preferable to movement In the other 
+direction. In a call backspread the upside profit potentlal Is unlimited; In a put 
+backspread the downside profit Is unlimited. But the prtmary consideration Is that some 
+movement wlll occur. U no movement occurs, a backspread Is likely to be a Iostng 
+strategy. 
+Typically, a backspread Is done for a credit. That Is, the amount of premium 
+received for the sold options Is greater than the premium paid for the purchased options. 
+This ensures that the backspread wlll be profitable If the market makes a large move In 
+either direction. If the market collapses In the case of a call backspread, or the market 
+Figure 8-1: Call Backspread 
+long 30 March 105 calls (24) 
+short 1 O March 95 calls (78) 
+long 25 June 11 O calls (23) 
+short 10 June 100 calls (51) sell the 
+lower 
+exercise 
+price 
+I buy the 
+higher 
+exercise 
+price 
+I 
+
+--- PAGE BREAK ---
+
+VoLtttuo, spre,ds 
+Figure s-2: Put Backspread 
+Cl) 
+Cl) 
+0 .J buy the 
+lower 
+exercise 
+price 
+I 
+I 
+I ,--
+I 
+I sell the 
+higher 
+oxerclae 
+price 
+I 
+long 80 March 90 puts (-6) 
+short 10 March 100 puts (-48) 
+long 45 June 95 puts (-30) 
+short 30 June 100 puts (-46) /3() 
+explodes in the case of a putbackspread, all options will expire worthless and the trader 
+will keep the credit from the lnltlal transaction. 
+A trader wlll tend to choose the type of backspread which reflects his opinion about 
+market direction. If he foresees a market with great upside potential, he wlll tend to 
+choose a call backspread; lf he foresees a market with great downside potential he will 
+tend to choose a put backspread. He will avoid backspreads ln quiet markets since the 
+underlying contract ls unlikely to move very far in either direction. 
+RATIO VERTICAL SPREAD 
+( also referred to as a ratio spread, short ratio spread, 
+vertical spread, or front spread} 
+A trader who takes the opposite side of a backspread also has a delta neutral spread, but 
+he ls short more contracts than long, with all options explrlng at the same time. Such a 
+spread is sometimes referred to as a ratio spread or a vertical spread. However, these 
+terms can also be applled to other types of spreads. In order to avoid later confusion, we 
+will designate the opposite of a backspread as a ratio vertical spread. 
+Typical ratio vertical spreads, and their expiration values, are shown In Agures 8-3 
+and 8-4. From these graphs we can see that a ratio vertical spread will realize its 
+maximum profit at expiration when the underlying contract finishes right at the short 
+(sold) option's exercise price. Since a ratio vertical spreader assumes the opposite risks 
+of a backspreader, hls risk ls unlimited on the upside In a call ratio vertical spread, and 
+
+--- PAGE BREAK ---
+
+140 
+Figure 8-3: Call Ratio Vertlcal Spread 
+long 20 March 95 call• (78) 
+1hort 30 March 100 call, (51) 
+long 10 Jun, 95 call• (67) 
+1hort 30 June 11 0 call, (23) 
+buy the sell the 
+lower higher 
+exercise exerclH 
+price price 
+Figure 8-4: Put Ratio Vertical Spread 
+Cl) 
+ell 
+.9 --1 
+I long 20 March 95 puts (·21) 
+short 60 March 90 puts (·6) 
+long 15 June 105 puts (·62) 
+short 20 June 100 puts (-46) 
+sell the buy the 
+lower higher 
+exercise exercise 
+price price .. 
+
+--- PAGE BREAK ---
+
+Vu&attuo, Sprtads /4/ 
+unllmlted on the downside In a put ratlo vertical spread. WhJle a ratlo vertlcal spreader 
+expects the market to remain relatively stable, he wtll tend to choose either a call or put 
+ratio vertical spread In order to limit his losses If he Is wrong, If he Is prtmar1ly worried 
+about a swift rise In the market, he will choose a put ratlo vertJcal spread; If he Is 
+primarily worried about a swift fall In the market, he wlll choose a call ratlo vertJcaJ 
+spread. In both cases, If the market does make a big move, his loss wtll be limited since 
+the calls can only collapse to zero If the market falls, and the puts can only collapse to 
+zero lf the market rises. 
+STRADDLE 
+A straddle consists of either a long call and a long put, or a shon call and a shon put, 
+where both options have the same exercise prtce and expire at the same time. If both 
+the call and put are purchased, the trader Is said to be long the straddle; If both options 
+are sold, the trader ts said to be shon the straddle. Typical long and shon straddles, with 
+their expiration values, are shown In Figures 8·5 and 8·6. 
+Whlle most straddles are executed with a one-to-one ratlo (one call for each put), 
+thls ls not a requirement. A straddle can also be ratfoed, so that It consists of unequal 
+numbers of calls and puts. Any spread where the number of long market contracts (long 
+calls or short puts) and shon market contracts (short calls or long puts) are unequal ts 
+considered a ratio spread. The most common types of ratio spreads are backspreads and 
+Figure 8-5: Long Straddle 
+-;:: e a. 
+Cl) 
+Cl) 
+.9 
+long 10 March 100 calls (51) 
+long 10 March 100 puts (-48) buy 
+calls and puts 
+at the same 
+exercise price 
+I 
+I 
+long 10 June 95 calls (67) 
+long 25 June 95 puts (-30) 
+
+--- PAGE BREAK ---
+
+142 
+;l: e 
+Cl. 
+0 
+0 
+0 
+...J short 30 March 105 calls (24) 
+short 1 O March 105 puts (-75) 
+sell 
+calls and puts 
+at the same 
+exercise price ChApttr8 
+short 20 June 100 calls (51) 
+short 20 June f 00 puts (-46) 
+ratio vertical spreads. But other spreads, including straddles, can be ratloed. This is 
+usually done to ensure that the spread is delta neutral. 
+A long straddle has many of the same characteristics as a backspread. Uke a 
+backspread it has limited risk and unlimited profit potential. With a long straddle, 
+however, the trader's potential profit is unlimited in either direction. If the market 
+moves shatply up or down, the straddle will reallze ever increasing profits as long as the 
+market continues to move in the same direction. 
+A short straddle has many of the same characteristics as a ratio vertical spread. The 
+spread will realize its maximum profit if the market stays close to the call and put 
+exercise price. The spread has a limited profit potential, and unlimited risk should the 
+market move violently in either direction. 
+The new option trader often finds long straddles attractive because strategies with 
+limited risk and unlimited profit potential offer great appeal, especially when the profit 
+is unlimited in both directions. However, if the hoped for movement falls to materialize, 
+he soon finds that losing money little by little, even a lJmited amount, can also be a 
+painful experience. This ls not an endorsement of either long or short straddles. Under 
+the right conditions either strategy may be sensible. But the lntellJgent trader's primary 
+concern ought to be the total expected return. If the strategy with the greatest expected 
+return also entails unlimited risk, a trader may have to accept that risk as part of doing 
+business. 
+
+--- PAGE BREAK ---
+
+Volatility Spreads 143 
+STRANGLE 
+Uke a straddle, a strangle cons ls ts of a long call and a long put, or a short call and a short 
+put, where both optlons expire at the same time. In a strangle, however, the options 
+have dlfferent exercise prices. If both options are purchased, the trader Is long the 
+strangle; lf both options are sold, the trader ls short the strangle. Typical long and short 
+strangles are shown ln Figures 8-7 and 8-8. 
+Strangles have characteristics slmllar to straddles, and are therefore similar to 
+backspreads and ratio vertical spreads. Like a long straddle, a long strangle needs 
+movement to be profitable, and has unltmlted profit potential should such movement 
+occur. Uke a short straddle, a short strangle has unllmlted risk In either direction, but 
+will show a profit If the underlying market remains ln a narrow trading range. 
+If a strangle ts simply ldentlfled by Its expiration month and exercise prices, there 
+may be some confusion as to the specific options Involved. A June 95/ l 05 strangle 
+might consist of a June 95 put and June 105 call. But It might also consist of a June 95 
+call and a June 105 put. Both these comblnatlons are consistent wtth the deflnltlon of 
+a strangle. To avoid confusion a strangle ts commonly assumed to consist of out·of·the­
+money options. If the underlying market ls currently at 100 and a trader wants to 
+purchase the June 95/1 OS strangle, lt ls assumed that he wants to purchase a June 95 
+put and a June 105 call. When both optlons are In-the-money, the posltlon ts sometimes 
+ref erred to as a guts. 
+Figure 8-7: Long Strangle 
+buy 
+puts (calls) 
+at a lower 
+exercise price 
+I 
+long 20 March 1 05 calls 
+long 20 March 95 puts buy 
+calls (puts) 
+at a hlgher 
+exercise price 
+I 
+I 
+I 
+I 
+long 30 June 11 O calls 
+long 15 June 100 puts 
+
+--- PAGE BREAK ---
+
+144 c,,,pu,I 
+Figure 8-8: Short Strangle 
+~ e 
+Q. short 30 March 11 O calls 
+short 40 March 90 puts short 1 O June 95 calls 
+short 10 June 105 puts 
+I 
+----1-. 
+I 
+sell 
+puts (calls) 
+at a lower 
+exercise price I 
+I 
+sell 
+calls (puts) 
+at a higher 
+exercise price 
+In the absence of other Identifying Information, stran~es, like straddles, are usually 
+executed with a one-to-one ratio (one call for each put). However, there Is no law 
+against executing a strangle with some other ratlo. If the call has a delta of 15 and the 
+put has a delta of -30, and a trader wants to be delta neutral, It Is perfectly acceptable 
+to trade two calls for each put. 
+If we Ignore the limited or unlimited risk/reward characterlsUcs of backspreads, 
+long straddles, and long stran~es, these spreads essentlally differ In the degree of desired 
+movement A baclcspread needs some market movement to show a profit, a long straddle 
+needs more movement, and a long strangle needs even greater movement Indeed, a 
+strangle Is usually considered the most highly leveraged of all optlon positions because 
+out•of·the-money options are cheap relative to other options. Several stran~es can often 
+be purchased for the prtce of just one straddle. If slgnJflcant movement occurs with such 
+a posltlon, Its value can Increase dramatically. But there Is a tradeoff. If movement falls 
+to occur, the position wlll SW!ftly lose Its value through the passage of time. 
+The same conslderatlons of degree are also true for ratio vertical spreads short 
+straddles and short stran"'es A ti ' 1 
+& • ra o vertical spread, a short straddle and a shott strangle all want the market to sit sun But a In ' 
+highly leveraged of these post ti If • ga , the stran~e Is considered the most 
+sit sun his profits will usually 0~:·; trad: sells several stran~es and the market does 
+moderate sized ratio verucal spread tter an If he had sold one straddle or done a 
+large move, shortstran~es also entaii t11' however, the market makes an unexpectedly 
+e greatest risk. All optlon po~ltlons are a tradeoff 
+
+--- PAGE BREAK ---
+
+Volutllty Sprtads l4S 
+between rtsk and reward. If the reward ls great, so Is the risk; If the rtsk 1s small, so Is 
+the reward. 
+Based on their slmllar characterlstlcs , It Is sometimes convenient to classify Jong 
+straddles and long strangles as special types of backspreads . This follows logically from 
+the definition or a backspread: long more contracts than short, with all opUons expiring 
+ln the same month. A Jong straddle or strangle consists only or long optlons (long calls 
+and long puts), with aH options expiring at the same tlme. Hence, these posltlons are 
+backspreads. (Even though the owner of a put has a short market position, he 1s said to 
+be long the put because he has purchased It.) 
+The same reasoning leads us to classify short straddles and strangles as special types 
+of ratlo vertical spreads. Short straddles and strangles consist only of shon options, with 
+all options expiring at the same Ume. Hence, the posltlons conform to our deflnltlon of 
+a rauo verucal spread. 
+BUTTERFLY 
+Thus far we have looked at spreads which Involve buying or selllng two different optlon 
+contracts. However, we need not restrict ourselves to two-sided spreads. We can also 
+construct spreads conslstlng of three, four, or even more different optlons. A butterfly 
+consists of options at three equally spaced exercise prices, where all options are of the 
+same type (either all calls or all puts) and expire at the same time. In a long butterfly the 
+outside exercise prtces are purchased and the Inside exercise prtce ls sold, and vice versa 
+for a short butterfly.1 Moreover, the ratlo of a butterfly never varies. It ls always 1 x 2 
+x 1, with two of each Inside exercise price traded for each one of the outside exercise 
+prices. If the ratio ls other than 1 x 2 x 1, the spread ls no longer a butterfly. Typical 
+examples of long and shon butterflies are shown In Figures 8-9 and 8-10. 
+Since a butterfly consists of equal numbers of long and short options, It does not flt 
+conveniently Into the backspread or ratlo vertical spread category. However, as com­
+monly traded, a long butterfly tends to act like a ratio vertical spread and a short butterfly 
+tends to act like a backspread. To understand why, consider a trader who buys a 
+95/ 100/ 105 call butterfly (long a 95 call, short two 100 calls, long a 105 call). What 
+wlll be the value of this position at explratlon? If the underlying contract ls below 95 at 
+expiration all the calls wlll expire worthless, and the value of the posltlon will be zero. 
+If the underlying contract ls above 105 at expiration, the value of the 95 and 105 calls 
+together wlll be Identical to the value of the two 100 calls. Again, the value of the 
+butterf1y will be zero. Now suppose the underlying contract ls somewhere between 95 
+and 105 at expiration, specifically, right at the Inside exercise price of l 00. The 95 call 
+wlll be worth 5 points, while the 100 and 105 calls will be worthless. The position wlll 
+therefore be worth 5 points. If the underlying moves away from I 00 the value of the 
+butterf1y will decline, but Its value can never fall below zero. 
+I. The Jnstde exercise price ts someumes referred to M the body of the butterfly, whJJe the outside 
+exercise prices are referred to M the wings. 
+
+--- PAGE BREAK ---
+
+146 --, 
+Clupttra 
+Figure 8-9: Long Butterfly 
+-~ e 
+0. long 10 March 95 calls (78) 
+snort 20 March 100 calls (51) 
+long 1 o March 105 calls (24) long 30 June 90 puts (•17) 
+short 60 June 95 puts ( ·30) 
+long 30 June 100 puts (-46) 
+buy a sell two buy a 
+call (put) calls (puts) call (pU1) 
+at a lower at a middle at a higher 
+exercise price exercise price exercise price 
+Figure 8-10: Short Butterfly 
+U) 
+U) 
+.9 sell a 
+call (put) 
+at a lower 
+exercise price 
+I 
+I 
+short 20 March 100 puts (-48) 
+long 40 March 105 puts (-75) 
+short 20 March 110 puts (-91) buy two 
+calls (puts) 
+atamlddle 
+exercise price 
+I 
+I 
+I 
+I sell a 
+call (put) 
+at a higher 
+exercise price 
+-'--~----------1 
+I 
+I 
+short 25 June 95 calls (67) 
+long 50 June 100 calls (51) 
+short 25 June 105 calls (36) 
+
+--- PAGE BREAK ---
+
+..,.......-
+Volatility Sprtads 147 
+At expiration a butterfly wlll always have a value somewhere between zero and the 
+amount between exercise prtces. It will be worth zero If the underlying contract ls 
+below the lowest exercise price or above the highest exercise price, and It wm be worth 
+Its maximum If the underlying contract ls right at the Inside exercise price. 
+Since a butterfly has a value between zero and the amount between exercise prices 
+(S points In our example), a trader should be willing to pay some amount between zero 
+and S for the position. The exact amount depends on the likelihood of the underlying 
+contract finishing right at or close to the Inside price at explratlon. If there ls high 
+probablllty of this occurring, a trader might be willing to pay as much as 41/4 or 4112 for 
+the butterfly, since It might very will expand to Its full value of 5 points. If, however, 
+there ls a low probablllty of this occurring, and consequently a high probability that the 
+underlying contract wlll finish outside the extreme exercise prices, a trader may only be 
+willing to pay 112 or 3/4, since he may very will lose his entlre Investment 
+Now we can see why a long butterfly tends to act like a ratlo vertical spread. If a 
+trader feels that the underlying contract will remain within a narrow range untll 
+expiration, he can buy a butterfly where the Inside exercise price ls at-the-money. If he 
+ls right, and the market does stay close to the Inside exercise price, the butterfly will 
+expand to its maximum value (figure 8-9). A long butterfly tends to act like a ratio 
+vertical spread since tt Increases In value as the underlying market sits still. 
+In contrast, the trader who sells a butterfly wants the underlying market to move 
+as far away from the Inside exercise price as possible so that the posltlon will expire with 
+the underlying contract either below the lowest exercise price or above the highest 
+exercise price. In this case, the butterfly will expire worthless and he will be able to 
+keep the full amount he received when he sold the butterfly (Figure 8-10). A short 
+butterfly tends to act llke a backspread since It Increases ln value with movement In the 
+underlying market 
+Why are the strategies In Figure 8·9 referred to as "long" butterflies, and the 
+strategies in Figure 8-10 referred to as "short" butterflies? It Is common practice to refer 
+to a spread which requires an outlay of capital as a Ion& or purchased, spread. If a trader 
+Initiates a butterfly by purchasing the outside exercise prices and selllng the Inside 
+exercise price, he has a position which can never be worth less than zero at expiration. 
+The trader can therefore expect to lay out some amount of capital for the position when 
+he initiates it. When the trader does this, he has purchased, or ts "long," the butterfly. 
+(If a trader can initiate a long butterfly for a credit, he should do It as many times as the 
+law wlll allow; he can't lose.) When the trader sells the outside exercise prices and 
+purchases the inside exercise price, he can expect to receive some amount of capital. 
+He has sold, or ts "short," the butterfly. 
+Since all butterflies are worth their maximum amount when the underlying 
+contract ls right at the inside exercise price at expiration, both a call and put butterfly 
+with the same exercise prices and the same expiration date desire exactly the same 
+outcome, and therefore have identical characteristics. Both the March 95/100/1 OS call 
+butterfly and the March 95/ 100/1 OS put butterfly will be worth a maximum of 5 with 
+the underlying contract right at 100 at expiration, and a minimum value of zero with 
+the underlying contract below 95 or above 1 OS. If both butterflies are not trading at the 
+
+--- PAGE BREAK ---
+
+148 
+same price, there Is a sure profit opportunity available by purchasing the cheaper and 
+selllng the more expensive. 2 
+If a trader foresees a quiet market, why might he choose a long butterfly over some 
+other type or strategy, for example a shon straddle? An Important characterlstJc of a 
+butterlly Is Its limited risk. If a trader ln!Uates a long butterfly In the belief that the marut 
+Is unlikely to move very far from the current price, the most he can lose lf he ts wroni 
+Is the amount he laid out to purchase the butterfly. On the other hand, If a trader $ells 
+a straddle and the market makes a large move, hls potential risk Is unlimited. Regardless 
+of theoretical considerations, some traders are not comfortable With the possibility of 
+unllmlted risk. If given the choice between purchasing butterflies and selllng straddles, 
+they will prefer the former strategy to the latter. 
+Of course the straddle, while riskier, also has greater profit potentlal. If a trader 
+Intends to purchase butterflies but wants a potential profit commensurate with that of 
+a short straddle, he will have to trade butterflies In much greater size. A trader who 1s 
+considering the sale of 25 straddles might decide Instead to buy 100 butterflies ( 100 x 
+200 x t 00). While trading 100 spreads may appear riskier than trading 25 spreads, l 00 
+butterllles may In fact be much less risky than 25 straddles because of the rtsk 
+characteristics associated with a butterlly. A trader should never confuse size and rtsk. 
+Risk often depends on the characteristics of the strategy, not on the size In which the 
+strategy Is executed. 
+TIME SPREAD 
+( also referred to as a calendar spread or horizontal spread) 
+If all options In a spread expire at the same time, the value of the spread Is simply a 
+function of the underlying price at expiration. If, however, the spread consists of options 
+which expire at different times, the value of the spread cannot be determined until both 
+options expire. The spread's value depends not only on where the underlying market ls 
+when the short-term option expires, but also on what will happen between that tlme 
+and the tlme when the long-term option expires. Time spreads, sometimes ref erred to 
+as calendar spreads or horizontal spreads, 3 consist of opposing positions which expire 
+In dlff erent months. 
+The most common type of time spread consists of opposing positions in two options 
+of the same type (either both calls or both puts) where both options have the same 
+exercise price. When the long-term option Is purchased and the short-term option ls 
+sold, a trader Is long the time spread; when the short-term option is purchased and the 
+long-term option Is sold, the trader Is short the time spread. Since a long-term option 
+will have more time value, and therefore a higher price than a short-term option, this is 
+consistent with the practice of referring to any spread which ls executed at a debit 
+(credit) as a long (short) spread position. 
+2. This Is not nece$MJJy the case ll the spreads consist of Amedcan opUons, where there Js a ~ibillty 
+of early exercise. A sure profit would eXlst only ll one were certain of carrying the posJtlon to expiration. 
+3. Expiration months were orlg1nally listed horizontally on exchange option displays Hence the term 
+horizontal spread. • 
+
+--- PAGE BREAK ---
+
+Volltlltty Spreads /49 
+Although time spreads are most commonly executed one-to-one (one contract 
+purchased for each contract sold), a trader may ratio a time spread to reflect a bullish, 
+bearish, or neutral market sentiment. For the present we will assume that all time 
+spreads will be ratloed delta neutral. Typical long and short time spreads are shown In 
+Agures 8· 11 and 8-12. 
+A time spread has different characteristics from the other spreads we have dis­
+cussed, because Its value depends not only on movement in the underlying market, but 
+also on other traders' expectations about future market movement as reflected In the 
+Implied volatility. If we assume that the options making up a time spread are approxi­
+mately at•the-money, time spreads have two important characteristics. 
+A long time spread always wants the underlying market to sft still. An Important 
+characteristic of an at-the-money option's theta (time decay) Is its tendency to become 
+Increasingly large as expiration approaches. As time passes, a short·tenn at-the-money 
+option, having less time to expiration, will lose its value at a greater rate than a long-tenn 
+at•the-money option. (Note the value of at-the-money options in Figures 6-13 and 6-14, 
+and the theta values In Figure 6-15.) This principle has an important effect on the value 
+of a time spread. 
+For example, suppose two at-the-money calls, one with three months to expiration 
+and one with six months to expiration, have values of 6 and 71121 respectively. The value 
+of the spread Is therefore 1 112. If one month passes and the underlying market ls 
+unchanged, both options will lose value. But the short-term option, with its greater 
+theta, will lose a greater amount. If the long-term option loses 1/4, the short-tenn option 
+Figure 8· 11: Long Time Spread (Value at Near Term Expiration) 
+(I) 
+(I) 
+.9 long 20 June 100 calls (51) 
+short 20 March 100 calls (51) 
+buy a long term option 
+at one exercise price 
+sell a short term option 
+of the same type long 10 June 95 puts (-31) 
+short 10 March 95 puts (·21) 
+at the same exercise price 
+
+--- PAGE BREAK ---
+
+150 Chapttr4 
+~F-,-lg-ur-e-=a---:1~2-:: .· S::-:-h-o-=-rt-=T::-lm-e--:s=--p-re-a-:d "'ii('l:.:a-.:-Iu-=-=-e--=a-;-t N;..-e=-=a--r ·re-rm--=E,...xp__,l,...,_ra-tl-o--:n ,---
+-~ ... a. 
+Ill Ill 0 ..J •1ong 10 March 105 calls (24) 
+short 10 June 110 calls (23) buy a short term option 
+al one exercise price 
+sell a long term option 
+of the same tyPe 
+al the same exercise price 
+'lechnlcally a diagonal spread, bul wilh many of lhe 
+same characterlstlcs as a time spread long 25 March 100 puts (-48) 
+short 25 June 100 puts (-47) 
+may lose a full point. Now the options are worth 5 and 7¼, and the spread is worth 
+2¼. If another month passes and the market ls still unchanged, both options will 
+continue to decay, But, again, the short-term option, with less time remaining to 
+expiration, will decay at a greater rate. If the long-term option loses ½, the short term 
+option may lose 2 points. Now the options are worth 3 and 6¾, and the spread has 
+increased in value to 3¾. Finally, if at expiration the market is still unchanged, the 
+short-term option, since it is still at-the-money, will lose all of its remaining value of 3 
+points. The long-term option will continue to decay but will do so at a slower rate. If 
+the long-term option loses ¾, it will be worth 6 points, and the spread will be worth 6 
+points (Figure 8· 13}. 
+What will happen if the underlying market makes a larger move? Assume as before 
+that both options are at-the-money and have values of 7½ and 6. As the underlying 
+market rises and options move more deeply into-the-money, they begin to lose their time 
+value. If the move is large enough, it won't matter that the long-term option has three 
+more months remaining to expiration. Both options will eventually lose all their time 
+value (see Figures 6-15 and 6· 16). If the time spread consists of calls, both of which have 
+exercise prices of 100, and the underlying market moves from 100 to I 50, both options 
+might trade at parity (Intrinsic value}, or 50 points. The spread will then go to zero. Even 
+If the long-term option retains as much as ¼ point, the spread will still have collapsed to ¼. 
+What about a large downward move in the underlying market? The situation is 
+almost identical to an upward move. As an option moves further out-of-the-money its 1 
+
+--- PAGE BREAK ---
+
+Vollttill(y preRds 111 
+e-13: The Effect of Time Passage on Tim• Spr 
+Time to Expfratlon 
+L ng-term option 6 months 5 months 4 months 3 months 
+Short-term option 3 months 2 months 1 month none 
+Option Value 
+Long--term option 7½ 71/4 63/,t 6 
+Short-term option 6 5 3 0 
+Spread Value 1½ 21/4 3a;,. 6 
+time value also begins to shrink. Here, however, neither option wlll have any lntrlnslc 
+value, so that if the market moves down far enough both options will eventually be 
+worthless. If that happens, the time spread will be worthless. If, as above, the long-term 
+option retains even 1/4 point in value, the spread will still collapse to l/4 point. 
+Since a short-term at-the-money option always decays more quickly than a long­
+term at-the-money option, regardless of whether the options are calls or puts, both a 
+long call time spread and a long put time spread want the underlying market to sit still. 
+Ideally, both spreads would like the short-term option to expire right at-the-money so 
+that the long-term option will retain as much time value as possible while the short-term 
+option expires worthless. 
+If a long time spread wants the market to sit still, logically a short time spread wants 
+the market to move. It may therefore seem that, as with backspreads and ratio vertical 
+spreads, the major consideration in deciding whether to Initiate a long or short time 
+spread is the likelihood of movement In the underlying market. Certainly time spreads 
+are sensitive to movement in the price of the underlying, but time spreads are also 
+sensitive to changes in implied volatility. 
+A long time spread always benefits from an increase in implied volatility. Look 
+again at Figure 6-18, the relationship between an option's vega (sensitivity to a change 
+in volatility) and the time remaining to expiration. As time to expiration Increases, the 
+vega of an option increases. This means that a long-term option ls always more sensitive 
+in total points to a change In volatility than a short-term option with the same exercise 
+price. 
+For example, assume again that a 100 call time spread ls worth l 1/2 (long-and 
+short-term options with values of 71/2 and 6, respectively) . Assume also that the value 
+of the spread ls based on a volatility of 20%. What will happen to the value of the spread 
+if we raise volatility to 25%? Both options will Increase In value since an increase in 
+volatility increases the value of all options. But the long-term option, with more time 
+remaining to expiration and therefore a higher vega, will gain more value as a result of 
+the increase In volatility. If the short-tenn option gains 112, the long-term option may 
+gain a full point. Now the options will be worth 8112 and 6½, and the spread will have 
+widened from 1112 to 2 (Rgure 8-14). 
+
+--- PAGE BREAK ---
+
+152 Chapttra 
+Flgurt 8-14: Tho Effect of Volatlllty on Time Spreads 
+Vol11tlllty 15% 20% 25% 
+Option Value 
+Long t8rm option 6% 71/2 8½ 
+Short t8rm option 5% 6 6½ 
+Spread Value 1½ 2 
+Conversely, if we lower our volatility estimate to 15%, both options wlll lose value. 
+But the long-term option, with more time remaining to expiration, will be more sensitive 
+to the change In volatility and will lose a greater amount. The new option values might 
+be 61/2 and 51/2, causing the spread to narrow to 1 point. 
+The effects of volatility on a time spread become especially evident when there is 
+a change in implied volatility In the option market. When lmplled volatility rises, time 
+spreads tend to widen; when Implied volatlllty falls, time spreads tend to narrow. This 
+effect can often be great enough to offset either a favorable or unfavorable move in the 
+underlying market. A trader who Is long a time spread expects to lose money if the 
+underlying market makes a swift move in either direction. He knows that time spreads 
+begin to collapse as the options move into-or out-of-the-money. But if this movement 
+is accompanied by a sufficient increase in Implied volatility, the increase In the spread's 
+price due to the Increase In Implied volatility may actually be greater than the loss due 
+to market movement In that case the trader may find that the spread has actually 
+widened. Conversely, If the market sits still, the trader expects the spread to widen 
+because of the short-term option's greater time decay. But If, at the same time, there is 
+a collapse In implied volatility, the decline in the spread's price due to the decline in 
+implied volatility may more than offset any gain from the passage of time. If this happens, 
+the trader may find that the spread has narrowed. 
+These two opposing forces, the decay in an option's value due to the passage of 
+time and the change in an option's value due to changes In volatility, give time spreads 
+their unique characteristics. When a trader buys or sells a time spread, he Is not only 
+attempting to forecast movement In the underlying market. He is also trying to forecast 
+changes in implied volatility. The trader would like to forecast both inputs accurately, 
+but often an error In one Input can be offset by an accurate forecast for the other input. 
+Ideally, the trader who Is long a time spread wants two apparently contradictory 
+conditions In the marketplace. First, he wants the underlylng market to sit still so that 
+time decay will have a beneficial effect on the spread. Second, he wants everyone to 
+think the market Is going to move so that Implied volatility will rise. This may seem an 
+impossible scenario, the market remaining unchanged but everyone thinking It will 
+move. In fact, this happens quite often because events which don't have an Immediate 
+effect on the underlying market could be perceived to have a future effect on the market. 
+Suppose an announcement Is made that the finance ministers of the major Indus­
+trtallzed countries plan to meet to discuss exchange rates. If no one knows what the 
+
+--- PAGE BREAK ---
+
+VoLtttllty Spreads 153 
+outcome or the meeting wlll be, there Is unlikely to be any slgnlflcant move In the 
+currency markets when the lnltlal announcement ls made. On the other hand, all 
+traders wlll assume that major changes In exchange rates could result from the meeting. 
+This possibility wlll result In an Increase In Implied volatlllty In the currency optlon 
+market. The lack of movement In the underlying market, together with the Increase In 
+Implied volatility, wlll cause time spreads to widen. 
+Suppose that, as a result of the meeting, the finance ministers decide to maintain 
+the status quo. Now expectations or a major change In exchange rates fade, Implied 
+volatility falls, and, as a result, time spreads narrow. 
+Scenarios with similar consequences also occur In the Interest rate options market 
+when a policy statement ls expected from the Federal Reserve In the United States, or 
+when a company's earnings are due to be reponed In the stock option market These 
+events are unlikely to have an effect on the underlying market before the fact, but they 
+could have significant repercussions after the fact. 
+The effect of Implied volatility ls what dlstlngulshes time spreads from the other 
+types of spreads we have discussed. Backspreads (Including long straddles, long stran­
+gles, and short butterflies) and ratio vertical spreads (Including short straddles, short 
+strangles, and long butterflies) want real volatlllty (price movement in the underlying 
+market) and Implied volatility (a reflection of expectations about future price movement 
+in the underlying market) to either both rise or both fall. A swift move in the underlying 
+market or an Increase In lmplled volatility wlll help a backspread. A quiet market or a 
+decrease in Implied volatlllty will help a ratio vertical spread. With time spreads, 
+however, real and Implied volatility have opposite effects. A big move In the underlying 
+market or a decrease In Implied volatility will help a short time spread, while a qulet 
+market or an increase in implied volatility will help a long time spread. This opposite 
+effect Is what gives time spreads their unique characteristics. 
+While the foregoing characteristics of time spreads apply to all option markets, 
+there may be other considerations, depending on the specific underlying market. We 
+previously assumed that the price of the underlying contract for both the short· and long­
+term option was the same. In the stock option market this will always be true because 
+the underlying for every expiration ls the same stock. The underlying contract for all 
+IBM options, regardless of the expiration month, ls always IBM stock. And IBM stock 
+can only have a single price at any one time. In contrast, the underlying for a futures 
+option ls a specific futures contract. Consider this situation for Eurodollar futures and 
+options traded at the CME: 
+March Eurodollar Futures= 93.90 
+June Eurodollar Futures = 93.75 
+Suppose a trader lnltlates a long time spread: 
+long IO June 94.00 calls 
+short l O March 94.00 calls 
+The underlying for March Eurodollar options Is a March Eurodollar futures con­
+tract; the underlying for June Eurodollar options Is a June Eurodollar futures contract. 
+
+--- PAGE BREAK ---
+
+154 c,uplP 
+Whlle the March and June Eurodollar futures contracts are related, they are ~_.. 
+ldentlcal. It Is not impossible for one futures contract to go up while the other 
+down. As a result, In addltlon to volatlllty conslderatlons , a trader whO buys 
+June/March Eurodollar optlon call tlme spread also has to worry about the rtsk of 
+June futures contract falling while the March futures contract Js nsJng. Is there any 
+to offset this risk? 
+If, ln our example, the spread between the March and June futures conrncu, 
+which ls currently .15, be~ns to widen, the option spread wlll narrow regardles.s 
+volatility considerations. If, however, when the trader lnltlates the optlon spread, ht 
+also executes a futures spread by purchasing March futures and selllngJune futures, 
+will have a posltlon which Will offset any Joss to the optlon spread resulting from a 
+widening in the futures spread. 
+How many futures spreads should the trader execute? He ought to rrade the 
+number of futures spreads required to be delta neutral. If the delta of both options Is 40 
+and the trader executes the option spread ten times, he wlll be long 400 deltas ln Ju 
+and shon 400 deltas In March. Therefore, he should buy 4 March futures contracts and 
+sell 4 June futures contracts. The entire spread will look like this (deltas are 1D 
+parentheses): 
+long l O June 94.00 calls (40) short 4 June futures (100) 
+short 10 March 94.00 calls (40) long 4 March futures (100) 
+This type of balancing Is not necessacy, Indeed not possible, In stock options 
+because the underlying for all months Is Identical. There Is no such thing as March IBM 
+stock or June IBM stock. 
+THE EFFECT OF CHANGING INTEREST 
+RATES AND DIVIDENDS 
+Thus far we have considered only the effects of changes in the price of the underlying 
+market and changes In volatility on the value of volatility spreads. What about changes 
+In Interest rates and, In the case of stocks, dlvtdends? 
+Because there Is no carrying cost associated with the purchase or sale of a futures 
+contract, Interest rates have only a minor Impact on futures options, and, consequently, 
+a negligible effect on the value of futures opUon volatillty spreads. 4 If, however, we are 
+trading stock options and change the Interest rate, we change the forward price of stock 
+(the current stock price plus the carrying cost on the stock to expiration). When all 
+options expire at the same time, as they do In backspreads and ratlo vertical s reads 
+the forward stock price for all options remains the same, so that the effects of the ~han ' 
+are practlcally negligible. If, on the other hand, we are conslderln sto ge 
+different expiration dates, we must consider two different forward p~c ~~tions with 
+forward prices may not be equally sensitive to a change In Interest ra:s, Fo these two 
+consider the following situation: es. r example, 
+4. Interest rates can of count dect the relattve value of different futures months. As 
+thJs rlsk by trading a funires spread along wJth the futures opUon time spread. noted, we can offset 
+
+--- PAGE BREAK ---
+
+\'4-~lltl/tcy Sprtlds /SJ 
+Stock price = l 00 Interest rate = 12% Dividend = o 
+St1ppose a trader lnltJates a long tJme spread: 
+long l O June l 00 calls 
+short IO March l 00 calls 
+tr there are three months remaining to March explratlon and six months remaining to 
+June explratlon, the rorward prices for March and June stock are 103 and t 06 
+rtspecuvely . Ir Interest rates drop to 8 percent, the forward price for March wlll be I 02 
+and the forward price ror June wlll be I 04. With more tlme remaining, the June forward 
+pr\ce ts more sensltlve to a change In Interest rates. Assuming the deltas or both optlons 
+are approximately equal, the June optlon wlll be more affected In total points by the 
+decline In Interest rates than the March optlon, and the time spread wlll narrow. In the 
+same way, If Interest rates Increase, the time spread wlll widen because the June forward 
+prtce wtll rise more quickly than the March rorward prtce. Therefore, a long (shon) call 
+tlme spread In the stock optlon market must have a positive (negatlve) rho. 
+Changes In Interest rates have just the opposite effect on stock option puts. In our 
+example, If Interest rates fall from 12% to 8% the March forward price will fall from 103 
+to 102, while the June forward price will fall from 106 to 104. Again, If we assume that 
+the deltas of both options are approximately equal, and recalling that puts have negauve 
+deltas, the June put wlll show a greater Increase In value than the March put The put 
+time spread wlll therefore widen. In the same way, If Interest rates Increase, the put 
+time spread will narrow. Therefore, a long (short) put tlme spread In the stock opUon 
+market must have a negaUve (posltlve) rho. 
+The degree to which stock option time spreads are affected by changes In Interest 
+rates depends primarily on the amount of tlme between expiration dates. If there are slx 
+months between expiration dates (e.g., March/September) the effect will be much 
+greater than If there Is only one month between expiration dates (e.g., March/ Aprtl). 
+Changes In dividends can also affect the value of stock option Ume spreads. 
+Dlvtdends, however, have the opposite effect on stock options as changes ln interest 
+rates (see Chapter 3). An Increase (decrease) In dividends lowers (raises) the forward 
+price of stock. If all options In a volatility spread expire at the same time (backspreads, 
+ratlo vertical spreads), the forward stock price will be Identical for all options and the 
+effect on the spread wlll be negligible. But In a time spread, If a dividend payment Is 
+expected between expiration of the short·term and long-term option, the long-term 
+option will be affected by the lowered forward price of the stock. Hence, an Increase In 
+dividends, If at least one dividend payment Is expected between the expiration dates, 
+will cause call time spreads to narrow and put time spreads to widen. A decrease In 
+dividends will have the opposite effect, with call time spreads widening and put tlme 
+spreads narrowing. The effect of changing Interest rates and dividends on stock option 
+time spreads Is shown In Figure 8· 15. 
+Even If both options are deeply In-the-money, a call time spread In the stock option 
+market should always have some value greater than zero. If volatility Is very low, the 
+spread should still be worth a minimum of the cost of cany on the stock between 
+
+--- PAGE BREAK ---
+
+156 
+Figure 8-16 
+The Effects of Changing Interest Rates on Stock Option Time Spr 
+Stock Prtce = 100; VolaUllty = 20%; 
+Time to March explraUon = 6 weeks Dividend= O 
+Time to June expiration = 19 weeks 
+If lnterett rat11 are ... 0% 3% 6% 9"/4 12% 
+June 100 call 4.81 5.35 5.92 6.52 7.15 
+March 100 call 2.71 2.88 3.05 3.24 w -- 3.72 Call Spread Value 2.10 2.47 2.87 3.28 
+June 100 put 4.81 4.26 3.76 3.30 2.88 
+March 100 put 2.71 2.53 2.37 2.21 2.06 - - - ,82 Put Spread Value 2.10 1.73 1.39 1.09 
+The Effect of Changing Dividends on Stock Option Time spreads 
+Stock Price = 100; Volatility = 20%; Interest Rate = 6.00% 
+Time to March expiration = 6 weeks 
+Time to June expiration = 19 weeks 
+If the quarterfy dividend Is ... 0 1.00 2.00 3.00 4.00 
+June 100 call 5.92 4.81 3.82 2.97 2.26 
+March 1 00 call 3.05 2.53 2.07 1.66 1.31 -Call Spread Value 2.87 2.28 1.75 1.31 .95 
+June 100 put 3.76 4.62 5.62 6.75 8.01 
+March 100 put 2.37 2.84 3.37 3.96 4.62 - --
+Put Spread Value 1.39 1.78 2.25 2.79 3.39 
+expiration months. This is only true, however, if a trader can cany a short stock position 
+between expiration months. If a situation arises where no stock can be borrowed, the 
+trader who owns a time spread may be forced to exercise his long-term option, thereby 
+losing the time value associated with the option. 
+As an example, suppose In February a company's stock is trading at 70, when a 
+tender offer Is made to buy a portion of the outstanding stock at a price of 80. If a trader 
+is Jong a June/March 70 call time spread, he will be assigned on the March 70 call 
+because the holder of that call wants to tender his stock for sale at 80. The trader is now 
+short stock and long a June 70 call. The June call should still cany some time value 
+because of the Interest which can be earned on the short stock to June expiration. But 
+In order to carry a short stock position, the trader must dellver the stock to the exercJser 
+of the March 70 call. To deliver the stock, he must borrow lt from someone. Unfortu­
+nately, no one wlll lend stock to the trader because everyone wants to tender the stock 
+for sale at the tender price of 80. Unless the trader wants to go Into the market and buy 
+the stock at the tender prtce of 80, he will be forced to exercise his June 70 call. This Js 
+the only method by which the trader can obtain stock for dellvery to the exerciser of 
+
+--- PAGE BREAK ---
+
+\ \>t.t,1~ 5prt,ds 157 
+th~ March 70 call. Even though the June 70 call should In theory have some Ume value, 
+the trader will be forced to discard the time value In order to fuJflll hls delivery 
+obllgaUon. 
+ln the roregolng situation, sometimes referred to as a short squeeze, a trader Is 
+forced to exercise calls wlth some tlme value remalnlng because no stock can be 
+borrowed to carry a short stock posltJon. Anyone who owns the June/March 70 call 
+tlme spread wm be forced to exercise the June 70 call, and the price or the tlme spread 
+,vtu collapse to zero. Note that this situation ls not the same as a buy•out, where all the 
+stock ln a company ls purchased at one prtce. Although a tender offer was made at 80 
+lt was for only a portlon of the company's outstanding stock. When the tender 1; 
+completed, the remaining stock wlll contlnue to trade, most Ukely at Its pre-tender pnce 
+of 70. 
+DIAGONAL SPREADS 
+A diagonal spread Is slmllar to a time spread, except that the options have different 
+exercJse prices. WhJle many diagonal spreads are executed one·to-one (one long-term 
+option for each short·tenn option), diagonal spreads can also be ratloed, with unequal 
+numbers of long and short market contracts. With the large number of variations ln 
+diagonal spreads, lt Is almost Impossible to generalize about their charactertstlcs as we 
+can with backspreads, ratio vertical spreads, and long and short time spreads. Each 
+diagonal spread must be analyzed separately, often using a computer, to determine the 
+risks and rewards associated with the spread. 
+There ts, however, one type of diagonal spread about which we can generalize. If 
+a diagonal spread is done one-to-one, and both options are of the same type and have 
+approximately the same delta, the diagonal spread will act very much like a conven• 
+tlonal time spread. An example of a such diagonal spread Is shown tn Figure 8· 12. 
+OTHER VARIATIONS 
+The spreads we have thus far defined are the primary types of volatility spreads, and are 
+the ones most commonly executed In the marketplace. There are, however, some 
+variations of which the reader ought to be aware. 
+A Christmas tree (also referred to as a ladder) ls a term which can be applied to a 
+variety of spreads. The spread usually consists of three different exercise prtces where 
+all options are of the same type and expire at the same time. In a long (short) call 
+Christmas tree, one call ls purchased (sold) at the lowest exercise price, and one call is 
+sold (purchased) at each of the higher exercise prices. In a long (short) put Christmas 
+tree, one put ls purchased (sold) at the highest exercise price, and one put Is sold 
+{purchased) at each of the lower exercise prices. Christmas trees are usually delta 
+neutral, but even with this restriction, there are many ways to execute the spread. Some 
+examples of Christmas trees are shown In Figure 8· 16. 
+Long Christmas trees, when done delta neutral, can be thought of as particular 
+types of ratio vertical spreads. Such spreads therefore Increase In value lf the underlying 
+market either sits still or moves very slowly. Short Christmas trees can be thought of as 
+
+--- PAGE BREAK ---
+
+/SB 
+Figure 8-16 
+Long Chr1tbnH TrHI 
+long 10 March 95 calls (78) 
+short 10 March 100 calls (51) 
+short 10 March 105 calls (24) 
+long 25 June 110 puts (-75) 
+short 25 June 100 puts (-47) 
+short 25 June 95 puts (-31) Short Chrf1bn11 TrN• 
+short 5 June 90 calls (81) 
+long 5 June 100 calls (51) 
+long 5 June f 05 calls (36) 
+short 50 March 110 puts (-91) 
+long 50 March 105 puts (-75) 
+long 50 March 95 puts (-21) C!IJpitrl 
+partlcular types of backspreads, and therefore Increase In value with big moves ln the 
+underlying market. 
+It Is possible to construct a spread which has. the same characteristics as a butterfly 
+by purchasing a straddle (strangle) and selling a strangle (straddle) where the straddle ls 
+executed at an exercise price midway between the strangle's exercise prices. All optlons 
+must expire at the same time. Because the position wants the same outcome as a 
+butterfly, It Is known as an Iron butterfly. Like a true butterfly, at expiration an Iron 
+butterfly has a minimum value of zero and a maximum value of the amount between 
+exercise prtces. 
+Note that If the straddle Is purchased and the strangle Is sold, the position will result 
+In a debit (a long Iron butterfly). Such a position will show Its greatest profit at expiration 
+If the underlying market finishes beyond the outside (strangle's) exercise prices. A long 
+Iron butterlly ls therefore equivalent to a short butterfly. If the straddle Is sold and the 
+strangle ls purchased, the position wlll result In a debit (a short Iron butterfly). Such a 
+position wlll show Its greatest profit at expiration If the underlying market finishes right 
+at the Inside (straddle's) exercise prtce. A short Iron butterfly Is therefore equivalent to 
+a long butterfly. Examples of long and short Iron butterflies are shown In Figure 8-17. 
+Another variation on a butterfly, known as a condor, can be constructed by spllttlng 
+the Inside exercise prices. Now the position consists of four options at consecutive 
+exercise prices where the two outside options are purchased and the two Inside options 
+sold (a long condor), or the two Inside options are purchased and the two outside 
+options sold (a short condor). As with a butterfly, all options must be of the same cype 
+(all calls or all puts) and expire at the same time. 
+At expiration a condor wlll have its maximum value, equivalent to the amount 
+between consecutive exercise prices, when the underlying contract Is at or anywhere 
+between the two Inside exercise prices. It wlll be worthless whenever the underlying 
+contract Is outside the extreme exercise prices at expiration. Note that this Is very similar 
+to a butterfly, except that a condor has a maximum value over a wider range of 
+underlying prices. A butterfly will achieve Its maximum value at expiration at only one 
+underlying price, when the underlying contract Is right at the Inside exercise price. For 
+this reason a condor will usually have a higher value than a butterfly with approximately 
+the same exercise prices. Examples of long and short condors are shown In Figure 8-18. 
+
+--- PAGE BREAK ---
+
+~ 
+Volltlllty Sprtads 
+Figure 8-17 
+Long Iron Butter1llet 
+long 10 March 100 calls (51) 
+long 10 March 100 puts (-,48) 
+short 10 March 105 calls (24) 
+short 1 o March 95 puts (-21) 
+long 50 June 1 oo calls (51) 
+long 50 June 100 puts (-47) 
+short 50 June 11 o calls (23) 
+short 50 June 90 puts (-17) Short Iron Buttertllee 
+short 15 June 100 cans (51) 
+short 15 June 100 puts (-47) 
+long 15 June 105 cans (36) 
+long 15 June 95 puts (-31) 
+short 25 Maret, 105 cans (24) 
+short 25 Maret, 105 puts (-75) 
+long 25 Maret, 11 o calls (8) 
+long 25 Maret, 100 puts (-48) 
+SPREAD SENSITMTIES /59 
+Just as every Individual option has a unique delta, gamma, theta, vega, and rho 
+associated with It, every spread position has unique sensitivities. These numbers can 
+help a trader determine beforehand how chan~ng market conditions are likely to affect 
+the spread. Before proceeding further the reader may want to review Figure 6-2 7, which 
+summarizes the significance of the slwis associated with the various option sensitivities. 
+A trader who Initiates a volatility spread Is concerned primarily with the mawiltude 
+of movement In the underlying contract and only secondarily with the direction of 
+movement. Therefore all volatility spreads will be approximately delta neutral (the 
+deltas will add up to approximately zero). It Is true that some volatility spreads may 
+prefer movement In one direction rather than the other, but the primary consideration 
+Is whether movement of any type will occur. If a trader has a large positive or negative 
+delta, such that directional considerations become more Important than volatility 
+considerations, then the position can no longer be considered a volatility spread. 
+All spreads which are helped by movement In the underlying market have a positive 
+gamma. These Include backspreads, long straddles, long stran~es, short butterflies, and 
+shon time spreads. All spreads which are hurt by movement In the underlying market 
+wlll have a negative gamma. These Include ratio vertical spreads, short straddles, short 
+Figure 8-18 
+Long Condot'I 
+long 10 March 90 calls (93) 
+short 10 March 95 calls (78) 
+short 10 March 100 calls (51) 
+long 10 March 105 calls (24) 
+long 25 June 95 puts (-31) 
+short 25 June 100 puts (-47) 
+short 25 June 105 puts (~2) 
+long 25 June 110 puts (-75) ShortCondot'I 
+short 50 March 95 puts (-21) 
+long 50 March 100 puts (-48) 
+long 50 March 105 puts (-75) 
+short 50 March 110 puts (-91) 
+short 5 June 90 calls (81) 
+long 5 June 95 calls (67) 
+long 5 June 100 calls (51) 
+short 5 June 105 calls (36) 
+
+--- PAGE BREAK ---
+
+ft,() 
+strtmgle~. long butterntes, and long time spreads. A trader who has a posltJve gamm 
+sometimes said to be long premtumand Is hoping for a volatJle market With large mo-v 
+In the underlying contract. A trader who has a negative gamma Is sometimes said en ,.,-, 
+short premium and Is hoping for a quiet market with only small moves In the underly1n 
+market. 
+Since the effect of market movement and the effect of t1me decay always work I 
+opposite directions, any spread With a positive gamma will necessarily have a negatlv~ 
+theta. Any spread with a negative gamma wlll necessarily have a posltJve theta. If mar 
+movement helps, the passage of time hurts. If market movement hurts, the passage of 
+time helps. An option trader can't have It both ways. 
+Spreads which are helped by a rise In volatlllty have a positive vega. These includ 
+backspreads, long straddles, long strangles, short butterflies, and long ume spreads. 
+Spreads which are helped by a decline In volatility have a negative vega. These Include 
+ratio vertical spreads, short straddles, short strangles, long butterflies, and short time 
+spreads. In theory, the vega refers to the sensitivity of a theoretical value to a change in 
+the volatllity of the underlying contract over the llfe of the option. In practice, however, 
+traders tend to associate the vega with the sensitivity of an option's price to a change in 
+implied volatility. Spreads with a positive vega will be helped (hun) by any increase 
+(decrease) in Implied volatility. Spreads with a negative vega will be helped (hurt) by 
+any decrease (increase} in implied volatility. 
+The delta, gamma, theta, and vega associated with the primary types of volatility 
+spreads are summarized in Figure 8-19. Since the delta of a volatility spread is assumed 
+to be approximately zero, and since the theta ls always of opposite sign to the gamma 
+but of similar magnitude, we can place every volatility spread into one of four categories 
+based on the sign of the gamma and vega associated with the spread: 
+Category Gamma Vega 
+Backspread Positive Positive 
+Ratio Vertical Spread Negative Negative 
+Long Time Spread Negative Positive 
+Short Time Spread Positive Negative 
+If a trader ls approximately delta neutral-no matter how complex the position, 
+even if it includes options of different types, at many different exercise prices, and with 
+several different expiration dates-he can always place the position in one of th.ese four 
+general categories based on the gamma and vega of the position. The extent to which 
+he is pursuing one of these strategies will depend on the magnitude of the gamma and 
+vega. A trader with a gamma of-100 and vega of +200 would describe his position as 
+a long time spread, but not nearly to the degree of a trader who has a gamma of -1500 
+and a vega of +3000. 
+Figure 8-20 is an evaluation table with the theoretical value, delta, gamma, theta, 
+and vega of several different options. Following this table are examples of volatility 
+spreads of the types discussed In this chapter, along with their total delta, gamma, theta, 
+and vega. (Although the examples In Figure 8-20 are based on futures options, the , 
+
+--- PAGE BREAK ---
+
+I!' ·, 
+Volllill(Y Sprtlds Jt,/ 
+Figure 8-19: Characteristics of Volatlllty Spreads 
+Spread Type Dtlta Gamma Thtta Vega 
+Position PotlUon Po.don Potltlon 
+Back.spread 0 + -+ 
+long Straddle 0 + -+ 
+Long Strangle 0 + -♦ 
+Short Butterfly 0 ♦ -♦ 
+Ratio VerUcal Spread 0 -♦ 
+Short Straddle 0 - ♦ 
+Short Strangle 0 - ♦ 
+Long Butterfly 0 - + 
+long Time Spread 0 - + + 
+Short Tlme Spread 0 ♦ 
+spread characteristics are equally valid for stock options.) The reader wlll see that each 
+spread does Indeed have the positive or negative sensitivities summarized In figure 
+8-19. Note also that a volatlllty spread need not be exactly delta neutral. (Indeed, as we 
+saw In Chapter 6, no trader can say with any certainty whether he Is delta neutral.) A 
+practical guide Is for the delta to be dose enough to zero so that the volatility 
+considerations are more Important than the directional considerations. 
+Note that no prtce Is given for any of the option contracts In figure 8·20, and 
+therefore no theoretical edge can be calculated for any of the spreads. The prtces at 
+which a spread Is executed may be good or bad, resulting In a positive or negative 
+theoretical edge. But once the spread has been established, the market conditions which 
+wlll help or hurt the spread are detennlned by Its type, not by the Initial prtces. Uke all 
+traders, option traders must not let their previous trading activity affect their current 
+judgement A trader's prtmary concern ought never be what happened yesterday, but 
+what he can do today to make the most of the current situation, whether that means 
+maximizing his potential profit or minimizing his potential loss. 
+CHOOSING AN APPROPRIATE STRATEGY 
+With so many spreads available, how do we know which type of spread Is best? Flrst 
+and foremost we wlll want to choose spreads which have a positive theoretical edge to 
+ensure that If we are right about market conditions we can be confident of showing a 
+profit Ideally, we would like to construct a spread by purchasing options which are 
+underprlced and selling options which are overpriced. If we can do this the resulting 
+spread, whatever Its type, will always have a positive theoretical edge. 
+More often, however, our opinion about volatility will result In all options appear­
+Ing either underprtced or overpriced. When thls happens, It will be Impossible to both 
+
+--- PAGE BREAK ---
+
+Figure 8-20: Examples of Volatility Spreads 
+5 February 1993 
+March Futures= 100.00• Time to Expiration = 6 weeks Volatility = 20.0% Interest Rate = 6.00% 
+CALLS PUTS 
+Exercise TheoreUcal TheoreUcal 
+Prtce Value Delta Gamma Theta Vega Value Delta Gamma Theta Vega 
+Mar90 10.10 93 1.7 -.0069 .040 .17 -6 1.7 -.0090 .040 
+Mar95 5.82 78 4.3 -.0221 .100 .85 -21 4.3 -.0232 .100 
+Mar 100 2.69 51 5.8 -.0313 .134 2.68 -48 5.8 -.0313 .134 
+Mar 105 .95 24 4.6 -.0250 .107 5.92 -75 4.6 -.0240 .107 
+Mar 110 .26 8 2.3 -.0124 .055 10.16 -91 2.3 -.0103 .055 
+June Futures= 100.00• Time to expiration = 19 weeks VolaUlity = 20.0% Interest Rate = 6.00% 
+CALLS PUTS 
+Exercl- Theoretical Theoretlcal 
+Price Value Delta Gamma Theta Vega Value Delta Gamma Theta Vega 
+Jun90 10.97 81 2.1 - .0090 .154 I 1.18 -17 2.1 -.0111 .154 
+Jun95 7.45 67 2.9 -.0140 .209 2.55 -31 2.9 -.0151 .209 
+Jun 100 4.71 51 3.2 - .0166 .234 4.71 -47 3.2 -.0166 .234 
+Jun 105 2.n 36 3.0 -.0160 .221 7.66 -62 3.0 -.0149 .221 
+Jun 110 1.52 23 2.5 -.0132 .182 11.30 -75 2.5 -.0111 .182 
+• For simplicity we assume that both futures cxmtracts are tracing at the same price. 
+f -
+
+--- PAGE BREAK ---
+
+~ 
+Voll/Utty Sprtads /63 
+Figure 8.20: examples of Volatility Spreads (contlnUtd) 
+CALL BACKSPREAD : LonQ more calls than short; all calls expiring al the same Ume. 
+Dtlta Gamma Thtll Vega 
+PotlUon PotlUon Potltlon Potlllon 
+Long 30 March 105 calls t30 x24 t30x4.6 +30x-.0250 t30 X .107 
+Short 10 March 95 calls -10 X 78 -10 X 4.3 -10x-.0221 -10x.100 
+~ t95.0 -.9710 t2.210 
+Long 25 Jun 11 o calls +25 X23 +25x2.5 t25x -.0132 +25x.182 
+Short 1 o Jun 100 calls -10 X 51 -10 X 3.2 -10 x-.0166 -10x.234 
+t65 +30.5 -.1840 +2.210 
+PUT BACKSPREAD : Long more puts than short; all puts explnng at the same Ume. 
+Dtlta Gamma Theta Vega 
+Poelllon Potlllon PotlUon Position 
+Long 80 March 90 puts -+60 )( -8 +60 x 1.7 +60 X -.0090 -+a0 X .040 
+Short 10 Maleh 100 puts -10 x -48 -10 x 5.8 -10 x -.0313 -10 x .134 
+0 +78.0 -.4070 +1.860 
+Long 45 June 95 puts +45 X -31 +45 X 2.9 +45 x -.0151 -+-45 X .209 
+Short 30 June 100 puts -30 )( -47 -30 x 3.2 -30 x -.0166 -30 )( .234 
++15 +34.5 -.1815 t2385 
+CALL RA TIO VERTICAL SPREAD: Short more calls than long; all calls expiring at the same Ume. 
+Dtlta Gamma Theta Vega 
+Position Position Potlllon Position 
+Long 20 March 95 calls t20x78 +20x4.3 +20x-.0221 t20x.100 
+Short 30 March 100 calls -30 x51 -30x5.8 -30 x-.0313 -3() X .134 
++30 -as.o t.4970 -2.020 
+Long 10 June 90 calls +10x81 +10x2.1 +10x-.0090 +tOx.154 
+Short 20 June 105 calls -20 x36 -20x3.0 -20x-.0160 -20 X .221 
++90 -39.0 t.2300 -2.880 
+PUT RA TIO VERTICAL SPREAD: Short more puts than long; al puts expimg at the same time. 
+Delta Gamma Theta Vega 
+POtlllon Potltlon Potldon Position 
+Long 20 March 95 puts t20x-21 +20x4.3 +20x-.0232 +20x.100 
+Short 60 Marcil 90 puts -60x-o -60 X 1.7 -60 x-.0090 -oOx.040 
+~ -16.0 +.0760 -.400 
+Long 15 June 105 puts +15x-o2 +15x3.0 +15 x-.0149 t15 X .221 
+Short 20 June 100 puts -20x-47 -20x3.2 -20 x-.0166 -20x.234 
++10 -19.0 +.1085 -1.365 
+
+--- PAGE BREAK ---
+
+164 
+lgure 8·20: Examples of Volatlllty Spreada (continued) 
+LONG STRADDLE : Long cans and puts with the same expiration date and exercise p 
+Delta Gamma Theta Vega 
+Pffltlon Pottltlon Poeltlon poefflon 
+Long 1 O March 100 calls +10 X +5f +10 X 5.8 +10 x-.0313 +10x.13 
+long 10 March 100 puts +fO x-48 +10 X 5.8 +10 x-.0313 +10 X. 134 
++30 +116.0 -.6260 +2.680 
+Long 1 o June 95 calls +10 X +67 +10 X 2.9 +10 x-.0140 +10 X .209 
+Long 25 June 95 puts +25 x--31 +25 X 2.9 +25 x-.0151 +25 X .209 
+-105 +101.5 -.5175 +7.315 
+SHORT STRADDLE: Short calls and puts with the same expiration date and exercise prfce. 
+Delta Gamma Theta Vega 
+Poeltlon Pottltlon Poeltlon Position 
+Short 30 March 105 calls --30 X +24 -30 x4.6 -30 x-.0250 -30 X .107 
+Short 10 March 105 puts -10x-75 -10 x4.6 -10 x-.0240 -10x.107 
++30 -184.0 +.9900 -4.280 
+Short 20 June 100 calls -20 X +51 -20 X 3.2 -20 X -.0166 -20 X .234 
+Short 20 June 100 puts -20 X -47 -20 X 3.2 -20 X -.0166 -20 X .234 
+-80 -128.0 +.6640 +9.36 
+LONG STRANGLE: Long calls and puts with the same expiration date but different exercise 
+prices. 
+Delta Gamma Theta Vega 
+Position Pottltlon Position Position 
+Long 20 March 105 calls +20 x+24 +20x4.6 +20 x-.0250 +20 X .107 
+Long 20 March 95 puts +20x-21 +20x4.3 +20 x-.0232 +20 X .100 
++60 +178.0 -.9640 +4.140 
+Long 30 June 11 O calls +30 x+23 +30x 2.5 +30 x-.0132 +30 X .182 
+Long 15 June 100 puts +15x-47 +15 X 3.2 +15 x-.0166 +15 X .234 
+-15 +123.0 -.6450 +8.970 
+SHORT STRANGLE : Short calls and puts with the same expiration date but cifferent exercise 
+prices. 
+Delta Gamma Theta Vega 
+Poeltlon Poeltlon Poeltlon ~n 
+Short 30 March 110 calls -30 x+8 -30x2.3 -30 x-.0124 -30x .055 
+Short 40 March 90 puts -40x~ -40 X 1.7 -40 x-.0090 -40x.040 
+0 -137.0 +.7320 -3.250 
+Short 1 o June 95 calls -10 X +67 -10 X 2.9 -10 x-.0140 -10 X .209 
+Short 10 June 105 puts -10 x~2 -10x 3.0 -10x-.0149 -10 X .221 
+-50 -59.0 +.2890 -4.300 
+
+--- PAGE BREAK ---
+
+Vot.tiltty Sprtads 165 
+Figure a-2o: Examples of Volatility Spreads (continued) 
+LONG BUTTERFLY: Short two opUons at the same exercise prlco, and long one option with 
+an lmmedately higher exercise price and one opllon with an lmmociately lower exercise prlco; 
+an options are ol the same typo and expire at the same time. 
+Otlta Gamma Theta Vega PollUon Po1IUon Polltlon Po1ltlon 
+long 1 o March 95 calls +10x78 +10x4.3 +10x-,0221 +10x,100 
+Short 20 March 100 calls -20 X 51 -20 x 5.8 -20 X -,0313 -20 X ,134 
+long 10 March 105 calls +10x24 +10 X 4,6 +10 x-.0250 +10x.107 0 -27,0 t,1550 -.610 
+long 30 June 90 puts +30 x-17 +30 x 2.1 +30 X -,0111 t30 X .154 
+Short 60 June 95 puts -60 X-31 -60 x2.9 -60 x-.0151 -60x.209 
+long 30 June 100 puts +30x-47 +30 x3.2 -30 x-,0166 ~34 -60 -15,0 +.0750 -.900 
+SHORT BUTTERFLY: Long two options at the same exercise price, and short one opUon with 
+an lmmedately hlg,er exercise price and one opUon with an lmmeciately lower exercise price; 
+an options are of the same type and expire at the same time. 
+Dtlta Gamma Theta Vega 
+PollUon Po11don PollUon Po11Uon 
+Short 20 March 100 puts -20 X-48 -20 x5.8 -20 x-.0313 -20 X ,134 
+long 40 March 105 puts t40x-75 t40x4.6 +40 x-.0240 t40X,107 
+Short 20 March 110 puts -20 x-91 -20x2.3 -20 x-.0103 -20 X.055 
+-220· +22.0 -.1280 +.500 
+Short 25 June 95 calls -25 x67 -25x2.9 -25 x-.0140 -25x .209 
+Long 50 June 100 calls +50 x51 +50 X 3.2 +50 x-.0166 +50 x .234 
+Short 25 June 105 calls -25x36 -25 x3.0 -25 x-,0160 -25 X .221 
+-25 +12.5 -,0800 t.950 
+• Note that because the ratio of a butterfly Is always 1 x 2 x 1, the butterfly can become 
+unbalanced If the exercise prices are far away from the current underlying price. 
+LONG TIME SPREAD: Long a long-term option and short a short-term option where all op-
+tlons have the same exercise price and are or the same type. 
+Otlta Gamma Theta Vega 
+PollUon Po11Uon PollUon Poeltlon 
+long 20 June 100 calls +20 X 51 +20x3.2 +20 x-.0166 +20 X ,234 
+Short 20 March 100 calls -20 x51 -20x5.8 -20 x-.0313 -20 X ,134 
+0 -62.0 +.2940 +2.000 
+Long 10 June 95 puts +10x-31 +10x2.9 +10 x-.0151 +10 X .209 
+-10x4.3 -10 x-.0232 -10x.100 
+Short 1 o March 95 puts -10 x-21 t.0810 + 1,090 
+-100 -14.0 
+
+--- PAGE BREAK ---
+
+166 C/IIPll11 
+Figure 8-20: Examples of Volatility Spreads -(continued) 
+SHORT TIME SPREAD: Short a long-term option and long a short-term option vmere al op­
+Uons have the same exercise prtce and are or the same type. 
+Long 25 March 100 puts 
+Short 25 June 100 puts Delta 
+POlltlon 
++25 X-18 
+-25 X-17 
+-25 Gamma 
+Potltlon 
++25x5.8 
+-25 x3.2 
++65.0 Theta Vega 
+POlltlon poeltlon 
++25 x-.0313 +25 ,c .134 
+-25 x-.0166 -25><.234 
+-.3675 -2.500 
+•Long 10 March 105 calls 
+Short 10 June 110 calls +10 X24 
+-10 X 23 +10 X 4.6 
+-10 x2.5 +10 x-,0250 +1ox.107 
+-10 x-.0132 -1ox.182 
++10 +21.0 -.1180 -.750 
+• Although this Is technically a diagonal spread, It will tend to act like a time spread because Ile 
+options have deltas v.tlich are approximately equal. 
+buy underprlced and sell overpriced options. Such a market can be easily Identified by 
+comparing our volatillty estimate to the lmplled volatility in the option marketplace. If 
+Implied volatility ls generally lower than our volatility estimate, all options wlll appear 
+underprlced. If implied volatility Is generally higher than our estimate, all options w1ll 
+appear overpriced. 
+If options generally appear underprfced (low fmplfed volattlfty), look for spreads 
+with a positive vega. This Includes strategies In the backspread or long time spread 
+category. If options generally appear overpriced (high Implied volatility), look for 
+spreads with a negative vega. This Includes strategies In the ratio vertical or short time 
+spread category. 
+It may seem at first glance that If one encounters a market where all options are 
+either underprlced or overpriced, the sensible strategies are either long straddles and 
+strangles, or short straddles and strangles. Such strategies will enable a trader to take a 
+position with a positive theoretical edge on both sides of the spread. Straddles and 
+strangles are certainly possible strategies when all options are too cheap or too expen­
+sive. We wlll see In Chapter 9 that straddles and strangles, while often having a large, 
+positive theoretical edge, can also be among the riskiest of all strategies. For this reason, 
+a trader will often want to consider other spreads In the backspread or ratio vertical 
+spread category, even if such spreads entail buying some overvalued options or selling 
+some underprlced options. 
+,.., The theoretical values and deltas in Figure 8-20 have been reproduced In Figures 
+8-21 and 8-22, but now prices have been included whlch reflect Implied volatilities 
+different from the volatility Input of 20%. The prices In Figure 8-21 reflect an Implied 
+volatlllty of 17%. In this case the reader will find that only those spreads wtth a positive 
+vega will have a positive theoretical value: 
+call and put backspreads 
+long straddles and strangles 
+
+--- PAGE BREAK ---
+
+Vo&itlltty SprtadS 167 
+Figure a-21 IMPLIED VOLATILITY • 17o/, 
+Maittt Fu\Jres .100.00 lime to Explrallon • 6 weeks Volatility • 20% lnter&st ■ 6.00% 
+CALLS PUTS 
+Exe,me Thtorldcal Thtorttlcal 
+Pt1ce Pl1ct Value Delta Price Value Delta 
+90 10.00 10.10 93 .07 .17 ~ 
+95 5.54 5.82 78 .57 .85 -21 
+100 2.28 2.69 51 2.28 2.68 --48 
+105 .65 .95 24 5.62 5.92 -75 
+110 .12 .26 8 10.05 10.16 -91 
+.MG FubJras. 100.00 Tine to ExplraUon 1113 weeks VolaUli~. 20% lnter&st • 6.00% CALLS PUTS 
+ExerclM Thlorllc:al 1htoNllail 
+Prtce Price Value Dtlta Prtce Value Delta 
+90 10.54 10.97 81 .75 1.18 -17 
+95 6.83 us 67 1 .94 2.55 -31 
+100 4.00 4.71 51 4.00 4.71 --47 
+105 2.11 2.77 36 7.01 7.66 -62 
+110 1.00 1.52 23 10.79 11.30 -75 
+Flgurea-22 
+IMPLIED VOLATILITY= 23% 
+Malth Fu1Ures = 100.00 lime to Expiration = 6 weeks Volatility = 20% lnler&St = 6.00% 
+CALLS PUTS 
+ExlfCIM Thtcnllcal Thtorttlcal 
+Prlce Price Value Delta Prk:e Value Dtlta 
+90 10.23 10.10 93 .30 .17 -6 
+95 6.12 5.82 78 1.16 .85 -21 
+100 3.09 2.69 51 3.09 2.68 -48 
+105 1.28 .95 24 6.25 5.92 -75 
+110 .44 .26 8 10.37 10.16 -91 
+June Futums = 100.00 Tme to Expiration= 13 weeks Volatility= 20% lnterast = 6.00% 
+CALLS PUTS 
+Exll'cllt Thtortllcll Theorlllcal 
+I Prtce Prtct Value Dtlta Price Value Delta 
+I 90 11.45 10.97 81 1.66 1.18 -17 
+95 8.08 7.45 67 3.19 2.55 -31 
+100 5.42 4.71 51 5.42 4 .71 -47 
+105 3.44 2.n 36 8.34 7.66 -62 
+110 2.08 1.52 23 11.87 11.30 -75 
+
+--- PAGE BREAK ---
+
+168 
+short butternles 
+long time spreads 1,Apttf 8 
+The prices In Figures 8-22 renect an Implied volatility of 23%. Now the reader wf 11 
+find that only those spreads with a negauve vega will have a posltlve theoretlcal value: 
+call and put rauo vertical spreads 
+short straddles and strangles 
+long butterflies 
+short time spreads 
+An Important assumption In most theoretical pricing models is that volatilitY i 
+constant over the life of an option. The volatility input into the model Is assumed to b 
+the one volatility which best descrtbes prlce fluctuations In the underlying Jnsrrument 
+over the life of the option. When all options expire at the same time, Jt ls this one 
+volatility which will, In theory, detennlne the deslrablllty of a spread. In real life, 
+however, a trader may believe that volatility Is likely to rise or fall over some period of 
+time. Very often Implied volatility will also rise or fall. Since time spreads are particularly 
+sensitive to changes ln implied volatility, whether volatility Is rising or falling can affect 
+the desirability of time spreads. Consequently, we can add this corollary to our spread 
+guidelines: Long time spreads are likely to be profitable when implied volatility ts low 
+but ts expected to rise; short time spreads are likely to be profitable when tmplled 
+volatility ts high but ts expected to fall 
+These are only general guidelines, and an experienced trader may decide to violate 
+them if he has reason to believe that the implied volatility will not correlate with the 
+volatility of the underlying contract. A long time spread might still be desirable in a high 
+implied volatility market, but the trader must make a prediction of how implied volatility 
+might change under certain conditions. If the market were to stagnate, with no 
+movement in the underlying contract, but the trader felt that implied volatility would 
+remain high, a long time spread would be a sensible strategy. The shon-term option 
+would decay, while the long-tenn option would retain its value. In the same way, a short 
+time spread might still be desirable in a low implied volatility market if the trader felt 
+that the underlying instrument were likely to make a large move with no commensurate 
+increase in implied volatility. 
+ADJUSTMENTS 
+A volatility spread may initially be delta neutral, but the delta of the position Is likely to 
+change as the price of the underlying contract rises or falls. Moreover, changes in 
+volatility and time to expiration can also affect the delta of spread. A spread which is 
+delta neutral today may not be delta neutral tomorrow, even If all other conditions 
+remain the same. The optimum use of a theoretical pricing model requires a trader to 
+continuously maintain a delta neutral position throughout the life of the spread. 
+Continuous adjustments are Impossible in real life, so a trader ought to give some 
+thought to when he will adjust a position. Essentially, we can consider three possibill· 
+ties: 
+
+--- PAGE BREAK ---
+
+~ 
+Volatl/Uy Sprtads • 169 
+1. Adjust at regular fnterva/9-In theocy, the adjustment process Is assumed to 
+be continuous because volatility Is assumed to be a continuous measure of the 
+speed of the market. In practice, however, volatility ls measured over regular tlme 
+Intervals, so a reasonable approach Is to adjust a position at similar regular Intervals. 
+If a trader's volatility estimate Is based on dally price changes, the trader might 
+adjust dally. If the estimate Is based on weekly prtce changes, he might adjust 
+weekly. This Is a trader's best attempt to emulate the assumptions built Into the 
+theoretical pricing model. 
+2. Adjust when the position becomes a predetermined number of deltas Jong 
+or short-Vecy few traders Insist on being delta neutral all the time. Most traders 
+realize that this Is not a reallstic approach, both because a continuous adjustment 
+process Is physically Impossible, and because no one can be certain that all the 
+assumptions and Inputs In a theoretical pricing model, from whlch the delta ls 
+calculated, are correct Even If one could be certain that all delta calculations were 
+accurate, a trader might still be willing to take on some directional rtsk. But a trader 
+ought to know just how much directional risk he Is willing to accept. u he wants 
+to pursue delta neutral strate~es, but believes that he can comfortably live with a 
+position which Is up to 500 deltas long or short, then he can adjust the position any 
+time his delta position reaches this limit. Unlike the trader who adjusts at regular 
+Intervals, a trader who adjusts based on a fixed number of deltas cannot be sure 
+how often he will need to adjust his position. In some cases he may have to adjust 
+vecy frequently; In other cases he may go for long periods of time without adjusting. 
+The number of deltas long or short a trader chooses for hls adjustment points 
+depends on the size of his positions and his capltallzation. A small, Independent 
+trader may find that he ls uncomfortable with a position whlch Is even 200 deltas 
+long or short, whlle a large trading finn may consider a position which ls several 
+thousand deltas long or short as being approximately delta neutral. 
+3. Adjust by feel-This suggestion Is not made facetiously. Some traders have 
+good market feel. They can sense when the market Is about to move In one 
+direction or another. If a trader has this ability, there ls no reason why he shouldn't 
+make use of It. For example, suppose that the underlying market ls at 50.00 and a 
+trader Is delta neutral with a gamma of-200. If the market falls to 48.00, the trader 
+can estimate that he Is approximately 400 deltas long. If 400 deltas Is the limit of 
+risk he Is willing to accept, he might decide to adjust at this point If, however, he 
+ls also aware that 48.00 represents strong support for the market, he might choose 
+not to adjust under the assumption that the market Is likely to rebound from the 
+support level. If he Is right, he wlll have avoided an unprofitable adjustment Of 
+course If he Is wrong and the market continues downward through the support 
+level, he wlll regret not having adjusted. If the trader Is rtght more often than not, 
+there Is no reason why he shouldn't take advantage of th1s skill. 
+
+--- PAGE BREAK ---
+
+BNTBRING A SPREAD ORDER 
+In sophlsUcated opuon marketS, spreads are traded as If they are one, single c0n 
+This means that a sp~ad Is quoted with a sln~e bid price and a sln~e off~ pt1 
+example, suppose a trader Is Interested In buying a certain straddle and receives a quuv~ 
+from a market-maker of 3.45/3.55. If the trader wants to sell the straddle, he wJil 
+to do so at a prtce of 3.45 (the bid price); If he wants to buy the straddle, he wt11 
+to pay 3.55 (the ask price). If the trader decides he Is willing to pay 3.55, neither he n 
+the market-maker care whether the trader pays 1.75 for the call and 1.80 for the pu"' 
+or 1.55 for the call and 2.00 for the put, or some other combination of call and 
+prices. The only consideration Is that the prices of the call and put taken together a 
+up to 3.55. 
+A market-maker wlll always endeavor to give one bid price and one ask price fo 
+an entire spread. If the spread Is a common type, such as a straddle, strangle, butterfly, 
+or time spread, a bid and ask can usually be given very quickly. Of course, market-mak­
+ers are only human. If a spread Is very complex, Involving several different options in 
+unusual ratios, It may take a market-maker several minutes to calculate the value of the 
+spread. But regardless of the complexity of a spread, the market-maker will make an 
+effort to give his best two-sided (bid and ask) market 
+Spread orders, like Individual option orders, can be submitted with qualifying 
+instructions. The most common types are market orders (orders to be filled at the 
+current market price) and limit orders (orders to be filled at a specified price). Other 
+contingency orders may also include Instructions specifying how the order is to be 
+executed in the marketplace. The following contingency orders, all of which are defined 
+in Appendix A, are often used In option markets: 
+All Or None 
+Fill Or Kill 
+Immediate Or Cancel 
+Market If Touched 
+Market On Close 
+Not Held 
+One Cancels The Other 
+Stop limit Order 
+Stop Loss Order 
+Two typical spread orders, submitted with their contingency Instructions, are 
+shown In Figures 8·23a and 8-23b. 
+A broker executing a spread order Is responsible for adhering to any special 
+instructions which accompany the order. Unless a trader knows exactly what current 
+market conditions are, or has a great deal of confidence In the broker who will be 
+handling the order, It ls always a good practice to submit specific Instructions with the 
+order as to how It Is to be filled. Additionally, when one considers all the Information 
+that must be communicated with a spread order (the expiration months, the exercise 
+prices, the type of options, whether the order ls a buy or sell, the ratio), It Is easy to see 
+
+--- PAGE BREAK ---
+
+Volittll(y spreads 171 
+Figure S-231 
+FUTURES ORDER 
+Accotrit Ntinber--====-- Broker ---=.-=.-:...-:...-:....-::...Memo ____ _ 
+$ABCDEFGHIJKLMNOPQRSTUVWXYZ23456789%S 
+BUY I SELL 
+1'5 Cr~ Oi \ Jan. \9 C I 2.5 Gl,C\e Od feb. 19 C 
+.24 ~ an indication of the --. y ~ 
+prices the broker • 
+should look at 
+I )( \ 
+spread ratio .20 Crtd,t 
+spread price A\\ or None 
+how incorrect information might inadvertently be transmitted wtth the order. For this 
+reason, it is also a good practice to recheck all orders before submitting them for 
+execution. Option trading can be dlfflcult enough without the additional problems of 
+miscommunication. 
+
+--- PAGE BREAK ---
+
+172 Chapttra 
+Figure 8-23b 
+C 
+MAY 
+\0 OEX ~ 
+JUL I OCT ~25 11'2 
+AUG 
+\()l. STOCK SEP 
+av@ C ® CON 
+CXL, 
+JAN' .• 
+FEB 
+~' ~-!•-... 1'·' ' MN\ 
+.,., ... ..u. ~ •• ';:•tt,f I 
+\\_ .:a~,. t, 
+MJG 
+\Ol '-I srocK • SEP 
+OE)( 
+L\lL\-L\16 
+OPEN order to be executed 
+with OEX between 
+these prices 
+TAKEN BY I RNR I ARM 
+M/M ACCT• DEC} EXPX I PREM. 
+SPO 
+SOL 
+APR 
+W(f 
+.~ J\~· :il/4 
+OCT 
+• ,.. I •"'•• 
+I 
+~PX ' PREM.· 
+.. \, I 
+1».10 ., . -.J 'l, -~· L .J 
+' 
+,,:, -~ > • . , . 
+• spread ratiof • ~--~ .,"_·;i 
+l;. ,.., ' •· -, "'•• • •' :._· • 
+\ Pol nt_: ~tfot-
+.. ~-. 't 
+• .., '--¥-M' J ,•4.. ~ 
+spread price f~r''. )p.0 :•t. 
+each 1 by 2 ratio ·(;-t:-· :t 
+:? 
+' 
+ARM FB/B8 
+EX. TIME 

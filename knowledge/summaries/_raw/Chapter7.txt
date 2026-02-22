@@ -1,0 +1,462 @@
+Introduction 
+to Spreading 
+In option markets, as in all markets, there are many ways to trade profitably. One type 
+of trading strategy, common among floor traders, Is scalping. A scalper attempts to buy 
+at the bid price and sell at the offer price as often as possible, without regard to the 
+contract's theoretical value. Aith0ugh the profit from each trade maybe small, If a trader 
+can do this enough times each day he can expect to show a reasonable profit Scalping, 
+however, requires a highly liquid market, and optlon markets are rarely sufficiently 
+liquid to support this type of trading. 
+A different type of trading strategy Involves speculating on the direction In which 
+the underlying contract will move. If a speculator correctly anticipates the market 
+direction, and takes an appropriate position, he can also expect to show a profit But 
+even when the market moves in the expected direction, taking a directional position In 
+an option market will not necessarily be profitable. Many different forces beyond 
+directional considerations can affect an option's price. If a trader's sole consideration is 
+direction, he will usually be better off taking a position In the underlying market If he 
+does, and he ts right, he ls assured of making a profit. 
+The majority of successful option traders engage in spread trading. Since option 
+evaluation ls based on the laws of probablllty, and because the laws of probablllty can 
+be expected to even out only over long periods of time, option traders must often hold 
+positions for extended periods. Unfortunately, over short periods of time, while the 
+trader is waiting for the option price to move towards theoretical value, the trader may 
+be at risk from a wide vartety of changes In market conditions which threaten his 
+potential profit. Indeed, over short periods of time there Is no guarantee that an option 
+will react In a manner consistent with a theoretical pricing model. Spreading ls simply 
+a way of enabling an option trader to take advantage of theoretically mlsprlced options, 
+while at the same time reducing the effects of short-term changes In market conditions 
+so that he can safely hold an option position to maturity. 
+WHAT IS A SPREAD? 
+A spread ls a strategy which Involves taking simultaneous but opposing positions In 
+different Instruments. A spread trader makes the assumption that there ls an ldentlflable 
+price relationship between different Instruments and, although he may not know In 
+127 
+
+--- PAGE BREAK ---
+
+128 
+whl h direction the market wlll move, the price relaUonshlp between the lnstrum ~ l 
+ou~1t to remain relatively constant. When the relationship appears to be temp,-,ri1"~, 
+mlsprl ed, the spread trader wlll take a long position In the Instrument which app~r~ 
+to be underprlced and a short pos!Uon In the Instrument which appears to be overpr1 e~ 
+Toe trad r hopes to profit when the prices of the Instruments return to their exp A 
+relationship. 
+Among futures traders the most common type of spread Involves taklng opposing 
+positions In different delivery months for the same commodity. A trader might purchase 
+October crude oil and sell November crude oil on the New York Mercantile Exchange. 
+Or he might buy December corn and sell July corn on the Chicago Board of Trade. The 
+value of this type of intra-market spread depends on a variety of factors, the most 
+important of which is usually the cost of carrying the physical commodity from one 
+delivery month to another. 
+Suppose that February gold on the COMEX Is trading for $360 per ounce. What 
+should April gold be trading for? A trader who takes delivery of gold In February at $360 
+per ounce and holds It until April will Incur a debit of $360 per ounce for a cwo-month 
+period. If interest rates are 9 percent annually, the two-month financing cost will be: 
+9% X 2/12 X $360 = $5.40 
+Given the financing cost of $5.40 per ounce that can be saved by purchasing an 
+April futures contract rather than purchasing the physical commodity, the April contract 
+ought to be worth $5.40 more than the February contract, or $365.40 per ounce. If the 
+February contract Is trading at $360 and the April contract Is trading at $364, the trader 
+knows that the spread is $1.40 too cheap. He can profit from this mispricing by 
+purchasing the spread for $4.00 (buy April for $364, sell February for $360}. If the 
+spread returns to its expected value of $5.40, the trader can buy back the February 
+contract and sell out the April contract, thereby realizing a profit of $1 .40. 
+Note that the above spread will be profitable regardless of the general direction of 
+the gold market, as long as the prices of the two delivery months return to their expected 
+$5.40 spread. If February gold rises to $370, the trader will lose $6 on the February side 
+of bis spread. If, however, the April contract rises to $375.40, the gain in the value of 
+the April contract will more than offset the loss on the February contract and result in 
+the expected $1. 40 per ounce profit. 
+Factors other than financing costs can also affect the price relationship between 
+different futures months for the same commodity. The futures price of some commodi· 
+ties must also include the cost of storing and Insuring the commodity for the period 
+between dellvery months. In theory, the cost of financing, storing, and Insuring a 
+traditional commodity (precious metals, agricultural products, livestock, energy prod· 
+ucts, etc.) must be some positive number, so that the prtce of a more distant delivery 
+month ought to be greater than the price of a nearby delJvery month. This ls known as 
+a con tango relationship. Any Increase In these costs will Increase the value of a futures 
+contract. 
+Supply and demand considerations can also affect the spread relationship of 
+different delivery months. In theory, a November crude oil contract ought to always 
+
+--- PAGE BREAK ---
+
+Introduction to Sprtadlng 129 
+trade for more than an October crude oil contract. But If crude oil ls currently In short 
+supply, refiners may be willing to pay more for an October futures contract In order to 
+ensure an uninterrupted flow of crude oil to their reflner1es. Markets where the near-by 
+dellvery month Is trading at a premium to the more distant months are said to be In 
+back.wardatton. Supply and demand for raw materials can often cause tradf tlonal 
+commodities markets to go Into backwardatlon . Examples of contango and backwarda­
+tlon markets are shown In Figure 7-1. 
+The cost of carrying a position In an underlying commodity ls only one of many 
+factors whlch can affect a futures spread relatlonshlp . A trader who purchases a stock 
+Index futures contract wlll save the financing costs associated wtth owning the basket 
+of stocks which make up the index. At the same time, he gives up the rights to any 
+dividends he might receive If he actually owned the stocks. The savtng.5 In financing 
+costs add value to the futures contract, but the loss In dividends reduces the contract's 
+value.1 
+Matters can be further complicated If different Interest rates play a role In the 
+evaluation of a spread relatlonshlp . The value of a treasury bond futures contract 
+depends not only on the carrying costs saved by purchasing a futures contract Instead 
+of the actual bond (the short-term rate), but also on the Interest lost by not owning the 
+bond (the long-term rate). Depending on the difference between short· and long-term 
+rates, distant dellvery months In the treasury bond futures market can be trading at 
+either a premium to the nearby months or at a discount to the nearby months. Similar 
+types of considerations affect relationships In foreign currency futures markets, but here 
+the determining factors are the difference between domestic and foreign Interest rates. 
+When foreign rates are low compared to domestic rates, the more distant months trade 
+at a premium; when foreign rates are high, the more distant months trade at a discount 
+Calculating the spread relatlonshlp between different delivery months can be a 
+complex problem, and Is covered more fully In texts focuslng specifically on futures 
+trading. The point here Is that, ln theory, there ought to be a well defined price 
+relationship between different dellvery months. When this relationship Is violated In the 
+marketplace, a potential profit opportunity exists by selllng the overpriced contract and 
+buying the underprlced. 
+Spreads need not be based solely on the relationship between different delivery 
+months for the same commodity. They can also be based on presumed price relation­
+ships between different, though usually related, Instruments. The NOB {notes over 
+bonds) spread traded on the Chicago Board of Trade ls based on the assumption that 
+there ls an Identifiable relationship between the price of Treasmy Bonds and Treasury 
+Notes. When the spread between the prices of these two futures contracts Is more or 
+less than expected, traders Will sell one Instrument and buy the other. For example, 
+with Treasury Notes at 99-162 and Treasury Bonds at 96-00, there Is a 3-16 spread 
+between the two instruments. If a trader feels, based on his analysis of interest rates, 
+1. Because of their unique importance 1n financial markets, we will look at stock index futures and opUons 
+1n detallln Chapter 15. 
+2. U.S. Treasury Bonds and Notes are traded 1n points and 32™1s. 99· 16 represents a prJce of 99 16/32. 
+
+--- PAGE BREAK ---
+
+130 
+Figure 7-1 Contango Marketa 
+Month Open High Low SettM Change -LJfefltM-
+Hlgh Low 
+COCOA(C5CE) ; 
+Dec 11'3 
+M1rM 1200 
+May 1211 
+Jul 1221 
+Sep 1237 
+MltH 1n1 
+COTTON (CTN); 
+Dec 57,74 
+Ml"4 19.35 
+Mey I0.10 
+Jul I0.11 
+Oct 11.IO 
+Dec 11.IO Frtday, Octobet 22, 1H3 
+10 metrlc tone; S r,.r gallon (1 • $10.00) 
+11N 1121 1134 ·21 
+1203 1111 1174 ·20 
+1211 1172 1113 ·2-t 
+1221 1190 1200 ·23 
+1n1 1220 1220 -20 
+1nt 12,, 1nt -20 
+I0,000 lbe,; -per lb. (.01 • $1.00) 
+17.N 57.20 17.11 -.11 ...... '8.15 11.17 -.20 
+I0.30 11.71 It.ti -.30 
+IO.IO I0.30 I0.51 •,21 
+12.20 11.IO 12.00 +.35 
+12.20 11.35 12.10 +.31 150t 
+1415 
+1111 
+1530 
+1538 
+1J.ta 
+'4.25 
+14.lO 
+u.11 
+15.00 
+U.00 
+12.IO 
+SOYBEAN IIEA&. (CBT); 100 tone.; S ,..r ton. (.01 • $10.00) 
+Dec 193.30 1N.IO 1t2.to 113.10 •.30 235.IO 
+Jiff 193.30 1t4.70 1t3.10 1t3AO 231.IO 
+Mar 1N.30 111.to 1M.30 1MM -.10 231.00 
+1N.OO 117,00 111.AG 1HAO +AO 221.00 ~ 117.IO 1tl,70 117.20 117.AO +.10 241.00 
+AU9 117.IO 1tl,4G 1t7.IO 117.IO 237.IO 
+Backwardatfon Markets 11t 
+131 
+141 ..., 
+171 
+NO 
+54.IO 
+N.12 
+STA7 
+A.30 
+11.11 
+It.Al 
+113.AO 
+171.to 
+175.IO 
+177.00 
+171.00 
+1I0.10 
+-t.lfetf ..... 
+Month Open High LOW Setlle Change High Low 
+Monday, December 10, 1tto 
+CATTLE (CME); 44,000 Iba.; t, r,.r lb. 
+71.17 
+71.25 
+71.20 
+74.10 
+12.10 
+72.70 (.01 • $4.40) 
+l0.70 +.71 
+71.17 +.70 
+71.17 +.II 
+74.55 +.IO 
+72.92 +.35 
+72.to +Al Dec 7t.t7 to.75 
+Febt1 71.35 77.00 
+Apr 71.20 71.15 
+Jun 74.10 74.11 
+Aug 72.70 73. 12 
+Oct 72.70 73.05 
+COPPER (COMEX); 
+Jan 110.00 
+Feb 109.00 
+Mir 10I.AO 
+Apr 1N.OO 
+May 105.15 
+Jul 103.IO 25,000 lbe.; f. per lb. (.01 • $2.50) 
+110.15 1ot.lO 110.IO +1.30 
+1ot.lO 10l.to 1ot.lO +1.IO 
+10l.40 10l.30 10I.OO +2.00 
+108.00 10I.OO 107.20 +2.00 
+10l.70 105.00 1N . .-O +2.05 
+105.30 103.IO 104.IO +2.10 71.77 
+77.IO 
+71.05 
+75.41 
+73.15 
+72.15 
+121.AG 
+115.IO 
+122.IO 
+115.50 
+117.80 
+110.50 
+HEATING OIL (NYMEX); 42,000 gallona; 
+Jan 11.IO 12.50 I0,80 
+Ftb 71.00 71.20 77.IO 
+Mar 74.00 74.00 72.70 f. per gallon (.01 • $4.20) 
+I0.17 +1.IO 107.25 
+77.71 +1.52 102.00 
+72.12 +.11 N.IO 
+Apr II.SO It.SO 11.10 
+May M.20 M.25 15.IO 
+Jun 14.75 14.75 M.00 18.12 ♦--12.00 
+18.12 +.11 11.50 
+13.22 -.14 15.71 11.00 
+72.IO 
+14.00 
+72.15 
+70.35 
+10.10 
+11.50 
+H.50 
+12.30 
+H.15 
+17.00 
+H.50 
+52.95 
+52.IO 
+50.70 
+49.30 
+41.40 
+41.40 
+
+--- PAGE BREAK ---
+
+lntroduct/on to Sprtadlng /3/ 
+that the spread between Notes and Bonds ought to be 3-00, he can sell the spread ac 
+3-16 (sell Notes at 99-16, buy Bonds at 96-00). If the spread returns to Its expected value f ~·00, the trader can buy In his Notes and sell out his Bonds, realJzfng a profit of 
+7J2, 
+Spreads can also be based on more complex relatlonshtps . Many traders on the 
+COMEX follow the price relationship between gold and silver. However, with gold at 
+$300 to $400 per ounce and silver at $4 to $5 per ounce (as of this wr1tfng), the 
+relationship ls more commonly expressed as a ratlo. Suppase a trader decides that the 
+spread between the two metals ought to be 80 ounces of silver to one ounce of gold (an 
+80:1 ratio). If sliver Is trading at $4.50, given the 80:1 prtce ratlo, gold ought to be 
+trading at $4.50 x 80 = $360. If, however, gold Is at $375, the spread trader wlll sell 
+one ounce of gold at $375, and buy 80 ounces of sliver at $450. Regardless of the 
+general trend ln prices of precious metals, he expects to make $15 when the spread 
+returns to Its 80: 1 ratio. If the precious metals market drops, so that gold ls at $336 and 
+silver Is at $4.20 (the expected 80:I ratio}, the trader's total profit will be: 
+80 x {$4.20 -$4.50) = -$24 {sliver) 
+$375-$336 = +$39 (gold) 
+As expected, he has shown a profit of $15. 
+Spreads can also reflect a trader's opinion that one contract wm outperform a 
+different contract. Futures on the New York Stock Exchange Composite Index traded 
+on the New York Futures Exchange represent the value of approximately 1500 actively 
+traded stocks. Futures on the Standard & Poor's 500 Index traded on the Chicago 
+Mercantile Exchange represent the value of 500 such stocks. If a trader believes the 
+relationship between the two Index values ought to be 9 to 5 (9 NYSE = 4 S&P 500), 
+and the current prices are 220 and 396, the prtce relationship Is, as expected, 9:5 (9 x 
+220 = 5 x 396). There does not seem to be any reason to either buy or sell the spread. 
+If, however, a trader believes that In percent terms the 500 stocks In the S&P will 
+outperform the 1500 stocks in the NYSE, he can buy five S&P contracts and sell nine 
+NYSE contracts. If, in percent terms, the S&P rises more quickly, or declines less quickly, 
+the trader wlll profit from the better performance of the contracts which he owns. 
+Spread relationships need not be restrtcted to two Instruments. Sometimes three, 
+or even more, different instruments may define a spread relationship. We calculated that 
+If February gold ls at $360, and interest rates are 9%, the spread between February and 
+Aprtl gold ought to be $5.40. If interest rates rise, the carrying costs wlll also rise, and 
+the February/ April spread will wt den. If a trader Is long February gold and short Aprtl 
+gold, and he feels that Eurodollar Interest rates correlate closely to his cost of carry, he 
+can sell EW'Odollar futures to protect himself against a rise In Interest rates. If Interest 
+rates do rise, he will lose on his February/April spread, but this will be offset by the 
+profit on his Eurodo1larposltlon. He has made the assumption that there Is a three-sided 
+spread relationship between the price of February gold, April gold, and Eurodollars. 
+Much of the most sophisticated trading In derivative markets Involves Identifying 
+and following spread relationships. When a trader decides that a spread relationship Is 
+
+--- PAGE BREAK ---
+
+132 Clu~J 
+mlsprlced In the marketplace, It can be Just as profitable to buy or sell the spread as lo 
+take an outright long or short posltlon In a sln~e Instrument 
+In the foregoing examples the price relationship between Instruments was defined 
+In point or currency terms. In some cases, however, It may be more practical to denne 
+the relatlonshlp In other terms. In Chapter 4 we used a theoreucal pricing model to 
+determine an option's Implied volatility, and we noted that for an option trader the 
+Implied volatility might be a more accurate reflection of an option's price than Its dollar 
+price. An optlon trader might therefore express the spread value between two optlons 
+In terms of the spread between their Implied volatilities. An option with an lmplJed 
+volatlllty of 15% and a different option with an Implied volatility of 17% have a two-point 
+volatlllty spread, regardless of the difference In their dollar prices. If both options have 
+the same underl~ng Instrument, a trader might purchase the option with an JmpJJed 
+volatlllty of 15% and sell the optlon with an Implied volatility of 17%, hoping to profit 
+when the spread between the Implied volatllltles narrows. 
+As we shall see, the foregoing example Is simplistic. An optlon trader cannot simply 
+buy options with low Implied volatillties and sell options with high Implied volatilities. 
+Not only Is the spread between Implied volatllltles Important, but also the general level 
+of Implied volatlllty. A two-percentage-point volatility spread may mean one thing If the 
+Implied volatllltles are 6% and 8%, and something else If the Implied volatilities are 26% 
+and 28%. Moreover, there are Important considerations of risk arising from difficulties 
+In predicting volatility, as well as the possible Inaccuracies In the models themselves. In 
+spite of these factors, volatility spreads fonn one of the most Important dasses of option 
+trading strategies. Much of an option trader's education Is spent studying volatility 
+relationships, and learning to create spreads based on mlsprlced volatility. 
+In the previous examples we assumed that a spreading strategy was static, that once 
+the spread was Initiated It was only necessary to wait for the spread to reach Its expected 
+value. Spreads can also be dynamic, requiring action over the life of the spread In order 
+to profit from the mlsprlclng. This was the method used In Chapter 5 to take advantage 
+of a mlspriced option. The option was spread against the underlying contract, and the 
+position was adjusted over the life of the option. At explratlon, the resulting profit was 
+approximately equal to the amount by whlch the option was originally mlsprlced. 
+WHYSPREADr 
+We saw In Chapter 3 that most theoretical pricing models depend on the laws of 
+probablllty to generate option values. Even If we have correctly estimated the prob­
+ablllties, I.e., volatility, we know that probablllty theory Js only valid over many 
+occurrences or, In the case of options, over long periods of time. A trader will sometimes 
+have to hold an option position for an extended perlod Jn order to profit from the 
+option's mlsprlclng. Unfortunately, while he ls holding the position, over short periods 
+of time he may have to put up with adverse fluctuations In the position's value. The 
+fluctuations might be severe enough that the trader, because of capital requirements, 
+will not be able to maintain the position If he Is forced to liquid t th • a e e posltlon prior to I 
+
+--- PAGE BREAK ---
+
+f 1 
+\ lratJ n, tht:re I no uarent that h w111 profit from th op Ion' ml prl tng. tt n 
+If t ha a ura~l e time~ d all the Inputs tnto tlte pr1c1ng mod I. By preadlng, 3 tradE!r 
+, ettem ting to reduc the eff ctof short.-t rm "bad luck" that go s with anyln'/1 tm n 
+b&~ nth laws of probability. 
+reading strategies not only take advantage of the laws of probability by enabltng 
+8 trader to hold option postUons over long periods of Ume, but such strategies also have 
+th eff t of protecting the trader against Incorrectly estimated Inputs Into the theoretl­
+al pricing model. Suppose a trader estimates that over the life of an option the volatility 
+fan underlying Deutschemark futures contract will be I 3%. Based on this estimate he 
+finds that a certain call trading at the Chicago Mercantile Exchange has a theoretical 
+value of 1.75 but is actually trading for 2.00. If the call has a delta of 25, one strategy 
+ts to sell four calls for 2.00 each and buy one futures contract, yielding a theoretlcaJ edge 
+of 4 x .25 = 1.00, or $1,250. (Each point In currency contracts at the Chicago 
+Mercantile Exchange is worth $1,250.) Of course, If the trader can make $1,250 with 
+a 4 x 1 spread, it may occur to him that he can make $12,500 If he increases the size 
+of the spread to 40 x 10. Why stop now? He can make $125,000 If he Increases the 
+size to 400 x 100. 
+Even if the market is sufficiently liquid to absorb unlimited size, Is this a reasonable 
+approach to trading? Should a trader simply find a theoretically profitable strategy and 
+do it as many times as possible in order to maximize the profit potential? At some point 
+the intelligent trader will have to consider not only the potential profit, but also the risk 
+associated with a strategy. After all, his volatility estimate of 13% ls just that, an estimate. 
+What will happen if volatility actually turns out to be some higher number, perhaps 
+15%, or 17%? If the calls which he sold at 2.00 are worth 2.25 at a volatility of 17%, 
+and volatility actually turns out to be 17%, then his hoped-for profit of $ I 25,000 
+(assuming a size of 400 x 100) will turn into a loss of $125,000. 
+A trader must always consider the effects of an incorrect estimate, and then decide 
+how much risk he is willing to take. If the trader in this example decides that he can 
+survive if volatility goes no higher than 15% (a two-percentage-point margin for error), 
+he might only be willing to do the spread 40 x 10. But if there were some way to 
+increase his break-even volatility to 19% (a six-percentage -point margin for error), he 
+might indeed be willing to do the spread 400 x 100. Option spreading strategies enable 
+traders to profit over a wide variety of market conditions by giving them an Increased 
+margin for error in estimating the inputs into a theoretical pricing model. No trader will 
+survive very long if his livelihood depends on estimating each input with 100% 
+accuracy. Even when he incorrectly estimates the inputs, the experienced trader can 
+survive if he has constructed intelligent spread strategies which allow for a wide margin 
+of error. 
+SPREADING AS A RISK MANAGEMENT TOOL 
+Recall our example in Chapter 3 where a casino ls selling a roulette bet with an expected 
+return of 95¢ (American conditions) for $1 .00. The casino owner knows that based on 
+
+--- PAGE BREAK ---
+
+134 
+the laws of probablllty he has a 5% theoretlcaJ edge. Suppose that one day a bettOr com~ 
+Into the casino and proposes to bet $2,000 on one number at the roulette cable. The 
+casino owner knows that the odds are on his side and that he WIil most Uke1y get to 
+keep the $2,000 bet But there Is always a chance that the player wm wtn, and that the 
+casino will lose $70,000 (the $72,000 payoff less the $2,000 cost of the betJ If the 
+player's number does come up. 
+Now suppose that two other bettors come Into the casino, and each proposes to 
+place a $1,000 bet at the roulette table. They promise, however, to bet on different 
+numbers. Whichever number one bettor chooses, the other bettor will choose some 
+other number. As with the first bettor and his sln~e bet of $2,000, the casino's potenttal 
+reward In this new scenario ls also $2,000, If neither of the two numbers come up. But 
+the risk to the casino Is now only $34,000 (the $36,000 payoff If one player wfnS, less 
+the cost of the two $1,000 bets}. Since only one player can wtn, the two bets are 
+mutually exclusive-. If one wins, the other must lose. 
+Given our two scenarios, one bettor wagering $2,000 on one number, or two 
+players wagering $1,000 each on different numbers, what Is the theoretlcal edge to the 
+casino? The edge to the casino In both cases Is still the same 5%. Regardless of the 
+amount wagered, or the number of Individual bets, the laws of probablllty say that In 
+the long run the casino gets to keep 5% of everythJng that Is bet at the roulette table. In 
+the shon run, however, the risk to the casino Is greatly reduced with two $1,000 bets 
+because the bets have been spread around the table. 
+A casino does not like to see a bettor wager a large amount of money on one 
+outcome, whether at roulette or any other casino game. The odds are still In the castno's 
+favor. But, If the bet Is large enough, and the bettor Is lucky, shon-term bad luck can 
+overwhelm the casino. lndeed, If a bettor knows that the odds are against him, and he 
+wants the greatest chance of showtng a profit, his best course ls to wager the maximum 
+amount on one outcome, and hope that In the shon run he gets lucky. If he continues 
+to make bets over a long period of time, the laws of probability will eventually catch up 
+With him and the casino Will end up with the bettor's money. The Ideal scenario from 
+the casino's point of view Is for 38 players to place 38 bets of $1,000 each on all 38 
+numbers at the roulette table. Now the casino has a perfect spread position. One player 
+wlll collect $36,000, but with $38,000 on the table the casino has a sure profit of 
+$2,000. 
+The optlon trader prefers to spread for the same reason that the casino prefers the 
+bets to be spread around the table: spreading maintains profit potential but reduces 
+short-term risk. There Is no perfect spread position for the option trader, as there is for 
+a casino. But the lntelllgent option trader learns to spread off his risk In as many different 
+ways as possible In order to minimize the effects of short-term bad luck. 
+N~w traders are sometimes astonished at the size of the trades an experienced 
+trader is prepared to make. For example, an Independent floor trader In Treasury Bond 
+options at the Chicago Board of Trade who buys 100 calls at 2_00 ($2,000) each has 
+taken a position worth $200,000. How can he afford to do this? His ca ital resources 
+certainly play a role In the risk he Is Willing to accept But eq 
+11 1 P • ua Y mportant Is his ability l 
+
+--- PAGE BREAK ---
+
+Introduction to Sprtadlng IJS 
+to spread off rtsk. An experienced trader may know a wide vartety of ways co spread off 
+the rtsk assoclated wtth the l 00 calls he purchased, either using other options futures 
+contracts, cash bonds, or some comblnatlon of these instruments. He may not be able 
+to completely ellm\nate hls risk. But he may be able to reduce lt to such an extent that 
+his rtsk ls actually less than that of a much smaller trader who does oot know how to 
+spread, or knows only a llmlted number or spreading strategies. 

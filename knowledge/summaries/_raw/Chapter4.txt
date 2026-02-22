@@ -1,0 +1,1115 @@
+Volatility 
+What ls volatility and why ls It so Important to an option trader? The option trader, Uke 
+a trader In the underlying Instrument, Is Interested In the direction of the market But 
+unllke the trader In the underlying, an option trader Is also extremely sensitive to the 
+speed of the market If the market for an underlying contract falls to move at a sufficient 
+speed options on that contract will have less value because of the reduced llkellhood 
+of the' market going through an option's exercise price. In a sense, volatlllty ls a measure 
+of the speed of the market. Markets which move slowly are low-volatlllty markets; 
+markets which move quickly are high-volatility markets. 
+One might guess intuitively that some markets are more volatile than others. 
+Between 1980 and 1982, the price of gold moved from $300 per ounce to $800 per 
+ounce, more than doubling Its price. Yet few traders would predict that the S&P 500 
+Index might more than double In a similar period. A commodity trader knows that 
+precious metals are generally more volatile than Interest rate Instruments. In the same 
+way, a stock trader knows that high-technology stocks tend to be more volatile than 
+utility stocks. 
+If we knew whether a market was likely to be relatively volatile, or relatively quiet, 
+and could convey this information to a theoretical pricing model, any evaluation of 
+options on that market would be more accurate than lf we simply Ignored volatlllty. 
+Since option models are based on mathematical formulae, we will need some method 
+of quantifying this volatility component so that we can feed it Into the model ln 
+numerical form. 
+RANDOM WALKS AND NORMAL DISTRIBUTIONS 
+Consider for a moment the pinball maze pictured in Figure 4-1. When a ball ls dropped 
+Into the maze at the top lt moves downward, pulled by gravity, through a series of nails. 
+When the ball encounters each nail there ls a 50% chance the ball wlll move to the right, 
+and a 50% chance It will move left. The ball then falls down to a new level where It 
+encounters another nail. Finally, at the bottom of the maze the ball falls into one of the 
+troughs. 
+The path the ball follows as lt moves downward through the maze of nails ls known 
+as a random walk. Once the ball enters the maze nothing can be done to artlflclally alter 
+its course, nor can one predict ahead of time the path the ball will take through the 
+maze. 
+51 
+
+--- PAGE BREAK ---
+
+S2 
+Figure 4-1: Random Walk 
+I 
+If enough balls are dropped into the maze, we might begin to get a distribution of 
+balls slmllar to that In FJgure 4-2. Most of the balls tend to congregate near the center 
+of the maze, with a decreasing number of balls ending up In troughs further away from 
+the center. The distribution which results from dropping many balls Into our maze Is 
+referred to as a normal, or bell-shaped, dlstrlbutton. 
+If we were to drop an Infinite number of balls into the maze we might approximate 
+the distribution with a normal, or bell-shaped, curve such as the one overlaid on the 
+distribution In Figure 4·2. Such a curve Is symmetrical (if we flipped It from right to left 
+it would look the same), it has Its peak in the center, and its tails always flare down and 
+away from the center. 
+Normal distribution curves are used to describe the likely outcomes of random 
+events. For example, the curve In Figure 4-2 might also represent the results of flipping 
+a coin 15 times. Each outcome, or trough, would represent the number of heads which 0
+1c5curred after each 15 flips. An outcome In trough zero would represent zero heads and 
+tails; an outcome In trough 15 Id 
+we would be surprised to fl! wou represent 15 heads and zero talls. Of course, 
+Pa coin 15 tlmes and get all heads or all talls. Assuming the 
+
+--- PAGE BREAK ---
+
+Volatility 53 
+figure 4-2: Normal Distribution 
+. . . . . . . . . .... . . . . . . .. 
+♦ • • • • • 
+♦ • • • • • • 
+. . . . . . . . 
+coin is perfectly balanced; some outcome in between, perhaps 8 heads and 7 tails, or 9 
+heads and 6 tails, seems more likely. 
+Suppose we change our maze slightly by closing off a row of nails so that each time 
+a ball encounters a nan and goes either left or right, It must drop down two levels before 
+It encounters another nail. If we drop enough balls Into the maze we may end up with 
+a distribution represented by the curve in Figure 4-3. Since the sideways movement of 
+the balls ls restricted, the curve wlll have a higher peak and narrower tails than the curve 
+In Figure 4-2. In spite of Its altered shape, this curve stlll represents a normal distribution, 
+although one with slightly different characteristics. 
+Finally, we might block off some of the spaces between nails so that each time a 
+ball drops down a level It must move two nails left or right before It can drop down to 
+a new level. Again, If we drop enough balls into the maze we may get a distribution 
+which resembles the curve in Figure 4-4. This curve, while still a normal distribution 
+curve, wlll have a much lower peak and its tails will spread out much more quickly than 
+the curves in either Figure 4-2 or 4-3. 
+
+--- PAGE BREAK ---
+
+54 
+Figure 4-3: Low Volatility Distribution 
+V .1 
+r l 
+( { ( 
+, r r r 
+11.rrrr 
+11-1[((( 
+I 
+1/ \ 
+/ 
+I 
+\ 
+Suppose we now think of the ball's sideways movement as the up and down prtce 
+movement of an underlying contract, and the ball's downward movement as the 
+passage of time. If we assume that each day the underlying contract can move up or 
+down $1, the price distribution after 15 days might be represented by the curve In Figure 
+4·2. If we assume the price can move up or down $1 every two days, the prtce 
+dlstrlbutlon after 15 days might be represented by the curve ln Figure 43. And lf we 
+assume that each day the price can move up or down $2, the price distribution might 
+be represented by the curve In Figure 4-4. 
+With the underlytng contract presently at $100 and 15 days to expiration, how 
+might we evaluate a $105 call? One way ls to asswne that prices follow a random walk 
+through time and that one of the curves In Figures 4-2, 4-3, or 44 represents the likely 
+distribution after 15 days. The comparative value of the $105 call under these three 
+scenarios ls shown In Figure 4-5. If we assume a distribution similar to Figure 4-3, we 
+can see that the underlying contract has very little chance of reaching $105. Conse­
+quently, the value of the $105 call will be low. If we assume a distribution slmllar to 
+FJgure 4·2, there ls an increased probablllty of the underlying reaching $105, and this 
+wm Increase the value of the $105 call. Finally, lf we assume a distribution similar to 
+
+--- PAGE BREAK ---
+
+figure 4-4: High Volatility Distribution 
+. a: . 
+. :_-..-. . -• ._ ---:-_ .... -_ 
+. :_ -:._ -_ -.~ - -. :=-:---. :_-_-:__-_ --~ ---. ~---- --------..-·---· -- --- •• -----·-----·-·--... - -----. ,__,. -. ____ __,. __ .,___ __ ---
+-V ...... 1-... r--,... v I'--V I'-, V ['. v I'-, V I'--r-ss 
+Figure 4-4, there ls a very real likelihood that the $105 call could flnlsh ln·the-money. 
+As a result, the value of the option Will increase dramatically. 
+If we assume only that the price movement of an underlying contract follows a 
+random walk, and nothing about the likely direction of movement, the curves ln Figures 
+4-2, 4·3, and 4·4 might represent possible prtce dlstrlbutlons In a moderate-volatlllty, 
+low-volatility, and hlgh·volatlllty market, respectively. In a low-volatlllty market, prtce 
+movement ls severely restricted, and consequently options will command relatively low 
+premiums. In a high-volatility market the chances for extreme price movement Is greatly 
+Increased, and options Will command high premlums. 
+Since the different prtce dlstrtbutions in Figure 4-5 are symmetrtcal, It may seem 
+that Increased volatility should have no effect on an option's value. After all, Increased 
+volatlllty may Increase the likelihood of large upward movement, but thls should be 
+offset by the equally greater likelihood of large downward movement Here, however, 
+there ls an Important distinction between an option position and an underlying position. 
+Unlike an underlying contract, an option's potential loss ls limited. No matter how far 
+the market drops, a call option can only go to zero. In our example, whether the market 
+flnlshes at $80 or $104 at expiration, the $105 call will be worthless. However, if we 
+buy the underlying contract at $100, there ls a tremendous difference between the 
+
+--- PAGE BREAK ---
+
+56 
+Figure 4-5: Price Distribution at Expiration 
+moderate volatility 
+distribution ~ 
+I 
+high volatility ; 
+distribution \ / 
+/• 
+✓/'l ___ .,,,.,,,/ present price 
+of underlying 
+,.,--exercise 
+price 
+...... ...... --.... ------
+market finishing at $80 or $104. With an underlying contract all outcomes an 
+Important; with an option, only those outcomes which result In the option fln!Shfr4 
+ln•the-money are Important. In Figure 4-5, we are only concerned wJth price outcoma 
+to the right of the exercise price. Everything else Is zero. 
+This leads to an Important distinction between evaluation of an underlying contraa 
+and evaluation of an option. If we assume that prtces are distributed along a norma 
+dtsttibution cUJVe, the value of an underlying contract depends on where the peak of tt£ 
+curve Is located, while the value of an option depends on how fast the curve spreads out 
+MEAN AND STANDARD DEVIATION 
+Suppose we want to use the concept of prtce movement based on nonnal distribution 
+cmves In a theoretical pricing model. To do this we need a method of describing the 
+characteristics of the curve to the model. Since the model Is based on mathematics, we 
+need to describe the curve In numertcal tenns so that we can feed the numbers Into the 
+model. 
+Fonunately, a normal distribution curve can be fully described with two numbers, 
+the mean and the standard deviation. If we know that a distribution Is nonnal and we 
+also know lhese two numbers, then we know all the charactelistlcs of the dls~butlon. 
+the 5~~~:~~a~l:~;~0can Interpret the mean as the location of the peak of the curve, and 
+n as a measure of how fast the curve sp~eads out. Curves which 
+
+--- PAGE BREAK ---
+
+Volittllty 57 
+spread out very quickly, such as Agure 441 have a high standard devtatlon; curves 
+which spread out very slowly, such as Figure 4·3, have a low standard devlatlon. 
+While the mean ls nothing more than the average outcome, and therefore a famfllar 
+concept for many traders, the standard deVlatlon may not be quite so famlllar. Indeed, 
+one need not know how either of these numbers are calculated In order to successfully 
+trade optlons. (For those who are Interested, a more detailed discussion appears In 
+AppendlX B.) What ls Important to an optlon trader Is the Interpretation of these 
+numbers, In partlcular what a mean and standard devtatlon suggest In terms of likely 
+price movement. 
+Let's go back to Figure 4·2 and consider the troughs numbered o to 15 at the 
+bottom. We suggested that these numbers might represent the number of heads 
+resulting from 15 flips of a coin. Alternatively, they might also represent the number of 
+times a ball went right at each nail as It dropped down through the maze. Toe first 
+crough Is assigned zero since any ball which ends there must have gone left at every 
+nail. The last trough Is assigned 15 since any ball which ends there must have gone right 
+at every nail. 
+Suppose we are told that the mean and standard devlatlon In Flgure 4·2 are 7.50 
+and 3.00, respectively. What does this tell us about the distribution? (The actual mean 
+and standard deviation of 7.51 and 2.99 are calculated in Appendix B. Here, for 
+simplicity, we will round to 7.50 and 3.00.) The mean tells us the average outcome. If 
+we add up all the outcomes and divide by the number of occurrences, the result wlll be 
+7.50. In terms of the troughs, the average result will fall half-way between troughs 7 
+and 8. (Of course this Is not an actual posslblllty. However, we noted in Chapter 3 that 
+the average outcome does not have to be an actual possibility for any one outcome.) 
+The standard deviation not only descrtbes how fast the distribution spreads out; it 
+also tells us something about the llkellhood of a ball ending up In a speclflc trough or 
+group of troughs. In paltlcular, the standard deviation tells us the probablllty of a ball 
+ending up in a trough which ls a speclfled distance from the mean. For example, we 
+may want to know the likelihood of a ball falling down through the maze and ending 
+up in a trough lower than S or higher than 10. We can answer the question by asking 
+how many standard deviations the ball must move away from the mean, and then 
+determine the probabillty associated with that number of standard deviations. 
+The exact probabillty associated with any specific number of standard deviations 
+can be found In mathematical tables ln most books on statistics. Alternatively, such 
+probabllitles can be closely approximated using an appropriate formula (see Appendix 
+BJ. For option traders the following approximations will be useful: 
++ 1 standard deviation takes ln approximately 68.3% (about¼) of all occurrences 
+±2 standard deviations takes in approximately 95.4% (about 19/io} of all occur­
+rences 
+±3 standard deviations takes in approximately 99.7% (about 369f.370) of all occur· 
+rences 
+
+--- PAGE BREAK ---
+
+58 
+Note that each number of standard devtatlons ls preceded by a plus or m1nt1f 
+Because nonnal dtstrtbutlons are symmetrical, the likelihood or up movement and 
+movement Is Identical. 
+Now let's try to answer our question about the likelihood of getdng a baD 
+trough lower than S or hlgher than l 0. We can designate the divider becween ~ 
+7 and 8 as the mean or 1112. If the standard deviation Is 3, what troughs are w1tnll 
+standard deviation or the mean? One standard deviation from the mean 1s 71/i t J 
+41"2 to 1011i. Again Interpreting 11i as the divider between troughs, we can Stt 
+troughs 5 through 10 fall wlthln one standard deVlatlon of the mean. We knOW that 
+standard deviation takes In about 2/3 of all occurrences, so we can conclude that ... 
+of every three balls we drop Into the maze, two should end up In troughs 5 thJ'OUfJ\ ~ 
+What Is left over, one out of every three balls, will end up In one of the remb 
+troughs, 0-4 and 11 • 15. Hence, the answer to our original questlon about the llkelito: 
+of getting a ball In a trough lower than 5 or hlgher than 10 Is about 1 chance In 3, 
+about33%. (The exact answer Is 100%-68.3%, or 31.7%.) This Is shown In Agure4{ 
+Let's uy another calculatlon, but this time we can think of the problem as a~ 
+Suppose someone offers us 30 to 1 odds that we can't drop a ball Into the maze mi 
+lt specifically In troughs 14 or 15. Is this bet worth making? One characterts t1c 
+standard deviations Is that they are addltlve. In our example, If one standard devta 
+ts 3, then two standard deviations are 6. Two standard deviations from the mem 
+therefore 7112 ± 6 = 1 ½ to 1311i. We can see In Agure 4·6 that troughs 14 and I 5 
+outside two standard deviations. Since the probablllty of getting a result within ~ 
+standard deviations Is approximately 19 out of 20, the probability of getting a 
+beyond two standard deviations Is 1 chance In 20. Therefore 30 to 1 odds may see 
+very favorable. Recall, however, that beyond two standard devtatlons also indud~ 
+troughs O and 1. Since nonnal distributions are symmetrical, the chances of getttng, 
+ball specifically In troughs 14 or 15 must be half of 1 chance In 20, or about 1 chm:? 
+In 40. At 30 to l odds the bet must be a bad one since the odds do not sufflcienti 
+compensate us for the risk Involved. 
+In Chapter 3 we said that one logical approach to option evaluation Is to assign, 
+probablllty to an Infinite number of possible price outcomes for an underlying contra<t 
+Then, If we multiply each possible price outcome by Its associated probablllty we a: 
+use the results to calculate an option's theoretical value. The problem is in deallng m 
+an Infinite number of price outcomes and probabllltles, since an infinite number ~ 
+anything ls not easy to work with. Fortunately, the charactertstlcs of normal dlstrtoo­
+tlons have been so closely studied that formulas have been developed which facilitate 
+~::mtlputatlon of both the probabllltles associated with every point along a nortnil u on curve, as well as the area under rl 
+that prtces of an underlytn lnstrum va ous portions of the curve. If we ass\JID! 
+sent a unique set of tools Jth which ent are nonnally distributed, these fonnulas repre­
+ls one of the reasons Black and Sch re can solve for an Option's theoretical value This 
+part of their model. 0 es adopted the normal dlstrtbutlon assumptl~n ts 
+
+--- PAGE BREAK ---
+
+ttlfl 59 
+~ 1 atandard devtatton ea.a% {;l/3) 
+11,11e&n 7. eo ~2 atandard devtaflon• ge_-4-,c. (1 /2tl) 
+suand•rd Deviatio n -3.00 ~3 etandard devtaflon• _ gg_r,f, (399/3'70} 
+9f5,C. 
+1◄ 68% I 
+f I I I I I I i ! l I I I • ! I ! I I I I I I I I I I 
+I I l I i 
+; I ! I 
+! j i I i I I I 
+\ I ! 
+i I i : ! I I I i ~ 
+l I I I i I i ! 
+i : ! 
+f i : I l 
+I I \ i 
+f I ! 
+i i 
+I I j I f i i \ 
+I I I I I i 
+i i 
+i i i 
+\ l 
+t I I 
+i i i I 
+\ I I 
+0 
+1 I +1 +2 
+-2 -1 standard standard 
+stanctard standard mean deviation c:teVlatiOOS 
+deviation 7.50 10.50 13.!50 
+deviations 
+1.50 4.50 
+
+--- PAGE BREAK ---
+
+60 
+UNDERLYING PRICE AS THE MEAN OF A DISTRIBI.JT1~ 
+Now that we have decided to describe prices In terms of a normal dlstribution, tm, 
+we feed this dlstributlon Into a theoretical pricing model? Since all normal dJs~ 
+can be described by a mean and the standard dev1at1on, in some way we must feed 
+two numbers Into our pricing model. 
+When we enter the present prtce of an underlying Instrument we are ac 
+entering the mean of a normal dlstrtbutlon cuive. An lmponanc assumptJon tn • 
+Black-Scholes Model ls that, in the long run, a trade in the underlying 1nscrurnent 
+Just break even. It wtll neither make money nor lose money. Given thJs assumptio n,. 
+mean of the normal dlstrtbutlon cuive assumed In the model must be the prtce at 
+a trade In the underlying instrument, either a purchase or a sale, would Just break ~ 
+What Is that price? The answer depends on the type of underlying Instrument. 
+Suppose a trader purchases a futures contract at 100 and holds the posJtion tor thrct 
+months. Where does the price of the futures contract have to be at the end of ~ 
+months for the trader to break even? Since futures contracts entaJI no carrying COSS, 
+nor do they pay dividends, the break even price three months from now fs exactly ttt 
+original trade price of 100. 
+Now suppose that a trader purchases a $100 stock and holds It for three moml:a. 
+Where does the stock price have to be at the end of the holding period for the trader 
+break even? Since the purchase of stock requJres Immediate payment, the break eves 
+price will have to Include the cost of carrying a $100 debit for three months. If Interei 
+rates are 8% annually the carrying cost on $100 for three months Js 3/J 2 x 8% x $100 
+= $2. Therefore, the stock price must be $102 at the end of three months for the trade 
+to break even. If the stock will pay a dividend of $I during the holding period, then the 
+stock price need only be $101 for the trade to break even. 
+Note that thls Js exactly how we calculated the forward prtce of a contract in 
+Chapter 3. And Indeed this Is exactly the type of calculation bullt Into the various forms 
+of the Black-Scholes ModeJ. When we enter an underlying price Into the Black-Scholes 
+model, based on the type of underlying Instrument, Interest rates, and dividends, the 
+model calculates the forward prtce of the underlying Instrument at expiration and makes 
+this price the mean of a nonnal distribution cUJve. 
+VOLATILITY AS A STANDARD DEVIATION 
+In addition to the mean, we also need a standard deviation to fully describe a nonnal 
+dlstrlbutlon cuive. This ls entered In the form of a volatlllty. With some slight modlflca­
+tlons, which we w1II discuss shortly, we can define the volatility number associated with 
+an underlying Instrument as a one standard deviation price change, In percent, at the 
+end of a one-year period. 
+For example, suppose that an underlying futures contract Is currently trading at I 00 
+and has a volatlllty of 20%. Since this represents a one standard deViatlon price change 
+one year from now we expect the same futures contract to be trading between 80 and 
+I 20 ( I 00 ± 20%) approximately 68% of the time, between 60 and 140 ( 100 ± (2 x 20%)) 
+
+--- PAGE BREAK ---
+
+VoWlllty 6/ 
+approximately 95% of the time, and between 40 and 160 (100 ± (3 x 20%)) approx1• 
+mately 99.7% of the tlme. 
+If the underlying contract ls a stock currently trading at S 100, then the 20% 
+volatility will have to be based on the forward prtce of the stock at the end of one year. 
+If interest rates are 8% and the stock pays no dividends, the one-year forward prtce wtII 
+be $108. Now a one standard devtatlon price change ls 20% x $108 = $21.60. So one 
+year from now we would expect the same stock to be trading between $86.40 and 
+$129.60 ($108 ± $21.60) approximately 68% of the time, between $64.80 and 
+$151 .30 ($108 ± (2 x $21.60)) approximately 95% of the time, and between $4310 
+and $172.90 ($108 ± (3 x $21.60)) approximately 99.7% of the time. 
+Suppose we come back at the end of one year and find our futures contract, which 
+we thought had a volatility of 20%, trading at 35. Does this mean our volatlllty of 20% 
+was wrong? A price change of more than three standard deviations may be unlikely, but 
+one shouldn't confuse unlikely and Impossible. Alpplng a perfectly balanced coin 15 
+times may result In 15 heads, even though the odds against lt are more than 32,000 to 
+1. If 20% was the right volatility, the odds of the futures prtce going from 100 to 35 one 
+year later Is more than 1,500 to 1. But one chance In 1,500 Is not Impossible, and 
+perhaps this was the one time In 1,500 when the price would Indeed end up at 35. Of 
+course, It is also possible that we had the wrong volatility. But we wouldn't know this 
+without looklng at price changes of the futures contract over many years so that we have 
+a representative prtce distribution. 
+LOGNORMAL DISTRIBUTIONS 
+Is it reasonable to assume that the prices of an underlying instrument are normally 
+distributed? Beyond the question of the exact distribution of prices In the real world, 
+the nonnal distribution assumption has one sertous flaw. A normal distribution curve Is 
+symmetrical. Under a nonnal dlstrlbutlon assumption, for every possible upward move 
+in the price of an underlying Instrument there must be the posslblllty of a downward 
+move of equal magnitude. If we allow for the posslbllity of a $50 instrument rtslng $75 
+to $125, we must also allow for the posslblllty of the Instrument dropping $7 5 to a price 
+of-$25. Since it is impossible for traditional stocks and commodities to take on negative 
+prices, the nonnal distribution assumption ls clearly flawed. What can we do about this? 
+Up to now we have defined volatility In terms of the percent changes in the price 
+of an underlying instrument. In this sense an Interest rate and volatility are similar in 
+that they both represent a rate of return. The primary difference between Interest and 
+volatility is that interest generally accrues at a positive rate, while volatility represents a 
+combination of positive and negative rates of return. If one Invests money at a fixed 
+interest rate, the value of the principal will always 'iJOW. But if one invests In an 
+underlying instrument with a volatility other than zero, the instrument may go either 
+up or down In price. Volatlllty, which Is a standard deviation, says nothing about the 
+direction of movement. 
+Since volatility represents a rate of return, an Important consideration ls the manner 
+In which the rate of return ts calculated. For example, suppose we were to Invest $1,000 
+
+--- PAGE BREAK ---
+
+A an ~nnu&l tnt r t tate of 12%. How much would we have at rhi, d r 
+nd on how the 12% Interest on our Investment is paid rrJ 
+Value after 
+of Payment One Year Tota1 Yfeld 
+12 one a y ar $ 1 , 120. 00 12 % 
+twtc a r ar $I, 123.60 l 2.36% 
+vel)' three months $1,125.51 12.55% 
+1 % eve!)' month $I, 126.83 12.68% 
+12%/52 eveiy week $1,127.34 J 2.73% 
+12%/365eveiyd ay $1,127.47 12.75% 
+l2% compounded continuously $1,127.50 12.75% 
+As interest ts paid more often, even though It ts paid at the same rate of 12% pe 
+ear the total yteld on the investment increases. The yield is greatest when interest is 
+~id' continuously. In this case it Is just as if interest were paid at every possible moment 
+in time. 
+AithOugh less common, we can do the same type of calculation using a negative 
+interest rate. f,or example, suppose we were to lose 12 percent annually on our $1,000 
+investment (interest rate = -12% ). How much would we have at the end of a year? The 
+answer depends on the frequency at which our losses accrue. 
+Value after 
+Rate of Loss One Year Total Yield 
+-12% once a year $880.00 -12% 
+--6% twice a year $883.60 -11.64% 
+-3% every three months $885.29 -11.47% 
+-1% every month $886.38 -11.36% 
+-12%/52 every week $886.80 -11.32% 
+-12%/365 everyday $886.90 -11.31% 
+-12% compounded continuously $886.92 -11.31% 
+In the case of a negative interest rate, as losses are compounded more frequently 
+even though at the same rate of-12% per year, the loss becomes smaller, and so does 
+the negative yield. 
+In the same way that interest can be compounded at different intervals, volatility 
+can also be compounded at different intervals. For purposes of theoretical pricing of 
+options, volatility is assumed to compound continuously, just as if the price changes in 
+the underlying Instrument, either up or down, were tak!ng place continuous ly but at an 
+annual rate corresponding to the volatility number associated with the underlying 
+Instrument. 
+What would happen If at every moment In time the price of an underlying could 
+go up or down a given percent, and that these up and down movements were normally 
+distributed? When prtce changes are assumed to be nonnally distributed, the continu-
+
+--- PAGE BREAK ---
+
+Volltutty 63 
+ous compounding of these price changes will cause the prices at maturity to be 
+/ognormal/y distributed. Such a distribution Is skewed toward the upside because 
+upside prices resulting from a positive rate of return wm be greater, In absolute terms, 
+man downside prices resulting from a negative rate of return (Agure 4 7). In our Interest 
+rate example, a continuously compounded rate of return of + 12% ytelds a profit of 
+$127 .50 after one year, while a contln uously compounded rate of return of -12 % yields 
+a loss of only $113.08. If the 12% were a volatlllty, then a one standard devtaUon 
+upward price change at the end of one year would be +$127.50, while a one standard 
+deviation downward price change would be -$113.08. Even though the rate of return 
+was a constant 12%, the continuous compoundlngof the 12% yielded different upward 
+and downward moves. 
+The Black-Scholes Model ls a continuous time model. It assumes that the volatlllty 
+of an underlying Instrument ls constant over the life of the optJon, but that this volatlllty 
+ls continuously compounded . These two assumptions mean that the possible prtces of 
+the underlying instrument at expiration of the option are lognonnally distributed. It also 
+explains why options with higher exercise prices carry more value than options with 
+lower exercise prices, where both exercise prices appear to be an identical amount away 
+from the price of the underlying instrument For example, suppose a certain underlying 
+contract ls trading at exactly 100. H there are no Interest considerations and we assume 
+Figure 4-7: Lognorrnal Distribution 
+o 12345 e 7 8 g 10 11 12 13 1' 15 
+
+--- PAGE BREAK ---
+
+Chlp(tr,( 
+A nom1~l d1Stt1button of po lbl prices, then the 110 call and the 90 put, both b~lr,1 1 our of.th mon y, ought to have Identical theoretical values. But under t; 
+lo n rmel ~ssumpuon tn the Black·Scholes Model, the 110 call will alway ha1/~ 
+reater valu than the QO put. Jn absolute terms, the lognormal dlstrlbuUon assump , , 
+8now for greater upside price movement than downside price movement. Con~ 
+qu ntly, the 1 1 o call will have a greater possibility of price appreciation than the rx, 
+put. I 
+Finally, the lognormal assumption built Into the Black-Scholes Model overcom~ 
+the logical problem we Initially posed. If we were to allow for the possibility of unnmtte 
+upside price movement of an underlying Instrument, a normal distribution assumptlo 1 
+would force us to allow for unlimited downside movement. This would requJre us r.o 
+accept the possibility of negative prices for the underlying Instrument, clearly no a 
+possibility for most optlonable Instruments. A lognormal distribution, however, doe; 
+allow for open ended upside prices (the logarithm of +oo ls +oo), while bOunding 
+downside prtces by zero (the logarithm of -oo Is zero). This Is a more reallstlc repre­
+sentation of how prtces are actually distributed In the real world. 
+A more complete discussion of logarithmic price changes and probabilitY calcula­
+tions can be found In Appendix B. 
+we can now summarize the most Important assumptions governing prtce move­
+ment in the Black·Scholes Model: 
+1. Changes in the price of an underlying Instrument are random and cannot be 
+artificially manipulated, nor is it possible to predict beforehand the direction 
+in which prices will move. 
+2. The percent changes in the price of an underlying instrument are normally 
+distributed. 
+3. Because the percent changes in the price of the underlying instrument are 
+assumed to be continuously compounded, the prices of the underlying instru­
+ment at expiration will be lognormally distributed. 
+4. The mean of the lognormal dlstrtbutlon will be located at the forward price of 
+the underlying contract. 
+The first of these assumptions may meet with resistance from some traders. 
+Technical analysts believe that by looking at past price activity it is possible to predict 
+the future direction of prices. One can chart support and resistance points, double tops 
+and bottoms, head and shoulders, and many similar formations which are believed to 
+predict future price trends. We leave debate on this question to others. The important 
+point here is that the Black-Scholes Model makes the assumption that price changes are 
+random and that their direction cannot be predicted. This does not mean that there is 
+no predictive requirement in using the Black-Scholes Model. However, price prediction 
+I . Of course, this Is only theory. There Is no law that says the price of the 90 put 1n the marketplace cannot 
+be P,eater than the price of the 110 call. 
+
+--- PAGE BREAK ---
+
+V IINlt 
+, 111 fo u on th magnltud of the pr1ce change , rather than on th dlr c 10n of 
+hanges. A we shall see later, there Is also good reason to question the third as ump on, 
+that prices are lognormally distributed at expiration. This may be a reasonable assump­
+tion for some markets, but a very poor assumption for other markets. Again, the 
+important point here is for the trader who uses a theoretical pricing model to understand 
+the assumptions on which the theoretical values are based. He can then make hJs-own 
+decision, based on his knowledge of a particular market, as to whether these assump­
+tions, and hence the theoretical values generated by the model, are llkely to be accurate. 
+DAILY AND WEEKLY STANDARD DEVIATIONS 
+As an annual standard deviation, we know what the volatlHty telJs us about the llkely 
+prtce movement of a contract over a one-year period. However, this ls a period of time 
+longer than the life of most listed options. We might want to know what a volatlllty tells 
+us about price changes over a shorter pertod of time, for example over a month, or a 
+week, or a day. 
+An important characteristic of volatility is that it ls proportional to the square root 
+of time. As a result of this, we can approximate a volatility over some period of time 
+shorter than a year by dividing the annual volatility by the square root of the number of 
+trading periods in a year. 
+Suppose we are interested in a daily volatility. While It would take a logarithmic 
+calculation to give us an exact daily volatility, if we Ignore the relatively minor effect of 
+continuous compounding over such a short period of time, lt ls possible to make an 
+estimate of dally volatility. First we must determine the number of daily trading periods 
+in a year. That ls, if we look at prices at the end of every day, how many times a year 
+can prices change? If we restrtct ourselves to exchange traded options, even though 
+there are 365 days in a year, prices cannot really change on weekends or holidays. This 
+leaves us with about 256 trading days durtng the year.2 Since the square root of 256 is 
+16, to approximate a daily volatility we can divide the annual volatility by 16. 
+Going back to our futures contract trading at 100 with a volatility of 20%, what ls 
+a one standard deviation price change over a day's time? 20%/16 = 11/4%, so a one 
+standard deviation daily price change is l 1/4% x 100 = 1.25. We expect to see a price 
+change of 1.25 or less approximately two trading days out of every three, and a price 
+change of 2.50 or less approximately 19 trading days out of every 20. Only one day in 
+20 would we expect to see a price change of more than 2.50. 
+We can do the same type of calculation for a weekly standard deviation. Now we 
+must ask how many times per year prices can change If we look at prices once a week. 
+Unlike trading days, we don't have "holiday" weeks, so we must make our calculations 
+using all 52 trading weeks in a year. Dividing our annual volatlUty of 20% by the square 
+root of 52, or approximately 7.2, we get 20%/7.2 = 2314. For our futures contract 
+2. DependJng on holidays, the number of trading days Js usually somewhere between 250 and 255. We 
+use 256 as a ~able approXimatlon since Its square root ts a whole number and therefore eEer to 
+workwtth. 
+
+--- PAGE BREAK ---
+
+66 
+trading at 100, we would expect to see a price change of 2.75 or Jess two weeu O!. ,, 
+every three, a pr1ce change of 5.50 or less I 9 weeks out of every 20, and only one ;,,~ 
+In twenty would we expect to see a price change of more than 5.50. 
+Since we assume that the price of a stock wflJ appreciate by the carrytng C(W-.; 
+may seem that we cannot use the same method (divide by 16 for daJJy VOlatJUcy, df'I~ 
+by 7.2 forweeklyvolatlllty) to approxJmate expected movement In an underlyf:ng sr.ocl 
+However, over a short period of time, the carrying cost component, llke the effect 'i 
+continuous compounding of volat11Jty, wm be relatively small. Therefore we can ~ 
+I the same method as a reasonable estimate ot dally and weekly volaWJty. r-or ~ 
+suppose a stock Is trading at $45 per share and has an annual volatility of 28 % .. V/tm i 
+an approximate one standard deviation price change over a day's time and over a week's 
+time? 
+For a dally volatility we calculate: 
+28%/16 x $45 = 1.75% x $45 = S.79 
+For a weekly volatility we calculate: 
+28%/7.2 X $45 = 3.89% X $45 = $1.75 
+We expect to see a price change of approximately 314 point or less two days out Of 
+every three, 1 1/2 points or less 19 days out of every 20, and only one day In 20 wou~ 
+we expect to see a price change ot more than I 1/2 points. On a weekly basis, we woufd 
+expect to see a price change of 13/4 points or less two weeks out of every three, a pw 
+change of 3 ½ points or less 19 weeks out ot every 20, and only one week 1n 20 would 
+we expect to see a price change of more than 3 ½ points. 
+We have used the phrase 11prtce change" In conjunction wtth our volarfilty 
+estimates. Exactly what do we mean by this? Do we mean the high/low durfng some 
+pertod? Do we mean open to close price changes? Or ls there another Interpretatio n? 
+Whlle various methods have been suggested to estimate volatlllty, 3 the tradlttoncl 
+method has been to calculate volatility based on settlement-to-settlement pnce changes. 
+Using this approach, when we say a one standard deviation dally prtce change ls ¥.­
+point, we mean a 3/4 point price change from one day's settlement price to the next 
+day's settlement prtce. The high/low or open/close price change may have been either 
+more or less than 3/4 point, but It ls the settlement-to-settlement price change on whlch 
+we focus. 
+3. See: 
+Parkinson, Michael, "The Extreme Value Method of Estlmattng the Vadance of the Rate of Return,• 
+Jourrul of IJJJstntss, 1980, vol 53, no. t, pp. 6 t ~4. 
+Garman, Mark 8. and Klass, Michael J., "Oo the Estimation of Security Price VoJaWJUes from HJstodcal 
+Data,• Joum,/ of Business, 1980, vol 53, no. 1, pp. 67-78. 
+Beckers, Stan, "Variance of Security Price Returns Based on High, low, and Qostng Prices," Jounyf of 
+Business, 1983, vol 56, no. 1, pp.97-112. 
+
+--- PAGE BREAK ---
+
+. 
+l J VoWtllty 61 
+VOLATWTY AND OBSERVED PRICE CHANGES 
+Why ls It Important for a trader to be able to estimate dally or weekly prtce changes from 
+an annual volatility? Volatility ls the one Input Into a theoreUcal pricing model which 
+cannot be directly observed. Yet many option strategies, If they are to be successful, 
+require an accurate assessment of volaUllty. Therefore, an option trader needs some 
+method or detennlnlng whether his expectations about volatility are Indeed being 
+reallzed ln the marketplace. Unllke dlrecUonal strategies, whose success or failure can 
+be Immediately observed from posted prices, there ls no posUng or volaUIIUes. A trader 
+must determine for himself whether he Is using a reasonable volatlllty Input Into the 
+theoretical pricing model. 
+F-or example, suppose a certain underlying contract ls trading at 40 and a trader 1s 
+using a 30% volatlllty for theoretical evaluation. A one standard deviation dally prtce 
+change ls approximately 30%/16 x 40 = .75. Over five days of trading a trader notes 
+the following five settlement-to-settlement price changes: 
++.43, -.06, -.61, +.50, -.28 
+Are these five price changes consistent with a 30% volaUUty? 
+The trader expects to see a price change of more than .75 (one standard devlatlon) 
+about one day in three, or between one and two times over a five-day period. Yet durtng 
+this five-day period he did not see a price change of this magnltude even once. What 
+conduslons can be drawn from thls?4 One thing ts certain: these five price changes are 
+not consistent with 30% volatlUty. The trader might explain the discrepancy In one of 
+two ways. On the one hand, perhaps this was expected to be an abnormally quiet week 
+(perhaps It was a hollday week); and next week when trading returns to normal the 
+market wlll go right back to making moves which are more consistent with a 30% 
+volatlllty. If the trader comes to this conclusion, perhaps he ought to continue to use a 
+30% volatility for his calculations. On the other hand, perhaps there ts no apparent 
+reason for the market belng less volatile than predicted by a 30% volatility. He may 
+simply be using the wrong volatility. If the trader comes to this conclusion, perhaps he 
+ought to consider using a new volatility Input which ts more consistent with the 
+observed price changes. If he continues to use a 30% volatlllty in the face of prtce 
+changes which are slgnlftcantly less than predicted by that number, he will be assigning 
+the wrong probabllitles to the possible prtce outcomes for the underlying contract 
+Consequently, he wlll generate incorrect theoretical values, defeating the purpose of 
+using a theoretical pricing model in the first place. 
+Exactly what volatlllty ts associated with the five price changes tn the foregolng 
+example? Without some rather involved calculations It ts difficult to say. (The answer 
+is actually 18.8%.) However, tr a trader has some ldea beforehand of what prtce chang~ 
+he expects, he can eastly see that the changes over the five-day period are not conslSten 
+With a 30% volatility. 
+4. to draw a meaningful conclusion about 
+Rve days Js admJttedly a very small sample from whl:d 
+voJat11Jty. The method and reasonJn& however, are still • 
+
+--- PAGE BREAK ---
+
+Chapttt4 
+Let's look at another example. Now the underlying contract Is trading at 3321.1, 
+and a trader notes the following five dally price changes: 
+-5, +21/2, +l, -7·1/4, -41/4 
+Are. these price changes consistent with an 18% volatility? At 18% a one standard 
+deviation price change Is approximately 18%/16 x 3321/2 = 33/4. Over five days we 
+expect to see a prtce change of more than 33/4 between one and two times. Yet here we 
+have a price change of more than 3¾ three days out of five. And once the prtce change 
+was 73;4 (more than two standard deviations) which we expect to see only one day in 
+twenty. Again, unless the trader believes that the five price changes occurred during an 
+extraordinary week, then perhaps he ought to consider changing his volatility figure so 
+that it Is more consistent with the observed price changes. 
+A NOTE ON INTEREST RATE PRODUCTS 
+Suppose Eurodollars are at 93.00 and we assume a volatility of 16 percent. We can apply 
+the method previously described to calculate an approximate one standard deviation 
+daily price change: 16%/16 x 93.00 = . 93. As any trader familiar with the Eurodollar 
+market will attest, a dally price change of . 93 is wlldly unlikely. How can we account 
+for this seemingly lllog!cal answer? One might conclude that we simply have the wrong 
+volatility, and some lower number Is more accurate. In fact, the 16% volatility is not at 
+all unusual for Eurodollars, so the explanation must lie elsewhere. 
+Eurodollars, like many other Interest rate contracts (U.S. Treasury Bills, Short 
+Sterling, Euromarks, Euroyen) are indexed from 100. This means that the interest rate 
+associated with a Eurodollar contract Is 100 less the value of the contract It also means 
+that, barring the unlikely advent of negative Interest rates, the contract cannot take on 
+a value greater than 100. In this respect, 100 acts as a limiting value for Eurodollars in 
+the same way that zero acts as a limiting value for traditional underlying contracts such 
+as stocks and commodities. We can integrate this characteristic into our calculations by 
+assuming that the value of a Eurodollar contract Is actually 100 less its listed price. If 
+the listed price Is 93.00, for theoretical evaluation purposes we must use a value of 100 
+-93.00, or 7.00, in our pricing model. If we define the value of the contract as 7 .00, a 
+one standard deviation price change Is 16%/16 x 7.00 = .07. This is certainly a more 
+realistic result than . 93. 
+To be consistent, If we Index Eurodollar prices from 100 we must also index 
+exercise prices from 100. Therefore, a 93.50 exercise price In our pricing model is really 
+a 6.50 (100-93.50) exercise price. This also requires us to reverse the type of option, 
+changing calls to puts and puts to calls. To see why, consider a 93.50 call. For this call 
+to go into•the-money, the underlying contract must rise above 93.50. But this requires 
+that interest rates fall below 6.50 percent. Therefore, a 93.50 call in listed terms is the 
+same as a 6.50 put in interest rate terms. A model which Is correctly set up to evaluate 
+options on Eurodollar or other types of Indexed Interest rate contracts automatically 
+makes this transformation. The price of the underlying contract and the exercise price 
+
+--- PAGE BREAK ---
+
+Volatility 69 
+m subtracted. from 100, whJle listed calls are treated as puts and listed puts are treated 
+as calls .. 
+Note that this type of transformation ts not required for most bonds and notes. 
+Depending on the coupon rate, the prices of these products may range freely without 
+upper Umlt, often exceeding l 00. They are therefore most often evaluated using a 
+traditional pricing model, although Interest rate products present other problems that 
+may require specialized pricing models. 
+It ls possible to take an Instrument such as a bond and calculate the current yield 
+baSed on Its price In the marketplace . If we were to take a series of prtces and from these 
+calculate a series of yields, we could also calculate the yteld volatility, I.e., the volatility 
+baSed on the change In yield. We might then use this number to evaluate the theoretical 
+value of an option on the bond, although to be consistent we would also have to specify 
+the exercise price in terms of yield. Because It Is possible to calculate the volatility of an 
+Interest rate product using these two different methods, interest rate traders sometlmes 
+refer to yield volatility (the volatility calculated from the current yteld on the Instrument) 
+versus price volatility (the volatility calculated from the prtce of the Instrument In the 
+marketplace). 
+TYPES OF VOLATWTIES 
+When traders discuss volatility, even experienced traders may find that they are not 
+always talking about the same thing. When a trader makes the comment that the 
+volatility of XYZ Is 25%, this statement may take on a vartety of meantn~. We can avoid 
+confusion 1n subsequent discussions if we first define the various ways In which traders 
+Interpret volatility. 
+Future Volatillty 
+Future volatility ls what every trader would like to know, the volatility that best 
+describes the future distribution of prices for an underlying contract In theory It ls this 
+number to which we are referring when we speak of the volatility Input Into a 
+theoretical pricing model. If a trader knows the future volatility, he knows the right 
+'odds." When he feeds this number Into a theoretical pricing model, he can generate 
+accurate theoretical values because he has the right probablllties. Uke the casino, he 
+may occasionally lose because of short-term bad luck. But In the long run, with the odds 
+on his side, a trader can be fairly certain of making a profit 
+Of course, traders rarely talk about the future volatility since lt ls Impossible to 
+know what the future holds. 
+Historical Volatility 
+d I t ds to use a theoretical pricing Even though one cannot know the future lf a tra er n en tl ' ab t th future volatlllty. In op on 
+model he must try to make an lntelllgent guess ou ls h~stortcal data. What typically 
+evaluation, as ln other dlsclpllnes, a good starting poln~ 1 the past? If, over the past ten 
+has been the volatlllty of thls contract over some pert~ n 1 0% nor greater than 30%, a 
+years the volatlllty of a contract has never been less :i makes sense. This does not 
+guess for the future volatlllty of either 5% or 40% ha Y 
+
+--- PAGE BREAK ---
+
+(J 
+tn an that lther or these extremes ts Impossible (In option trading the JmposslbJe a1W31,1 
+m to happen sooner or later), but based on past performance, and Jn the absence of 
+any extr&ordlnary circumstances, a guess Within the historical JlmJts of 10% and 30% is 
+probably more realistic than a guess outside these limits. Of course, 10% to 30% Is stfn 
+a huge range, but at least the historical data offers a starting point. Additional lnfonna­
+Uon may further narrow the estimate. 
+Note that there are a variety of ways to calculate hlstorlcal volatlllty, but most 
+methods depend on choosing two parameters, the hlstortcal period over whJch the­
+volatility ls to be calculated, and the time interval between successive price changes. 
+The historical period may be ten days, six months, five years, or any period the trader 
+chooses. Longer periods tend to yield an average or characteristic vo1atllfty, whJ1e 
+shorter periods may reveal unusual extremes in volatllJty. To become fu11y rammar with 
+the volatlllty characteristics of a contract, a trader may have to examine a wtde variety 
+of historical time periods. 
+Next, the trader must decide what intervals to use between price changes. Should 
+he use dally price changes? Weekly changes? Monthly changes? Or perhaps he ought 
+to consider some unusual interval, perhaps every other day, or every week and a half. 
+Surprisingly, the Interval which is chosen does not seem to greatly affect the result. 
+Although a contract may make large daily moves, yet flnlsh a week unchanged, thlS IS 
+by far the exception. A contract which ls volatile from day to day Is likely to be equaDy 
+volatile from week to week, or month to month. This ls typified by the graphs in Agure 
+4-8. The data points on the three graphs represent the volatility of the S&P 500 index 
+over successive 50-day periods. For the solid line dally price changes were used, for the 
+dotted line price changes every two days were used, and for the broken line price 
+changes every 5 days were used. Even though the graphs occasionally diverge, for the 
+most part they exhibit the same general volatlllty levels and trends. 
+As a general rule, services which supply historical volatility data base their calcu1a­
+tlons on daily settlement-to-settlement price changes. If this is not the case, an explana­
+tion of how the volatility was calculated Will usually accompany the data. If, for 
+example, a service gave the volatllity of a contract for the month of August as 21.6%, it 
+can be assumed that the calculations were made using the daily settlement-to-settlement 
+price changes for all the business days during that month. 
+Historical and future volatility are sometimes referred to as reallzedvolatillty. 
+Forecast Volatility 
+Just as there are services which will attempt to forecast future directional moves In the 
+price of a contract, there are also services which will attempt to forecast the future 
+volatility of a contract Forecasts may be for any period, but most commonly cover 
+periods identical to the remaining life of options on the underlying contract. For an 
+underlying contract with three months between expirations, a service might forecast 
+volatllltles for the next three, slx, and nine months. For an underlying wtth monthly 
+expirations, a service might forecast volatilities for the next one, two, and three months. 
+Due to the relatively recent introduction of options, volatlllty forecasting is still In its 
+infancy, and must be considered an inexact science at best Nonetheless, a trader's guess 
+
+--- PAGE BREAK ---
+
+Agure 4-8: S&P 500 Index So-Day Historical Volatility 
+24-r-----------------------------------, 
+22 
+20 
+-~ 0 
+-18 ~ 
+ls i 161 f\ 
+r, ,i'-
+I ... I 
+I 
+( GS :, 14 C 
+C c( 
+12 
+10 ,...., r-\ 
+I I 
+/ l 
+I \ 
+\ 
+I based on price changes: 
+every day 
+every 2nd day ----­
+every 5th day ------- -. 
+~·· 
+r • I 
+\ , ......... "'' \,,, 
+t I 
+I 
+84------.--------.-----~---,-------r- ---------~----1 
+Jan-90 May-90 Oct-90 Mar-91 Aug-91 Jan-92 ~ £ s 
+~ 
+Mar-90 Aug-90 Jan-91 May..Q1 Oct-91 "" -, 
+
+--- PAGE BREAK ---
+
+~bout the future volatility of a contract might very well take Jnto conslderat1011 r 
+volatility foreca t to which he has access. 
+Implied Volatility 
+enerally speakJng, future, historical, and forecast volatlllty are associated with a 1 
+underlying contract. We can talk about the future volatility of the S&P 500 Jndex, or the 
+historical volatility of U.S. Treasury Bonds, or a forecast volatlllty for IBM stock. In eacn 
+case we are referring to the volatlllty of the underlyJng contract. There Js, however, a 
+different Interpretation of volatility which Is associated with an option rather than w1th 
+the underlying contract. 
+Suppose a certain futures contract Is trading at 98.50 with Interest rates at 8%. 
+Suppose also that a 105 call with three months to expiration Is avaUable on tltls contract, 
+and that our best guess about the volatility over the next three months ls 16%. If we 
+want to know the theoretical value of the 105 call we might feed all these inputs into 
+a theoretical pricing model. Using the Black-Scholes Model, we find that the option has 
+a theoretical value of .96. Having done this we might compare the option's theoretical 
+value to its price in the marketplace. To our surprise, we find that the option is trading 
+for t .34. How can we account for the fact that we think the option is worth . 96, while 
+the marketplace seems to believe It Is worth 1.34? 
+One way to answer the question ls to assume that everyone in the marketplace is 
+using the same theoretical pricing model that we are, in this case the Black-Scholes 
+Model. If we make this assumption, then the discrepancy between our value of . 96 and 
+the marketplace's value of 1.34 must be due to a difference of opinion concerning one 
+or more of the Inputs Into the model. We can therefore start going down the list of tnputs 
+and try to identify the culprits. 
+We know that it can't be either the amount of time to expiration or the exerdSe 
+price, since these inputs are fixed in the option contract. What about the underlying 
+price of 98.50? Perhaps we think the price of the underlying is at 98.50, but it is reallY 
+trading at some higher price, say 99.00. Indeed, In such circumstances it ls always wiSe 
+to double check the inputs. But suppose we stlll find that the underlying ts at 98.50. 
+Even given that there ls a spread between the bid and ask price, if the market is 
+reasonably liquid It ls unlikely that the spread would be wide enough to cause a 
+discrepancy of .38 In the value of the option. Perhaps our problem Is the interest rate of 
+8%. But, as we noted in the last chapter, the Interest rate component ts usually the least 
+important of the Inputs Into a theoretical prlclng model. And In the case of futureS 
+options, the interest rate component ls often trivial. This leaves us with only one likely 
+culprit, and that ls volatility. In some sense, the marketplace must be using a volatility 
+other than 16% to evaluate the 1 OS call. 
+~hat volatility Is the marketplace using? To find out, we can ask the following 
+quesuon: If we hold all other Inputs constant (time to expiration, exercise price, 
+underlying price, Interest rates), what volatlllty must we feed Into our theoretical pricing 
+model to yield a theoretical value Identical to the price of the option In the marketplace? 
+In our example, we want to know what volatlllty will yield a value of 1.34 for the t 05 
+call. Clearly the volatility has to be higher than 16%, so we might sit down With a 
+
+--- PAGE BREAK ---
+
+VoWlllty 73 
+computer programmed with the Black-Scholes Model and start to raise the volatlllty. lf 
+we do, we wJII flnd that at a volatlllty of 18.5% the 105 call has a theoretical value of 
+1.34. We refer to this volatility as the Implied volatility or the 105 call. It ls the volatlllty 
+we must feed Into our theoretlcal prtclng model to yield a theoretical value Identical to 
+the price of the option ln the marketplace. We can also thJnk or It as the volatility being 
+tmplled to the underlying contract through the pricing of the option In the marketplace. 
+When we solve for the lmplled volatlllty of an optlon we are assuming that the 
+theoretical value (the option's price) ls known, but that the volatility ls unknown. In 
+effect, we are running the theoretical pricing model backwards to solve for this 
+unknown, as shown ln Figure 4-9. In fact, this ls easier said than done since most 
+theoretical prtclng models cannot be reversed. However, a number of computer 
+programs have been written which can quickly solve for the Implied volatility when all 
+other Inputs are known. 
+Note that the Implied volatility depends on the theoretical pricing model being 
+used. For some options, a dlff erent model can yield a significantly different Implied 
+volatility. The accuracy of an lmplled volatlllty also depends on the accuracy of Inputs 
+Into the model. This not only Includes the price of the option, but the other Inputs as 
+well. In particular, problems can occur when an option has not traded for some time, 
+but market conditions have changed significantly. Suppose In our example the price of 
+t .34 for the 105 call reflected the last trade, but that trade took place two hours ago 
+when the underlying futures contract was actually at 99.25. If the price of the 
+underlying contract ls 99 .25, the lmplled volatility of the option at a prtce of 1.34 Is 
+actually 17 .3%. This ls a significant difference, and underscores the importance of 
+accurate and timely Inputs when calculating Implied volatllltles. 
+Services which supply theoretical analysis of options usually Include lmplled 
+volatilities. The Implied volatilities may be for each option on an underlying contract, 
+or there may be one Implied volatility which Is representative of all options on the same 
+Figure 4-9 
+Using the Model to Solve for a Theoretical Value 
+Unknown• 
+Known• 
+Exercise Price (105) 
+Time to Expiration (3 months) 
+Under1ying Futures Price (98.50) 
+Interest Rates (8%) Theoretical Value 
+(?7 = .96) 
+Volatility (16%) 
+U I th M_ ...... , to Solve for an lmplled Volatility • ng • vuw Unknown• 
+Known• 
+Exercise Price (105) 
+Time to ExplraUon (3 months) 
+Under1ying Futures Price (98.50) 
+Interest Rates (8%) 
+OpUon Price (1.34) Implied Volatility 
+(?? = 18.5%) 
+-
+
+--- PAGE BREAK ---
+
+' 
+underlying. ln Ille latter case, the figure will usually represent an average of all ii 
+Individual Implied volatilities. The single Implied volatility ls weighted according tt., 
+me crltena, such as volume of opUons traded, open Interest, or, as Js most common 
+b a tgntng the greatest weight to the at-the-money options. 
+The Implied volatility In the marketplace Is constantly changing because optl , 
+prices, as well as other market conditions, are constantly changing. It ls as ff the 
+marketplace were continuously polling all participants to come up with a consensu 
+volatility for the underlying contract. This Is not a poll In the true sense, since all trader~ 
+do not huddle together and eventually vote on the correct volatility. However, as bJd1 
+and offers are made, the trade price of an option wlll represent the equl11brium between 
+supply and demand. Thls equilibrium can be translated Into an Implied volatility. 
+Even though the term premium really refers to an option's price, it ls common 
+among traders to refer to the Jmplled volatility as the premium or premium level If the 
+cmrent implied volatility ls high by historical standards, or high relative to the recent 
+historical volatility of the underlying contract, a trader might say that premium levels 
+are high; if Implied volatility ls unusually low, he might say that premium levels are low. 
+Assuming a trader had a reliable theoretical prtclng model, If he could look into a 
+crystal ball and detennlne the future volatility of an underlying contract he would be 
+able to accurately evaluate options on that contract. He might then look at the difference 
+between each option's theoretical value and its price in the marketplace, selling any 
+options which were overpriced relative to the theoretical value, and buying any options 
+which were underpriced. If given the choice between sellfng one of two overpriced 
+options, he might simply sell the one which was most overpriced in total dollars. 
+However, a trader who has access to implied volatilities might use a different yardstick 
+for comparison. He might compare the Implied volatilltyofan option to either a volatility 
+forecast, or to the implied volatility of other options on the same underlying contract. 
+Going back to our example of the 105 call, we might say that with a theoretical value 
+of. 96 and a prtce of 1.34, the 105 call is .38 overpriced. But In volatility terms it is 2.5% 
+overpriced since Its theoretical value ls based on a volatility of 16% (the trader's volatility 
+estimate) while its price is based on a volatillty of 18.5% (the implied volatility}. Due to 
+the unusual characteristics of options, It is often more useful for the serious trader to 
+consider an option's prtce in terms of Implied volatility rather than in terms of its total 
+dollar price. 
+For example, suppose a Treasury Bond 98 call ls trading for 3-32 ($3,500) with a 
+corresponding Implied volatility of 10.5%. Suppose also that a 102 call wlth the same 
+expiration date is trading for 1-16 ($1,250) with an implied volatility of 11.5%. In total 
+dollar terms the 102 call is $2,250 cheaper than the 98 call. Yet an experienced trader 
+will probably conclude that in theoretical terms the 98 call Is actually less expensive 
+than the 102 call because the implied volatility of the 98 call Is a full percentage point 
+less than the implied volatility of the 102 call. Does thJs mean that one ought to buy the 
+98 call and sell the 102 call? Not necessarily. If the future volatllity of the Treasury 
+Bonds turns out to be 8%, then both options are overpriced; whJle if volatility turns out 
+to be 14%, both options are underprtced. Moreover, the leverage values of the options 
+may not be the same so that their sensitivity to changes in market conditions may, under 
+
+--- PAGE BREAK ---
+
+75 
+some circumstances, make several 102 calls a more desirable purchase than one 98 call. 
+If we Ignore these considerations, tn relative terms the 98 call ls a better value because 
+its Implied volatlllty ts lower. 
+Whlle option traders may at times refer to any of the four types of volatllltles, two 
+of these stand out In Importance, the future volatlllty and the lmplled volatility. The 
+future volatlllty of an underlying contract determines the value of options on that 
+contract The Implied volatUlty Is a reflection of each option's price. These two numbers, 
+value and price, are what all traders, not just option traders, are concerned with. u a 
+contract has a high value and a low price, then a trader Will want to be a buyer. If a 
+contract has a low value and a high price, then a trader wlll want to be a seller. For an 
+option trader this usually means comparing the future volatlllty wtth the tmplled 
+volatillty. If implied volatility ls low with respect to the expected future volatility, a 
+trader will prefer to buy options; If Implied volatlllty ls high, a trader will prefer to sell 
+options. Of course, future volatility ls an unknown, so we tend to look at the historical 
+and forecast volatllltles to help us make an lntelllgent guess about the future. But In the 
+final analysts, it ls the future volatility which determines an option's value. 
+To help the new trader understand the various types of volatlllcy, consider the 
+following analogy to weather forecasting. Suppose a trader llvlng in Chicago gets up on 
+a July morning and must decide what clothes to wear that day. Do you think he wm 
+consider putting on a parka? This ts not a logical choice because he knows that 
+hlstorlca//y It ls not sufficiently cold In Chicago In July to warrant weartng a winter coat 
+Next, he might tum on the radio or television to listen to the weather forecast The 
+forecaster Is predicting dear skies with temperatures around 90° (32°C). Based on this 
+lnformatlon, our trader has reached a decision: he wm wear a short sleeve shirt with no 
+sweater or jacket, and he certainly won't need an umbrella. However, just to be sure, 
+he decides to take a look out the wtndow to see what the people outslde are wearing. 
+To his surprtse, everyone Is wearing a coat and canylng an umbrella. The people outside, 
+through their clothing, are tmp(y[ngcompletely different weather. What clothes should 
+the trader then wear? He must make some decision, but whom should he belleve, the 
+weather forecaster or the people ln the street? There can be no certain answer because 
+the trader will not know the future weather until the end of the day. 
+Much depends on the trader's knowledge of local conditions. Perhaps the trader 
+lives in an area far removed from where the weather forecaster ls located. Then he must 
+give added weight to local conditions. On the other hand, perhaps the peopl~ in the 
+street all listened to a weather forecaster who has a history of playing practical Jokes. 
+The decision on what clothes to wear just Uke every trading decision, depends on 
+a great many factors Not only must the1 
+decision be made on the basis of the beSt 
+available information· but the decision must also be made with consideration for th~ 
+posslblllty of error What are the benefits of being right? What are the consequences 0 
+being wrong? If ~ trader falls to take an umbrella and It rains, that may be 0~ 1!:~ 
+consequence if the bus picks him up right outside his resld~cs!:!1d;J;~~~ ~e ~In, 
+outside hls place of work. On the other hand, If he must: The choices are never easy, 
+he mJght catch the flu and be away from work fo~;~ out best In the long run. 
+and one can only hope to make the decision that 
+
+--- PAGE BREAK ---
+
+76 
+Seasonal Volatility 
+There Is one other type of volatility with which a commodity trader may t13ve to dtt 
+Certaln agricultural commodities, such as com, soybeans, and wheat, are very se~ 
+to volatility factors arising from severe seasonal weather conditions. Such condJ~ 
+occur especially In the summer months when drought can destroy major portions ot, 
+crop and cause prtces to fluctuate wildly. For this reason, grains show a slgni/ja:i 
+Increase In volatility durtng the months of June, July, and August Conversely, theysoo-. 
+a significant decrease during the early spring months, before American planting ~ 
+begun but after the South Amertcan crop has been harvested. Given these factors, or...t 
+must automatically assign a higher volatility to an option contract which eneoo, 
+through the summer months. If, In February, a trader has assigned a voladllty of J 8% 
+a May soybean contract, he wlll certainly choose some higher volatility, perhaps 2~, 
+for a November contract He knows that the November contract Includes the summa 
+months, whlle the May contract does not The effect of seasonal volatility on soybear4 
+Is shown In Figure 4· 10. 
+A trader who Is new to options might Initially question whether volatility Is really 
+that Important He has probably been pursuing directional strate~es where volatllitJ 
+was not a consideration. It Is also possible to pursue a variety of directional strate~es 
+the option market. But If a trader has a thorough understanding of voladllty, he haS an 
+additional variable with which to work. He can, In effect, approach the market fro 
+two directions Instead of one. Many traders find It easier to work exclusively wl 
+Figure 4-10: Monthly Soybean Volatility (1980-1992) 
+60 
+so 
+10 
+o,~~~~T -:!_--:,---,--,,---~--~-......: Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec 
+-a-high -l!E-mean * I Courtesy of the Chicago Board of Trade. ow 
+
+--- PAGE BREAK ---
+
+Volitlltty 77 
+volatlllty, rather than try to guess market dlrectlon. Moreover, volaUUty strategies can 
+be extremely profitable and, when chosen Intelligently, can even reduce a trader's risk 
+exposure. These two variables, market direction and volatlllty, enable an opUon trader 
+to pursue many strategies not available to the pure stock or futures trader. 
+Changing our assumptions about future volatlllty can have a dramatic effect on the 
+value of optlons. To see this, look at the prices, theoretlcal values, and Implied volatllltles 
+ror ten-week gold options In Agure 4-11. Note the change In theoretlcal values as 
+volatility is Increased from 11 % to 14% to 17%. The 360 call and put, which are 
+essentially at-the-money, change by approximately 1.85 (S 185) for each three-percent· 
+age-point Increase In volatlllty. While out·of·the·money opUons do not show as great a 
+dollar change In value, In percent terms their sens1Uv1ty to a change In volatlllty ls even 
+greater. As volatility Increases from 11 % to 14%, the 390 call and 330 put more than 
+double In value, and double again as volatlllty Increases from 14% to 17%. A three-per­
+centage-point change In volatlllty over ten weeks Is not at all uncommon. Indeed, the 
+volaUllty of gold can show swln~ of six or seven percentage points In a relatively short 
+period of time. This Is evident from the historical volatility of gold shown In Figure 4-12. 
+Given its importance, it Is not surprtslng that the serious option trader spends a 
+considerable amount of time thinking about volaUllty. Using hls knowledge or hJstortcal, 
+forecast, lmplled, and, in the case of agricultural commodities, seasonal volatility, he 
+Figure 4-11 
+3 May 1991 
+August Gold Futures at 358.30 
+Time to expiration= 10 weeks 
+Interest rate =-5.50% 
+Extrclae Settltmtn t Implied !beot!Ycal ~!fue I! . 1 1 
+Prtce Prfce Volatlllty Vol.= 11% Vol.= 14% Vol.= 17% 
+Calls 29.69 15.36 28.27 28.84 330 29.20 
+20.40 21.73 340 20.60 14.48 19.26 
+13.28 15.01 350 13.20 13.86 11.61 
+7.87 9.73 
+360 7.80 13.89 6.02 
+4.20 5.88 
+370 4.20 14.00 2.62 
+2.01 3.32 
+380 2.40 14.93 .94 
+.86 1.75 
+390 1.40 15.93 .28 
+Puts .87 1.72 
+330 1.20 15.28 .29 3.64 2.31 
+340 2.60 14.69 1.17 6.80 5.08 
+350 5.10 14.04 3.41 
+9.55 11.41 
+360 9.50 13.92 7.70 15.77 17.45 
+370 15.70 13.88 14.18 23,47 24,78 
+23.70 14.57 22,40 32.20 33,08 380 
+15.13 31.62 - 390 32.50 
+
+--- PAGE BREAK ---
+
+Figure 4-12: 10-Week Gold Volatility 
+28 
+26 
+24 
+22 --ae. -~ 20 
+ii 
+0 > 18 'O 
+-~ iij 16 ::::, 
+C 
+C < 
+14 
+12 
+10 
+8 I , , 
+J 87 I I an- Jul.87 S:,:i,h._AA A .. -ftft .. -- _ JuL .... Feb-88 Aug-88 Mar-89 Sep-89 ~ 
+Apr-90 Nov-90 Ma~1 l...J 
+
+--- PAGE BREAK ---
+
+must uy to make an Intelligent decision about future volatlllty. From this, he wUl k>ok 
+for option strategies which will be profitable when he ls right, but which wtll rot result 
+\n a disastrous loss when he ls wrong. Because of the dlfflculty ln predlaing wlatlllty, 
+a trader must always look for strategies which wUl leave the greatest margin for enor. 
+No trader will survive very long pursuing strategies based on a future wladllty esttmate 
+of 15% lf such a strategy results ln a loss when volatility actually turm out to be 161. 
+G\ven the shifts that occur ln volatility, a one-percentage-point margin for error Is oo 
+margin for error at all. 
+We have not yet concluded our dlscusslon of volatlllty. But before contlnuln& lt 
+wm be useful to look at option characterlstlcs, trading strategies, and rtsk constderatlons . 
+We w\\l then be ln a better posltlon to examine volatlllty ln greater detail. 

@@ -1,0 +1,721 @@
+Introduction to 
+Theoretical Pricing Models 
+In the last chapter we looked at some of the simple option strategies a trader might 
+tnltiate given an opinion on an underlying contract's likely price movement Whatever 
+the basts for the oplnlon, lt will probably be expressed wtth terms such as "good 
+chance," "highly Ukely," "possible," "improbable," etc. The problem with this approach 
+ts that opinions cannot easlly be expressed ln numerical terms. What do we really mean 
+by "good chance"? Or by "highly unllkely"? If we want to approach option markets 
+logically we will need some method of quantifying our opinions about prtce movements. 
+From the elementary strategies discussed ln the previous chapter it ls clear that the 
+direction ln which the underlying market moves can have a signlflcant effect on the 
+profltablllty of an option strategy. Consequently, option traders are sensitive to the 
+direction ln which the underlying market moves. But an option trader has an additional 
+problem: the speed of the market. A commodity trader who belleves a commodity will 
+rise ln price within a specified period can be reasonably certain of making a profit if he 
+ls right He simply buys the commodity, waits for lt to reach his target price, then sells 
+the commodity for a profit. 
+The situation ls not quite so simple for an option trader. Suppose a trader belleves 
+a commodity will rise ln price from $100, its present price, to $120wlthln the next five 
+months. Suppose also that a $110 call expiring ln three months ls available at a price of 
+$4. If the commodity rises to $120 by expiration, the purchase of the $110 Will result 
+In a profit of $6 ($10 lntrlnslc value less the $4 cost of the option). But ls this profit a 
+certainty? What will happen lf the price of the commodity remains below $110 for the 
+next three months and only reaches $120 after the option expires? Then the option Will 
+expire worthless and the trader will lose his $4 investment. 
+Perhaps the trader would do better to purchase a $110 call which expires In six 
+months rather than three months. Now he can be certain that when the commodity 
+reaches $120, the call will be worth at least $10 in Intrinsic value. But what if the price 
+of the six-month option ts $12? In that case the trader might still show a loss. Even 
+though the underlying commodity reaches the target price of $120, there ls no 
+guarantee that the $11 O call will ever be worth more than its $10 lntrlnslc value. 
+A trader in an underlying market ls almost exclusively Interested in the direction 
+in which the market Will move. While the option trader is also sensitive to directional 
+considerations, he must also give careful consideration to how fast the market is llkely 
+35 
+
+--- PAGE BREAK ---
+
+36 
+to move. U a futures trader and an option trader take long market positions ln Chelr 
+respective Instruments, and the market does In fact move hJgher, the futures trader Is 
+assured of a profit while the option trader may show a loss. If the market faUs to move 
+sutflclently fast, the favorable directional move may not be enough to offset the optJon's 
+loss In time value. This Is the primary reason speculators generally lose In optlon 
+markets. A speculator usually buys optlons for their seemingly favorable nsk/reward 
+characteristlcs (limited risk/unlimited reward). But If he purchases options, not only 
+must he be light about market direction, he must also be right about market speed. Only 
+lf he ls right on both counts can he expect to make a profit If predicting the correct 
+market direction ls dffflcult, correctly predicting direction and speed Is probably beyond 
+most traders' capabllltles. 
+The concept of speed Is vital In trading options. It ls so important that there are 
+many option strategies which depend only on the speed of the underlying market and 
+not at all on its dlrectlon. Indeed, If a trader Is highly proficient at predicting directional 
+moves In the underlying market, he ls probably better ad Vised to stick to the underlying 
+instrument It Is only when he has some feel for the speed component that a trader can 
+hope to lntelllgently enter the option market 
+The option trader who wants to Intelligently evaluate the potential profitability of 
+an option trade Is faced with the task of analyzing several different factors. At a 
+minimum he must consider: 
+1. The price of the underlying contract 
+2. The exercise price 
+3. The amount of time remaining to expiration 
+4. The direction In which he expects the underlying market to move 
+5. The speed at which he expects the underlying market to move 
+Ideally, he would like to express each of these factors numerically, feed the 
+nwnbers into a formula, and derive a value for the option. By comparing the value to 
+Its price in the marketplace, the trader would then know whether the purchase or sale 
+of the option was likely to be profitable. This is essentially the goal of option evaluation: 
+to analyze an option based on the terms of the option contract, as well as current market 
+conditions and future expectations. 
+EXPECTED RETURN 
+Suppose we are given the opportunity to roll a six-sided die, and each time we roll we 
+wm receive a dollar amount equal to the number which comes up. If we roll a one, we 
+get $1; if we roll a two, we get $2; and so on up to six, in which case we get $6. If we 
+were to roll the die an Infinite number of times, on average, how much would we expect 
+to receive per roll? 
+We can calculate the answer using some simple arithmetic. There are six numbers 
+which can come up, each with equal probablllty. If we add up the six possible outcomes 4lliiiii 
+
+--- PAGE BREAK ---
+
+Introduction to Theoretical Pricing Models 31 
+l + 2+3+4+ 5+6=21 and divide this by the six races or the die we get 21 / 6 = 3112. Toa t 
+ts, on average we can expect to get back $3112 each Ume we roll the die. This ls the 
+average, or expected, return. Ir someone were to charge us for the prlvflege of rolling 
+the die, what might we be willing to pay? If we purchased the chance to ro!J the die for 
+less than $31/2, In the long run we would expect to be winners. If we paid more than 
+$311'2, In the long run we would expect to be losers. And lf we paid exactly $311i, we 
+would expect to break even. Note the quallfylng phrase 11ln the long run." The expected 
+return of $31/2 ls a reallstlc goal only If we are allowed to roll the die many, many times. 
+If we are allowed to roll only once, we cannot count on getting back $3112. Indeed, on 
+any one roll Jt Is Impossible to get back $31/2 since no face of the die has exactly 3112 
+spots. Nevertheless, If we pay less than $31"2 for even one roll of the dle, the laws of 
+probabilJty are on our side because we have paid less than the expected return. 
+In a similar vein, consider a roulette bet A roulette wheel has 38 slots, numbered 
+1 through 36, 0 and 00.1 Suppose a casino allows a player to choose a number. If the 
+player's number comes up, he receives $36; lf any other number comes up, he receives 
+nothing. What Is the expected return from this proposltlon? There are 38 slots on the 
+roulette wheel, each with equal probablllty, but only one slot wtll return $36 to the 
+player. If we divide the one way to Win $36 by the 38 slots on the wheel, the result ls 
+$36/38 = $.9474, or about 95¢. A player who pays 95¢ for the privilege of picking a 
+number at the roulette table can expect to break about even In the long run. 
+Of course, no casino wlll let a player buy such a bet for 95¢. Under those conditions 
+the casino would make no profit. In the real world, a player who wants to purchase 
+such a bet WIil have to pay more than the expected return, typically $1. The 5¢ 
+difference between the $1 prtce of the bet and the 95¢ expected return represents the 
+profit potential, or edge, to the casino. In the long run, for every dollar bet at the roulette 
+table, the casino can expect to keep about 5¢. 
+Given the above conditions, any player interested In making a profit would rather 
+switch places with the casino so that he could be the house. Then he would have a 5¢ 
+edge on his side by selllng bets worth 95¢ for $1. Alternatively, the player would llke 
+to find a casino where he could purchase the bet for less than its expected return of 95¢, 
+perhaps 88 ¢. Then the player would have a 7 ¢ edge over the casino. 
+THEORETICAL VALUE 
+The theoretical value of a proposition is the price one would expect to pay In order to 
+just break even In the long run. Thus far the only factor we have considered In 
+determining the value of a proposition ls the expected return. We used this concep~to 
+calculate the 95¢ fair price for the roulette bet. There may, however, be O er 
+considerations. th In decides to change the conditions 
+Suppose that in our roulette example he ca~e°roulette bet for Its expected return of the bet slightly. The player may now pure ase 
+1. ulette wheel with 38 slots. In some parts of the world the 
+As 1s customary 1n the U.S., we assume a ro course changes the odds. 
+roulette wheel may have no slot 00. ThJs of 
+
+--- PAGE BREAK ---
+
+36 ChJJplerJ 
+to move. If a futures trader and an option trader take long market positions fn theJr 
+respective Instruments, and the market does Jn fact move hJgher, the futures trader Is 
+assured or a profit whlle the option trader may show a loss. If the market faJJs to move 
+sufficiently fast, the favorable directional move may not .be enough to offset the optJon 's 
+loss In tlme value. This ls the primary reason speculators generaHy Jose In option 
+markets. A speculator usually buys options for their seemingly favorable rtsk/reward 
+characteristics (limited risk/unlimited reward). But If he purchases options, not only 
+must he be right about market direction, he must also be right about market speed. Only 
+lf he ls right on both counts can he expect to make a profit. If predicting the correct 
+market direction ls difficult, correctly predicting direction and speed ts probably beyond 
+most traders' capa.bllltles. 
+The concept of speed ls vital In trading options. It Js so Important that there are 
+many option strategies which depend only on the speed of the underlying market and 
+not at all on Its direction. Indeed, If a trader ls highly proficient at predicting dlrect1onal 
+moves In the underlying market, he ls probably better advised to stick to the underlying 
+Instrument. It ls only when he has some feel for the speed component that a trader can 
+hope to lntelllgently enter the option market. 
+The option trader who wants to Intelligently evaluate the potential profltabJlitY of 
+an option trade ls faced with the task of analyzing several different factors. At a 
+minimum he must consider: 
+1. The price of the underlying contract 
+2. The exercise price 
+3. The amount of time remaining to expiration 
+4. The direction ln which he expects the underlying market to move 
+5. The speed at which he expects the underlying market to move 
+Ideally, he would like to express each of these factors numerically, feed the 
+numbers Into a formula, and derive a value for the option. By comparing the value t? 
+Its price ln the marketplace, the trader would then know whether the purchase or sale 
+of the option was likely to be profitable. This ls essentially the goal of option evaluation: 
+to analyze an option based on the terms of the optJon contract, as well as current market 
+conditions and future expectations. 
+EXPECTED RETURN 
+Suppose we are given the opportunity to roll a six-sided die, and each tlme we roll we 
+will receive a dollar amount equal to the number which comes up. Ifwe roll a one, we 
+get $1; ifwe roll a two, we get $2; and so on up to six, in which case we get $6. If we 
+were to roll the die an Infinite number of times, on average, how much would we expect 
+to receive per roll? 
+We can calculate the answer using some simple arithmetic. There are six numbers 
+which can come up, each wlth equal probabllity. If we add up the six possible outcomes 
+
+--- PAGE BREAK ---
+
+► 
+Introduction to Theoretical Pricing Models 37 
+1 +2+3+4+5+6=21 and divide thls by the slx faces of the die we get 21 /6 = 31/2. That 
+ts, on average we can expect to get back $3112 each tlme we roll the die. This Is the 
+average, or expected, return. If someone were to charge us for the privilege of rolllng 
+the die, what might we be willing to pay? If we purchased the chance to roll the die for 
+less than $3112, In the long run we would expect to be winners. If we paid more than 
+$3 liz, In the long run we would expect to be losers. And If we paid exactly $31/2, we 
+would expect to break even. Note the qualifying phrase "In the long run." The expected 
+return of $31/2 Is a reallstlc goal only If we are allowed to roll the die many, many times. 
+If we are allowed to roll only once, we cannot count on getting back $3112. Indeed, on 
+any one roll It Is Impossible to get back $3½ since no face of the die has exactly 3½ 
+spots. Nevertheless, if we pay less than $3½ for even one roll of the die, the laws of 
+probability are on our side because we have paid less than the expected return. 
+In a similar vein, consider a roulette bet A roulette wheel has 38 slots, numbered 
+1 through 36, 0 and 00.1 Suppose a casino allows a player to choose a number. If the 
+player's number comes up, he receives $36; If any other number comes up, he receives 
+nothing. What Is the expected return from this proposition? There are 38 slots on the 
+roulette wheel, each with equal probability, but only one slot wtll return $36 to the 
+player. If we divide the one way to win $36 by the 38 slots on the wheel, the result Is 
+$36/38 = $.947 4, or about 95¢. A player who pays 95¢ for the privilege of picking a 
+number at the roulette table can expect to break about even In the long run. 
+Of course, no casino will let a player buy such abet for 95¢. Under those conditions 
+the casino would make no profit. In the real world, a player who wants to purchase 
+such a bet will have to pay more than the expected return, typically $1. The 5¢ 
+difference between the $1 prtce of the bet and the 95¢ expected return represents the 
+profit potential, or edge, to the casino. In the long run, for every dollar bet at the roulette 
+table, the casino can expect to keep about 5¢. 
+Given the above conditions, any player Interested In making a profit would rather 
+switch places with the casino so that he could be the house. Then he would have a 5¢ 
+edge on his side by selling bets worth 95¢ for $1. Alternatively, the player would like 
+to find a casino where he could purchase the bet for less than Its expected return of 95¢, 
+perhaps 88¢. Then the player would have a 7 ¢ edge over the casino. 
+THEORETICAL VALUE 
+The theoretical value of a proposition Is the price one would expect to pay In order to 
+just break even In the long run. Thus far the only factor we have considered in 
+determining the value of a proposition Is the expected return. We used this concept to 
+calculate the 95¢ fair price for the roulette bet. There may, however, be other 
+considerations. 
+Suppose that in our roulette example the casino decides to change the conditions 
+of the bet slightly. The player may now purchase the roulette bet for Its expected return 
+1. As Is customary 1n the U.S., we assume a roulette wheel with 38 slots. In some parts of the world the 
+roulette wheel may have no slot 00. This of course changes the odds. 
+
+--- PAGE BREAK ---
+
+38 
+ClllpfU.J 
+of 95¢ and, as before, If he loses the castno will Immediately collect hJs 95¢ u d the 
+new condltlons , however, If the player wlns the casino wtll send him his s36 :in~n 
+In two months. Wlll both the player and the casino still break even on the proposltJo: 
+Where did the player get the 95¢ he used to place his bet at the roulette wheel? In 
+the Immediate sense he may have taken It out of his pocket But a doser examlnatlo n 
+may reveal that he withdrew the money from his savings account prtor to vtsltlng the 
+casino. Since he won't receive his wtnnln~ for two months, he WUl have to take Into 
+consideration the two months Interest he would have earned had he left the 95¢ tn his 
+savings account. If Interest rates are 12% annually ( 1 % per month}, the interest loss Is 
+2% x 95¢, or about 2¢. If the player purchases the bet for Its expected return of 95¢, 
+he wm stlll be a 2¢ loser because of the cost of carrying a 95¢ debit for two months. 
+The casino, on the other hand, wUJ take the 95¢, put It In an Interest-bearing account, 
+and at the end of two months coJJect 2¢ In Interest 
+Under these new condltJons the theoretical value of the bet Is the expected return 
+of 95¢ less the 2¢ carrying cost on the bet, or about 93¢. If a player pays 93¢ for the 
+roulette bet today and collects his winnings In two months, neither he nor the casino 
+can expect to make any profit In the long run. 
+The two most common considerations In a financial Investment are the expected 
+return and carrying costs. There may, however, be other considerations . For example, 
+suppose the casino decided to send the player a 1 ¢ bonus over the next two months. 
+He could then add this addltlonal payment to the previous theoretical value of 93¢ to 
+get a new theoretical value of 94¢. This Is slmtlar to the dividend paid to owners of stock 
+In a company . And, In fact, dividends are an additional consideration In evaluating 
+options on stock. 
+Exchanges will perhaps object to the casino analogy. They prefer that optlon trading 
+not be thought of as gambling. There ls certainly no desire here to assess the moral 
+Implications of either gambling or optlon trading. The fact remains that the same Jaws 
+of probablllty which enable a caslno to set the odds for different games of chance are 
+the same laws of probablllty which enable a trader to evaluate an optlon. 
+The concept of theoretical value based on probabllJty ls common In many aspects 
+of business. For those uncomfortable with the gambllng analogy, one can go back to the 
+original justlflcatlon for options and thJnk of them as Insurance policies which require 
+the payment of a premium. Through the use of statlstlcal data and probablllty theocy, 
+an actual)' at an Insurance company will attempt to calculate the llkellhood that the 
+Insurance company wlll have to make good on an Insurance policy. He can then factor 
+Into the equation what the Insurance company expects to earn on premium payments, 
+and thereby arrtve at a theoretlcal value for the Insurance policy. The pollcy can then 
+be offered to prospective customers at an additional cost, which represents the theoretl· 
+cal edge to the Insurance company. 
+In the same way, the goal of option evaluation ls to detennlne, through the use of 
+theoretical pricing models, the theoretical value of an option. The trader can then make 
+an Intelligent decision whether the option Is overprtced or underprlced In the market· 
+place, and whether the theoretical edge ls sufficient to justify going into the marketplace 
+and making a trade. ◄ 
+
+--- PAGE BREAK ---
+
+--
+Introduction to Thtoretlcal Pricing Models J9 
+A WORD ON MODE~ 
+Before contlnulng, a few obseivatlons on models In general will be worth h 1 A model Is a scaled down or more easily managed representauon f thw I e. 
+Th I b h l I h o e real world. e mode may e a P ys ca one, sue as a model airplane or building, or It may be a 
+mathematical one, such as a formula. In each case, the model Is constructed to hel us 
+better understand the world In which we llve. However, ft ts unwtse, and somedmes 
+dangerous, to assume that the model and the real world which ft represents are 
+tdentlcal In every way. They may be very similar, but the model Is unlikely to exactly 
+duplicate every feature of the real world. 
+All models, If they are to be effective, require us to make certain prior assumptions 
+about the real world. Mathematical models require the Input of numbers whlch quantify 
+these assumptions. If we feed Incorrect data Into the model, we can expect an Incorrect 
+representation of the real world. Every model user must be aware: garbage In, garbage 
+out. 
+These general observations about models are no less true for option pricing models. 
+An option model ls only someone's Idea of how options might be evaluated under 
+certain conditions. Since either the model Itself, or the data which we feed Into the 
+model, might be Incorrect, there Is no guarantee that model-generated values will be 
+accurate, nor can we be sure that these values wlll bear any log\cal resemblance to actual 
+prices In the marketplace. 
+There Is In fact a great deal of disagreement among traders as to the usefulness of 
+option pricing models. Some traders feel that models are so much hocus-pocus, and have 
+no relationship to what goes on In the real world. Other traders feel that once they have 
+a sheet of theoretical values In hand all their problems are solved. The reality lies 
+somewhere In between. 
+A new option trader Is like someone entering a dark room for the first time. Without 
+any guidance he will grope In the dark and may eventually find what he Is looking for. 
+The trader who Is armed with a basic understanding of theoretical pricing models enters 
+the same room with a small candle. He can make out the general layout of the room, 
+but the dimness of the candle prevents him from distinguishing every detail. Moreover, 
+some of what he does see may be distorted by the flickering candle. In spite of these 
+limitations, a trader Is more likely to find what he ls looking for with a small candle than 
+with no !llumlnation at all. 
+The real problems with theoretical prtclng models arise after the trader has acquired 
+some sophistication. As he gains confidence he may begin to increase the size of his 
+trades. When this happens, his lnablllty to make out every detail In the room, as well as 
+the distortions caused by the fllckertng candle flame, take on Increased importance. 
+Now a misinterpretation of what he thinks he sees can lead to financial disaster, since 
+any error In judgement will be greatly magnified. 
+The sensible approach ls to make use of a model, but with a full awareness of what 
+it can and cannot do. Option traders will find that theoretical pricing models are 
+Invaluable tools to understanding the pricing of options. Because of the insights gained 
+from a model, the great majority of successful option traders rely on some type of 
+
+--- PAGE BREAK ---
+
+' 
+40 
+theoreUcal pricing model. However, an optlon trader, If he Is to make the best use of 
+theoreUcal pricing model, must be aware of Its llmltatlons as well as Its stren&thsa 
+Otherwise he may be no better off than the trader groping In the dark.2 · 
+A SIMPLE APPROACH 
+How might we adapt the concepts of expected return and theoretlcal value to the 
+pricing of opUons? We might begin by calculaUng the expected return for an opu
+00 Let's take a simple example. • 
+Suppose an underlying contract Is trading at $100 and that on a certain date In the 
+future, which we will call expiration, the contract can take on one of five different 
+prices: $80, $90, $100, $1 l 0, or $120. Assume, moreover, that each of the five prices 
+Is equally Ukely with 20% probability. The prices and probabilities might be represented 
+by the line In Agure 3-1. 
+If we take a longposltlon In the underlying contract at today's price of $100, what 
+will be the expected return from this position at expiration? 20% of the Ume we wtll 
+lose $20 when the contract ends up at $80. 20% of the time we wtll lose $1 0 when the 
+contract ends up at $90. 20% of the time we will break even when the contract ends 
+up at $100. 20% of the time we will make $10 when the contract ends up at $11 0. And 
+20% of the time we wlll make $20 when the contract ends up at $120. We can write 
+the arithmetic: 
+-(20% X $20)-(20% X $10) +(20% X 0) +(20% X $10) +(20% X $20) = 0 
+Since the profits and losses exactly offset each other, the expected return to the 
+long position Is zero. The same reasoning will show that the expected return to a short 
+position taken at the current prtce of $100 Is also zero. Given the prices and prob· 
+abilltles, if we take either a long or short position we can expect to just break even In 
+the long run. 
+Now suppose that we take a long position In a $100 call. Forgetting for a moment 
+about what we might pay for the call, what will be the expected return given the prices 
+and probablllties In Figure 3-1? If the underlying contract finishes at $80, $90, or $100 
+the call wlll expire worthless. If the underlying contract finishes at $110 or $120 the 
+call will be worth $10 and $20, respectively. The arithmetic Is: 
+(20% X 0) +(20% X 0) +(20% X 0) +(20% X $10) +(20% X $20) = +$6 
+Figure 3-1 
+$80 $90 $100 $110 $120 
+20% 20% 20% 20% 20% 
+2. Two .lnterestJng articles discu$ these llmltatlons: 
+FlglewskJ, Stephen; "What Does an Optton Pde.Ing Model Tell Us a.bout Option Prices?,• Ftnancfdt 
+Ana~Jouma4 September/October 1989, pages 12·15. 
+Black, F!Sche.r; "UY.Ing Up to the Model," Risk, Vol. 3, No. 3., March 1990, pages 11 • 13. 
+---
+
+--- PAGE BREAK ---
+
+Introductio n to 17feoreticAI Prl Ing Mode/J 41 
+Th call can never be worth less than zero, so the exp cted r um from the II 
+po ttton Is always a non•negauve number, In this case $6. 
+If we want to develop a theoretical pricing model using this approach, we might 
+propose a series of possible prices and probabilities for the underlV,ng contract a 
+expiration. Then, given an exercise price, we can calculate the value of the opUon at 
+each price outcome, multiply the value by Its associated probablllty, add up all these 
+numbers, and thereby obtain an expected return for the option. 
+In the foregoing example we took a very simple situation wtth only five possible 
+price outcomes, each with identical probability . What changes might we make In order 
+to develop a more realistic model? For one thing, we would have to know the settlement 
+procedure for the option. In the United States, all options are subject to stock-type 
+settlement, which requires full payment for the option. If the $100 call wm have an 
+expected return of $6 at expiration, we wlll have to deduct the carrying costs to get Its 
+value today. If interest rates are 12% annually ( 1 % per month) and the option wm expire 
+in two months, we will have to discount the $6 expected return by the 2% carrytng 
+cost, or about 12¢. The theoretical value of the option wlll then be $5.88. 
+What other factors might we have to consider? We assumed that all five prtce 
+outcomes were equally likely. Is this a realistic assumption? Suppose you were told that 
+only two possible prices were possible at expiration, $110 and $250. With the 
+underlying contract at $100 today, which do you think ls more likely? Based on 
+experience, most traders would probably agree that extreme price changes which are 
+far away from today's price are less likely than small changes which remain close to 
+today's price. For this reason, $110 ls more likely than $250. To take this into 
+consideration, perhaps our price outcomes, in terms of probability, ought to be concen­
+trated around the present price of the underlying contract. Such a distribution ls shown 
+In Figure 3-2. Now the expected return from a $100 call is: 
+(10% X 0) +(20% X 0) +(40% X 0) +(20% X $10) +(10% X $20) = $4.00 
+If, as before, the option ls subject to stock-type settlement and carrying costs are 
+2%, the theoretical value of the option will now be $3.92. 
+Note that in Figure 3-2 all outcomes and probabilities are arranged symmetrically . 
+Even though the new probabilities altered the expected return for the $100 call, the 
+expected return from any position taken in the underlying contract ls still zero. For each 
+upward price move, there ls a downward move of equal magnitude and probability. We 
+might, however, believe that the expected return to an underlying contract ls not zero, 
+that there ls a greater chance that the contract will move one direction rather than 
+another. Look at the price outcomes and probabilities In Figure 3-3. Using these new 
+probabllities, the expected return from a long posltlon in the underlying contract ls: 
+-{10% X $20) -(20% X $10) +(30% X 0) +(25% X $10) +(15% X $20) = +$1.50 
+and the expected return for the $100 call is: 
+(10% X Q) +(20% X 0) +(30% X 0) +(25% X $10) +(15% X $20) = +$5.50 
+
+--- PAGE BREAK ---
+
+42 
+~;;;;-;:;------------------- " Figure 3-2 
+$80 $90 $100 S1to $120 
+10% 20% 40% 20% 10~ 
+Figure 3-3 
+$80 $90 $100 Stto $120 
+10% 20% 30% 25% 15% 
+Note that the underlying contract now has a positive expected return so Jt may seem 
+that there Is money to .be made simply .by purchasing the underlytn~ contract. ThJs 
+would be true If there were no o~er considerations. But suppose the underlying 
+contract Is a stock, and therefore subJect to stock-type settlement If we purchase the 
+stock at today's prtce of $ 100 and hold It for some period, there ls a carrying cost 
+associated with the Investment If the carrying cost ls exactly equal to the expected 
+return of $1.50, we will just break even. For a long stock position to be profitable, the 
+stock must appreciate by at least the amount of carrying costs over the holding period. 
+Therefore, the expected return from the stock must be some posltlve number. If we 
+assume that any stock trade wlll just break even, the expected return must be equal to 
+the carrying costs. 
+Some stocks also pay dividends. If the d!vtdend ls paid during the holding perfod, 
+It will affect the expected return. A trader who buys stock will have to pay out carrying 
+costs, but he wlll receive the dividends. If we again assume that a stock trade wUJ break 
+even, the expected return at the end of the holding period must he tdentJcal to the 
+carrying costs less the dividend. If the carrying cost for the stock over some pertod Is 
+$3.50, and a $1.00 dividend Is expected during this period, the expected return at the 
+end of the period must be $2.50. A trader who purchases the stock today will Incur an 
+Interest debit of $3.50 at the end of the holding period, but this will be exactly offset by 
+the $1.00 dividend which he receives during the holding perlod,3 as well as the $2.50 
+expected return at the end of the period. 
+In an arbitrage-free market, where no profit can be made by either buying or selling 
+a contract, all credits and debits, Including the expected return, must exactly cancel out 
+If we assume an arbitrage-free market, we must necessarily assume that the forward 
+price, the average price of the contract at the end of the holding period, is the current 
+price, plus an expected return which will exactly offset all other credits and debits. If 
+the holding costs on a $100 stock over some period are $4, the forward price must be 
+$104. If the stock also pays a $1 dividend, the forward price must be $103. In both 
+cases the credits and debits will exactly cancel out. 
+The calculation of a forward price depends on the characterlstlcs of the contract as 
+well as market conditions. In the case of a stock, the conslderatlons are the price of the 
+3. The trader can also earn interest on the diVldend from the tlme he receives it until the end of the holding 
+period. Since this will usually be a very small amount in relation to the other factors, we will Jgnore Jt 
+
+--- PAGE BREAK ---
+
+-
+lnlfOductlon to Theoretical Pricing Models 43 
+stock, the length of the holding period, Interest rates, and dividends. In the case of a 
+futures contract, the situation ls much simpler. A futures contract requJres no lnJUaJ cash 
+outlay, since It Is subject to futures-type settlement. Moreover, a futures contract does 
+not pay dMdends. This means that the forward price of a futures contract In an 
+arbitrage-free market ls simply the current price of the futures contract If a trader buys 
+a futures contract at $100, the break even price for the contract at the end of the holding 
+per1od ts $100. 
+Going back to our very simple pricing model, we might make the assumption that 
+the underlying market ls arbltrage-free,4 that there ls no money to be made from trading 
+the underlying contract. The expected return must then be equal to the difference 
+between the current price of the underlying market and Its forward price. In the case of 
+stock, the expected return will be carrying costs less dividends. In the case of futures, 
+the expected return will be zero. 
+Even if we assume an arbitrage-free market In the underlying, with appropriate 
+probabllltles associated with each price outcome, we stHl have one major problem. In 
+our simplified model there were only five possible price outcomes, while In the real 
+world there are an Infinite number of posslbllltles. To enable our model to more closely 
+approximate real world conditions we will have to construct a probability line wtth 
+every possible price outcome and Its associated probablllty. Tots may seem an impossible 
+task, but lt is the basis for all theoretical prtclng models. 
+We can now summarize the necessary steps in developing a model: 
+1. Propose a series of possible prices at expiration for the underlying contract 
+2. Assign an appropriate probability to each possible price 
+3. Maintain an arbitrage-free underlying market 
+4. From the prices and probabllltles ln steps 1, 2, and 3, calculate the expected 
+return for the option 
+5. From the option's expected return, deduct the carrying cost 
+If we can accomplish all thJs, we wm finally have a theoretical value from which we can 
+begin to trade. 
+Prior to 1973, evaluation of options required the solution of complex mathematical 
+equations. Since such methods were slow and tedious, a trader who tried to use them 
+quickly found that profit opportunities disappeared faster than the evaluation methods 
+could identify them. In 1973, concurrent with the opening of the Chicago Board 
+Options Exchange, Fischer Black and Myron Scholes introduced the flrst practical 
+theoretical pricing model for options. The Black-Scholes Model, With its relatively 
+simple arithmetic and limited number of inputs, most of which were easily observable, 
+proved an ideal tool for traders In the newly opened U.S. option market. Although other 
+models have since been introduced to overcome some of Its original deficiencies, the 
+Black-Scholes Model remains the most widely used of all option pricing models. 
+4. We need not neceswily assume an arbitrage·free underlytng market But we shall see that thJs Js an 
+important assumption in most theoretical pricing models. 
+
+--- PAGE BREAK ---
+
+I 44 
+In Its original form, the Black-Scholes Model was Intended to evaluate European 
+optlons (no early exercise permitted) on non-dividend paying stocks. Shortly after Its 
+lntroductlon, realizing that most stocks do pay dividends, Black and Scholes added a 
+dlvidend component. In 1976, Fischer Black made slight modifications to the model to 
+allow for the evaluatlon of options on futures contracts. And In 1983, Mark Garman 
+and Steven Kohlhagen made several other modifications to allow for the evaluation of 
+options on foreign currencies. 5 The futures version and the foreign currency version are 
+known officially as the Black Model and the Garman•Kohlhagen Model, respectively. 
+But the evaluation method In each version, whether the or1glnal Black-Scholes Model 
+for stock options, the Black Model for futures options, or the Garman•Kohlhagen Model 
+for foreign currency options, Is so similar that they have all come to be known as simply 
+the Black·Scholes Model. The various forms of the model differ prtmarlly In how they 
+calculate the forward price of the underlying contract, and an option trader wlll simply 
+choose the form appropriate to the underlying Instrument. 
+The great majority of options currently traded are Amer1can options, carrying with 
+them the right of early exercise. For this reason, It may seem that the Black-Scholes 
+model, with Its assumption of no early exercise, ls poorly suited for use In most markets. 
+However, the Black-Scholes Model has proven so easy to use that many traders do not 
+bell eve the more accurate values derived from an American option prtclng model, which 
+allows for the posslblllty of early exercise, Is worth the additional effort. In some 
+markets, pantcularly futures options markets, the additional early exercise value ls so 
+small that there ls virtually no difference between values obtained from the Black· 
+Scholes model and values obtained from an Amertcan pricing model. 
+Due to Its widespread use and Its importance In the development of other pricing 
+models, we will for the moment restrict ourselves to a discussion of the Black-Scholes 
+model and Its various forms. In later chapters we wlll consider the question of early 
+exercise. We will also look at alternative methods for prtclng options when we question 
+some of the basic assumptions In the Black-Scholes Model. 
+The reasoning which led to the development of the Black-Scholes Model depends 
+on the five steps we listed earlier in this chapter when we proposed a simple method 
+for evaluating options. Black and Scholes worked originally with call values, but put 
+values can be derived In much the same way. Alternatively, we will see In Chapter 11 
+that In an art>ltrage-free market there ls a unique relationship between an underlying 
+contract, and a call and put with the same exercise price and expiration date. This 
+relationship enables us to derive a put value simply by knowing the associated call value. 
+In order to calculate an option's theoretical value using the Black-Scholes Model, 
+we need to know at a minimum five characteristics of the option and Its underlying 
+contract These are: 
+1. The option's exercise price 
+2. The amount of time remaining to expiration 
+5. We are speaking here of options on a physical foreign currency, rather than options on a fore!gn 
+currency futures contract The latter may be evaluated using the Black Model for futures options. 
+
+--- PAGE BREAK ---
+
+Introduction to Theoretical Pricing Models 
+3. The current price of the underlying contract 
+4. The rlsk·free Interest rate over the llfe of the optlon 
+s. The volatility of the underlying contract 45 
+The last Input, volatlllty, may be unfamlllar to the new trader. Whlle we wlll put 
+off a detailed discussion of this Input to the next chapter, from our previous dlscusslon 
+one can reasonably Infer that volatlllty ls related to the speed or the market. 
+If we know each of the required inputs, we can feed them into the theoretical 
+pricing model and thereby generate a theoretical value. 
+Black and Scholes also Incorporated into their model the concept of the rtskless 
+hedge. For every option position there ls a theoretically equivalent position In the 
+underlying contract such that, for small prtce changes In the underlying contract, the 
+option position wlll gain or lose value at exactly the same rate as the underlying position. 
+To take advantage of a theoretically mlsprlced option, It ls necessary to establish a hedge 
+by offsetting the option position with this theoretically equivalent underlying position. 
+That ts, whatever option posltlon we take, we must take an opposing market posltlon 
+in the underlying contract. The correct proportion of underlying contracts needed to 
+establlsh this rlskless hedge ls known as the hedge ratio. 
+Why is lt necessary to establish a rlskless hedge? Recall that in our simplified 
+approach an option's theoretical value depended on the probabUlty of various prtce 
+outcomes for the underlying contract. As the underlying contract changes In price, the 
+probabillty of each outcome wlll also change. If the underlying price ls currently $100 
+and we assign a 25% probabillty to $120, we might drop the probability for $120 to 
+10% if the prtce of the underlying contract falls to $80. By initially establlshlnga rtskless 
+hedge, and then by adjusting this hedge as market conditions change, we are taking Into 
+consideration these changing probabllltles. 
+In this sense an option can be thought of as a substitute for a similar position ln the 
+underlying contract. A call ls a substitute for a long position; a put ls a substitute for a 
+short position. Whether it is better to take the position in the option or in the underlying 
+Figure 3-4 
+Exercise Price 
+Time to Expiration 
+Underlying Price 
+Interest Rates 
+Volatlllty Theoretical ----- ►► Theoretical ~-- --111~ Pricing Model Value 
+
+--- PAGE BREAK ---
+
+46 ChlpttrJ 
+contract depends on the theoretical value of the option and Its price In the marketplace. 
+If a call can be purchased (sold) for less (more) than Its theorettcaJ value, It will, Jn the 
+long run, be more profitable to take a long (short) market pos!Uon by purchasing (sellfng) 
+calls than by purchasing (selling) the underlying contract In the same way, lf a put can 
+be purchased (sold) for less (more) than Its theoretical value, It WUI, In the long run, be 
+more profitable to take a short (long) market position by purchasing (selling) puts than 
+by selllng lbuytn~ the underlying contract 
+Since the theoretical value obtained from a theoretlcal pricing model Is no better 
+than the Inputs Into the model, a few comments on each of the Inputs wtll be 
+worthwhile. 
+EXERCISE PRICE 
+There ought never be any doubt about the exercise prtce of an option, since It Is fixed 
+In the tenns of the contract and does not vary over the life of the contract 6 A 
+Deutsehemark March 58 call traded on the Chicago Mercantile Exchange cannot 
+suddenly tum Into March 59 call or a March 57 call. AA IBM July 55 put traded on the 
+Chicago Board Options Exchange cannot tum Into a July 50 put or a July 60 put 
+TIME TO EXPIRATION 
+Uke the exercise price, the option's expiration date Is fixed and will not vary. Our OM 
+March 58 call wlll not suddenly tum Into an April 58 call, nor wtll our IBM July 55 put 
+turn Into a June 55 put Of course, each day that passes brings us closer to expiration, 
+so In that sense the time to expiration Is constantly growing shorter. However, the 
+expiration date, like the exercise price, Is fixed by the exchange and wtll not change. 
+Time to expiration, like all Inputs In the Black-Scholes Model, ts entered as an 
+annualized number. If we are entering raw data directly into the model we must make 
+the appropriate annuallzation. With 91 days remaining to expiration, we would enter 
+an input of .25 (91/365 = .25). With 36 days remaining, we would enter .10 (36/365 
+= .10). However, most option evaluation computer programs already have this transfor· 
+matlon lncoIJ)Orated Into the software so that we need only enter the correct number 
+of days remaining to expiration. 
+It may seem that we have a problem In deciding what number of days to enter Into 
+the model. We need the amount of time remaining to expiration for two purposes, to 
+calculate the Interest considerations and to calculate the llkellhood of movement In the 
+underlying contract For volatility purposes In assessing the "speed" of the market we 
+are only interested In trading days. Only on those days can the price of the underlying 
+contract actually change. This might lead us to drop weekends and holidays from our 
+calculations. On the other hand, for Interest rate purposes we must Include every day. 
+6. It ts true that an exchange may adjust the exercise pdce of a stock opUon 1f there fs a stock splll ln 
+practtcal tenns this ts not really a change 1n the exercise pdce because the ex 
+same reJatJonshlp to the stock prtce. The charactertsttcs of th tl erdse price retains the 
+unchanged. e op on contract remain ~tlally l 
+
+--- PAGE BREAK ---
+
+Introduction to Thtorttic,/ Prlclfll Modtls 47 
+lf we borrow or lend money we expect the Interest to accrue every day, no matter that 
+some of the days are not business days. 
+It turns out that this Is not really a problem. In calculating the 11speed" of the market 
+we observe only the prtce changes that occur on business days. But we can make slight 
+changes to this observed value and annualize the number before feeding It tnto the 
+theoretical pricing model. The result Is that we can feed lnto our model the actual 
+number of days remaining to expiration knowing that the model wm Interpret the 
+number correctly. 
+PRICE OF THE UNDERLYING 
+Unlike the exercise prtce and tlme to expiration, the correct price of the underlying ls 
+not always obvious. At any one time there Is usually a bid price and an asked price, and 
+It may not be clear whether we ought to use one or the other of these prices, or perhaps 
+some price In between. 
+We have noted that the correct use of an option's theoretical value requires us to 
+hedge the optlon position with an opposing trade In the underlying contract Therefore 
+the underlying price we feed lnto our theoretical prtclng model ought to be the price at 
+which we belleve we can make the opposing trade. If we Intend to purchase calls or sell 
+puts, both of which are long market positions, we will have to hedge by selling the 
+underlying contract In that case we ought to use the bid price since that ls the price at 
+which we can sell the underlying. On the other hand, If we Intend to sell calls or buy 
+puts, both of which are short market positions, we will have to hedge by purchasing the 
+underlying contract Now we ought to use the asked prtce since that ls the price at 
+which we can buy the underlying. 
+In practice, the bid and offer are constantly changtng, and many traders will simply 
+use the last trade prtce as the basis for theoretical evaluation. But the last trade prtce 
+may not always reflect the present market Even the settlement price quoted In a 
+newspaper may not accurately reflect the market at the close of business. The last trade 
+price may show 751/4 for a contract, but the market at the close may have been 751/4 
+bid, 751;2 offered. A trader who hoped to buy at 751/4 would have very little chance of 
+being filled because of the difficulty of buying at the bid price. Even a purchase at some 
+middle prtce, say 7 53;8, may be unlikely If the market is very unbalanced with many 
+more contracts being bid for at 751;4 than offered at 751/2. For all of these reasons, an 
+experienced trader will rarely enter an option market without knowing the exact bid 
+and off er In the underlying market. 
+INTEREST RATES 
+ult In either a cash credit or debit to a trader's account, 
+Since an option trade may res from this cash flow must also play a role In optlon 
+the Interest considerations resulting tes over the life of the optlon. 
+evaluation. This ls a function of lntereSt ra les In the theoretical evaluation of options. 
+The interest rate component plays tw~ ~e underlying contract. If the underlying 
+First, it may affect the forward prtce o 
+
+--- PAGE BREAK ---
+
+48 Chlp(tr J 
+contract Is subject to stock•type settlement, as we raise Interest rates we raise the 
+forward price, Increasing the value of calls and decreasing the value of puts. Secondly, 
+the Interest rate may affect the cost of carrying the optlon. If the optlon Is subject to 
+stock•type settlement, as we raise Interest rates we decrease the value of the optJon. In 
+spite or the fact that the Interest rate plays two roles, In most cases the same rate Is 
+applicable and we need only Input one interest rate Into the model. If, however, 
+different rates are applicable, such as would be the case with foreign currency optJons 
+(the foreign currency Interest rate plays one role, the domestic currency Interest rate 
+plays a different role) the model wlll require the Input of two Interest rates. This Is the 
+case with the Gannan•Kohlhagen version of the Black-Scholes Model. 
+The fact that Interest rates play a dual role also means that the relative Importance 
+of Interest rates will vary, depending on the type of underlying Instrument and the 
+settlement procedure. For example, Interest rates have a much greater Impact on the 
+value of stock optlons than on futures options. As we raise Interest rates, we Increase 
+the forward pnce of stock, but leave the foiward price of a futures contract unchanged. 
+At the same time, assuming stock•type settlement, as we raise Interest rates we decrease 
+the value of options. The optlon price, however, Is usually very small In relation to the 
+price of the underlying contract. 
+What Interest rate should a trader use when evaluating optlons? Most traders 
+cannot borrow and lend at the same rate, so the correct Interest rate will, In theory, 
+depend on whether the trade will create a debit or a credit. In the former case the trader 
+will be Interested In the borrowing rate, while In the latter case he will be Interested In 
+the lending rate. In practice, however, the most common solutlon Is to use the risk-free 
+Interest rate, I.e., the most secure rate. In the United States, the government Is usually 
+considered the most secure borrower of funds, so that the yield on a government 
+security with a term equJvalent to the life of the optlon Is the general benchmark. For a 
+60-day option, use the yield on a 60-day treasury blll; for a 180-day option, use the yield 
+on a 180-day treasury bill. 
+DMDENDS 
+We did not list dividends as an Input In Figure 3-4 since they are only a factor in the 
+theoretical evaluation of stock optlons, and then only If the stock Is expected to pay a 
+dividend over the life of the optlon. 
+In order to accurately evaluate a stock optlon, a trader must know both the amount 
+of the dividend which the stock will pay and the ex-dividend date, the date on which a 
+trader must own the stock In order to receive the dividend. The emphasis here Is on 
+ownership of the stock. A deeply ln·the-money option may have many of the same 
+characteristics as stock, but only ownership of the stock carries with It the right to collect 
+the dividend. 
+In the absence of other Information, most traders tend to assume that a company 
+will contlnue the same dividend policy It has had In the past. If the company has been 
+paying a 75¢ dividend each quarter, It will probably continue to do so. However, this 
+Is not always a certainty. Companies sometimes Increase or decrease dividends, and l 
+
+--- PAGE BREAK ---
+
+lntrodudlon to Thtorttlcal Prtcln, Modt& 49 
+occasionally omit them completely. If there Is the posslblllty or a change In a company's 
+dividend policy, a trader has to consider lts Impact on optlon values. Addltlonally, If the 
+ex-dtvtdend date ls expected Just prior to expiration, there Is the danger that a delay of 
+several days wlll cause the ex•dlvldend date to fall after explratlon. For purposes of 
+option evaluation, this Is the same as eliminating the dlvtdend completely. In such a 
+situation a trader ought to make a special effort to ascertain the exact ex·dlvldend date. 
+VOLATILITY 
+Of all the Inputs required for optlon evaluation, volatlllty is the most dlfflcult for traders 
+to understand. At the same tlme, volatlllty often plays the most Important role ln actual 
+trading sltuatlons. Changes ln our assumptions about volatlllty can have a dramatlc 
+effect on an option's value, and the manner In which the marketplace assesses volatlllty 
+can have an equally dramatlc effect on an option's prtce. For these reasons, we wlll 
+devote the next chapter to a detalled discussion of volatlllty. 

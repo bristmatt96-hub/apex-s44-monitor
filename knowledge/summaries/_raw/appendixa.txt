@@ -1,0 +1,1137 @@
+.......__ •:• Appendix A •:• 
+A Glossary of Option 
+and Related Terminology 
+All or None (AON)-An order which must be filled In Its entirety or not at all. 
+American Option-An option which can be exercised at any time prior to expiration. 
+Arbitrage-The purchase and sale of the same product In different markets to take 
+advantage of a prtce disparity between the two markets. 
+Asian Option-Average price option. 
+Assignment-The process by which the seller of an option Is notified of the buyer's 
+lntentlon to exercise. 
+At-the-Money-An option whose exercise prtce ls equal to the current price of the 
+underlying contract. On llsted option exchanges the term Is more commonly used to 
+refer to the option whose exercise prtce ls closest to the current price of the underlying 
+contract 
+• utomatic Exercise-The exercise by the clearing house of an ln-the-money optlon 
+~ expiration, unless the holder of the option submits speclftc Instructions to the 
+ontrary. 
+Average Price Option-An option whose value at expiration ls determined by the 
+average price of the underlying Instrument over some period of time. 
+Backspread-A spread, usually delta neutral, where more options are purchased than 
+sold, and where all options have the same underlying contract and expire at the same 
+time. 
+Backwardation-A futures market where the more distant delivery months trade at a 
+discount to the nearterm delivery months. 
+Barrier Option-An option which will either become effective or cease to exist If the 
+underlying Instrument trades at some predetermined prtce prior to expiration. 
+4/9 
+
+--- PAGE BREAK ---
+
+420 
+Bear Spread-Any spread which will theoretically Increase In value with a decline In 
+the price of the underlying contract. 
+Box-A long call and shon put at one exercise prtce, together with a short call and long 
+put at a different exercise price. All options must have the same underlying contract and 
+expire at the same Ume. 
+Bull Spread-Any spread which wlll theoretically Increase In value with a rtse In the 
+price of the underlying contract. 
+Butterfly-The sale (purchase) of two options with the same exercise price, together 
+wtth the purchase (sale) of one option with a lower exercise pr1ce and one optJon wlth 
+a higher exercise price. All options must be of the same type, have the same undertytng 
+contract, and expire at the same time, and there must be an equal Increment between 
+exercise prtces. 
+Buy/Write-The purchase of an underlying contract together with the sale of a call 
+option on that contract. 
+Cabinet Bid-On some exchanges, a bid smaller than the minimum Increment, 
+pe!Tillsslble between traders desiring to close out positions In very far out-of-the money 
+options. 
+Calendar Spread-A time spread. 
+Call Optfon-A contract between a buyer and a seller whereby the buyer acquires the 
+right, but not the obligation, to purchase a specified underlying contract at a fixed pr1ce 
+on or before a specified date. The seller of the call option assumes the obligation of 
+delivering the underlying contract should the buyer wish to exercise his option. 
+Cap-A contract between a borrower and a lender of floating rate funds, whereby the 
+borrower Is assured of paying no more than some maximum Interest rate for borrowed 
+funds. This Is analogous to a call option where the underlying Instrument Is an interest 
+rate on borrowed funds. 
+Chooser Option-A straddle where the owner must decide by some predetermined 
+date whether to keep either the call or the put. 
+Christmas Tree-A spread Involving three exercise pr1ces. One or more calls (puts) 
+are purchased at the lowest (highest) exercise price and one or more calls (puts) are sold 
+at each of the higher (lower) exercise prices. All options must expire at the same tlme, 
+be of the same type, and have the same underlying contract 
+Class-All options of the same type with the same expiration date and same underlying 
+Instrument. 
+
+--- PAGE BREAK ---
+
+A Glosu,y of Optton and ReWed Terminology 421 
+Clearing House-The organtzatlon which guarantees the lntegrtty of all trades made 
+on an exchange. 
+Clearing Member-A member firm of an exchange which Is authortzed by the 
+clearing house to process trades for Its customers, and which guarantees, through the 
+collection of margin and varlatlon monies, the Integrity of Its customers' trades. 
+Collar--A contract between a borrower and a lender of floating rate funds, whereby 
+the borrower Is assured of paying no more than some maximum Interest rate for 
+borrowed funds, and whereby the lender ls assured of receiving no less than some 
+minimum Interest rate on loaned funds. This Is analogous to an optlon fence where the 
+underlying Instrument ts an Interest rate on borrowed funds. 
+Combination-A two-sided optlon spread which does not fall Into any well defined 
+category of spreads. Most commonly It ts used to refer to a long call and short put, or 
+short call and long put, which together make up a synthetlc posltlon In the underlying 
+contract 
+Compound Option-An option to purchase an optlon. 
+Condor-The sate (purchase) of two options with different exercise prices, together 
+with the purchase {sale) of one option with a lower exercise prtce and one option with 
+a hlgher exercise price. All options must be of the same type, have the same underlying 
+contract, and expire at the same tlme, and there must be an equal Increment between 
+exercise prtces. 
+Contango-A futures market where the more distant delivery months trade at a 
+premium to the nearterm delivery months. 
+Contingency Order-An order which becomes effective only upon the fulfillment of 
+some predetermined condttlon(s) in the marketplace. 
+Conversion-A long underlying position together with a short call and long put, where 
+both options have the same exercise price and expire at the same time. 
+Covered Write-The sale of a call (put) option against an existing long (short) position 
+1n the underlying contract. 
+Cylinder-A fence or collar. 
+Def erred Start Option-A forward start optlon. 
+Delta (£\)-The sensitivity of an option's theoretical value to a change ln the price of 
+the underlying contract. 
+Delta Neutral-A position where the sum total of all the positive and negative deltas 
+adds up to approximately zero. 
+
+--- PAGE BREAK ---
+
+422 AppendtxA 
+Diagonal Spread-A long call (put) at one exercise price and exptratJon date, together 
+with a short call (put) at a different exercise price and explratlon date. All optioru must 
+have the same underlying stock or commodity. This Is simply a tlme spread using 
+dlff erent exercise prices. 
+Elasticity-The percent change In an option's value for a given percent change In the 
+value of the underlying Instrument. Sometimes referred to as the leverage value. 
+Exchange Option-An optlon to exchange one asset for another asset. 
+Ex-dfvidend-The day on which a dlvldend paying stock ls trading without the right 
+to receive the dlvldend. 
+Exercise-The process by which the holder of an option notifies the seller of hls 
+lntentlon to take delivery of the underlying contract, ln the case of a call, or to make 
+delivery of the underlying contract, In the case of a pu~ at the speclfled exercise price. 
+Exercise Price-The price at which the underlying contract will be delivered In the 
+event an option ls exercised. 
+Expiration (Explry)-The date and time after which an option may no longer be 
+exercised. 
+European Option-An option which may only be exercised at expiration. 
+ExtrinSic Value-Time value. 
+Fair Value-Theoretical value. 
+Fence-A long (short) underlying position, together wtth a long (short) out-of-the­
+money put and a short (long) out-of-the-money call. All options must expire at the same 
+time. 
+Fill or Kill (FOK}-An order which will automatically be cancelled unless It can be 
+executed Immediately and In Its entirety. 
+Flex Option-An exchange-traded option where the buyer and seller are permitted to 
+negotiate the exact tenns of the option contract Typically, this Includes the exercise 
+price, the expiration date, and the terms of exercise (either European or American). 
+Floor--A contract between a borrower and a lender of floating rate funds, whereby the 
+lender ts assured of recelvlng no less than some minimum Interest rate for loaned funds. 
+Tots ts analogous to a put option where the underlying instrument ts an interest rate on 
+loaned funds. 
+Fo1Ward Contract-A contract between a buyer and a seller whereby the buyer ls 
+obllgated to take delivery and the seller ls obligated to make delivery of a fixed amount 
+
+--- PAGE BREAK ---
+
+.... 
+A Glosury of Option and Rtlated Terminology 423 
+of a commodlty at a predetermined prtce on a specified future date. Payment In full ls 
+due at the tlme of delivery. 
+Forward Price-Taking into consideration all carrying costs on a contract, the price at 
+whlch a contract would have to be trading on some future date such that a trade made 
+at today's price would just break even. 
+Forward Start Option-An option whose exercise price will be equal to the price of 
+the underlying Instrument on some predetermined date. 
+Front Spread-A ratio vertical spread. 
+Fugit-The expected amount of time remaining to optimum early exercise of an 
+American option. 
+Futures Contract-A contract, usually exchange-traded, between a buyer and a seller 
+whereby the buyer Is obligated to take delivery and the seller Is obligated to make 
+delivery of a fixed amount of a commodity at a predetermined price on some future date. 
+All profits and losses are realized Immediately, and result In a cash credit or debit based 
+on dally changes In the settlement price of the contract. 
+Futures-Type Settlement-A settlement procedure used by commodity exchanges 
+whereby an Initial margin deposit Is made, but under which no Immediate cash payment 
+Is made by the buyer to the seller. Cash settlement takes place at the end of each trading 
+day based on the difference between the current day's settlement prtce and the previous 
+day's settlement prtce or the original trade price. 
+Gamma {r)-The sensltivlty of an option's delta to a change In the price of the 
+nderlylng contract 
+, Good 'til Cancelled {GTC)-An order to be held by a broker until It can either be 
+executed or ls cancelled by the customer. 
+Guts-A strangle where both the call and the put are In-the-money. 
+Haircut-On equity option exchanges, money deposited by a trader with the clearing 
+house to ensure the Integrity of his trades. This Is similar to a margin requirement on a 
+commodity exchange. 
+Hedge Ratio-Delta 
+Hedgel'-A trader who enters the market with the specific Intent of protecting an 
+exJstlng position In an underlying contract. 
+Horizontal Spread-A time spread. 
+
+--- PAGE BREAK ---
+
+424 ApperrltxA 
+lmmedJate or Cancel (IOC)-An order which will automatically be cancelled ff J h 
+not filled Immediately. An IOC order need not be filled In Its entirety. 
+Implied Volatility-Assuming all other Inputs are known, the volatlllty which would 
+have to be Input Into a theoretical pricing model In order to yield a theoretical value 
+Identical to the price of the option In the marketplace. 
+In-Option-A type of barrier option which becomes effective only if the undertytng 
+Instrument trades at some predetermined price prior to expiration. 
+In-Price-The price at which the underlying Instrument must trade before an In-option 
+becomes effective. 
+In-the-Money-A call (put) option whose exercise price Is lower (higher) than the 
+current price of the underlying contract. 
+Index Arbitrage-One of several strategies attempting to take advantage of the 
+relative mlsprlclng of options, futures contracts, or the physical stocks underlying a stock 
+index. 
+Intermarket Spread-A spread consisting of opposing market positions in two differ­
+ent underlying securities or commodities, or their derivative products. 
+Intrinsic Value-The amount by which an option ls in-the-money. Out-of-the-money 
+options have no Intrinsic value. 
+Iron Butterfly-A long (short) straddle, together With a short (long) strangle. All 
+options must expire at the same time and have the same underlying contract 
+Jelly Roll (Roll}-A long call and short put with one expiration date, together with a 
+short call and long put with a different expiration date. All four options must have the 
+same exercise price and same underlying stock or commodity. 
+Kappa (K)-Vega. 
+Knock Out Option-An out-option 
+Ladder-A Christmas tree. 
+Long-Term Equity Anticipation Security (LEAPS}-A long-term (usually more 
+than one year) exchange traded equity option. 
+Leg-One side of a spread position. 
+Umit-The maximum allowable price movement over some time period for an 
+exchange traded contract. 
+Umit Order-An order to be executed at a specified price or better. 
+
+--- PAGE BREAK ---
+
+A Glossary of Option and Rel,ted Terminology 425 
+Local-An Independent trader on a commodity exchange. Locals perform functions 
+similar to market makers on stock and stock option exchanges. 
+Locked Market-A market where trading has been halted because prices have 
+reached their limit. 
+Long-A position resulting from the purchase of a contract. The term Is also used to 
+describe a position which will theoretically Increase (decrease) In value should the prtce 
+of the underlying contract rise (fall). Note that a long (short) put posltlon is a short (long) 
+market position. 
+Long Premium-A position which will theoretically Increase In value should the 
+underlying contract make a large move ln either direction. The posltlon will theoreti­
+cally decrease ln value should the underlying market sit stlll. 
+Long Ratio Spread-A backspread. 
+Look Back Option-An option whose exercise price will be equal to either the lowest 
+price of the underlying instrument, in the case of a call, or the highest price of the 
+underlying instrument, in the case of a put, over the life of the option. 
+Margin-Money deposited by a trader with the clearing house to ensure the integrity 
+of his trades. 
+Market Maker-An independent trader or trading flnn which stands ready to buy or 
+sell contracts in a designated market. Market makers perform duties similar to locals on 
+commodity exchanges, the primacy difference being that a market maker ls obligated to 
+make a two-sided (bld and ask) market in his designated contract 
+farket If Touched (MIT)-A contingency order which becomes a market order if 
+Jle contract trades at or beyond a specified price. 
+Market On Close (MOC)-An order to be executed at the current market prtce as 
+near as possible to the close of that day's trading. 
+Market Order-An order to be executed immediately at the current market price. 
+Naked-A long (short) market position with no offsetting short (long) market position. 
+Neutral Spread-A spread which ls delta neutral. A spread may also be lot neutral, 
+where the total number of long contracts and short contracts of the same type are equal. 
+Not Held-An order submitted to a broker, but over which the broker has discretion 
+as to when and how the order ls executed. 
+Omega (0)-The Greek letter sometimes used to denote an option's elasticity. 
+
+--- PAGE BREAK ---
+
+426 
+ApPefltJ 
+~~ 
+one cancels the Other (OCO)-Two orders submitted simultaneou s! 
+wh\ch may be e,:ecuted. 1f one order ls executed, the other Is automatlcait either 0 Y canceuetl' 
+Order Book Official (OBO)-An exchange offlclal responsible for execuun • 
+or l\m\t orders for public customers. g rnar\et 
+Out-of •the-Money-An optlon whlch currently has no lntrinslc value. A cau 
+out-of-the-money \f \ts exercise prlce ls more (less) than the current Price IPllt\ 15 
+underlying contract. of the 
+Out-Option-A type of barrier optlon which ls deemed to have exptrect If 
+underlying instrument trades at some predetermined prtce prior to expiration. the 
+I 
+Out-Price-The price at which the underlying instrument must trade before an 
+optton ts deemed to have expired. 011t 
+Out-trade-A trade which cannot be processed by the clearing house due to confllctin 
+tnformatton reported by the two parties to the trade. g 
+OvelWrite-The sale of an option against an existing position in the undertytn 
+contract. g 
+Parity-Intrtnslc value. 
+Pin Risk-The risk to the seller of an option that at expiration the option will be exactly 
+at-the-money. The seller wm not know whether the option will be exercised. 
+Portfolio Insurance-A process whereby the quantity of holdln~ in an underlying 
+instrument ls continuously adjusted to replicate the characteristics of an option on the 
+underlying instrument 
+Position-The sum total of a trader's open contracts in a particular underlying market. 
+Position Limit-For an individual trader or firm, the maximum number of open 
+contracts in the same underlying market permitted by an exchange or clearing house. 
+Premium-The price of an option. 
+Program Trading-An arbitrage strategy lnvolvlng the purchase or sale of a misprtced 
+stock index futures contract against an opposing position in the stocks underlying the 
+index. 
+Put Option-A contract between a buyer and a seller whereby the buyer acquires the 
+right, but not the obligation, to sell a specified underlying contract at a fixed price on or 
+before a speclfled date. The seller of the put option assumes the obligation of taking 
+delivery of the underlying contract should the buyer wish to exercise his option. 
+Range FotWard-A fence. 
+
+--- PAGE BREAK ---
+
+A Glossa,y of Option and Related Terminology 427 
+Ratio Backspread-A backspread. 
+Ratio Spread-Any spread where the number of long market contracts (long underly· 
+tng, long call, or shott put) and short market contracts (short underlying, short call, or 
+long put) are unequal. 
+Ratio Vertical Spread-A spread, usually delta neutral, where more options are sold 
+than are purchased, and where all options have the same underlying contract and expire 
+at the same time. 
+Ratio Write-The sale of multiple options against an existing position In an underlying 
+contract This ls simply a covered write using more than one option. 
+Reverse Conversion (Reversal)-A short underlying position together with a long 
+can and short put, where both options have the same exercise price and expire at the 
+same time. 
+Rho (p )-The sensitivity of an option's theoretical value to a change In Interest rates. 
+Risk Conversion (Risk Reversal)-A fence which includes a long (short) underlying 
+position. 
+Roll-A jelly roll. 
+Scalper-A floor trader on an exchange who hopes to profit by continually buying at 
+the bid price and selling at the offer price In a specific market. Scalpers usually try to 
+close out all positions at the end of each trading day. 
+Serial Expiration-On commodity exchanges, options on the same futures contract 
+-vhlch expire in more than one month. 
+,-rfes-All options with the same underlying contract, same exercise price, and same 
+xpiratlon date. 
+Short-A position resulting from the sale of a contract. The term ls also used to describe 
+a position which will theoretically Increase (decrease) In value should the price of the 
+underlying contract fall (rise). Note that a short (long) put position Is a long (short) 
+market position. 
+Short Premium-A position which will theoretically Increase In value should the 
+underlying contract sit still. The position will theoretically decrease in value should the 
+underlying contract make a large move In either direction. 
+Short Ratio Spread-A ratio vertical spread. 
+Short Squeeze-A situation in the stock option market, usually resulting from a partial 
+tender offer, where no stock can be borrowed to maintain a short stock position. If 
+
+--- PAGE BREAK ---
+
+428 ApptrwllxA 
+assigned on a short call position, a trader may be forced to exercise a call early In order 
+to fulflll hts delivery obligations, even though the call stlll has some t1me value 
+remaining. 
+Sigma (o}-The commonly used notation for standard deviation. Since volatlllty ls 
+usually expressed as a standard devtatlon, the same notatlon Is often used to denote 
+volattllty. 
+Specialist-A market maker given exclusive rights by an exchange to make a market 
+In either a specified contract or group of contracts. A specialist may buy or sell for his 
+own account, or act as a broker for others. In return, a specialist Is required to maintain 
+a fair and orderly market. 
+Speculator-A trader who hopes to profit from a specific dlrectlonal move in an 
+underlying contract 
+Spread-A long market position and an offsetting short market Position usually, but 
+not always, In the same underlying market. 
+Stock-Type Settlement-A settlement procedure in which the purchase of a contract 
+requires full and immediate payment by the buyer to the seller. All profits or losses from 
+the trade are unrealized untll the position ls liquidated. 
+Stop Limit Order-A contingency order which becomes a limit order if the contract 
+trades at a specified prtce. 
+Stop (Loss) Order-A contingency order which becomes a market order if the con­
+tract trades at a specified price. 
+Straddle-A long (short) call and a long (short) put, where both options have the same 
+underlying contract, the same expiration date, and the same exercise price. 
+Strangle-A long (short) call and a long (short) put, where both options have the same 
+underlying contract, the same expiration date, but different exercise prices. 
+Strap-An archaic term for a position consisting of two long (short) calls and one long 
+(short) put where all options have the same underlying contract, the same expiration 
+date, and the same exercise price. 
+Strike Price (Strike }-Exercise price. 
+Strip-An archaic term for a position consisting of one long (short) call and two long 
+(short) puts where all options have the same underlying contract, the same expiration 
+date, and the same exercise prtce. Also: A sertes of futures or futures options designed 
+to replicate the characteristics of a long-term contract or option. 
+
+--- PAGE BREAK ---
+
+..., A Glos.WY of Option and Related Terminology 42() 
+swap-An agreement to exchange different cash flows. Most commonly a swap 
+involves exchanging variable rate Interest payments for payments calculated from a 
+nxed interest rate. 
+swaption-An option to enter Into a swap agreement. 
+Synthetic-A combination of contracts having approximately the same charactenstlcs 
+as a different contract. 
+Synthetic Call-A long (short) underlying position together with a long (short) put. 
+Synthetic Put-A short (long) underlying position together with a long (short) call. 
+Synthetic Underlying-A long (short) call and short (long) put, where both options 
+have the same underlying contract, the same expiration date, and the same exercise 
+price. 
+Tau ('t)-The commonly used notation for the amount of time remaining to expiration. 
+Theoretical Value-An option value generated by a mathematical model given cer­
+tain prior assumptions about the terms of the option, the characteristics of the underly­
+ing contract, and prevailing interest rates. 
+Theta (8)-The sensitivity of an option's theoretical value to a change in the amount 
+of time remaining to expiration. 
+Three-Way-A position similar to a conversion or reversal, but where the long or short 
+')OSition in the underlying instrument has been replaced with a very deeply-ln-the-
+oney call or put. 
+Time Box-A long call and short put with the same exercise price and expiration date, 
+together with a short call and long put at a different exercise price and expiration date. 
+This is simply a jelly roll using different exercise prices. 
+Time Premium-Time value. 
+Time Spread-The purchase (sale) of one option expiring on one date and the sale 
+(purchase) of another option expiring on a different date. Typically, both options are of 
+the same type, have the same exercise price, and have the same underlying stock or 
+commodity. 
+Time Value-The price of an option less its Intrinsic value. The price of an out-of-the­
+money option consists solely of time value. 
+Type-Toe designation of an option as either a call or a put. 
+Underlying -The Instrument to be delivered in the event an option ls exercised . 
+
+--- PAGE BREAK ---
+
+430 
+Variation-The cash flow resulting each day from changes In the settlement prtce ot a 
+futures contract 
+Vega-The sensitivity of an option's theoretical value to a change In volatlllty. 
+Vertical Spread-The purchase of one option and sale or one option, where both 
+opUons are of the same type, have the same underlying contract, and expire at the same 
+time, but have different exercise prices. 
+VolaWJty-The degree to whlch the prtce of an underlytng Instrument tends to 
+fluctuate over time. 
+Volatility Skew-The tendency of options at different exercise prtces to trade at 
+different lmpUed volatilities. 
+Wamnt-A long-term call option. The explratlon date of a warrant may under some 
+circumstances be extended by the issuer. 
+Write-Sell an option. 
+
+--- PAGE BREAK ---
+
+► •:• Append.ix B •:• 
+The Mathematics 
+of Option Pricing 
+OPl'ION PRICING MODELS 
+I. The Black-Scholes Model and Its Variations 
+Abbreviations used in the following mathematical formulae: 
+C = theoretical value of a call 
+p = theoretical value of a put 
+u = price of the underlying contract 
+E = exercise price 
+t = time to expiration in years 
+V = annual volatility expressed as a decimal fraction 
+r = risk-free interest rate expressed as a decimal fraction 
+e = base of the natural logarithm 
+In = natural logarithm 
+N'(x) = the normal distribution curve 
+= _1_ e(-r/2) 
+✓27t 
+N(x) = the cumulative normal density function {the area under N'(x)) 
+A The Black-Scholes Model for evaluating European options on non-dividend paying 
+stocks {U = price of the underlying stock):1 
+C = UN(h) -Ee-11 N(h-vvt) 
+P = -UN(-h) + Ee-rt N(vvt-h) 
+where h = m(¥)+(r+1)i 
+vv't 
+1. Blaclc, Fischer and Scholes, Myron, MThe Pricing of Options and Coll)Orate Uabllltles, • Journal of 
+Pollttcal Economy, Vol. 8 I, No. 3, May/June t 973, pages 637-()54. 
+431 
+
+--- PAGE BREAK ---
+
+4 2 ApptndlxB 
+For tock which pay dividends, the stock price (UJ can be replaced by the curren sco k 
+prlc I ss th pres nt value of the expected dividends: 
+n 
+U = L d,e-tt(l) 
+J-1 
+where ~ = each expected dividend payout over 
+the llf e of the option 
+~ = the time In years to each dividend payout 
+The sensitivities of the Black-Scholes Model are: 
+call delta = N(h) 
+put delta = -N(-h) 
+call gamma = 
+call theta = 
+put theta = 
+call vega = 
+call rho = 
+put rho = put gamma N'(h) 
+= uvft 
+Uv N'(h) + rEe-rt N(h -Wt) 
+2{f 
+Uv N'(h) -rEe-rt N(v--ft -h) 
+2-rr 
+put vega = Uft°N'(h) 
+tEe-rlN(h-vft°) 
+-tEe-rtN(v--ft-h) 
+B. The Black Model for evaluating European options on futures contracts (U = price of 
+the futures contract):2 
+C = Ue-rt N(h) -Ee-rt N(h -Wt) 
+P = -Ue-rt N(-h) + Ee-rt N(v-/t -h) 
+where h = In(f)+ft 
+v..ft 
+The sensitivities of the Black Model are: 
+call delta = e-r'N(h) 
+put delta = --e-rtN(-h) 
+call gamma = put gamma e-rt N'(h) = UV'ft 
+call theta = -rue-rt N(h) + rEe-rt N(h -v-ft) + Ue-rt vN'(h)/2'/t 
+put theta = rUe-rt N(-h) -rEe-rt N(V\lt-h) + Ue-rt vN'(h)/2'/t 
+2. Black, Fischer, "The Pricing of Commodity Contracts", Journal of Financial Economics, No. 3, J 976, 
+pages I 67-179. 
+
+--- PAGE BREAK ---
+
+► '(he Mathematics of Option Pricing 
+call vega = 
+call rho = 
+put rho = put vega 
+-tC 
+-tP 4.33 
+= 
+C The Garman Koh/hagen Mode/for evaluating European options on foreign curren­
+cl~s (U = price of the foreign currency In domestic currency units):3 
+c = ue-r,t N(h) -Ee-rd1 N(h-v..ft) 
+P : -U·1,1N(-h) + Ee-fdlN(eft-h) 
+In(¥) + ( rrr1+~:)t 
+where h = v-ft 
+r4 = the risk-free rate in the domestic currency 
+r, = the risk-free rate in the foreign currency 
+The sensitivities of the Garman-Kohlhagen Model are: 
+call delta 
+put delta 
+call gamma 
+call theta 
+put theta 
+call vega = put vega 
+call domestic rho 
+put domestic rho 
+call foreign rho 
+put foreign rho = e-r1tN(h) 
+= -e-1t1N(-h) 
+= 
+= 
+= 
+= 
+= 
+= 
+= 
+= e-1t1N1(h) 
+put gamma = ueft 
+r,ue-rl N(h) -rdEe-1dt N(h-vft) - U ri1 vN' (h)/2..ft 
+-r,ue-1,1 N(-h) + rdErd1 N(V"lt-h) -Ue-rl vN'(h)/2..ft 
+Ue-1,t N'(h)..ft 
+te-1d1EN(h-..ft) 
+-te-rdtEN(..ft-h) 
+-te-rt1EN(h) 
+te-r,1EN(-h) 
+Notes: The theta in the foregoing formulae ls expressed in terms of decay over one full 
+year. To express the theta in the more common form of dally decay, the resulting 
+number must be dlvlded by 365. 
+The vega ls expressed in terms of the sensitivity to a one-full-point ( 100-percent­
+age-polnt) change in volatility. To express the vega in the more common form of the 
+sensltlvlty to a one-percentage-point change in volatlllty, the resulting number must be 
+divided by 100. 
+3-Garman, Mark B. and Ko~, Steven W., Mf,oreJgn Currency Option Values•, Journal of 
+lnttrnattonal Money and Finance, Vol 2, No. 3, December 1983, pages 231-237. 
+Crabbe, J. Orlin, MThe Pricing of Call and Put Options on R>re1gn Exchan~•, Journal of International 
+Money and Finance, Vol 2, No. 3, December 1983, pages 239-253. 
+
+--- PAGE BREAK ---
+
+.,, 4 AppendlxB 
+D. Darren Wilcox has suggested a varlaUon on the Black Model where the underlying 
+contract (U) Is assumed to be normally distributed and may therefore take on negative 
+values.4 
+where h = C = e-rt(U-E)N(h) + e-rt N'(h)v✓t 
+P = e-rt(U-E)N(h) + e-rtN(h)v✓t -e-rt(U-E) 
+U-E 
+v../f 
+Note: Since this variation assumes a normal, rather than lognormal, distribution, the 
+volatility, v, is the standard deviation of absolute price changes, rather than the standard 
+deviation of logarithmic price changes. 
+The only difficulty in using the Black-Scholes Model or its variations is the 
+calculation of N(x), the cumulative normal density function. Values for N(x) can be 
+found in most statistical tables. Alternatively, the following approximation is suitable for 
+most practical applications: 
+If x ~ 0, then 
+N(x) = 1-N'(x)(.4361836k- .1201676k2 + .9372980k3) 
+where k = 1/(1 + .332671 x I) 
+and N'(x) is the normal distribution curve previously described. 
+If x < 0, then N(x) = 1 -N(x) 
+n. The Cox-Ross-Rubenstein (Binomial) Modet5 
+The Cox-Ross-Rubenstein Model makes the assumption that over any period of time the 
+underlying contract can move up (u) or down (d) by a given amount. The probability of 
+an up move is given by p, and the probability of a down move is given by 1 - p. For 
+example, suppose a certain contract is trading at 100, and over the next time period the 
+contract will move up to 105 (u=5) or down to 95 (d=-5), and that there is a 50 percent 
+chance (p=.5) of either outcome. If this is the only time period remaining to expiration, 
+and there are no interest considerations, we can calculate the value of a 100 call as its 
+expected return at the end the period. The call is worth intrinsic value if the underlying 
+contract is above the exercise price, and zero if the underlying contract is below the 
+exercise price. Its expected return is: 
+.5 X (105-100) + 0 = 2.50 
+4. Wilcox, Darren, "Spread Options in Energy Markets", Research Paper, Goldman, Sachs & Co., March 
+1990. 
+5. Cox, John C.; Ross, Stephen A.; and Rubenstein, Mark; "Option Pricing: A Simplified Approach"; 
+Journal of Financial Economics; No. 7, 1979; pages 229-263 
+For a good dtscus.slon of the computation required, see: Meisner, James E. and l.abuszewski, John w .; 
+"The Cox-Ross-Rubenstein Model for Alternative Underlying Instruments"; Advances In Futures 
+and Optfons Research; Vol. 2, 1987; pages 263-278 
+
+--- PAGE BREAK ---
+
+► r,,e Mathematics of Option Pricing 435 
+In the same way we can calculate the value of a 90 call as: 
+.5 X (105-90) + .5 X (95-90) = )0 
+We can extend this approach by dividing the time to expiration Into many small 
+pertods, and assume that over each period the underlying contract will always move up 
+(u) or down (d). The result at expiration will be a btnomtal tree, with many possible 
+prices at expiration for the underlying contract. An example of a three-period binomial 
+tree is shown In Figure B-1. 
+If we assume that the probability, p, of an up move and the probablllty, 1-p, of a 
+down move, is the same at each node of the binomial tree, It Is a simple matter to 
+calculate the probablllty of each prtce outcome at expiration. The expected return for 
+the option is the sum, for each outcome where the option Is In-the-money, of the 
+difference between the option's exercise prtce and the underlying price, multiplied by 
+the probabllity of that outcome. All outcomes where the option ls out-of-the-money are 
+set to zero. 
+In order to create a binomial tree which will approximate a lognormal distribution 
+we can define the following: 
+u = eeftlri 
+d = 1/u 
+where n = the number of periods to expiration (the number of 
+branches on the binomial tree) 
+Figure B-1 
+A 3 Period Binomial Tree 
+u = +5 
+d = -5 
+/ 110 
+105 / 
+100 100 
+95 
+90 115 (100 call= 15) 
+105 (100 call = 5) 
+95 (100 call = 0) 
+85 (100 call = 0) 
+
+--- PAGE BREAK ---
+
+4 6 AppemlxB 
+v = the annual votaUllty of the underlying contract 
+t = the time to expiration In years 
+As n becomes very large, the resulUng terminal prices of the binomial tree converge to 
+a lognonnal dlstJibutlon. 
+The probability, p, of an up move Is determined by the requirement that the 
+underlying market be artltrage·free, I.e., that no profit can be made trading the 
+underlying contract. If there are no Interest considerations, which ls the case with a 
+futures contract, we can ensure that the underlying futures market ls arbitrage-free by 
+defining the probablllty, p, of an up move as: 
+p = ( 1 ·d)/(u·d) 
+In an arbitrage-free stock market, the stock prtce must increase by the amount of 
+carrying costs over each period. If r is the rlsk-free rate, the rate, rr, by which the stock 
+price must increase over each period is: 
+rr = 1 + (rt/n) 
+We can ensure that the underlying stock market is arbitrage-free by defining the 
+probability, p, as: 
+p = (rr-<1)/(u-<i) 
+Rnally, we must discount the expected return for the option by the carrying costs over 
+the life of the option by multiplying the expected return by 1/(rr)n. 
+The basic form of the Cox-Ross-Rubenstein Model Is: 
+C = _L[i n! pk(l-p)n--kmax(O ukctn--tU-E)] 
+(rr)n k!(n-k)! ' 
+k=O 
+P = (:)" [ ~ kl(;~k)! pk(l-p)n-tmax(O,E-ukdn-kU)1 
+In order to use the Cox-Ross-Rubenstein Model to evaluate an American option, 
+we need to check whether at the beginning of each time pertod the value of the option 
+is such that early exercise ls warranted. For example, ln our two-period example with 
+the underlying at 100, we saw that the expected return for the 90 call was 10. If the 
+option were settled ln cash, the theoretical value of the option would be 10 less the 
+carrying costs over the holding pertod. If the carrying costs were .25, the theoretical 
+value of the option would be 9.75. If, however, the option were American, everyone 
+would exercise the option ln order to obtain 10 points right now. In other words, the 
+fact that the option ls American would require us to set the theoretical value at 10. 
+If we define U(l,j) as the jth underlying price at the end of the tth time pertod (see 
+Figure B-2), and C(i,j) or P(l,i) as the call or put value at each U(l,j), then we must check 
+to see whether each C(l,j) < U (l,j)-E, if we are evaluating an American call, or whether 
+
+--- PAGE BREAK ---
+
+'{he MathemAtfcs of Option Pricing 437 
+Figure B-2 
+U(4,0) 
+U(i,j) is the jth underlying price U(3,0) at the end of the Ith period 
+U(2,0) U(4, 1) 
+U(1,0) U(3, 1) 
+U(2, 1) U(4,2) 
+U(1, 1) U(3,2) 
+U(2,2) U(4,3) 
+U(O,O) is the current price U(3,3) of the underlying contract 
+U(4,4) 
+each P(i,j) < E-U(i,j), if we are evaluating an American put If either condition Is true 
+the option becomes an early exercise canditate, and we set the value of C(i,j) equal to 
+U(i,j)-E, or the value of P(l,j) equal to E-U(i,i). 
+We begin by calculating each terminal value U(n,j) for i=O, ... ,n. From these values 
+we can calculate the value of the option at each previous node, C(n-1 ,j) or P(n-1,j) for 
+j=O, ... ,n-1. If C(n-1,j) turns out to be less than U(n-1,i)-E, or If P(n-1,j) turns out to be 
+less than E·U(n-1,j), the option value is set to parity, and the Iterative procedure 
+continues. We continue to work backwards to C(0,0) or P(0,0) (the current value of the 
+call or put), always setting the value at each node, U(i,j), to maxlC(i,j), U(l,j)-EJ for a call, 
+or max!P(l,j), E·U(l,j)J for a put: 
+C(i, I) = max [pC(i + 1, i) + (1 ~ Pl C (I+ 1' i + 1) ' U(i, D -E] 
+P(l,j) = max[pP(i+l ,I) + (l;p)P(i+l,j+l) 'E-U(l,j)] 
+Since the delta of an option Is Its change In value for a given change In the price of 
+the underlying contract, we can also calculate call and put deltas from a binomial model: 
+call A = C(l,1)-C(l,0) 
+U(l,1)-U(l,0) 
+
+--- PAGE BREAK ---
+
+4 8 
+P(l,1)-P(l,0) 
+put A = U(l, 1) -U(l ,0) 
+The larger n Is chosen, the more accurate the option value generated by the mod 
+will be. Unfortunately, as n Increases, the number of calculations required to evaJua el 
+an Amertcan option Increases geometrically. Most traders who use the Cox-Ross-RUb~ 
+stein model choose n somewhere between 25 and 50. This represents a reasonable 
+trade-off between computer time and accuracy. 
+m. The Whaley (Quadratic) Model6 
+The Whaley Model uses an approximation technique to estimate the critical Price, u· 
+at which an American option should optimally be exercised early. This critical Price 1; 
+then used to determine the value of the option. 
+In order to find u• for a call, we must solve the equation: 
+E -u· = eOH)t[U•N(h)-EN(h-vft)J + [(1-e(b--r)tN(h-vft))(U•/qi)J 
+(For convenience we will refer to the two sides of this equation as LHS [the left-hand 
+side! and RHS [the light-hand sldeJ.) 
+where b = carrying costs on the underlying instrument (for futures 
+h = 
+q2 = 
+M = 
+N = 
+k = b = 0; for stock b = r) and all other abbreviations are those 
+used in the Black-Scholes Model 
+1n(f )+ (b+t} 
+irft 
+HN-1) + ✓~((N---1)~2 +-4M/-k-)J/2 
+2r/v2 
+2b/v2 
+1-e-rt 
+To solve for u• we pick a desired degree of accuracy, £, satisfying: 
+(LHS -RHS) / E < £ 
+We then perform progressive iterations, each time replacing u• 1 with: 
+U•,., =IE+ RHS-b1U• 11 / (l-b1) 
+where b1 = e(l>-r>t N(hU•,)(1-1/q2} + [t-e{b-r>t N'(hU•J(V"!t)J/q2 
+Once u• has been calculated to the desired degree of accuracy, the value of an 
+American call, C, and its delta, A, can be found by solving: 
+C = c + .Ai(U/U•)42J 
+6. Barone-Ades!, Giovanni and Whaley, Robert E., "Efficient Analytic Approximation of American Option 
+Values,• Jourra/ o/Flndnce, Vol 42, No. 2, June 1987, pages 301-320. 
+
+--- PAGE BREAK ---
+
+'fht MathemAtlcs of Option Pricing 43() 
+I::. = 6 + A2qi(U/U•)q2/U 
+where c = the value of a European call 
+6 = the delta of a European call 
+A2 = (U"/q2)1l-elb•r)tN(hU")I 
+In order to find U" for a put, we must solve the equation 
+E -u· = e(k)t IEN(h-vvt)- u·N(h)J -1(1 -e(l>-r)l N(h))(U• /q,)J 
+(We again refer to the two sides of this equation as LHS [the left-hand sldeJ and RHS !the 
+right-hand sideJ.) 
+where b = carrying costs on the underlying Instrument (for futures 
+h = 
+q, = 
+M = 
+N = 
+k = b = 0; for stock b = r) and all other abbreviations are those 
+used in the Black-Scholes Model 
+-m(f) + ( b+f} 
+rft 
+HN-1) -✓,....,( (N,.-:---....,....1 )-:--2 +----:-:-4M/~k) ]/2 
+2r/v2 
+2b/v2 
+1-e-rt 
+To solve for U" we pick a desired degree of accuracy, £, satisfying: 
+(LHS -RHS) / E < £ 
+We then peiform progressive Iterations, each time replacing U"1 with: 
+U"i+t = IE· RHS • b1U"1l / (l ·b1) 
+where b1 = e(IH'>t N(hU•,)(1-l/q1) + 11-e(IH'>t N'(hU•,)/(V'ft)l/q1 
+Once U" has been calculated to the desired degree of accuracy, the value of an 
+American put, P, and Its delta, '1, can be found by solving: 
+where p 
+6 
+A, p = p + A,(U/U·)ql 
+A = 6 + A1q1(U/U•)q1/U 
+= the value of a European put 
+= the delta of a European put 
+= -(U"/qi)lt-elb-rllN(hU")I 
+
+--- PAGE BREAK ---
+
+440 
+NORMAL DISTRIBUTIONS 
+Since the assumption that price changes are normally distributed plays such an im 
+tant role In many theoretical pricing models, It may be useful to know how to com:r• 
+some of the numbers associated with a normal distribution. te 
+TheMean(m) 
+The mean (m) of a distribution of n occurrences Is the average outcome of all the 
+occurrences (~): 
+n 
+m = .!. Ix1 n 
+i=l 
+The Standard Deviation ( cr) 
+The standard deviation (o) of a distribution of n occurrences Is defined as:7 
+a=✓ i In -(x -m)2 
+n-1 I 
+I= I 
+If a distribution is normal, approximately 68.3 percent of the occurrences fall 
+within one standard deviation of the mean, approximately 95.5 percent of the occur­
+rences fall within two standard deviations of the mean, and approximately 99 .7 percent 
+of the occurrences fall within three standard deviations of the mean. 
+Skewness (Sic) and Kurtosis (Ku) 
+If a distribution Is approximately normal, it may be useful to know how the distribution 
+deviates from a true normal distribution. We can determine this by computing the 
+skewness and kurtosis of the distribution. 
+Many of the measures associated with a distribution are derived from a group of 
+numbers called moments. In general, the jth moment of a distribution about the mean 
+is: 
+n 1 m1 = ii I, (x1 -m)I 
+i= 1 
+To determine the skewness and kurtosis of a distribution, we need the second, third, 
+and fourth moments: 
+7. Because we are dlv1dlng by (n· 1) this ls technically the sample srandmi deviation This Js the form 
+which ls most commonly used for volatility calculations. 
+
+--- PAGE BREAK ---
+
+The MathemAtlcs of Option Pricing 441 
+1 n 
+ffi4 = n L (X1 -m)4 
+1=1 
+The skewness of a distribution Is defined as: 
+skewness= l 
+ffi2 ffi2 
+A perfectly nonnal distribution has a skewness of zero. If the distribution Is positively 
+skewed (Sk > 0), the right tall ls longer than the left. If the distribution Is negatively 
+skewed (Sk < 0), the left tall Is longer than the light. 
+The kurtosis of a distribution is defined as: 
+ffi4 kurtosis = -2 -3 
+m2 
+A perfectly normal distribution has kurtosis of zero (mesokurtlc). If a distribution has a 
+positive kurtosis (Ku> 0), more occurrences fall In the middle and at the extreme tails 
+of the distribution (leptokurtlc). If a distribution has a negative kurtosis (Ku< 0), fewer 
+occurrences fall in the middle and at the extreme tails of the distribution (platykurtlc). 
+While almost all spreadsheets Include the mean and standard deviation functions, 
+and many also Include skewness and kurtosis, it may be worthwhile to do a sample 
+calculation. 
+Consider, for example, the pinball distribution In Figure 4-2 (reproduced in Figure 
+B-3). In order to compute the mean, we must multiply the number of balls in each 
+trough by the number of the trough, add up the total (563), and divide by the total 
+number of balls (75): 
+mean= 563/75 = 7.507 
+To compute the standard deviation, for each ball we square the difference between 
+its trough and the mean, add up all 75 results, divide by the number of occurrences less 
+one (7 4), and take the square root of this number. 
+standard deviation = ✓_I_ I (Xi_ m)2 
+n-1 
+1=1 
+
+--- PAGE BREAK ---
+
+r :.cc i ,r 
+~ ~ 
+Figure 8-3 ~ 
+Deviation Numberof 
+Trough Number of from DevlaUon Occurnnces 
+Number Occurrences Value the Mean Squared x0evlallon2 
+0 0 0 -7.507 56.350 0 
+1 2 2 -6.507 42.337 84.673 
+2 2 4 -5.507 30.323 60.647 
+3 3 9 -4.507 20.310 60.930 
+4 5 20 -3.507 12.297 61.484 
+5 7 35 -2.507 6.283 43.984 
+6 8 48 -1.507 2.270 18.160 
+7 10 70 -.507 .0257 2.567 
+8 10 80 .493 .243 2.434 
+9 9 81 1.493 2.230 20.070 
+10 7 70 2.493 6.217 43.517 
+11 6 66 3.493 12.203 73.220 
+12 3 36 4.493 20.190 60.570 
+13 1 13 5.493 30.1n 30.177 
+14 1 14 6.493 42.163 42.163 
+15 ....1 15 7.493 56.150 56.150 ~ 
+75 563 660.747 I .::, 
+Q. R" 
+Cb 
+-----·---
+
+--- PAGE BREAK ---
+
+► 17rt Mathematics of Option Pricing 
+= ✓660.747 
+74 
+= ✓8.929 
+= 2.988 443 
+While a detailed calculation of the skewness and kurtosis would require an 
+inordinate amount of space, the relevant values are: 
+skewness 
+kurtosis = = = 
+= 
+= 
+= 
+= 
+= 
+= 
+= = 8.810 
+.185 
+213.455 
+8.810~ 
+.185 
+26.149 
++.007 (the right tall is slightly longer than the left) 
+m4 -3 
+m2 2 
+213.455 _ 3 8.8102 
+2.750-3 
+-.250 (the distribution has a slightly flatter peak 
+than one would expect) 
+VOLATILITY CALCULATIONS 
+Historical Volatility 
+The historical volatility ls defined as the standard deviation of the logartthmlc prtce 
+changes measured at regular Intervals of time. Since settlement prices are usually 
+considered the most reliable, the most common method of computing volatility involves 
+using settlement-to-settlement price changes. We define each price change (x1) as: 
+x1 = ln(..!l_) 
+lpl-1 
+where P1 ls the price of the underlying contract at the end of the 1th time interval 
+P/P1.1 ls sometimes referred to as the price relative. 
+As an example, consider the volatility of the price changes in Agure 5-1. 
+
+--- PAGE BREAK ---
+
+444 ApptndfxB 
+Under1yfng DevfatJon Deviation 
+Week Price ln(P1/Pr I) Mean from Mean Squared 
+0 I 01.35 
+I I 02.26 +.008939 .007771 .000060 
+2 99.07 -.031692 -.032859 .001080 
+3 I 00.39 +.013236 t--.012069 .000146 
+4 100.76 +.003679 IQ .002512 .000006 -103.59 +.027699 -.026532 .000704 5 0 0 
+6 99.26 -.042698 + -.043865 .001924 
+7 98.28 -.009922 -.011089 .000123 
+8 99.98 +.017150 .015982 .000255 
+9 103.78 +.037303 .036136 .001306 
+10 102.54 -.012020 -.013188 .000174 
++.011674 .005778 
+We first calulate the standard deviation of the logarithmic price changes: 
+standard deviation = ✓(.005778/9) 
+= ✓.000642 
+= .025338 
+We then calculate the annual volatility by multiplying the standard deviation by the 
+square root of the time Interval between price changes. Since we looked at price changes 
+every week, the time Interval Is 365/7: 
+annualized volatility = .025338 x ✓(365/7) 
+= .025338 X ✓52.14 
+= .025338 X 7.22 
+= .1829 (18.29%) 
+We can calculate the volatility of a stock, such as In Figure 5-2, in the same way 
+except that we must remember that the volatlllty Is based on the forward price. This 
+requires two modifications. Over any Interval of time, In order to maintain a theoreti· 
+cally arnitrage-free market, the stock price Is expected to increase by the carrying costs 
+on the stock over that period. If we record stock price changes at weekly Intervals, the 
+stock price Is expected to rise by r/52, where r Is the annualized, risk-free Interest rate. 
+The price changes are therefore expressed as: 
+X -In(. pl ) 
+I -l (1 +r/52)P 1-1 
+When the stock gives up Its dividend, this does not really cause a change in the stock 
+price. We therefore Include the dividend, D, In the price of the stock when calculating 
+price change over the period when the stock goes ex-dividend: 
+
+--- PAGE BREAK ---
+
+The MathemRffcs of Option Prfcf ng 44$ 
+x, ~ In (o+r:;~~P,_,) J 
+Over short periods of time, or in a low-Interest-rate environment, the Impact of 
+interest rates on the forward price Is small, and can usually be Ignored when calculatlng 
+historical stock price volatlllty. 
+The Extreme Value Method8 
+When rellable settlement prices are unavallable, the extreme value method Is an 
+acceptable alternative method of calculating historical volatility. The method uses high 
+and low prices during a period, and each data point, Xi, Is equal to: 
+X1 = .601 • ln(H/1,) 
+where Ht = the highest price over time period t 
+~ = the lowest price over time period t 
+The volatility is the standard deviation of all ~' annualized by multiplying by the 
+square root of the number of time periods, t, in a year. If t is a daily interval, we must 
+Figure B-4: Using a Newto~aphson Search to Find the Implied Volatility 
+Implied 
+Volatility theoretical value 
+at second guess I 
+I theoretica l value 
+at first guess 
+I 1/ 
+/ 1 
+//' ,· vega at 
+vega at 
+second guess first guess 
+Volatility ------- ------ ~ 
+8. Parkinson, Michael, "The Extreme Value Method for Estimating the Variance of the Rate of Return•, 
+Jourfl,3./ of Bustness, Vol. 53, No.1, 1980, pages 61-65. 
+
+--- PAGE BREAK ---
+
+Append/Jc 8 
+multiply by the square root of the number of trading days In a year (approximately 253); 
+If t Is a weekly Interval, we must mulUply by the square root of the number of tradfng 
+weeks In a year (approximately 52). 
+Calculation of Implied Volatility 
+While It Is not possible to Invert the Black-Scholes Model to arrive at an Jmplied vo1atllity 
+from a known option price, a Newton-Raphson search can be used to converge on the 
+implied volatility quite quickly. We first make a guess as to the option's implied 
+volatility, and then use the option's vega (sensitivity to a change in volatility) to come 
+progressively closer to the true Implied volatility. This method is illustrated in Figure 
+B-4. 
+Because an option's vega is relatively linear, the method converges very quickly, 
+usually with no more than four iterations, even with a poor first guess. The iterative 
+process is: 
+where p = the option's price 
+Xi = the volatility 
+Yi = the option's theoretical value at volatility xi 
+v1 = the option's vega at volatility x1 
+We choose a desired degree of accuracy, E, and continue with the process until ly1 -pl < 
+E, at which point x1 is the desired implied volatility. 
+THE EXPONENTIAL AND NATURAL 
+LOGARITHM FUNCTIONS 
+Since the natural logarithm (ln(x}) and exponential function (e1} play such an important 
+role in most theoretical pricing models, a brief discussion of their use may be worth­
+while. 
+Suppose r = an annual interest rate, 
+expressed as a decimal fraction 
+I = the amount of an investment 
+t = the time period over which the investment is made, 
+expressed in years 
+When r is continuously compounded, the value, V, of I at the end of the time 
+period, t, is given by: 
+V=er1.1 
+When r is continuously compounded, the initial investment, I, required to yield V 
+at the end of the time period is given by: 
+
+--- PAGE BREAK ---
+
+The Mathemsttcs of Option Pricing 447 
+I = e·rt • V 
+l ls referred to as the present value of V, I.e., V discounted by Its carrying costs. 
+Toe yield, y, resulting from the continuous compounding of the Interest rate, r, over 
+the time period is given by: 
+The annualized yield is y/t. 
+Example: If r=10% (.10), the value of a $2,000 Investment In three months 
+(t=.25) if interest is compounded continuously wlll be: 
+V = ert • $2,000 = e-10·•25 • $2,000 
+= e,025 • $2,000 = 1.0253 . $2,000 = $2,050.63 
+Example: If r=6% (.06) and is compounded continuously, the amount of money 
+one would need to invest to have $5,000 after eight months (t=.667) would be: 
+I = e~ • $5,000 = e·06••667 • $5,000 
+= e--04 • $5,000 = .9608. $5,000 = $4,803.95 
+Example: If r=15% (.15) and Is compounded continuously, the total yield on a 
+six-month (t=.5) investment will be: 
+y = ert-1 = e·15••5 -1 = e-075 -1 = .0779 (7.79%) 
+The total annualized yield is: 
+y/t = .0779/.5 = .1558 (15.58%) 
+If I ls the amount initially Invested, the continuously compounded rate of return, 
+rt, needed to yield V over some period of time, t, ls given by: 
+rt= ln(V/1) 
+If v ts greater than I, the resulting rate of return will be a positive number. If V is less 
+than I, the resulting rate of return will be a negative number. The annualized rate of 
+return ls: 
+r = r/t = ln(V/1)/t 
+Example: Assuming continuous compounding, the annual rate of return required 
+for an initial investment of $3,000 to yield $3,200 in nine months (t=.75) ls: 
+r = In(3,200/3,OOO)/.75 = ln(l .0667)/.75 
+= .0645/.75 = .0861(8.61%) 
+Note that the exponential and logarithmic functions are Inverses: 
+In( e') = eln(x) = X 
+
+--- PAGE BREAK ---
+
+448 ApptMlx8 
+Because volatlllty Is also a rate or return, and Is assumed to be contJnuousty 
+compounded, the exponenUal and logarithmic functlons can be used to calculate 
+expected price changes of an underlying contract. 
+Example: Suppose a certain futures contract Is trading at a price, P, of 50 and has 
+an annual volaUllty, v, of 12%. A one standard devlatlon upward price change Is 
+eV, p: e,12 • 50: 1.)275, 50: 56,37 
+A one standard devlatlon downward price change Is 
+e-v. P = e··12 • 50 = .8869 • 50 = 44.35 
+Since we know that one standard deviation takes In about 68 percent of all outcomes, 
+we know that If the volatility figure of 12% Is correct, there Is a 68 percent chance that 
+one year from now the same futures contract wlll be tradlng between 44.35 and 56.37. 
+What about a two standard deviation price change? If the move Is upward, we 
+calculate: 
+e·12•2• 50 = e·24• 50 = 1.2712 , 50 = 63.56 
+If the move Is downward, we calculate: 
+e··12•2, SO= e-.24• 50 = .7866. 50 = 39.33 
+Since we know that two standard deviations takes In about 95% of all outcomes, we 
+know that lf the volatlllty figure of 12% Is correct, there Is a 95% chance that one year 
+from now the same futures contract will be trading between 63.56 and 39 .33. 
+For time periods other than one year we must also take Into consideration the 
+square root relatlonshlp between time and volatility. If a one standard deviation prtce 
+change over a pet1od Is given by v, then a one standard devlatlon price change over a 
+pertod which ls twice as long Is v "'2. Similarly, a one standard deviation price change 
+over a period only half as long Is v ../3'. The generalized rule Is: 
+volatility (standard deviation) over the period t = v • ~t 
+where v Is the annualized volatility and t Is the time pertod In years. This enables us to 
+express a move of n standard deviations over t as either: 
+en•v•'«. P (an upward move) 
+or 
+e-n•di • P (a downward move) 
+where P ls the current price of the contract. 
+Example: With an underlying contract at 84.00 and an annual volatility of 16%, 
+a one and two standard deviation price change over a three-month period It= .25) ls: 
+e·16l°25 • 84.00 = e·16••5 • 84.00 = e-08 • 84.00 
+= 1.0833 • 84.00 = 91.00 (up 1 standard deviation) 
+
+--- PAGE BREAK ---
+
+'{he Mathef11JltiCS of Option Pricing 44() 
+e2-.16i"2s . 84.00 = e2••16••5 • 84.00 = e-16. 84.00 
+= 1.1735 • 84.00 = 98.57 (up 2 standard deVlatlons) 
+e-.t6f.25 . 84.00 = e-·16••5 • 84.00 = e--08• 84.00 
+= .9231 • 84.00 = 77.54 (down 1 standard deVlatlon) 
+e-2-.16i"2s. 84.00 = e-2••16••5 • 84.00 = e--16. 84.00 
+= .8521 • 84.00 = 71.58 (down 2 standard deVlatlons) 
+Given a volatility and time period we can always calculate the number of standard 
+deviations required to reach an outcome. If we have a table of standard deVlatlons and 
+their associated probabilities, we can then find the probablllty associated with that 
+outcome. In the case of options, we might often be interested In the probability of an option 
+with a certain exercise price being In-the-money at expiration. The movement, In 
+standard deviations, required for an underlying contract with price, P, to go through an 
+exercise price, E, at expiration ls given by: 
+number of standard deviations = ln(~) 
+V t 
+Example: If conditions are the same as In the last example (v=.16, P=84.00), the 
+movement, in standard deviations, required for a 95 call to finish In-the-money three 
+months from now is: 
+ln(95/84)/(.16 •~25) = In(l.1310)/.08 = .1231/.08 = +l.5383 st. devs. 
+Checking a table of standard deviations, we find that there Is approximately a 6.2% 
+chance, or about one chance in 16, of an upward move of 1.5383 standard deviations. 
+In the case of a stock, a slight modification Is necessary because the volatility 
+represents price movement away from the forward price. If P ls the current stock price, 
+t ls the time period, r ls the risk-free Interest rate, and D ls the amount of dividends 
+expected over the period, the forward price of the stock, PP ls: 
+Pr= P • ert-D 
+Example: Suppose Interest rates are at 8%. If a certain non-dividend paying stock 
+is trading at 38 and has an annual volatility of 27%, the movement, In standard 
+deviations, needed for a 35 put to finish In-the-money six months (t=.5) from now ls: 
+ln[35/(38-e·08••5)/(.27•~5) = ln(35/39.55)/. l 91 
+= -.122/ .191 = -.64 standard deviations 
+Checking a table of standard deviations, we find that there is approximately a 26% 
+chance, or about one chance in four, of a downward move of .64 standard deviations. 

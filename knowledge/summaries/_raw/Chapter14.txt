@@ -1,0 +1,785 @@
+Volatility Revisited 
+While there are many ways in which traders Interpret volatility, In theory the value of 
+an option depends on only one volatility, the volatility of the underlying contract which 
+will occur over the llfe of the option. Of course, this volatility ls unknown to a trader 
+since lt wlll occur ln the future. Nevertheless, if a trader wants to use a theoretical 
+pricing model, he wlll be required to make some prediction about the volatility of the 
+underlying contract over the life of the option. 
+Making an lntelllgent volatility forecast can be a difficult and frustrating exercise, 
+especially for a new option trader. The forecasting of directional price movements 
+through technical analysis ls a commonly studied area In trading, and there are many 
+sources to which a trader can turn for Information on this subject. Unfortunately, 
+volatility Is a much newer concept, and there ls relatively little to guide a trader. In spite 
+of thls difficulty, an option trader must make some effort to come up with a reasonable 
+volatlllty Input lf he ls going to rely on a theoretical pricing model to make Intelligent 
+trading decisions. 
+SOME VOLATILITY CHARACTERISTICS 
+The first step In making a sensible volatlllty forecast ls to understand some of the basic 
+characteristics of volatility. First, let's compare two graphs. Figure 14· l shows Deutsche­
+mark prices from 1982 to 1991. Figure 14-2 shows the 50-day volatility of Deutsche­
+marks over the same period. Are there any generalizations one can make from these 
+graphs? Obviously both prices and volatility sometimes rise and sometimes fall. But 
+unlike the prices of an underlying Instrument, which appear to move freely in either 
+direction, there seems to be an equilibrium number to whlch the volatility always 
+returns. Over a period of three years, from early 1985 to late 1987, the price of 
+Deutschemarks rose from a low of29 to a high of 63. While prtces fluctuated after 1987, 
+they never reached the lows of the early l 980s. Someday, economic forces may cause 
+Deutschemarks to rise or fall dramatically, never again returning to prices in the 50s or 
+60s. In other words, prices of an underlying contract are open-ended . There ls no reason 
+why they have to return to some previous level. 
+Such does not appear to be the case with volatility. The S0•day volatility of 
+Deutschemarks over the 1 0•year period In question fluctuated from a low of 5% to a 
+high of 20%. Yet no matter how much It fluctuated, at some point volatility always 
+reversed itself and retraced almost all of its previous rise or fall. Indeed, we might t.Jy to 
+find an equlllbrlum volatlllty such that there are equal fluctuations above and below this 
+273 
+
+--- PAGE BREAK ---
+
+I Figure 14-1: Deutschernark Prices 1982-1991 
+70 
+65 
+60 
+55 
+:E 
+C 50 
+g_ 
+~ 45 CD 
+CJ 
+40 
+35 
+30 
+25;1-1982-.--:;-98~,--~:;;:;:-r--:;~:;;--,r----:;;;~-.----::::::=-~~====---·---,,----,-,---..JJ 1982 1983 1984 1985 1986 1987 1988 1989 11,)gc, 1&1$11 "-1 
+~ 
+, --
+
+--- PAGE BREAK ---
+
+Volattllty Rwtslttd 27S 
+number. In the case of Deutschemarks, this equilibrium volatility seems to be about I J % 
+to 12%. Volatility may rise well above 12%, or fall well below 11 %, but eventually It 
+always seems to return to this area. 
+If we were to generalize about volatility characteristics from the Deutschemark 
+volatlllty In Figure 14-2, we might surmise that an underlying contract Is llkely to have 
+a typical long•term average, or mean volatility. Moreover, the volatlllty of the underlying 
+contract appears to be mean reverting. When volatlllty rises above the mean, one can 
+be fairly certain that It wlll eventually fall back to Its mean; when volatlllty falls below 
+the mean, one can be fairly certain that It will eventually rise to its mean. There ls a 
+constant gyration back and forth through this mean. 
+This mean reverting characteristic of volatility can also be seen In Agure 14-3, 
+which shows the distribution of Deutschemark volatility from t 982 to 1991. Beginning 
+at the extreme left on the x-axis (the amount of time remaining to expiration), we can 
+see that over any two-week period during the 10 years In question, there was a 20% 
+chance that volatlllty would be either less than 6.0% or greater than 17.3% (the t 0th 
+and 90th percentiles). There was a 50% chance that volatillty would be either less than 
+7 .6% or greater than 13.0% (the 25th and 75th percentiles). The mean volatility for any 
+twO week period was 9. 7%. Moving to the extreme right on the x-axis, we can see that 
+over any SO week pertod there was a 20% chance that volatility would be either less 
+than 9 .8% or greater than 14%. There was a 50% chance that volatility would be either 
+less than 10.6% and greater than 12.7%. The mean volatility for any 50-week period 
+was about 11.5%. 
+Agure 14·3 has an easily Identifiable structure. As one moves further out In Ume 
+the percentile lines tend to converge towards the mean, and the mean becomes stable. 
+This reinforces the assumption that volatlllty Is Indeed mean reverting. This type of 
+volatility graph, sometimes referred to as a volatility cone, Is an effective method of 
+presenting the volatility characteristics of an underlying Instrument 1 
+What else can we say about volatility? Looking at the more detailed Deutschemark 
+volatility chart in Figure 14-4, we might surmise that volatlllty has some trending 
+characteristics. From July 1989 through June 1990 there was a downward trend ln 
+volatlllty. From July 1990 to April 1991 there was an upward trend. And from April 
+1991 to October 1991 there was again a downward trend. Moreover, within these 
+major trends there were minor trends as volatility rose and fell for short periods of Ume. 
+In this respect volatility charts seem to display some of the same characteristics as price 
+charts, and it would not be unreasonable to apply some of the same principles used In 
+technical analysis to volatility analysis. It Is Important to remember, however, that while 
+price changes and volatlllty are related, they are not the same thing. If a trader tries to 
+apply exactly the same rules of technical analysis to volatlllty analysis, he ls likely to find 
+that in some cases the rules have no relevance, and that In other cases the ruJes must 
+be modified to take Into account the unique characteristics of volatility. Since the author 
+1. f-or a more det.alled dJscusston of volatility cones, see: • 
+Burghard~ Galen and Lane, Morton; "How to Tell if Optlons are Cheap ; 'llle Jouffl3.I of Portfolio 
+Managemen4 WJnter 1990, pages 72-78• 
+
+--- PAGE BREAK ---
+
+Figure 14-2: So-Day Deutschemark Volatility 1982-1991 22~------- ----------------- -----
+20 
+18 
+16 
+~ -14 
+~ 
+li 
+0 > 12 
+10 
+8 
+6 
+1982 1983 1984 1985 1986 1987 1988 
+
+--- PAGE BREAK ---
+
+18,---------- ------------~ 
+I' 
+16 
+90th Percentile 
+14 
+75th Percentile 
+~ ~ 
+~ ·-a; 12 ----- Median 
+0 > 25th Percentile 
+10 
+8 
+5...l--lf"---.---.---.---.---.--.--~-~-:::c- -.-:---:r--.---.-----.---,----.-_J 20 23 26 29 32 35 38 
+Weeks to Expiration 41 44 47 50 
+2 5 8 11 14 17 
+
+--- PAGE BREAK ---
+
+Figura 14-4: So-Day Deutschemark Volatility 1989-1991 
+18 
+16 
+14 
+~ 
+~ 12 
+~ 
+~ 
+10 
+8 
+6-t-----,-----,--------.--------.-----,-.- ----.-----~----r-----r-----t _______ J_a_n_-a_e __ A_:_p_r-_a_e __ A_u.:g:..•_B_e __ N_o_v_-_e...:e _ _,:M...:•...:.r...:•90~-..:J:.:u::.:.l•..:,90:..:_ __ o=-:ct:.:.•..:,90:..:_ _ _:F..:•:.:b:.·..:9:..:1:__.:,J..:u.:..n_•G:..1.:__,:S:...:•::.:P..:..:.9_1_.....:..::Ja~ __ _ 
+
+--- PAGE BREAK ---
+
+,.........-
+\.Wittlt(y RMSlttd 219 
+cklms no pa.rtlcular expertise ln the area of technical analysis, the reader Is left to his 
+own devtces ln thls regard. 
+VOLATILl1Y FORECASTING 
+Given the volatility characteristics that we have Identified, how might we go about 
+maklng a volatility forecast? Arst we need some volatlllty data. Suppose we have the 
+following historical volatlllty data on a certain underlytng Instrument 
+last 30 days 
+last 60 days 
+last 120 days 
+last 250 days 24% 
+20% 
+18% 
+18% 
+Certainly, we would llke as much volatility data as possible. But lf this ls the only data 
+available, how might we use It to make a forecast? One method mlghtbe to simply take 
+the average volatility over the pertods which we have: 
+(24% + 20% + 18% + 18%) / 4 = 20% 
+Using thls method, each piece of data Is given Identical weight Might lt not be 
+reasonable to assume that some data Is more important than other data? A trader might 
+assume, for example, that the more current the data, the greater Its importance. Since 
+the 24% volatlllty over the last 30 days Is clearly more current than the other volatility 
+data, perhaps 24% should play a greater role In our volatlllty forecast We might, for 
+example, give twice as much weJght to the 30-day data as to the other data: 
+(40% X 24%) + (20% X 20%) + {20% X 18%) + (20% X 18%) = 20.8% 
+Our forecast has gone up slightly because of the extra weight given to the more recent 
+data. 
+Of course, if It ls true that the more recent volatility over the last 30 days ls more 
+important than the other data, it follows that the volatillty over the last 60 days ought 
+to be more important than the volatility over the last 120 days and 250 days. It also 
+follows that the volatility over the last I 20 days must be more Important than the 
+volatJJity over the last 250 days. We can factor this Into our forecast by using a regressive 
+weighting, giving more distant volatility data progressively less weight ln our forecast 
+For example, we might calculate: 
+(40% X 24%) + (30% X 20%) + (20% X 18%) + (10% X 18%) = 21.0% 
+Here we have given the 30-day volatility 40% of the weight, the 60-day volatility 30% 
+of the weight, the 120-day volatility 20% of the weight, and the 250-day volatility 10% 
+of the weight 
+We have made the assumption that the more recent the data, the greater Its 
+importance . Is this always true? If we are Interested in evaluating short-term optlons, It 
+may be true that data which covers short periods of time ls the most Important But 
+suppose we are Interested in evaluating very long-tenn options. Over long periods of 
+
+--- PAGE BREAK ---
+
+280 11Ai 
+time the mean reverting characterlsUc of volaUllty Is likely to reduce the Jmporta 
+any short-term fluctuaUons In volaUllty. In fact, over very long periods of tlme the n 
+reasonable volatility forecast Is simply the long-term mean volatility of the fnstrum~n 
+Therefore the relative weight we ~veto the different volaUllty data wlll depend 
+amount of time remaining to explrauon for the options In which we are Inter I 
+In a sense, all the historical volatility data we have at our disposal are curren 
+they simply cover different periods of time. How do we know which data ls the m 
+Important? In addition to the mean reverting characteristic, volatility also ten 
+exhibit serial correlation. The volatlllty over any given period Is likely to depend on, 
+correlate with, the volatility over the previous penod, assuming that both periods co 
+the same amount of time. If the volatility of a contract over the last four weeks was 15
+/"J' 
+the volatility over the next four weeks Is more likely to be close to 15% than far awal 
+from 15%. We can again use the weather analogy from Chapter 4. If the hi&• 
+temperature yesterday was 25°, and we had to guess what the high temperature toda 
+would be, a guess of 30° would make more sense than a guess of 50°. Once we realize 
+this we might logically choose to give the greatest weight to the volatility data covering 
+a u~e period closest to the life of the options In which we are Interested. That 1s, if we 
+are trading very long-term options, the long-term data should get the most weight If we 
+are trading very short-term options, the short-term data should get the most weight And 
+if we are trading Intermediate-term options, the Intermediate-term data should get the 
+most weight. 
+Suppose we are interested in evaluating six-month options. How should we weight 
+our data? Since 120 (trading) days ls closest to six months, we can give the 120-day data 
+the greatest weight, and give other data correspondingly lesser weight: 
+(15% X 24%) + (25% X 20%) + (35% X 18%) + (25% X 18%): 19.4% 
+Alternatively, if we are interested In 10-week options, we can give the greatest 
+weight to the 60-day volatility data: 
+(25% X 24%) + (35% X 20%) + (25% X 18%) + (15% X 18%) = 20.2% 
+In the foregoing examples we used only four historical volatilities, but the more 
+volatlllty data which Is available, the more accurate anyvolatil!ty forecast ts likely to be. 
+Not only wlll more data, covering different periods of time, give a better overview of 
+the volatility characteristics of an underlying Instrument, but it will enable a trader to 
+more closely match historical volatilities to options with different amounts of time to 
+expiration. In our example we used historical volatilities over the last 60 days and 120 
+days as approximations to forecast volatilities for six-month and 10-week options. 
+Ideally, we would like historical data covering exactly a six-month period and exactly a 
+10-week period. 
+The method we have described Is one which many traders Intuitively use to 
+forecast volatility. It depends on Identifying the typical characteristics of volatility and 
+then projecting a volatility over the forecasting period. Theoreticians have recently 1
+t11ed 
+to take essentially the same approach to volatility forecasting, and this has led to the 
+development of autoregressive conditional heteroskedastlclty (ARCH) and generalized 
+
+--- PAGE BREAK ---
+
+~ 
+VolRttll(Y Re,lisfted '8/ 
+autoregressi ve conditional heteroskedastlctty IGARCH) volatility models. A detailed 
+discussion of such models Is beyond the scope of this text, since they can be mathemaU• 
+cally complex and are not wldely used among traders. Neverthele ss, an opUon trader 
+should be aware that these models do exist, and that they are simply an attempt to apply 
+the mean reverting and serial correlation characteristics of volatility to volatility forecast· 
+lng.2 
+Thus far we have focused only on the hlstortcal volatility characteristics of the 
+underlying instrument In trying to forecast a volatility. Is there any other Information 
+which might be useful? No Individual trader can hope to know everything affecting 
+price changes In an underlying contract. Perhaps there are factors which could affect 
+the future volatility, but about which the trader Is unaware. If one believes that such 
+information is likely to be reflected In the prices of the contracts being traded, one way 
+to ferret out additional volatility infonnatlon Is to look at the prices of options. In other 
+words, a trader wtll want to look at the Implied volatility In the marketplace to find the 
+consensus volatility. Once he has done this, he will want to use this Information In any 
+volatility forecast he Intends to make. 
+How much weight should a trader give the Implied volatility? Some traders 
+subscribe to the efficient market principle, and believe that the Implied volatility Is 
+always the best volatility forecast since it reflects all available information. Most traders 
+believe, however, that while the Implied volatility Is important, It Isn't the whole story. 
+Typically, a trader might give the Implied volatlllty a weighting somewhere between 
+25% and 75% In making a volatility forecast How much depends on the trader's 
+confidence in forecasting a volatility based on historical volatility data? If a trader feels 
+very confident about his forecast, he might give the implied volatility as little as a 25% 
+weight; if he feels uncertain about his forecast, he might give the implied volatility as 
+much as a 75% weight. Of course, his confidence level will depend on his experience, 
+as well as how conclusive the historical data Is. 
+~or example, suppose a trader has made a volatility forecast of 20% based on 
+cal data, and that the implied volatility Is currently 24%. If the trader decides to 
+.be implied volatility 75% of the weight, his final forecast will be: 
+175% X 24%) + 125% X 20%) = 23% 
+On the other hand, If the trader decides to give the implied volatlllty 25% of the weight, 
+his final forecast will be: 
+2. f-or further information on ARCH and GARCH models see: 
+Engl.e, R.F., "Aut.oregr~ive Cond!tlonal Heteroskedatlclty with E.stlmates of the Variance of United 
+Kingdom Infiatlon," Econometrica, Vol 50, No. 4, 1982, pages 987-1000. 
+Bollerslev, T., "Generallzed Autoregressive Conditional Heteroskedastlclty," Journal of Economics, 
+No. 31, April 1986, pages 307-327. 
+Bollerslev, T., "A Conditional Heteroskedastlc Time Series Model for Speculative Pdces and Rates of 
+Return,• Review of Economics and Statistics, No. 69, August 1987, ~ 542-547. 
+Nelson, David 8., "Conditional Heteroskedasticlty in~ Returns: A New Approach,• Econometrica, 
+No. 59, 1991, ~ 347-370 
+Kuberek, Robert C., "Pr~Hctlng Interest Rate Volatility: A Conditional Heteroskeda.stic Model of 
+Interest Rate Movements,• Journal of Ftxed Income, Vol. 1, No. 4, March 1992, ~ 21-27. 
+
+--- PAGE BREAK ---
+
+'8, ;1,Apftf I 
+(25% X 24%) + (75% X 20%) = 2 J % 
+Anally, If the trader decides to ~ve the Implied volatlllty half the weight, hfS ff 
+forecast will be: 
+(50% X 24) + (50% X 20) :: 22% 
+A PRACTICAL APPROACH 
+No matter how painstaking a trader's method, he Is likely to find that his voJatJlf ty 
+forecasts are often Incorrect, and sometimes to a large degree. Given this difficulty, 
+many traders find It easier to take a more general approach. Rather than asklng wha 
+the correct volatility Is, a trader might Instead ask, ~ven the current volatility cJJrnate, 
+what's the right strategy? Rather than tr;tng to forecast an exact volatility, a trader wtJI 
+ti)' to pick a strategy that best fits the volatility conditions In the marketplace. To do thiS, 
+a trader will want to consider several factors: 
+I. What Is the long-tenn mean volatility of the underlying contract? 
+2. What has been the recent historical volatility In relation to the mean voJatlllty? 
+3. What ls the trend In the recent historical volatility? 
+4. Where Is implied volatility and what ls its trend? 
+s. Are we dealing with options of shorter or longer duration? 
+6. How stable does the volatility tend to be? 
+For example, suppose there are ten weeks (approximately 50 trading days) to 
+expiration and we are uytng to decide on an appropriate volatility strategy. To make a 
+decision, we might look at the SO-day historical volatility (the historical volatility which 
+corresponds to the amount of time remalnlng to expiration), its relationship to the 
+long-term mean volatility, and of course the implied volatility. Having done this, suppose 
+we find the conditions shown In Figure 14· SA What are our conclusions? 
+Clearly we are coming off a period of high volatility and seem to be moving 
+downward. The recent 50-day historical volatility (approx. 20.6%) is still above the 
+long•term historical mean (approx. 18.7%), so there Is reason to believe that the 
+volatility will continue to decline. The Implied volatility Is also declining, but still 
+appears to be about 1 ½ percentage points higher (22.1 % ) than the 50-day historical 
+volatility. All volatility conditions seem to be pointing ln the same direction. The 
+historical volatility Is above the mean but declining, and the Implied volatlllty is above 
+the historical volatility and also declining. A short volatility position (negative 
+gamma/negative vega) Is stron~y indicated. 
+There are of course a variety of short volatility strategies available, and the best 
+strategy will still depend on a trader's experience In the market and the amount of risk 
+he is willing to take. Suppose we have additional volatility data !perhaps a volatility cone 
+of the type In Figure 14-3) showing that the 50-dayvolatllity can easily vary by as much 
+as 1 O percentage points. We still want to sell volatility, but ~ven this Instability and the 
+
+--- PAGE BREAK ---
+
+Figure 14-Sa 2s~-------- -----..;:i(& 
+~ -~ 
+~ 
+0 > 24 
+23 
+22 
+;:._r 
+21 
+20 
+19 I 
+fJJ 
+.J'1 
+SO day 
+historical volatility 
+implied 
+volatility 
+expiration 
+long term mean volatility L-------- =----------------- ---------+----------------~-----l 
+18·4------- ------,----r---.---~---r--- -+-----,--~--~--~--___,._ __ __j 
+-90 -80 -70 -60 -50 -40 -30 -20 -10 0 10 20 30 40 50 60 
+Past Future 
+
+--- PAGE BREAK ---
+
+'84 .'!,apttr I 
+fact that Implied volallllty at 22.2% Is only slightly above the 50-day hlstor1cal vol~tlll 
+perhaps the wisest choice Is a less risky strategy such as the purchase of butterfll~-1 
+riskier strategy Is chosen, perhaps It should be done only In small size. On t11~ 
+hand, If Implied volatility Is currently 25% and we find that the volatllltY tend . 
+quite stable, varying only five or six percentage points for any 50-day per1od, -... ~A6<> 
+may be willing to take on a much riskier position, perhaps selllng a straddles or stta 
+In real life the situation Is rarely as simple as In Figure l 4-5A. For example, cortS!t1'!i 
+Figure 14-5B. Now the hlstortcal volatility Is above the historical mean and declim 
+but the Implied volatlllty has already moved ahead of the historical volatility. A 
+may still choose a short volatility position, but he Is unlikely to have the same degri 
+confidence. Indeed, the situation may be even more confused. Suppose the tusror1 
+volatility Is above the long-term mean but seems to be Increasing (Figure 14-SC)._ 
+suppose Implied volatility Is moving In the opposite direction of the historical volat1li 
+(Figure 14-5D). In each of these situations some factors dictate one type of position, 
+while other factors dictate a different position. 
+Consider the situation In Figure l 4-6A where we are thinking of taking a position 
+in six-week options (approximately 30 trading days). The 30-day historical volatilitV, 
+currently at 15.8%, Is well above the long-term mean of 11.2%. However, the trend in 
+volatility seems to be up, and there Is no telling how long it will take for the volatility 
+to revert to Its mean of 11.2%. The current Implied volatility of 14.6% is also well above 
+the long term mean volatility, but is lower than the 30-day historical volatilitY­
+Corresponding to the upward trend In historical volatility, there also seems to be an 
+upward trend in the implied volatll!ty. With so many contradictory signals, a trader is 
+unlikely to have a strong opinion about whether he should buy or sen volatility. He may 
+choose to take no position at all, preferring to wait for clearer indications. 
+Suppose, In addition to six-week options, we also have available 19-week options 
+(approximately 95 trading days). Volatility data for this contract is shown in Figure 
+14-6B. Whlle a trader may be hesitant to take a position In six-week options alone, when 
+combined with 19-week options, he may be able to construct a strategy with much more 
+acceptable risk characteristics. Here the 95-day historical volatility of 12.6% is above the 
+11.2% mean volatility. Moreover the current implied volatility of 19-week options, at 
+14.5%, Is well above both the 95-day historical volatility and the long-tenn mean 
+volatility. There is a much better chance that the volatility will revert to its mean over 
+a 19-week period than over a six-week period, so there are much stronger reasons for 
+taking a short volatility position In 19-week options than In six-week options. Still, the 
+upward trend In both the historical and Implied volatilities will cause some worry if we 
+do take a short volatility position. However, If we were to simultaneously take a long 
+volatility position in six-week options, we would at least be protected against a 
+continuing increase In the volatility of the underlying contract over the next six weeks. 
+By creating a short time spread (buy six-week options/ sell 19-week options) we can take 
+a position which should be profitable based on our knowledge of volatility charac· 
+terlstics, but which also has acceptable risk charactertstlcs If we are wrong. 
+A short time spread will not eliminate every rtsk. The market might suddenly 
+become very quiet, with historical volatility quickly dropping to, or even below, its 
+
+--- PAGE BREAK ---
+
+Figure 14-Sb 
+~ 
+~ 
+~ g 25,-----------------------.----------------. 
+24 
+23 
+22 
+21 
+20 
+19 implied 
+volatility SO day 7 volatility 
+long term mean volatility expiration 
+1s~--~------------------....---+-----.-------- -----'--~ 
+-90 -80 -70 -60 -50 -40 -30 -20 -10 0 10 20 30 40 50 60 
+Past Future 
+
+--- PAGE BREAK ---
+
+Figure 14-Sc 25----------- ---------------r--------------------. 
+24 
+23 
+20 
+19 implied 
+volatility 
+SO day 
+historical volatility ~ 
+long term mean volatility expiration 
+1e+---..-----,- --..---..---,--._..---r--,---+---,---.,- --.---,-- --,.,_---' 
+-90 -80 -70 -60 -50 -40 -30 -20 -10 0 ,o 20 30 50 60 
+Past Future --------- ----... 
+
+--- PAGE BREAK ---
+
+' 
+l 24 
+23 
+20 
+19 implied 
+volatility SO day 
+historical volatility 
+~ 
+Ion term mean volatili expiration 
+;a ........ --~--------------...---"T""--~---.---+------..-----------+-~ 
+-90 -80 -70 -50 --40 .30 ·20 -10 0 10 20 30 40 50 60 
+Past Future -
+
+--- PAGE BREAK ---
+
+Figure 14-6& ---------------------------------,,----------, 16-
+30 day historical volatility 
+15 
+14 implied volatility (6 week options) J 
+13 
+mean volatility 
+11 
+10 
+9 
+·10 0 10 ---------- ~~==================== =======- !.P~aa!!_!t~ Futurr, a+---.-----,-----r---.-- -----r----.-----y----,----+---._---l -90 -80 -70 -60 -40 .20 20 -.... 
+
+--- PAGE BREAK ---
+
+Figure 1~b 
+16,-----------------------r--- ----, 
+15 
+14 implied volatility (19 week options) ~ 
+.. 
+13 -95 day historical volatility 
+-;se. -~ 
+.:; 
+ta 12 
+~ mean volatility 
+11 
+10 
+9 
+8-+-----,----,---~---.....-----r---..---~---r---i -
+-90 -80 -70 -60 -50 -40 -30 -20 -10 0 10 20 
+Past Future .. 
+I l 
+
+--- PAGE BREAK ---
+
+'90 
+long-tenn mean. At the same Ume, Implied volatility may remain relatively high ~•1 
+conditions wlll do the most damage to a short ume spread. Stlll, If we believe t~ 
+Implied volaUllty tends to follow the historical volatllltY, we may conclude that It • 
+unlikely that the Implied volatility will stay high If the hlstoncal volatlllty drop;,. 
+A trader WIii always attempt to pick the strategy which best fits his optnl 
+market conditions, whether a directional opinion or a volatility opinion. Given the f.-.. ... 
+that there Is such a wide variety of market conditions, a trader who Is fammar with ft 
+greatest number of strategies will have the best chance of surviving and prospering. '­
+will be In a position to pick strategies With the best risk/reward charactertstlc s, strateg! 
+which will be profitable when thin~ go right, but which won't give back all the profl n 
+when things go wrong. Thls skill comes not only from a technical lcnowledge of opt10 
+evaluation and theory, but also from a practical knowledge of what really happens 1 
+the marketplace. 
+SOME THOUGHTS ON IMPLIED VOLAmlTY 
+Since many option strategies are sensitive to changes in implied volatlllty, and since 
+implied volatility will often play a role in forecasting the volatility of the undertying 
+contract, it may be worthwhile to consider some of the characteristics of implied 
+volatility. 
+Implied versus Historical Volatility 
+Implied volatility can be thought of as a consensus volatility among all market partici­
+pants with respect to the expected amount of underlying prtce fluctuation over the 
+remaining life of an option. In the same way that an lndlvldual trader ls likely to change 
+his volatility forecast In response to changing histortcal volatility, it ls logical to assume 
+that the marketplace as a whole wlll also change lts consensus volatility in response to 
+changing hlstortcal volatility. As the market becomes more volatile, implied volatility 
+can be expected to rise; as the market becomes less volatile, implied volatillty can be 
+expected to fall. Market participants are making the logical assumption that what has 
+happened in the past ls a good lndlcator of what wlll happen in the future. 
+The Influence of historical volatility on lmplled volatility can be seen tn Rgure 14-7, 
+the historical and implled volatility of U.S. Treasury Bond futures traded on the Chicago 
+Board of Trade from 1989 to 1991. In late 1989, and agaln ln mld· 1991, there were 
+decllnes ln the volatility of Treasury Bond futures, and these were accompanied by 
+corresponding declines in implied volatlllty. From August 1990 through January 1991 
+(the period of the Iraql lnvaslon of Kuwait), there were several sharp increases tn the 
+volatlllty of the futures, and these were accompanied by slmllar increases in tmplled 
+volatllity. Clearly, the marketplace, In the fonn of changing Implied volatillty, was 
+responding to the changing hlstortcal volatility of the underlying contract 
+Notice, however, that the fluctuations In Implied volatlllty were usually less than 
+the fluctuations In historical volatility. When the historical volatility decllned, the 
+lmplled volatlllty rarely declined by an equal amount And when hlstortcal volatlllty 
+increased, the lmplled volatility rarely Increased by an equal amount Because volatlllty 
+
+--- PAGE BREAK ---
+
+Figure 14-7: Treasury Bond Futures Volatlllty -
+1s1--------------- ----------
+14 
+13 
+implied volatility 
+12 
+11 
+6 
+5 20 day historical volatility 
+44-----.------,----.------,--- -,-----.-----,---.------,-------l 
+Jan-89 Apr-89 Aug-89 Nov-89 Mar-90 Jul-90 Oct-90 Feb-9'1 Jun-9'1 Se1,>-91 Jan-92 
+
+--- PAGE BREAK ---
+
+(), 
+tends to be mean reverting, when historical volatility Is above Its mean theri? h 
+likelihood that It W111 decline, and when historical volatility ls below lt9 m~n rh 
+greater likelihood that It will Increase. ·~ Moreover, the further out In time we go, the greater the likelihood 
+volatility of the underlying contract wlll return to Its mean. (Look again at FJgur~ 1 A,-~ -., 
+Consequently, the Implied volatility of long-term optlons tends to remain clo~e 
+mean volatility of an underlying contract than the Implied volatllltY of 
+options. As historical volatility rises, the lmplled volatlllty of all options Is llkel 
+But given the stronger mean reverting characteristics of volatility over long perlo'1':'. ,. 
+time, the Implied volatility of long-term options W111 tend to rise less than the impJ. -• 
+volatility of short-term options. As hlstortcal volatility falls, the Implied volatllity -' " 
+options Is likely to fall. But the Implied volatility of long-term options wll1 tend to :-­
+less than the Implied volatility of short-term options. This Is born out by figure I '-r'J 
+the Implied volatility of Treasury Bond options for vartous expiration monthS 
+September 1990 to May 1991. Note the Increase in implied volatilities during Ja 
+1991. But the increase In the implied volatility of the short-term contract (March) 
+much greater than the Increase in the Implied volatility of the mid-term Uune) contrdl.l.. 
+which was In turn greater than the Increase in the Implied volatility of the long-u:;• 111 
+(September) contract. When Implied volatility began to decline in late January 1991 
+roles were reversed. The March contract declined the most rapidly, followed by the J 
+contract, and the September contract. This is typical of the way in which impli~ 
+volatility tends to change in response to changing volatility environments. 
+Over long periods of time the historical volatility of the underlying contract will be 
+the dominant factor affecting implied volatility. Over short periods of time, however. 
+other factors can also play a significant, perhaps even a dominant, role. If the market­
+place foresees events which could cause the underlying contract to become more 
+volatile, anticipation of these events might cause implied volatility to change in ways 
+that are not necessarily consistent with historical volatility. For example, govemrnem 
+reports on economic conditions are issued periodically, and these reports have been 
+known to contain surprises for the interest rate and foreign exchange market. This 
+potential for surprise can cause uncertainty in the marketplace, and this uncertainty is 
+often reflected in an increase in implied volatlllty. Going into government reports, there 
+ls a strong tendency for implied volatility to rise, even in the face of low historical 
+volatility in the underlying instrument 
+Government reports are not the only factors which add uncertainty to the market 
+Any future events which could have unexpected consequences can have an effect on 
+impUed volatility. In the currency markets, upcoming meetings of finance mlnlsters-or 
+in the energy markets upcoming OPEC meetings-often cause implied volatility to rise. 
+In the stock option market, earnings news, the potential success or failure of new 
+products, or (most dramatically) the possibility of a takeover, can all cause increases in 
+Implied volatlllty, regardless of the hlstortcal volatility of the stock. 
+In a similar way, lf the marketplace believes that no significant events are likely to 
+occur In the foreseeable future, uncertainty Is removed from the market. In such a case 
+the Implied volatility may start to fall, even if the actual historical volatility has been 
+
+--- PAGE BREAK ---
+
+I -
+Figure 14-8: Treasury Bond Futures Implied Volatlllty 
+17 
+16 March 1991 
+15 
+14 
+~ 13 September 1990 
+\ 
+\r December 1990 
+J / 
+~ 
+ai 12 
+0 > ~\ 
+"'C 11 
+.!!! 
+Q. E 10 / 
+June 1991 
+9 September 1991 
+8 
+7 
+6 
+Jul-90 Aug-90 Sep-90 Oct-90 Nov-90 Oec-90 Jan-91 Feb-91 Mar-91 
+
+--- PAGE BREAK ---
+
+'94 'It 4 l'thff / 
+relauvely high. This Is why Implied volatHlty someUmes drops right after large m 
+the underlying contract. Once the big event has occurred, there may be a percl!P 
+that all the uncertainty has been removed from the market. 
+Regardless of short-tenn changes In Implied volaUllty, It Is sWI Important fi 
+to remember that the volatility of the underlying contract will eventuaJiy ovi::;i "' ,,_ 
+any considerations of Implied volatility. As an example, consider the following sf w 
+futures price= 97.73 
+time to expiration = 60 days 
+Interest rate = 6% 
+Implied volatility = 20% 
+Given these conditions, the 100 call would be trading for 2.17, with an implied del 
+of 40. Suppose we create a delta neutral position by purchasing ten 100 ca1ls f~r. 2-1? 
+each, and selling four futures contracts at 97.73. What will happen to our pos1t10n 1 
+implied volatility rises to 22%? 
+If implied volatility immediately goes to 22%, the new prtce of the 100 call will 
+2.47, and we will show a profit of 
+10 X (2.47 -2.17) = +3.00 
+Suppose, however, that the increase in implied volatility occurs very slowly, over a 
+period of 20 days, and during this period the prtce of the underlying futures contract 
+remains at 97.73. Under these conditions, even if Implied volatility rises from 20% to 
+22%, the 100 call will now be worth only 1.87. Our position will then show a loss of 
+tOx (1.87-2.17) =-3.00 
+Even though the Implied volatility Increased, the fact that the underlying funrres 
+contract failed to make any significant move resulted in the option's price declining. 
+Now suppose we have the same position (long ten 100 calls, short four futureS 
+contracts) but this time instead of rising to 22%, the implied volatility drops to 18%. 
+What will be the effect on our position? 
+If implied volatility immediately drops to 18%, the new price of the 100 call will 
+be 1.86, and we will show a loss of 
+10 X ( 1.86 -2.17) = -3.1 Q 
+Suppose, however, that the decline in implied volatility ts accompanied by a swift move 
+in the underlying contract. If the underlying futures contract falls to 93.00, and implied 
+volatility falls to 18%, the price of the 100 call will be .59, and we will show a profit of 
+4 X (97.73-93.00)-1 Q X (2.17 -.59) = +3.12 
+On the other hand, If the underlying futures contract rises to 102.50 while implied 
+volatility falls to 18%, the price of the 100 call will be 4.32, and we will again show a 
+profit 
+4 X (97.73 -102.50) + 10 X (4.32 -2.17) = +2.42 ., 
+
+--- PAGE BREAK ---
+
+,,,,,..--
+Volattll(y RNtslttd 295 
+rn both cases the movement In the underlying contract has more than offset any decline 
+1n the Option's price due to a decline In Implied volatility. 
+The foregoing examples are of course simplified. As market condltlons change-an 
+acu-ve trader may very well make adjustments to his position In order to remain delta 
+neutral. If so, the actual profit or loss will be affected by the cash flow from this 
+adJustmem process. The Important point Is that the volatility of the underlytng contract, 
+whether the contract moves or sits still over tlme, will eventually overwhelm any 
+changes In Implied volatility. This Is not to say that Implied volatility Is unimportant 
+The Price or a contract Is always an Important consideration In making trading decisions. 
+But ln order to trade Intelligently, we need to know value as well as price. The value of 
+an option Is determined by the volatility of the underlying contract over the life of the 
+option. 
+Implied versus Future Volatility 
+If, as many traders belleve, prices ln the marketplace reflect all available tnformatlon 
+aff ectlng the value or a contract, the best predictor of the future volatility ought to be 
+the lrnplled volatlllty. Just how good a predictor of future volatility Is Implied volatility? 
+While It would be Impossible to answer this question definitively, since that would 
+require a detailed study of many markets over long periods of time, we might stlll gain 
+some Insight by lookJng at a limited number of examples. 
+Clearly, no one knows the future volatility. We can, however, record the Implied 
+volatlllty at any moment in tlme and then, when explratlon arrives, look back and 
+calculate the actual volatlllty of the underlying contract between the time we recorded 
+the lmplled volatility and expiration. We can do this every day during an option's llfe, 
+recording the Implied volatility and then at expiration calculating the actual volatility 
+that occurred over this period. This has been done In Figures 14-9A, 98, and QC for the 
+June 1992, March 1993, and December 1993 options on Treasury Bond futures. It ls 
+admittedly dangerous to generalize from such limited data, but are there any conclu· 
+slons we might draw from these graphs? 
+We can see that with a great deal of time remaining to expiration, the future 
+volatility of the underlying contract (the solid line) ls relatively stable. But as we get 
+closer to e.xplratlon the future volatlllty can become much less stable. This Is logical If 
+we again recall that the mean reverting charactertstlcs of volatility are much less certain 
+over short periods of time than over long periods. One large move In the underlying 
+contract with only several days remaining to expiration will result In a sharp Increase In 
+the volatility to expiration (see Figure 14-QC). On the other hand, lf the underlying 
+contract ls relatively quiet over the last several days In an option's life, the volatility to 
+expiration wlll collapse (see Figure 14-9B). 
+How does the marketplace react to these volatility charactertstlcs? With long 
+periods of time remaining to expiration, the volatility to expiration ls relatively stable. 
+One would therefore expect the Implied volatility to also be relatively stable. Con· 
+versely, with short periods of tlme remaining to explratlon, the volatility to expiration 
+can be very unstable, and one would therefore expect the Implied volatility to be 
+unstable. These conclusions are born out by the Implied volatility (the broken line) In 
+
+--- PAGE BREAK ---
+
+Figure 14-9a 
+* --~ 
+-:.:::; «s 
+0 > 12~-------------------------------------- -------; 
+11 
+10 
+9 
+8 
+7 implied volatility 
+June 1992 options 
+\ 
+/ 
+actual volatility to 
+June '1992 expiration 
+6-+-------.--------.----- -,----- --.-----.-------.--
+Aug-91 Sep-91 Oct-91 Nov-91 Oec-91 Jan-g2 Feb-92 :-. i\ 
+v· ··\1 
+T 
+Mur-92 
+
+--- PAGE BREAK ---
+
+Figure 14-9b 12-r------- ------------ ---------------, 
+-?fl -~ 
+~ as g 11 
+10 
+9 
+8 
+7 implied volatility 
+March 1993 options 
+6--+-----~------T------.------.--- ---.----....--------"T --------j 
+Jun-92 Jul-92 Aug-92 Sep-92 Oct-92 Nov-92 Oec-92 Jan-93 Feb-93 
+
+--- PAGE BREAK ---
+
+Figure 14-9c ---------------------------------7 12-
+11 
+10 
+9 
+8 
+7 implied volatility 
+December 1993 options 
+actual volatility to 
+December 1993 expiration 
+6,+-----.-------r------,.-------.-------.--------r------------1 
+Mar-93 Apr-93 May-93 Jun-03 Jul-03 Aua-~ S•p-~ Oct-~ ~~ f 
+
+--- PAGE BREAK ---
+
+Voatatty Rt'llslltd 299 
+f\gures 14,9A, 9B, and 9C. Over long periods of time, the marketplace ls reacting to 
+many events. This ls easier than reacting to a limited number of events, which ~ what 
+the marketplace ls faced with over a short period of time. The marketplace knows that 
+the laws of probabillty are more likely to balance out over many occurrences than over 
+only a few occurrences. 
+Note also that there ls no guarantee that the marketplace will have the correct 
+implied volatility. The Implied volatlllty ls a guess, and guesses carry with them the 
+posslbUlty of error, sometimes very large error. In Figure 14-9B the Implied volatlllty 
+turned out to be much too hlgh over almost all of the option's life. Had a trader sold 
+premium at any time, he would have shown a profit At Its most extreme, during 
+October 1992, there was almost a four·percentage-polnt dliference between the Implied 
+volatlllty of the March 1993 options and the future volatility of the March 1993 futures 
+contract In Agure 14-9C the Implied volatlllty was too high during the early part of the 
+option's llfe, but too low during the latter pan. During the few weeks prior to expiration, 
+the implied volatility was too low by as much as three percentage points. Anally, In 
+Flgure 14·9 A the Implied volatility was relatively accurate over the early part of the 
+option's life, but too high during the latter part 
+It should be clear by now that dealing with volatility ls a difficult task. To facllltate 
+the declslon·maklng process we have attempted to make some generalizations about 
+volatility characteristics. Even then, If one decides to become Involved In a market It 
+may not be at all clear what the right strategy Is. Moreover, we have looked at a limited 
+number of examples, making the generalizations even less rellable. Every market has Its 
+own characteristics, and knowing the volatlllty characteristics of a particular market, 
+whether Interest rates, foreign currencies, stocks, or a physical commodity, Is at least as 
+Important as knowing the technical characteristics of volatlllty. And this knowledge can 
+only come from careful study of a market combined with actual trading experience. ~ 

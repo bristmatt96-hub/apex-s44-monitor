@@ -1,0 +1,1212 @@
+Stock Index Futures 
+and Options 
+S\nce their introduction on U.S. exchanges ln the early 1980s, stock Index futures and 
+options have experienced phenomenal growth, with increasing partlclpatlon by all 
+segments of the trading community. Both retail and lnstltutlonal investors use these 
+tnstruments to lnvest in the market as a whole, thereby ellmlnatlng the laborious job of 
+uytng to ptck lndivldual stocks. Portfolio managers can use index instruments to create 
+a wtde variety of risk/reward scenarios for large, diversified stock portfolios. Rnally, 
+professional arbitrageurs find that In spite of the highly liquid and usually efficient Index 
+markets, pricing disparities occur often enough to warrant close monitoring of these 
+markets. When a dlsparlty does exist, a trader can execute an arbitrage by hedging the 
+m\sprtced index against either other stock lndlces or against a basket of stocks. Such 
+arbitrage strategies are commonly referred to as index arbitrage. 
+For all of the foregoing reasons, no book on options would be complete without at 
+least some discussion of index options. However, Index futures and options are so 
+closely related, and so many strategies involve both Instruments, that lt ls almost 
+impossible to discuss one without discussing the other. We wlll therefore include both 
+instruments in our discussion. 
+WHAT IS AN INDEX? 
+An index ls a number which represents the composite value of a group of items. In the 
+case of stock indices, the value of the index ls determined by the value of a group of 
+speclfled stocks, with the value of the stocks usually being determined by their prices 
+ln the marketplace. As the stocks which make up the Index rise ln prtce, the value of 
+the index also rises, reflecting the increased value of the stocks; as the stocks fall in price, 
+the value of the index also falls, reflecting the dedinlng value of the stocks. If some 
+stocks in the index rtse while others fall, the offsetting changes in stock prices may result 
+in the index itself remaining unchanged, even though It's possible that every stock in 
+the index changed price. The value of the index always reflects the total value of the 
+stocks which make up the index. 
+301 
+
+--- PAGE BREAK ---
+
+ChafJ(tr I; 
+CA U ATINOANINDEX 
+11, r ar several different rn thods of calculaUng stock Index values, bu ~ (1. 
+common melhOds entail weighting the stocks either by price or by capltalltatlon. r j~ 
+how th se methods work, consider an Index composed of the followlng four to j' 
+Total Shares Total 
+Stock Price Outstanding CapitaJJutJon 
+t 125 10,000 1,250,000 
+2 80 5,000 400,000 
+3 52 25,000 1,300,000 
+4 17 40,000 680,000 
+If an Index Is price weighted, each stock's value In the Index Is directly proportlo 
+to Its price. Using this method, the total value of the index ls simply the sum of the pt1ce: 
+of all the stocks ln the index: 
+125+80+52+ 17=274 
+The price weighting of each stock Is therefore: 
+stock 1 : 125/27 4 = 
+stock 2: 80/27 4 = 
+stock 3: 52/274 = 
+stock 4: 17 /274 = 45.6% 
+29.2% 
+19.0% 
+6.2% 
+100.0% 
+Since the Importance of each stock is directly proportional to its price, when 
+measured in percent terms movement In higher priced stocks will have a greater impact 
+on the value of the index than equal movement In lower priced stocks. If a trader were 
+monitoring a price weighted index for possible changes, he would do well to look for 
+movement in the higher priced stocks in the index. 
+If an index is capftaltzatfon weighted, the index value Is the total value of all the 
+outstanding stock of the firms in the index. The total value, or capitalizatio n, of a firm 
+is the price of a share multiplied by the number of shares issued by the firm. The total 
+capitalization of the four stocks making up our index is: 
+(125 X 10,000) + (80 X 5,000) + (52 X 25,QQQ) + (17 X 40,0QQ) = 
+1,250,000 + 400,000 + 1,300,000 + 680,000 = 3,630,000 
+The capitalization weighting of each stock Is therefore: 
+stock 1: 1,250,000/3,630,000 = 
+stock 2: 400,000/3,630 ,000 = 
+stock 3: l ,300,000/3,630,000 = 
+stock 4: 680,000/3,630,000 = 34.5% 
+11.0% 
+35.8% 
+18.7% 
+100.0% 
+
+--- PAGE BREAK ---
+
+t 
+~ lndtx Futum and Options 303 
+lf an Index Is capltallzatlon weighted, In percent tenns the stocks which wlll have 
+t~ greatest effect on the Index are those With the greatest market value. These are often 
+srocks which are very widely held, even though they may not be the highest priced 
+stocks. 
+For convenJence, when an Index Is first Introduced It Is common to set the Index 
+value equal to some round number, most often 100. In order to achieve this number 
+the actual value of the index must be either multiplied or divided by some number. Fo; 
+enmple, when we calculated the price weighted value or our four-stock Index, the 
+value was 27 4. To transform the Index value to I 00, we solve: 
+274/x = 100 
+X = 2.74 
+Thls number, 2.74, Is referred to as the Index divisor, and Is used In all subsequent 
+\ndex calculations. Whenever a new value of the Index Is calculated, that value will 
+always be divided by 2. 7 4 to yield the published Index value. If we wanted to set the 
+value of our capltaUzatlon weighted Index to 100, we solve: 
+3,630,000/x = 100 
+X = 36,300 
+In this case, the index divlsor ls 36,300. 
+An Index divisor ls not constant, but can change as the capitallzatlon of the index 
+changes. If stocks ln the Index spilt or declare special stock dividends, or If stocks are 
+replaced by other stocks due to buyouts, llquldatlons, or bankruptcies, the Index value 
+might go up or down, even though the market prices of the stocks making up the Index 
+remain unchanged. To offset this effect, when any capltallzatlon change occurs in the 
+stocks making up the index, the divisor ls changed to reflect the relative value of index, 
+and to ensure that the index value represents a true picture of prtce changes In the 
+marketplace . 
+Regardless of the method used to calculate an Index, prtces for each of the 
+component stocks must be detennlned. If a stock Is traded on only one exchange, there 
+ts never any doubt as to the stock's price. It Is simply the last trade price. But what lf a 
+stock ls traded on more than one exchange? If the last trade for a stock on one exchange 
+ls $52, whlle the last trade on a different exchange ls $521~, what price should be used 
+in calculating the Index? The answer ls usually specified In the index prospectus, and Is 
+most commonly the primary marketplace for that stock. In the United States the primary 
+marketplace for many stocks ls the New York Stock Exchange, although this ls not 
+always the case. Some stocks may be primarily traded on the American, Chicago, 
+Pacific, or Phlladelphia Stock Exchanges, or in the over-the-counter market A trader 
+who follows a stock Index should always know the source of the stock prices used to 
+calculate that Index. 
+
+--- PAGE BREAK ---
+
+304 a,,,ptlft 
+REPLICATING AN INDEX 
+Suppose a trader wanted to create a holding of stocks that exactly replicated the 
+of the Index. What would he have to do? 
+If each point In our four-stock price weighted Index Is worth exactly s 1, then 
+total value of the index Is $27 4. A trader could simply purchase one share of each stoct 
+In the Index to exactly replicate the Index. Very often, however, for trading p~ 
+the value of each point Is assigned a value other than $1. If, for example, each po 
+the Index Is assigned a value of $100, the total dollar value of the Index Is: 
+274 X $100 = $27,400 
+Now In order to exactly replicate the Index, a trader would have to purchase 100 shares 
+of each stock. The value of his holding would then be: 
+(125 + 80 + 52 + 17) X 100 = $27,400 
+Not only must a trader consider the value of each point In an Index, he must also 
+consider the effect the divisor will have on the Index. Suppose that Instead of 27 4, the 
+Index In our example has been set to 100 by using a divisor of 2. 7 4. If the point value 
+of the Index Is still $100, then the total value of the Index Is: 
+t 00.00 (Index value) x $100 (point value)= $10,000 
+Now If we purchase 100 shares of each stock, the dollar value of our stock hoJdJng 
+($27,400) greatly exceeds the dollar value of the Index ($10,000). Clearly, our sroci 
+holding does not replicate the Index. Notice, however, that the Index value of S 10,000 
+Is simply our stock value of $27,400 divided by the divisor of 2.74. In other words, lf 
+we dlVlde each purchase of 100 shares of stock by 2.7 4, we will have a stock holdlng 
+equal to the value of the Index. To achieve this, we need to purchase 100/2.74, or 
+approximately 361/2 shares of each stock.1 If we do, the value of our stock holding will 
+replicate the value of the Index since: 
+(125 + 80 + 52 + 17) X 36.5 = $10,000 
+Toe procedure Is slightly more complex If we are attempting to replicate a 
+capitalization weighted index. Consider our four-stock capitalization weighted example 
+with a divisor of 36,300. Suppose each point In the Index has a value of $500, so that 
+the dollar value of the Index Is: 
+l 00.00 (Index value) x $500 (point value) = $50,000 
+How can we create a capitalization weighted stock holding with a value of $50,000? 
+In our price weighted example, we purchased shares of stock equal to the point 
+value divided by the divisor. We can take the same approach with a capitalization 
+weighted Index, with one Important change: we must multiply the resulting number by 
+t . Obviously, one cannot trade fracttonal shares of stock. In the real world, a trader attempting to repllcate 
+the sample Index would have to buy either 36 or 37 shares of each stock. 
+
+--- PAGE BREAK ---
+
+Stock Index Futures and Options 305 
+the total number of outstanding shares of the stock. The proper number of shares of 
+each stock required to replicate our capitalization Index Is: 
+Outstanding Point Required Shares Value Divisor Shares 
+stock t: 10,000 X 500 + 36,300 = 137.7 
+stock 2: 5,000 X 500 + 36,300 = 68.Q 
+stock 3: 25,000 X 500 + 36,300 = 344.4 
+stock 4: 40,000 X 500 + 36,300 = 551.0 
+We can see that this replicates the $50,000 value of the Index slnce: 
+(137.7 X 125) + (68.9 X 80) + (344.4 X 52) + (551.Q X 17) = 50,QOQ 
+Summarizing, the number of shares of each stock required to replicate an Index 
+for a price weighted Index: point value / lndex dlv\sor 
+for a capitalization weighted index: outstanding shares x point value / index divisor 
+STOCK INDEX FUTURES 
+In theory one can create a futures contract on a stock index ln exactly the same way 
+that futures contracts have been created on traditional commodities . At expiration, the 
+holder of a long stock index futures position would be required to take delivery of all 
+the stocks, in their correct proportions, which make up the index. The holder of a short 
+position would be required to make delivery of the stocks. 
+In fact, very few stock Index futures contracts are settled through the physical 
+dellvery of the stocks making up the Index. Such a process, requiring the delivery of the 
+correct number of shares of many different stocks, would be unmanageable for most 
+clearing organizations . To be perfectly fair, such a settlement procedure might require 
+the delivery of fractional shares of stock, which ls lmposslble. 
+For all these reasons, exchanges have chosen to settle stock index futures at 
+expiration in cash. Since futures contracts are settled dally ln cash, the final cash transfer 
+between the buyer and seller of a stock Index futures contract Is equal to the difference 
+between the expiration value of the index and the previous day's settlement price. For 
+example, suppose an index ls at 462.50 at the moment of expiration and the previous 
+day's settlement price for the futures contract was 461.00. If each point in the Index is 
+worth $100, the holder of a long position wlll be credited with a final payment of $150, 
+since (462.50-461.00) x $100 = $150. The holder of a short position will be debited 
+by the same amount. 
+What should be the fair value of a stock Index futures contract? 
+Recall from Chapter 1 that an Important difference between a futures contract and 
+stock ls the settlement procedure. Whereas the purchase of stock requires the buyer to 
+actually pay cash, the purchase of a futures contract requires only an initial margin 
+deposit. The cash paid for the stock wlll result in an interest cost, while the margin 
+deposit results in no such interest loss. Moreover, any profits or losses resulting from 
+
+--- PAGE BREAK ---
+
+06 
+sto ·k trading are only paper profits or losses unul the stock position Is llqutdi ~~ ~ 
+futures mark ts, however, profits and losses accrue whenever the pr1ce of the fl; ,1 ,. 
+contract fluctuates, regardless of whether the pos1uon Is closed out. These pro :1 ri, 
+10 ses are typlcally catculatM dally from the Settlement price of the future co ,., r· 
+uch profits and losses result In vaMatlon, the amount of cash which Is credl ed 6 ~· 
+debited from a trader's account based on the dally price fluctuatlon. Varfatlo 
+margin requirements are separate and distinct Mar~n In theory entails no ca 
+costs while credits or debits resulting from dally variation do Indeed earn (In the ~ 
+of a ~redlt) or lose (In the case of a debit) Interest. 
+Clearly, the purchase of a futures contract offers one Important advantage over , 
+purchase of the component stocks: no cash outlay Is required to purchase a futu 
+contract. Consequently, there Is an Interest rate savings equal to the cost of borrowtr. 
+sufficient cash to purchase all the stocks In the Index. 
+The amount of Interest saved by purchasing a stock Index futures contract rather 
+than the actual stocks In the Index can be calculated by mu!Uplytng the current Index 
+value by the rtsk-free Interest rate, and then multiplying this number by the amount of 
+time remaining to expiration of the futures contract By adding the resulting number to 
+the index value, we have the fair value of the futures contract based on carrying costs. 
+For example, suppose there are three months remaining to expiration wtth our 
+four-stock Index at 27 4.00. If the risk-free Interest rate over this period Is 8%, what are 
+the carrying costs on the Index? 
+8% X 3/12 X 274.00 = 2% X 274.00 = 5,482 
+If carrying costs are the only consideration, the fair value for the futures contract will 
+be the 27 4.00 value of the Index plus the 5.48-polnt carrying cost to expiration, or 
+279.48. 
+What other advantages or disadvantages are associated With holding a furores 
+contract? 
+If we buy a futures contract, we may have a very good substitute for the stocks in 
+the index, but we don't actually own the stocks. Since ownership of a stock ls necessary 
+for the receipt of a stock dividend, If we buy a futures contract we will have to give up 
+any dividends which the stocks in the index might pay. If the stocks in the index are 
+non-dividend paying, or will not pay any dlvldends prior to expiration of the futures 
+contract, no further calculations are necessary. The fair value will simply be the current 
+index value plus carrying costs to expiration. More often, however, some, and perhaps 
+all of the stocks In the Index will pay dividends prior to futures expiration. In this case 
+we must deduct the amount of dividends lost by holding a futures position rather than 
+the actual stocks. 
+Suppose that the stocks in our four-stock Index are expected to pay the following 
+dividends prior to expiration of the futures contract: 
+2. F-or slmplldty we ~me simple Interest payments. We can be slightly more accurate by ~ 
+compound Interest (see AppendlX 8). 
+
+--- PAGE BREAK ---
+
+F 
+Stock Index FuturtS and Options 307 
+Stock Price Expected Dfvfdend 
+1 125 $1.80 
+2 80 0 3 52 S.90 4 17 S.35 
+If we buy one share of each of the four stocks which make up the index, we w\11 
+receive by futures expiration a total dlvldend payout of: 
+$1.80 + $.90 + $.35 = $3.05 
+If we buy the futures contract Instead of the stocks we wm have to forego this 3.05. 
+Therefore, we will want to pay 3.05 less for the futures contract Taking Into consldera­
+Uon carrying costs, we showed that with the Index at 27 4.00, the fair value of the 
+futures contract was 279.48. Deducting the dividends, the fair value of the futures 
+contract ts: 
+27 4.00 (index value)+ 5.48 (carrying costs) -3.05 (expected dividends)= 276.43 
+If we own the stocks tn the Index we not only receive the dlvtdends paid by the 
+stocks, we also have use of the dlvldend funds. If we own stock 1, we will receive a 
+dividend of $1 .80 on the ex-dlvtdend date and, 1n theory, we can also earn interest on 
+this amount to expiration of the futures contract. If the dlvldend will be paid two months 
+prior to expiration and Interest rates are 8%, the Interest earnln~ are: 
+1.80 X 2/12 X 8% = .02 
+To calculate an exact futures price, ln addition to deducting the dividends themselves, 
+we must also deduct the Interest earnings from each dividend payment This could 
+become a rather complicated exercise, but In practice the Interest eamln~ on dividends 
+are so small in relation to the actual Index that most traders simply deduct the dividend 
+payments themselves from the Index value, and Ignore the accompanying Interest ~-
+If the index ls price weighted, replication of the Index requires an equal number of 
+shares of each stock. So the total dividend payout ls simply the sum of all the dividends. 
+If the index ls capitalization weighted, replication of the Index requires a different 
+number of shares for each stock. In that case, the total dividend payout will be the 
+dividend payout for each stock multlplled by the number of shares required for 
+replication. 
+Given the apparently complex dividend calculations, as well as the Interest consld· 
+eratlons on the Index and dividends, detennlnlng the exact fair value of a futures 
+contract might seem a daunting task. In practice, however, active trading finns have 
+computers which can quickly, and continuously, calculate the fair value for futures 
+contracts on most commonly traded stock indices. 
+Even when it ls not possible to calculate the exact fair value, many traders find it 
+almost as effective to estimate the fair value by adding the carrying cost to the index and 
+subtracting the average dJvidend payout For example, suppose there are nlne weeks 
+
+--- PAGE BREAK ---
+
+308 (1,lp.111, 
+(63 days) to explraUon on a stock Index futures contract wlth the underlyfn 
+currently at 425.00. If Interest rates are 8% annually, and the average annual d 
+payout on the stocks making up the Index Is 6%, we have: 
+(8% -6%) X 63/365 X 425,00: 1.47 
+Therefore, the approximate fair value or the futures contract Is 425.00 + J .47::: 4 
+The reader should be aware that this Is only an estimate. If It turns out chat a 
+number of stocks do not pay their regular dividends durtng this nine-week period, 
+the dividend payout Is unusually large, this estimate could prove to be far from accun' 
+The dally dividend payout for the S&P 500 Index for one quarterly cyd"', 
+March 1993 to June 1993 expiration, Is shown In Figure 15· l. Note the large amou:>J 
+which were paid at the be~nnlng of May, compared to the relatively small 
+paid during April. The cumulative effect of this dividend payout, In terms of the w 
+dlvldends expected to June expiration, Is shown In Figure 15·2. The line drops 
+slightly durtng Aplil, but declines sharply during the first two weeks In May. A rn 
+who Intended to Initiate some type of arbitrage strategy either just prior to, or Just u, ..... , 
+a large dividend payout, would need more than a rough estimate of the fair value of an 
+S&P 500 futures contract. If he were not aware of the exact dividend payout, a stntflf 
+which he expected to be profitable might turn out to be Just the opposite. 
+It Is also possible to reverse the calculations and ask, given an observed future, 
+price, where would the Index have to be for the futures to be fairly valued? For examy,., 
+Figure 15-1: S&P 500 Index Dividend Payout 
+(March 1993 to June 1993 Expiration) 
+ti 
+C 
+0 n. 0.25~-------------- .------------- . 
+0.20-l---
+; 
+~ 0.15 --•---------- 1-1-1---- -
+.£ I o.,o 
+0 
+~ ii 
+0 
+o.os I I· 
+0.00 I 'l'i llf'l11, 
+10 15 20 25 30 5 10 15 
+May June 
+
+--- PAGE BREAK ---
+
+.SUC-.t fndu fu(UrtS ind Options 
+Figure 1s-2: S&P 500 Dividends to Expiration 
+(March 1993 to June 1993 Expiration) 309 
+~~~----------------------~ 
+i 
+0 a. i~ 
+I 2.00 .. -
+.s f ,~+------------ , 
+i C t.001-t-------- ------- __..:,,.""'==--------.I 
+o.so-1------------------------+-----l 
+25 30 s to ts 20 
+Match April tO 15 
+Jun, 
+if the futures price Is 432.70, and we assume that lt ls tradlngat fair value, what should 
+the index price be If there are 6 weeks (42 days) to expiration, Interest rates are 6%, and 
+the expected dividend payout ls 2.23? First we can add the dlvldend payout of 2.23 to 
+the futures price of 432.70, giving a value of 434.93. Then we can deduct the canylng 
+costs on this amount over the next six-weeks: 
+434.93 X 42/365 X 6% = 3.00 
+The tmplled Index value Is therefore 434.93 -3.00 = 431.93. 
+INDEX ARBITRAGE 
+In theory, the price of a futures contract should always reflect the fair value of holding 
+the futures contract rather than holding the stocks making up the Index. But markets 
+are not always one hundred percent efficient. If the futures price doesn't reflect the fair 
+value, a trader can execute a profitable arbitrage by purchasing the undervalued asset, 
+either the basket of stocks or the futures contract, and selllng the overvalued asset If a 
+trader belleves that the fair value of a stock index futures contract ls 386.75, and finds 
+that the futures contract Is trading at 387.40, he will attempt to buy all the stocks In 
+their correct proportion and simultaneously sell the futures contract. If the trader 
+succeeds, and If the point value of the futures contract Is $500, for each futures contract 
+he executes he will show a theoretical profit of: 
+(387.40 -386.75) X $500 = .65 X $500 = $325 
+
+--- PAGE BREAK ---
+
+10 .... N11, / j 
+or course, this pront will only be fully realized at expiration, when the future 
+1s automeucally settled at U1e Index value. At the same tlme, the trader W111 al 
+to liquidate his stock holdings to ensure that at the moment of exp1rat1on 
+futures position and stock poslUon zero out. This can be done by placing a mdti .i 
+close oroer, guaranteeing that the last trade prlce for each stock which determf 
+nnal Index value wm be the llquldaUon price for the trader's stock holdtngs. 
+What would happen If the fair value for the stock Index futures contra"" ~ 
+386.75, but the futures contract were actually tradlngat385.95? Now the trader 
+take Just the opposite position, bu~ng the undervalued futures contract and seJJf n 
+basket of stocks. The theoretical profit would be: 
+(386.75-385.95) X $500 = .80 X $500 = $400 
+Unfortunately, some practical problems might affect the workablllty of thJs strategy. II 
+the trader wants to sell stock which he doesn't own, he will have to borrow It If 
+stock Is available, or If the market In which he Is dealing does not freely permit the sho 
+sale of stock, he may not be able to execute the arbitrage, no matter how mlsprtced the 
+futures contract. Anally, a trader might not earn full Interest on the short sale of stock. 
+If the actual Interest earned Is less than the Interest rate used to calculate the fair value 
+of the futures contract, the fair value of the futures contract, for trading purposes, may 
+be less than the presumed fair value of 386.75. 
+This type of trading strategy, where one buys or sells a mlspriced stock Index futures 
+contract and takes an opposing position In the underl~ng stocks, Is one type of Index 
+arbitrage. Since computers can often be programmed to calculate the fair value of a 
+futures contract, and to execute the arbitrage when the futures contract ls mlspriced, 
+such a strategy ls also commonly referred to as program tradlng. A buy program consists 
+of buying the stocks and selling the futures contract, and a sell program consists of selling 
+the stocks and buying the futures contract. 
+How great a mlsprlcing of a futures contract relative to the price of the underlying 
+stocks justifies futures arbitrage? If markets are totally frictionless, a trader would 
+attempt to execute an arbitrage if there were any mlsprlctng, no matter how small. 
+Unfortunately, markets are not totally frictionless. An arbitrage which in theorf is 
+profitable because of a misprlced futures contract may be unprofitable when transaction 
+costs are factored in. If a trader believes that It will cost approximately t12 Index point 
+to execute all the trades required for an arbitrage, he will not attempt to enter Into a 
+program trade unless the futures contract is at least .50 too expensive or too cheap. If 
+he also considers the problems associated with the short sale of stock, he may decide 
+that the futures contract must be .75 too cheap before he wtll lnltlate a sell program. 
+With the fair value of the futures contract at 386.75, the trader will Initiate a program 
+trade only If the price of the futures contract Is outside the range 
+386.75 -.75 and 386.75 + .50 
+or less than 386.00 and more than 387.25. 
+Even If the quoted Index price Is 386.75, and the futures contract Is higher than 
+387.25 or lower than 386.00, the trader cannot be certain that a profit opportunity 
+
+--- PAGE BREAK ---
+
+I 
+\ SIW'k lndu Futuns ,nd Options 3// 
+aiSts. In order to execute an arbltrage, lt ls necessary to trade all the stocks at a price 
+ronslstent wlth the index value of 386.75. But there ls a bid price and an offer prtce for 
+,~ lndlv\dual stock, and lt ls likely that the last trade price for some of the stocks In 
+the \ndex took place at the bld price, some at the ask prtce, and some at prtces tn 
+t>ttween. If a trader wants to immediately execute a buy program, he will have to 
+purchase every stock ln the index at the ask prtce, and this may be at a price well above 
+the quoted Index value. 
+Moreover, the quoted lndex price can sometimes present a distorted picture ot 
+actual market condltlons. The index ltself may be quoted at 386.75, but does that 
+represent the price at which all the stocks In the index are trading? Perhaps trading 1n 
+some of the stocks has been halted due to pending news. Or perhaps the last sale for 
+one or more of the stocks took place at a price outside the current market ror the stock. 
+The last sale ln a stock may have been at 381/4, but lf the market In the stock ls falling 
+very qulclcly, the offered prtce for the stock may be 373/4. The index value ls based on 
+the last sale prtce of 381/4, but the actual price Is at least as low as 373;4, and possibly 
+even lower. If a trader hopes to profit from a mlspriced futures contract he must know 
+the true market for all the stocks which underlie that contract 
+Assuming the trader can execute all purchases and sales at theoretlcally profitable 
+prices, ls there anything which could go wrong with a program trade conslstlng of stocks 
+against stock lndex futures? Suppose a trader buys an underprtced futures contract and 
+simultaneously sells the underlylng stocks. If the index starts to fall, and the futures 
+contract follows, the trader will show a profit on hls stock trades and a loss on his futures 
+trade, and presumably these two components wlll offset each other. Unfortunately, the 
+stock trades, being subject to stock-type settlement, only result In a paper profit, whHe 
+the futures trade, being subject to futures-type settlement, results ln a cash toss. If the 
+index drops far enough, and the trader must borrow cash to meet the variation 
+requirements for the futures contract, the interest cost may be so great that the arbitrage 
+which lnltlally appeared profitable actually turns into a loss. This ls simllar to the 
+settlement risk for a conversion or reversal in the futures option market descrtbed In 
+Chapter 11. 
+From this, we can see that a program trade always wants the market to move In 
+the direction of the futures contract so that cash will flow Into the trader's accounL Thls 
+wlll lncrease the trader's potential profit, since he wtll be able to earn interest on this 
+cash over the life of the futures contract. In thls respect, we can apply the concept of 
+the delta to futures contracts ln much the same way we do to an option contract The 
+delta ls the rate at which a contract will change lts theoretical value with respect to 
+movement ln the underlying contract. For example, assume that a stock index Is quoted 
+at 300.00. If there are three months to expiration, with Interest rates at 8%, and an 
+expected dividend payout of 4.50, the fair value of a futures contract Is approximately: 
+300.00 + (300.00 X 3/12 X .08)-4.50 = 301.50 
+Suppose the Index immediately rises 10% to 330.00. The new fair value of the futures 
+contract Is: 
+
+--- PAGE BREAK ---
+
+I 
+0.00 l (330.00 X 3/12 X .08)-4.50: 332.10 
+The Index rose 30.00 while the futures contract rose 30.60. The delta of 
+contract Is therefore 102, since 30.60/30.00 = 1.02. The futures contract J 
+Its value at 102% the rate of the underlying Index. 
+If we assume that the dividend payout remains constant, the delta of 
+contract Is simply a function of Interest rates. The extra two deltas associated 
+futures contract results from an Interest rate of 8% and a time to exp1rat1on 
+months, since 3/12 x .08 = .02. As the amount of time to expiration chan~, 
+Interest rates change, the delta of the futures contract will also change. 
+We can now express In delta terms the amount by which a program 
+unbalanced. If a trader buys 50 futures contracts, each with a delta of I 02, and sens 
+appropriate amount of the underlying stocks, his delta total position Is 
+(50 X 102)-(50 X 100) = +100 
+He Is long as If he had purchased stock outright corresponding to one Index contract. I 
+he wants to be exactly delta neutral, he must sell a basket of stocks corresponding to 
+one index contract. 
+A change In interest rates wlll not only affect the delta of the futures contract, but 
+can also affect the profitablllty of a program trade. If a trader institutes a buy program 
+(buy the stocks, sell the futures), he is effectively borrowing cash in order to purchase 
+the stocks. If the cost of funds is tied to a floating interest rate, any increase in rates will 
+hurt his position and any decrease will help. If he Institutes a sell program (sell the 
+stocks, buy the futures) he is effectively lending cash. Now any increase in rates will 
+help his position and any decrease will hurt. If the change in interest rates is sufflctently 
+large, an initially profitable program trade might become unprofitable. This can be 
+especially true if the program trade consists of very long-term futures contracts. In such 
+a case, the Interest considerations are magnified because of the increased costs of 
+borrowing or lending over extended periods. In the same way, because of reduced 
+interest considerations, changes in interest rates are unlikely to affect program trades 
+consisting of short-term futures. 
+We have thus far assumed that the dividend payout of all the stocks in an index 
+remains constant, but this is not necessarily true. Companies can have good years and 
+bad years, and their dividend policies can change accordingly. In a buy program {buy 
+the stocks, sell the futures), any increase in dividends will help the position, and any 
+decrease will hurt. In a sell program (sell the stocks, buy the futures), the effect is just 
+the opposite. In a broadly based index consisting of hundreds of stocks it is unlikely that 
+a change in the dividend policy of any one company, or even several companies, will 
+have a significant Impact on the profitability of a program trade. But In a narrowly based 
+index consisting of only a few stocks, a change In the expected dividend payout of even 
+one firm can alter the potential profitability of the trade. In such a case, the trader must 
+carefully consider beforehand the possibility of a dividend change In the companies 
+making up the index. 
+
+--- PAGE BREAK ---
+
+St«k Index Ft1turts And Options 111 
+INDEX OPrIONS 
+There are really two types of stock Index opUons, those where the underlying Is a stock 
+Index futures contract, and those where the underlying Is the Index Itself. Although th 
+are alike In many respects, they also have unique characterlsUcs which set them apa 
+from each other. For this reason, we will look at each market separately. 
+Options on Stock Index Futures 
+Since an option on a stock index futures contract Is often evaluated In the same way as 
+a traditional futures option, a trader In such a market has all the usual problems which 
+go with futures option evaluation. He must pick a suitable prtclng model, determine the 
+correct inputs into the model, choose appropriate strategies, and consider the risks that 
+go with these strategies. Since exercise or assignment of a futures option contract wm 
+result in the trader taking a long or short position in the stock Index futures contract, 
+the trader might log\cally use the current futures prtce as the underlying price Input Into 
+his theoretical prtcing model. But a futures option trader ls often faced with a new 
+problem. Should he also use the current price of the futures contract as his prtce Input 
+if the futures contract is clearly mlsprlced and trading at other than fair value? 
+For example, if a stock index futures contract Is trading at 424.00 but an option 
+trader believes that the fair value ls 425.00, which value should the trader feed Into his 
+theoretical pricing model? If the trader really believes that the futures contract ought to 
+be trading at 425.00, and also believes that all the assumptions upon which the 
+theoretical pricing model is based are valid, then he might very well choose to use 
+425.00 as the underlying price in his model. He can then take option positions, whether 
+outright or spread positions, by purchasing options which he believes are underprtced 
+and selling those which he believes are overpriced. 
+Notice, however, that with the futures contract trading at 424.00, he cannot use 
+425.00 as his price Input and still use the futures contract to hedge his option position. 
+If he were to do so, whatever positive theoretical edge he achieved because of his option 
+trades would automatically be offset by the negative theoretical edge resulting from his 
+futures trades. This becomes obvious when we recall the basic synthetic relationship for 
+futures options from Chapter 11: 
+call price -put price = futures price -exercise price 
+If the trader believes the underlying futures contract ought to be trading at 425. 00, then 
+he also believes that the 425 call and the 425 put ought to be trading at an identical 
+price. The difference between the presumed futures price and the exercise price ls zero, 
+so the difference between the call price and put price ought to also be zero. But with 
+the underlying futures market actually trading at 424.00, the call price wlll be approxi· 
+mately 1.00 less than the put price. If the 425 call ls trading for 8.50 and the 425 put 
+is trading for 9.50, the call will appear too cheap to the trader and the put will appear 
+too expensive. Unfortunately, if the trader buys the call for 8.50 and sells the put for 
+9 .50, he has no way to lock in his presumed profit of 1.00. If he attempts to complete 
+the reverse conversion (buy the call, sell the put, sell the underlying), he will have to 
+
+--- PAGE BREAK ---
+
+314 
+do so by selling U1e futures contract at 424.00. What he makes on the optl 
+give back on the futures contract. 
+If a trader simply wants to execute volatility or directional spreads oased on 
+presumed underlying prtce of 425.00, then It might very well make sense tO u 
+price as the Input Into the theoretlcal pricing model. But professional option trade 
+heavily on arbitrage relationships for many of their trading strategies. If a pr1 
+than the actual underlying price Is used, these aroltrage relationships will no Jon 
+valid. Because the choice of underlying prtce may vary from trader to trader, m I 
+on-line option evaluation services ~ve traders the choice of using either the 
+futures price or the theoretical futures price as the basis for theoretical evaluatJon. 
+Although the ultimate decision about the underlying price Is the trader's, In a swct 
+Index futures option market a trader should be very careful about using an underiyf ng 
+futures price different from the quoted price. As we have already seen, the meoretf 
+value of a stock Index futures contract depends on Information which may not be readily 
+available to the trader. If he Is wrong about the price at which the index Is actually 
+trading because the Individual stock prices do not reflect the true market, his theoretlcaJ 
+evaluation of the futures contract will be Incorrect Most traders have learned through 
+expertence that the apparent mlsprlclng of a stock Index futures contract ls often 
+illusory, or at least smaller than It appears. 
+Options on a Cash Index 
+The exercise or assignment of a stock option requires the buyer or seller to take delivery 
+or make delivery of the underlying stock. In theory there ls no reason why the exerctse 
+or assignment of a stock index option could not be treated the same way. If a trader 
+were to exercise such an option, he would take delivery or make delivery of all the 
+stocks 1n the index, in their correct proportion, at a price equivalent to the value of the 
+index. The trader who was assigned would take an opposing position at the same price. 
+While this sounds reasonable, in practice it presents the same problems that would 
+arise if we were to settle a stock index futures contract through the physical delivery of 
+all the stocks. The delivery of many different stocks, in their appropriate amounts (which 
+might include fractional shares), would overwhelm the clearing organization. As with 
+futures, the popular solution ls to settle the contract In cash rather than through physical 
+delivery. If a trader holds a 440 call and exercises It with the index at 450, he is credited 
+with a cash amount equivalent to l O index points. If each index point has a value of 
+$100, his account is credited with $1,000. The account of the trader who ls assigned 
+on the same call ls debited $1,000. In the same way, if a trader exercises a 475 put with 
+the Index at 450, his account will be credited with $2,500. The account of the trader 
+who ls assigned will be debited $2,500. 
+In theory, If the Index option Is American, carrying with It the right of ear~ 
+exercise, the cash settlement should be based on the Index value at the time the trader 
+exercises his option. But this Is Impractical since exercise Is not an instantaneous 
+transaction. An exercise notice must be filled out by the trader, submitted to the clearing 
+firm, and then submitted to the clearing house. Even If one could pinpoint the precise 
+time at which an option was exercised, It might be difficult to ascertain the exact value 
+
+--- PAGE BREAK ---
+
+-Stock Inda Futures and Options 315 
+of the index. For all these reasons, the exercise or assignment value for an Index optlon 
+ls calculated from the Index value at the end of the trading day.3 Whether an exercise 
+notice ls submitted at 10:00 AM or 3:00 PM, both traders will be credited wtth cash equal 
+to the difference between the exercise price and the Index value at the close of trading 
+on that day.4 
+Evaluating a Cash Index Option 
+The most common method for evaluating cash options on a stock Index ts based on the 
+assumption that the underlying contract for a cash Index option Is a basket of stocks 
+which, taken together, have the characteristics of one lndlvldual stock. Therefore, a 
+trader might logically choose to evaluate options on an Index using a tradltlonal stock 
+option model, the Black-Scholes model for European options or the Cox-Ross-Ruben· 
+steln model for American options. In either case, It wm be necessary to feed tnto the 
+model the usual lnfonnatlon: tlme to explratlon, exercise price, underlying price, 
+interest rates, volatlllty, and dlvldend payout Unfortunately , the dlvtdend payout 
+presents a problem whlch we have already touched upon ln the discussion of stock 
+index futures. If the options are European, wtth no posslblllty of early exercise, the total 
+amount of dividend payout expected to expiration ls sufficient for theoretical evaluation. 
+But if the options are American, where early exercise ls a posslblllty, we need to know 
+the exact date of the dlvldend payout. There is, however, no one exact date stnce 
+dividends on different stocks are paid at different times. In order to accurately evaluate 
+American options, we need to create a matrix of dlvldend payouts with the dates and 
+amounts, and then feed this into our theoretical pricing model. If a trader wants an exact 
+evaluation of a stock Index optlon, he will need software which ls capable of exact 
+dividend calculations. 
+A less accurate method, but one which mlght be practical for many traders, ls to 
+assume a constant dividend payout. A trader can attempt to detennlne the average 
+percent dividend paid by each stock, deduct this from the Interest rate component, and 
+use the result as the interest rate input For example, lf the average dlvtdend payout ls 
+4%, and Interest rates are 6%, the trader can ignore the dlvtdend input and simply use 
+an Interest rate of 2%. Some models allow the user to enter the Interest rate and the 
+dividend payout (as a percent) lndlvldually, and from these lnputs the model calculates 
+the value of an American option. In both cases, however, the value of early exercise will 
+be distorted since stock option calls are often exercised just prior to a dividend payout, 
+and puts are often exercised just after a dlvtdend payout When no exact dlvldend date 
+has been entered Into the model, optimum early exercise cannot be calculated. The 
+distortion can sometimes be quite large If many stocks In the Index happen to pay a large 
+3. Because of the order unbalances which can occur 1n tndlvtdual stocks when a large number of stock 
+Inda arbitrages are liquidated at the same time, some exchanges have chosen to settle stock index 
+options and futures on expiration day based on the opening tndex price. Thls opening price ls 
+detennined by the open!ng prices of each stock Jn the tndex on that day. Since stocks can open at 
+dJ6ecent Umes, the Jndex value may not represent simultaneous stock tlades. 
+4. There ls usually a cut-off Ume after which an index option may not be exercised on a given day. In the 
+UnJted States this Js usually Within an hour aft.er the index has been bed at the end of the trading day. 
+
+--- PAGE BREAK ---
+
+3/6 Nt111nfH / 
+dividend on the same date, or pay no dividend for an extended period. Fl~r~ 1" • 
+shows that this Is often the case for the S&P 500. 
+A Phantom Variable 
+In some markets, stocks or their derivative products continue to trade after th 
+Index price has been fixed for the day. In the United States, most stock indices at 
+at 4:00 PM Eastern Time when trading ceases on the New York Stock Exch 
+However, many of the stocks In the Index continue to trade on regional 
+exchanges, and futures and options on the Indices may also continue to trade for .>V .... 
+peliod after the close. The fact that the underlying Index may be fixed while optl 
+and futures on the Index continue to trade results In an anomaly concernJng 
+exercise. 
+Suppose a trader owns a stock which settles at a prtce of $50 when trading c 
+at 4:00 PM on the primary stock exchange. Suppose also that the trader has the right 00 
+sell that stock to someone at the settlement price of $50 until 12:00 midnight the 
+day. If the trader's intention is to hold onto the stock, their is no reason for him to 
+exercise this right. But suppose some negative news on the stock comes out at 4:30 
+and he finds that the stock ls now trading on other exchanges at $48. What will he do? 
+If he decided that he wanted to sell the stock because of the bad news, the trader would 
+certainly exercise his right to sell at $50 rather than selling it at $48 on some other 
+exchange. Even if he wanted to retain ownership of the stock, he would irnmediacely 
+realize that he could show an extra $2 profit by exercising his right to sell at $50, ani 
+buying the stock back at $48. Indeed, he would be foolish not to do so since if he did 
+not, he would be throwing away $2. 
+A similar situation occurs in stock Index options where early exercise is a possibil­
+ity, and where alternative instruments are available on the Index after the index bas 
+been fixed at the close of the trading day. To see what can happen, consider an option 
+market on a very simple, non-dividend paying index which has been fixed at 400.00 
+when the stock exchange ceases trading at 4:00 PM. If there are 30 days remaining to 
+expiration, with implied volatility at 14%, interest rates at 6%, and no dividend 
+expected, option prtces and implied deltas might be the following: 
+Index = 400.00 
+Time to June expiration = 30 days Implied volatility = 14% 
+Interest rates = 6% Dividend = 0 
+Exercise Call Call Put Put 
+Price Price Delta Price Delta 
+380 22.44 92 .59 -8 
+390 13.98 78 2.12 -23 
+400 7.42 56 5.62 -46 
+410 3.24 32 11.71 -72 
+420 1.14 14 20.12 -94 
+
+--- PAGE BREAK ---
+
+$'tt'l('A· Index Futures and Options I 
+Suppose that at 4:05 PM some very negatlve economic news comes out. Stocks start 
+tt1 r&ll on other exchanges which are still open, and traders In the Index futures and 
+option markets, which continue to trade after 4:00 PM, react as If the Index wlll open 
+l O points lower the next morning. If the option market does open the next day at 
+300.00, option prices and deltas might then look like the following: 
+Index = 390.00 
+Time to June expiration = 29 days Implied volatility = 14% 
+lnterest rates = 6% Dividend = 0 
+Exercise Call Call Put Put 
+Price Price Delta Price Delta 
+380 13.70 79 1.95 -22 
+390 7.10 55 5.40 -46 
+400 2.98 31 11.55 -73 
+410 .98 13 20.08 -95 
+420 .25 4 30.00 -100 
+Suppose a trader originally owned ten 380 calls. What should he do when the 
+negative news hits the market? If he holds his calls, and the market does open at 390.00 
+the next morning, his calls will be trading at 13.70. He will show a loss of 22.44 _ 
+13.70, or 8.7 4 per call. But if he exercises his calls today, he Will receive 20.00 Points, 
+the difference between the exercise price of 380 and that day's lndex settlement prtce 
+of 400.00. If he exercises, his loss will only be 22.44 -20.00, or 2.44 per option. If he 
+fails to exercise, he will automatically show an additional loss of 6.30. 
+Anytime after the index value has been fixed for the day, a trader who finds that 
+the next day's presumed theoretical value ls less than parity Will be better off exercising 
+an index option early rather than holding It. In this scenario the 390 calls will also 
+become early exercise candidates, although the savln~ will not be as great as with the 
+380 calls. Prior to the news, the 390 calls might be trading for 13. 98. But If the market 
+drops to 390.00 the next morning, the 390 calls will only be trading for 7 .10. If the 
+trader owns 390 calls and doesn't exercise, he will lose 13.98-7.10, or 6.88 per call. 
+If he does exercise, he will lose only 13.98 -10.00, or 3.98. He will save 2.90 per call 
+through early exercise. 
+Of course, Implied volatility might increase following such a violent drop ln the 
+market. But even if implied volatility jumps to 18%, the prices of the 380 and 390 calls 
+the next morning will only be 15.06 and 8.84, respectively. This is still less than partty, 
+so a trader holding these calls would still want to exercise them early. 
+Although lt does seem that stock index markets are more susceptible to bad news 
+than good, puts might also become early exercise candidates if the market were to jump 
+following unusually bullish news. If, In our example, there was a perception that the 
+market would open the next morning 10 points higher, at 410.00, the option prices 
+might look like this: 
+
+--- PAGE BREAK ---
+
+18 CMpc!r I• I 
+Index = 410.00 
+nme to June expiration = 29 days Implied volatlllty = 14% 
+Interest rates = 6% Dividend= 0 
+Exettlse Call Call Put Put 
+Price Price Delta Price Delta 
+380 31.92 98 .12 
+390 22.45 92 .61 -8 
+400 14.01 78 2.16 -23 
+410 7.46 55 5.67 -46 
+420 3.28 32 11.75 -72 
+Now the 410 and 420 puts have become early exercise candidates. Based on 
+closing Index price of 400.00, their parity values are 10.00 and 20.00. But with r.h 
+index perceived to be at 410.00 their prices are only 5.67 and 11.75. Even ff !mpU 
+volatility were to rise to 18%, their prices would only be 7.49 and 13.37, respect111ety. 
+This Is still well below parity, so a trader would want to exercise the puts rather than 
+hold them. 
+In a market where early exercise Is a possibility, options should never trade for less 
+than parity. If a stock index option market remains open after the Index has been filed 
+for the day (as It does for 15 minutes In the United States), even if traders begin to trade 
+the options as If the market will open the next mornlng at a price significantly different 
+than that day's closing Index price, all options must trade at a price of at least parity. If 
+thls were not true, there would be an Immediate arbitrage opportunity. H the 390 call 
+were really trading at 7.04 as a result of the negative news, a trader would buy as many 
+calls as possible and Immediately submit exercise notices, in the process collecting 1 o 
+points per option. He would realize an Immediate profit of 2.96 per option. 
+What would happen if the marketplace were wrong about where the index would 
+open the next morning? Suppose that traders believe the market Will open the next 
+morning 10 points lower, but in fact the market opens unchanged or even several 
+points higher. Wouldn't a trader who exercised the 380 or 390 calls ~gret his actions? 
+Regardless of what happens the following morning, a trader Will always be better off 
+exercising as long as he takes action to offset the effects of the exercise. 
+For example, suppose the trader initiated the following delta neutral ratio spread 
+before the negative news reached the market: 
+long 10 June 390 calls at 13.98 
+short 25 June 410 calls at 3.24 delta= 78 
+delta= 32 
+If the trader holds the position, including his 390 calls, and the market opens the next 
+morning at 390, he will show a loss of 12.75, since: 
+-10 X (13.98-7.10) +25 X (3.24-.98) = -12.30 
+But suppose the trader decides to exercise his 390 calls. He still needs to balance his 
+delta position by taking in the 780 deltas which disappeared when he exercised his calls. 
+
+--- PAGE BREAK ---
+
+Stock lnd«x Futures and Options 119 
+One way to do this Is to simply close out the spread by buying back the 41 o calls at their 
+new prtce of .98. 1f he does this, he will show a profit of 16.85, since: 
+-\0 X (\3.98-10.00) +25 X (3.24-.98) = + 16.70 
+u the trader does not want to liquidate his short position In the 41 o calls, he can look 
+for another way of taking In 780 deltas. If other stock exchanges are stlll open and the 
+trader can purchase the stocks making up the Index at the new, lower prices and In the 
+co~t proportion, he might consider buying stock equivalent to eight Index contracts 
+t800 deltas) to make up his loss of 780 deltas. Or, If a futures contract Is available on 
+the index, and the futures market, In reaction to the negative news, Is now trading Io 
+points lower, he might buy eight futures contracts since each contract wtll have 
+approximately 100 index deltas.5 
+It may seem odd, but In fact It doesn't matter whether the Index opens the next 
+momlng at a higher prtce, lower price, or unchanged. What matters 1s that the 
+marketplace believes that the market will change, and that all contracts are priced 
+accordingly. In such a case, the trader must exercise those options which, ~ven the 
+perceived change In the underlying price, now have a value less than parity, and replace 
+them wtth other contracts which are not limited by parity constraints. 
+There ls clearly an additional early exercise value associated with cash Index 
+options, a value which does not result from the usual early exercise considerations of 
+dividends or Interest. This value arises because under some circumstances a trader can 
+exercise index options and replace them with other Instruments at more favorable 
+prices. How much Is this replacement value worth? The answer depends on the 
+probability of some significant event occurring between the time the index ls fixed and 
+the dose of trading in other Instruments linked to the Index: stocks, futures, and options. 
+It ts doubtful that anyone really knows how to quantify that probability, and traders tend 
+to regard the posslblllty of a significant event occurring as a phantom variable. No one 
+knows how to evaluate It, but everyone agrees that It exists. 
+The extra early exercise value resulting from this phantom variable is most evident 
+in the trading of boxes In an index option market Suppose we are Interested In buying 
+a 420/ 430 box (buy the 420 call and 430 put, sell the 420 put and 430 call). If the box 
+is made up of European options where early exercise Is not a posslblllty, the value of the 
+box is simply the 1 O·polnt difference between exercise prices less the canying cost on 
+1 O points to expiration. If there are four weeks to expiration and interest rates are 6%, 
+the value of the box ls approximately: 
+10.00-(28/365 X 6% X 10.00) = 9.95 
+If these are American options there will be some early exercise value attached to them 
+because of dividend and interest considerations. The extra value will be greatest for the 
+420 call and 430 put, so the value of the box will be slightly greater than 9.95. Using a 
+binomial model, and ~ven a normal dividend payout, we might find that a 10-polnt box 
+ln the S&P 100 (OEXJ market has a value of approximately 10.05. Yet such boxes In the 
+s. f'0I stmpllclly, we ~ore the llkellhood that the trader who continues to hold a spread posltlon will 
+make adjustmts to his delta position as a result of the movement In the underlying Index. 
+
+--- PAGE BREAK ---
+
+,,20 t''lfdttl;t' I, 
+&.\P 100 mMket often trade for as much as I Ol/4 to I 03~. The addltlonal amo11 
+expected theoreucal value Is the value the marketplace places on the posslblll 
+exercise after tl1e Index has been fixed at the end of the day. 
+tf the right of early exercise can represent an additional reward to the hoM-, 
+stock Index option, then the posslbllltY of early assignment must represent an addt 
+risk to the seller of such an option. Indeed, the risk to the seller of an Index op 
+seem even greater than the reward to the buyer. The seller ls not only at the m 
+the buyer In terms of when the option wtll be exercised; he may not even find 
+he has been assigned until It Is too late to take protective action. 
+The problem for the seller Is that Index options are settled in cash, and cash 
+not carry a delta value. When a trader Is assigned In a nonnal stock option mark 
+assignment may result In a loss to the trader In terms of dividends or Interest co5rs, 
+at least It does not upset his delta position. If the stock option ls deeply enou 
+in-the-money to be exercised, It probably has a delta very close to 100. When the op 
+Is exercised, the 100 deltas associated with the option disappear, but they are tmmed} 
+ately replaced with the 100 deltas associated with the stock contract But when a tra 
+is assigned on an In-the-money stock Index option, not only does assignment cause 
+negative cash flow, but the deltas associated with the assigned options completely 
+disappear. If the trader knows Immediately that he has been assigned, he might be abl 
+to do something to rebalance his delta position. Unfortunately, exercise notices ar1 
+processed overnight, so the trader will not find out that he has been assigned until the 
+next trading day. If he is short deeply In-the-money index options and is assigned, the 
+following day he may find himself with a big positive or negative delta Position, perhapS 
+much bigger than he would like. If the market moves substantially on the opening, the 
+trader could find himself with severe losses before he ever has a chance to take any 
+defensive action. 
+Synthetic Relationships 
+Suppose a stock Is trading at 100. With two months to expiration, interest rates at 6%, 
+and no dividend expected prior to expiration, what should be the relationship between 
+the 100 call and the 100 put? If we ignore the possibillty of early exercise, we know 
+from the synthetic relationship in Chapter 11 that the call price should exceed the put 
+price by approximately the carrying costs on the exercise price of 100: 
+call price -put price = exercise price -stock price + carrying costs 
+Since the carrying costs on the exercise price are 
+100 X 6% X 2/12 = 1.00 
+we know that the call should be 1.00 more expensive than the put. If the put is trading 
+for 4.00, the call should be trading for 5.00. 
+Suppose that the stock Is trading for 100 and the put 4.00, but the call is actually 
+trading for 4.25. What should a trader do? Regardless of the trader's opinion about 
+volatlllty, It's clear that the call ls .75 too cheap with respect to the put. A trader familiar 
+with synthetic relationships will attempt to take advantage of this relative misprtcing by 
+
+--- PAGE BREAK ---
+
+-Sock lndvc Fututf!S and Options 321 
+executing a reverse conversion: buy the call for 4.25, sell the put for 4.00, sell the stock 
+for 100. The result will be a profit at expiration of .75 when the trader closes out the 
+poslUon by either exercising the put or being assigned on the call. 
+True arbitrage relationships are unlikely to be violated In an optlon market where 
+there ls a well defined and freely traded underlying contract. If such a relationship Is 
+violated, a trader can always trade the underlying Instrument against the mlsprlced 
+arl:>ltrage relatlonshlp and essentially lock In a profit equal to the mlsprlctng. The 
+cumulative effect of all traders attempting to profit from a mlsprtced relationship ls that 
+the mlsprtdng quickly disappears. 
+Now consider a trader who encounters a slmllar mlspriclng In a stock Index optlon 
+market where the options are settled In cash. Suppose that the Index Is at 400 and that, 
+accordlng to the synthetic relatlonshlp, the 400 call should be 3.00 greater than the 400 
+put. With the 400 put trading at 6.00, the trader would expect to see the 400 call 
+tradlng at 9 .00. What should he do If he finds that the 400 call ls actually trading at 
+7.507 
+The trader would llke to take the same action In the Index that he would take If he 
+were deallng with options In an Individual stock: buy the call for 7.50, sell the put for 
+6.00, and sell the Index for 400.00. This ought to result In a profit of 1.50, the amount 
+by which the call and put are mlsprlced relative to each other. Is this a practical strategy 
+In the Index option market? 
+Certainly the trader can buy the 400 call and sell the 400 put. But when the trader 
+goes to sell the lndex he may find that It Is not as easy as he originally thought. 
+Depending on how broadly based the Index Is, the trader may have to sell several 
+hundred stocks In various proportions. It might be possible to do so, but It wll\ certainly 
+not be as easy as selling one stock. 
+Even If he ls able to sell all the stocks In the Index ln the right proponlon, has he 
+executed a true reverse conversion? A true reverse conversion consists of be\ng long a 
+call and short a put, and short the underlying Instrument, where the underlying 
+instrument ts the Instrument to be delivered when an option Is exercised. If the basket 
+of stocks were the true underlying Instrument, the trader would make dellvery of, or 
+take delivery of, the basket if the 400 call or 400 put were exercised. But this Is not 
+what happens In an Index market. If the trader exercises the call, or ls assigned on the 
+put, there ls a cash transfer. But the trader ls still left holding the basket of stocks. 
+The fact that the index Is settled in cash can make a conversion or reverse 
+conversion a much riskier strategy In an Index option market than In an Individual stock 
+option market, especially if the options are American. Moreover, arbitrage strategies are 
+typically done ln large size because of their narrow profit margin. If a trader executes 
+such a strategy and finds himself assigned overnight, his position might become horribly 
+unbalanced. The next day even a small adverse move ln the index could prove 
+disastrous. 
+If a trader could execute all the stocks in the Index, and could be certain of holding 
+the position to explratlon, he would still have to physically liquidate hls stock position. 
+Since the option values at expiration are determined by the closing Index value, and 
+since the Index value ls determined by the closing trades In each Individual stock, the 
+
+--- PAGE BREAK ---
+
+322 a,,,pter/1 
+trader must ensure that he doses each of his lndMdual stock posrnons at the ~ 
+price on the exchange from which the Index Is calculated. In many cases, he 
+accomplish this by placing market-on-close (MOC) orders for each JndMduaJ stoek. 
+he must be very careful. If he falls to close out each stock position at the app 
+price, his arbitrage may not produce the profit ortglnally expected. 
+Because it can be difficult to trade a complete and correctly proportJoned .ba.Sket 
+stocks, and because there Is the additional risk of early exercise after an index arbt 
+has been executed, mlsprlced synthetic relationships are not as easy to eiplof t fn 
+option markets as In other option markets. Not only do such mlsprtcln~ occur mar? 
+frequently In index option markets, they can persist for long periods of t1me. 
+FlncUng a SubstJtute for the Index 
+Regardless of the difficulty In executing arbitrage strategies, If a synthetic reJatlo ~. • 
+appears to be sufficiently mlsprtced a trader wlll look for some way to exploit ctie 
+situation, even with the additional risks that go with such a strategy. Thls means either 
+uytng to execute the basket of stocks underlying the lndex, or looking for an accep 
+substitute for the basket 
+If the index Is narrowly based, with only 20 or 30 stocks, It may not be unreasorr 
+able to uy and execute a complete basket of stocks. If the Index Is more broadly based, 
+with several hundred stocks, the dlfflcultles of executing every stock ln the r1 
+quantity may make It Impractical to execute a complete basket. In such a case, a crad 
+may question whether a complete basket ls really necessary for his purposes. In most 
+Indices not every stock has the same weighting. If an lndex ls very broadly baSed, prtce 
+changes In the smallest companies may have very little Impact on the Index. It may be 
+possible to eliminate these companies and still have a basket which Is almost Identical 
+to the Index. 
+In the search for an acceptable tradeoff between ease of execution and correlation 
+with the Index, traders are always experimenting with different pseudo-baskets, a 
+selection of stocks 1n the Index which can be easily bought or sold, and which will react 
+to changing market conditions In a way which Is almost Identical to the actual indeL 
+The primary question for most traders Is one of correlation. What degree of correlatk>n 
+Is sufficient for the trader's purposes? 100 percent? 99%? 95%7 A correlation of 99% 
+between a pseudo-basket and the index may sound good. But If the Index ls at 400.00 
+and a trader executes a conversion wtth the synthetic market mlsprtced by 1.00, the 
+99% correlation means he could be wrong by as much as 1 % of 400.00, or 4.00. Under 
+some conditions, his presumed profit of 1.00 might turn Into a loss of 3.00. Of course, 
+the laws of probability are still in the trader's favor. The pseudo-basket's deviation troro 
+the true Index could also work ln the trader's favor, occasionally giving him a profit 
+greater than 1.00. Arbitrages tend to be done ln large size because they are supposed to 
+be very low·rlsk strategies. If the trader executes a large number of conversions or 
+reverse conversions using a pseudo-basket ln place of the actual Index, he may find that 
+the correlation risk has a greater Impact than he expected. 
+Another possible substitute for the Index Is a futures contract on the index which 
+underUes the cash options. If such a contract Is available, a trader can use the furures 
+
+--- PAGE BREAK ---
+
+--
+-Stuck Index Futures and Options 323 
+contract ln place of the underlying basket In hls arbitrage strategies. The futures contract 
+ls not only easier to execute than a basket, with lower transaction costs, but there wlll 
+be a l 00% correlation between the futures contract and the actual Index. If the futures 
+contract and the lndex expire at the same time, the futures contract and the optlon 
+values Will converge to the same price at expiration. Moreover, the trader wtll not have 
+to wony about llqutdatlng either his option or futures posltlon. The clearing house wlll 
+automatically settle all contracts In cash at expiration. 
+Provtdlng that the futures contract and the options expire at the same time, a 
+futures contract on the same Index which underlies the cash option market ls a perfect 
+substitute for the basket. Indeed, If the options are European with no chance of early 
+exercise, an arbitrage between the futures contract and options ls vtnually rtskless. Once 
+the trader has completed his arbitrage, he knows that the futures contract and Index 
+wUl correlate perfectly and will converge at expiration. In the United States, traders In 
+the S&P 500 options market at the Chicago Board Options Exchange often treat the S&P 
+500 futures contract traded at the Chicago Mercantile Exchange as the undertylng 
+contract tn their strategles.6 Traders take a similar approach on many European and 
+Asian exchanges which trade Index options on cash and where a futures contract with 
+the same underlying Index ts also available. 
+If the futures contract offers an acceptable substitute for the Index basket, the 
+problem then becomes one of the prices at which an arbitrage can be executed. While 
+tt may be easy to buy and sell a futures contract, can It be done at prices which make a 
+conversion or reverse conversion profitable? If the synthetic market ls mlspriced by 1.00 
+1n the lndex option market, and we can trade the futures contract at exactly lts fair 
+value, there ts no problem. But ls that Ukely to be the case? If It were, everyone In the 
+marketplace would line up to buy or sell a synthetic ln the option market, and take an 
+opposing position ln the futures market. This actlvtty would force the markets back to 
+falr value, and any arbitrage opportunity would quickly disappear. Traders find that lf 
+contracts are mlspriced ln one index market, they are often mlsprtced by an equal 
+amount 1n other index markets. If a synthetic underlying position (long call, short put) 
+ls 1.00 too cheap ln the option market, a trader usually finds that the futures contract 
+ls also 1.00 too cheap. If this were not the case, everyone would take advantage of the 
+sltuatlon by purchasing the cheaper contract, either the synthetic or futures contract, 
+and selling the more expensive. In this respect, markets are typically very efficient. A 
+mlsprtctng ln one market usually means a similar misprlclng in all related markets. 
+If It can be traded at the rtght price, a futures contract on an Index ls perhaps the 
+best substitute an option trader can find. If such a contract ls not avallable, a trader might 
+instead consider a futures contract on a different, but similar, Index. For example, the 
+largest index option market In the United States ls the S&P 100 (OEX) market at the 
+Chicago Board Options Exchange. Traders in this market are always searching for an 
+acceptable substitute for the underlying basket of 100 stocks. A futures contract on this 
+6. OpUonson S&P 500futuresarealso traded at the CME. Becausethereissollttle early exercise premium 
+1n f utwes opUo.ns, and because the S&P 500 cash options traded at the CBOE are European, It turns 
+out that tbe markets tor both the futures opUons and cam options are alroost ldenttcal. 
+
+--- PAGE BREAK ---
+
+324 Ouptet ts 
+Index would be an Ideal substitute but, unfonunately, one does not exist 7 How". -, 
+there Is a strong correlation between the S&P 100 and S&P 500 Indices and, as OO't 
+earlier, a futures contract on the latter Index Is actively traded at the Chicago Mer 
+Exchange. 
+Using an alternative Index futures contract as a substitute for the actual underti 
+Index presents several problems. The first ls correlation. Just as a pseudo-baSket may r~ 
+correlate exactly, not all Indices correlate exactly, even those wf th many of the 
+stocks. Agure 15·3 shows the spread between two highly correlated Indices, the SM 
+500 and the S&P 100, during 1992 and 1993. Note that the spread had a range of~ 
+20 Index points over this penod. Moreover, It was not uncommon for the spread to 
+change by as much as five points over a penod of several weeks. Th!S hJghlJghts ~ 
+trading risk that can arise when one Index Is used as a substitute for another. 
+In addition, not all Indices expire at the same time. S&P 100 opuons are seu:f 
+from the dosing stock prtces on the last trading day, while the S&P 500 futures an 
+settled from the opening stock prtces on the same day. Because of this, holdln& an S&P 
+100 option versus an S&P 500 futures poslUon to expiration represents a substantial and, 
+for most traders, unacceptable risk. If a trader uses S&P 500 futures as a hedge againSt 
+S&P 100 options, he will almost certainly close one side of the position prior to 
+expiration. Traders have found that using S&P 500 futures contracts as a hedge agalnSt 
+S&P 100 opUons Is a short-term solution at best 
+The best solution for most Index option traders Is to avoid using substitute Jndei 
+contracts whenever possible, and to attempt to execute all strategies within the same 
+Index market. For arbitrage traders, this means focusing on boxes and jelly rolls, and the 
+time spreads, vertical spreads, and butterflies from which these strategies are con­
+structed. For example, a trader might buy a call time spread, and then uy to sell the 
+companion put time spread, thereby creating a Jelly roll. Or he might buy a bull vertlal 
+call spread, and then try to buy the companion bear venlcal put spread, thereby creating 
+a box. Or he might look for buttertlles which he believes are mlsprtced, and uy to 
+combine them later with other butterflies to create relatively low risk strategies which 
+act much like an aroltrage. 
+But even boxes and jelly rolls can present problems. Both carry the risk of early 
+exercise. And a trader who executes a jelly roll still has to decide what to do with hls 
+near·term synthetic position as near-tenn expiration approaches. For example, suppose 
+a trader Is long the March/June 410 jelly roll: 
+short March 410 call 
+long March 410 put longJune 410 call 
+short June 410 put 
+At March expiration the March synthetic will be settled In cash, and the trader will be 
+left with the June synthetic position. If he wants to hold the position and conven It Into 
+a reverse conversion, he will have to sell the underlying basket or a suitable substitute. 
+When he tries to do this he will encounter the same problems we have already 
+7. In the earfy 1980s the Chicago MercanUle Exchan~ did trade an S&P 100 futures contract But the 
+contract was deJlstef due to !nsufflcient activity. 
+
+--- PAGE BREAK ---
+
+Figure 15-3: S&P 500 / S&P 100 Spread (S&P 500 minus S&P 100) 45-r-_______________ .:__ _________ _ 
+40 
+35 
+30 
+25 
+20-t------r ---------.----"""""T""---~----~-----------1 
+Jan-92 Apr-92 Jul-92 Jan-93 Apr-93 Oct-93 Jan-94 
+
+--- PAGE BREAK ---
+
+326 OIJl#f 1$ 
+discussed. Thls means that jelly rolls, Involving two explratJon months, can be m 
+In the same way a simple synthetlc relatlonshlp can be mlspr1ced wlthln one exp. 
+month. If the March 410 synthetlc Is 1.00 to0 cheap, while the June 410 synth 
+1.50 too cheap, the March/June 41 O Jelly roll will be .50 too cheap. But thls ts 0 
+theory, since to take advantage of the mlsprlclng, a trader would have to be able w 
+the underlying Index from March to June explratlon. But there Is usually no 
+underlying available, only reasonable subsUtutes. 
+BIASES IN THE INDEX MARKET 
+Although there can be widespread mlsprlclng of synthetic relationships In an lndtl 
+option market, especially where early exercise Is a possibility and optlons are subJeet to 
+cash settlement, we might assume that this mlsprtdng Is random. Sometlmes syn 
+markets wlll be too expensive and sometimes they will be too cheap compared to thetr 
+theoretlcal values. In the real world, however, synthetic markets always seem to be 
+under pressure. That Is, the synthetic market tends to trade at less than theoretlcal value. 
+ff the synthetlc market (the difference between a call prtce and Its companion put prtceJ 
+1s worth 1.00, the actual market price usually seems to be something less than 1.00. 
+What causes this systematlc, downward bias? 
+Index markets, with their great liquidity, are the most popular of all optJon markfU. 
+They offer all types of traders-<11rectlonal, volatlllty, arnltrag~a chance to makt 
+decisions based on general market condltlons rather than on the unique factors which 
+can affect Individual stocks. True or not, most traders believe that the general market ts 
+less subject to manipulation than Individual stocks, so that Index options markets off et 
+a more level playing field. 
+One especially actlve participant In Index markets Is the portfolio manager. A 
+portfolio manager Is responsible for going Into the market and generating a maxtmum 
+return on capital with a minimum amount of risk. Historically, portfolio managers have 
+achieved this goal In the equity markets by maintaining a ponfollo of stocks whlch the 
+manager believed would outperfonn the general market. As the manager ldentlfled new 
+stocks which met this criteria he added them to the portfolio, while at the same time 
+selling off other stocks In the ponfollo which had either met his performance goals or 
+ceased to perform as expected. 
+A manager with an equity ponfollo might naturally want to protect his holding by 
+taking advantage of the hedging opponunltles In an option market f-or example, he 
+might want to buy puts to protect the stocks In the portfolio, or sell calls to enhance the 
+stocks' performance. Untll the Introduction of Index optJons he had to execute the 
+hed~ng strategy for each Individual stock within that stock's optlon market If he owned 
+40 stocks and wanted to execute a unlfonn hed~ng strategy for the portfolio, the 
+manager had to go Into the Individual option markets for the 40 different stocks and 
+execute each hed~ng strategy separately. This was not only time consuming, but the 
+transactlon costs tended to reduce the expected benefits of the hedge. 
+With the Introduction of Index options, a manager with a broadly based ponfollo 
+realized that his holdings often mimicked an Index on which derivative Instruments 
+
+--- PAGE BREAK ---
+
+--
+~'<'k Index Futures ,nd Options 327 
+\\'tte avaUable. If the manager believed that the charactertstlcs of his portfolio were 
+sufficiently slmllar to the lndex, Index options now offered a way of hedging the stocks 
+tn the portfolio without the tlme consuming and costly process of executing a hedging 
+strattgy ln each \nd\vtdual stock. 
+However, the effect of portfolio hedging strategies on stock lndex derivatives has 
+betn one-slded. Whereas a professional trader will take either a long or shon position 
+ln the underlying Instrument, as market condltlons dictate, the vast majority or equlty 
+ponfollo managers take only long positions In equities. Even If a manager believes a 
+stock wm underperf orm the market, one rarely hears of a manager selllng stock short 
+{selling stock which he doesn't own) as pan of his Investment program, Therefore, a 
+ponfollo manager ls almost always trying to hedge a long position In the market. Tots 
+means that the manager ls either buying protective puts, selling covered calls, or 
+pursuing some comblnatlon of these strategies. The result ls that there ls constantselllng 
+pressure on calls and constant buying pressure on puts. 
+Thls downward blas ls also evident In stock Index futures markets, where a 
+ponfollo manager can pursue a dynamic hedging strategy, such as portfolio Insurance, 
+by selllng futures contracts to protect his equlty holdln~ against adverse market 
+movement Toe effect ls the same as ln option markets-there ls always downward 
+pressure on the markets. 
+If there were a sure way to profit from this downward bias ln the market, 
+arbitrageurs would take the opposite position ln the underlying lndex. But we have seen 
+that executing an exact basket ls not always possible. Moreover, when the portfollo 
+manager protects his long equity position by selllng calls, buying puts, or selling futures, 
+a market maker or arbitrageur ends up taking the opposite position. He Is long callS, 
+shon puts, or long futures. If he wants to hedge his position with an underlying basket 
+of stocks, he must sell stocks short And selllng stocks short ls never as easy as buylng 
+stocks. While not totally prohibited In the United States, as lt ls In many markets, traders 
+who want to sell shon are subject to an uptlck rule (see Chapter S). And there ls no 
+guarantee that an uptlck will occur In even one stock, let alone several hundred.8 
+Moreover, most traders are subject to different borrowing and lending rates. Even If a 
+trader can sell short all the stocks ln the basket, the Interest eamln~ from the short 
+stock sale may not be the same as the Interest cost when stock ls purchased. 
+Given all these factors, the stock Index market ls not a symmetrtcal one. Many 
+more factors seem to result ln downward pressure on synthetics and futures than 
+upward pressure. This does not mean that such markets can never become Inflated, 
+With calls trading for more than expected with respect to puts, or with futures contracts 
+trading at greater than fair value. But thls ls by far the exception. In stock lndex markets 
+around the world, there tends to be constant downward pressure on derivative 
+products. 
+a. The OlJcal) Stock &change Jm tded to fadlJtate the trading of Index products by introducing the 
+01Jc9 Smet (CMX), a basket of 20 major U.S. stocks which can be traded at one time, and wb1ch 
+Js not subject to tbt uptick rule. Hence, a trader who wants to be short all 20 stocks can sell the basket 
+wttboUt wonytag about 4nd1ng an uptJck Jn mch JndMdual stock. 
+
+--- PAGE BREAK ---
+
+Figure 15-4: OEX 30-0ay Historical Volatility versus OEX Implied Volatility Index {VIX) 
+35 
+30 
+~ 25 
+-~ 
+~ Implied Volatility Index . l -----r -1 ------..... !,l 1,. 
+:1111 \ 
+1 f, l \ I 
+I\ 
+N'J 
+0 > 20 
+"'O Q) 
+N ·;; 
+::::, 
+C 
+C < 15 1\ \f\ 
+\J -,, 
+10 
+Historical Volatility 
+s-t------,--------,r----~-- ---.-----,------~----,___ ---' 
+Jan-89 Jul-89 Jen-90 Jul-90 J n-9t Jul-9t Jan-92 Jul•li12 
+
+--- PAGE BREAK ---
+
+Stock Index Futures and Options () 
+finally, there also tends to be a consistent bias In premium levels In Index option 
+markets. This can be seen In Figure l 5-4, a comparison of the 30-day historical volatility 
+of the OEX w\th the OEX Implied volatility Index from 1989 to I 992. 9 Note that th 
+Implied volatl\\ty \s almost always greater than the historical volatility. If one believes 
+that the traditional theoretical pricing models are reasonably accurate, It Is clear that 
+those who purchase Index options are consistently overpaying for them. 
+While a professional trader would not expect to be very successful If he consistently 
+paid more for options than their theoretical values, such an approach Is not necessarily 
+unreasonable for a hedger. If one thinks of options as Insurance protection, there are 
+definite benefits that go with owning options. In particular the owner of an option has 
+limited risk with unlimited profit potential. Regardless of theoretical value, these are 
+benefits for which hedgers are very often willing to pay an extra amount. To see why, 
+consider a homeowner who buys insurance to protect his family. Since the Insurance 
+company is in business to make a profit, the homeowner knows that the premiums being 
+charged are more than the policy's theoretical value. Nonetheless, the homeowner Is 
+willing to pay the extra premium for the privilege of knowing his family Is protected 
+against calamity. In the same way, a portfolio manager who believes that his selection 
+of stocks will outperform the market may be willing to pay something more than 
+theoretical value to protect the value of the portfolio when the market moves against 
+him. If he believes that his portfolio will consistently appreciate by more than the cost 
+of the options, he may be willing to overpay since the options will protect him, while 
+at the same time leaving him ahead In the long run. 
+The OEX volatlllty Index (VIX), disseminated by the Chic~ Board Options Exchange, represents the 
+Implied volatlllty of a theoretical at-the-money OEX option with 30 days remaining to expiration. 

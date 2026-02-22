@@ -1,0 +1,868 @@
+,... 
+IntermarketSpreading 
+Whlle most spreading takes place within one underlying stock, commodity, or Index 
+(tntramarket spreading), a trader need not limit himself to such a narrow playing field. 
+If a trader can identify a relationship between contracts tn two different markets, and 
+ftnds that the instruments are m\sprtced relative to each other, lt ls possible to spread 
+one instrument or \ts derivative products against another Instrument or lts derlvatlve 
+markets (lntermarket spreading}. 
+For example, suppose a trader follows two Instruments, ABC and XYZ, and decides 
+that ABC wm be stronger than "l:iZ over the next several months. Based on this 
+assessment, the trader might create a spread by purchasing ABC and selllng XYZ. 
+Let's assume the trader purchases ABC at Its current prtce of 50, and sells XYZ at 
+lts current prtce of 100. If ABC rtses to 53 and XYZ falls to 98, the trader wtll show a 
+five-point profit since he can buy back the spread, which he ortglnally sold for 50, at 45. 
+Note that It ls not necessary for ABC to rise and XYZ to fall. If ABC rtses to 60 and XYZ 
+rises to l 05, the trader wlll stlll realize a five-point profit. Or If ABC falls to 47 and XYZ 
+falls to 92, the trader wlll realize the same five-point profit. All that ls necessary ls that 
+ln total points ABC ls stronger, or less weak, than XYZ. 
+Suppose that after lnltlatlng the spread, the trader finds that ABC has risen to 60, 
+while XYZ has rlsen to 115. The spread seems to have gone against the trader as lt has 
+widened from the original prtce of SO to ss. In point terms the trader was wrong since 
+XYZ was five points stronger than ABC. But many traders would still contend that ABC 
+was stronger than XYZ since ABC rose 20% ( 10/50) while XYZ only rose 15% ( 15/ 100) 
+over the same pertod. If a trader chooses to measure movement In percent terms, he 
+cannot simply buy ABC and sell XYZ. In order to equalize the percent prtce changes, his 
+spread must be long and short an equal number of points. In order to accomplish this, 
+for each 100-polnt XYZ contract the trader sells, he must purchase two 50-polnt ABC 
+contracts. Now he ts long and short an equal number of points. If ABC rtses to 60 (a 
+20% galn) and XYZ rtses to 115 (a 15% galn), he will show a profit of: 
+2 X ( 60 -50) -1 X ( 115 -1 00) = 5 
+If ABC falls 6% to 47 and XYZ falls 10% to 90, the trader wm likewise reaUze a profit 
+slnce: 
+-2 X (50-47) + 1 X (100-90) = 4 
+Now In order to make a profit, ABC need only be stronger (or less weak) than XYZ ln 
+percent terms. 
+331 1 
+
+--- PAGE BREAK ---
+
+332 
+~~,,, 
+tn our example we trled to ensure that we were long and sh 1'1 
+of po\nts on each s\de of our spread. However, the situation can be ~e same 
+the po\nt values of the instruments are unequal. Suppose that each Point er cornp1~~ t 
+$400, wh\le each po\nt \n XYZ ls worth $100. Now If we buy two ABC In ABc 1t1
+' 1 
+al th l l fl contra 1,,r-,,, one XYZ contract to equ \ze e po nt va ues, we nd that the dollar Yalu ct1 arui :,~ 
+pos\tlon \s $400 x 2 x 50 = $40,000, while the dollar value of our XYZ e of %r Ai 
+x l x l 00 = $10,000. If ABC falls 6% to 47 and XYZ falls 10% to 90 :SIUon 1, 11: ' result ·~1 
+l-2 x (50-47) x $4001 + 11 x (100-90) x $100] = -$2,400 W\]j~ 
+Even though ABC outperfonned XYZ In percent terms, we still ended up losin 
+the dollar values of each point were different. &becau~ 
+The trader's ultimate goal ls to equalize the dollar value of each side of his 
+If he wants to achieve this, he must ensure that: 5Preat 
+(ABC contracts) x (price of ABC) x (point value of ABC)= 
+(XYZ contracts) x (price of XYZ) x (point value of XYZ) 
+He must therefore sell two contracts of y:{l for each one contract of ABC Which h 
+buys, since: e 
+1 X SQ X $400 = 2 X 100 X $100 
+Putting things in slightly different form, we can express the proper ratio of 'JJZ 
+contracts to ABC contracts required for a balanced spread as: 
+{price ABC / price XYZ) x {point value of ABC / point value of XYZ) 
+= {SO/ 100) x {40/10) 
+= 2 (2:1 ratio) 
+Now suppose that instead of creating his spread using the underlying instruments 
+ABC and TIZ, the trader decides to create his spread using options on one or both 
+instruments. That ls, the trader wants to get long ABC and/or short "ClZ by either 
+buying or selling an appropriate number of options. A logical starting point might be to 
+consider the delta positions of each spread. In traditional terms each underlying contract 
+has a delta of 100, and if we buy one ABC contract and sell one "Cf Z contract we seem 
+to have a neutral spread. But we already know that the price and the point value of the 
+instruments are different. For purposes of lntermarket spreading it might be useful to 
+consider the dollar delta ($delta) of each instrument, the total dollar value of the 
+contract dlvlded by 100: 
+$delta= (contract price x point value)/ 100 
+We can interpret the $delta as the dollar value change for a one-percent change In 
+the price of the underlying contract. This Is slightly different than the traditional 
+interpretation of the delta, the change In a contract's value for a one-point change In the 
+price of the underlying contract. However, the $delta makes It easier to create a~ 
+evaluate delta positions between Instruments trading at different prices and wl 
+different point values. 
+
+--- PAGE BREAK ---
+
+lntfflnuktt Sprtadlng 333 
+Uslng the $delta calculatlons, for ABC we have a $delta of 50 x $400 / l 00 = 
+$200. F-or XYZ we have 100 x $100 I 100 = S 100. For purposes of delta calculatlons 
+we can see that each delta of ABC Is worth two deltas of XYZ. A balanced spread 
+therefore requires us to sell (buy) two deltas of XYZ for each one delta of ABC which 
+we buy (sell). This ls simply another way of expressing the proper ratio of underlying 
+instruments required for a balanced spread. 
+We can also assign a $delta to an option by multlplytng the $delta of the underlying 
+contract by the option's delta, keeping tn mind that, even though deltas are often 
+expressed in whole numbers for convenience, they really represent a percent or decimal 
+fraction: 
+option $delta = underlying $delta x option's delta 
+An option's $delta represents the dollar change ln Its theoretical value for a one percent 
+change ln the price of the underlying contract An ABC call with a delta of 80 has a 
+$delta of: 
+$200 X .80 = $}60 
+An XYZ put with a delta of -30 has a $delta of: 
+$100 x-.30 = -$30 
+Given the $delta relationship, lf we want to get long ABC and short XYZ, and we 
+want to have the same number of dollars at risk on each slde of the spread, we need to 
+be long and short an equal number of $deltas. In other words, ln a $delta neutral 
+position: 
+number of ABC contracts x contract delta x $delta of ABC 
+must equal 
+number of XYZ contracts x contract delta x $delta of XYZ 
+Suppose ABC and XYZ are futures contracts with the following options available: 
+Exercise 
+price 
+45 
+50 
+55 ABC 
+Call 
+delta 
+80 
+50 
+20 Put 
+delta 
+-20 
+-SO 
+-80 Exercise 
+price 
+95 
+100 
+105 
+vplcal $delta neutral spreads might be: 
+long 1 O ABC futures / short 40 XYZ 100 calls 
+long 1 O ABC 45 calls / short 16 XYZ futures 
+long 10 ABC SO calls / long 20 XYZ 100 puts 
+short 30 ABC 45 puts / long 40 XYZ 95 puts 
+long 35 ABC 55 calls / short 20 XYZ 95 calls XYZ 
+Call 
+delta 
+70 
+so 
+30 Put 
+delta 
+-30 
+-50 
+-70 
+
+--- PAGE BREAK ---
+
+334 
+,,I 
+Each of these spreads Is essentially balanced, because our $delta P<>slUon In 
+ls exactly offset by an opposing $delta position fn XYZ. Since we are at ~C~ 
+deltas and short XYZ deltas, for small movements fn the underlying :an~~;~ 
+spread will be profitable as long as ABC Is stronger than XYZ. ntracts, -~ 
+Why would a trader consider taking a posf tlon fn optlons rather than th \ 
+instrument? When a trader considers an optlon's theoretlcal value, In a es~t 
+comparing the optlon's value to the value of the underlylnglnstrument Thatu~ ~~ 
+correct use of an option's theoretical value requires us to establish a hedge a 'tihJ~ 
+underlying instrument. If options are underprtced compared to theoreuca~~ 
+trader will want to buy options rather than take an equivalent poslUon In the un~Ue, i 
+instrument; lf options are overpriced compared to theoretical value, a trader WU~ 
+to sell optlons rather than take an equivalent position In the underlying lnstnmi Wirt 
+From an option trader's point of view, the determlnatlon of whether opuons er,_ 
+overprtced or underprtced depends on one's opinion of volatlllty. lf Implied volatlll ~ 
+low compared to a trader's forecast, options are underprtced; If Implied volatllltyuhJ~ 
+options are overprtced. An option trader will prefer to take a position In the op~ 
+market rather than In the underlying Instrument If he believes that Implied VOlatlllcyb 
+too low or too high. 
+In our example, If a trader Is In agreement with the Implied volatility In both ABC 
+and XYZ options, there Is nothing to be gained by taking an option position rather than 
+a position In the underlying Instrument. Suppose, however, that Implied volatllity In 
+ABC options Is 22% but the trader believes that 24% Is a more reasonable volatlllty. Now 
+options are underprtced. If the trader wants to take a long position In ABC as pan of Ills 
+spread, he wlll be better off doing so by purchasing ABC calls. He wlll not only have his 
+lntermarket spread, but will, at the same time, be creating a posltlon with a posltlve 
+theoretical edge. On the other hand, If the trader believes that 20% Is a reasonable 
+volatility for ABC options, but Implied volatility Is 22%, the trader wlll be better off 
+se1llng ABC puts. The sale of overpriced puts wlll create a long position In the ABC 
+market while also creating a positive theoretical edge. 
+A trader can take the same approach In the XYZ market. If he wants to take a short 
+position In XYZ as part of his lntermarket spread, and belleves Implied volatility In XYZ 
+options Is fairly priced, he can simply sell the underlying XYZ contract. Alternatively, U 
+he believes Implied volatility Is too low, he can buy puts; If he believes Implied volatlllty 
+Is too high, he can sell calls. 
+What types of markets lend themselves to lntermarket spreading? Since a trader 
+who enters into an lntermarket spread makes the assumption that there Is a relatlonshlp 
+between the markets Involved, the Important question for most traders Is the closeness 
+of that relationship. A trader Is much more likely to construct an lntermarket spread In 
+markets which have slmllar characterls tics, or where the markets are driven by the same 
+forces, than In those where no apparent slmllarlty exists. While a trader might flnd It 
+difficult to Identify a relationship between corn and Deutschemarks, he might very well 
+find a relationship between com and soybeans, or between Deutschemarks and Swiss 
+Francs. In the same way, he might not find a relationship between gold and the stock 
+of General Motors Corp., but he might find a relatlonshlp between gold and sliver, or 
+
+--- PAGE BREAK ---
+
+tnttmwl<et Sprtadltll .J..).) 
+1 Motors Corp. stock and Ford Motor Co. stock. Clearly, some lnstrU­
+~::~reG:e: closely related than others. The closer the reJaUonshlp, the more such 
+tnstruments lend themselves to lntermarket spreading. 
+AN INTERMARKET HEDGE 
+Because lnterrnarket spreading ls most common In markets with close relationships, It 
+ts not surprising that among the most common markets for lnterrnarket spreading are 
+those where one or more products are derived from some other product For example, 
+since both heating oil and gasoline are dertved from crude oll one would expect prtce 
+movements In these three markets to be closely correlated. It demand rises for heating 
+on or gasollne, forcing up the prtce of these products, then the prtce of crude oil ls also 
+likely to rtse. Similarly, if the supply of crude oU ls disrupted and prtces consequently 
+rtse, then the price of gasoline and heating oil ls also likely to rtse. 
+Refiners who purchase crude oil and refine lt into gasoline and heating oll are often 
+sensitive to the value of crack spreads, the spread between the prtce of crude oil and Its 
+derivative products. For example, a refiner who purchases crude all and refines It Into 
+gasollne ls concerned that the pr1ce of crude oll wlll rise and that the pr1ce of gasoline 
+will fall. lf crude oil ls at $19.00 per barrel and gasollne at $.5400 per gallon, the prtce 
+of a simple crude oll/ gasollne crack spread is: 1 
+(S.54 x 42) -$19.00 = $3.68 per barrel 
+If the refiner ls satisfied with the $3.68 profit margin, he might protect his position by 
+purchasing crude oil futures at S 19 .00 and selllng an equal number of gasoline futures 
+at $.5400.2 If, however, he has an opinion on the volatllltyof either crude oil or gasoline, 
+and this opinion differs from the Implied volatility In the option market, he can take 
+either position In options. If he feels that Implied volatility ln crude oll ls unusually low 
+(high), he can take his long position by purchasing calls (selling puts). If he feels that 
+lmplled volatility In gasollne Is unusually low {high), he can take his short position by 
+purchasing puts (selling calls). 
+While most lntermarket spreads consist of opposing positions ln two different 
+markets, there ls no reason why an lntennarket spread cannot be extended to muJtiple 
+instruments. f-or example, some reflnlng operations produce a combination of both 
+gasoline and heating oll. In a typical combination 3:2: 1 crack spread, from each three 
+barrels of crude oll which the refiner purchases he expects to produce two barrels of 
+gasoline and one barrel of heating oll. With crude oil at $19.00 per barrel, gasoline at 
+$.5400 per gallon, and heating oU at $.5800 per gallon, the value of a 3:2: 1 crack spread 
+ls: 
+1(2 x 42 x $.5400) + (1 x 42 x $.5800)- (3 x $19.00)) / 3 = $4.24 per barrel 
+1. Smee gasoline and heating oil are quoted Jn cents per gallon, and a barrel contaJns 42 gallons, the 
+psolfne or beaUng oil prJce must be mulUpUed by 42 Jn order to calculate Us peke per barrel. 
+2. Although tbJs Js not a $delta neutral posfUon, s1nce the dollars at risk fn crude oil are not equal to the 
+dollars at .dsk Jn gasoline, tt Js sUll an Jntermariet spread since one market Js beJng spread off aga!Dst 
+another market 
+
+--- PAGE BREAK ---
+
+336 
+Again, If the refiner Is satisfied with the $4.24 profit margin, he can simply buy CMt 
+oil futures and sell gasoline and heatlng oil futures In a 3:2: I ratlo. For each wee C1'00e 
+oil futures which he purchases, he can sell two gasoline futures and one heatJng o: 
+future. If, however, the refiner has an opinion on the volatlllty of any of these prod oos, 
+he may find It advantageous to take his long or short posltlon In the optlon market rather 
+than In the futures market. 
+VOLATILITY RELATIONSHIPS 
+A close price relationship between markets may also mean that the markets have stmI?c: 
+volatility characterlstlcs. This may enable the trader to Identify mlsprtced opdoos 
+without the necessity of picking the right volatility for either market. Retumlng to OJJ? 
+ABC and XYZ contracts, suppose that a trader thinks ABC Will be stronger than ,:a, 
+and wants to take a long position In ABC and a shon position In XYZ. If the tmplled 
+volatlllty of ABC Is 20% and the Implied volatility of YJZ Is 24%, the trader mJght now 
+have reason to take his position In optlons rather than in the underlying tnstrumencs. If 
+the market were to rise, the trader expects ABC to go up faster than XYZ since ABC Is 
+expected to be stronger than XYZ. In the trader's estlrnatlon, ABC ought to have , 
+greater volatlllty. But the Implied volatllltles reflect the opposite view. The marketplace 
+seems to believe that If both ABC and XYZ rise In prtce, XYZ (With Its lmplled volatlllty 
+of 24%) will rise more quickly than ABC (with Its Implied volatllltyof 20%). Clearly, the 
+prices In the marketplace do not reflect the trader's opinion of market conditions. The 
+trader can take advantage of this situation by purchasing ABC calls and selling XYZ calls. 
+Note that the trader has not made any attempt to predict the right volatlllcy for 
+either ABC or XYZ. He has simply made the assumption that the Implied volatllltles do 
+not reflect his view of market conditions. 
+If the trader wants to construct a $delta neutral spread he must stlll detennlne the 
+delta of the options Involved. Since the $delta, like all deltas, Is sensitive to changes in 
+volatility, It may seem that the trader wlll need a specific volatility to calculate the 
+$delta. He can avoid this problem If he decides to use at-the-money options. No matter 
+what the volatility, he knows that an at-the-money optlon will have a delta of approxi­
+mately 50. If ABC ls trading at 50 and XYZ is trading at 100, he can buy ABC 50 calls 
+with an implied volatility of 20%, and sell 'IJZ 100 calls with an Implied volatility of 
+24%. If there are 70 days remaining to explratlon, with Interest rates at 6%, the prtce of 
+the ABC 50 call would be 1.73 (a dollar price of $692) and the price of the XYZ 100 
+call would be 4.14 (a dollar prtce of $414). Since the $delta of ABC Is $200 and the 
+$delta of YJZ Is $100, a typical $delta neutral spread might consist of purchasing I 0 
+ABC 50 calls and selling 20 XYZ 50 calls. The value of such a spread at expiration Is 
+shown In Flgure 16-1. 
+In Figure 16· l we can see that If ABC Is stronger than XYZ, as the trader believes, 
+the spread wlll show an ever Increasing profit as ABC continues to outperfonn XYZ. 
+Note that the trader will also show a profit If the market falls In both ABC and XYZ, or 
+If ABC and XYZ move up at the same rate. This Is because the trader received more for 
+the XYZ options which he sold than he paid for the ABC options whlch he bought If 
+
+--- PAGE BREAK ---
+
+lnt,rmvktt Spreading 337 
+Figure 16-1: Long 10 ABC SO Calls/Short 20 XYZ 100 Calls 
+,, -:::-
+0 
+48 49 50 51 ABC movtt up 33"­
+lasler than XYZ ABC movff up twice 
+as fastaaXYZ 
+,, ,-,,,. ,,, 
+,,. 
+ABC movn up at the 
+tame rate u XYZ I 
+~ ~ ~ ~ ~ ~ ~ ~ ~ 
+ABC Price 
+the market falls and the en Ure posltlon ends up worthless, or lf ABC and XYZ move up 
+at the same rate, the trader ls left with a profit equal to the excess price of XYZ options. 
+The only market conditions which would hurt this spread would be an upward move 
+'th ABC and XYZ, with XYZ outperforming ABC. 
+Nhat action could the trader take If the Implied volatllltles were reversed, with 
+~ having an implied volatility of 24% and XYZ having an implied volatility of 20%? 
+ow If ABC and 'Y:il both rise, the marketplace expects ABC to outperform XYZ. Since 
+this Is also what the trader be11eves, there does not seem to be any opportunity . But 
+suppose, instead of buying calls In ABC and selllng calls In XYZ, the trader decides to 
+take his long position In ABC by selllng puts, and his short position In '/:f Z by purchasing 
+puts. Assuming, again, that he uses at-the-money puts which he knows to have a delta 
+of approximately -50, he might create a $delta neutral position by selllng 10 ABC SO 
+puts and buying 20 XYZ 100 puts. If the market moves up, and ABC ls stronger than 
+XYZ, all the options will collapse to zero. He will be left with a profit equal to the excess 
+credit when he sold ABC SO puts at an lmplled volatility of 24% and bought XYZ 100 
+puts at an implied volatlllty of 20%. And If the market moves down, based on his 
+assumption that ABC will be stronger than XYZ, the trader expects XYZ to move down 
+more quickly than ABC. Hence, the XYZ puts will appreciate more rapidly than the ABC 
+puts, leaving the trader with an ever-Increasing profit. The results of this strategy ls 
+shown In Figure 16-2. 
+
+--- PAGE BREAK ---
+
+-, 
+338 Clup(tr 16 
+Figure 16-2: Short 10 ABC SO Puts/Long 20 XYZ 100 Puts 
+' ' mmovesdown ' ' twice as fast as ABC ' ' I ' ' ' ' 
+' ' 
+~ X'(Zmovesdown ' 33% taster than ABC ' '-
+' ,c, i '-.. .... 
+'5 ' ' &: ' ' '-..... 
+' '1:(Z moves down at 
+th• same rate as ABC ' ' 
+0 
+40 41 42 43 44 45 46 47 46 49 50 51 52 
+ABC Price 
+In the foregoing examples we used at-the-money options which we knew to have 
+a delta of 50. What about using either In-the-money or out-of-the-money opUons? Now 
+the situation becomes more complex. If we use at-the-money options we are only 
+required to determine that ABC and XYZ Implied volatillties are mlsprlced with respect 
+to each other. If, however, we start to vary the options' exercise prices, we need to 
+determine not only whether ABC and XYZ options are mlsprlced with respect to each 
+other, but also whether the Individual Implied volatilities are too high or too low. 
+Whenever optlons appear cheap because Implied volatility ls lower than a trader's 
+volatlllty forecast, the trader wlll try to buy out-of-the-money options (options with 
+lower deltas). Whenever options appear expensive because Implied volatility ls higher 
+than a trader's volatility forecast, the trader will try to sell out·of•the·money options. 
+For example, If ABC options not only appear too cheap with respect to XYZ options, 
+but also appear too cheap compared to a trader's volatility forecast for ABC, the trader 
+wlll try to buy ABC options with smaller deltas and sell '1:iZ options with larger deltas. 
+Assuming the trader wants to be long ABC and short '1:f Z, he might buy ABC 55 calls 
+and sell '1:f Z 100 calls. Or he might buy ABC 50 calls and sell XYZ 95 calls. He ls tlylng 
+to create an lntermarket call backspread, by purchasing options with smaller deltas, and 
+selllng options with larger deltas. In the same way, If ABC options appear too expensive 
+with respect to XYZ, and also appear too expensive compared to a trader's volatility 
+forecast, he might take his long position In ABC by selllng puts with lower deltas, and 
+take his short position In XYZ options by purchasing puts with higher deltas. Thls will 
+
+--- PAGE BREAK ---
+
+,...--
+lntermarket Spreading () 
+create an tntermarlcet put ratio verttcal spread. Examples of an lntermarket call 
+backspread and an tntermarket put ratio vertical spread are shown In Figures 16-3 and 
+16-4. Note that such spreads are sensitive not only to the volatility relationship between 
+ABC and XYZ, but also to the general level of volatility. A backspread wants the market 
+to become more volatile; a ratio vertical spread wants the market to become less volatile. 
+INTERMARKET VOLATILITY SPREADS 
+Suppose a trader has decided that ABC and XYZ ought to have very similar volatilities, 
+but he finds that the implied volatility of ABC options, at 20%, Is markedly different than 
+the implied volatility of XYZ options, at 25%. If the trader also believes that one market 
+Will outperfonn the other, he might take a position by purchasing calls (puts) in one 
+market and selling calls {puts) ln the other market. But suppose the trader has no opinion 
+on the relative strengths of the two markets. His only opinion is that options in one 
+market are too cheap or expensive in relation to options in the other market. He simply 
+wants to be long volatility in one market and short volatility in the other. What can he 
+do? 
+Suppose the trader purchases ABC calls and sells XYZ calls. If he is right about 
+volatlllty and both markets move in the same direction, he will always show some profit 
+(Figure 16-1 ). But his pro:t. wlll be greatest when ABC and XYZ rise In price. In the 
+same way, if the trader purchases ABC puts and sells ~Z puts, he will always show 
+Figure 16-3: Long 21 ABC 55 Calls/Short 12 XVZ 95 Calls 
+ABC moves up 33% I 
+faster than x:fZ, or moves / ·---~/ 
+ABC moves up twice as 
+fast as x:fZ, or moves 
+down half as fast as XYZ 1 
+~/ I 
+I I 
+ABC and XYZ move up an_d ___ ...,... 
+down at the same rate I 
+I 
+40 41 42 43 44 45 48 47 48 49 50 51 52 53 54 55 56 57 56 59 60 
+ABC Price 
+
+--- PAGE BREAK ---
+
+340 
+Figure 16-4: Short 21 ABC 45 Puts/Long 12 XYZ 105 Puts 
+ABC moYH up lwtc• u 
+flat II '1:fZ, r:A movea 
+down hall II fall II XVZ 
+I 
+I 
+I I 
+I I I 
+I I I 
+I I 
+I I 
+I 1, I ...._ 
+ABC moves up 33% 
+laster than XYZ, °' moves 
+down 33% slower than XYZ ----, 
+Ch,p/lr/6 
+40 41 42 43 44 45 46 47 48 49 60 51 52 53 54 55 56 57 58 69 fO 
+ABC Price 
+some profit (Figure 16-2). But now his profit wlll be greatest when ABC and XYZ tall In 
+price. A trader who has only a volatillty opinion can combine these strategies to create 
+an lntermarket spread which Is based solely on the assumption of a mlsprtced volatlllty 
+relationship between the two markets. That Is, the trader can buy straddles or strangles 
+In one market and sell straddles or stran~es In the other market 
+Since the trader Is not taking a position on what the correct volatility Is for ABC or 
+for XYZ, but rather on the relative volatility between the two markets, he can't 
+determine the exact delta for the options. The easiest way to solve this problem is to 
+focus on at·the-money straddles. Regardless of the correct volatillty, he knows that 
+at-the-money options have deltas of approximately 50. 
+Suppose the trader decides to buy 20 ABC 50 straddles. How many XYZ 100 
+straddles should he sell If he wants the value of the total position to be dependent only 
+on the volatility relationship between the two markets? The trader can think of his 
+position as an ABC/XYZ call spread, combined with an ABC/XYZ put spread. Since 
+ABC has a $delta of $200, the trader's total $delta position in ABC 50 calls Is: 
+20 X $200 X .50 = $2000 
+The $delta of XYZ Is $100, so each XYZ call has a $delta of $100 x .50 = $50. The 
+correct number of XYZ calls to sell ls therefore: 
+$2,000 I $50 = 40 
+
+--- PAGE BREAK ---
+
+lntermarket Spreading 141 
+The arithmetic Is essentially the same for ABC and XYZ puts, e~ch having a d lta of-50. 
+1f the trader buys t O ABC 50 puts, his $delta posltlon Is: 
+10 X $200 X -.50 = -$2000 
+Wlth the $delta for the XYZ 100 put of-$50 we need to sell 40 XYZ 100 puts to balance 
+the 20 ABC 50 puts which we purchased. The complete position Is: 
+long 20 ABC 50 calls 
+long 20 ABC 50 puts short 40 XYZ 100 calls 
+short 40 XYZ 100 puts 
+The value of this position at expiration ls shown in Figure 16-5. 
+Note in Rgure 16-5 that lf ABC and XYZ move at the same rate, the position wm 
+always show a profit equal to the excess premium received for XYZ options (lmpUed 
+volatility= 25%) over the premium paid for ABC options (Implied volatlllty = 20%). 
+Suppose the implied volatllltles of 20% for ABC and 25% for XYZ tum out to be correct 
+This means thatXYZ will move 25% faster than ABC since 25/20 = 1.25. If this happens 
+we can see from Figure 16-5 that the spread wm now act like a short straddle, showing 
+its maximum value if the market sits still and showing a loss If the market makes a big 
+move. 
+If the trader believes that XYZ wlll move faster than ABC, as Indicated by the 
+implied volatilities, he might alter the ratio. If XYZ does have a volatility 25% greater 
+than ABC, the trader can rebalance the spread by purchasing 25% more ABC straddles 
+than he originally Intended. Instead of purchasing 20 ABC straddles he can purchase 25 
+ABC straddles. The effect of doing the spread ln this new ratio ls shown in Figure 16-6. 
+We can see from Figure 16-6 that ln the new size of 25 x 40 the spread breaks even 
+if 'Kil does move 25% faster than ABC. But the position acts like a long straddle If ABC 
+and XYZ move at the same rate. In the new size of 25 x 40 the volatility difference 
+between the two contracts has become a factor in determining the correct ratio. 
+Originally, the trader balanced his spread based on the following relationship: 
+ABC contracts x $delta of ABC x ABC option delta 
+must equal 
+"l:iZ contracts x $delta of XYZ x XYZ option delta 
+But taking into consideration the different volatilities of the two contracts, the spread ls 
+now balanced if: 
+ABC contracts x $delta of ABC x ABC option delta x ABC volatillty 
+equals 
+"Rf Z contracts x $delta of XYZ x XYZ option delta x XYZ volatlllty 
+Our XYZ call position ls: 
+40 X $100 X .50 X .25 = $500 
+Taking into consideration the volatility, each ABC call has a $delta of 
+$200 X .50 X .20 = $20 
+
+--- PAGE BREAK ---
+
+Fl u 1 •6: ong 20 A C 60 C lls/ ong 20 A C 50 Putt 
+Short 40 XYZ 100 Calls/Short 40 XVZ 100 Puts 
+/ 
+/ ABC and 't:'fl mO'l'l up ~r>l'l 
+down et th'! ,ame raf'l I 
+~ 
+tCI ~------/~------------
+~ ct ·, 
+/• .. 
+m moves up and down 
+25% faster than ABC '·· 
+40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 80 
+ABC Price 
+Therefore, the proper number of ABC contracts required to balance the spread iS 
+500/20, or 25 contracts. The spread is now completely balanced since: 
+25 X $200 X .50 X .20 = 40 X $100 X .50 X .25 
+We can see that the volatility relationship between the two contracts can be an 
+important factor in determining the proper ratio In an intermarket volatility spread. 
+Since predicting the correct volatility of even one underlying contract can be such a 
+difficult task, what chance does the trader have of being correct about the volatility of 
+two different contracts? The important consideration In an intermarket spread ls not 
+necessarily the volatility of each individual contract, but the volatility relationship 
+between the contracts. If a trader can determine the relationship, the actual volatility 
+might not affect the spread value. For example, If we determine that XYZ Is always 25% 
+more volatile than ABC, the actual volitilitles of ABC and "f'/2 don't really matter. Toe 
+ratio is the same whether the volatility of ABC ls 20% and XYZ ls 25%, or ABC is 12% 
+and XYZ ls 15%, or ABC is 28% and XYZ ls 35%. In each case XYZ ls 25% more volatile 
+than ABC, so the ratio of XYZ to ABC ls the same. 
+Is it possible to Identify markets With well defined volatility relationships? While 
+there can be no absolute answer, some markets do seem to be so closely related that 
+their volatilities take on a well defined relationship. 
+
+--- PAGE BREAK ---
+
+lntermarket Spreading 
+Figure 16-6: Long 25 ABC 50 Calls/Long 26 ABC 50 Puts 
+Short 40 XVZ 100 Calls/Short 40 XYZ 100 Calls 
+ABC and XYZ move up and 
+downattti~e 
+' XYZ moves up and down 
+25% faster than ABC 41 
+40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 
+ABC Price 
+For example, several indexes exist which track the perfonnance of the U.S. stock 
+market. Not only might we expect these indexes to move up or down together, at least 
+over longer pertods of time, but we might also expect them to have similar volatility 
+charactertstlcs. As an example, the 50-day historical volatilities of two of these indexes, 
+the S&P 100 (OEX) and the New York Stock Exchange Composite Index (NYA), are 
+shown in Figure 16-7. There ts clearly some relationship between the volatility of these 
+two indexes, but how close ls the relationship? To help answer the question, NYA 
+volatility has been plotted as a percent of OEX volatility In Figure 16-8. We can see that 
+NYA volatility ls typically somewhere between 80% and 95% of OEX volatlllty. As a 
+rough estimate we might decide that on average NYA volatility ls approximately 87% 
+of OEX volatility. 
+Suppose we find that OEX options, traded on the Chicago Board Options Exchange, 
+and NYA options, traded on the New York Stock Exchange, are trading at approximately 
+the same implied volatility. Since we expect the NYA to be approximately 13% less 
+volatile than the OEX, how can we construct a strategy which exploits this apparent 
+misprtclng between OEX and NYA options? If we decide to buy at-the-money OEX 
+straddles and sell at-the-money NYA straddles, and also take Into conslderatlon the 
+relative volatilities of the two markets, we know that in a balanced spread: 
+
+--- PAGE BREAK ---
+
+Figure 16-7: OEX versus NYA Historical Volatility 
+26 
+24 
+22 
+~ 20 
+-~ ii 
+0 > 
+"C 
+-~ 16 
+as :::::, 
+C: 
+C: < 14 
+12"1 \ 
+10 r~ f 1 
+u '\ OEXSOday 
+historical volatility / 
+NYA 50 day U "l 
+historical volatility ri/ t \. \ 
+5:-i----...---....,-----.----.-----r----r- --~-----,-----.-- ----,,----
+Jul-88 Nov-88 Apr-89 Aug-89 Oec-89 May-90 Oct-90 Feb-91 Jul-91 Nov-91 Apt-92 ~ ~ .. 
+9 i 
+~ -_,,. 
+
+--- PAGE BREAK ---
+
+Figure 16-8: NYA Volatllfty as a Percent of OEX Volatility 
+100%~----------- -------- ----------, 
+95%-+---------H 
+90%-4------- -;-
+85%4------'4\,._I r.-1 --
+80% I 111 I· 
+75%~--------------,----""T"""--""T"""---,------,-----,..----.- -----.1 
+Jul-88 Nov-88 Apr-89 Aug-89 Oec-89 May-90 Oct-90 Feb-91 Jul-91 Nov-91 Apr-92 Auo-92 a i i--~ 
+~ Q. i 
+~ , 
+
+--- PAGE BREAK ---
+
+346 
+number of OEX straddles x OEX $delta x .87 
+must equal 
+number of NYA straddles x NYA $delta 
+Suppose the OEX ts at 440 and the NYA Is at 260. Since both contracts have the 52::, 
+point value of $100, the $deltas for the two Indexes are: • 
+OEX $delta= 440 x $100 / 100 = $440 
+NYA $delta= 260 x $100 I 100 = $260 
+For each NYA straddle which we sell, we must purchase .87 x 260/440, or appro~ 
+mately .51 OEX straddles. If we were to purchase 20 OEX 440 straddles, a balar~ 
+lntermarket volatility spread would require us to sell approximately 39 NYA ~ 
+straddles, since 39 x .51 = 20. Our spread might consist of: 
+long 20 OEX 440 calls / long 20 OEX 440 puts 
+short 39 NYA 260 calls/ shon 39 NYA 260 calls 
+If the OEX straddles are purchased and the NYA straddles sold at the same Implied 
+volatillty, the value of the position at expiration ls shown ln Agure 16-9. 
+Note that lf both contracts move In the same dlrectlon and, as we expect, NYA 
+volatility Is 87% of OEX volatlllty, the posltlon shows a constant profit equal to the 
+expected 13% difference In the volatilltles. Even lf we double or triple volatlllty, the 
+profit to the position will be Identical, as long as NYA volatlllty Is 87% of OEX volatfflty. 
+We can see from Agure 16-8 that NYA volatility need not be exactly 87% of OEX 
+volatlll ty. What will our position look like lf NYA volatlllty turns out to be near the upper 
+range of OEX volatillty, perhaps 95%, or near the lower range of OEX volatility, perhaps 
+80%. These two possibilities have also been plotted In Figure 16-9. In the former case 
+our position will begin to act like a shon straddle, and any Increase In volatility wlil 
+reduce the value of the posltlon. In the latter case our position will begin to act like a 
+long straddle, and any Increase In volatility will Increase the value of the position. 
+Obviously, If we were to focus on a risk to our position, the risk would be that NYA 
+volatility would increase relative to OEX volatlllty. Even with this risk the spread still 
+looks very attractive since we have considerable margin for error. 
+In a typical volatility spread a trader often focuses on the delta, gamma, theta, and 
+vega characteristics of the spread. We might also want to consider these sensitivities 
+with respect to an intennarket spread. Just as we found It convenient to calculate a 
+$delta to compare contracts In dlff erent markets, we will also find It convenient to 
+calculate the $gamma, $theta, and $vega. The definitions and Interpretations are: 
+$gamma = underlying $delta x option's gamma x underlying point value / 100 
+( the change in an option's $delta for a one-percent change in the price of the underlying 
+contract) 
+$theta= underlying point value x option's theta 
+(the dollar change ln an option's theoretical value with the passage of one day) 
+
+--- PAGE BREAK ---
+
+Figure 16-9: Long 20 OEX 440 Calls/long 20 OEX 440 Puts 
+Short 39 NY A 260 Calls/Short 39 NYA 260 Puts 347 
+----------------------, 
+' NYA volatility It ~ ,,. ,, 
+of OEX volatillty .,,, ...... 
+A . _,,,.,,,.✓~AYCltlllitylt87" 
+..___ ''-/ "' .,,.. ,, _,, .,,.. of/OEX volldfitf ' / ,,,. 
+--- / .... / 
+,,. ' 
+,,,.,,.,,v,, ---, ....... , 
+/ ' / ....... 
+,,. / ' 
+_,, _,, .,. NYA volatility la 95% 
+,, of OEX volatility ' 
+400 406 410 415 420 425 430 435 440 445 450 455 460 4e5 470 475 4a0 
+OEXPrtce 
+Svega = underlytng point value x option's vega 
+(the dollar change In an option's theoretical value for a one-percentage-point change ln 
+VOlatllity) 
+If we use implied volatilities of 11 %, an Interest rate of 5%, and assume 70 days 
+remaJnlng to expiration, the dollar sensltlvltles for several OEX and NYA optlons might 
+be approxtmately the followlng:3 
+OEX = 440.00; time to expiration= 70 days; 
+volatility = 11 %; interest rate = 5% 
+NYA = 260.00; time to expiration= 70 days; 
+volatlllty = 11 %; Interest rate = 5% 
+Option 
+OEX425 call 
+OEX440call 
+OEX455 call $delta 
+364 
+259 
+140 $gamma 
+23 
+36 
+33 $theta 
+-8.57 
+-929 
+-6.87 $vega 
+49 
+75 
+69 
+3. These ftgures are approximations only. While early exerctse was taken into consfderatton through the 
+use of the Cox-Ross-Rubenstein model, no dtvtdends were used. In addition, the numbers have been 
+rounded for convenience. 
+
+--- PAGE BREAK ---
+
+348 ChJf}ftr I 
+Option $delta $gamma $theta $vega 
+OEX 425 put ·81 25 -3.09 51 
+OEX 440put -196 42 -4.00 74 
+OEX 455 put -339 43 -2.36 54 
+NYA250 call 221 13 -4.93 27 
+NYA260 call 152 21 -5.49 44 
+NYA270 call 75 18 -4.05 39 
+NYA250put -41 13 -1.85 28 
+NYA260put -117 24 -2.36 44 
+NYA270put -211 26 -1.26 28 
+The total dollar sensitivities of our OEX/NYA position ls: 
+Position $delta $gamma $theta $vega 
+long 20 OEX 440 calls 5180 720 -185.80 1500 
+long 20 OEX 440 puts -3920 840 -80.00 1480 
+short 39 NYA 260 calls -5928 -819 214.11 -1716 
+short 39 NYA 260 puts 4563 -936 92.04 -1716 
+Totals -105 -195 +40.35 -452 
+How can we interpret these sensitivities? Although the $delta of-1051nc11cares a 
+preference for the market to fall rather than rise, in practice most traders would consider 
+the position essentially $delta neutral since the preference is only very slight In relative 
+terms the $delta of-105 represents a position which ls shortonlyabout24% of an OEX 
+contract (with a $delta of 440), or about 40 percent of an NYA contract (with a $delta 
+of 260).4 
+But why does the position have a negative $gamma, positive $theta, and negative 
+vega? 
+Toe total negative $gamma of -195 seems to suggest that movement in the 
+underlying contracts will hurt our position. If both the OEX and NYA were to move at 
+the same rate, we can see from Figure 16-9 that this would Indeed be true. But we don't 
+expect the OEX and the NYA to move at the same rate; we expect the NYA to move at 
+only 87 percent the rate of the OEX. If we multiply our NYA $gamma position by .87, 
+and then add it to our OEX $gamma position, it turns out that the total $gamma ls very 
+close to zero:5 
+(720 + 840) -.87 X (819 + 936) = 33 
+This reflects the fact that we are relatively insensitive to movement in the two indexes 
+as long as the NYA moves at 87% the rate of the OEX. 
+4. In a perfectly balanc~ tntermarket spread the total $delta, $gamma, $theta, and $vega would 1n fact 
+add up to exactly zero. 
+5. Ibid. 
+
+--- PAGE BREAK ---
+
+r lnttrrnarht Spreading 349 
+The same reasonlng applles to our Svega posit.ton. The total negative Svega ot-452 
+suggests that an increase ln volatillty wm hurt our position. If the volatlllty or the OEX 
+and NY A were to increase by the same amount this would be true. But lf volatlUty rtses, 
+we expect NYA volatility to rlse by only 87% of OEX volatlllty. If we mulUply our NYA 
+Svega position by .87, and then add it to our OEX Svega position, the total the total 
+Svega ls approximately zero:6 
+(1500+ 1480)-.87x(1716+ 1716)•-0 
+Th\s reflects the fact that we are Insensitive to changes In volatility as long as NYA 
+volatility ls 87% of OEX volatlllty. 
+From these examples, we can see that the actual $gamma, $theta, and Svega 
+positions should reflect the relative volatllltles of the underlying contracts. In our 
+example we have: 
+total $gamma= OEX $gpmma + (NYA$gamma x INYAvolatlllty/OEX volatllltyl) 
+total $theta= OEX $theta+ (NYA $theta x [NYA volatlllty/OEX volatlllty1) 
+total $vega = OEX $vega + (NYA $vega x [NYA volatlllty/OEX volatility\) 
+When we do this, we find that our lntermarket spread ls lnsensltlve to price movement, 
+to the passage of time, and to changes ln volatlllty, as long as the NYA moves at 87% 
+the rate of the OEX 
+Suppose that instead of selllng at-the-money NYA straddles to offset our purchased 
+at-the-money OEX straddles, we decided to sell NYA strangles. For example, we might 
+establish the followtng $delta neutral posltlon: 
+buy 20 OEX 440 calls sell 69 NYA 270 calls 
+buy 20 OEX 440 puts sell 96 NYA 250 puts 
+Since the OEX 440 call has a $delta of 259 and the NYA 270 call has a $delta of 75, for 
+each OEX 440 call we buy, we must sell 259175, or approxlmately3.45 NYA270 calls. 
+In the same way, since each OEX 440 put has a $delta of-196 and each NYA 250 put 
+has a delta of -41, for each OEX 440 put which we buy, we must sell 196/ 41, or 
+approxlmately 4.78 NYA 250 puts. Having purchased 20 OEX 440 straddles, to 
+establish a $delta neutral lntermarket spread we mustsell 69 NYA270 calls and 96 NYA 
+250 puts. 
+The sensitlvltles of this position are: 
+Position $delta $gamma $theta $vega 
+long20 OEX 440 calls 5180 720 -185.80 1500 
+long 20 OEX 440 puts -3920 840 -80.00 1480 
+short 69 NYA 270 calls -5175 -1242 279.45 -2691 
+short 96 NYA 250 puts 3936 -1248 177.60 -2688 
+Taking into conslderatlon the multlpllcatlon factor of .87 for the NYA $gamma, 
+$theta, and $vega, the total sensltlvitles for our spread are: 
+6. Ibid. 
+
+--- PAGE BREAK ---
+
+350 
+$delta= 5180-3920-5175 + 3936 = +21 
+$gamma= 720 + 840-.87 x 11242 + 1248) = -606 
+$theta = -185.80 -80.00 + ,87 X (279.45 + 177.60} : + l J l ,83 
+$vega = 1500 + 1480-.87 x (2<191 + 2688) = -1700 
+Even though the $delta poslUon ls approximately neutral, the negauve $~, 
+poslUve $theta, and negative Svega suggest that the spread Will act like a short suaddlt: 
+any large move In the underl~ng market or Increase In volatility will hurt the posldon, 
+and the passage of time or a decline In volaUUty will help the position. II we do such a 
+spread, we are not only taking a position on the relative volatilities of the two underfrtn3 
+markets, we are also taking a position that the Implied volatllltles tn the two markets 
+are too high. 
+What type of position would we Initiate If the relative volaUlltles were Incorrect, 
+and at the same time the trader felt that Implied volatilities were too low? In this ca5e 
+we would try to create a position with a positive $gamma, negative $theta, and positive 
+Svega. i=or example, we might buy the OEX 425/455 stran~e and sell the NYA 260 
+straddle: 
+buy 20 OEX 425 calls sell 18 NYA 260 calls 
+buy 20 OEX 455 puts sell 14 NYA 260 puts 
+Since the OEX 455 call has a $delta of 140 and the NYA 260 call has a $delta of I 52, 
+for each OEX 455 call we buy, we must sell 140/152, or approximately .92 NYA 260 
+calls. In the same way, since each OEX 425 put has a $delta of -81 and each NY A 260 
+put has a delta of-117, for each OEX 455 put which we buy, we must sell 81 /117, or 
+approximately .69 NYA 260 puts. Having purchased 20 OEX 425/ 455 strangles, to 
+establish a $delta neutral lntermarket spread we must sell approximately 18 NYA 260 
+calls and 14 NYA 260 puts. 
+Toe sensitivities of this position are: 
+Position $de·lta 
+long 20 OEX 455 calls 2800 
+long 20 OEX 425 puts -27 36 
+short 18 NYA 260 calls -1620 
+short16NYA260puts 1638 $gamma 
+660 
+500 
+-378 
+-336 $theta 
+-137.40 
+-61.80 
+98.82 
+33.04 $vega 
+1380 
+1020 
+-792 
+-616 
+TakJng Into consideration the mu!Upllcation factor of .87 for the NYA $gamma, 
+$theta, and Svega, the total sensltlvitles for our spread are: 
+$delta = 2800 -2736 -1620 + 1638 = +82 
+$gamma= 660 + 500-.87 x (378 + 336) = • 1781 
+$theta= -137.40-61.80 + ,87 X (98,82 + 33.04) = +84.48 
+$vega = 1380 + 1020-.87 X (792 + 616) = ·1175 
+The positive $gamma, negative $theta, and positive Svega suggest that the spread 
+will act like a long straddle: any large move In the underlying market or Increase In 
+
+--- PAGE BREAK ---
+
+~t Spreading 351 
+tll\ty Will help the position, and the passage of Ume or a decline ln volatlllty will hurt 
+tbe 'POSition. If we do such a spread, we are not only taking a position on the relative 
+l'Olatllltles of the two underlying markets, we are also taking a position that the Implied 
+i"Ol.atllltles ln the two markets are too low. 
+While tntermarket volatlllty spreads begin wlth a trader's opinion about the relative 
+rolatllltles ln two different markets, such spreads can be carried one step further. When 
+the lmplled volatllltles appear to be Incorrect wlth respect to each other the trader can 
+simply buy straddles In the market which ls relatively cheap and sell ~traddles ln the 
+market which ls relatively expensive. However, lf the trader also has an oplnlon that 
+implied volatilltles ln the two markets are generally too hlgh or too low, by taklng an 
+cPl)roprtate $gamma and Svega position the trader can create volatility spreads whlch 
+also exploit this mlsprtclng. Depending on hls opinion, he will want to create one of the 
+four basic types of volatlllty spreads: 
+pos\tlve $gamma/ positive Svega (backspread} 
+negative $gamma/ negative Svega (ratio vertical spread) 
+negative $gamma / positive Svega (long time spread) 
+positive $gamma / negative Svega (short time spread) 
+F-or a more detailed discussion of volatility spreads and their charactertstlcs , the reader 
+should ref er to Chapter 8. 
+OPTIONS ON SPREADS 
+There ls one last type of intermarket spread worth mentioning. Even though such 
+spreads are not currently traded on exchanges, It ls possible to create an option where 
+the value of the option at expiration depends on a spread between two different 
+underlying markets. For example, suppose two underlying markets, ABC and XYZ, are 
+trading at 175 and 1 SO, respectively. The ABC over XYZ spread ls therefore trading at 
+25. If a trader belleves this spread might widen to as much as 60 points, he mlght llke 
+to buy an option on the spread wlth an exercise price below the projected spread or 60. 
+If he buys a spread with an exercise price of 25, and the spread does widen to 60 at 
+expiration, he wm receive a payoff of 35, the difference between the 60-polnt spread 
+and the 2S·polnt exercise price. 
+Such a spread ls not as exotic as It sounds, since there are many situations where 
+a trader might believe that a spread wlll expand or contract over tlme. A portfolio 
+manager might believe that the stock market of one country will outperfonn the stock 
+market of another country. If such an option were available, the manager might want 
+to buy a call option on the spread between the stock Indexes of the two countries. If the 
+spread widened to the point where It was greater than the chosen exercise price, the 
+call would go into-the-money and would have unlimited profit potentlal. If the spread 
+either failed to widen or narrowed, the call would flnlsh out-of-the-money and the 
+manager's loss would be limited to the amount he paid for the call.7 
+7. Ot course, such an optJon would be complicated by the relative values of the currencies Involved. The 
+buyer of the optJon would have to devtse a method of offsetting the currency risk. 
+
+--- PAGE BREAK ---
+
+352 
+Note that the underlytng value of an optJon on a spread mJght take on a negattvt 
+value. The ABC over XYZ spread, with ABC at 175 and XYZ at J 50, has a value or 2S. 
+But lf ABC r1ses to 185 while XYZ rises to 200, the spread wtU have a value of -IS. 
+Most traditional theoretical pricing models, wtth their assumpdon of a logno 
+dlstrlbutlon, do not allow for negative prices for the underlying contract If one were to 
+create a pricing model to evaluate options on spreads, a more realistic assumptlon mlr)lt 
+be a nonnal dlstrlbutlon, which does allow for negattve prices. Such a vartatlon on the 
+Black-Scholes model has been suggested ln a paper prepared by Darrell WUcox. Thls 
+variation Is reproduced In Appendix B. 

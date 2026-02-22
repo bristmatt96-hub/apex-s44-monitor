@@ -1,0 +1,1097 @@
+··------------------
+••• 2 ••• 
+♦ ♦ 
+Elementary Strategies 
+The trader who enters an option market for the first time may find himself subjected to 
+a fonn of "contract shock." Unlike a trader In equities or futures, whose choices are 
+Umlted to a small number of Instruments, an option trader must often deal with a 
+bewildering assortment of contracts. With at least three different expiration months, 
+with each month having several different exercise prices, and with both calls and puts 
+available at each exercise price, It ls not unusual for an option trader to be faced with 
+as many as 40 different contracts. 
+Even lf we eliminate the Inactively traded options, a new trader may still have to 
+deal with 15 or 20 different options. With so many choices available, a trader needs 
+some logical method of deciding which options actually represent profit opportunities. 
+Which should he buy? Which should he sell? Which should he avoid altogether? The 
+choices are so numerous that many prospective option traders give up In frustration. 
+For the trader who does persevere, a certain logic In the pricing of options begins 
+to emerge. As he becomes famlllar with this logic, he can begin to formulate potentially 
+profitable strategies. Initially he wlll concentrate on the purchase or sale of Individual 
+options. From there he will go on to combination strategies. Eventually he wlll become 
+comfortable with complex strategies Involving several dlfferent contracts. 
+How might a beginning trader assess an option's value? One simple method 
+depends on guessing where the underlying contract wlll be at expiration. If an option 
+position ls held to expiration, the option will be worth either zero, If 1t ls at· or 
+out-of-the-money, or Intrinsic value (partty), If lt ls In-the-money. The purchase of an 
+option will be profitable If Its trade price ls less than its value at expiration. The sale of 
+an option will be profitable If Its trade price ls greater than Its value at expiration. 
+SIMPLE BUY AND SELL STRATEGIES 
+For example, suppose the following options are avallable with two months remaining 
+to expiration, and the underlying contract trading at 99.00: 
+Calls 
+Puts 8S 
+14.05 
+.10 90 
+9.35 
+.45 9S 
+5.50 
+1.55 100 
+2.70 
+3.70 105 
+1.15 
+7.10 110 
+.45 
+11.35 115 
+.20 
+16.10 
+Suppose we belleve that the underlying contract wlll rise to at least 108 by 
+expiration. We might then purchase a 100 call for 2.70. If we are correct, and the 
+contract does In fact end at 108, our profit at expiration will be the option's Intrinsic 
+13 
+
+--- PAGE BREAK ---
+
+14 
+value of 8.00 Jess the 2.70 we originally paid, or 5.30. Given the above prtces, U ~ 
+underlying market rises to t 08 by explratlon we will show a profit If we purchase an,1 
+call with an exercise price less than 110. The Intrinsic value of each of these options a1 
+expiration will be greater than Its current price In the marketplace. 
+What about the 110 and 115 calls? If we believe that t 08.00 ts a reasonable upsfde 
+goal for the underlying contract, but consider It unlikely that the price will rise above 
+11 0, then we will prefer to be sellers of the 110 and 115 calls. If we sell the 11 O can 
+for .45 and the underlying contract never rises above 110.00, the 11 o call wUI expfre 
+worthless and we will get to keep the full premium of .45. We can also sell the 1 JS can 
+for .20, giving us an additional 5 point margin for error. If the underlying contract never 
+rises above 115.00, the t 15 call will expire worthless and we will get to keep the full 
+premium of .20. 
+We can use the same approach to assess the potential profit from the purchase or 
+sale of a put As with a call, a put's intrinsic value at expiration must be greater than ft! 
+trade price ln order for the purchase of a put to be profitable. If the underlying contract 
+rises to t 08.00 by expiration, any put with an exercise price of 105 or less w1lJ be 
+worthless. If we sell any of these puts, we will profit by the full amount of the premium. 
+If we sell the 110 or 115 puts, they will not be totally worthless at expiration because, 
+with the underlying contract at 108.00, they will have Intrinsic values of 2.00 and 7 .00, 
+respectively. However, this will still be less than their trade prices of 11.35 and 16. l 0. 
+We will show a profit of 9.35 from the sale of the 110 put and 9.10 from the sale of the 
+115 put 
+As we change our assumptions about the likely price of the underlying contract ac 
+expiration, we alter the likely profit or loss from any option position. If, Instead of rtslng 
+to 108.00, the underlying contract actually rises to 120.00, the purchase of the 100 call 
+for 2.70 will result In a profit of 17.30 rather than 5.30. On the other hand, if the 
+underlying contract falls to 90.00, the purchase of the 100 call will result in the loss of 
+the full premium of 2.70. In the latter case, If we sell the 11 O put for 11.35, Instead of 
+making 9.35 as we would with the underlying contract at 108.00, we wlll actually lose 
+8.65. 
+Using a value for an option of either zero or intrinsic value, we can graph the profit 
+or loss at expiration from any option trade which we might make today. Such graphs 
+not only enable the new trader to assess the likely profttablllty of an option trade, but 
+also help him to understand some of the unusual characteristics of options. However, 
+before looking at graphs of various option positions, we ought to look at the profit and 
+loss graph of an underlying contract. Because it ls a derivative instrument, an option's 
+value 1,s always dependent on the price of the underlying Instrument. At expiration an 
+~~~~~ value Is totally dependent on the price of the underlying contract. Indeed, if we 
+opinion on the likely price of the underlying contract at some date ln the future, 
+we d~n 't need to trade options at all. We can simply buy or sell the underlying contract 
+examp~~~!-1
+1:ows the value at expiration of both a long and a short position In our 
+represents th~ P~~ co~~t taken at the current price of 99 .00. The horizontal (x) axis 
+represents the proflt:r~oss ~ underlying futures contract, and the vertlcal (y) axis 
+m our Po5ition. Note that each graph ls a straight 45° line 
+
+--- PAGE BREAK ---
+
+Eltmentary Strategies IS 
+Figure 2-1 
+-i.:: e 
+0.. 
+(/) 
+(/) 
+.9 ,o~------------ -----------.. 
+8 
+6 
+4 
+2 long an underfying 
+contract at 99.00 7....__ 
+•. 99.00 
+' ' ' o+----------- ---Jf:--------------J 
+-2 
+' ' ' 
+-4 
+-6 short an underlying , 
+-8 contract at 99.00 ~ --.. 
+~ 
+-10;-----,--------.------r-------r------r------1 
+85 90 95 100 105 110 115 
+extending lnflnltely far in either dlrection. 1 The potential profit or loss to each position 
+is therefore unllmited. Note also that there ls a continuous one-to-one relationship 
+between movement in the underlying contract and the value of the position. If we take 
+a long position, for each point the underlying contract rises, we make a point; for each 
+point the underlying contract falls, we lose a point. If we take a short posltlon the 
+situation ls just reversed. For each point the underlying contract rises, we lose a point; 
+for each point the underlying contract falls, we make a point. 
+Using the same evaluation method, Figure 2-2 shows the profit or loss at expiration 
+from the purchase of a 100 call at 2.70. Note that in this .:ase the graph ls no longer a 
+straight line. If the underlying contract falls below 100 at expiration the 100 call will be 
+out-of-the-money and therefore worthless, and we will lose the full 2.70 we paid for the 
+call. Above 100, the call will be in-the-money, and will increase in value at the same 
+rate as the underlying contract; the position will gain one point In value for each point 
+rise in the value of the underlying contract. If the underlying contract finishes at 102.70, 
+the 100 call wlll be worth its intrinsic value of 2.70, and we will break exactly even. 
+Above 102. 70, the profit from the purchase of the 100 call is potentially unlimited, just 
+like a long position in the underlying contract. 
+1. Of course, an underlying price cannot fall below zero, so the downs.Ide profit or loss Js 1n theory llmlted. 
+However, Jf the price of an underlytngcontract should~ to zero, It will probably seem llke an unllmlted 
+profit or loss to most traders. 
+
+--- PAGE BREAK ---
+
+16 Clupter2 
+Figure 2·2 
+10 
+8 long a 100 call at 2.70 
+6 
+... 4 :.:: 
+0 ... 
+0.. 2 exercise price 
+(100) 
+0 
+maxlum loss (-2.70) { (102.70) 
+-2 break even 
+"' "' 0 ..J -4 
+-6 
+-8 
+-10 
+85 90 95 100 105 110 115 
+RISK/REWARD CHARACTERISTICS 
+The profit and Joss graph of a long call position at expiration will always have the same 
+general shape as the graph In Figure 2-2. The position will always have limited downside 
+risk and unlimited upside profit potential. The exact point at which the maximum loss 
+wm occur Is determined by the exercise price (the point at which the graph bends) and 
+the price of the option. Graphs of long positions in the 95, I 00, and I 05 calls are shown 
+in Figure 2-3. 
+Figure 2-4 represents the profit and loss from a short position in the 95, 100, and 
+105 calls. These are simply Inversions of the long call graphs. The positions now have 
+profit potential limited to the amount of the premium for which they were sold, and 
+unlimited upside risk similar to a short position in the underlying contract. 
+Figure 2-5 represents long positions In the 95, 100, and 105 puts. The rtsk/reward 
+characteristics of these positions are similar to long call positions, but now the limited 
+risk Is on the upside and the unlimited profit potential Is on the downside. The position 
+will break even If the underlying contract falls below the exercise price by exactly the 
+amount of the option's trade price. Below that break-even price the potential profit to 
+thedpolsylltlon ls unlimited, Increasing by one point for each point drop In the price of the un er ng contract. 
+
+--- PAGE BREAK ---
+
+Elementary Strategies 17 
+Figure 2-3 
+-I.: e 
+Q. 10T-"-------------------------, 
+8 
+6 
+4 
+2 
+-2 long a 95 call at 5.50 ---· 
+long at 100 call at 2. 70 -­
+long at 105 call at 1.15 -------
+95 / 
+/ 
+/ 
+105 / 
+/ f 
+/ 
+/ 
+/ 
+/ 
+/ 
+/ / 
+/ 
+/ / / 
+/ , 
+~ -5.50 
+.9 -4 _ _/ 
+-6 
+-8 
+-10+-----r-------r------.-------.-------..------, 
+85 90 95 100 105 110 115 
+Figure 2-4 
+en en 
+.9 10.....-------------;--------------7 
+8 
+6 
+4 
++5.50 short a 95 call at 5.50 ----
+short a 100 call at 2. 70 
+short a 105 call at 1.15 -------· 
+-10L-----,,------r--- ~--~1~o;s--111110O-1111 s 
+~ 90 ~ 100 
+
+--- PAGE BREAK ---
+
+/8 Chlpllt 2 
+Figure 2-5 
+10 
+8 ' long a 95 put at 1.55 --~ 
+long a 100 put at 3. 70 
+6 long a 106 put at 7.10 
+! 4· '· 
+2 \ 
+0 ~ -I -·-
+__ .'. ________ .,:..05}-t.&5}-3,70 
+-2 
+~ -7.10 
+.4 
+-6 
+. -·► 
+-8 
+-10 
+85 90 95 100 105 110 115 
+The short put positions tn Figure 2-6 are tnverslons of the graphs ln Agure 2-5. Each 
+posltlon has upside profit potential limited to the amount of the trade price, and a 
+potentially unllmlted loss similar to a long position In the underlying contract 
+Figures 2-3 through 2-6 lllustrate two of the most important characteristics of 
+options: buyers of options have llmlted risk and potentlally unllmlted reward; sellers of 
+options have llmlted reward and potentially unllmlted risk. More speclfically, net buyers 
+(sellers) of calls have unlimited upside reward (risk), and net buyers (sellers) of puts have 
+unlimited downside reward (risk). 
+At thls point, new traders tend to have a common reaction. Why would anyone 
+ever want to do anything other than buy options? After au, a buyer of options has limited 
+risk and unlimited profit potential, while a seJler of options has limited profit potential 
+and unllmlted risk. Who In their right mind would choose the latter over the fonner7 
+The prospect of unlimited risk certainly seems a good reason to avoid a trade. 
+However, If a trader gives some thought to the matter, he wlll reallze that almost any 
+trade In a stock or commodity market cames wtth It unlimited risk. A Violent adverse 
+move which does not give a trader time to cover hJs position ls always possible. Yet 
+traders take long and short positions In stocks and commodities all the time. The only 
+explanation must be that they believe the chances of sustaining a catastrophic loss must 
+be small, so small that the potential profit justlftes the risk of unlimited loss. 
+Option traders learn that the limited or unlimited risk/reward characteristics of a 
+trade are not the only considerations. At least as Important ls the probablllty of that 
+
+--- PAGE BREAK ---
+
+Eltrntntary Strategies 19 
+Figure 2-6 
+10,------------------, 
+~ e a.. 
+~ 
+_g short a 95 put at 1.55 ----~---
+8 short a 100 put at 3. 70 -­
+short a 105 put at 7.10 --
+4 
+2 
+0 
+-2 
+-4 
+-6 
+-8 
+-10 
+85 90 95 ,,..--- ► 
++7.10 
+100 105 110 115 
+unlimited profit or loss. As an example, suppose a trader ls consldertng a trade whlch 
+has only two possible outcomes. In one case the trader will double hls money; ln the 
+other case he will go broke. It may seem that a rational trader wlll avoid such a trade 
+because the reward does not appear to justify the risk. But suppose the probablllty of 
+the second outcome ls only one chance In a million. Suppose in fact that the exact 
+circumstances which wm cause the trader to go broke have never before occurred. Now 
+how does the trade look? The reward ls stlll llmlted and the rlsk unlimited. Yet most 
+traders would probably make the trade In spite of the potentially disastrous results. 
+In addition to the potential risk and reward associated with any trade, a trader must 
+also consider the likelihood of the various outcomes. ls the reward, even a limited one, 
+sufficient to offset the risk, albeit an unllmlted one? Sometimes it ls; sometimes it Isn't. 
+COMBINATIONSTRATEGIBS 
+When considering an option trade we need not restrict ourselves to the purchase or sale 
+of Individual options. We can also combine option positions to form new positions with 
+their own unique characteristics. Figure 2-7 shows the profit and loss at expiration from 
+the combined purchase of a 100 call for 2.70, and a 100 pu_t for 3.70. Here we have 
+paid a total of 6.40, which wlll be our maximum loss If both options expire worthless. 
+This wUl happen only If the underlying contract ls right at I 00 at explratlon. If the 
+""_.,, .. 1.A..,,. ,.,..,....,.,..,.t 1(' ~h,wo 1 oo at exolratlon the put wtll be worthless, but the call 
+
+--- PAGE BREAK ---
+
+......... 
+20 C/uptt,. 
+(. 
+Figure 2-7 "' 
+10 
+8 long a 100 call at 2. 70 
+long a 100 put at 3. 70 
+6 
+... 4 ~ 0 ... a. 2 
+93.60 100 
+0 
+·2 
+(/) 
+-6.40 1/) 
+0 ..J ·4 
+·6 
+·8 
+-10 
+85 90 95 100 105 110 115 
+will act like a long underlying position, gaining one point In value for each point the 
+underlying contract rises. If the underlying contract Is below I 00 the call will be 
+worthless, but the put will act like a short underlying position, gaining one point in value 
+for each point the underlying contract falls. In order for the position to do no worse than 
+break even, it must be worth at least the 6.40 we originally paid. This will occur lf either 
+the 100 call or the I 00 put turns out to be worth 6.40. At expiration, the underlying 
+contract must be at or above I 06.40, or at or below 93.60. Outside of this range, the 
+potential profit Is unlimited. 
+Under what conditions might we Initiate the position in Figure 2-7? Such a position 
+might be sensible If we thought a large move In the underlying contract would take 
+place in the near future, but were uncertain as to the direction of that move. If the move 
+were sufficiently large (above 106.40 or below 93.60) the position would be profitable. 
+Of course we might also take the opposite view, that the underlying contract was 
+unlikely to either fall below 93.60 or rtse above 106.40. Under these conditions we 
+might prefer to sell both the 100 call and 100 put (Figure 2-8 ). Now our profit ls limited 
+to the total premium of 6.40, while our risk In either direction ls unlimited. But If we 
+feel strongly that the underlying contract ls likely to stay In the 93.60-106.40 range 
+thro~gh expiration, the risk might be worth taking. 
+j 1jkup1pose we take a view similar to that in Figure 2-8 that the underlying contract s un e Y to make a bl ' g move in either direction. But because there ls always a chance 
+
+--- PAGE BREAK ---
+
+Blemenwy Strategies 
+Figure 2·8 
+10 
+8 
+6 
+cl: 4 e 
+Q. 2 
+0 
+-2 
+~ 
+0 _,J -4 
+-6 
+-8 
+-10 85 90 95 short a 100 call at 2. 70 
+short a 100 put at 3. 70 
+100 
+I 
+100 105 2/ 
+110 115 
+we could be wrong, we might want to increase our margin for error by increasing our 
+range of profltabllity beyond the 93.60-106.40 range. Instead of selling a 100 call and 
+a 100 put, we might sell a 95 put for 1.55 and a 1 OS call for 1.15. This position (Figure 
+2·9) will realize its maximum profit of 2.70 anywhere within the 95-105 range, where 
+both options will expire worthless. We won't lose money unless the underlying contract 
+finishes below 92.30 or above 107.70 at expiration. In the former case the 95 put will 
+be worth at least 2.70, and in the latter case the 105 call wlll be worth at least 2.70. 
+There ls, as always, a tradeoff for this increased range of profltablllty. Our maximum 
+profit now ls only 2.70, whereas in Figure 2·8 lt was 6.40. In return for a reduced risk, 
+we must be satisfied with a reduced profit potential. Option traders are constantly 
+required to make these types of tradeoffs between risk and reward. If a potential reward 
+is big enough, it may be worth taking a big risk. But If the potential reward ls small, the 
+accompanying risk should also be small. 
+The positions in Figures 2-7, 2·8, and 2-9 all have either unlimited reward or 
+unlimited risk because they are either net long or net short options. If we purchase and 
+sell equal numbers of options of the same type, we can create positions which have both 
+limited risk and llmlted reward. For example, we might buy a 90 call for'9.35 and sell 
+a 100 call for 2.70, for a total debit of 6.65 (Figure 2-10). If the underlying contract 
+finishes below 90.00 both options wlll expire worthless and we wlll lose our total 
+Investment of 6.65. If the underlying contract finishes above 100, the 90 call, which 
+
+--- PAGE BREAK ---
+
+2 Chapter 2 
+10 
+B short a 95 put at 1.55 
+short a 105 call at 1.15 
+6 
+~ 4 
+Q.. 2 }+2.70 92.30 95 105 107.70 
+0 
+-2 
+Cl) 
+Cl) 
+0 ...J -4 
+-6 
+-8 
+-10 
+85 90 95 100 105 110 115 
+we own, will be worth exactly 10 points more than the 100 call, and we will realize 
+the maximum profit of 3.35. Between 90 and 100 the position will be worth some 
+amount between zero and 10 points. In order to do no worse than break even we must 
+recoup our original investment of 6.65. We will be able to do this if the underlying 
+contract Is at 96.65 or higher at expiration. The 90 call will then be worth at least 6.65. 
+Like the outright purchase of a call, this posltlon wants the market to rise so that we 
+will realize our maximum profit of 3.35. Here, however, we are willing to give up the 
+unlimited upside profit potential associated With the outright purchase of a 90 call, in 
+return for the partial downside protectlon afforded by the sale of the 100 call. The 
+position ls bullish, but With both limited risk and limited reward. 
+If we are bearish on the market we might create a position with limited risk and 
+limited reward by Invertlng the position in Figure 2-10. That ls, we might sell the 90 
+call and purchase the 100 call. Now our potential profit ls limited to 6.65 lf the market 
+finishes below 90, and our potentlal loss ls limited to 3.35 if the market finishes above 
+100. 
+We can also create a bearish posltlon With both limited risk and limited reward by 
+purchasing a put with a higher exercise price and selling a put with a lower exercise 
+price. For example, we might buy a 105 put for 7.1 O and sell a 100 put for 3.70, for a 
+total debit of 3.40 (Figure 2-11 ). If the underlying contract Is below 100 at expiration, 
+
+--- PAGE BREAK ---
+
+Eltnwnt,ry Stnttttes 2J 
+Figure 2-10 
+10 
+8 long a 90 call at 9.35 
+short a 100 call at 2. 70 
+6 
+~ 4 e 
+}•3~ 0.. 2 e6.G5 100 
+0 
+-2 
+fA -e.65 
+.9 -4 
+-6 
+-8 
+-10 
+85 90 95 100 105 110 115 
+the 105 put will be worth exactly 5 points more than the 100 put, and we will realize 
+our maximum profit of 1.60. If the underlying contract Is above 105 at exptratlon, both 
+options wm be worthless and we wtll lose our entire Investment of 3.40. The position 
+will do no worse than break even 1f the underlying contract Is at or below 1 0 1.60, for 
+then the 105 put will be worth at least 3.40. Uke the outright purchase of a put, thls 
+position Is bearish. However, we have chosen to give up the unlimited downside profit 
+potential associated with the outright purchase of the 105 put In return for the partlal 
+upside protection afforded by the sale of the 100 put. 
+CONSTRUCTING AN EXPIRATION GRAPH 
+From the foregoing examples, we can fonnulate some simple rules for drawing explra· 
+tlon profit and loss graphs: 
+1. If the graph bends, lt will do so at an exercise price. Therefore, we can 
+calculate the profit or loss at each exercise price Involved and simply connect these 
+points with straight lines. 
+2. If the position ls long and short equal numbers of calls (puts), the potential 
+downside (upside) risk or reward will be equal to the total debit or credit required 
+to establish the position. 
+
+--- PAGE BREAK ---
+
+~ 0 ... a. 
+Cl) 
+Cl) 
+0 _J C,,,Pttr 2 
+2·11 
+------- 10 
+8 long a 105 put at 1.10 
+short a 100 put at 3. 70 
+6 
+4 
+2 
++1.60{ 101.60 
+0 
+-2 100 105 
+}-3~ 
+-4 
+-6 
+-8 
+-10 
+85 90 95 100 105 110 115 
+3. Above the highest exercise price all calls will go into-the-money, so the entire 
+position will act like an underlying position which is either long or short underlying 
+contracts equal to the number of net long or short calls. Below the lowest exercise 
+price all puts will go into-the-money, so the entire position will act like an 
+underlying position which is either long or short underlying contracts equal to the 
+number of net long or short puts. 
+To see how we can use these rules to construct an expiration graph, consider the 
+following position: 
+long one 95 call at 5.50 
+short three 105 calls at 1.15 
+The first step is to determine the profit or loss at each exercise price (95 and 105). 
+If the underlying contract finishes at 95, both the 95 and 105 calls will be worthless. 
+Since the entire position was established for a debit of 2.05 (-5.50 + 3 x 1.15), at 95 
+the position will show a loss of 2.05. If the underlying contract finishes at 1 OS, the 95 
+call will be worth 10.00 and the 1 OS calls will be worthless. Since we own the 95 call, 
+the position will be worth 10 points less the Initial debit of 2.05, or 7 .95. We can plot 
+and connect these two points on a graph (Figure 2-12a). 
+
+--- PAGE BREAK ---
+
+Bl rnenta,y Str,t,1lt.f 2S 
+Figure 2-121 
+10 
+8 long 1 March 95 call at 5.50 
+short 3 March 105 calls at 1. 15 
+6 
+1 4 +7.~ 
+2 g~ 10!5 
+0 
+•2,05 { I I 
+-2 j -4 
+-6 
+-8 
+-10 
+85 90 95 100 105 110 115 
+Next, we note that there are no puts Involved In thls position, so the maximum 
+downside loss we can incur ls the 2.05 debit required to establish the position. Thls loss 
+wlll occur anywhere below 95 (Figure 2-l 2b ). 
+Anally, above 1 OS both the 95 and 105 calls wlll go lnto•the-money, so that all 
+options wlll begin to act llke long underlying contracts. We wlll be long one underlying 
+contract In the form of a 95 call, and short three underlying contracts In the fonn of 
+three 1 OS calls. The net result ls that above 105 we have a position which ls equivalent 
+to being short two underlying contracts. For each point Increase ln the prtce of the 
+underlying contract, our position will lose two points (Agure 2-12c ). 
+Applying this method to a more complex example, what would be the expiration 
+graph of the following position? 
+short one 90 call at 9.35 
+long two 100 calls at 2. 70 
+short four 95 puts at 1.55 
+long two 100 puts at 3.70 
+
+--- PAGE BREAK ---
+
+-~ 
+26 
+Clupter 2 
+Figure 2·12b -.... 
+10 
+8 long 1 March 95 call at 5.50 
+short 3 March 1 OS calls at 1.1 s 
+6 
+-4 I.: 
+0 ... 
+Q. 2 
+95 105 
+0 I I- -2.os{ -
+-2 
+en 
+en 
+.9 -4 
+-6 
+-8 
+-10 
+85 90 95 100 105 110 115 
+Figure 2·12c 
+10 
+8 long 1 March 95 call at 5.50 
+short 3 March 105 calls at 1.15 +1 
+6 
+~-2 .. 4 i.: e 
+11. 2 
+95 105 
+0 
+-2 
+~ 0 ..J -4 
+-6 
+-8 
+·10 
+85 90 95 100 105 110 115 
+
+--- PAGE BREAK ---
+
+---E1tt1t1nta,Y Strlftlln 21 
+Arst, whBl heppen at th thr e ,terct pt1ce tnvolv d? At 90 w haw: 
+90 call 9.35 
+100 calls -2 X 2.70 
+95 puts -4 X 3.45 
+100 puts +2 X 6.30 
+Total +2.75 
+At 95 we have: 
+90 call +4.35 
+100 calls -2 X 2.70 
+95 puts +4 X 1.55 
+100 puts +2 xl.30 
+Total +7.75 
+And at 100 we have: 
+90 call -.65 
+100 calls -2 X 2.70 
+95 puts +4 X 1.55 
+100 puts -2 X 3.70 
+Total -7.25 
+We can plot and connect these profit and loss points at each of the exercise prices 
+(Figure 2-13a). 
+Next, below 90 all calls will be worthless and all puts will act Uke short underlying 
+contracts. Since the position ls net short two puts, the graph will act llke a position 
+which ts long two underlying contracts. For each point that the underlying contract falls 
+below 90, the position will lose two points (Figure 2-13b). 
+Finally, above 100 all puts will be worthless and all calls will act llke long 
+underlying contracts. Since the position ls net long one call, above 100 it will act like a 
+position which is long one underlying contract. For each point rise ln the underlying 
+contract, the position will gain one point in value (Figure 2-13c ). 
+Using this method we can draw the expi~tion profit and loss graph of any position, 
+no matter how complex. The position may conMst of underlying contracts, and calls and 
+puts at various exercise prices. But as long as al~ options expire at the same time, the 
+value of the position at expiration will be fully determined by the price of the underlying 
+contract 
+Using options and underlying contracts it ls also possible to create positions which 
+mimic other option and underlying positions. For example, what are the characteristics 
+of the following position? 
+long one 100 call at 2.70 
+short one 100 put at 3. 70 
+
+--- PAGE BREAK ---
+
+28 C/upttr 2 
+Figure 2-13a 
+10i------------------
+6 
+6 
+~ 4 e 
+Q. 2 
+0 
+·2 
+~ 
+.3 .4 
+-6 
+·8 +7.75 
+100 
+I short 1 March 90 call at 9.35 
+long 2 March 1 oo calls at 2. 70 
+short 4 March 95 puts at 1.55 
+long 2 March 1 oo puts at 3. 70 
+-7.25 
+-10-l----r-----r----,----r-----r-----l 
+85 90 95 100 105 110 115 
+Figure 2-13b 
+10 
+.. 
+Ii= e 
+ll. 8 
+6 
+4 
+2 100 short 1 March 90 call at 9.35 
+long 2 March 100 calls at 2.70 
+short 4 March 95 puts at 1.55 
+long 2 March 100 puts at 3. 70 
+o.l---1--t----+---\--t---------- , 
+II) 
+II) ·2 
+.9 ·4 
+·6 
+·8 j, 
+• 1 
+·10:::----~-:------r---.-------.---~-___j 85 90 95 100 105 110 115 
+
+--- PAGE BREAK ---
+
+Eltm nta,y Strattgles 
+Figure 2-13c 
+10 
+8 
+6 
+'1: 0 4 
+... 0. 2 
+0 
+-2 
+~ 
+.9 -4 
+-6 
+-8 
+-10 85 90 95 
+I 
+95 short 1 March 90 call at 9.35 
+long 2 March 100 calls at 2.70 
+short 4 March 95 puts at 1.55 
+long 2 March 100 puts at 3.70 
+100 
+I 
+100 105 29 
+110 115 
+With the underlying contract above 100 at expiration, the 100 put will be 
+worthless and the 100 call will act like a long underlying contract. Wlth the underlying 
+contract below 100 at expiration, the 100 call wlll be worthless and the 100 put wm 
+act llke a short underlying contract. However, since the position ls short the 100 put, 
+when the 100 put ls In the money lt will act like a long underlying contract. In other 
+words, this position wlll mlmlc a long underlying position regardless of where the 
+underlying contract ls at explratlon (Agure 2· 14). The only real difference between the 
+option posltlon and a long position ln the underlying contract ls that the option position 
+will create a credit of one point. 
+Or consider the following position: 
+long one 90 put at .45 
+short one 100 call at 2.70 
+long one underlying contract at 99.00 
+The value of this position at expiration ls given In Agure 2· 15. Note the similarity 
+between this position and the one In Agure 2· 10. The ~nly :re:~~ a:~~g:d~~~~ 
+we replaced the long 90 call wlth the combination oft in~on!ct together must mlmlc 
+contract. Therefore, a tong 90 put aod a lodnl un~~eyi ~lratlon profit and loss graph of 
+a Jong 90 call. As proof, the reader shoul raw 
+the foHowlng two posttlons: 
+
+--- PAGE BREAK ---
+
+30 
+Flgur 2·14 
+10 
+long a 100 call at 2. 70 
+8 short a 100 put at 3.70 ---·· -
+6 combined position 
+~ 4 
+0. 2 
+0 -2.;{ / 
+/ 
+/ -2 I 
+◄ ; -
+~ , 
+0 -4 I ..J I 
+I 
+I 
+-6 I 
+I 
+I 
+I 
+-8 I I 
+-10 
+85 90 95 
+Figure 2-15 
+10 
+long a 90 put at .45 
+short a 100 call at 2. 70 , 
+/ 
+I gg , 
+I I / 
+100 
+_J 
+100 
+8 
+6 long an underlying contract at 99.00 
+~ ... 4 
+,i 2 
+90 100 
+0 -I I 
+-2 
+~ -6.75 
+0 ..J -4 
+-6 
+-8 
+-10 
+85 90 95 100 .., 
+Chlpttr 2 
+.. 
+. -··------) ::.:o► 
+105 110 115 
+} +3.~ 
+105 110 115 
+
+--- PAGE BREAK ---
+
+31 
+1. long a 90 call at 9.35 
+2. long a 90 put at .45 and long an underlying contract at 99.00 
+Although there will be a small dlfference In the profit and loss to each posltlon, both 
+posttlons wtll have graphs with the same general shape. 
+The reader who ls new to options may find It useful to sit down with the business 
+section or a newspaper and create and graph a variety or option and underlying 
+pos1t1ons.2 This wlll enable hlm to become comfonable wlth many or the concepts 
+Introduced In the first two chapters, and Wlll make the subsequent material that much 
+easier to understand. Typical newspaper llstln~ for futures options and stock options 
+are shown ln Flgure 2· 16. 
+Whlle elementary strategies such as the ones discussed ln thls chapter are a 
+convenient method of lntroduclng the new trader to baslc option characteristics, ln 
+actual practice it ls very unlikely that a trader wlll put on a posttJon and let It go to 
+explratlon. Even If he were to Initiate a position with such an Intent, he would be foollsh 
+tndeed to simply walk away from the posltlon and come back at explratlon to find out 
+whether he had made or lost money. As market condltlons change, a posltlon whlch 
+seemed sensible yesterday may not seem qulte so sensible today. Based on new 
+conditions the trader may want to-Indeed, may have to-alter his strategy. This ls true 
+for all traders, not just for option traders. A trader who buys stoclc ln the belief that lt 
+wlll rise would be foolish not to reassess hls position If the stock were to unexpectedly 
+drop several points. An option trader who sells 105 calls ln the belief that the underlying 
+contract will never rtse above 105 would llkewlse be foollsh not to reassess the situation 
+tf the underlying contract were to make a rapid upward move from 99 to 104. He may 
+still believe that the underlying contract wtll not rise above 105, but he 1s unlikely to 
+have the same degree of confidence. Every trader reserves the right to make a more 
+tntelltgent decision today than he made yesterday. 
+The serious trader must be able to Identify potentially profitable strategies glven 
+current market conditions. But he must also be able to adjust to changing market 
+conditions and to take protective measures when the market moves adversely. In the 
+next chapter we wlll begin our Investlgatlon of basic option pricing theory, and show 
+how this theory can be used to help a trader achieve these goals. 
+2. In the United States, Investor's Business Dally, the New York Times, and 11lt Wall Strttt/oumalaJl 
+carry extensive l.lstJn~ of exc.han~ traded futures opUons and stock opUons. 
+
+--- PAGE BREAK ---
+
+32 
+Figure 2-1& 
+Futures and Futures Options 
+FRIDAY, OCTOBER 22, 1993 
+Futures 
+-LlfetJmt• 
+Month Open High Low Settle Chang, High Low 
+CORN (CBT); 5,000 bu1htl1; ¢ ptr buthtl (1 • SS0.00) 
+Dtc 255'/, 258 253'/, 253'1, ·2'/, 225'/ • Mark 283 214'/, 211'/, 261'/, ·2'1, 
+May 267'/, 218'/, 215 265'1, -3 232'/, 
+231'/ I Jul 261'/, 270 268'/, 2681
+/1 ·3'/1 241 
+Stp 2tO 260'/, 257'/, 257'/, -3'/, 
+Dtc 251'/, 253 249 249'/, -31/, 240'/ I 
+238'/ 
+EURODOLLARS (CME); $1,000,000; polntl of 100% (.01 • $25.00) 
+Dtc 98.50 N.52 N.41 ... ,. -.02 98.61 90.22 
+Mlrt4 98.50 N.52 N.41 ... ,1 ··°' 98.&2 90.21 
+Jun 96.30 N.31 H.24 91.25 -.05 N.75 90.40 
+Sep 98.08 N.10 N.02 98.03 -.OI N.24 90.38 
+Dtc 91.70 95.73 15.15 95.86 -.05 11.17 90.71 
+Mlrt5 95.12 95.15 95.57 95.51 -.05 95.10 95.24 
+Jun 95.42 95.44 15.37 95.37 -.05 95.60 95.71 
+S,p 15.21 95.27 15.20 95.20 -.05 95.43 91.31 
+Dtc 94.17 94.H N.91 94.91 -.OI 95.11 91.11 
+GERMAN BONDS (LIFFE); OM 210,000; polntl of 100% (.01 • DM 25.00) 
+Dtc 100.13 100.50 100.03 100.41 +.29 100.51 94.25 
+Mlrt4 100.21 100.55 100.21 100.58 +.30 100.16 97.30 
+Jun 100.41 +.27 100.49 91.94 
+CRUDE OIL (NYMEX); 1,000 bln11t; 
+Dtc 11.37 11.43 11.02 
+J■nN 11.47 11.57 11.11 
+Feb 11.14 11.31 
+Mar 11.71 11.74 11.48 
+Apr 11.71 11.13 11.51 
+May 11,IO 11.91 18.72 
+Jun 11.01 19.02 11.10 
+Jul 11.07 19.01 11.19 
+Aun ..... . .. ... . .... $ per bln1I (.01 • $10.00) 
+11.07 -.21 23.00 
+11.22 -.21 21.15 
+11.37 -.25 20.11 
+11.50 -.22 21.10 
+11.11 -.21 20.11 
+11.72 -.20 21.07 
+11.12 -.19 21.35 
+11.11 •. 11 20.71 
+11.91 •, 17 20.78 17.14 
+17.40 
+17.14 
+17.11 
+11.05 
+11.20 
+11.31 
+11.50 
+11.72 I 
+
+--- PAGE BREAK ---
+
+Elementa,y Strategies 
+Figure 2·16 (continued) 
+Futures and Futures Options 
+FRIDAY, OCTOBER 22, 1993 
+Futures Options 
+Strtkt 
+Prtct C1ll1-Stttl1 
+CORN OPTIONS (CBT} 
+230 
+240 
+250 
+260 
+270 
+280 
+290 
+300 Dec Mar 
+23 ·,, 31 ,,J 
+14 .,, 22 ,,. 
+6 1/J 14 ,,. 
+2 .,. 9 .,, 
+• , 5 ,, 
+I I 
+1, 3 1, ' . ,, 11, 
+' J 'I 'I ' ' 
+EURODOLLAR OPTIONS (CME) 
+95.25 
+95.50 
+95.75 
+96.00 
+96.25 
+96.50 
+96.75 
+97.00 Dec Mar 
+1.26 1.26 
+1.01 1.01 
+.75 .77 
+.51 .5" 
+.27 .30 
+.08 .13 
+.01 .03 
+cab .01 May 
+35 ,, • 25 ,, 
+J 18 ,, 
+J 12 ,, • 8 ,, • 5 ,, • 3 ,, 
+J 
+2 
+Jun 
+1.07 
+.8" 
+.62 
+.43 
+.26 
+.13 
+.05 
+.01 
+GERMAN BOND OPTIONS (LIFFE) 
+Dec Mar Jun 
+98.50 
+99.00 
+99.50 
+100.00 
+100.50 
+101.00 
+101.50 
+102.00 1.99 2.33 
+1.52 1.94 
+1.11 1.58 
+.72 1.28 
+.4" 1.01 
+.24 .79 
+.13 .57 
+.07 .41 
+CRUDE OIL OPTIONS (NYMEX) 
+15.00 
+16.00 
+17.00 
+18.00 
+19.00 
+20.00 
+21.00 
+22.00 Dec Jan 
+3.08 
+2.09 
+1.14 
+.35 
+.06 
+.02 
+.01 
+.01 1.39 
+.65 
+.24 
+.09 
+.03 
+.01 Feb 
+••••• 
+••••• 
+••••• .92 
+.4" 
+.20 
+.07 
+.04 DIC 
+'I ' 'J ' 3 8 ,,, 
+17 
+26 ,,, 
+31 ,,, 
+Otc 
+cab 
+cab 
+cab 
+.01 
+.02 
+.08 
+.25 
+.49 
+Dec 
+.03 
+.06 
+.15 
+.26 
+·"' .78 
+1.17 
+1.61 
+DIC 
+.01 
+.02 
+.07 
+.28 
+.99 
+1.95 
+2.M 
+3.93 Putl-Stttlt 
+Mar 
+'I • 1 
+3 '/, 
+7 'I I 13 ,, I 
+Mar 
+cab 
+.01 
+.02 
+.04 
+.oa 
+.17 
+.32 
+.50 
+Mar 
+.27 
+.38 
+.52 
+.72 
+.95 
+1.23 
+1.51 
+1.85 
+Jan 
+.03 
+.08 
+.11 
+."3 
+1.02 
+1.81 
+2.80 .... May 
+'I ' 1 ,, • 3 ,, • 7 'I • 13 
+Jun 
+.04 
+.05 
+.09 
+.15 
+.24 
+.37 
+.50 
+Jun 
+Ftb 
+.06 
+.13 
+.27 
+.55 
+1.07 
+1.82 
+.... 
+.... 33 
+
+--- PAGE BREAK ---
+
+34 Clllpter2 
+Figure 2·16 (contJnued) 
+Equity Options 
+FRIDAY, OCTOBER 22, 1913 
+SIP 100 INDEX • OEX 424.15 (CBOE) 
+Strlkt Calla-LIit Putt-lat 
+Pr1ct Nov Dtc Jan Nov Dtc Jan 
+390 ..... .. ... ,, .. 1 .,11 2 
+315 21 ,,. 30 ..... '11, 1 ,, 2 ,, -21 ,,. 2t ,, 31 ., I I 
+I • 1 ,., 3 '/, 
+~5 21 .,. 21 .,. 1 ,, .. " ..... 2 ., 3 ., • • 
+410 11 11 20 ., 1 ,,,, 3 ,, 5 
+11 ,, 13 ,, I • 
+415 I I ..... 2 1
+111 4 1, . ,,. 
+7 ,, 9 ., 12 .,. 3 ,, • 
+420 5 ., 7 ,, • • • • • 
+425 4 8 ., 10 ,, 5 7 ,, 9 ,,. 
+I I I 
+430 1 ., 4 ,, 8 .,. a 10 11 .,. • I 
+435 ., 2 ., 5 .,. 12 13 14 ,, • I 
+440 .,11 1 ., .. 2 .,. 16 1/ 11 1/ • 
+I I 11 
+441 'I 'I 2 ,,. 17 1/ 19 ,, 
+I I 23 ,,. • I 
+4IO 'I" 'I 1 ,, .. 28 2, • 415 ,, .. 'I 'I ..... . .... 
+I I 
+IBM 44'/ (CBOE) • Stltkt Calla-LIit Putl-lut 
+Prtct Nov Jan Apr Nov Jan Apr 
+35 ....... 10 ,,. '111 '111 '11, 
+'° 4 ., 5 ., 7 'I, . , .. 1 1 ., • 
+• • 3 ,,, .a 1 '/, 2 1/11 3 ., 1 ,,. 2 "I 
+I 11 .. ,, 
+50 • ,ti "I 1 11/ ..... 5 ., • 
+11 11 
+55 ,, .. ., ,, ..... 11 ..... 
+t I 
+MOTOROLA 103'/, (AllEX) 
+Strtkt Calll-lllt Putl-lut 
+Prtct Nov Dtc Jan Nov Dtc Jan 
+90 13 .,. 13 ,, 'I 1 ,, tfflf 
+t I I 2 .,ti 
+95 9 ,,. 10 ,,. 11 ,, ,,. 1 ., 
+' ' 
+100 5 ,,. 7 8 2 ,, 3 ,, 5 .,. 
+I I 
+105 2 1/, 4 ,,. 5 ,, 4 'I I 'I 7 
+' • I 
+10 1/, 
+110 1 2 ., 3 ..... ••••• • 
+115 'I, 1 2 1, 14 ..... 
+I 

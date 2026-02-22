@@ -1,0 +1,1279 @@
+Position Analysis 
+When a trader first enters an option market, hls lnltlal concern ls usually flndlng 
+strategtes with sufficient profit potential to justify maklng a trade. As a trader becomes 
+more actively involved in options, he finds that an Increasingly greater portion of hlS 
+tlme ls spent analyzing the posltlons he has already taken. What are the risks to the 
+position? What are the rewards? And what action should be taken lf market condltlons 
+change either ln the trader's favor or against hlm7 Simple volatility spreads, dlreetlonal 
+spreads, or atbltrage strategtes are relatively easy to analyze. As posltlons become more 
+comple.x, the rtsks associated with the position may not be as easy to identify. 
+The first step in analyzing a position ls to determine how the posltlon will react to 
+changing market conditions. One way to accomplish this ls by looking at the total rtsk 
+sensitivities of the position (delta, gamma, theta, vega, rho). Unfortunately, the risk 
+sensitivities are only reliable under narrowly defined market conditions. Slnce lt ls often 
+dramatic changes ln market conditions about whlch a trader must be concerned, simply 
+looking at the rlsk sensltivlties rarely enables a trader to grasp fully the risks associated 
+with a posltlon. Moreover, most traders find lt easier to interpret graphlc lnformatlon 
+than a series of numbers. For all of these reasons, lt ls oftenuseful to graph a position's 
+value under a variety of market conditions. 
+SOME SIMPLE EXAMPLES 
+Let's start With a simple posltlon: 1 
+Stock price = 99 .00; Tlme to June expiration = 7 weeks 
+Volatility= 20%; Interest rate= 6%; Dlvldend = O 
+Position 
+long 10 June 95 calls 
+short 30 June 1 OS calls Option 
+Price 
+6.25 
+1.63 Option 
+Th. Val. 
+5.82 
+1.08 Option 
+Delta 
+76 
+26 Option 
+Imp. Vol. 
+23.7 
+24.5 
+The position ls a typical ratio vertical call spread which we might take lf we feel that 
+Implied volatlllty ls too high, as lt appears to be here. The total theoretical edge is: 
+-10 X (6.25-5.82) + 3Qx (1.63-1.08) = +12.20 
+1. The analyses 1n this chapter were done using either the Black•Scholes model for stock opUons or the 
+Black modtl for futures options. 
+353 
+
+--- PAGE BREAK ---
+
+354 
+While the posltJon Is currently delta neutral, we know that a ratio vert.JcaJ spread hes 
+negative gamma, positive theta, and negatlve vega. The gamma, theta, and t i 
+sensitivities of the spread conflnn this; ~ 
+OptJon Gamma Theta Vega 
+June 95 call 4.3 -.0344 .J 13 
+June 105 call 4.4 -.0278 .117 
+position totals -89.0 +.4900 -2.380 
+The negative gamma Is an lndlcatlon that any large move In the underlying Stoct 
+wlll hun the position. This Is shown ln Figure 17· la. Under current condldons, If ttt 
+stock price begins to fall and we want to remain delta neutral, for each point declJne In 
+the stock price we wm need to sen approximately 89 shares of stock (or take some 
+similar negatlve delta action}. If the stock begins to rise, for each point rise In the stoct 
+price, we will need to buy approximately 89 shares of stock. 
+A ratlo vertical spread also has a posltlve theta, so the passage of tlme wJIJ help the 
+position. This ts confirmed In Figure 17· 1 b where the value of the position ls shown c1 
+the time remaining to explratlon grows shorter. Note that not only does the posltlon's 
+potential profit change as tlme passes, the risks associated With the position also change. 
+As time passes the deltas of options tend to move away from 50, wtth the delta of 
+In-the-money options moving towards 100 and the delta of out·of•the-money optlons 
+figure 11-1a: Long 10 June 95 Calls@ 6.25 
+Short 30 June 105 Calls @ 1.63 
+20 
+10 
+0 
+-10 
+I 
+od .. -20 1 I -30 ; = -40 
+.50 
+-60 
+-70 
+90 92 94 96 98 100 
+stock price 102 104 106 108 110 
+
+--- PAGE BREAK ---
+
+Figure 17-1b: Long 10 June 95 Calls@ 6.25 
+Short 30 June 105 Calls@ 1.63 355 
+100,-----------r------------, 
+at expiration 
+eo 
+40 ""- / ,,. \ 1 week to explrlb°I 
+~ ,,, \_ I /::/ ----;<, 
+4 wHkl to expiration 
+/ 7 wffk.l to expltallon 
+98 100 102 104 108 108 110 
+atock price 
+moving towards zero. The net effect ts that wtth the stock prtce anywhere below 105 
+our delta position will be getting longer as time passes. If, however, the stock prtce rises 
+above 105, the 95 call and the 105 call will be In-the-money, and the deltas of both 
+options will move towards 100. Thls will cause our delta posltlon to become shorter 
+wtth the passage of time. This ls shown ln Figure 17 -1 b where the downward slope of 
+the graph above 105 becomes more pronounced as time passes. 
+Gamma can also change as time passes. At-the-money options always have the 
+highest gamma, and the gamma of an at-the-money option can Increase rapidly as 
+expiration approaches. As time passes note how the curvature of the position becomes 
+more severe around the stock price of 105. If the stock should rtse to 105 and remain 
+there as expiration approaches, the position will take on Increasingly greater gamma 
+risk. 
+Since a ratio vertical spread has a negative vega, any rise ln volatility will hurt the 
+position, and any decline wlll help. The theoretical value of the position at vartous 
+volatilities ls shown In Figure 17 -1 c. Under current conditions the position has an 
+implied volatility of approximately 25%, the volatility at which the position approxl· 
+mately breaks even, showing neither profit nor loss. (We can also approximate the 
+Implied volatlllty of the position by dlvldlng the total theoretical edge of 12.20 by the 
+vega of 2.38, and adding the result to the 20% volatility we are currently using.) If the 
+stock price should change, the Implied volatility of the posltlon will also change. At a 
+
+--- PAGE BREAK ---
+
+6 
+I ure 17-1c: ong 10 Jun• 95 C 111@ 8.25 
+Short 30 Jun• 105 Calls@ 1.83 
+40 
+-60 
+-80 ChApftr 11 
+-100+---,----,-----,-----,- --'--,---,.----,--- ---
+92 94 96 98 100 102 104 106 108 
+stock price 110 90 
+stock price of 104, the position has an implied volatility of approximately 20%. At a 
+stock price of 106, the position has an implied volatility of approximately 15%. As the 
+stock price rises, we hope for a lower and lower volatility. 
+The delta risk will also change as volatility changes since deltas move away from 
+50 as volatility falls and towards 50 as volatility rises. If volatility falls, the position will 
+become delta positive; if volatility rises, the position will become delta negative. We can 
+see this by looking at the slope of the graph at the current stock price of 99. With a 
+volatility below 20%, the graph has a positive slope; with a volatility above 20%, the 
+graph has a negative slope. 
+Let's look at another position: 
+Stock price = 100.00 
+Time to expiration: June = 7 weeks, September = 20 weeks 
+Volatility= 20%; Interest rate = 6%; Dlvldend = O 
+Position 
+long 20 June 105 calls 
+short 20 September 110 calls Option 
+Price 
+1.88 
+3.13 Option 
+Th. Val. 
+1.35 
+2.22 Option 
+Delta 
+30 
+30 Option 
+Imp. Vol. 
+24.0 
+24.1 
+
+--- PAGE BREAK ---
+
+Position Anaf)lsts 1 7 
+Tots position ls a diagonal spread, but With both opUons having equal delta th po ltlon 
+wtll tend to act like a short time spread. The total theoretical edg Is: 
+-20 X (1.88-1 .35) + 20 X (3.]3-2.22) = +7.60 
+We know that a short time spread has a positive gamma, negative theta, and negative 
+vega. The gamma, theta, and vega sensltlvltles of the spread are: 
+Option Gamma Theta 
+June 105 call 4.3 -.0308 
+September 110 call 2.8 -.0200 
+position totals +30.0 -.2160 Vega 
+.128 
+.216 
+-.760 
+The positive gamma means that movement tn the underlying stock price Is working In 
+our favor, as shown in Figure 17-2a. As the stock price rises, our delta position ls 
+becoming longer, and as the stock price falls, lt ls becoming shoner. If we want to stay 
+delta neutral we will need to sell stock as the price rises, and buy stock as the price falls. 
+Since a positive gamma ls always accompanied by a negative theta, the passage of 
+time will work against us, as shown in Figure 17-2b. Under current conditions, for each 
+day that passes with no movement In the underlying stock price, our position will 
+deteriorate by approximately .216. We can also see that with the stock below 105 the 
+slope of the graph becomes negative as time passes, reflecting the fact that our delta 
+Figure 17-2a: Long 20 June 105 Calls@ 1.88 
+Short 20 September 110 Calls@ 3.13 
+90 
+80 
+70 
+60 .,, 
+£ 
+CIC 
+~ Q. 50 
+13 
+""' 
+~ -s 40 
+30 
+20 
+10 
+0 
+80 85 90 95 100 105 
+stock price 110 115 120 125 130 
+
+--- PAGE BREAK ---
+
+358 
+Figure 17-2b: Long 20 June 105 Calls i 1.88 
+Short 20 September 110 Calls i 3.13 
+100.,---------,----------
+80 
+60 
+0 
+-20 4 weeks to June explrat 
+// I" 1 week to June expiration 
+\ I 
+\ ' at June axplradon -..... 
+.4oj_-......----r---...-------j~--,,-----,---.--__,.---r--1 
+80 85 90 95 100 105 110 115 120 125 IJl 
+stock price 
+position Is becoming shorter with the passage of time. If the stock price should rtse above 
+t 05, our delta position becomes longer with the passage of time. At June explratlon we 
+want the stock to be as far away from I 05 as possible. 
+As the stock price moves toward I 05, the curvature of the position also becomes 
+more severe, reflecting the fact that the gamma of an at-the-money option Increases with 
+the passage of time. 
+In Figure l 7-2c we can see how the position's value declines (rises) with rising 
+(falling) volatility. The lmplled volatility of the position Is just under 25%. 
+While chan~ng volatlllty can affect the delta and gamma of a position, we can see 
+In Figure l 7·2c that In this spread the delta and gamma are generally unaffected by 
+changes In volatility. Regardless of volaUllty, the delta position remains neutral at the 
+current stock price of 100, becomes shoner anywhere below I 00, and becomes longer 
+anywhere above I 00. Moreover, the graphs all have the same general shape, reflecting 
+the fact that the position's gamma Is not particularly sensltlve to changes In volatility. 
+GRAPHING A POSITION 
+Every trader should know what a graph of his position looks like, If not In minute detail 
+at least the approximate characterlstlcs of the position. Sometimes, If a computer Is 
+unavailable to do the graphing for us, we might have to mentally visualize such a graph. 
+
+--- PAGE BREAK ---
+
+Position Anal%Lf 359 
+Figure 17•2c: Long 20 June 105 Calls@ 1.88 
+Short 20 September 110 Calls@ 3.13 
+100~-----------------------, 
+80 
+volatility • 15"' / / 
+60 /// ! Yolalllity • / -cl / / t / , 
+◄O L /// ~ / • ; / X volatility. 25% £j 
+20 
+-----~ / /. ', ~ / // ,..._.,.,. "" ~ 0 / ......_ / ......... / ----
+·20 
+80 85 90 95 100 105 110 115 120 125 130 
+stock price 
+From the foregoing examples, perhaps we can fonnulate some rules which wlll enable 
+us to do thls. 
+Using, as before, a grid where the hortzontal axis (x·axts) represents movement ln 
+the underlying contract and the vertical axts (y-axis) represents profit or loss, we can 
+Interpret the theoretical edge, delta, and gamma as follows: 
+1. Theoretical Edge-The graph of a position with a positive theoretical edge will 
+cross the current underlying price at a point above the zero profit & loss line. This 
+Is the first thing a trader should look for. When a trader Is right about market 
+condltlons, he wants to know that hJs position wlll be profitable. 
+2. Delta (Figure 17-3a)-A positive delta ls theoretically equivalent to a long 
+position In the underlying contract The graph of such a position wlll cross the 
+current underlying price at an angle extending from the lower left to the upper 
+right A negative delta ls theoretically equivalent to a short position ln the underly• 
+Ing contract The graph of this position wtll cross the current underlying price at an 
+angle extending from the upper left to the lower right. The exact slope of the graph 
+as lt crosses the cuITent underlying price ls detennlned by the magnitude of the 
+delta. As the delta position becomes larger, the slope becomes more severe; as the 
+delta position becomes smaller, the slope becomes less severe. The graph of a 
+
+--- PAGE BREAK ---
+
+360 
+Figure 17~a: Positive and Negative Delta (Slope) 
+potlllvt delta 
+(graph tX1end1 lrom lower 
+Ion to upptr r1gh~ ntgadvtdtfll 
+(graph txttMI 1rom ~ 
+ltftloloMf~ 
+position which Is delta neutral wlll be exactly horizontal as It crosses the current 
+price of the underlying contract. 
+3. Gamma (Figure 17-3b)-A positive gamma position wlll begtn to bend upward 
+as the underlying price moves away from the current price In either dlrecUon. This 
+reflects the fact that a positive gamma position likes movement. The graph of such 
+a position w111 take on a generally convex shape (a smile). A negative gamma 
+position wlll begin to bend downward as the underlying price moves away from 
+the current price In either direction. This reflects the fact that a negative gamma 
+position prefers for the market to sit still. The graph of such a position will take on 
+a generally concave shape (a frown). 
+In order to complete a graph there Is one other piece of lnfonnatlon we need. 
+Suppose the underlying contract makes such a large upward move that all calls go 
+Into-the-money and all puts go out-of-the-money, or such a large downward move that 
+all puts go Into-the-money and all calls go out-of-the-money. In other words, what will 
+the graph of a position look like at the extreme right or left tall? We can determine this 
+by adding up our contract or lot position. This Is a measure of how many contracts a 
+position will be naked long or short If the underlying market makes such a large move 
+that either all calls or all puts act like underlying contracts. 
+On the upside (extreme right tall) all puts will collapse to zero while all calls will 
+eventually act llke long underlying contracts. The graph of a position which Is long more -
+
+--- PAGE BREAK ---
+
+Flgu,-17-3b: Positive and Negative Gamma (Curvature) 
+positive gamma 
+(a amlle) 
+negative gamma 
+(a frown) 36/ 
+calls than short wlll angle up and to the right Infinitely far (unlimited upside profit). The 
+graph of a position which ls short more calls than long wlll angle down and to the right 
+lnflnltely far (unlimited upside risk). If the number of long and short calls are equal, or 
+If the position consists only of puts, the position wtll eventually flatten out {llmlted 
+upside risk/reward). 
+On the downside (extreme left tall) all calls will collapse to zero while all puts wlll 
+eventually act like short underlying contracts. The graph of a position which ls long 
+more puts than short will angle up and to the left Infinitely far (unlimited downside 
+profit). The graph of a position which ls short more puts than long will angle down and 
+to the left lnflnltely far (unlimited downside risk). If the number of long and short puts 
+are equal, or If the position consists only of calls, the position will eventually flatten out 
+(limited downside risk/reward). 
+The value of a position may also change over time or as volatility condltlons change. 
+The changes will be determined by the theta and vega associated with the position; 
+4. Theta (Figure 17-3c)-As tlme passes a posltlve theta posltlon will become 
+more valuable, and the graph of such a position will shift upward. As tlme passes 
+a negative theta position will become less valuable, and the graph wlll shift 
+downward. 
+5. Vega (Figure l 7-3d)-A positive vega position will be helped by Increasing 
+volatility and hurt by declining volatility. The graph of such a position will shlft 
+
+--- PAGE BREAK ---
+
+362 
+pot ltlve theta • 
+\ the graph shifts upward over time / 
+Ii 
+/ ChAPttr 11 
+ta (Tim• D ay) 
+! \ I neg,Uve- - \ 
+the graph shifts downward ~ time 
+Figure 17-3d: Positive and Negative Vega (Volatility) 
+positive (negative) vega -the graph shifts upward with higher Qower) volatility 
+negative (positive) vega • the graph shifts downward with higher (lower) volatility 
+
+--- PAGE BREAK ---
+
+363 
+upward when volatility Increases and downward when volatllity decreases. A 
+negative vega position wm be hurt by increasing volatlllty and helped by decllnlng 
+volatlllty. Toe graph of this posltlon wlll shift downward when volatllJty increases 
+and upward when volatility decreases. 
+Note that ttme and volatility have slmllar effects on an opUon position. But unlike 
+time, whlch can only move In one direction, volatility can either rtse or fall. Ha trader 
+bas a positive (negative) gamma position, he will necessarily have a negative (positive) 
+th& position. He need only worry about one or the other, either gamma or theta. But 
+a trader can have a positive or negative gamma position and still be concerned with 
+wlatlllty. A positive gamma posltlon can still be hurt by a rise In volatllity (e.g., a shon 
+time spread}, while a negative gamma position can still be hurt by a decllne In volatllity 
+(e.g., a long time spread). 
+Let's try to put these graphing prtndples together to analyze a position. 
+Stock prtce = 98.75; Time to June expiration = 7 weeks 
+Volatility= 20%; Interest rate = 6%; Dlvtdend = O 
+Position 
+long 20 June 105 calls 
+shott 20 June 95 puts 
+soort 1 0 stock contracts2 Option 
+Price 
+.75 
+1.38 Option 
+Th. Val. 
+1.02 
+1.12 Option 
+Delta 
+25 
+-25 Option 
+Imp. Vol 
+17.6 
+22.1 
+Even though the position ls delta neutral, lt does not appear to fall Into any easily 
+recognized category. The calls appear to be underprtced and the puts appear to be 
+overpriced, and the position combines trades In both these options. The total theoretical 
+edge ts: 
+20 X (l.02-.75) + 20 X (1.38-1.12) = +10.60 
+The sensitivities of the position are: 
+Option Gamma Theta Vega 
+June 105 call 4.3 -.0270 .114 
+June 95 puts 4.4 -.0192 .115 
+position totals -2.0 -.1560 -.020 
+Rrst we ought to try to visualize what the graph of this position looks llke. Since 
+the position has a positive theoretical edge of 10.60, lt wlll cross the current stock price 
+of 98. 75 at a point 10.60 above the zero P&L line. The position ls delta neutral, so the 
+graph will be exactly horizontal at thls point Toe position ts also very close to gamma 
+neutral at thls point, so the graph wlll have no cumture. This means that It Is bending 
+neither upward (concave) nor downward (convex). 
+2. Since the number of shares Jn an underlying stock contract varies from market to marie~ we slmpty 
+eipress the underlying Jn terms of contracts. In U.S. markets where one option contract typJcally 
+controls J 00 shares of stock, this position would be short 1,000 shares. 
+
+--- PAGE BREAK ---
+
+364 
+To complete the graph we need the upside and downside contract posJtlon. II~ 
+market makes a large upward move, all the puts wlll eventually collapse to zero whfle 
+the calls will act like long underlying contracts. In our example the 20 long calls v,1JJ 
+act like 20 long stock contracts. These will be partially offset by the actual JO shon 
+underlying contracts, but the total will still be an upside contract position which ts Jotli 
+Io. If the market moves up far enough the position will take on a slope of+ JO. fur each 
+point the stock price rises, the position will gain ten points In value. 
+If the market makes a large downward move, all the calls will eventually collapse 
+to zero while the puts will act like short underlying contracts. Since a short put ls a Joni 
+market position, our short 20 puts will act like 20 long stock contracts. These wtll be 
+partially offset by the actual 10 short underlying contracts, but the total will stlll be a 
+downside contract position which Is long 10 contracts. If the market moves down hr 
+enough the position wlll take on a slope of+ 10. For each point the stock price falls, the 
+position will lose ten points In value. 
+The tnltlal characteristics of our spread are shown In Figure l 7·4a. 
+we know that the characteristics of a position are likely to change as mark.et 
+conditions change. How might our position change as time passes? Since deltas move 
+away from 50 with the passage of time, If no movement takes place In the underlying 
+stock, the deltas of both the 95 put and 105 call (currently at -25 and +25) will move 
+Figure 17-4a: Long 20 June 105 Calls @ .75 
+Short 20 June 95 Puts @1.38 
+Short 1 o Stock Contracts @98. 75 
+40....--------------:------- ------, 
+35 
+30 
+25 
+j 20 
+-0 .. -= e a. 15 
+B i 
+~ 10 
+£ 
+5 /; 
+upside contract posltlon of + 1 O 
+position Is gamma neutral 
+(graph Is bending neither upward nor 
+downward at current underlying price) 
+position Is delta nev1ral __ __:_4--- --:;,4---- (graph Is horizontal at 
+current underlying price) 
+} +10.60 i~""''"" odll•I 
+oj_-/---------+-----------~ 
+I downside contract position of + 10 
+.5 
+-10~--r--.------.----,--l--r---.------,----,--.--------1 
+90 92 94 96 98 100 102 104 106 108 110 
+stock price 
+
+--- PAGE BREAK ---
+
+,.. 
+Posttton AM~Ls 36S 
+towards zero. Thls means our posltlon wlll act more and more like a poslUon whJch ls 
+naked short 10 stock contracts. Therefore, as time passes the slope of the graph Is 
+becoming more and more negative between the exercJse prices of 95 and I 05 (figure 
+17·4b). 
+What about changes In the gamma with respect to stock price movement? If the 
+stock price remains near the current prtce of 98.75, the gamma (curvature) of the 
+position remains near zero. As the price moves toward either the 95 or I OS exercise 
+price, the posJtlon takes on greater gamma charactertstlcs as tlme passes. As the stoclc 
+approaches 95 the posltlon begins to act like a short straddle (negative gamma), and as 
+It approaches 105 the position begins to act like a long straddle (positive gamma). 
+Since the gamma of our posltlon at the current prtce of 98.75 ls very close to zero, 
+we might expect the theta to also be dose to zero. In this case the theta Is actually 
+-.1560. This means the posltlon Is becoming less valuable each day. The reason Is that 
+the sale of stock has resulted ln a cash credit, a credit on which we can earn Interest 
+As time passes the amount of Interest which we expect to earn declines, so the expected 
+profit also declines. This would not be the case If the underlying Instrument were a 
+futures contract, since the sale of a futures contract does not result In a cash Inflow, and 
+consequently no Interest can be earned. The theta of such a posltlon would therefore 
+be close to zero. 
+Figure 17-4b: Long 20 June 105 Calls O .75 
+Short 20 June 95 Puts @1.38 
+Short 10 Stock Contracts 098.75 
+50 /\ I 
+40 I \ I \ 
+30 I \ 7 weeks to expiration I \ \ 20 I \ I \ 
+i 10 ;} \ .. t 0 I \ I 
+~ -10 \ I 
+5 \ I 
+-20 \ I 
+\ I 
+/ I -30 \ I 
+\ I 
+-<40 at expiration \ I 
+\\/ 
+.50 
+90 92 98 100 102 104 106 108 110 
+stock price 
+
+--- PAGE BREAK ---
+
+366 °"PttrJJ 
+Changes In volatility will also affect the characteristics of the position. Fa11inz 
+volatlllcy Is slmllar to the passage of time. All deltas will move away from 50, and ~ 
+total delta position will become shorter around the current pr1ce of 98.75. If voladlity 
+rises all deltas wtll move towards 50, and the total delta position wlll become longer, 
+As volatility rises (falls J, the position looks more and more like a position whlch ls naked 
+long (short) 1 0 stock contracts (Agure l 7·4c). 
+Regardless of changes In volatility, the gamma will stay close to zero near the 
+midpoint price of 100. But as we move towards 95 or l 05 the gamma begins to tncre.ase 
+as either the 95 put or 105 call becomes more and more at-the-money. At the same rune 
+the gamma of an at-the-money option falls as volatility rises and rises as volatlllty falls. 
+The result Is that In a low-volatility market any move away from I 00 can cause the 
+gamma rtsk to Increase very quJckJy, becoming negative as the stock prtce moves toward 
+95 and positive as the stock price moves toward 105. 
+Finally, the contract position remains the same, regardless of the passage of time or 
+changes In volatility. If the market makes a big move, rising far above I 05 or falHng far 
+below 95, we still have the same contract position of + 10 (long 10 underlying 
+contracts). 
+This last example Illustrates an lrnponant aspect of spreading. Many traders, In 
+addition to focusing on delta neutral strategies, wlll try to construct positions which are 
+Figure 17-4c: Long 20 June 105 Calls@ .75 
+Short 20 June 95 Puts @1.38 
+Short 10 Stock Contracts @98.75 
+50--------~---------'7 
+40 
+30 
+volatility = 15% 
+•20 90 92 94 98 98 100 102 104 106 108 110 
+stock price 
+
+--- PAGE BREAK ---
+
+..... 
+Position Anatysts J67 
+also gamma neutral or vega neutral. Such strategies may be senslble If a trader ls 
+concerned with a move In the underlying contract, or with a change ln volaUllty B 
+trader should not make the assumption that If he ls delta neutral gamma • ...:. ut a 
+1 th l , neuucu and vega neutra , ere s nothing that can go wrong. Even It a position ha ' s a Posltlve theoretical edge and all the risk sensltlvltles are small, a profit Is not necessanly certain. 
+A posltlon ls only delta neutral, or gamma neutral, or vega neutral If the theoretical 
+pricing model ls Itself correct, and lf all the Information which the trader has fed Into 
+the model ts also corTect If any of these assumptions are wrong, the values generated 
+by the theoretical prtclng model are also llkely to be wrong. As a result, the trader might 
+flnd that a posltlon whlch Initially appears to be neutral Ln terms of a risk sensltlvtty ls 
+ln fact not neutral at all. 
+A COMPLEX POSITION 
+Each of our previous examples consisted of only two different options. A more complex 
+posltlon may consist of options at several different exercise prtces. Consider the posltlon 
+shown tn Figure 17-5. 
+We can determine many of the charactertstlcs of this position simply by looking at 
+the total sensltlvttles. Since the posltlon has a positive gamma, negative theta, and 
+positive vega, lt wlll Initially act llke a backspread. In addition, we can see that the 
+Figura 17-5 
+Stock prfce • 202.50; Time to June e,cpiraUon • 6 weeks; VotatHJty • 24.0% 
+Interest rate -6.00%; Dlvfdend • 0 
+Jun• Th. Imp. 
+Contract Poeltlon Price Value Delta Gamma Theta Vega Vol. 
+190 call 15.50 15.50 82 1.6 -.077 .18 24.0 
+195 call -23 11.63 11.80 72 2.0 -.088 .23 23.3 
+200 call +55 8.25 8.63 61 2.3 -.094 .26 22.6 
+205 call -35 5.75 6.06 49 2.4 -.094 .27 22.9 
+210 call -20 4.00 4.08 37 2.3 -.086 .26 23.7 
+21s can +41 2.63 2.63 27 2.0 -.074 .23 24.0 
+190 put -42 1.63 1.70 -18 1.6 -.046 .18 23.6 
+195 put +85 2.75 2.95 -28 2.0 -.056 .23 23.1 
+200 put +8 4.5 4.76 -39 2.3 -.062 .26 23.0 
+205 put -18 6.88 7.15 -51 2.4 -.060 .27 23.0 
+210 put 10.00 10.13 ~ 2.3 -.052 .26 23.5 
+215 put --30 13.75 13.65 -73 2.0 -.039 .23 24.5 
+stock -18 100 
+Stock Calle Pute Delta Gamma Thela Vega P&L 
+totaJs: -18 +18 +3 -277 +50.5 -2.244 ~.10 +18.82 
+
+--- PAGE BREAK ---
+
+68 ChApftr /J 
+down Id ontra t position Is net short 21 (short 18 stock contracts, Jong puts) WhllP 
+th upside contract position ts flat (short 18 stock contracts, long 18 caJ/s). The po I fo 
+has unlimited downside reward and limited upside risk/reward. Based on thegp 
+characteristics, the position can essentially be descrtbed as a put backspread. ThP 
+theoretical graph of the position under current conditions ls shown by the solid line 1 • 
+Figure t 7-5a. 
+In RgUre t 7-5a we also see how the position wlll change as time passes. BecauS-c! 
+the trader ls tong a large number of June 195 puts and June 200 calls, as expjratlo 
+approaches the position will act more and more like a long June 195/200 strangle. 
+Although the position ls now slightly delta short, with the stock at its current price of 
+202.50, the June 200 calls will tend to dominate, causing the delta position to become 
+increasingly long as time passes. Should the stock drop below 195, the June 195 puts 
+will tend to dominate, and the delta will become Increasingly short with the passage of 
+time. Consequently, as time passes the gamma of the position will become very large 
+with the stock price between 195 and 200. The total delta and gamma of the positlon 
+as time passes is shown in Figures 17-Sb and 17-Sc. 
+Figure 17-Sd shows the sensitivity of the position to a change in volatility. As we 
+would expect, any increase In volatility wlll help the position and any decllne ln 
+volatility will hurt. Even if we increase or decrease volatility by 20%, to 30% or 18%, 
+the shape of the posltlon remains essentially the same. Whlle the delta and gamma will 
+change with changes in volatility, these numbers are not as sensitive to a change in 
+Figure 17-Sa 
+300 
+100 
+-200 6 weeks to expiration (current) 
+\ , weekS to o,p;ratioo 
+\\ ./· 
+\'-.. ;/-✓ 
+\ ··, ... , .. _ / f 
+\ ""-----
+1 week to explratJ~ 
+\ 
+\ I 
+at explrati~ \ ____ / I 
+I 
+.300.J..._-~-~--.----.--_.__--r-_--r-_-.----.--~---l 
+180 185 190 195 200 205 210 215 220 225 230 
+stock price 
+
+--- PAGE BREAK ---
+
+Position Ana~~ 
+Figure 17-Sb 
+8000 
+6 weeks to expiration (current) 
+2000 
+-4000 
+-6000 1 
+1 week to expiration } ' ~- at expiration 369 
+\ 
+3 weeks o expiration 
+--
+-8000,------.------.---,----.,..-1- ___ ~---.-- --.----,-----l 
+180 185 190 195 200 205 
+stock price 210 215 220 225 230 
+Figure 17-Sc 
+5 ., 400...-----__:_--- -------- ---------------, 
+300 
+200 I ··-· \ 
+1 week to expiration / \ 
+~/ 
+I 
+I I 
+I \ 
+\ 
+\ 3 weeks to expiration 
+\ 
+\ 
+\ 
+I 100 co I ----r 
+E 
+E 
+& 
+0 
+-100 I 
+I I 
+I 
+6 weeks to expiration (current) \ .....::..---
+\ .' 
+\ 
+\ 
+\ 
+-200--l---~--~--~ -~,--...L~---r----r---.---,--- --j 
+180 185 190 195 200 206 210 216 220 226 230 
+stock price 
+
+--- PAGE BREAK ---
+
+370 C/uptc/7 
+Figure 17-Sd 
+300-r---------,----------- --, 
+250 
+200 \\\ 
+volatility • 24% 
+~ \ 150 \ 
+ell \ volatility • 30% 
+! \ I iS. 100 I \ 
+\ 
+~ \ 
+£i 50 \ ----"-. 
+0 ...__ __ --
+.50 ! 
+volatility • 18% 
+.100 205 180 185 190 195 200 210 215 220 225 230 
+stock price 
+volatility as they are to the passage of time. The total delta and gamma of the position 
+as volatility changes ls shown In Agures 17-Se and 17-Sf. 
+A trader with this position must be concerned with a significant decllne In volatillty. 
+He will be especially worried about a slow dedlne In the market over time. Each day 
+that passes ls costing him 2.244 (the theta) In potential profit, and this number w11l 
+accelerate as time passes. If several weeks should pass with llttle movement In the stodc 
+price, he will come under Increasing pressure to reduce his theta risk. If he decides to 
+take some protective action, he will have to sell some options, either calls or puts. If he 
+considers a large move In the underlying stock a posslblllty, he may not want to sell calls 
+since this will leave him net short contracts on the upside. This will probably lead him 
+to sell off some of the puts which he ls long, either the 195 or 200 puts. 
+Up to now we have not considered the risk associated with a change 1n interest 
+rates or, In the case of stodc options, dlvldends. While these risks are usually small with 
+respect to the other risks, If the position Is large enough we might want to consider how 
+a change In Interest rates or dividends will Impact the position. 
+The sale of 18 stock contracts has created a cash credit for this trader, and the 
+Interest earned on this credit will be a part of his profit. Assuming that he ts subject to 
+a floating Interest rate, any Increase In rates will help, since he will earn more on his 
+cash credit, and any decline In Interest rates wlll hurt, since he will earn less on his cash 
+credit. We can estimate the Impact on the position of a 1 % change In Interest rates by 
+calculating the Interest earned to expiration at the current stock price: 
+
+--- PAGE BREAK ---
+
+371 
+fig\1'917-5• 
+~,---------r------------. 
+volatility • 18% 
+\ 
+volatility• 24% voldllty • 30% 
+·1S00 
+·2000 
+-2500,---~--"T"----.---..--....L._ ----,---.....---r-----r----i 
+180 185 
+Agure 17-Sf 
+120 
+a 1 I 
+20 
+·20 190 195 200 
+Volatlllty • 30% 205 
+1todc price 210 
+volatility •18% 215 220 
+-'--­ .....___ ---230 
+-~-t----,--------.----,.----'-----.----,.----....----r--~ 
+180 185 190 195 200 205 210 215 220 225 230 
+1todc price 
+
+--- PAGE BREAK ---
+
+372 ChAPftr 11 
+t % x 42/365 x 202.50 = .233 
+Since the trader Is short 16 stock contracts, the total Impact of a I% change In lntere 
+rates Is: 
+.233 X 18 = 4.JQ 
+fur each percentage point Increase In Interest rates, his position will Increase In value 
+by approximately 4.19; for each percentage point decline In Interest rates, his position 
+will decline In value by approximately 4.19. If Interest rates were to Immediately drop 
+from 6% to 4%, the position's potential profit would drop by approximately 8.38. 
+Toe underlying stock for this position currently pays no dividend, but the trader 
+may want to consider the posslblllty that the company will decide to start paying a 
+dividend. If the company decides to pay a dividend prior to June expiration, the trader, 
+as a bOrrower of stock, will be required to pay this dividend amount to the stock lender. 
+Since he is short 18 stock contracts, for each point increase in the dividend, the trader 
+will lose 18 times the dividend in potential profit. If the company decides to pay a 
+dividend of 2.00, the trader's position will be reduced in value by approximately 36.00. 
+If the trader believes that the company might In fact decide to pay a dividend prtor 
+to June expiration, or if he feels that interest rates could fall significantly, he will want 
+to take some action to reduce hls risk. Since the risk results from the short stock position, 
+he can eliminate most of his risk by eliminating the 18 short stock contracts. Assuming 
+that the trader wants to maintain the same delta position, he can accomplish this by 
+buying back the short stock and replacing it With either deeply ln·the-money options 
+(buy deeply in-the-money puts or sell deeply in-the-money calls), or by selling synthetic 
+stock contracts (sell calls and buy puts at the same exercise price). The fonner strategy 
+would be the same as executing a three-way; the latter strategy would be the same as 
+executing a conversion. 
+The sensitivity of the position to a change In interest rates and dividends is shown 
+in Figures 17-Sg and 17-Sh. 
+FUTURES OPrION POSITIONS 
+Toe foregoing positions have all consisted of stock options, but delta, gamma, and vega 
+characteristics are similar whether a trader ls dealing With stock or futures options. 
+Except for the effect of Interest rates and dividends, the analyses of the positions would 
+be essentially the same for futures options. While futures options are not subject to 
+dividend considerations, nor are they as sensitive to changes In Interest rates as stock 
+options, there Is an additional dimension to the analysis of a futures option position 
+because the relationship between futures months ls often less well defined than with 
+stock options. For example, consider the position In Figure 17-6. 
+This ls typical of the type of position an active trader often ends up with: a seemingly 
+disjointed collection of options and underlying contracts which cannot be easily 
+categorized. Nonetheless, it ls Important that the trader recognize the risks which the 
+position currently presents, as well as those risks which might arise If conditions change. 
+
+--- PAGE BREAK ---
+
+Position At;R(y.s'Ls 373 
+Figure 17-Sg 
+3$()-.----------------------------------. 
+300 
+250 
+i 200 .. 
+~ 
+~ 150 ln1e,eIt rate • 12"' 
+I lnter"t ! 100 lnterHt rate\•'"' (am=Q _ 
+...... 50 ----- ------ ---------------~ 
+lnterHt rate • 3'r. 
+·60 
+180 185 190 195 200 205 210 215 220 225 230 
+stod( price 
+Figure 17-Sh 
+300 
+250 
+200 
+j 150 .. dividend = 0 (current) 
+-= 0 
+c5. 100 
+B 
+~ dividend= 2.00 
+C) 
+~ 50 5 
+0 ' /' - ----50 ---------
+dividend• 4.00 
+-100 
+180 185 190 195 200 205 210 215 220 225 230 
+stock price 
+
+--- PAGE BREAK ---
+
+Figure 17-6 (q 
+~ 
+May futures= 49.40; Time to expiration = 5 weeks; Volatility = 15.0%: Interest = 6.00% 
+TheoraUcal Implied am,i■■d 
+Contract PoslUon Price Value Delta Gamma Theta Vega Volatmty Della 
+46 call -28 3.46 3.44 93.5 5.1 -.0033 .018 16.03 92.3 
+47 call 2.56 2.55 85.8 9.5 -.0067 .033 15.37 85.3 
+48 call -39 1.76 1.76 73.5 14.1 -.0103 .049 15.01 73.5 
+49 call +36 1.10 1.12 57.5 17.0 -.0126 .059 14.68 57.7 
+SO call +156 .62 .65 40.4 16.8 -.0125 .059 14.53 40.1 
+51 call -135 .32 .34 25.2 13.9 - .0104 .049 14.61 24.6 
+52 call -15 .15 .16 13.9 9.6 -.0072 .034 14.72 13.4 
+53 call -60 .07 .07 6.8 5.7 -.0043 .020 15.15 7.0 
+54 call .03 .03 2.9 2.88 -.0022 .010 15.46 3.3 
+46 put .08 .06 -5.9 5.1 -.0039 .018 16.05 -72 
+47 put -114 .17 .16 -13.6 9.5 -.0071 .033 15.26 -t4.0 
+48 put +41 .36 .37 -25.9 14.1 -.0105 .049 14.84 -25 . 
+49 put -93 .70 . 72 -41.9 17.0 -.0126 .059 14.64 -41.8 
+50 put +36 1.21 1.24 -59.0 16.8 -.0124 .059 14.42 ~.5 
+51 put 1.91 1.93 -74.2 13.9 -.0101 .049 14.59 -74.8 
+52 put -24 2.74 2.74 -85.5 9.6 -.0068 .034 14.87 --85.7 
+53 put 3.65 3.65 -92.7 5.7 -.0037 .020 15.18 -92.4 
+54 put 4.61 4.60 -96.5 2.8 -.0014 .010 15.99 --95..6 
+futures -28 100.0 &) t 
+~ -..... 
+
+--- PAGE BREAK ---
+
+, 
+July futures= 49.85; Time to explrh, \ Jeks; Volatlllty • 16.0%; Interest -6.00% 
+Theoretical lmplled lmpffed l 
+Poeltlon Price Value Delta Gamma Theta Vega VotaUllty Delta a 
+contract g 
+46caU 4.10 4.10 84.0 5.7 -.0043 .057 15.94 84.0 :. 
+47can 3.29 3.32 77.0 7.3 -.0058 .072 15.60 n.s i 
+48caU +15 2.56 2.62 68.6 8.7 -.0071 .086 15.35 69.2 ~ c;-
+49caH 1.93 2.01 59.2 9.6 -.0080 .095 15.20 59.5 
+SOcaH 1.40 1.49 49.3 9.9 -.0084 .098 15.03 49.2 
+51 caU -35 .99 1.08 39.7 9.6 -.0082 .095 15.05 38.9 
+52can 90 .67 .76 30.8 8.8 -.0075 .087 14.98 29.5 
+53caD -45 .45 .52 23.0 7.6 -.0065 .075 15.12 21.6 
+54caU +111 .30 .34 16.6 6.2 -.0054 .062 15.34 15.5 
+46put .31 .31 -14.6 5.7 -.0049 .057 15.99 -14.5 
+47 put .48 .51 -21.5 7.3 -.0063 .072 15.57 -21.0 
+48 put -66 .74 .79 -29.9 8.7 -.0074 .086 15.38 -29.3 
+49put +174 1.09 1.17 -39.3 9.6 -.0081 .095 15.17 --39.0 
+50put +8 1.55 1.64 -49.2 9.9 -.0083 .098 15.05 -49.4 
+51 put +28 2.12 2.21 -68.8 9.6 -.0080 .095 15.02 ~9.6 
+52put -21 2.79 2.88 -67.7 8.8 -.0072 .087 15.00 ~9.0 
+53put -30 3.55 3.62 -75.5 7.6 -.0060 .075 15.07 -n.o 
+54 put +15 4.38 4.43 -81.9 6.2 -.0047 .062 15.20 83.3 
+futuras +6 100.0 
+Tbeol'9tlcal Implied 
+Totals Futurea Calla Pu1a Delta Gamma Theta Vega PAL Deb 
+May -28 -85 -154 +382.5 -1526.2 +1.1205 -6.357 +3.54 +484.4 
+July +6 +136 +108 -635.5 +2052.5 -1.7545 +20.346 +17.34 -72e.7 
+All Months* -22 +51 -46 -253.0 +526.3 -.6341 +14.989 +20.89 +242.3 
+• Totals may not sum exactly due to rounding . ~ ~ 
+
+--- PAGE BREAK ---
+
+76 ChApttr 11 
+Ince we are analyzing a position which Includes two different futures month , w~ 
+will have to make some assumpUons about the relationship between the two futur~ 
+contracts. The simplest relaUonshlp Is based on a constant cost of carry. The currer,t 
+spread of .45 (49.85 -49.40) between the May and July futures months Is based on 
+this relaUonshlp, since: 
+56/365 X 6% X 49.40 1a .45 
+If the spread were based only on cost of carry, and Interest rates remained constant a 
+6%, July futures would always be .92% (56/365 x 6%) greater than May futures. 
+Unfortunately, many markets, partlcularly In energy and agricultural products, are 
+subject to supply and demand forces which often distort the cost of carry relationship 
+between futures months. For this reason, traders often choose to assume a fixed spread 
+relationship when analyzing option positions In several different futures months. In our 
+example, we will make the assumption that the spread between May and July futures 
+Is always .45. 
+We have also added the assumptlon that July futures will be slightly more volatile 
+(16%) than May futures (15%). Even though these volatility assumptions seem to be 
+slightly higher than the implied volatilities in the marketplace, the trader's volatility 
+relationship between May and July is consistent with the marketplace's opinion where 
+the July Implied volatility seems to be slightly higher than the May Implied volatility. 
+Figures 17 ·6a through 17·6f show the current characteristics of the position, as well 
+as the characteristics under different time and volatility assumptions. At the current 
+underlying price (May futures= 49.40, July futures= 49.85), the passage of time or anv 
+decline in volatility Will hurt the position (negative theta, positive vega). But if the 
+underlying market should either decline or rise several points, the passage of tlme will 
+begin to help the position (Figure 17·6a). Even though the theta may become positive 
+with a move of several points, the vega of this position always remains positive (Figure 
+t 7-6b ). Regardless of underlying price, any Increase (decline) In volatility will help (hurt) 
+the position. The position acts like a long straddle with the underlying close to 50, but 
+it acts like a long time spread with the underlying close to 46 or 53. This is typical of 
+how difficult It can sometimes be to classify complex positions. If the position Is large 
+enough, even small changes in market conditions can cause the position to change its 
+characteristics radically. 
+Note that if one were to look only at the delta and gamma, it might seem that the 
+best thing which could happen to this trader would be a swift decline in the underlying 
+market (negative delta, positive gamma). If, however, the decline ls too violent, with 
+the market falling five or six points, the trader Will have to consider hls net contract 
+position. All calls will collapse to zero, but the net total of 46 puts which he ls short will 
+begl.n to act like long futures. These w111 be partially offset by the 22 futures whlch he 
+ls actually short. But the result will be a position which ls net long 24 contracts, leaving 
+the trader with unlimited downside risk. Of course, a violent upside move will never 
+be a problem since the trader has an upside contract position which ls net long 29 
+contracts (long 51 calls, short 22 futures). 
+
+--- PAGE BREAK ---
+
+--------- .. 
+317 
+150 
+at May expiration 5 weeks to May expiration (current) 
+100 ~/\ ,,, #' ~ /'~' afJ 50 ,\ 
+~ / ' ,/ 
+~ j/ ....... -5 ;:: 0 \ 
+\~ G) 
+~ (I \ 
+~ ,r· \ 
+~ 
+.50 (I' 
+I 
+\J 2 weeks to May expiration 
+-100 
+-150 
+40 42 44 46 48 50 52 
+May futures price 54 56 56 60 
+-igure 17-6b 
+200 
+150 current volatility 
+volatility increases 25% (May=15%, July=16%) 
+(May=18.75%, July=20%) 
+100 ~ ----- V, / 
+.Q // 
+afJ 50 
+~ / 
+/ 
+~ / 
+5 / -1" 0 --GI ; 1/ ,, / 
+1/ / 
+£ / " ~/~ '-.., 
+-50 
+volatility declines 25% 
+-100 (May= 11.25%, July= 12%) 
+-150+----r-----.---~-~-_J_-.----,---.---...------,- --I 
+58 60 40 42 44 46 48 50 52 54 56 
+May futures price 
+► 
+
+--- PAGE BREAK ---
+
+378 ChApttr 17 
+Figure 17"'6C 
+160 
+at May explratfon 
+,1 
+/ I 
+100 , , 
+I I 
+I I 
+5 weeks to May explralfon (current) I I 
+f I I 
+50 I I 1 I ~ €. I I ,, I I~ 
+I 0 
+-----\ / 
+\ / 
+I \/ 
+\ /o 
+-50 \ 1 \ I 
+1/ \ I 
+\ 
+2 weeks to May expiration 
+-100 42 40 44 46 48 50 52 54 56 58 80 
+May futures price 
+Figure 17-6d 
+30....---:::-~------r-------------7 
+-----~ 
+20 
+f l 10 
+g 0 I 
+I -10 
+-20 \\ \\ \ 
+\ 
+\ 
+\ 
+\ 
+I ~\ 
+volatility declines 25% \ 
+(May=11.25%, July=12"') \ 
+...__ I I 
+I I 
+I current volatility 
+(May=15%, July=16"') 
+volatility Increases 25% 
+(May=18,75%, July=20%) / 
+.30-l----.--------.----,.--'-~ -~--~--- -~---l 
+42 40 46 48 50 52 56 58 60 
+May futures price 
+
+--- PAGE BREAK ---
+
+Position Ana~Lf 
+Figure 17-6e 
+50 
+40 
+30 I 
+I 
+I 
+I 
+5 weeks to May expiration (current) / 
+f 20 I 
+~ I "0 C ::, 
+E. 10 /, 
+8 E & 0 
+~ 
+E 
+I & -10 
+I 
+tJ / -20 
+\ I 
+-30 \ I 
+\ I 
+I,../ 379 
+I 
+I 
+\ 
+\ 
+\ 
+I 
+I 
+\ 
+\ 
+\\t /. I 7 
+I / 
+I / 
+I I 
+\_/~ 
+1 week to May expiration 
+-40 40+----,4c-2 --44..,..--- 46r---48-r----1-, 50--5r2---r54--56,-----:r:58----:160 
+May futures price 
+Figure 17-&f 
+20 
+15 
+10 
+I "0 5 
+C ::, 
+E. 
+8 0 i 
+~ -5 E & 
+-10 
+·15 
+·20 
+40 42 I \ 
+I \ 
+I \ 
+I \ 
+volatility Increases 25% / 
+(May=18.75%, July=20%) / 
+I current volatility 
+(May=15%, July=16%) 
+\...✓ I 
+I 
+I 
+\ 
+volatility declines 25% 
+(May=11.25%, July,=12%) 
+44 46 48 50 52 54 56 
+May futures price 58 60 
+
+--- PAGE BREAK ---
+
+380 
+Figure 17·6 also g1ves the Implied delta for the Individual options as well as for rh~ 
+total position. This can sometimes be a useful number because a trader may wan v, 
+take 1nt0 conslderatton cutrent market conditions when deciding how to hedge ht 
+position. In this example thett Is little difference between the trader's presumed d~lu 
+position (-253) and his Implied delta position 1-242). But this Is not always the case. ff 
+the trader's volatility assumption Is dramatically different than the Implied volatlllty 10 
+the marketplace, the presumed delta position might be significantly different than the 
+Implied delta position. Since no one can be sure what the right volatility 1s, no trader 
+can be sure that his delta calculations are correct. Given this uncertainty, It Is not 
+uncommon among traders to hedge a position somewhere between the trader's own 
+delta and the Implied delta. If, for example, a trader calculated his delta position as 
++600, but found that the Implied delta was +200, he might treat the position as If It had 
+a delta of +400. If he wanted to get delta neutral, the trader might sell four underlying 
+contracts. we made the assumption that the spread between the July and May futures 
+contracts wlll remain constant at .45. What will happen if the spread begins to wtden 
+or narrow? The total delta of-252 Indicates that the trader would like a decline in the 
+market. With a July delta of-635 and a May delta of +382, the trader would prefer July 
+to go down faster than May. The ideal would be for July futures to decline and at the 
+same time for May futures to rise, but any narrowing of the July/May spread should 
+help the position. In futures equivalents, we might describe the position as being roughly 
+short three July/May futures spreads, and short an additional 2112 July futures. 
+Finally, we might want to analyze a total position which consists of contracts which 
+are not directly related, but which have somewhat similar characteristics. For example, 
+suppose we have the ratio vertical call spread presented at the beginning of thlS chapter: 
+ABC stock price= 99.00; Time to June expiration= 7 weeks 
+Volatility= 20%; Interest rate= 6%; Dividend= 0 
+Position 
+long 10 June 95 calls 
+short 30 June 105 calls Option 
+Price 
+6.25 
+1.63 Option 
+Th. Val. 
+5.82 
+1.08 Option 
+Delta 
+76 
+26 Option 
+Imp. Vol. 
+23.7 
+24.S 
+At the same time, suppose we also have a long strangle in a different stock: 
+XYZ stock price = 62.00; Time to July expiration = 11 weeks 
+Volatility= 23%; Interest rate= 6%; Dividend= .50 ln 8 weeks 
+Position 
+long 20 July 65 calls 
+long 20 July 60 puts Option 
+Price 
+1.38 
+1.50 Option 
+Th. Val. 
+1.52 
+1.57 Option 
+Delta 
+36 
+-34 Option 
+Imp. Vol. 
+21.6 
+22.3 
+If we combine these two positions, how might we analyze the overall risk? One 
+possible method might be to look at the change In value of the two positions per point 
+move ln the underlying stocks. But because the two stocks are trading at different prices, 
+
+--- PAGE BREAK ---
+
+Position Ana~ts 381 
+and because they are expected to have different volatllltles, a one-point move In ABC Is 
+unlikely to be matched by a one-point move In XYZ. To equate movement In ABC with 
+movement in XYZ, It may be more useful to look at price changes In terms of standard 
+deviations. For example, we can approximate a weekly standard devtatlon for each 
+stock by dlvtdlng the annual volatility by &, and multiplying this by the stock price: 
+ABC: 20%/7 2 x 99 = 2.75 
+XYZ: 23%/7 2 x 62 = 1.98 
+From these numbers we can generate graphs showing the position value given various 
+standard deviation prtce changes In each underlying stock. This has been done In Flgure 
+17. 7 a. Since we have a ratio vertical spread In ABC stock options and a long stran~e 1n 
+XYZ stock options, It should come as no surprtse that the position Will show Its 
+maximum theoretical profit when ABC sits still and XYZ makes a big move. 
+In order to complete our analysts we might want to look at the delta, gamma, theta, 
+and vega of the position. But, again, with the stocks at different prices It may be difficult 
+to equate the sensitivities of the ABC options with the sensltivitles of the XYZ options. 
+Since our total position Is an lntermarket spread, rather than looking at the delta, 
+gamma, theta, and vega of the position, we might Instead look at the $delta, $gamma, 
+$theta, and Svega sensitivities Introduced In Chapter 16. These sensltlvltles are shown 
+In Figures 17·7b through 17-7e.3 
+Figure 17-7a 
+100-r-----------_:_..-------7 
+XYZmovesup 
+80 
+60 
+-40 XYZ moves down 
+4 st devs. 
+'1:<Z moves down 
+2 st devs. ;-
+I m doesn't move \ 
+\ 
+\ 
+\ 
+-801~-----~--.----+----r---,--.---~ 
+-4 -3 -2 -1 0 1 2 3 
+ABC Price Movement (st. devs.) 
+3. In Figures 17•7b through t7-7e we make the ~umptton that each point Is worth $100. 
+
+--- PAGE BREAK ---
+
+382 
+Figure 17-7b 
+1500 
+1000 
+500 
+I ----------......_......_ 
+0 
+Q, § .500 
+I ! -1000 
+XYZ move• down 
+41t. devl. 'l:'(l movt1 down -1500 21t dM. -
+'1:fl doesn~ move 
+-2000 
+-2500 
+-4 .3 ·2 
+figure 17-7c 
+200 
+·--.. ~ ' 150 ...... 
+', 
+C 100 
+0 :i 
+0 
+Q. ., 
+~ 50 XYZmoves 
+up or down 
+CJ 2,t deVI. 
+lit 
+~ I-0 
+'1:fl moves 
+up or down . 50 4 It. deYI . -1 0 1 2 3 
+ABC Price Movement (st. devs.) 
+' ' 'l:'(Z doesn't move 
+' " ' 
+' "-'-.............. -..._ 
+-----/ 
+/ 
+/ 
+-1ool_,.---_-r-3-----r.2---,- _,----l-o---. ,--- 2.----r 3--4 
+ABC Price Movement (st, devs,) 
+
+--- PAGE BREAK ---
+
+Posuton Ana(ysts 383 
+Figure 17-7d 
+100,i---------,-: ::--------­
+XYZmove1down 
+4 ll dtYI, 
+80 
+60 
+40 Mmovetdown 
+2 ll devi, \ ------
+I 
+Q. 20 ! 
+'! 
+~ ~ 
+·20 " ·40 MmoYffUP 
+2. ll deYI. 
+-80 
+-ao1 ... ---::-_3---_-c2---.--+---.----r---...---_J -1 0 1 2 3 4 
+ABC Price Movement (st. devs.) 
+Figure 17-71 
+500,----------------------------
+C 
+0 
+:E _, 
+0 
+0.. 
+Cl l 
+"iii 0 I-------. .... -......... 
+400-~ 'l:'(Zmovesup 
+2. st devl, 
+300 ---
+200 
+100 XYZ moves down 
+2 at dtYI, 
+0 
+-100 'l:(Zmovesdown 
+4 at dtYI, 
+-300+,---...----...-----,---+---r----, 2r----,----J 
+-4 .3 -2 -1 0 1 3 4 
+ABC Price Movement (st. deva.) "l:'(ZmOVffUP 
+4. ,t dtYI, 
+
+--- PAGE BREAK ---
+
+384 Ch,ptn 17 
+It may lnltJally be difficult to grasp why the $gamma, Svega, and $theta are 
+changing as they are. If one recalls that the gamma, theta, and vega are always gr~ttst 
+for an at-the-money opUon, the position should show Its greatest posltlve Sgamma, 
+negative $theta, and positive Svega when ABC Is close to 95 (the position Is Jong ABC 
+95 calls) and when XYZ Is close to either 60 or 65 (the pos!Uon ls long XYZ 60 puts and 
+XYZ 65 calls). The poslUon should show Its greatest negative $gamma, posttJve $theta, 
+and negative Svega when ABC Is close to 105 (the position Is shon ABC t 05 calls) and 
+the when XYZ Is as far away from 60 and 65 as possible. Since price movement tn 
+Figures 17-7a through 17-7e ls expressed In standard deviations, In order to Interpret 
+the graphs we need to know where the exercise prices are In terms of standard 
+deviations. With ABC at 99 and a one standard deviation price change or 2.75, the ABC 
+exercise prices In terms of standard deviations are: 
+95 call: (95 -99) / 2.75 • • 1.5 st devs. 
+105 call: (105-99) I 2.75 • +2.2 st. devs. 
+With Kil at 62 and a one standard devtaUon price change of 1. 98, the XYZ exercise 
+prices In terms of standard deviations are: 
+60 put: (60 -62) / 1.98 • • 1 st. dev. 
+65 call: (65 -62) / 1. 98 • + 1.5 st. devs. 
+With these values In mind, the reader should take some time to study the graphs and 
+confirm that the $delta, $gamma, $theta, and Svega of the position are tn fact conslStent 
+wtth the principles of optJon evaluation. 
+The foregoing example consisted of positions In only two different underlying 
+markets. If a trader had option positions In several different underlying markets, a 
+detalled analysis of the total position would require multldlmenslonal graphs. Even ~ 
+they could be constructed, such graphs would be too complex for most traders to 
+Interpret. Under such circumstances the only practical solution Is to separate posltlons 
+by the underlying Instrument and do an Individual analysis of each market l 

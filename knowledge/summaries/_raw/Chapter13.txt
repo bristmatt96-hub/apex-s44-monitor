@@ -1,0 +1,634 @@
+Hedging with Options 
+Toe original justification for Introducing options and futures was to enable market 
+participants to transfer part or all of the risk associated with holding a position In the 
+underlying instrument from one party to another. Options and futures act as Insurance 
+contracts. Unlike a futures contract, an option transfers only part of the risk from one 
+party to another. In this respect an option acts much more like a traditional Insurance 
+policy than a futures contract. 
+Even though options were originally Intended to function as insurance policies, 
+option markets have evolved to the point where, In most markets, hedgers (those 
+wanting to protect an existing position), make up only a small portion of market 
+participants. Other traders, Including arbitrageurs, speculators, and spreaders, typically 
+outnumber true hedgers. Nevertheless, hedgers still represent an Important force In the 
+marketplace, and any sophisticated market participant must be aware of the strategies 
+hedgers use to protect their positions. 
+Many hedgers come to the marketplace as either natural longs or natural shorts. 
+Through the course of normal business actlvttles they will profit from either a rise or fall 
+In the price of some underlying Instrument The producer of a commodity (grain, oil, 
+precious metals) Is a natural long; If the price of the commodity rises, he will receive 
+more when he goes to sell it In the marketplace. The user of a commodity Is a natural 
+short; If the price of the commodity falls, he will have to pay less for It when he goes to 
+buy It In the marketplace. In the same way, lenders and borrowers In the financial 
+markets are natural longs and shorts In tenns of Interest rates. A rise In Interest rates 
+Will help lenders and hurt borrowers. A decline In Interest rates will have the opposite 
+effect 
+Other potential hedgers come to the marketplace because they have voluntarily 
+chosen to take long or short positions, and now wish to lay off part or all of the risk of 
+that posltlon. A speculator may have taken a long or short position In a certain contract, 
+but wishes to temporarily reduce the risk associated with an outright long or short 
+Positlon. For example, a portfolio manager Is usually paid to choose which stocks to buy 
+for a portfolio. He ls a voluntary long. If he wants to continue to hold certain stocks, but 
+believes that the stocks might decline In the short term, he may find It cheaper to 
+temporartly hedge the stocks with options or futures than to sell the stocks and buy them 
+back at a later date. 
+As with Insurance, there Is a cost to hedging. The cost may be immediately apparent 
+because It requires an Immediate cash outlay. But the cost may also be more subtle, 
+either In terms of lost profit opportunity, or In terms of additional risk under some 
+257 
+
+--- PAGE BREAK ---
+
+258 
+circumstances. Every hedging decision Is a tradeoff: what ls the hedger wJlllng ro gr,e 
+up under one set of market condltlons In order to protect himself under another set? A 
+hedger with a long position who wants to protect his downside wlll almost cenafnly 
+have to give up somethlng on the upside; a hedger with a short poslUon uytng to protect 
+his upside will have to give up something on the downside. 
+PROTECTIVE CALLS AND PUTS 
+The simplest way to hedge an underlying position using options Is to purchase either a 
+call to protect a short position, or a put to protect a long pos!Uon. In each case, If the 
+market moves adversely, the hedger Is Insulated from any loss beyond the exercise price. 
+The difference between the exercise price and the current prtce of the underlying 1s 
+analogous to the deductible portion of an Insurance policy. And the price of the opUon 
+Is analogous to the premium which one has to pay for the Insurance policy. 
+For example, suppose an Amertcan firm expects to take delivery of OM t ,000,000 
+worth of German goods In six months. If the contract reqU!res payment In Deutsche­
+marks at the time of delivery, the Amertcan firm has automatically acquired a shon 
+position In Deutschemarks against U.S. dollars. If the Deutschemark rises against the 
+dollar, the goods will cost more In dollars; If the Deutschemark falls against the dollar, 
+the goods will cost less. If the Deutschemark Is currently trading at .60 (60( per OM) 
+and remains there for the next slx months, the cost to the American firm wlll be 
+$600,000. If, however, at delivery the Deutschemark has risen to .70 (70¢ per dollar), 
+the cost to the American firm wlll be $700,000. 
+The American firm can offset the risk It has acquired by purchasing a call option on 
+Deutschemarks, for example a .64 call. If the firm wants an exact hedge, the underlying 
+contract will be DM 1,000,000, and the option will have an expiration date correspond· 
+Ing to the date of delivery of the goods. If the value of the Deutschemark begins to rlse 
+against the U.S. dollar, the firm will have to pay a higher price than expected when It 
+takes delivery of the goods In six months. But the price It will have to pay for 
+Deutschemarks can never be greater than .64. If the price of Deutschemarks Is greater 
+than .64 at expiration, the finn will simply exercise Its call, effectively purchasing 
+Deutschemarks at .64. If the price of Deutschemarks Is less than .64 at expiration, the 
+firm wlll let the option expire worthless since It will be cheaper to purchase Deutsche­
+marks In the open market. 
+A hedger who chooses to purchase a call to protect a short position, or a put to 
+protect a long position, has risk limited by the exercise price of the option. At the same 
+time, the hedger still maintains open-ended profit potential. If the underlying market 
+moves In the hedger's favor, he can let the option expire and take advantage of the 
+enhanced value of his position In the open market. If, In our example, the Deutschemark 
+were to fall to .55 at the time of delivery, the firm would simply let the .64 call expire 
+unexerclsed. At the same time, the firm woU!d purchase OM 1,000,000 for $550,000, 
+resulting In an unexpected windfall of $150,000. 
+There Is a cost Involved In buying Insurance In the form of a protective call or put, 
+namely the price of the option. The cost of the Insurance Is commensurate with the 
+
+--- PAGE BREAK ---
+
+fffdttn, wtth Options 259 
+amount of protection afforded by the optlon. If the price of a slx·month .64 call ls .007 5 
+(¥4c ), the firm wlll pay an extra $7,500 (.0075 x 1,000,000) no matter what happens. 
+A call option wtth a higher exercise price will cost less, but It also offers less protection 
+ln the fonn of an additional deductible amount. If the flnn chooses to purchase a .66 
+call trading at .0025 (1/4¢), the cost for this Insurance Will only be $2,500 (.0025 x 
+t ,000,000). But the firm will have to bear any loss up to a Deutschemark price of .66. 
+Qnty above .66 ls the flnn fully protected. In the same way, a lower exercise price call 
+will offer additional protection, but at a higher price. A .62 call wUI protect the flnn 
+against any rtse above .62, but If the prtce of the call ls .015 ( 11/2¢ ), the purchase of this 
+protection will add an additional $15,000 (.015 x 1,000,000) to the final costs. 
+The cost of purchasing a protective option and the Insurance afforded by the 
+strategy ls shown In Figures 13· 1 (protective call) and 13-2 (protective put). Since each 
+strategy combines an underlying position with an option position, It follows from 
+Chapter 11 that the resulting protected position ls a synthetic option: 
+short underlying + long call = long put 
+long underlying + long put = long call 
+A hedger who buys a call to protect a short underlying position has effectively purchased 
+a put at the same exercise prtce. A hedger who buys a put to protect a long underlying 
+position has eff ectlvely purchased a call. In our example, If the firm purchases a .64 call 
+to protect a short Deutschemark position, the result ts Identical to owning a .64 put 
+Figure 13-1 : A Protective Call 
+short an underlying posltlon ,/ 
+~-------- _/ 
+/ 
+combined position / 
+,/ -~­
+/ 
+
+--- PAGE BREAK ---
+
+260 Clup{lr/J 
+Figure 13-2: A Protective Put 
+/ 
+------- ~ 
+/ 
+/ 
+/ \ t 
+buy a protective put 
+combined position 
+Which protective option should a hedger buy? That depends on the amount of risk 
+the hedger is willing to bear, something which each market participant must determine 
+Individually. One thing is certain. There will always be a cost associated with the 
+purchase of a protective option. If the Insurance afforded by the option enables the 
+hedger to protect his financial position, the cost may be worthwhile. 
+COVERED WRITES 
+While the purchase of a protective option offers a limited and known risk, a hedger 
+might be willing to accept more risk In return for some other advantage. Instead of 
+purchasing an option to protect an existing position, a hedger might consider selllng, or 
+writing, an option against the position. Thls strategy does not offer the limited risk 
+afforded by the purchase of a protective option but, In Its favor, the strategy results ln a 
+cash credit rather than a debit. Thls credit offers some, though not unlimited, protection 
+against an adverse move In the underlying market. 
+Consider a fund manager whose portfolio consists of a long position in a certain 
+stock. If the manager Is worried about a decline In the price of the stock, he might 
+choose to sell a call option against the stock. The amount of protection the manager ls 
+seeking, as well as the potential upside appreciation, will determine which call is sold, 
+whether in-the-money, at-the-money, or out-of-the-money. Selling an In-the-money call 
+offers a high degree of protection, but will eliminate most upside profit potential. Selling l 
+
+--- PAGE BREAK ---
+
+HNlfnl wtth Options 261 
+an out-of-the-money call offers less protectlon but leaves room for large upside profit 
+potential. 
+r-or example, If the stock ls currently trading at 100, the fund manager might sell 
+a 95 call. If the 95 call ls trading at 6 '12, the sale of the call will offer a high degree of 
+protection against a decline In the price of the stock. As long as the stock declines by no 
+more than 61t'l, to 93112, the manager wlll do no worse than break even. Unforrunately , 
+\f the stock begins to rise, the fund manager wtll not participate In the rtse since the 
+stock will be called away when the manager ls assigned on the 95 call. Still, even If the 
+stock rtses, the manager will get to keep the 11~-polnt time premium he received from 
+the sale or the 95 call. 
+Ir the manager wants to paitlclpate In upside movement In the stock, and Is also 
+wllllng to accept less protection on the downside, he might sell a 105 call. If the I 05 
+call ls trading at two, the sale of this option will only protect him against a two-point 
+ran, to 98, ln the price of the stock. If, however, the stock begins to rtse, he Will 
+participate point for point ln this advance up to a prtce of 105. Above 105, he can expect 
+the stock to be called away. 
+Whlch option should the manager sell? Again, that ls a subjective decision based 
+on how much rtsk the manager ls willlng to take as well as the amount of upside 
+appreciation tn which he wants to participate. Many covered wrtte programs Involve 
+selling at-the-money options. Such options offer less protection than In-the-money calls, 
+and less profit potential than out-of-the-money options. An at-the-money option ts pure 
+tlme premium. If the market sits still, a portfolio of at-the-money options have been sold 
+against an existing posltlon tn the underlying Instrument will show the greatest 
+appreciation tn value. 
+The value of typical covered writes, also known as overwrites, are shown in Agures 
+13-3 (covered call) and 13-4 (covered put). When the underlying ts purchased and calls 
+are simultaneously sold against the position, a covered write ts also referred to as a 
+buy/write. As with the purchase of a protective option, a covered write consists of a 
+position tn the underlying and an option. It can therefore be expressed as a synthetic 
+position: 
+long underlying + short call = short put 
+short underlying + short put = short call 
+A hedger who sells a call to protect a long underlying position has effectively sold a put 
+at the same exercise prtce. A hedger who sells a put to protect a short underlying 
+position has effectively sold a call. In our example, If the portfolio manager sells a 100 
+call to protect a long stock position, the result ls Identical to selltng a 1 00 put. 
+The purchase of a protective option and the sale of a covered option are the two 
+most common hedging strategies Involving options. If given a choice between these 
+strategies, which one should a hedger choose? In theory, the hedger ought to base his 
+decision on the same criteria as the pure trader: price versus value. In general, tf the 
+price of an option ls lower than its value, then the purchase of a protective call or put 
+makes the most sense. If the price of an option ts higher than Its value, then the sale of 
+a covered call or put makes the most sense. By comparing Implied volatility to a forecast 
+
+--- PAGE BREAK ---
+
+l 
+262 aa,pttr /J 
+Figure 13-3: A Covered Call 
+combined position 
+sell a covored call 
+~ \~ 
+◄---------
+long an underlying position 
+Figure 13-4: A Covered Put 
+combined position I sell a covered put 
++ -------~ 
+short an underlying position 
+
+--- PAGE BREAK ---
+
+Hfdttn, WUh Options 263 
+volatUlty, a hedger ought to be able to make a sensible determinatio n as to whether he 
+wants to buy or sell options. Of course, he is still left with the choice of exercise prices. 
+Th\s wm depend on the amount of adverse or favorable movement the hedger foresees, 
+as weu as the risk he ls wllllng to accept lf he ts wrong. 
+Whtie theoretical considerations wlll often play a role In a hedger's decision, 
+practical considerations may also be Important. If a hedger knows that he will be forced 
+out of business lf the underlying contract moves beyond a certain price, then the 
+purchase of a protective option at that exercise prtce may be the most sensible strategy, 
+regardless of whether the option ls theoreucally overprtced. t 
+Most hedgers find, however, that there ls a psychological barrier to buying options. 
+·Why should I lay out money for an option when I wlll probably lose the premium?" 
+The hedger ls right. Most of the time he wlll lose the premium because most of the time 
+the option wm expire worthless. But the same hedger who refuses to purchase an option 
+to protect hls business deallngs would never consider leaving his home or family 
+uninsured. Uke options, the great majority of Insurance policies expire without claims 
+ever being made against them. Houses do not burn down; people live on; cars are not 
+stolen. That ts the reason insurance companies make a profit But the purchaser of an 
+Insurance policy ls wllllng to accept the fact that insurance companies make profits. 
+Unlike the Insurance company, which ls selling the Insurance contract with the clear 
+Intent of making a profit, the purchaser of an Insurance contract ls not purchasing the 
+contract to make money. He is purchasing It for the peace of mind which It affords. The 
+same philosophy should apply to the purchase of options. If a hedger needs the 
+protection afforded by the option, the purchase makes sense in spite of the fact that it 
+is llkely to be a losing proposition in the long run. 
+FENCES 
+Suppose a hedger desires the limited risk afforded by the purchase of a protective option, 
+but also wants to avoid the cash outlay associated with such a strategy. What can he 
+do? A popular strategy, known as a fence, ls to simultaneously combine the purchase 
+of a protective option with the sale of a covered optlon. For example, with an underlying 
+contract at 50, a hedger with a long posltlon might choose to simultaneously sell a 55 
+call and purchase a 45 put. The hedger ts Insulated from any fall In price below 45, since 
+he can then exercise his put. At the same time, he can participate In any upward move 
+to 55, at which point his underlying position will be called away. The cost of the 
+complete hedge depends on the prices of the 45 put and 55 call. If they are the same, 
+the cost of the hedge ls zero. If the price of the 55 call is greater than the price of the 
+45 put, the hedge can be established for a credit which the hedger gets to keep no matter 
+where the underlying finishes. With prices of 1.25 and 1.75 for the 45 put and 55 call, 
+the hedger wlll receive a credit of .SO. This will reduce his break-even price on the 
+underlying position to 49 .50. 
+I. Of course, Jf the options are wildly overpriced, a hedger might be reluctant to buy a protective optlon. 
+But th1s Is unlJJcely to happen. If optlon prices are hlgb, there 1s usually a valid re~n. 
+
+--- PAGE BREAK ---
+
+264 l'hApf tf 11 
+Recalling tl1e basic syntheUc relaUonshlps, we find that a long fenc~ ri g t 6 
+underlying, short a covered call, long a protecuve put) Is simply a bull vertical pr~ 
+done synthetlcally. Suppose In our example fence consisting of a long 45 put and ~ 0 
+55 call, we replace the 45 put with Its synthetic equivalent: 
+tong 45 put = short underlying+ long 45 call 
+45/55 fence = long underlying + long 45 put + short 55 call 
+= long underlying+ (short underlying+ long 45 call) + short 55 call 
+= long 45 call + short 55 call 
+A short fence consists of a short underlying position together With the purchase of 
+a protective call and sale of a covered put. Since we can always rewrite one of the 
+options wtth its synthetic equivalent, this ls simply a bear vertical spread. Long and sho 
+fences are shown In Figures 13-5 and 13-6. 
+Fences are popular hedging tools because they offer known protection at a Jow cost, 
+or even a credit. At the same time, they still allow a hedger to participate, at least 
+partially, in favorable market movement Fences go by a variety of names: range 
+forwards, tunnels, cylinders; among floor traders they are sometimes known as split­
+prtce conversions and reversals. 
+As the borrowing and lending of funds has become more Widespread, and since 
+such activity is often based on a floating interest rate, the use of options to hedge long 
+or short interest rate positions has become especially popular. A firm which borrows 
+Figure 13-5: A Long Fence 
+sell a covered call I // .. 
+/ combined position / f 
+◄--
+·, 
+-------~--_.. \ ~ 
+buy a protective put 
+long an underlying position 
+
+--- PAGE BREAK ---
+
+H~ With Options 265 
+Flgu.,. 13-6: A Short Fence 
+combined position \ "'' • ""''"" put / • / ----------- - -► 
+/ / 
+I 
+buy a protective call / 
+short an underlying position 
+funds at a variable interest rate has a short interest rate position. A fall In Interest rates 
+will reduce Its cost of borrowing, while a rise In Interest rates wUl Increase Its costs. To 
+cap the upside risk, the firm can purchase an Interest rate call, thereby establishing a 
+maximum amount It will have to pay for borrowed funds. No matter how hlgh interest 
+rates rise, the borrower wm never have to pay more than the cap's exercise price. 
+An Institution which lends funds at a variable Interest rate has a long Interest rate 
+position. A rise in interest rates will Increase its returns, while a fall in Interest rates will 
+reduce lts returns. To set a jlooron Its downside risk, the Institution can purchase an 
+interest rate put, thereby establishing a minimum amount it wm receive for loaned 
+funds, no matter how low interest rates fall. No matter how low Interest rates fall, the 
+lender will never receive less than the floor's exercise price. 
+If a borrower {lender) simultaneously buys a cap (floor) and sells a floor (cap), he 
+has established a collar to his position. Thls Is simply a fence done In the Interest rate 
+market. 
+COMPLEX HEDGING STRATEGIES 
+Since most hedgers are not professional option traders, and have neither the time nor 
+desire to carefully analyze option prices, simple hedging strategies Involving the pur­
+chase or sale of single options are the most widely used. However, if one ls willing to 
+do a more detailed analysis of options, it ls possible to construct a wide variety of hedging 
+
+--- PAGE BREAK ---
+
+66 l'l'IApl" 11 
+strat ~es which Involve both volaUllty and dlrectlonal considerations. r n ord~r rn 
+thl ~ hedger must be familiar with both volaUllty and lts Impact on optJon valu , ~ t1 
+th d lta as a measure of directional risk. The hedger can then combine his knowf~t1~ 
+or optlons with the practical conslderatlons of hed~ng. 
+As 8 first step In choosing a strategy, a hedger might consider the follow1ng; 
+1. Does the hedge need to offer protection against a "worst case" scenal1o? 
+2. How much of the current directional rtsk should the hedge eliminate? 
+3. What additional risks Is the hedger wllllng to accept? 
+A hedger who needs disaster Insurance In order to protect against a "worst case" 
+scenario only has a choice of which optlonls) to buy. Even so, he still needs to decide 
+which exercise price to purchase and how many options. For example, suppose a hedger 
+has a long position In a certain underlying contract currently trading at 1 oo. Suppose 
+also that the hedger decides to buy a put because he needs to limit the downside rtsk to 
+some known and fixed amount Which put should he buy? 
+Suppose the hedger has determined that options are generally overpriced (Implied 
+volatility ts too high). Clearly, any option purchase will be to the hedgers' disadvantage . 
+If his sole purpose ts to hedge his downside risk without regard to upside profit potentlal, 
+he ought to avoid options and hedge himself In the futures or forward market. H, 
+however, he still wants upside profit potential, he must ask himself how much of a long 
+position he wants to retain. For example, he might be willing to retain 50% of his current 
+long position. This simply means that he has to purchase puts With a total delta of -50. 
+He can do this by purchasing one at-the-money put with a delta of -50, or several 
+out-of-the-money puts whose deltas add up to -50. But in a high implied volatlllty 
+market one usually tries to buy as few options as possible and sell as many options as 
+possible. (This is analogous to constructing a ratio vertical spread.) Hence, purchaSing 
+one put with a delta of -50 will be less costly, theoretically, than purchasing several 
+options with a total delta of -50. If the hedger wants to eliminate even more of the 
+directional risk, say 75%, under these circumstances he would be better off purchasing 
+one put with a delta of-75. 
+All other factors being equal, in a high Implied volatility market a hedger 
+should buy as few options as possible and sell as many options as possible. 
+Conversely, in a low imp/Jed volatility market a hedger should buy as many 
+options as possible and sell as Jew options as possible. 
+This means that If all options are overpriced limplied volatility ls too high), and the 
+hedger decides he Is Willlng to accept the unlimited downside risk that goes with the 
+sale of a covered call, In theory he ought to sell as many calls as possible to reach his 
+hedging objectives. If he is trying to hedge 50% of his long underlying position, he can 
+do a ratio write by selling several out·of·the-money calls with a total delta of 50, rather 
+than selllng a sln~e at-the-money call with a delta of 50. 
+There Is an additional problem if one sells several calls against a single long 
+underlying position. Now the hedger not only has the unllmlted downside rtsk which 
+
+--- PAGE BREAK ---
+
+Hfdttrlt With Options 267 
+goes wtth a covered call position, but he also has unlimited upside risk because he has 
+sold more calls than he can cover wtth the underlying. If the market moves up far 
+enough, he wlll be assigned on all the calls. Most hedgers want to restrict their unllmlted 
+risk to one direction, usually the direction of their natural position. A hedger with a Jong 
+underlylngposttlon maybe willing to accept unlimited downside rtsk, but he ls probably 
+unwilling to accept unlimited upside risk. A hedger wtth a short underlying position may 
+be w\lllng to accept unlimited upside risk, but he ls probably unwf lltng to accept 
+unllmlted downside risk. A hedger who constructs a position with unlimited rtsk tn 
+either direction ts presumably taking a volatlllty posltlon. There ts nothing wrong with 
+this, since volatlllty trading can be highly profitable. But a true hedger ought not lose 
+sight of what his ultimate goal ls: to protect an extstlngposltlon, and to keep the cost of 
+this protection as low as possible. 
+A hedger can also protect a position by constructing one-to-one volatility spreads 
+with deltas which yield the desired amount of protection. For example, a hedger who 
+wants to protect 50% of a short underlying posltlon can buy or sell time spreads or 
+butterflies with a total delta of +50. Such spreads offer partial protection within a range. 
+The position still has unlimited upside risk, whlle It also retains unlimited downside 
+profit potential. Such volatility spreads also gtve the hedger the choice of buying or 
+selling volatility. If implied volatility ts generally low, with the underlying market 
+currently at 100, the hedger might protect a short position by purchasing a 110 call time 
+spread (purchase a long-term 110 call, sell a short-term I IO call}. This spread has a 
+positive delta and, at the same time, ts theoretically attractive since the low Implied 
+volatility makes a long time spread relatively inexpensive. If the 110 call time spread 
+has a delta of +25, to hedge 50% of hls directional risk the hedger can buy two time 
+spreads for each short underlying position. Conversely, If Implied volatility ls high, the 
+hedger can consider selling tlme spreads. Now he wtll have to choose a lower exercise 
+price to achieve a positive delta. If he sells the 90 call time spread (purchase a short-term 
+90 call, sell a long-term 90 call), he will have a position with a posltlve delta and a 
+positive theoretical edge. If he wants to protect 75% of his position, and the spread has 
+a delta of +25, he can sell the spread three times for each underlying position. 
+In the same way, a hedger can also buy or sell vertical spreads to achieve a desired 
+amount of protection. Depending on whether options are generally underprtced or 
+overprtced (implied volatility ls too low or too high), the hedger wlll work around the 
+at-the-money option. With the underlying market cUJTently at 100, the hedger who 
+wants to protect a long position can sell a vertical call spread with a negative delta (sell 
+the lower exercise price call, buy the higher exercise price call). If Implied volatlllty ts 
+high, he wlll prefer to sell an at-the-money option and buy an out-of-the-money option. 
+If tmplled volatlllty ls low, he will prefer to sell an In-the-money option and buy an 
+at-the-money option. Each spread will have a negative delta, but wtll also have a positive 
+theoretical edge since the at-the-money option ls the most sensitive to changes ln 
+volatlllty. 
+As ls obvious, using options to hedge a position can be just as complex as using 
+options to construct trading strategies. Many factors go Into the decision-making 
+process. When a potential hedger ls confronted for the first time with the multitude of 
+
+--- PAGE BREAK ---
+
+268 {Juptt, IJ 
+possible strategies, he can understandably feel overwhelmed, to the point where ~ 
+decides to abandon opUons completely. When this happens the hedger, or so~, 
+advtslng the hedger, should lay out a limited number of strategies (perhaps four or fttJ 
+which make sense, and compare the various rtsk/reward charactertstlcs of the stJ'i 
+gles. Given the hedger's general market outlook, and his Willingness or unwtll1n&ne1 to accept certain rtsks, It should then be possible to make an lntelllgent decision. A 
+summary of common hedging strategies, with some of their advantages and dlsadVi!t 
+tages, Is ~ven In Figure 13·7. 
+PORTFOLIO INSURANCE 
+Suppose a hedger holds a long position In a certain asset, and he wants to protect his 
+holding against downward movement by purchasing a put option. Unfortunate ly, tl't 
+hedger finds that no option market for this asset exists. Nor Is any other source, such as 
+an option dealer, available. Is there any way the hedger can create the put option 
+himself? 
+If the hedger were really able to purchase a put, his position would be: 
+long underlying+ long put 
+But we know from the synthetic relationships In Chapter 11 that a long underlying 
+position together with a long put Is equivalent to a long call. Therefore, the hedger really 
+wants to own a call with the same exercise price as the put. 
+What would be the charactertstlcs of this call? We could analyze the call using a 
+theoretical pricing model. In order to do that, we need to know what the underlying 
+asset Is, and then we need to determine the Inputs Into the model. Suppose the 
+underlying asset Is a futures contract, and that we plan to use the following Inputs: 
+exercise price = 100 
+time to expiration = 10 weeks 
+underlying price = 101.35 
+Interest rate = 8% 
+volatility = 18.3% 
+Feeding these Inputs Into a theoretical pricing model, we find that the call option which 
+the hedger would like to own has a delta of 57. This means that if the hedger actually 
+owned the call (Instead of owning the underlying asset together with a 100 put} In 
+theory he would have a position equivalent to owning 57% of hls asset Therefore, if he 
+wants to replicate the combination of the underlying asset and the 100 put, he must sell 
+off 43% of his holdln~ In the asset. When he does that, he will have a posltlon 
+theoretically equivalent to owning a 100 call. 
+Now suppose a week passes and the value of his asset has risen to 102.26. What 
+would be the delta of the 100 call which the hedger desires to own? Again, feeding all 
+the Inputs into a theoretical pricing model, we find that the call now has a delta of 62. 
+If the hedger wants a position which Is equivalent to a long call, he now needs to own 
+
+--- PAGE BREAK ---
+
+Figure 13-7: Summary of Hedging strategies 
+Po.ltlon Hedging Strategy AdvanlagN 
+long buy a Protecttve put limited downside nsklun#mlted ups#de profft 
+Undertylng potential positive theoretical edge 
+sell a covered call potential positive theoretical edge 
+short 
+Undertying long fence 
+(buy a put, sell a call) 
+ratio put purchase 
+ratio call write 
+bear vertical spread 
+bear time spread 
+buy a protective call 
+sell a covered put 
+short fence 
+(buy a cal, sel a put) 
+ratio call purchase 
+ratio put write 
+bun vertical spread 
+bull time spread limited downside risk 
+potential credit If call price exceeds put price 
+unlimited upside profiVunlimlted downside profit 
+potential positive theoretical edge 
+potential positive theoretical edge 
+unlimited upside profit 
+potential positive theoretical edge 
+unlimited upside profit 
+potential positive theoretical edge 
+limited upside risk/unHmltec:t downside profit 
+potential positive theoretical edge 
+potential positive theoretical edge 
+limited upside risk 
+potential credit If put price exceeds call price 
+unlimited downside profit/unlimited upside profit 
+potential positive theoretical edge 
+potential positive theoretical edge 
+unlimited downside profit 
+potential positive theoreticaJ edge 
+unHmlled downside profit 
+potential, positive theoretical edge DINdvantage 
+poten tfal negative theoretical edge 
+unHmlted downside risk 
+potentJal negative theoretfcaJ edge 
+limited upside profit 
+potential debit If put price exceeds call price 
+potential negative theoretical edge 
+unlimited downside risk/unlimited upside risk 
+potential negative theoretical edge 
+unlimited downside risk 
+potential negative theoretical edge 
+unlimited downside risk 
+potential negative lheoretical edge 
+potential negative theoretical edge 
+unlimited upside risk 
+potential negative theoretical edge 
+limited downside profit 
+potential debit If can price exceeds put prtoe 
+potential negative theoretical edge 
+unlimited upside r1sk/UnHmlted downside risk 
+potential negative theoretical edge 
+unUmlted upside risk 
+potential negative theoretical edge 
+unlimited upside rtsk 
+potential negative theoretical edge -, J J 
+i i 
+~ "() 
+
+--- PAGE BREAK ---
+
+270 C/upltr/J 
+62% of his original holding In the underlying asset He must therefore buy back 5l ~ 
+his original holding in the asset. 
+Suppose another week passes and the value of the asset has fallen to 99.07. USUJi 
+the new market condltlons, the 100 call would now have a delta of 46. In order r.o 
+replicate the call posltlon, the hedger must now sell off 16% of the asset, so that he owns 
+only 46% of his original holding. 
+Notlce what the hedger Is doing. He Is periodically rehedgtng his ortglnal holdlrig 
+to create a position with the same delta charactertstlcs as the call. If he continues to do 
+this over the ten-week pertod, he has, In effect, created a ten-week call at an exerciu 
+price of 100. 
+The reader may have already realized that we are simply repeatlng the example 1n 
+Flgure 5.11 but In a slightly different form. In that example, we purchased an under• 
+priced call and replicated the sale of the same call through a contlnuous rehedgtng 
+process. In our current example we are also replicating the call through a continuous 
+rehedglng process. But here we want to purchase the call rather than sell It. AJJ our 
+adjustments are therefore the opposite of those In Figure S· 1. Note also that at week ten 
+(expiration), Instead of liquidating the position, as we did In Figure S· l, we plan to buy 
+In the remainder of the asset. It was always our Intention to retain our entire holding of 
+the asset at expiration. The replicated position In our current example Is shown In Agure 
+13-8. 
+In order to replicate the call, the hedger wlll have to buy back some of the asset 
+when the market rises and sell some of the asset when the market falls. The unfavorable 
+adjustments (buying high, selling low) suggests that there will be a cost associated with 
+this rehedglng process. What wlll the cost be? If the replication process offers the same 
+protection as owning a 100 put, then one might expect the cost of the repllcatlon 
+process to be the same as the theoretical value of the ten week 100 put This Is Indeed 
+the case. Using the previously listed inputs, the Black-Scholes model yields a theoretical , 
+value for the 100 put of 2.55. This Is Identical to the cost of the repllcatlon process 
+descrtbed In Figure 13-8. 
+The rehedglng process Is an attempt to replicate the automatic rehedglng charac· 
+terlstics of the option. As a hedge against an underlying position, an option has the very 
+desirable characteristic of offering greater protection as the market moves adversely, and 
+less protection as the market moves favorably. In effect, the option automatically 
+rehedges Itself to fit the required amount of protection. This Is the influence of the 
+gamma on the option's delta. When a hedger attempts to replicate the characteristics of 
+an option by continuously re hedging the underlying position himself, he ls simply trying 
+to replicate the automatic rehedglng (gamma) characteristics of the option. The cost of 
+the option, or the cost of the rehedglng process, Is the price the hedger pays for the 
+option's gamma characteristics. 
+Since we need to continuously compute the delta to replicate an optlon through a 
+rehedgtng process, this method of replication requires us to use a theoretical pricing 
+model. We are therefore likely to encounter many of the same problems which we 
+encounter anytime we use a theoretical pricing model to evaluate an optlon. Is the 
+model Itself correct? Do we have the right Inputs? Leaving aside the question of the 
+
+--- PAGE BREAK ---
+
+271 
+figure 13-8 
+%of Alltt 
+Asaet Dtlta of Needtd tor Requl'9d 
+Week Value 100 call RepllcaUon A~Ulbntnt 
+0 101.35 57 57% seU 43°/4 
+1 102.26 62 62% buy5% 
+2 99.07 46 46% sell 16% 
+3 100.39 53 53% buy7% 
+4 100.76 56 56% buy3o/o s 103.59 74 74% buy 18% 
+6 99.26 45 45% sell29% 
+7 98.28 35 35% sell 1001. 
+8 99.98 50 50% buy 15% 
+9 103.78 93 93% buy43% 
+10 102.54 100 100% buy7% 
+model's correctness, anyone wishing to use this method wm have to come up with a 
+reasonable volatility estimate. If the volatlllty estimate turns out to be too high or too 
+low, the cost of replicating the option wlll be more or less than orlglnally expected. But 
+notice that the cost of replication wlll always be the right cost If the market ls more 
+volatile than expected, the cost will be greater ln terms of required adjustments. But the 
+value of the option would also have been greater. Higher volatlllty means a higher 
+theoretical value. In the same way, If the market ls less volatlle than expected, the cost 
+will be less in terms of required adjustments. The value of the option would also have 
+been less. Lower volatility means a lower theoretical value. 
+This process of continuously rehedging an underlying position to replicate an optlon 
+position ls often referred to as portfolio Insurance. The method can be used to protect 
+any long or short position against adverse movement, but It ls most commonly used by 
+fund managers who wish to Insure the value of the securities In a portfollo against a 
+drop 1n value. For example, suppose a manager has a portfollo of securities currently 
+valued at $100 mllllon. If he wants to insure the value of the portfollo against a drop In 
+value below $90 mllllon, he can elther buy a $90 million put, or he can repllcate the 
+characteristics of a $90 million call. If he ls unable to find someone w1lllng to sell him 
+a $90 milllon put, he can evaluate the characteristics of the $90 mllllon call and 
+continuously buy or sell the portion of his portfolio required to replicate the call posltlon. 
+In effect, he has created his own put. 
+Unfortunately, the costs of buying and selllng a large number of securttles in odd 
+amounts may be quite high. While the concept of portfolio Insurance may be attractive 
+from a theoretical perspective, the transaction costs may make the process too expensive 
+to be of practical value. Is there any way a fund manager can use portfolio Insurance 
+while keeping transaction costs within acceptable bounds? One common method 
+Involves using futures contracts as a substitute for the portfolio holding. If the mix of 
+securities In a portfolio approximates an index, and futures contracts are available on 
+that index, the manager can approximate the results of portfolio Insurance by purchas· 
+Ing or selllng futures contracts to Increase or decrease the holdln~ in his portfollo. In 
+
+--- PAGE BREAK ---
+
+272 Chapttr /J 
+the United States several Index futures are available, the most popular being the futurei 
+contract on the S&P 500 Index traded at the Chicago Mercantile Exchange. Many fimd 
+managers use S&P 500 futures to insure their portf ollos against adverse movement In 
+the stock market. This method ls not without rtsk, since the ~P 500 Index ls unllieJ'( 
+to exactly duplicate the holdings of any one portfolio. Still, the risk may be acceptable 
+given the reduced transaction costs. 
+Even If options are available on an underlying asset, a hedger may still choose ro 
+effect a portfolio insurance strategy himself rather then purchasing the option ln ~ 
+marketplace. For one thing, he may consider the option too expensive. If he believes 
+the option ls theoretically overpriced, In the long run It will be cheaper to contlnuousfy 
+rehedge the portfollo. Or he may find Insufficient liquidity ln the option market to absorb 
+the number of option contracts he needs to hedge hls position. Finally, the explratlon 
+of options which are avallable may not exactly correspond to the period over which he 
+wants to protect his position. If an option ls avallable, but expires earller than desired, 
+the hedger might still choose to purchase options ln the marketplace, and then pursue 
+a portfolio insurance strategy over the period following the option's expiration. For all 
+these reasons, portfolto Insurance has become an Increasingly popular method of 
+protecting a position ln an underlying asset. 

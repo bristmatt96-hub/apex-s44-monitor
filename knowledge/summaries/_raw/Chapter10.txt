@@ -1,0 +1,553 @@
+Bull and Bear Spreads 
+Whlle delta neutral strategies are perhaps the most popular among active option traders, 
+many traders prefer to trade with a bullish or bearish perspective In the underlytn 
+lnStrument The trader who wishes to take a directional position In the underl n g 
+instrument has the choice of doing so In either the Instrument Itself, buytng or sell: ! 
+futures contract or stock, or In the option market If he chooses the option market, ~e 
+trader has the opporrunlty to Integrate option prtclng theory Into a bull or bear strategy 
+tn order to take advantage of theoretically mlsprlced options. 
+NAKED POSITIONS 
+Since the purchase of calls or the sale of puts will create a positive delta position and 
+the sale of calls or purchase of puts will create a negative delta posttlon, we can al~ys 
+take a directional position In a market by taking an appropriate naked position In either 
+calls or puts. If all options are overpriced (hlgh lmplled voJatlllty), we might sell puts to 
+create a bullish position, or sell calls to create a beartsh position. If all options are 
+underprtced (low Implied volatility), we might buy calls to create a bullish position, or 
+buy puts to create a bearish position. 
+The problem wlth this approach ts that, as with all non-hedged positions, there ls 
+very little margin for error. If we purchase options, we wlll lose money not only 1f the 
+market moves ln the wrong direction, but also if the market falls to move enough in our 
+favor to offset the time premium in the option. If we sell options, we face the prospect 
+of unlimited risk lf the market moves violently against us. An experienced trader will 
+always look for a way to Improve the risk/reward charactertstlcs of hls position by 
+looking for positions with the greatest possible margin for error. This philosophy applies 
+no less to directional strategies than to volatility strategies. In directional strategies, as 
+in volatility strategies, this can often be done by finding an appropriate spread. 
+BULL AND BEAR RATIO SPREADS 
+If a trader believes that implied volatility ls too high, one sensible strategy ls a ratio 
+vertical spread. For example, with the underlying market at 100 suppose a June 100 
+call has a delta of 50 and a June 110 call has a delta of 25. A delta neutral spreader can: 
+buy I June 100 call (50) 
+sell 2 June 110 calls (25) 
+/99 
+
+--- PAGE BREAK ---
+
+200 l Chapttr lo 
+Since the spread Is delta neutral, It has no particular preference for upward or downwar~ 
+movement In the underlying market. 
+Now suppose the same trader believes that this ratlo verucal spread 15 a serulhle 
+strategy, but at the same Ume he Is also bull1sh on the market. There Is no Jaw that 
+requires him to do this spread In a delta neutral ratio. If he wants this spread to reflect 
+his bullish sentiment, he might change the ratlo slightly: 
+buy 2 June 100 calls (50) 
+sell 3 June 110 calls (25) 
+The trader has essenUally the same rauo vertical spread, but With a bullish bias. This h 
+reflected In the total delta for the poslUon of +25. 
+There Is, however, an Important limitation using this type of ratio strategy to create 
+a bullish or bearish posltlon. In our example the trader Is lnJtlally bulllsh, but the posrnon 
+Is still a ratio verUcal spread. A5 such, it has a negative gamma. If the trader ha3 
+underestimated volatlllty, and the underlying market moves up too quickly, the spread 
+can invert from a posltlve to a negative delta. If the market rtses far enough, to J 30 or 
+140, eventually all options will go deeply Into-the-money and the deltas of both the June 
+1 oo and June 110 calls will approach 100. Eventually, the trader wtll be left with a delta 
+posltlon of -100. Even though the trader was correct In his bullish sentiment, the 
+position was primarily a volatlllty spread, so that the volatility characteristics of the 
+posltlon eventually outweighed any conslderatJons of market direction. 
+The delta can also Invert with a backspread. Unlike a negative gamma posltlon, 
+where the inversion Is caused by swift price movement In the underlying contract, a 
+backspread can invert when the market Is less volatile than expected. For example, 
+suppose that with the underlying market at 100 a trader believes that implied volatility 
+Is too low. He might decide on a delta neutral backspread: 
+buy 2 June 110 calls (25) 
+sell 1 June 100 call (50) 
+If, however, he Is bulllsh on the market, he can, as in the last example, change the 
+rauo to reflect this sentiment: 
+buy 3 June 110 calls (25} 
+sell 1 June 100 call (50) 
+His delta position of +25 reflects this bullish bias. 
+We know that as time passes, or as volatlllty declines, all deltas move away from 
+50. If time begins to pass with no movement In the underlying contract, the delta of the 
+June 100 call Will remain at 50, but the delta of the June 11 0 call will start to decline. 
+If, after a period of time, the delta of the June 100 call dedlnes to l 0, the delta of the 
+position will no longer be +25, but will Instead be -20. Since this spread ls a volatility 
+spread, the primary consideration, as before, is the volatility of the market. Only 
+secondarlly are we concerned with the direction of movement. If the trader overestl• 
+mates volaUllzy, and the market moves more slowly than expected, the spread which 
+I'll 1ty def~ posIUve can instead become delta negative. 
+Wa~ In ua" 
+
+--- PAGE BREAK ---
+
+r 
+Bua •nd Btar Spreads 20/ 
+BULL AND BEAR BU'ITERFLIES AND TIME SPREADS 
+Butterflies and one-to-one (non-ratloed) time spreads can also be chosen In such a way 
+as to reflect a trader's bulllsh or bearish bias. Like ratio spreads, however, their delta 
+characteristics can also lnven as market conditions change. 
+With the underlying market at 100, a delta neutral trader might buy the June 
+95/ l 00/105 call butterfly (buy a 95 call, sell two I 00 calls, buy a 105 call). The trader 
+hopes that the market wlll sit still at 100 so that at expiration the butterlly wlll widen 
+to Its maximum value of five points. If, however, a trader wants to buy a butterfly, but 
+Is also bulllsh on the market, he can choose a butterfly where the Inside exercise price 
+Is above the current price of the underlying contract If the underlying market Is 
+currently at 100, he might choose to buy the June I 05/110/115 call butterfly. Since 
+this position wants the underlying market at 110 at expiration, and It ls currently at 1 oo, 
+the position Is a bull butterfly. This wlll be reflected In the position having a positive 
+delta. 
+Unfortunately, if the underlying market moves too swiftly, say to 120, the butterfly 
+can Invert from a positive to a negative delta position. Since at expiration the butterfly 
+always has Its maximum value with the underlying contract right at the Inside exercise 
+price, the trader will now want the market to fall back from 120 to 11 o. Whenever the 
+underlying market Is below 110, the position will be bullish; whenever the undertylng 
+market ls above 110, the position wlll be bearish. 
+Conversely, If the trader Is bearish, he can always choose to buy a butterfly where 
+the Inside exercise price ls below the current price of the underlying market But again, 
+If the market moves down too quickly and goes through the inside exercise price, the 
+position will Invert from a negative to a positive delta. 
+In a similar manner, a trader can choose time spreads that are elther bulllsh or 
+bearish. A long time spread always wants the near-term contract to explre exactly 
+at-the-money. A long time spread will be initially bulllsh if the exercise price of the time 
+spread Is above the current price of the underlying market. I With the underlying market 
+at 100, the June/March 11 O call time spread (buy the June 110 call/sell the March 110 
+call) will be bulllsh since the trader will want the underlying market to rise to 110 by 
+March expiration. The June/March 90 call time spread (buy the June 90 call/sell the 
+March 90 call) will be bearish, since the trader wJll want the underlying market to fall 
+to 90 by March expiration. However, like a long butterfly, a long time spread has a 
+negative gamma, so that if the market moves through the exercise price, the delta can 
+invert. If the market moves from 100 to 120, the June/March 110 call time spread, 
+which was initially bulllsh, will become bearish. If the market moves from 100 to 80, 
+the June/March 90 call time spread, which was initially bearish, will become bullish. 
+J. In the futures market the sJtuatJon may be complicated by the fact that dillerent futures months may 
+be tradfn at different rices. Instead of choosing a traditional time spread where both optJons have the 
+g thp d y have to choose a diagonal spread to ensure that the posltlon Js either same exercise price, e tra er ma 
+bullish (delta positive) or bearlSh (delta negative}. 
+
+--- PAGE BREAK ---
+
+202 O,,,,Xtr lo 
+VERTICAL SPREADS 
+It 1s common for traders to take bull or bear market pos!Uons by choosing appropriate 
+ratlo spreads, butterflies, or tlme spreads, but In each of these posJtlons volatllltY ls StJll 
+the prlmaiy concern. A trader can be right about market direction, but If he ls wrong 
+about volatlllty, the spread may not retain the directional characterlstlcs that the trader 
+intended. 
+If a trader focuses initially on the direction of the underlying market, he might look 
+for a spread where the dlrectlonal characterlstlcs of the spread are the primary concern, 
+and volatility ls of secondary Importance. He would llke to be cenaJn that 1f the spread 
+ls lnltlally bullish (delta positive} It will remain bullish under all possible market 
+conditions. If It 1s Initially bearish (delta negative) It Will remain bearish under aJJ 
+possible market conditions. 
+The class of spreads which meet the above requirements are known as vertical 
+spreads. A vertical spread always consists of one long (purchased) option and one shon 
+(sold) option, where both options are of the same type (either both calls or both puts) 
+and explre at the same time. The options are dlstlngulshed only by their different 
+exercise prtces. Typical vertical spreads might be: 
+buy 1 June 100 call 
+sell I June 105 call 
+or 
+buy I March 105 put 
+sell I March 95 put 
+Vertical spreads are not only lnltlally bullish or bearish, but they remain bullish or 
+bearish no matter how market conditions change. Two options which have different 
+exercise prices but which are Identical In every other respect cannot have Identical 
+deltas. In the first example, where the trader Is long a June 100 call and short a June 
+105 call, the June 100 call will always have a delta greater than the June 105 call. If 
+both options go deeply Into-the-money or very far out-of-the-money, the deltaS may be 
+almost Identical. Even then, the June 100 call will have a delta fractionally greater than 
+the June 105 call. In the second example, no matter how market conditions change, 
+the March 105 put wlll always have a delta greater than the March 95 put 
+At expiration, a vertical spread will have a minlmum value of zero, If both options 
+are out-of-the-money, and a maximum value of the amount between exercise prices, if 
+both options are In-the-money. H the underlying market ls below 100 at expiration, the 
+June 100/105 call spread wlll be worthless because both options will be worthless. If 
+the market Is above 105, the same spread wlll be worth five points because the June 
+100 call will be worth exactly five points more than the June 105 call. SimJlarly, the 
+March 95/105 put spread will be worthless If the underlying market Is above 105 at 
+expiration, and It wlll be worth 10 points If the market Is below 95. The expiration 
+values of typical bull and bear vertical spreads are shown In Agures 10-1 and I 0-2. 
+
+--- PAGE BREAK ---
+
+I l.lttl &.,. Spreads 
+Flgur.10-1 
+fl) 
+fl) 
+.9 
+Figure 10-2 
+-;: 
+E a.. buy a call (put) 
+at a lower 
+exercise price 
+sell a call (put) 
+at a lower 
+exercise price NII a call (pvt) 
+ata high« 
+exerciMpnoe 
+I 
+buy a call (put) 
+at a hlghe~ 
+exercise pnce 203 
+
+--- PAGE BREAK ---
+
+204 
+since a vertical spread at expiration Will always have a value between zero ar1'1 ~ 
+amount between exercise prices, a trader can expect the Price of such a spread '" ~ 
+somewhere within this range. A l 00/105 call vertlcaJ spread will rrade f6r ~. ~ 
+amount between zero and five points; a 951105 put vertical spread will trade for'l'J--:. 
+amount between zero and IO points. The exact value wm depend on the 1tke1ih YA ,1 
+the underlying market finishing below the lower exercise p!'lce, aoove the Mt~ 
+exerc\se prtce, or somewhere In between. If the market Is currently at 80 and gives If ~ 
+lndtcatlon of rising, the price of the 100/105 call vertical will be close to zero, wti •~ 
+the price of the 95/105 puts vertical wm be close to 10. If the market 1s currently~ 
+120 with little likelihood that it wlll fall, the price of the l 00/I 05 call verticaJ 'N1ll ~ 
+close to five points, while the price of the 95/105 put vertical wm be close to zero. 
+If a trader wants to do a vertical spread, he has essentially four choices. If he:; 
+bullish he can choose a bull vertical call spread or a bull vertical put spread; if he. 
+bearish he can choose a bear vertical call spread or a bear vertical put spread. fr. 
+example: 
+bull call spread: 
+bull put spread: 
+bear call spread: 
+bear put spread: buy a June 100 call 
+sell a June 105 call 
+buy a June 100 put 
+sell a June 105 put 
+sell a June 100 call 
+buy a June 105 call 
+sell a June 100 put 
+buy a June 105 put 
+Note that a trader who is bullish can buy a 100 call and sell a 105 call, or buy a 
+1 oo put and sell a 105 put. And a trader who is bearish can buy a 105 call and sell a 
+too call, or buy a 105 put and sell 100 put. This may seem counter-intuitive, since one 
+expects spreads which consist of puts to have characteristics which are the opposite of 
+those which consist of calls. Regardless of whether a vertical spread consists of calls or 
+puts, whenever a trader buys the lower exercise price and sells the higher exercise 
+price, the posttfon ts bullish; whenever a trader buys the higher exercise price and sells 
+the lower exercise price, the position ts bearish. Call and put vertical spreads which 
+expire at the same time and which consist of the same exercise prices have approxi­
+mately the same delta, so they have approximately the same bullish or bearish charac· 
+teristlcs. 2 
+Given the many different exercise prices and expiration months available, how can 
+a trader choose the vertical spread which best reflects his directional expectations and 
+which gives him the best chance to profit from those expectations ? 
+Since options have a limited life with a fixed expiration date, a trader who wants 
+to use options to take advantage of an expected market move must first determine his 
+time horizon. Is the movement likely to occur In the next month, in the next three 
+months, in the next nine months? If It ls currently May and the trader foresees upward 
+2. We are ~urning for the moment that all options are European, with no ~ility of early exerclse. 
+
+--- PAGE BREAK ---
+
+205 
+movement, but belleves the movement Is unlikely to occur wlthln the next two months, 
+It does not make much sense to take a posltlon In June options. If hls expectatloru are 
+\ong•tenn, he may have to take his posltlon In September, or even December, optlons. 
+Of course, as he moves further and further out In time, market liquidity may become 
+more of a problem. This Is a factor that will have to taken Into conslderaUon . 
+Next, a trader will have to decide Just how bullish or bearish he ts. Is he very 
+confident, and therefore wllllng to take a very Jarge dlrectlonal position? Or Is he less 
+certa\n and wllUng to take only a llmlted position? Two factors detennlne the total 
+dlrectlonal characterlstlcs of a vertical spread: 
+I. The delta of the specific vertical spread 
+2. The slze ln whlch the spread Is executed 
+For example, a trader who wants to take a position which Is 500 deltas long 
+(equivalent to purchasing five underlying contracts) can either choose a vertical spread 
+which Is SO deltas long and execute It IO times, or choose a vertical spread which Is 25 
+deltas long and execute lt 20 times. Both positions will leave hlm long 500 deltas. 
+The delta value of a vertical spread Is determined by various factors: time to 
+expiration, volatlllty, and distance between exercise prtces. Since a trader wtll be 
+required to choose an expiration date which covers the period or expected directional 
+movement, and since a trader will always make his best estimate or volatility over a 
+given period, in practice the delta will be a function of the exercise prices which he 
+chooses. The greater the distance between exercise prices, the greater the delta value 
+associated with the spread. A 95/ l l 0 bull spread wlll be more bullish than a 100/ 110 
+bull spread, which will, In turn, be more bullish than a 100/105 bull spread. This ls 
+shown In Agure I 0-3. 
+Once a trader decides on an expiration month tn which to take his directional 
+position, he must decide which specific spread Is best That ts, he must decide whlch 
+exercise prices to use. A common approach ls to focus on the at-the-money options. If 
+a trader does this, he wm have the following choices: 
+Bull call spread: buy an In-the-money call or buy an at-the-money call 
+sell an at-the-money call sell an out-of-the-money 
+Bear call spread: buy an at-the-money call or buy an out-of-the-money call 
+sell an in-the-money call sell an at-the-money call 
+Bull put spread: buy an at-the-money put or buy an out-of-the-money put 
+sell an In-the-money put sell an at-the-money put 
+Bear put spread: buy an In-the-money put or buy an at-the-money put 
+sell an at-the-money put sell an out-of-the-money put 
+With four dlff erent bull spreads and four different bear spreads avallable, how can 
+the trader choose the spread which represents the best value? One way to do this ls to 
+use a theoretical pricing model to evaluate several different vertical spreads. Thls has 
+been done In Figure l 0-4 for slJc different options on an underlying futures contract an 
+in-the-money, at-the-money, and out-of-the-money call, and an In-the-money, at-the-
+
+--- PAGE BREAK ---
+
+20() 
+Figure 10-3 
+As the exercise prices become further 
+apart, a vertical spread takes on 
+greater bullish or bearish characteristics . 
+I 
+slightly bullish / 
+I 
+I ___ (_ 
+I 
+I 
+moderately bullish I 
+I 
+I 
+I 
+very bullish 1 ~-------------I 
+I I 
+I I ......... 
+r 
+money, and out-of-the-money put. The assumptions include an underlying price of 100, 
+12 weeks to expiration, a volatility estimate of 20%, and an interest rate of 8%. 
+Suppose we are interested in doing a bull call spread. Two posslbllltles are to buy 
+a 95 call and sell a 100 call, or buy a 100 call and sell a l 05 call. The spreads and their 
+theoretical values are: 
+Spread Theoretical Value Delta 
+95/100 call spread 2.87 +20 
+100/105 call spread 1.88 +20 
+Figure 10-4 
+Futures price= 100; Tlme = 12 weeks;_ Volatility = 20%; Interest= 8.00% 
+TheoreUcal 
+OpUon Value Delta Gamma Theta Vega 
+95 call 6.63 71 3.4 -.017 .16 
+100 call 3.76 51 4.1 -.022 .19 
+105 call 1.88 31 3.7 -.020 .17 
+95 put 1.72 -27 3.4 -.019 .16 
+100 put 3.76 -47 4.1 -.022 .19 
+105 put 6.79 -67 3.7 -.019 .17 
+
+--- PAGE BREAK ---
+
+207 
+\"th both spreads having the same delta or +20, It may appear that the I 00/105 spread 
+a better value since It Is likely to be less expensive. But should this be the sole 
+ttmnlnant In choosing a strategy? As In all spreads, the optlon trader's goal ls to create 
+a position wtth positive theoretlcal edge, by either purchasing hlgh value at a low price, 
+r ttlllng low value at a high price. In order to achieve this goal we need to know not 
+onty the theoretical values of the spreads, but also the prices of the spreads In the 
+marketplace. 
+From an optlon trader's point of vtew, the relative prices of options In the 
+marketplace ts usually represented by the Implied volatlllty. We know the value of the 
+spreads based on our volatility Input of 20%. What might be the prices of the spreads lf 
+tmplled volatillty In the option market ls something other than 20%7 We can answer 
+me question by using a theoretical pricing model with the same underlying price, time 
+to explratlon, and Interest rate, but with volatllltles lower and higher than 20%. This 
+has been done In Figure 10-5 using volatilities of 16% and 24%, along wtth our estimated 
+volatility of 20%. 
+Going back to our bull call spread, suppose Implied volatility Is lower than our 
+estimate of 20%, say 16%. We can see that the price of the 95/100 spread will be 
+approximately 3.01, while the price of the 100/105 spread wm be approximately 1.78. 
+We have two choices: we can pay 3.01 for a spread that ls worth 2.87 (the 95/100 
+spread), or we can pay 1.78 for a spread that Is worth 1.88 (the 100/105 spread). 
+Clearly, we will prefer the 100/105 spread since It will result In a positive theoretical 
+edge of .10. If we were to buy the 95/100 spread we would end up with a negative 
+theoretical edge of .14. 
+Now suppose implied volatility ts higher than our estimate of 20%, say 24%. We 
+can see that the price of the 95/100 spread will be approximately 2.77, while the price 
+of the 100/1 OS spread will be approximately 1.94. Again, we have two choices: we can 
+pay 2.77 for a spread that Is worth 2.87 (the 95/100 spread}, or we can pay 1.94 for a 
+spread that ts worth 1.88 (the 100/105 spread}. Now we will prefer the 95/100 spread 
+since it will result In a posltlve theoretical edge of .1 O. The 100/ 105 spread would result 
+In a negative theoretical edge of .06. 
+Figure 10-s 
+95 95/100 100 100l105 105 
+Call Spread Call Spre1d call 
+Volatlllty 
+6.02 3.01 3.01 1.78 1.23 
+16% 1.88 (20} 2.57 (31} 
+20% 6.63 (71} 2.87 (20} 3.76 (51} 
+2.77 4.51 1.94 2.57 
+24% 7.28 
+951100 100 100l105 105 
+95 Spre1d Put 
+Volatlllty Put Spread Put 
+3.01 3.13 6.14 
+16% 1.11 1.90 
+3.76 (-47) 3.03 (20) 6.79 (~7) 
+20% 1.72 (-27) 2.04 (20) 2.97 7.48 4.61 
+24% 2.37 2.14 
+
+--- PAGE BREAK ---
+
+208 
+~Pl'to 
+What's happening here? Even though both spreads have the sam 
+under one set of circumstances we seem to prefer the 95/ 1 oo sprea e delta ~~ 
+different circumstances we seem to prefer the 100/ I 05 spread. The r~' While Un~~ 
+clear If we recall one of the characteristics of optlon evaluation Introduced I a~~ beeo111 ~, n "11apter ,.,~ 
+If we consider three optlons, an In-the-money, at·the-money, and O ~ 
+the-money optlon which are Identical except for their exercise P~cesUt·of. 
+at•the-money option Is always the most sensitive In total points to a ch' the 
+In volatility. ange 
+This means that when all options appear overprtced because we believe 
+volatility Is too high, In total points the at-the-money option wlll be the most ove lrnp11~ 
+When all options appear underprtced because we believe Implied volaUUty Is /Prtced. 
+In total points the at-the-money option will be the most underprlced. This chara~ 10w, 
+leads to a very slmple rule for choosing bull and bear venlcal spreads: terisuc 
+If Implied volatility ts too low, vertical spreads should focus on purchastng 
+the at·the-money option. If Implied volatility Is too high, vertical spreads 
+should focus on selling the at·the·money options. 
+Now we can see why the I 00/ I 05 call spread Is a better value If Implied voJauu 
+ls 16%, while the 95/100 spread ls a better value If Implied volatlllty ls 24%. lf lmpu! 
+volatility ls too low ( 16% ), we want to buy the at-the-money ( I 00) call. HaV!ng done 
+this, we have only one choice In order to create a bull spread-sell the out•of•the-mone 
+( 1 OS) call. If Implied volatility Is too high (24% ), we want to sell the at·the-money (I oo! 
+call. Having done this, we again have only one choice In order to create a bull 
+spread-buy the In-the-money (95) call. 
+The same principle Is equally true for put vertical spreads. We always want to focus 
+on the at·the-money option, buying It when Implied volatility Is too low, and sell!ng It 
+when Implied volatility Is too high. For example, suppose we want to do a bear put 
+spread with Implied volatility too low. In this case we want to buy the at-the-money 
+( l 00) put. Having done this, we are forced to sell the out-of-the-money (95) put to create 
+our bear spread. We can see from Figure I 0· 5 that we wlll pay approximately I. 90 for 
+this spread, but the spread ls worth 2.04. We wlll end up with a delta position of-20, 
+and a positive theoretical edge of .14. 
+Of course, a trader Is not required to execute any vertical spread by first buying or 
+selllng the at-the-money option. Such spreads always Involve two options, and a trader 
+can choose to either execute the complete spread In one transaction, or leg Into the 
+spread by trading one option at a time. In the latter case, he may decide to first trade 
+the In-the-money or out-of-the-money option, and trade the at-the-money option at a 
+later time. This Is a practical trading decision he will have to make based on market 
+conditions and the amount or risk he Is wllllng to accept. Regardless of how the spread 
+Is executed, the trader should focus on the at-the-money option, either buying It when 
+Implied volatility Is too low, or selling It when Implied volatility Is too hlgh. 
+In practice It Is unlikely that one option will be exactly at-the-money, so that It may 
+be difficult to decide which option to buy and which to sell. In such a case, It Is usually 
+
+--- PAGE BREAK ---
+
+Ill lnct Bw spreads 209 
+btst to focus on the option which Is closest to at·the·money. If the underlying market ls 
+at 103, with 95, 100, 105, and 110 calls available, ltls logtcal to focus on the 105 call 
+$lnCt It ts closest to at-the-money. If lmplled volatJJlty Is too low, a trader wUI want to 
+buy the 105 call; If Implied volatlllty ls too hlgh, a trader wtll want to sell the I 05 call. 
+He can then trade a different option In order to create a bull or bear vertical spread. 
+Nor does a trader have to Include the optJon which Is closest·to·the·money as pan 
+of hls spread. A trader who has a strong directional opinion can choose a vertical spread 
+where both options are very far out·of·the·money or very deeply In-the-money. The delta 
+values of such spreads wlll be very low, but a trader can create a hlghly leveraged 
+JX)Sltlon by executing each spread many times. For example, with the underlying market 
+at 100, a trader who ls strongly bullish might buy the 115/120 call spread (assuming 
+such exercise prices are available). The cost of this spread wlll be very low since there 
+ls a hlgh probablllty that the spread will expire worthless. Hence, the trader wtll be able 
+to execute the spread many times at a relatively low cost. If he Is right and the market 
+doeS rise above 120, the spread will wtden to Its maximum value of five points, resulting 
+1n very large profits. But regardless of the exercise prtces chosen, If Implied volatility ls 
+low, the trader will attempt to buy the closer·to·the·money option, and lf Implied 
+volatlllty is hlgh, the trader will attempt to sell the closer·to·the-money option. 
+The choice of the at-the-money option Is slightly dlff erent when we move to stock 
+options. If we define the at-the-money option as the one whose delta Is closest to 50, 
+then we may find that the at-the-money option Is not always the one whose exercise 
+price ls dosest to the current price of the underlying contract This Is because the option 
+with a delta closest to 50 will be the one whose exercise price Is closest to the forward 
+price of the underlying contract In stock options, the forward price ls the current prtce 
+of the stock, plus carrying costs on the stock, less expected dividends. Assuming an 
+underlying stock price of 99, slx months to expiration, a volatility of 28%, Interest rates 
+of I 0%, and no dlvldend, we can see from Figure 10-6 that the 105 call has a delta of 
+50 and therefore acts llke the at-the-money option, even though Its exercise price Is six 
+points higher than the current underlying price. Therefore, any vertlcal spread should 
+focus on the 105 call or 105 put. 
+The approximate prices of vertical spreads wlth these stock options at Implied 
+volatllltles of 23% and 33% are shown ln Figure 10-7. 
+Figure 10-6 
+Stock price = 99; Time = 6 months; Volatility = 28%; Interest = 8.00% 
+Theoretical Gamma Thtta Vega 
+Option Value Delta -.031 .24 
+11.97 69 1.8 95call 2.0 -.0~ .27 
+105~ 6.96 50 -.025 .25 
+115CcMI 3.74 32 1.8 .22 1.8 -.013 
+95put 4.25 -31 -.011 .26 2.0 
+105 put 9.20 -50 -.004 .24 
+1.8 
+115put 15.68 -68 
+
+--- PAGE BREAK ---
+
+~ 
+2/0 Clup(,r IO 
+Figure 10.7 -
+95 95/105 105 1051115 115 VolatHlty Call Spread CaU SPfald Cd 
+23% 10.77 5.20 5.57 3.05 2.52 
+28% 11.97 (69) 5.01 (19) 6.96 (50) 3.22 (18) 3.74 (32) 
+33% 13.21 4.85 8.36 3.34 5.02 
+95 95/105 105 105/115 115 
+Volltlllty Call Sprud Cati SJ»rMd Call 
+23% 3.05 4.41 7.46 6.56 14.02 
+28o/. 4.25 (-31) 4.60 (19) 8.85 (-50) 6,39 (19) 15.24(~) 
+33% 5.49 ◄.76 10.25 6.27 16.52 
+As always, we can never be cenaln of the delta values of a spread because we can 
+never be certain that we have the correct Inputs Into the model, In partJcuJar, volatlllty. 
+If volatlllty turns out to be lower than our estimate, the deltas Will move away from so. 
+If volatlllty turns out to be higher than our estimate, the deltas wUI move towards 50. 
+This wlll change the delta values of the spreads. However, If we work around the 
+at-the-money option, spreads with approximately the same amount between exerctse 
+prices will have approximately the same delta values. Our primary problem wtll be 
+deciding whether Implied volatlllty Is too high or too Jow. 
+Notlce that In every case, whether with futures options or with stock options, 
+whether using a low volatlllty or a high volatlllty, If one leg of our spread always involves 
+an at-the-money option, the vertical spread which Includes the In-the-money optlon 
+always has a higher price than the spread which Includes the out-of-the-money optlon. 
+A new trader might take the view that since both spreads have approximately the same 
+delta values, It must make sense to always purchase the cheaper spread or sell the more 
+expensive. This Ignores the purpose of option evaluatlon: to consider not only the Initial 
+cost of a strategy, but to compare that to the strategy's expected return. In our futures 
+option example, a trader wlll always have to pay more for the 95/100 call spread than 
+the 100/ 1 OS call spread. But If lmplled volatility ls too high, the 95/ 100 spread will 
+also return more to the trader. To see why, suppose a trader ls choosing between the 
+95/ l 00 bull call spread and the 100/ 105 bull call spread. Consider three possible cases. 
+In case one, the trader Is right and the market moves from 100 to 110. U that happens 
+both spreads will be wtnners since they wlll both wtden to their maximum value of five 
+points. In case two, the trader Is wrong and the market drops to 90. In that case both 
+spreads will be losers since they will both collapse to zero. Now consider case three, 
+where the trader ls wrong because he expected the underlying market to rtse and It 
+didn't But he wasn't terribly wrong, because It also didn't fall. It simply remained at 
+100. If that happens the 100/ 105 spread wUI collapse to zero, while the 95/ 100 spread 
+will sun widen to lts maximum value of five points. The 95/100 spread ls always more 
+valuable than the 100/105 spread because It has time on Its side. The I 00/105 spread 
+needs the market to rise to show a profit. The 95/100 spread doesn't really need the 
+
+--- PAGE BREAK ---
+
+211 
+t to rtse; It just needs for the market not to fall. The reader can confirm thl by 
+l ul~ttng the gamma and theta positions of the spreads In Figure I 0· 5. The I 00/ I 05 
+, d has a positive gamma and a negative theta, whereas the 95/100 spread has 
+tlve gamma and a positive theta. 
+ff~ trader ls considering a bull vertical spread, how likely Is It that the market will 
+e? That depends on his ablllty to predict market direction. At the same tlme, he must 
+ask himself how likely it ls that the market wlll move. That depends on his ablllty to 
+predict volatility. If a trader believes there Is a good chance the market wtll move (htgh 
+volatility), and at the same time belleves the movement will be to the upside (bulllsh on 
+direction), it makes sense to buy the 100/105 spread. On the other hand, If the trader 
+beUeves the market ts unlikely to move significantly (low volatllf ty), but at the same time 
+believes that whatever movement does occur ls likely to come on the upside (also 
+bullish}, It makes sense to buy the 95/100 spread. In both cases the trader Is trying to 
+maximize the return on his investment when he ls rlght and minimize the loss when 
+he Is wrong. 
+Why might a trader with a directional opinion prefer a vertical spread to an outright 
+long or short position in the underlying instrument? For one thing, a vertical spread ls 
+much less risky than an outright position. A trader who wants to take a position which 
+is 500 deltas long can either buy five underlying contracts or buy 25 vertical call spreads 
+With a delta of 20 each. The 25 vertical spreads may sound riskier than five underlying 
+contracts, until we remember that a vertical spread has llmited risk whlle the position 
+in the underlying has open-ended risk. Of course, greater risk also means greater reward. 
+A trader with a long or short position in the underlying market can reap huge rewards 
+if the market makes a large move in his favor. By contrast, the vertical spreader's profits 
+are limited, but he will also be much less bloodied if the market makes an unexpected 
+move in the wrong direction. 
+Expertenced traders accept the fact that they are human, and that their directional 
+forecasts will occasionally be wrong. When that happens the vertical spreader has a 
+distinct advantage over the trader with an outright position in the underlying market. 
+By intelligently estimating volatility, an option trader can decide whether he wants time 
+working for or against him. When he chooses to have time on his side (positive theta), 
+he can sometimes show a profit when the outright trader either breaks even or shows 
+a loss. When he chooses to have time working against him (positive gamma), the option 
+trader's losses when he ls wrong about market direction will often be less than the losses 
+from an outright underlying position. 

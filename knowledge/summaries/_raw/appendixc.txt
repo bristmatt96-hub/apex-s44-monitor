@@ -1,0 +1,178 @@
+r 
+•:• Appendix C •:• 
+Characteristics 
+of Volatility Spreads 
+
+--- PAGE BREAK ---
+
+~ 
+~ 
+Figure C-1: Characteristics of Volatility Spreads 
+(all spreads are assumed to be approximately delta neutral) 
+A large move An lncreaM(decrNM) Thep•aage Upude Downelde 
+lnltlal lnltlal lnltlal lnltlal In the undertylng In lmplled volatlllty of time contract contract 
+Spread Type Delta Gamma Theta Vega generally generally generally position ~ 
+Call backspread 0 + -+ helps helps (hurts) hurts long 0 
+Put backspread 0 + -+ helps helps (hurts) hurts 0 short 
+Call ratio vertical spread 0 - + - hurts hurts (helps) helps short 0 
+Put ratio vertical spread 0 -+ - hurts hurts {helps) helps 0 long 
+Long straddle 0 + -+ helps helps (hurts) hurts k>ng short 
+Short straddle 0 -+ - hurts hurts (helps) helps short long 
+Long strangle 0 + -+ helps helps (hurts) hurts k>ng short 
+Short strangle 0 - + - hurts hurts (helps) helps short long 
+Long butterfly 0 - + - hurts hurts (helps) helps 0 0 
+Short butterfly 0 + -+ helps helps (hurts) hurts 0 0 
+Long time spread (1 :1 ratio) 0 - + + hurts helps (hurts) helps 0 0 
+Short time spread (1 :1 ratio) 0 + - - helps hurts (heJps) hurts 0 0 t J n 
+-·-
+
+--- PAGE BREAK ---
+
+•:• Appendix D •:• 
+What's the Right Strategy? 
+Toe following chart ls designed to help the reader choose the types of strategies which 
+are most likely to be profitable given a trader's opinion on market direction and 
+volatility. Even though several strategies may be approprlate under the same market 
+conditions, each strategy will have Its own unique risk/reward characterlstlcs. The 
+reader should refer to the text for a more detailed analysis of each strategy. 
+The implied volatility component, whether low, moderate, or hlgh, Js In compart­
+son to a trader's own volatility forecast If the trader believes that 15% is a reasonable 
+forecast, but implied volatility ls 13%, then Implied volatility ls low. If the trader believes 
+that 20% ls a reasonable forecast, but Implied volatility Is 24%, then Implied volatility ls 
+high. If the trader's volatility forecast ls approximately the same as the Implied volatility, 
+then implied volatility is moderate. 
+Any of the listed strategies can be done synthetically. Instead of buying {selling) a 
+call, a trader can buy (sell) a put with the same exercise price and buy (sell) an 
+underlying contract (synthetic long (short) call). Instead of buying (selling) a put, a trader 
+can buy (sell) a call with the same exercise price and sell (buy) an underlying contract 
+(synthetic long (short) put). 
+The only scenario for which there is no appropriate strategy ls one in which a trader 
+has no oplnlon on either Implied volatility or market direction. In such a case a 
+disciplined trader will choose to sit on the sidelines until trading conditions become 
+more opportune. 
+In-the-money call butterflies and time spreads, and out-of-the-money put butterflies 
+and time spreads, are those in which all exercise prtces are lower than the current prtce 
+of the underlying contract. Out-of-the-money call butterflies and time spreads, and 
+In-the-money put butterflies and time spreads, are those In which all exercise prices are 
+higher than the current price of the underlying contract. 
+
+--- PAGE BREAK ---
+
+Figure 0-1: What's the Right Strategy? 
+ITM = in-the-money A TM = at-the-money 
+IMPLIED VOLATILITY 
+~ 
+~ u w cc 
+iS 
+~ cc C 
+~ Low 
+buy naked puts 
+.c bear vertical spreads i buy A TM call/sell ITM call 
+_; buy A TM put/sell OTM put 
+sell OTM (ITM) call (put) butterflies 
+buy ITM (OTM) call (put) time spreads 
+-backspreads 
+J: buy straddles/strangles J sell ATM call or put butterflies 
+buy ATM call or put time spreads 
+buy naked calls 
+ii I bull vertical spreads: 
+:, buy ATM call/sell OTM call 
+m buy ATM put/sell ITM put 
+sell ITM (OTM) call (put) butterflies 
+buy OTM (ITM) call (put) time spreads OTM = out-of-the-money 
+Moderate 
+sell the underlying 
+go on vacation 
+buy the undertying sen naked calls 
+bear vet1ical spnaads: 
+buy OTM cal/sell ATM cal 
+buy ITM put/sell ATM put 
+I buy ITM (OTM) cal (put) buD111111 
+seU OTM (ITM) call (put) lime. spreads 
+ratio vertical spreads 
+sen straddlesl strangtes 
+buy ATM call or put butlMfliu 
+sell ATM caU or put time 3P~ 
+sell naked puts 
+buU vertical spreads: 
+buy ITM call/seU ATM call 
+buy OTM put/seM A TM put 
+buy OTM (ITM) caM (put) buttla~ 
+sell lTM (OTM) ccMI (put) lime sp,a,aci3 . • ~ 
+::.. 'b 
+~ 
+~ 
+~ 
+~ 
+
+--- PAGE BREAK ---
+
+•:• Appendix E ♦ 
+Synthetic and Ar 
+Relationships 
+
+--- PAGE BREAK ---
+
+SYNTHETIC EQUIVALENTS AND ARBITRAGE STRATEGIES 
+(Unless otherwise noted, options are assumed to have the same exercise price and expiration date.) 
+Synthetic Equivalents: 
+Arbitrage Strategies: synthetic long underlying = long call+ shortput 
+synthetic short underlying = short call + long put 
+synthetic long call = long underlying+ long put 
+synthetic short call = short underlying + short put 
+synthetic long put = shortunderlying + long call 
+synthetic short put = long underlying + short call 
+conversion = long underlying+ synthetic short underlying 
+= long underlying+ short call + long put 
+reverse conversion = short underlying+ synthetic long underlying 
+= short underlying+ long call + short put 
+synthetic long underlying synthetic short underlying 
+box = at one exercise price + at a different exercise price 
+. synthetic long underlytng synthetic short underlying 
+Jelly roll= in one expiration month + in a different expiration month ~ 
+~ 
+~ 
+~ 
+B '-
+
+--- PAGE BREAK ---
+
+ARBITRAGE VALUES FOR EUROPEAN OPTIONS 
+(no early exercise permitted} 
+(In the following relationships "carrying cost" is meant to be the cost of carry to expiration. "Present value" is the value at expiration 
+discounted by the carrying costs. For a more detailed discussion of "present value", see the description of the exponential function in 
+Appendix B.) 
+For Futures Markets 
+synthetic underlying market = call -put price 
+= underlying price -exercise price -canying cost (futures price -exercise price) 
+box market= present value (amount between exercise prices) 
+(When options in a futures market are subject to futures-types settlement , all carrying costs are zero, and the present value is identical 
+to the expiration value.) 
+For Stocks 
+synthetic underlying market = call price -put price 
+= underlying price price -exercise price+ carrying price (exercise price) -expected dividends 
+box market= present value (amount between excise prices) 
+jelly roll market = carrying costs on the exercise price from one expiration to the next -expected dividends 
+= present value (long-term exercise price) -present value (short-term exercise price) -expected dividends r s 
+~ 
+=­::) 
+~ 
+~ 
+d-i 
+~ s. -a-§. 
+~ 
+e; 
+~ 
+
+--- PAGE BREAK ---
+
+OTHER USEFUL RELATIONSHIPS 
+box = conversion at one exercise price + reverse conversion at a different exercise price = bull (bear) vertical call spread + bear (bull) vertical put spread 
+call butterfly= put butterfly with the same exercise prices and expiration dates 
+long (short) call butterfly + short (long) put butterfly with the same exercise prtces 
+= long (short) box at the lower exercise prtces + short (long) box at the higher exercise prices 
+long (short) butterfly= short (long) iron butterfly 
+= short (long) straddle+ long (short) strangle 
+jelly roll = conversion in one month + reverse conversion 1n a dlfferent month 
+= long (short) call tlrne spread + short (long) put time spread ~ 
+\ \ \ 

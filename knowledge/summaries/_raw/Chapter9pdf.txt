@@ -1,0 +1,1013 @@
+Risk Considerations 
+er (he prices and theoretical values shown In Agure 9-1. What categories of 
+consid spreads might be profitable under these conditions? By comparing prices to 
+\'OJadl:al values, or by comparing the Implied volatilltJes of the various optlons to the 
+tJleD~ Input of J 5%, we can see that all options are overpnced. Recalllng the general 
+\'Vlad lYes In the last chapter, under the given conditions a trader will want to consider 
+guidelln with a negative vega: 
+spreads 
+Call and Put Ratio Vertical Spreads 
+Short Straddles and Strangles 
+Long Buttermes 
+Short Time Spreads 
+Which of these categories is likely to represent the best spreading opportunity? And 
+within each categozy, which speclflc spread might be best? 
+CHOOSING THE BEST SPREAD 
+r-or the moment, let's focus on May options only. Having eHmfnated the possibJHty of 
+ume spreads, we wm have to look for spreads In the ratio vertical category (negative 
+gamma, negative vegaJ. With ten different May options (five calls and five puts), It is 
+possible to construct a wide variety of spreads which fa11 into thls categocy. How can 
+we make an intelllgent decision about which spread might be best? 
+Suppose we choose three possible strategies and tcy to analyze them. The three 
+strategies which have been chosen are spreads 1, 2, and 3, shown in Agure 9-2. 
+These are certainly not the only possible spreads, nor can we be certain that they 
+are the best possible spreads. But in theoiy each spread ought to be profitable under the 
+given market conditions, since each fits into the ratio vertical spread categoiy: spread l 
+is a short straddle, spread 2 ls a call ratio vertical spread, and spread 3 ls a long put 
+butterfly. How can we evaluate the relative merits of each spread? 
+Initially it may appear that spread l is best since it has the greatest theoretical edge. 
+If the volatility estimate of 15% turns out to be correct, spread l will show a profit of 
+2.86, while spread 2 will show a profit of 1.00, and spread 3 will show a profit of only 
+.40. 
+But is theoretical edge our only concern? If that were true we could simply do each 
+spread in bigger and bigger size to make the theoretical edge as large as we want. Instead 
+of doing spread 2 at 1 Ox 15, we might increase the size fivefold to 50 x 75. This will 
+173 
+
+--- PAGE BREAK ---
+
+Figure 9-3 
+TheoretJcal Delta Gamma Theta Vega Edge Position Position Position Position Spread 1: -1 O May 50 caJls 10x+.15 -10x+44 -10 X 13.4 -10x-.0099 -10x .076 -8 May 50 puts 8 x+.17 -Sx-55 -8 X 13.4 -8 x-.0098 -8 X .07~ 
++2.86 0 -241.2 +.1774 -1.368 
+Spread 2: +30 May 51 calls 30x-.20 +30 x+31 +30x 12.1 +30 x-.0090 +30 X .068 
+-45 May 52 calls 45 X +.20 -45x+21 -45x 9.8 -4~x-.0073 -4~x ,055 
++3.00 -15 -78.0 +.0585 -.435 
+Spread 3: +70 May 49 puts 70x-.14 +70x-42 +70 X 13.3 +70 x-.0098 +70 X .075 
+-140 May 50 puts 140x+.17 -140x-55 -140 X 13.4 -140 X -.0098 -140 X .076 
++70 May 51 puts 70 x-.1§ +7Qx-6~ +ZQx 12.1 +7Qx-.0087 +7Qx ,068 
++2.80 0 -98.0 +.0770 -.630 
+
+--- PAGE BREAK ---
+
+i Rts.k Constderattoras 177 
+,s ,-oiauucy increases. But the slope of spread 1 ls most severe. It loses Its value very 
+qu\ck.ly as volatlllty increases, much more quickly than spreads 2 and 3. 
+F-or each of our spreads we might logically ask how high volatlllty can rise before 
+we begin to lose money. That Is, we might want to determine the break-even volatlllty, 
+or tmpl/ed volatllftY, for each spread. This Is simply an extension of the general deflnltlon 
+of lrnplled volatility: the volatility which would have to occur over the life of an option, 
+or options, such that a position would show neither a profit nor a loss. It Is common 
+among traders to determine the Implied volatility of a spread position, just as they 
+determine the Implied volatillty of Individual optlons. We can see from Agure 9.3 that 
+the lmplled (break-even) volatilities of spreads 1, 2, and 3 are approximately 17%, 20%, 
+and 22%, respectively. 
+From a volatlllty perspectlve, spread 3 shows the best risk/reward characteristics. 
+W\th each spread we are, in a sense, selling volatlllty, and we would like to do so at the 
+highest possible price. Would we rather sell something that's worth t 5% (our volatlllty 
+estimate) at 17% (the Implied volatility of spread 1 ), at 20% (the Implied volatility of 
+spread 2), or at 22% (the Implied volatlllty of spread 3)? The higher the lmplled volatility 
+of the spread, the greater the margin for error in our volatility estimate and, conse­
+quently, the greater the likelihood of showing a profit. Spread 1 has only a 2-percem­
+age-potnt margin for error, while spread 3 has a margin for error more than three times 
+greater, at 7 percentage points. Spread 2 falls somewhere In between. 
+Why are we so concerned about our volatility estimate being too low? A trader 
+might take the vtew that he Is just as llkely to overestimate as underestimate volatility. 
+If this happens, how wlll it affect the potential outcome of each spread? Suppose we 
+declde to do spread 1 and volatility turns out to be 18%, three percentage points higher 
+than our estimate of 15%. Looking at Figure 9-4 we can see that If this happens we wm 
+lose approximately 1.21. Suppose, however, that there Is an equal chance that volatility 
+will turn out to be 12%, three percentage points lower than our estimate. In Figure 9-5, 
+where we have extended volatillty down to 10%, we can see that In this case we will 
+make approximately 6.95. In a more extreme case, when volatility turns out to be 20% 
+we will lose 3. 95. But If volatility turns out to be 10% we wlll make 9 .64. For each time 
+we underestimate volatility and show an unexpected loss, we might assume there will 
+be an equal number of times when we overestimate volatility and show an unexpected 
+profit The end result of all these outcomes wlll be an average profit of approximately 
+2.86, the predicted profit of the spread at a volatility estimate of 15%. 
+Suppose that the average result of doing any one of our spreads, 1, 2, and 3, Is a 
+profit of approximately 2.80. If the outcome In each case is identical, why should It 
+make any difference which spread we choose? While the end result is certainly an 
+important theoretical consideration, how the end result comes about may be an equally 
+important practical consideration. 
+Every trader knows that there are times when he shows a profit and times when 
+he shows a loss. No one wins all the time. In the long run, however, a good trader's 
+profits will more than offset his losses. For example, suppose a trader chooses a strategy 
+which will show a profit of $7,000 half of the time, and which wlll show a loss of $5,000 
+the other half of the time. In the long run he will show an average profit of $1,000. But 
+
+--- PAGE BREAK ---
+
+178 
+Figure 9-4 
+4 
+2 
+~ 0 
+0 ..J 
+ad -2 
+cl: 
+0 ... 
+~ -4 
+~ :;:. 
+G) -6 .... g 
+~ -8 
+-10 
+-12 15 16 
+Figure 9-5 
+10 
+8 
+sf'---..______ 
+4J UJ 
+UJ 
+.9 r 
+ad 2 -.: 0 .... a.. 0 
+f3 
+~ .... -2 
+0 
+G) -4 .c I-
+-6 
+-8 17 .._ --------
+spread 1 
+(short straddle) 
+18 19 20 21 
+Volatility (%) C!J3pler9 
+spread 3 
+(long butterfly) I -----
+I 
+spread 2 
+(ratio vertJcal spread) 
+22 23 
+spread3 
+{long butterfly) 24 25 
+~ --~_l_ ----........__ ~ 
+spread 1 
+(short straddle) 
+spread 2 
+(ratio vertical spread) -
+-10. 
+10 12 14 16 18 20 22 24 
+Volatility (%} 
+
+--- PAGE BREAK ---
+
+l~l Consldmttoru /79 
+s~e the first time the trader executes the strategy he loses $5,000 and the trader 
+o."11 has S3 0007 Now the trader will not be able to stay In business for all those times 
+when he ls 1fortunate enough to show a profit of $7,000. Every trader knows that It ls 
+only over long pertods of tlme that good luck and bad luck even out No expertenced 
+u..der wm lnltlate a strategy where short-tenn bad luck might terminate his trading 
+career. Tots ls the reason an experienced option trader will tend to avoid spread t. 
+Any financial officer knows that It Is much easter to manage a steady cash flow 
+rather than one that swln~ wildly. This Is equally true for an option trader. He must 
+sensibly manage hls finances so that he can avoid being ruined by the periods of bad 
+luc.k which wlll inevitably occur, no matter how sklllfully he trades. 
+An incorrect volatility estimate may not be the only rtsk with which an option 
+trader must be concerned. Every input into a theoretical pricing model represents a rtsk 
+to the trader since an Incorrect lnput may alter an option's theoretical value. These rtsks 
+are reflected In the delta, gamma, theta, vega, and rho associated wlth a spread. We can 
+summarize these risks as follows: 
+Delta (Directional) Risk-The risk that the underlying market wlll move In one 
+direction rather than another. When we create a position which Is delta neutral, we are 
+trytng to ensure that initially the position has no particular preference as to the direction 
+ln which the underlying instrument wlll move. A delta neutral position does not 
+necessarily eliminate all directional risk, but lt usually leaves us Immune to directional 
+risks within a limited range. 
+Gamma (Curvature) Risk-The risk of a large move ln the underlying contract, 
+regardless of direction. The gamma position ls a measure of how sensitive a position ls 
+to such large moves. A positive gamma position does not really have gamma risk since 
+such a position will, in theory, Increase In value with movement ln the underlying 
+contract A negative gamma position, however, can quickly lose lts theoretical edge with 
+a large move ln the underlying contract The consequences of such a move must always 
+be a consideration when analyzing the relative merits of different positions. 
+Theta (Time Decay) Risk-The risk that time will pass with no movement ln the 
+underlying contract. This ls the opposite side of gamma risk. Positions with positive 
+gamma become more valuable with large moves In the underlying. But If movement 
+helps, the passage of time hurts. A posltlve gamma always goes hand In hand with a 
+negative theta. A trader with a negative theta will always have to consider the risk In 
+terms of how much time can pass before the spread's theoretical edge disappears. The 
+position wants movement, but if the movement falls to occur within the next day, or 
+next week, or next month, will the spread, ln theory, still be profitable? 
+Vega (Volatility) Risk-The risk that the volatility which we Input into the theoretical 
+pricing model will be Incorrect. If we input an Incorrect volatlllty, we will be assuming 
+an incorrect distribution of underlying prices over time. Since some positions have a 
+positive vega and are hurt by declining volatility, and some positions have a negative 
+vega and are hurt by rising volatility, the vega represents a rlsk to every position. A trader 
+
+--- PAGE BREAK ---
+
+/80 Ch,ap~~r? 
+muse always consider how much the volatlllty can move al!)ln5c him before the potentJ4J 
+pront from a position disappears. 
+Rho {Interest Rate) RJsk-The r1sk that Interest rates wllf change over the Ufe of thP. 
+option. A posltlon with a poslcive rho will be helped (hurt) by an Increase (decJJne) fn 
+Interest rates, while a position with a negatJve rho w1ll show Just the opposite 
+characteristics.' Generally, the Interest rate Is the least important of the Inputs Into a 
+theoretical pricing model, and It ls unlikely, except for special situations, that a trader 
+will give extensive thought to the rho risk associated with a position. 
+So far we have compared only the volatJllty risk associated with spreads 1, 2, and 
+3. Is there any other risk with which we ought to be concerned? AH of our spreads have 
+a negaUve gamma, so they will all be adversely affected by a large move In the 
+underlying contract. Jn order to compare the relaUve gamma risks, we can construct a 
+graph showing the values of the spreads at varying prices of the underlying contract 
+This has been done In Figure 9-6. Again, we assume that each spread has approximatel y 
+the same theoretJcal value under our theoretlcaJ assumptJons, In this case at the current 
+underlying price of 49.50. 
+Figure 9-6 
+~ 
+0 _J 
+od 
+iE e 
+Q. 
+8 .:: 
+Q) ... 
+0 
+Cl) 
+~ 4 
+2 
+0 
+-2 
+V spread 3 
+_4. (long butterfly) 
+-6 
+-8 spread 2 
+(ratio vertical spread) 
+spread 1 
+(short straddle) 
+•1041
+7 41
+8 49 so s'1 
+Underlying Price \/ 
+52 53 
+1. Of course, we are only coruJderlng the lnterest rat.e rlsk as It appUes to the evaluation of opUons. 
+Changes In Interest rates can also affect the evaluatJon of an underlying contract, such as a bond, or 
+even the shares In a company, But that ts a separate matter. 
+
+--- PAGE BREAK ---
+
+~ Constdtrittons 181 
+looking at Agure 9·6 we can see that if the underlying contract makes a large 
+upward move, spread 3 wm be the least affected. It can stand a move up to 52.75 
+"'ithout loslng lts positive theoreUcal edge. Spreads I and 2 can stand upward moves 
+to only s 1.05 and S 1.75, respectively. On the downside, spread 1 Is sUll the rtsldest 
+since lt loses all its theoretical edge lf the underlying market should make a swift move 
+down to 47.90. Spread 3 is less risky because it can stand a move down to 47.50. But 
+the least rtsky on the downside ls clearly spread 2, since It never loses all its theoretlcal 
+edge. In the most extreme downward move the theoretlcal edge of spread 2 will 
+collapse to approximately zero. 
+PRACTICAL CONSIDERATIONS 
+Considering the vega and gamma rtsk, spread 3 seems to have the best risk charac· 
+tertstics. It has a larger margin for error in terms of volatility than either spread 1 or 2. 
+In tenns of underlying prtce movement It can also stand a larger upward move than the 
+other tw0 spreads. Only when we consider the posslblllty of a large downward move 
+does spread 3 not display the best risk characteristics. In this case spread 2 comes in 
+first. But spread 3 still looks better than spread 1. In theory, a trader ought to be more 
+Wllllng to execute spread 3 than either spread 1 or 2. In the real world, however, 
+practical trading considerations may play a role In the trader's decision. 
+Even though spread 3, the butterfly, appears to be the best theoretical choice of the 
+three, It has some practical drawbacks which may make It an unrealistic choice. Spread 
+3 Is a three-sided spread, as opposed to spreads 1 and 2, which are two-sided. A 
+three-sided spread will probably be more difficult to execute In the marketplace, and ls 
+likely to cost more In terms of the total width of the bid/ask. If a trader wants to execute 
+the complete spread at one time, as Is most common, he may not be able to do so at his 
+target prices. If, on the other hand, he tries to execute one leg2 at a time, he wlll be at 
+risk from adverse changes in the market until the other le~ have been executed. 
+Additionally, there Is the question of market liquidity. In order to obtain a 
+theoretical edge commensurate with spreads 1 and 2, It was necessary to Increase the 
+size of the butterfly sevenfold to 70 x 140 x 70. If there Is insufficient liquidity In the 
+May 49, 50, and 51 puts to support this size, It may not be possible to execute the 
+butterfly In the size required to meet our profit expectations. Alternatively, we may be 
+able to execute part of the spread at favorable prices, but as we increase the size, the 
+prices may become less satisfactory. Moreover, for a retail customer the Increased size 
+may entail significantly greater transaction costs. 
+If trading considerations make spread 3 Impractical, we may have to choose 
+between spreads 1 (the straddle) and 2 (the ratio vertical spread). If that happens, spread 
+21s the clear winner. It allows for a much greater margin for error ln both volatility (vega 
+risk) and underlying price change (gamma risk). A trader who Is given a choice between 
+these two spreads wlll strongly prefer spread 2. 
+The choice of spreads may not always be as clear as In this example. The superiority 
+of spread 3, at least from the theoretical standpoint, was relatively obvious. Sometimes, 
+2. The options which comprise a spread position are sometimes referred to~ the legs of the spread. 
+
+--- PAGE BREAK ---
+
+IB. 
+howrvrr. one spread may be superior with respect to one type of risk, while a dtffere 
+spread may be super1or w1th respect to a different risk. 
+Let's consider three new spreads, 4 (a ratio vertlcal spread), 5 (a short tJme spread), 
+and 6 (a diagonal spread). The total lheoreucal edge of each spread, as weJJ as their r1s 
+senslt.1v1tJes (all taken from the theoretical evaluaUon table In Figure 9-J ), are shown f 
+Rgure 9-7. In order to again focus on the r1sks associated with each spread, the stze of 
+each spread has been adjusted to yield approximately the same theoretlcal edge. 
+Since each spread has a negaUve vega, we will want to consider the volatHltY rls 
+If volatility should tum out to be greater than our esUmate of 15%. The sensftlv1ty of 
+each spread to Increasing volatlllty Is shown In Figure 9-8. We can see that spread 4 has 
+an lmplled volatility of approximately 18.1 %, spread 5 approximately J 7.0%, and spread 
+6 approximately 17.2%. If an Increase In volatility Is our primary concern, then spread 
+4 (the ratio vertical spread) seems to offer the best risk characteristlcs . 
+In addition to the volatility risk, we can see that spread 4 also has a negative gamma, 
+so that It will be adversely affected by a sudden large move In the underlying contract. 
+If we are concerned about the posslblllty of such a move we may want to determine 
+exactly how a large move In the price of the underlying contract wtll affect the value of 
+the spread. Figure 9-9 shows the sensitivity of each of our spreads, 4, 5, and 6, to a 
+change in the price of the underlying contract. 3 
+Note that spread 4 has the narrowest profit range of the three spreads, in theory 
+losing all its theoretical value if the market should immediately drop below 46.50 or rise 
+above 52.20. On the other hand, spread 6 has very little downside risk and can still 
+stand an Immediate move upward to about 52.30. If a trader were worried about the 
+posslblllty of a swift fall In the market, he might be willing to give up the extra volatlllty 
+cushion offered by spread 4 over spread 6 (18.0% vs. 17.2%) for the additional downside 
+protection offered by the latter spread. This ls reflected in the smaller negative gamma 
+associated with spread 6 as compared with spread 4. 
+Finally, we can see that spread 5, while having the least desirable volatility risk, 
+also has a positive gamma. This means that any large move in the underlying contract 
+will Increase the value of the position. If a trader were worried about the possibility of 
+a sudden large move in the underlying contract, but were not overly concerned with an 
+increase In volatility, he might be wtlllng to accept the less desirable volatility risk 
+associated with spread 5 for the more desirable positive gamma characteristics. 
+A trader who executes spread 5 will have a positive gamma, so he has no gamma 
+risk. But he wm have a theta risk If the underlying contract falls to move. How great is 
+the risk? Figure 9-10 shows the sensitivity of all three spreads to the passage of time. 
+Since spreads 4 and 6 have negative gammas, they can only galn value wlth the passage 
+of time. On the other hand, spread 5 loses value as each day passes. Looking at the graph 
+associated with this spread, we can see that if no movement occurs ln the underlying 
+contract, the spread loses all Its theoretical edge after about 18 days. Thls is the price 
+one has to pay for the privilege of having a positive gamma. 
+3. We ~ume here that the May and July underlytng contracts maintain the same approximate 
+relatlonshJp. That Js, the July contract Js always 1.0123 times the May contract since 50.11149.50 = 
+J .OJ 23. The I·axis tn Flgure 9-9 ls the prte of the May contract 
+
+--- PAGE BREAK ---
+
+r 
+Figure 9-7 
+Sl)r9ad 4: 
+Spread S: +20 July 50 calls 
+-30 July 52 calls 
++50 May 48 puts 
+-60 July 48 puts 
++10 May 48 calls 
+-20 July 52 calls Theoretical 
+Edge 
+20x-.21 
+~X;t,23 
++2.70 
+SOx-.18 
+§Qx+.24 
++3.00 
+10x-.17 
+2Qx ±,2~ 
++2.90 Delta p~ 
++20 x+52 
+~Qx+34 
++20 
++50x-29 
+-§Qx-2§ 
+-50 
++10 X +70 
+-2Q X±~M 
++20 Gamma Theta Vega 
+Poeltlon Poeltlon Po.ltlon 
++20x9.3 +20x-.0069 +20x.108 
+-30x§,§ ~Q X -,0065 -30x11QQ 
+-72.0 +.0570 -.840 
++50 X 11.6 +50x-.0087 +50x .066 
+-6Qx§,Q :§Qx-10060 --60 X al~ 
++180.0 -.1350 -1.850 
++10x11 .6 +10 x-.0083 +10 X .066 
+-2Qx§,§ -2Qx-,0065 -22 ~ ,IQQ 
+-66.0 +.0470 -1.340 
+
+--- PAGE BREAK ---
+
+/84 Ch,apltr 9 
+Figure 9-8 
+4-----------------
+~ 
+oO 
+~ 
+CL 
+~ 
+~ 
+Q) g 
+~ ., 
+2 
+0 
+.::-
+0 
+-2 ~ 
+.4 
+-6 
+-8 
+-10 sproad 6 
+(diagonal sproad) 
+~' ~'-
+' ...... ,, 
+' I 
+spread 5 
+(short time spread) ' spread 4 
+(ratio vertical spread) 
+I 
+' ....... 
+...... 
+..... 
+" -, 
+•1211
+5 11
+6 11
+7 18 11
+9 20 21 22 23 24 ~5 
+Volatility (%) 
+Figure 9-9 
+,o 
+8 
+Ill Ill 6 
+0 
+..J 
+oO 4 -:.: e 
+CL 2 
+B .: 
+Q) 0 ... 
+0 
+Q) 
+~ -2 
+-4 
+-6 
+46 \---
+\ 
+"" spread 6 
+(diagonal spread) ~ 
+\ -----' ----
+spread 4 
+(ratio vertical spread) spread 5 
+(short time spread) \ 
+_,,./ 
+.:::--.. 
+.:::::.. 
+47 48 49 50 51 
+Underlying Price (May Futures Contract) ~ 
+~ 
+-0-. 
+~ 
+~ 
+52 53 
+
+--- PAGE BREAK ---
+
+~ 
+Rtsk Considtrattons 185 
+Figure 9-10 
+8--------------------i 
+= .9 
+ad 6 ... _ 
+----,------,---~~ 
+41 / 
+spread 4 spread 6 ----........ ---.....::..--J 
+21 
+(ratio vertical spread) (diagonal spread) 
+.!:: e 0r------- -----:7C:::::----~ 
+a. 
+8 ·2 / 
+1i 
+/ / \ ... i -4 
+~ 
+-6 ~ spread 5 
+(short time spread) 
+·8 
+·10 
+0 7 14 21 28 35 42 49 56 
+Time to Expiration (days) 
+If one has to choose from among spreads 4, 5, or 6, which spread Is best? The 
+situation Is not clear-cut, and the answer will probably depend on a trader's experience 
+ln the market. If he feels that an increase In implied volatility represents the greatest 
+risk, he wlll probably choose spread 4. If he feels that a large move In the underlying 
+contract represents the greatest risk, he will probably choose spread 5. And If he Is 
+Willing to settle for partial protection against both volatility and market movement, he 
+will probably choose spread 6. 
+As must by now be obvious, the choice of spreads ls never a simple matter of right 
+and wrong. Like all trading decisions, It ls a question of risk and reward. While there 
+are many risks with which an option trader must deal, he will often have to ask himself 
+which risk represents the greatest threat. Sometimes, in order avoid one type of risk, he 
+Will be forced to accept a different risk. Even if the trader ls willing to accept some risk 
+in a certain area, he may decide that he will only do so to a limited degree. Then he may 
+have to accept increased rtsks in other areas. 
+If given the choice between several different spreads a trader can use a computer, 
+as was done in the foregoing examples, to study the risk characteristics of the different 
+spreads. Unfortunately it may not always be possible to analyze the choices In such 
+detail. A trader may no~ have the necessary computer support at his disposal, or market 
+conditions may be changing so rapidly that If he falls to make an Immediate drteclslonf t make a quick compa son o opportunity may quickly pass him by. Is there any way 0 
+spreads without doing a detailed graphic analysis? 
+
+--- PAGE BREAK ---
+
+186 Ch,apltr9 
+One method that traders sometimes use Is to think of every spread as a tradeoft 
+between rtsk and reward. We might express this tradeoff as a fraction, risk/reward. It 
+a trader goes Into the marketplace, he would like to have the greatest posslbJe reward. 
+At the same tlme he would like to have the least possible risk. Indeed, the Ideal 
+risk/reward fraction would be O + oo (zero risk, Infinite reward). But O + oo = 0, so that 
+If we express the risk/reward characteristics of each spread as a fracuon, risk/reward, 
+then In theory the spread whose fraction Js closest to zero has the best tradeoff between 
+risk and reward. 
+What numbers should we use to express the risk and reward for a spread? The 
+reward Is what we expect to make when we are right about market condltlons. ToJs Js 
+simply the theoretlcal edge, and we can therefore make the theoretical edge the 
+denominator of our fraction. What about the numerator, or risk component? Here we 
+may have to deal with several different numbers since option positions are subject to 
+many different risks. These risks are represented by the vartous option sensltJvttles. The 
+practical approach Is to express the numerator of our fraction with the sensitivity wtth 
+which we are most concerned. For example, If a change In volatility Is our greatest 
+concern, we can use the vega of the spread as our numerator. If choosing from among 
+several different spreads, the spread whose vega/theoretlcal edge Is closest to zero will 
+have the most desirable risk/reward charactertstlcs. In the same way, If a large prtce 
+move Is our greatest concern, the spread whose gamma/theoretical edge Is closest to 
+zero will have the most desirable risk/reward characteristics. 
+Let's trY to analyze spreads 4, 5, and 6 using this method. One risk with which we 
+wlll certainly have to be concerned Is the possibility of a change In volatlllty. Calculating 
+the vega/theoretlcal edge, we have: 
+Spread 4: -.840/2.70 = -.311 
+Spread S: -1.850/3.00 ,.. -.617 
+Spread 6: -1.340/2. 90 = -.462 
+From the above calculations we can see that spread 4 has the best volatlllty 
+characteristics since Its vega/theoretlcal edge Is closest to zero. This Is the same 
+conclusion we reached from Figure 9·8, but without the necessity of doing a detailed 
+study of each spread. 
+Note that when we divide the sensitivity of a spread by Its theoretical value, the 
+result Is Independent of the size of the spread. If we had done spread 4 twice as large 
+(40 x 60 Instead of 20 x 30) this would have doubled the size of both the vega and the 
+theoretical edge. The resulting fraction would stlll have been -.311. 
+What about the risk of a large move In the prtce of the underlying contract? We do 
+not need to worry about large price moves In spread s since Its posltlve gamma means 
+that a large move can only enhance the value of the position. However, we might stlll 
+want to compare spreads 4 and 6 for gamma risk. Dividing the gamma by the theoretic~ edge we have: 
+Spread 4: 
+Spread 6: -72.0/2.70 
+-56.0/2.90 = 
+= -26.7 
+-19.3 
+
+--- PAGE BREAK ---
+
+ht Considerations /87 
+We can see that spread 6 \s at less nsk from a large move In the price of the 
+undertytng contract because -19.3 Is closer to zero than -26.7. This conflnns the 
+conctuslon from Agure 9-9. 
+A word of warning about thls method of estlmatlng the relative rlskJness of a spread. 
+Because an option's sensltlvttles are only well defined within a narrow range, dlvtdlng 
+the rtsk sensltlvlty by the theoretical edge offers only an estlmate of the relative rtsklness 
+of a PoSltlon. Consider, for example, the relative volatlllty risks of spreads t, 2, and J. 
+Dlvtdlng the vega by the theoretical value for each spread we have: 
+Spread 1: -1.368/2.86 .. -.478 
+Spread 2: -.435/3.00 "" -.145 
+Spread 3: -.630/2.80 "" -.225 
+From these numbers It appears that spread 2 Is the least risky with respect to volatlllty 
+~ce -.145 Is doser to zero than-.478 or-.225. But going back to Figure 9.4 we find 
+that spread 3 actually has the highest Implied volatlllty, and therefore the least volatility 
+risk. Even so, this method would have at least warned us away from spread 1, which 
+dearly has the greatest volatility risk. 
+Sometimes, If a trader Is under great pressure to make a qulck decision, he may not 
+have the time to make even a cursory analysis of relative risklness of various spreads. In 
+such cases, he will often have to rely on his Instincts In choosing a strategy. While there 
+ls no substitute for experience, most traders quickly learn an Important rule: straddles 
+and strangles are the riskiest of all spreads. This ls true whether one buys or sells these 
+strategies. New traders sometimes assume that the purchase of straddles and strangles 
+ts not especially risky because such strategies have limited risk. But It can be just as 
+painful to lose money day after day when one buys a straddle or strangle and the market 
+falls to move, as It ls to lose the same amount of money all at once when one sells a 
+straddle and the market makes a violent move. Of course, a trader who ls right about 
+volatility can reap large rewards from straddles and strangles. But an experienced trader 
+knows that such strategies offer the least margin for error, and he will usually prefer 
+other strategies with more desirable risk characteristics. 
+HOW MUCH MARGIN FOR ERROR? 
+New traders sometimes ask what is a reasonable margin for error In assessing the Inputs 
+into a theoretical pricing model, particularly when It comes to the volatility Input As Is 
+often the case, it will depend on the trader's experience In the market In which he Is 
+trading. In some cases, 5 percentage points may be an extremely large margin for error, 
+and the trader will feel very confident with any strategy passing such a test In other 
+cases, five percentage points may be almost no margin for error at all, and the trader 
+Will find that the strategy ls a constant source of worry. 
+Perhaps a better way to approach the question ls to ask not what Is a reasonable 
+margin for error, but rather to ask what Is the correct size In which to do a spread given 
+a known margin for error. Practical trading considerations aside, a trader should always 
+choose the spread with the best risk/reward characteristics. But sometimes even the 
+
+--- PAGE BREAK ---
+
+/88 Ch,l.pltf9 
+best spread will have only a small margin for error, and consequently entaJI s1gn1na 
+risk. In such cases a trader, If he wants to make a trade, ought co do so In small stze. II, 
+however, a trader can execute a spread with a very large margin for error, he ought to 
+be willing to do the spread In much larger size. 
+As an example, consider a trader whose best estimate of volatlllty In a ceruln 
+market Is 15%. If Implied volatlllty Is higher than 15% he will look for posltlons with a 
+negative vega. If the best negatlve vega strategy the trader can find ls a I x 2 ratio vert1C2.l 
+spread With an Implied volatility of 101;z% (only a 11;z.percentage·polnt margfn for 
+error), he wlll almost certainly keep the size of his strategy small, perhaps executJng the 
+spread only five times (5 x I 0). If, however, the same spread has an 1mp1Jed volat1Uty 
+of 25% (a 10-percentage-polnt margin for error), and the trader has never seen volatiUty 
+go that high, he may have the confidence to execute the spread In much larger ,ize, 
+perhaps 50 x I 00.4 The size of a trader's positions should depend on the rtsk1ness of 
+the positions, and this In tum depends on how much can go wrong without the strategy 
+turning against the trader. 
+DMDENDS AND INTEREST 
+In addition to the delta, gamma, theta, and vega risks which all traders must consider, 
+stock option traders might also have to consider the risk of changes In dividends and 
+Interest rates. 5 This Is especially true of tlme spreads, since opUons with dlff erent 
+expirations react differently to changes In these Inputs. 
+Consider the evaluation table for stock opUons shown In figure 9-11. With Implied 
+volatilities well below the forecast of 27%, It makes sense to look for spreads with 
+positive vegas. Suppose we focus on four possible spreads shown In Figure 9· 12. Spreads 
+7 and 8 are long Ume spreads, while spreads 9 and 10 are diagonal spreads. What are 
+the relative merits of each spread? 
+As with all option spreads, we have to consider a variety of risks. Note that In the 
+evaluation table in Figure 9-11 we used an Interest rate of 8%. Suppose we believe that 
+interest rates are likely to rise sharply In the near future. How might these spreads react 
+to rising Interest rates? We can see from Figure 9-13 that spreads 7 and 9 will be hun 
+by rising Interest rates, while spreads 8 and IO will be helped. If a rise In interest rates 
+Is our primary concern, we might focus on spreads 8 and 10, regardless of any desirable 
+vega or gamma characterlsUcs associated with spreads 7 and 9. 
+If we focus on spreads 8 and 10, we will sUll want to consider the volatility risk. 
+We can do a cursory comparison of this Iiskby dividing the vega by the theoretical edge. 
+From this we find: 
+Spread 8: 
+Spread 10: 1.380/6.45 
+2.774/6.14 .,,. 
+= .214 
+.452 
+4. S1ze, of course, ts celaUve. To a well capitalized, experienced trader even 50 x t 00 may be a small trade. 
+s. Futures opUons can also be affected by changes 1n Interest rates smce a change 1n interest rates wtll 
+affect the forward prJce of the undedy1ng futures contract Unllke stoclcs, factors other than interest 
+rates, such as short term supply and demand, can also affect these contracts. 
+
+--- PAGE BREAK ---
+
+---------- ---------
+Figure 9-11 
+Stock Price: 98½; Time: March 56 days, June 147 days; 
+in 28 days and 119 days Volatility: March 27%, June 27%; Interest 8.00%; Expected OMdand : 1 .25 
+MARCH CALLS PUTS 
+ExerclM TheoreUcal lmplled Theoretical lmpllecl 
+Price Price Value Delta Gamma Theta Vega Volatlllty Prtce Value Delta Gamma Theta Vega Volallllly 
+95 5 5.79 64 3.6 -.0436 .142 25.0 21/4 2.66 --36 3.6 -.0281 .142 24.1 
+100 27/e 3.29 45 3.8 -.0430 .151 24.3 4¾ 5.12 -65 3.8 -.0267 .151 24.6 
+105 11/e 1.69 28 3.3 -.0350 .128 24.5 8¼ 8.47 -72 3.3 -.0180 .128 24.3 
+JUNE CALLS PUTS 
+Exercise Theorellcal Implied Theoretk:al lmp11ec1 
+Prtce Prtce Value Delta Gamma Theta Vega Volatlllty Prtce Value Della Gamma Theta Vega Volalfllty 
+95 75/e 8.22 61 2.3 -.0298 .233 24.4 41/4 4.93 -39 2.3 -.0145 .233 24. t 
+100 5 5.85 50 2.4 -.0292 .243 23.5 6½ 7.43 ~o 2.4 -.0132 .243 23.2 
+105 38 2.3 -.0268 .233 23.6 9¾ 10.49 ~2 2.3 -.0099 .232 23.8 31/4 4.03 
+
+--- PAGE BREAK ---
+
+Figure 9-12 
+Theoretical Delta Gamma Theta Vega 
+Edge Poaltlon Poeltlon Po.atlon Poaltlon 
+spread 7: +25 June 95 puts 25x+.68 +25x-39 +25x2.3 +25 x-.0145 +25x .233 
+-25 March 95 puts 25x-.41 -25x-36 -25x3.6 -25x-.0281 -25x.142 
++6.75 -75 -32.5 +.3400 +2.275 
+Spread 8: + 15 June 100 calls 15x +.85 +15 x-+50 +15 x2.4 +15 x-.0292 +15 X .243 
+-15 March 100 calls 15 x-.42 -15 x+45 -15x3.8 -15x-.0430 -15x.151 
++6.45 +75 -21.0 +.2070 +1.380 
+Spreac:19: + 15 June 95 puts 15 X +.68 +15x-39 +15 x2.3 +15 x-.0145 +15 X .233 
+-10 March 100 puts 10x-.37 -10 x-55 -10 X 3.8 -10x-.0267 -10x.151 
++6.50 -35 -3.5 +.0495 +1.985 
+Spread 10: +18 June 105 calls 18 X +.78 +18 X ♦38 +18x2.3 +18 x-.0268 +18 X .233 
+-1 o March 95 calls 10x-.79 -10 X +64 -10x3.6 -10x-.0436 -10x .142 
++6.14 +44 +5.40 -.0464 +2.n4 
+
+--- PAGE BREAK ---
+
+ht' O>nrldetaliOllf /()/ 
+Ftgu1'8 9-13 
+30 
+-~ 
+-cs -~ -a.. 
+8 • -g 
+.c. ._. 25 
+20 
+15 
+10 
+5 
+0 
+-5 
+-10 spread 7 
+~ong put time spread) 
+----.. -
+/-----........_ --.. ........... 
+spread 9 
+(cfiagonal put spread) ..,,.s:~ _,_.., ------spread 8 
+(long call time spread) 
+-....:: 
+--....----;~~~ --~----~ 
+_:.--_ _ \ 
+~ ._ spread 10 \ 
+(diagonal call spread) 
+-------=c------ I --
+-15-t-------r-----y----,---.----.--~ 
+0.00 2.00 4.00 6.00 8.00 10.00 12.()Q 
+Interest Rate(%) 
+If volatlllty risk is our second concern, then spread 8 ls probably best because its vega 
+divided by theoretical edge ls much smaller than that of spread 10. Suppose, however, 
+that we are more concerned with a large move in the underlying stock than with a 
+decllne in volatility. Now we can see that spread 10 ls best because its positive gamma 
+means that a large move in the prtce of the underlying stock can only work to our 
+advantage. As always, the choice of strategies will require us to make some judgements 
+as to what risks we are wllllng to accept, and to what degree. 
+Flnally, let's look at our spreads with respect to a change In dlvldends. In our 
+evaluation table we assumed a quarterly dlvldend of 1.25. Suppose we believe that the 
+dividend ls likely to be increased. How will this affect our four spreads? From Figure 
+9-14 we can see that now spreads 7 and 9 look the best slnce they are helped by an 
+increase In the dividend. 
+What about volatility and curvature risk? Estimating the relative risks by dlvldlng 
+the sensitivity by theoretical edge, we have: 
+Spread 7: 
+Spread 9: Vega Risk Gamma Risk 
+2.275/6.75 = .337 -32.5/6.75 = -4.8 
+1. 985/ 6.50 = .305 -3.5/ 6.50 = -.s 
+Since there ls not much difference In the spreads In terms of vega risk, we might 
+choose spread 9 since it has much less gamma rtsk. At the same time, If we believe an 
+
+--- PAGE BREAK ---
+
+IC. 
+26 
+I 
+spread 8 
+20~ (long call time spread) I ~ 15 .... 
+0 ' -..... .J " spread 7 
+(long put time spread) 
+\ ,/ 
+/ 
+~ ........ I .... 
+........ ·"= 10 -........ 15 ----' .. ' Q. ........ 
+........ spread 10 1/___,-- ----\ 
+~ -- 5 (diagonal call spread) ___, --i ........ ~ \ 
+~ , spread 9 
+-(diagonal put spread} ... 
+0 
+G) 
+,I:. 
+t-0 
+-5 
+-10 
+0.00 -------
+0.50 ------
+1.00 1.50 
+Quarterly Dividend --. -------:::--.:::--_ 
+2.00 ----J 
+I 
+2.50 
+increase in the diVidend is very likely, we may prefer spread 7, since we can see from 
+Figure 9-14 that if the diVidend is Increased, spread 7 shows the greatest increase in 
+value. 
+WHAT IS A GOOD SPREAD? 
+Option traders, being human, would rather talk about their successes than their 
+disasters. If one were to eavesdrop on conversations among traders, it would probably 
+seem that no one ever made a losing trade. Disasters, when they do occur, only happen 
+to other traders. The fact Is every successful option trader has had his share of disasters. 
+What separates the successful trader from the unsuccessful one ls the ability to survive 
+such occurrences. 
+Consider the trader who initiates a spread with a good theoretical edge and a large 
+margin for error in almost every risk category. If the trader still ends up losing money 
+on the spread, does this mean that the trader has made a poor choice of spreads? Maybe 
+a similar spread, but one with less margin for error, would have resulted In an even 
+greater loss, perhaps a loss from which the trader could not recover. 
+It is Impossible to take Into consideration every possible risk. A spread which passed 
+every risk test would probably have so little theoretical edge that It wouldn't be worth 
+doing. But the trader who allows himself a reasonable margin for error will find that 
+even his losses will not lead to financial ruin. A good spread Is not necessarily the one 
+
+--- PAGE BREAK ---
+
+~~ U,nsk/trwtlons I ()1 
+t~t show~ the greatest profit when th\ngs go well; It may be the one which shows th 
+!~St loss when thtngs go bad\y. Winning trades always take care of themselves. Losing 
+tr8des. whtch don't gtve back all the profits from the winning ones, are just as Important. 
+ADJUSTMENTS 
+ln the last chapter we considered the question of when a trader should adjust a position 
+to remain delta neutral. ~e trader must also consider how best to adjust, for there are 
+many different ways to ad1ust the total delta position. An adjustment to a trader's delta 
+position may reduce his directional risk, but If he simultaneously Increases hls gamma, 
+theta, or vega rtsk, he may inadvertently be exchanging one type of risk for another. 
+A delta adjustment made with the under[.Yfng contract ts essentially a rtsk neutral 
+adjustment. By this we mean that an adjustment made With the underlying contract 
+Will not change any of the other risks we have discussed because the gamma, theta, and 
+vega associated with an underlying contract are zero. Therefore, If a trader wants to 
+adjust his delta position, but wants to leave the other characteristics of the position 
+unaffected, he can do so by purchasing or selllng an appropriate number of underlying 
+contracts. 
+An adjustment made with options may reduce the delta risk, but will also change 
+the other rtsk characteristics associated with the posttton. Every option, ln addition to 
+haVing a delta, also has a gamma, theta, and vega. When an option is added to or 
+subtracted from a position, it necessarily changes the total delta, gamma, theta, and vega 
+of the position. This is something which new traders sometimes forget. 
+Consider an option market where the underlying contract ls trading at 99.25. If all 
+options appear to be overpriced, a trader might decide to sell the 95/1 OS strangle (sell 
+the 95 put, sell the 105 call). Suppose the deltas of the put and call are, respectively, 
+-36 and +36, and the trader decides to sell 20 strangles. He ls initially delta neutral 
+since 
+{-20 X-36) + (-20 X +36) = 0 
+Suppose several days pass and the underlying market has fallen to 97.00, with new 
+delta values for the 95 put and 105 call of -41 and +30. Assuming that no adjustments 
+have been made, the trader's delta position ls now 
+(-20 X-41) + (-20 X +30) = +220 
+If the trader now decides to make an adjustment he has three basic choices: 
+1. sell underlying contracts 
+2. sell calls 
+3. buyputs 
+Which method ls best? 
+All other considerations being equal, whenever a trader makes an adjustment he 
+should do so with the intention of improving the risk/reward characteristics of the 
+
+--- PAGE BREAK ---
+
+''" .,, 
+position. If the trader decides to adjust his delta posltlon by purchasing puts, he 
+reduces his other t1sks since the gamma, theta, and vega associated wHh the P 
+purchase are opposite In sign to the gamma, theta, and vega associated wlth hfc: "~stl 
+short strangle poslUon. 
+Unfortunately, all other considerations may not be equal. Since lmp!f ed voJatlll 
+can remain high or low for long periods of time, It Is quite likely that If all optJons wer,~ 
+overprtced when the trader Initiated his position, they will still be overp.rJced when h 
+goes back Into the market to make his adjustment. Even though the purchase of pvts 
+become delta neutral will reduce his other risks, such an adjustment wlll also have th 
+effect of reducing the theoretical edge. On the other hand, If all options are overprlce 
+and the trader decides to sell additional calls to reduce the delta, the sale of the 
+overprtced calls wm have the effect of Increasing the theoretical edge. If the rrader 
+decides that adding to his theoretical edge ls of prlmaiy Importance he may decJde to 
+sell seven more 105 calls, leaving him approximately delta neutral since 
+(-20 X -41) + (-27 X +30) = + 10 
+Now suppose several more days pass and the market has rebounded to 101.50, 
+with new delta values for the 95 put and 105 call of -26 and +40. The position delta 
+Is now 
+(-20 X -26) + (-27 X +40) = -560 
+Again, if the trader wants to adjust he ls faced with three choices: buy underlying 
+contracts, buy calls, or sell puts. Assuming that all options are still overpriced and that 
+the trader wants to continue to increase his theoretical edge, he may decide to sell an 
+additional 22 of the 95 puts. The total delta position ls 
+(-42 X -26) + (-27 X +40) = + 12 
+It should be clear what wm result from these adjustments. If all options remain 
+overpriced and the trader ls always intent on Increasing his theoretical edge, he will 
+continue to make whatever adjustments are necessaiy by continuously selling over­
+priced options. This method of adjusting may indeed result in the greatest profit to the 
+trader. But notice what ls happening. The strangle, which the trader was lnltlally 
+prepared to sell 20 times, has now increased in size to 42 x 27. If the market now makes 
+a violent move ln either direction, the negative consequences wlll be greatly magnified. 
+Unfortunately, the new trader, overly concerned with always increasing his theoretical 
+edge, often finds himself In just such a position. If the market makes a very swift move, 
+the trader may not survive. For this reason, a new trader who ls unfamlllar with all the 
+subtleties of an option market should avoid making adjustments which increase the size 
+of his position. 
+No trader can afford to Ignore the effect his adjustments will have on the total risk 
+to his position. If he has a positive {negative) gamma position, buying (selling) any 
+additional options will increase his gamma rtsk. Ukewtse, If he has a positive (negative) 
+vega position, buying {selling) any additional options will increase hls vega rtsk. A trader 
+cannot afford to sell overpriced options or buy underprtced options ad infinitum. At 
+
+--- PAGE BREAK ---
+
+~~ Chn.irld~rw rtons 1 ()$ 
+~~ll\t-Point the size of the spread will simply become too large, and any addltloMI 
+~,'\'t'\:'ttcR l edge will have to take a back seat to r1sk considerations. When that happens 
+t~~ ~re only two choices: decrease the size of the spread or adjust In the underlying 
+11~rkN. 
+A dlsclpltned trader knows that sometimes, because of risk considerations , the best 
+'"'\)\\~ ts to reduce the size of the spread, even lf It means giving up some theoretical 
+~e. This may be hard on the trader's ego, pantcularly If he must personally go back 
+inl<) tbe market and either buy back optlons which he orlglnally sold at a lower price 
+or se,U out options which he originally purchased at a higher price. However, If a trader 
+ls unwtntng to swallow his plide from tlme to time, and admit that he made a mistake, 
+hts trclding career is certain to be a short one. 
+If a trader finds that any delta adjustment In the optlon market that reduces his rtsk 
+Will also reduce his theoretical edge, and he ls unwilling to give up any theoretical edge, 
+his only recourse ls to make hls adjustments In the underlying market. An underlying 
+contract has no gamma, theta, or vega, so the risks of the posltlon wlll remain essentially 
+the same. 
+A QUESTION OF STYLE 
+Because most option prtclng models assume that movement in the underlying contract 
+is random, an option trader who trades purely from the theoretical values generated by 
+a model should not have any prior opinion about the direction ln which the underlying 
+market will move. In practice, however, many option traders begin their trading careers 
+by taking positions ln the underlying market, where direction ls the primary considera­
+tion. Many traders therefore develop a style of trading based on presumed directional 
+moves in the underlying market. A trader might, for example, be a trend follower " , adhertng to the philosophy that the trend ls your friend." Or he might be a contrartan, 
+preferring to "buy weakness, sell strength." 
+Traders often try to Incorporate their personal trading styles Into their option 
+strategies. One way to do this ls to consider beforehand the adjustments which will be 
+required for a certain strategy If the underlying market begins to move. For example, 
+suppose a trader sells straddles in such a way that he ls Initially delta neutral. Such 
+spreads have a negative gamma, so that as the market moves higher his delta position 
+is getting shorter, and as the market moves lower his delta position ls getting longer. If 
+this trader likes to trade against the trend, he will avoid adjustments as much as possible 
+because his position ls automatically trading against the trend. Whichever way the 
+market moves, the position always wants a retracement of this movement. 
+On the other hand, a trader who sells the same straddles but prefers to trade with 
+the trend wlll adjust at every opportunity. In order to remain delta neutral, he will be 
+forced to buy underlying contracts as the market rises and sell underlying contracts as 
+the market falls. 
+The opposite is true for a trader who buys straddles. He has a positive gamma 
+position, so that as the market rises his delta ls becoming longer, and as the market falls 
+his delta is becoming shorter. If this trader likes to trade with the trend, he will want to 
+
+--- PAGE BREAK ---
+
+--/96 c,,,pte,9 
+adjust as little ts possible In the belief that the market is Hkely to continue in the same 
+direction. However, If he prefers to trade against the trend, he will want to ad;ust as 
+often as possible. Every adjustment WUI represent a pro flt opportunity If the market does 
+tn fact reverse direction. 
+A trader with a negative gamma ts always adjusttng with the trend of ! 
+underlyf ng market. A trader With a positive gamma ts always adjusttng against 1 
+trend of the under/yf ng market. If a trader prefers to trade with the trend or a~InSt the 
+trend, he should choose a strategy and an adjustment process that Is appropriate to hJs 
+preference. A trader who prefers to trade with the trend can choose a strategy wtth a 
+positive gamma together with less frequent adjustments, or a strategy with a ne~tlv2 
+gamma with more frequent adjustments. A trader who prefers to trade against the trend 
+can choose a strategy with a negative gamma together with less frequent adjustments, 
+or a strategy with a positive gamma with more frequent adjustments. Toe purely 
+theoretical trader wlll not have to worry about this since for him there ts no such thing 
+as a trend. However, for most traders old habits, such as trading with or against the 
+trend, die hard. 
+LIQUIDITY 
+As long as a trader has an open option position It represents a risk. Even If the risk ls 
+limited to the current value of the options, by leaving the position open the trader Is 
+risking the loss of that value. If he wants to ellmtnate the 11sk, he will have to take some 
+action whlch will In effect close out the position. Sometimes this can be done throuy)} 
+early exercise, or by taking advantage of an opposing position to create an arnttrage. 
+More often, however, In order to close out an open position a trader will be required 
+go Into the marketplace and buy In any short options and sell out any long options. 
+An Important consideration In deciding whether to enter Into a trade ls often the 
+ease with whlch the trader can reverse the trade. Uquld option markets, where there 
+are many buyers and sellers, are much less risky than llllquld markets where there are 
+few buyers and sellers. In the same way, a spread which consists of v~ry liquid options 
+ts much less risky than a spread which consists of one or more Illiquid options. If a trader 
+ts considering entering Into a spread where the options are Illiquid, he ought to ask 
+himself whether he Is willing to live with that position until expiration. If the market Is 
+very llllquld, that may be the only time he will be able to get out of the position at 
+anything resembling a fair price. If the spread consists of long-tenn options, say ntne 
+months, the trader may find himself mamed to the position for better or worse, in 
+sickness and In health, for the next nine months. If he Is unwilling to commit his capital 
+for that period, perhaps he should avoid the position. Since there ls greater risk 
+associated with a long-term lnvestm t th en an with a short-term Investment a trader who 
+Pd~;~t ~~c:: r:~koef laarpgoslttlhon In long-term options ought to expect gt'e~ter potential 
+er eorettcal edge. 
+New traders are often advtsed to beg! 
+does make an error resultin I n trading In liquid markets. If a new trader 
+his loss to a minimum beca~s~ ~ losl~f trade, In a liquid market he Will be able to keep 
+e w be able to exit the trade wlth relative ease. On 
+
+--- PAGE BREAK ---
+
+Rak Constdtrattons 197 
+the other hand, an expertenced trader, especially a market maker, will often prefer to 
+deal ln less liquid markets. There may be less trading activity In such markets, but the 
+bid/ask spread Is much wider, resulting In r;eater theoretical edge each time a trade~ 
+made. Of course, any mistake can be a problem with which the trader wlll have to live 
+for a long time. However, an expertenced trader Is expected to keep his mistakes to a 
+mlnlmum. 
+The most liquid options In any market are those which are short-term and which 
+are either at-or slightly out-of-the-money. Such options always have the narrowest 
+bid/ ask spread, and there are usually traders willing to buy or sell large numbers of these 
+contracts. As a trader moves to longer term options, or to options which are more deeply 
+in-the-money, he finds that the bld/ask spread be~ns to widen, and there are fewer and 
+fewer traders interested In these contracts. While at-the-money shon-term options are 
+constantly traded, deeply In-the-money long-term options may not trade for weeks at a 
+time. 
+In addition to the liquidity of an option market, a trader should also ~ve some 
+thought to the liquidity of the underlying market. If a trader has an option position and 
+wants to make an adjustment, he may find it difficult to do If the option market Is 
+illlquld. If the underlying market Is liquid, he will at least he be able to make his 
+adjustment In that market with relative ease. The most dangerous market In which to 
+trade Is one where both the options and the underlying contract are Inactively traded. 
+Only the most experienced and knowledgeable traders should enter such markets. 
+End-of-day volume figures and bid/ ask spreads In S&P 500 Index options traded at 
+the Chicago Board Options Exchange on July 9, 1993 are shown In Figure 9·15. Note 
+the lower volume and wider bid/ask spread for back month and deeply In-the-money 
+options, versus front month and at· and out·of·the-money options. 
+
+--- PAGE BREAK ---
+
+Rgure 9-15 - July 9, 1993 S&P 500 Index Options (CBOE) ~ 
+S&P 500 Index at 448.11 
+Juli 01:!tlona Auauat OpUona S.C,tembw 02uona Decembw Option• 
+Bid Aak Volume Bid Ask Volume Bid Ask Volume Bid Ask Volume 
+420 call 27:Ye 283/e 0 281/,4 291/,4 0 30 31 0 35½ 36½ 0 
+425 call 22½ 23½ 0 241/2 251/e 0 251/2 26½ 10 29!ye 301/a 0 
+430 call 18 18¾ 0 19½ 20¼ 0 21½ 22½ 300 no listing 
+435 call 13¼ 14 355 155/e 16 0 173/e 181/e 0 23½ 24¼ 0 
+440 call 8o/e B?le 2,532 111/e 11!ya 2,465 133/,4 14 1 no listing 
+445 call 4% 4¾ 397 7'3/,4 8¼ 50 10'Ye 11 16 no listing 
+450 call 1½ 1~e 1,013 51/a 53/e 766 73/e 7?/e 27 141/a 14?/e 50 
+455 call '¾e ?l1e 500 2?/a 31/e 755 5 53/e 1 no listing 
+460 call 1/u, 1/a 301 1~e 1:Y. 152 31/,4 3½ 585 no listing 
+465 call Vie 469 1¥,e ?le 1,190 2 2¼ 0 no listing 
+470 call Vie 0 5/1e ?l,e 10 1 13/,e 10 no listing 
+420 put 1/,e 372 '3/,e 1 0 111/,e 11:Y,e 800 5% 61/e 100 
+425 put 1/,e 1/e 2 1 13/1e 50 23/e 2¾ 520 63/e 6¾ 22 
+430 put 1/1a 1/e 932 1% 1'Ye 1,483 3 3¼ 1 no listing 
+435 put ¥1e v. 1,720 21/e 2:Ya 300 3?/e 4 1.ns 93/a 93/,4 0 
+440 put :Ye 1/2 2,736 3½ 33/a 935 5¼ 5¾ 126 no Mating 
+445 put 1 11/,e 1,438 4½ 4~. 610 6?/a 7¾ 8 no listing 
+450 put 2?/e 31/e 1,3Z7 6rye 7 130 81/z 9 7 14¼ 14¾ 80 
+455 put 6¾ 6% 70 Wa 9?/a 134 11 11¾ 0 no listing 
+460 put 11¾ 12¼ 23 131/a 13?/e 6 141/• 14~e 0 nolbting i 465 put 163/e 171/e 0 171/e 17~. 0 17¥2 18¼ 0 no listing 
+470 put 211/4 22 0 2~. 21:)r, 0 21 J,-4 22¼ 0 no llaUng 'O 
