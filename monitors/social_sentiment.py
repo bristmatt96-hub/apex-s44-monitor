@@ -1202,21 +1202,24 @@ def run_scan(
             if _triage_fn(post):
                 filtered_posts.append(post)
                 haiku_passed += 1
-                print(f"    CREDIT: [{post.entity_name[:25]}] {post.content[:60]}...")
+                safe = post.content[:60].encode("ascii", "replace").decode()
+                print(f"    CREDIT: [{post.entity_name[:25]}] {safe}...")
             else:
                 haiku_dropped += 1
-                print(f"    NOISE:  [{post.entity_name[:25]}] {post.content[:60]}...")
+                safe = post.content[:60].encode("ascii", "replace").decode()
+                print(f"    NOISE:  [{post.entity_name[:25]}] {safe}...")
             time.sleep(0.2)  # Rate limit
 
     print(f"\n  Total posts: {len(all_posts)} | New: {len(new_posts)} | "
           f"Duplicates skipped: {skipped} | Noise filtered: {noise_count} | "
-          f"Haiku triaged: {len(ambiguous_posts)} (passed={haiku_passed}, dropped={haiku_dropped}) | "
-          f"Sent to Sonnet: {len(filtered_posts)}")
+          f"Triaged: {len(ambiguous_posts)} (passed={haiku_passed}, dropped={haiku_dropped}) | "
+          f"Sent to classify: {len(filtered_posts)}")
 
     if dry_run:
         print(f"\n  [DRY RUN] Would send {len(filtered_posts)} posts to Sonnet:")
         for p in filtered_posts:
-            print(f"    PASS: [{p.entity_name[:25]}] {p.content[:80]}...")
+            safe = p.content[:80].encode("ascii", "replace").decode()
+            print(f"    PASS: [{p.entity_name[:25]}] {safe}...")
         print(f"\n  [DRY RUN] Would SKIP {noise_count} noise posts:")
         for post in new_posts:
             if is_credit_noise(post):
