@@ -62,28 +62,62 @@ Real-time scanning and alerting. Most write to SQLite + send Telegram alerts.
 
 ---
 
-## Analytics (18)
+## Analytics (29)
 
-Quantitative models and scoring engines.
+Quantitative models, scoring engines, and data layers.
+
+### Pricing & Risk
 
 | Module | What it does |
 |--------|-------------|
 | `cds_pricer` | ISDA Standard CDS Model — spread/upfront conversion, DV01, CS01, JTD, implied PD |
 | `tranche_pricer` | Gaussian copula CDO pricer — Gauss-Hermite quadrature, CDS curve bootstrapping, full Greeks (CS01/CS02/Rho01/Theta/Recovery01/JTD), base correlation calibration |
-| `relative_value` | Rich/cheap screener — sector z-scores, rating z-scores, momentum, composite score |
-| `maturity_wall` | Ranks entities by refinancing risk; cross-references with CDS spreads |
-| `scenario_analysis` | 8 macro stress scenarios — ECB cuts/hikes, European recession, China crisis, sovereign stress, LME wave, fallen angel cascade, risk-on squeeze |
-| `dispersion` | Spread dispersion regime analysis — universe CV, sector stats, pair trade sectors |
-| `credit_equity_bridge` | Orchestrates CDS-equity gap detection; loads credit + equity data; scores via signal_scorer; recommends trades |
-| `signal_scorer` | Two independent 0-100 scores: credit signal score + equity repricing score; gap = alpha |
-| `covenant_risk` | Manual profiles + Claude API assessment; confidence/data quality ratings |
-| `fallen_angels` | Rating migration signals — rising stars, fallen angels, distressed exits, stable core |
-| `trade_structurer` | Options structure recommender based on catalyst type, IV percentile, gap strength, CDS level |
-| `risk_metrics` | Single-name (DV01, CS01, JTD, VaR 95/99%, CVaR) + portfolio (aggregate, concentration HHI, top 5 contributors) |
-| `credit_cycle` | Regime classifier (EXPANSION, LATE_CYCLE, DISTRESS, RECOVERY) using multi-factor scoring |
-| `situation_classifier` | Playbook A (aggressive sponsor) vs Playbook B (maturity wall) classification |
-| `portfolio_risk_pitch` | Real risk metrics for pitch deck — net DV01, gross CS01, JTD, stress P&L |
 | `tranche_scenario_table` | Generates P&L scenario tables for Xover + Main tranches across parallel bumps |
+| `tranche_strategy_engine` | Dispersion trade construction, delta hedging, P&L attribution (carry + spread + correlation + theta + default) |
+| `risk_metrics` | Single-name (DV01, CS01, JTD, VaR 95/99%, CVaR) + portfolio (aggregate, concentration HHI, top 5 contributors) |
+| `scenario_analysis` | 8 macro stress scenarios — ECB cuts/hikes, European recession, China crisis, sovereign stress, LME wave, fallen angel cascade, risk-on squeeze |
+
+### Relative Value & Selection
+
+| Module | What it does |
+|--------|-------------|
+| `relative_value` | Rich/cheap screener — sector z-scores, rating z-scores, momentum, composite score |
+| `hy_fair_value_model` | Spread decomposition, Z-scores by rating/maturity, macro-based fair value regression (FRED), quality rotation signals |
+| `signal_scorer` | Two independent 0-100 scores: credit signal score + equity repricing score; gap = alpha |
+| `credit_equity_bridge` | Orchestrates CDS-equity gap detection; loads credit + equity data; scores via signal_scorer; recommends trades |
+| `equity_credit_signals` | 5 equity-based signals per Xover name — vol regime, momentum, drawdown, leverage/MCap erosion, equity-credit beta |
+| `cross_asset_credit_signals` | Cross-asset signal framework — equity vol, rates, FX, commodities → credit positioning scores (-2 to +2) |
+| `trade_structurer` | Options structure recommender based on catalyst type, IV percentile, gap strength, CDS level |
+
+### Fundamental & Structural Models
+
+| Module | What it does |
+|--------|-------------|
+| `fundamental_credit_analysis` | Traditional credit ratios — Debt/EBITDA, interest coverage, FCF/Debt, margins from yfinance financials |
+| `merton_single_name` | Structural credit model — distance-to-default, implied PD, implied spread per Xover name (Black-Scholes-Merton) |
+| `covenant_risk` | Manual profiles + Claude API assessment; confidence/data quality ratings |
+| `distressed_monitor` | Liquidity stress scores, cash burn timelines, LME risk watch lists per Xover name |
+| `fallen_angels` | Rating migration signals — rising stars, fallen angels, distressed exits, stable core |
+| `situation_classifier` | Playbook A (aggressive sponsor) vs Playbook B (maturity wall) classification |
+| `maturity_wall` | Ranks entities by refinancing risk; cross-references with CDS spreads |
+
+### Macro & Sentiment
+
+| Module | What it does |
+|--------|-------------|
+| `credit_cycle` | Regime classifier (EXPANSION, LATE_CYCLE, DISTRESS, RECOVERY) using multi-factor scoring |
+| `ecb_lending_conditions` | ECB Bank Lending Survey, MFI balance sheets, NPL ratios, Eurostat industrial production by sector |
+| `news_sentiment_monitor` | Finnhub news + FinBERT NLP sentiment per name and sector |
+| `insider_flow_tracker` | PDMR insider transactions, HY ETF flow sentiment (IHYG.L/HYG/JNK), short interest tracking |
+| `dispersion` | Spread dispersion regime analysis — universe CV, sector stats, pair trade sectors |
+
+### Data Layers
+
+| Module | What it does |
+|--------|-------------|
+| `crossover_constituents` | iTraxx Crossover data layer — 74 names mapped to yfinance tickers, equity prices, market caps, balance sheets |
+| `itraxx_main_constituents` | iTraxx Main data layer — 133 IG names mapped to yfinance tickers, equity + fundamental data |
+| `portfolio_risk_pitch` | Real risk metrics for pitch deck — net DV01, gross CS01, JTD, stress P&L |
 | `backtester` | Testing engine for trading strategies against historical data |
 
 ---
@@ -143,6 +177,7 @@ Quantitative models and scoring engines.
 
 ## Recent Work (Feb 2026)
 
+- **11 analytics tools migrated to production** — HY fair value model, cross-asset signals, fundamental credit analysis, Merton DD, ECB lending conditions, distressed/LME monitor, equity credit signals, news sentiment (FinBERT), insider flow tracker, tranche strategy engine, iTraxx constituent data layers (Xover 74 + Main 133)
+- **Social sentiment 3-tier filter** — keyword blocklist → Haiku triage → Sonnet classify; 96% cost reduction on INEOS; covers 14 consumer-facing entities
 - **Gaussian copula tranche pricer** — full-fat CDO pricing with 4-index calibration (16/16 tranches zero error), S42 vs S44 roll analysis
 - **SN13 social sentiment fix** — macrocosmos SDK v3.1.0 compatibility (gRPC, field mapping, JSON parsing)
-- **Social sentiment pre-filter** — keyword-based noise filter for 14 consumer-facing entities (INEOS, Nokia, TUI, Air France, JLR, Renault, Volvo, Virgin Media, Premier Foods, Ericsson, Telecom Italia, Lagardere, SES, Eutelsat); 75% LLM cost reduction on INEOS; credit keyword safety valve ensures genuine signals always pass through
