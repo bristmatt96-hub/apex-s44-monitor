@@ -779,19 +779,29 @@ def run_scan(
         else:
             new_posts.append(post)
 
-    print(f"\n  Total posts: {len(all_posts)} | New: {len(new_posts)} | "
-          f"Duplicates skipped: {skipped}")
+    # Pre-filter: drop obvious noise before sending to Claude
+    filtered_posts = []
+    noise_count = 0
+    for post in new_posts:
+        if is_credit_noise(post):
+            noise_count += 1
+        else:
+            filtered_posts.append(post)
 
-    if not new_posts:
-        print("  No new posts to classify.")
+    print(f"\n  Total posts: {len(all_posts)} | New: {len(new_posts)} | "
+          f"Duplicates skipped: {skipped} | Noise filtered: {noise_count} | "
+          f"Sent to Claude: {len(filtered_posts)}")
+
+    if not filtered_posts:
+        print("  No posts to classify after noise filter.")
         conn.close()
         return []
 
     # Classify through Claude
     signals = []
-    print(f"\n  Classifying {len(new_posts)} posts through Claude...")
+    print(f"\n  Classifying {len(filtered_posts)} posts through Claude...")
 
-    for i, post in enumerate(new_posts):
+    for i, post in enumerate(filtered_posts):
         signal = classify_post(post)
         if signal:
             store_signal(conn, signal)
@@ -814,13 +824,13 @@ def run_scan(
             severity_icon = {
                 1: ".", 2: "o", 3: "*", 4: "!", 5: "!!",
             }.get(signal.severity, "?")
-            print(f"  [{i+1}/{len(new_posts)}] {severity_icon} "
+            print(f"  [{i+1}/{len(filtered_posts)}] {severity_icon} "
                   f"{signal.entity_name[:30]:<30} "
                   f"{signal.sentiment:<8} sev={signal.severity} "
                   f"{'NEW' if signal.is_new_info else 'known'}")
 
         # Brief pause between API calls
-        if i < len(new_posts) - 1:
+        if i < len(filtered_posts) - 1:
             time.sleep(0.3)
 
     conn.close()

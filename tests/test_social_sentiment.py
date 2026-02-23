@@ -86,3 +86,32 @@ class TestIsCreditNoise:
         """Don't crash on empty posts."""
         post = _make_post("")
         assert is_credit_noise(post) is False
+
+
+from unittest.mock import patch, MagicMock
+
+
+def test_run_scan_filters_noise_before_classify(tmp_path):
+    """Noise posts should never reach classify_post()."""
+    with patch("monitors.social_sentiment.DB_PATH", tmp_path / "test.db"), \
+         patch("monitors.social_sentiment.get_demo_posts") as mock_demo, \
+         patch("monitors.social_sentiment.classify_post") as mock_classify:
+
+        # 3 posts: 1 noise, 1 credit, 1 borderline-passes
+        mock_demo.return_value = [
+            _make_post("INEOS Grenadiers cycling at Tour de France"),      # noise
+            _make_post("INEOS restructuring debt facilities at holdco"),   # credit keyword
+            _make_post("INEOS Rosignano plant facing 600 job losses"),    # no keyword, no noise
+        ]
+        mock_classify.return_value = MagicMock(
+            alert_worthy=False, severity=1, entity_name="test",
+            sentiment="neutral", is_new_info=False, claim_summary="",
+            post_id="x", credit_relevance="", source_credibility="low",
+            raw_post="", author="test", posted_at="", classified_at="",
+        )
+
+        from monitors.social_sentiment import run_scan
+        run_scan(entity_filter="INEOS", demo_mode=True)
+
+        # classify_post should only be called for the 2 non-noise posts
+        assert mock_classify.call_count == 2
