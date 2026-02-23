@@ -286,6 +286,42 @@ def get_search_terms(entity_name: str) -> list[str]:
     return terms
 
 
+def is_credit_noise(post: SocialPost) -> bool:
+    """Fast pre-filter to reject obviously non-credit posts.
+
+    Returns True if the post should be SKIPPED (is noise).
+    Safety valve: posts matching any CREDIT_KEYWORDS always pass through.
+    """
+    content_lower = post.content.lower()
+
+    if not content_lower.strip():
+        return False  # Don't filter empty posts, let Claude decide
+
+    # Safety valve: any credit keyword present = always pass through
+    for kw in CREDIT_KEYWORDS:
+        if kw.lower() in content_lower:
+            return False
+
+    # Check global noise blocklist
+    is_noisy = False
+    for term in NOISE_BLOCKLIST:
+        if term.lower() in content_lower:
+            is_noisy = True
+            break
+
+    # Check per-entity noise (match against search aliases)
+    if not is_noisy:
+        for alias_key, noise_terms in ENTITY_NOISE.items():
+            if alias_key.lower() in post.entity_name.lower():
+                for term in noise_terms:
+                    if term.lower() in content_lower:
+                        is_noisy = True
+                        break
+                break  # Only check one entity match
+
+    return is_noisy
+
+
 # ---------------------------------------------------------------------------
 # SN13 API queries
 # ---------------------------------------------------------------------------
