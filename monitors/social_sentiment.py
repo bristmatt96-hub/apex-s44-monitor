@@ -648,7 +648,13 @@ def query_desearch(
     for item in items:
         post_id = str(item.get("id", item.get("tweet_id", f"sn22_{hash(str(item))}")))
         content = item.get("text", item.get("content", item.get("full_text", "")))
-        author = item.get("username", item.get("user", {}).get("screen_name", "unknown"))
+        user_obj = item.get("user", {})
+        author = (
+            item.get("username")
+            or (user_obj.get("username") if isinstance(user_obj, dict) else None)
+            or (user_obj.get("screen_name") if isinstance(user_obj, dict) else None)
+            or "unknown"
+        )
         url = item.get("url", item.get("uri", f"https://x.com/{author}/status/{post_id}"))
 
         # Robust timestamp parsing
@@ -1080,11 +1086,13 @@ def run_scan(
         print(f"\n  [DRY RUN] Would SKIP {noise_count} noise posts:")
         for post in new_posts:
             if is_credit_noise(post):
-                print(f"    SKIP: [{post.entity_name[:25]}] {post.content[:80]}...")
+                safe = post.content[:80].encode("ascii", "replace").decode()
+                print(f"    SKIP: [{post.entity_name[:25]}] {safe}...")
         if ambiguous_posts:
             print(f"\n  [DRY RUN] Would Haiku-triage {len(ambiguous_posts)} ambiguous posts:")
             for post in ambiguous_posts:
-                print(f"    TRIAGE: [{post.entity_name[:25]}] {post.content[:80]}...")
+                safe = post.content[:80].encode("ascii", "replace").decode()
+                print(f"    TRIAGE: [{post.entity_name[:25]}] {safe}...")
         conn.close()
         return []
 
