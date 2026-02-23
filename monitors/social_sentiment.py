@@ -1,35 +1,33 @@
 """
-Social Sentiment Monitor -- Bittensor SN13 + Claude Credit Classifier
+Social Sentiment Monitor -- Bittensor SN13+SN22 + LLM Credit Classifier
 
 Monitors Twitter/X for credit-relevant social media posts about iTraxx
-Xover names using the Macrocosmos SN13 on-demand data API, then classifies
-each post through Claude with a credit-specific lens.
+Xover names using dual data sources (SN13 macrocosmos + SN22 Desearch),
+then classifies each post through LLM with a credit-specific lens.
+
+Data Sources:
+    SN13 (macrocosmos) — Bittensor subnet 13, gRPC API
+    SN22 (Desearch)    — Bittensor subnet 22, REST API
+
+LLM Providers:
+    anthropic (default) — Haiku triage + Sonnet classify (~$2.37/scan)
+    chutes              — Mistral-Nemo triage + Qwen3-235B classify (~$0.08/scan)
+    Set LLM_PROVIDER=chutes in .env to switch.
 
 Pipeline:
-    1. Query SN13 for recent X posts matching entity + credit keywords
-    2. De-duplicate by post ID against SQLite history
-    3. Classify each new post via Claude: sentiment, severity, novelty
-    4. Log results to SQLite (data/social_sentiment.db)
-    5. Flag high-severity items for alerting
-
-Credit Keywords:
-    restructuring, covenant, downgrade, default, LME, maturity,
-    refinancing, distressed, bankruptcy, leverage, amendment, waiver,
-    debt exchange, bondholder, credit event
-
-Key Credit Twitter Accounts (configurable):
-    @9aborad, @ResearchReorg, @debaborad, @CreditSights
-
-Demo Mode:
-    If MACROCOSMOS_API_KEY is not set in .env, runs with mock data
-    so the full pipeline (de-dupe, classify, store) can be tested.
+    1. Query SN13 + SN22 for recent X posts per entity
+    2. Cross-source dedup by post_id
+    3. De-duplicate against SQLite history
+    4. 3-tier filter: keyword blocklist -> LLM triage -> LLM classify
+    5. Log results to SQLite + flag high-severity for alerting
 
 Usage:
     python -m monitors.social_sentiment                          # Full universe
     python -m monitors.social_sentiment --entity "INEOS Finance" # Single name
     python -m monitors.social_sentiment --watchlist              # Top conviction only
+    python -m monitors.social_sentiment --provider chutes        # Use Chutes LLM
+    python -m monitors.social_sentiment --dry-run                # Preview only
     python -m monitors.social_sentiment --status                 # Show recent alerts
-    python -m monitors.social_sentiment --stats                  # Sentiment stats
 """
 
 import argparse
@@ -56,6 +54,13 @@ DB_PATH = Path("data/social_sentiment.db")
 MODEL = "claude-sonnet-4-5-20250929"
 TRIAGE_MODEL = "claude-3-5-haiku-20241022"
 MAX_TOKENS = 1024
+
+# Chutes (Bittensor SN64) — OpenAI-compatible LLM inference
+# Set CHUTES_API_KEY + LLM_PROVIDER=chutes to use instead of Anthropic
+CHUTES_BASE_URL = "https://llm.chutes.ai/v1"
+CHUTES_CLASSIFY_MODEL = "Qwen/Qwen3-235B-A22B-Instruct-2507-TEE"
+CHUTES_TRIAGE_MODEL = "unsloth/Mistral-Nemo-Instruct-2407"
+LLM_PROVIDER = os.getenv("LLM_PROVIDER", "anthropic").lower()  # "anthropic" or "chutes"
 
 # Credit-specific search keywords
 CREDIT_KEYWORDS = [
@@ -425,6 +430,37 @@ def haiku_triage(post: SocialPost) -> bool:
     except Exception as e:
         print(f"  Haiku triage error: {e}", file=sys.stderr)
         return True  # On error, let it through to Sonnet
+
+
+def chutes_triage(post: SocialPost) -> bool:
+    """Cheap Chutes pre-screen for ambiguous posts from noisy entities.
+
+    Uses Mistral-Nemo via Chutes (Bittensor SN64) — ~$0.000003/call.
+    Returns True if the post should PASS through to full classification.
+    """
+    api_key = os.getenv("CHUTES_API_KEY")
+    if not api_key:
+        return True  # If no API key, let it through
+
+    try:
+        from openai import OpenAI
+        client = OpenAI(base_url=CHUTES_BASE_URL, api_key=api_key)
+        response = client.chat.completions.create(
+            model=CHUTES_TRIAGE_MODEL,
+            max_tokens=10,
+            messages=[{
+                "role": "user",
+                "content": TRIAGE_PROMPT.format(
+                    entity_name=post.entity_name,
+                    content=post.content[:300],
+                ),
+            }],
+        )
+        answer = response.choices[0].message.content.strip().upper()
+        return "CREDIT" in answer
+    except Exception as e:
+        print(f"  Chutes triage error: {e}", file=sys.stderr)
+        return True  # On error, let it through
 
 
 # ---------------------------------------------------------------------------
@@ -942,6 +978,86 @@ def classify_post(post: SocialPost) -> SentimentSignal | None:
         return None
 
 
+def classify_post_chutes(post: SocialPost) -> SentimentSignal | None:
+    """Classify a social media post using Chutes (Bittensor SN64).
+
+    Uses Qwen3-235B via OpenAI-compatible API — ~$0.00008/call (30x cheaper
+    than Sonnet). Same prompt and JSON schema as classify_post().
+    """
+    api_key = os.getenv("CHUTES_API_KEY")
+    if not api_key:
+        print("  Warning: CHUTES_API_KEY not set, skipping classification",
+              file=sys.stderr)
+        return None
+
+    try:
+        from openai import OpenAI
+        client = OpenAI(base_url=CHUTES_BASE_URL, api_key=api_key)
+
+        user_msg = (
+            f"Entity: {post.entity_name}\n"
+            f"Author: {post.author}\n"
+            f"Posted: {post.posted_at}\n"
+            f"Credit keywords matched: {', '.join(post.keywords_matched) or 'none'}\n"
+            f"\nPost content:\n{post.content}"
+        )
+
+        response = client.chat.completions.create(
+            model=CHUTES_CLASSIFY_MODEL,
+            max_tokens=MAX_TOKENS,
+            messages=[
+                {"role": "system", "content": CLASSIFICATION_SYSTEM},
+                {"role": "user", "content": user_msg},
+            ],
+        )
+
+        raw = response.choices[0].message.content.strip()
+
+        # Strip code fences if present
+        if raw.startswith("```"):
+            raw = raw.split("\n", 1)[1] if "\n" in raw else raw[3:]
+        if raw.endswith("```"):
+            raw = raw.rsplit("```", 1)[0]
+        raw = raw.strip()
+
+        # Strip <think>...</think> reasoning blocks (Qwen3 sometimes emits these)
+        import re
+        raw = re.sub(r"<think>.*?</think>", "", raw, flags=re.DOTALL).strip()
+
+        # Use raw_decode to extract first JSON object, ignoring trailing text
+        decoder = json.JSONDecoder()
+        json_start = raw.find("{")
+        if json_start == -1:
+            raise json.JSONDecodeError("No JSON object found", raw, 0)
+        result, _ = decoder.raw_decode(raw, json_start)
+
+        severity = int(result.get("severity", 1))
+        sentiment = result.get("sentiment", "neutral")
+
+        return SentimentSignal(
+            post_id=post.post_id,
+            entity_name=post.entity_name,
+            sentiment=sentiment,
+            severity=severity,
+            is_new_info=bool(result.get("is_new_info", False)),
+            claim_summary=result.get("claim_summary", ""),
+            credit_relevance=result.get("credit_relevance", ""),
+            source_credibility=result.get("source_credibility", "medium"),
+            raw_post=post.content,
+            author=post.author,
+            posted_at=post.posted_at,
+            classified_at=datetime.now().isoformat(),
+            alert_worthy=severity >= 4,
+        )
+
+    except json.JSONDecodeError as e:
+        print(f"  Chutes JSON parse error for {post.post_id}: {e}", file=sys.stderr)
+        return None
+    except Exception as e:
+        print(f"  Chutes classify error for {post.post_id}: {e}", file=sys.stderr)
+        return None
+
+
 # ---------------------------------------------------------------------------
 # Main pipeline
 # ---------------------------------------------------------------------------
@@ -951,6 +1067,7 @@ def run_scan(
     watchlist_only: bool = False,
     demo_mode: bool = False,
     dry_run: bool = False,
+    provider_override: str | None = None,
 ) -> list[SentimentSignal]:
     """Run the full social sentiment scan pipeline.
 
@@ -969,6 +1086,22 @@ def run_scan(
         print("  [SN22 ONLY] MACROCOSMOS_API_KEY not set -- SN13 disabled")
     elif not has_sn22_key:
         print("  [SN13 ONLY] DESEARCH_API_KEY not set -- SN22 disabled")
+
+    # LLM provider selection: "anthropic" (default) or "chutes" (Bittensor SN64)
+    provider = (provider_override or LLM_PROVIDER).lower()
+    if provider == "chutes" and not os.getenv("CHUTES_API_KEY"):
+        provider = "anthropic"
+        print("  [FALLBACK] CHUTES_API_KEY not set -- falling back to Anthropic")
+
+    if provider == "chutes":
+        _triage_fn = chutes_triage
+        _classify_fn = classify_post_chutes
+        print(f"  LLM: Chutes SN64 (triage={CHUTES_TRIAGE_MODEL.split('/')[-1]}, "
+              f"classify={CHUTES_CLASSIFY_MODEL.split('/')[-1]})")
+    else:
+        _triage_fn = haiku_triage
+        _classify_fn = classify_post
+        print(f"  LLM: Anthropic (triage={TRIAGE_MODEL}, classify={MODEL})")
 
     conn = get_connection()
 
@@ -1063,9 +1196,10 @@ def run_scan(
     haiku_passed = 0
     haiku_dropped = 0
     if ambiguous_posts and not dry_run:
-        print(f"\n  Haiku triage: {len(ambiguous_posts)} ambiguous posts...")
+        triage_label = "Chutes" if provider == "chutes" else "Haiku"
+        print(f"\n  {triage_label} triage: {len(ambiguous_posts)} ambiguous posts...")
         for post in ambiguous_posts:
-            if haiku_triage(post):
+            if _triage_fn(post):
                 filtered_posts.append(post)
                 haiku_passed += 1
                 print(f"    CREDIT: [{post.entity_name[:25]}] {post.content[:60]}...")
@@ -1101,12 +1235,13 @@ def run_scan(
         conn.close()
         return []
 
-    # Classify through Claude
+    # Classify through LLM
     signals = []
-    print(f"\n  Classifying {len(filtered_posts)} posts through Claude...")
+    classify_label = "Chutes" if provider == "chutes" else "Claude"
+    print(f"\n  Classifying {len(filtered_posts)} posts through {classify_label}...")
 
     for i, post in enumerate(filtered_posts):
-        signal = classify_post(post)
+        signal = _classify_fn(post)
         if signal:
             store_signal(conn, signal)
             signals.append(signal)
@@ -1286,7 +1421,7 @@ def show_stats():
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Social Sentiment Monitor -- Bittensor SN13 + Claude"
+        description="Social Sentiment Monitor -- Bittensor SN13+SN22 + LLM Classify"
     )
     parser.add_argument(
         "--entity", type=str, default=None,
@@ -1295,6 +1430,11 @@ def main():
     parser.add_argument(
         "--watchlist", action="store_true",
         help="Scan top conviction names only (conviction >= 4)",
+    )
+    parser.add_argument(
+        "--provider", type=str, default=None,
+        choices=["anthropic", "chutes"],
+        help="LLM provider for triage + classification (default: env LLM_PROVIDER)",
     )
     parser.add_argument(
         "--status", action="store_true",
@@ -1314,7 +1454,7 @@ def main():
     )
     parser.add_argument(
         "--dry-run", action="store_true",
-        help="Show what would be filtered vs sent to Claude (no API calls)",
+        help="Show what would be filtered vs sent to LLM (no API calls)",
     )
     args = parser.parse_args()
 
@@ -1337,6 +1477,7 @@ def main():
         watchlist_only=args.watchlist,
         demo_mode=args.demo,
         dry_run=args.dry_run,
+        provider_override=args.provider,
     )
 
     print(f"\n  Scan complete: {len(signals)} signals classified")
