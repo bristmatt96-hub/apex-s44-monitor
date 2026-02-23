@@ -54,6 +54,7 @@ load_dotenv(override=True)
 
 DB_PATH = Path("data/social_sentiment.db")
 MODEL = "claude-sonnet-4-5-20250929"
+TRIAGE_MODEL = "claude-3-5-haiku-20241022"
 MAX_TOKENS = 1024
 
 # Credit-specific search keywords
@@ -373,6 +374,57 @@ def is_credit_noise(post: SocialPost) -> bool:
                 break  # Only check one entity match
 
     return is_noisy
+
+
+def is_noisy_entity(entity_name: str) -> bool:
+    """Check if an entity is in the ENTITY_NOISE map (has a big non-credit footprint)."""
+    entity_lower = entity_name.lower()
+    return any(alias.lower() in entity_lower for alias in ENTITY_NOISE)
+
+
+def has_credit_keyword(content: str) -> bool:
+    """Check if content contains any credit keyword."""
+    content_lower = content.lower()
+    return any(kw.lower() in content_lower for kw in CREDIT_KEYWORDS)
+
+
+TRIAGE_PROMPT = """You are a credit analyst gatekeeper. Determine if this social media post is about the CORPORATE CREDIT entity or about something unrelated (sports team, consumer product, entertainment).
+
+Entity: {entity_name}
+Post: {content}
+
+Reply with ONLY one word: CREDIT or NOISE"""
+
+
+def haiku_triage(post: SocialPost) -> bool:
+    """Cheap Haiku pre-screen for ambiguous posts from noisy entities.
+
+    Returns True if the post should PASS through to full classification.
+    Returns False if Haiku says it's noise.
+    Cost: ~$0.0003 per call (30x cheaper than Sonnet classification).
+    """
+    api_key = os.getenv("ANTHROPIC_API_KEY")
+    if not api_key:
+        return True  # If no API key, let it through
+
+    try:
+        client = anthropic.Anthropic(api_key=api_key)
+        response = client.messages.create(
+            model=TRIAGE_MODEL,
+            max_tokens=10,
+            messages=[{
+                "role": "user",
+                "content": TRIAGE_PROMPT.format(
+                    entity_name=post.entity_name,
+                    content=post.content[:300],  # Truncate to save tokens
+                ),
+            }],
+        )
+        answer = response.content[0].text.strip().upper()
+        return "CREDIT" in answer
+    except Exception as e:
+        print(f"  Haiku triage error: {e}", file=sys.stderr)
+        return True  # On error, let it through to Sonnet
 
 
 # ---------------------------------------------------------------------------
@@ -833,27 +885,50 @@ def run_scan(
         else:
             new_posts.append(post)
 
-    # Pre-filter: drop obvious noise before sending to Claude
+    # Pre-filter stage 1: drop obvious noise via keyword matching
     filtered_posts = []
     noise_count = 0
+    ambiguous_posts = []
     for post in new_posts:
         if is_credit_noise(post):
             noise_count += 1
+        elif is_noisy_entity(post.entity_name) and not has_credit_keyword(post.content):
+            ambiguous_posts.append(post)  # Needs Haiku triage
         else:
             filtered_posts.append(post)
 
+    # Pre-filter stage 2: Haiku triage for ambiguous posts from noisy entities
+    haiku_passed = 0
+    haiku_dropped = 0
+    if ambiguous_posts and not dry_run:
+        print(f"\n  Haiku triage: {len(ambiguous_posts)} ambiguous posts...")
+        for post in ambiguous_posts:
+            if haiku_triage(post):
+                filtered_posts.append(post)
+                haiku_passed += 1
+                print(f"    CREDIT: [{post.entity_name[:25]}] {post.content[:60]}...")
+            else:
+                haiku_dropped += 1
+                print(f"    NOISE:  [{post.entity_name[:25]}] {post.content[:60]}...")
+            time.sleep(0.2)  # Rate limit
+
     print(f"\n  Total posts: {len(all_posts)} | New: {len(new_posts)} | "
           f"Duplicates skipped: {skipped} | Noise filtered: {noise_count} | "
-          f"Sent to Claude: {len(filtered_posts)}")
+          f"Haiku triaged: {len(ambiguous_posts)} (passed={haiku_passed}, dropped={haiku_dropped}) | "
+          f"Sent to Sonnet: {len(filtered_posts)}")
 
     if dry_run:
-        print(f"\n  [DRY RUN] Would send {len(filtered_posts)} posts to Claude:")
+        print(f"\n  [DRY RUN] Would send {len(filtered_posts)} posts to Sonnet:")
         for p in filtered_posts:
             print(f"    PASS: [{p.entity_name[:25]}] {p.content[:80]}...")
         print(f"\n  [DRY RUN] Would SKIP {noise_count} noise posts:")
         for post in new_posts:
             if is_credit_noise(post):
                 print(f"    SKIP: [{post.entity_name[:25]}] {post.content[:80]}...")
+        if ambiguous_posts:
+            print(f"\n  [DRY RUN] Would Haiku-triage {len(ambiguous_posts)} ambiguous posts:")
+            for post in ambiguous_posts:
+                print(f"    TRIAGE: [{post.entity_name[:25]}] {post.content[:80]}...")
         conn.close()
         return []
 

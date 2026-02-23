@@ -31,7 +31,7 @@ def test_entity_noise_has_ineos():
     assert "grenadiers" in ineos_lower
 
 
-from monitors.social_sentiment import is_credit_noise, SocialPost
+from monitors.social_sentiment import is_credit_noise, is_noisy_entity, has_credit_keyword, SocialPost
 
 
 def _make_post(content: str, entity_name: str = "INEOS Finance PLC") -> SocialPost:
@@ -134,3 +134,95 @@ def test_dry_run_does_not_classify(tmp_path):
         # classify_post should never be called in dry-run mode
         assert mock_classify.call_count == 0
         assert result == []
+
+
+class TestHelperFunctions:
+    """Test is_noisy_entity and has_credit_keyword helpers."""
+
+    def test_ineos_is_noisy_entity(self):
+        assert is_noisy_entity("INEOS Finance PLC") is True
+
+    def test_nokia_is_noisy_entity(self):
+        assert is_noisy_entity("Nokia Oyj") is True
+
+    def test_worldline_is_not_noisy(self):
+        assert is_noisy_entity("Worldline SA/France") is False
+
+    def test_has_credit_keyword_restructuring(self):
+        assert has_credit_keyword("company faces restructuring of debt") is True
+
+    def test_has_credit_keyword_none(self):
+        assert has_credit_keyword("vague commentary about management") is False
+
+
+class TestHaikuTriage:
+    """Test Haiku triage integration (mocked)."""
+
+    def test_haiku_triage_credit_passes(self):
+        """Mock Haiku returning CREDIT — post should pass."""
+        from monitors.social_sentiment import haiku_triage
+
+        mock_response = MagicMock()
+        mock_response.content = [MagicMock(text="CREDIT")]
+
+        with patch("monitors.social_sentiment.os.getenv", return_value="test-key"), \
+             patch("monitors.social_sentiment.anthropic") as mock_anthropic:
+            mock_client = MagicMock()
+            mock_client.messages.create.return_value = mock_response
+            mock_anthropic.Anthropic.return_value = mock_client
+
+            post = _make_post("INEOS Rosignano plant crisis affecting 600 jobs")
+            assert haiku_triage(post) is True
+
+    def test_haiku_triage_noise_blocked(self):
+        """Mock Haiku returning NOISE — post should be blocked."""
+        from monitors.social_sentiment import haiku_triage
+
+        mock_response = MagicMock()
+        mock_response.content = [MagicMock(text="NOISE")]
+
+        with patch("monitors.social_sentiment.os.getenv", return_value="test-key"), \
+             patch("monitors.social_sentiment.anthropic") as mock_anthropic:
+            mock_client = MagicMock()
+            mock_client.messages.create.return_value = mock_response
+            mock_anthropic.Anthropic.return_value = mock_client
+
+            post = _make_post("Generic vague comment about INEOS with no substance")
+            assert haiku_triage(post) is False
+
+    def test_haiku_triage_no_api_key_passes_through(self):
+        """No API key = pass through (fail open)."""
+        from monitors.social_sentiment import haiku_triage
+
+        with patch("monitors.social_sentiment.os.getenv", return_value=None):
+            post = _make_post("Some vague INEOS post")
+            assert haiku_triage(post) is True
+
+
+def test_run_scan_uses_haiku_for_ambiguous(tmp_path):
+    """Ambiguous posts from noisy entities should go through Haiku triage."""
+    with patch("monitors.social_sentiment.DB_PATH", tmp_path / "test.db"), \
+         patch("monitors.social_sentiment.get_demo_posts") as mock_demo, \
+         patch("monitors.social_sentiment.classify_post") as mock_classify, \
+         patch("monitors.social_sentiment.haiku_triage") as mock_haiku:
+
+        mock_demo.return_value = [
+            _make_post("INEOS Grenadiers cycling at Tour de France"),      # obvious noise
+            _make_post("INEOS restructuring debt facilities at holdco"),   # credit keyword
+            _make_post("Generic vague INEOS management commentary"),       # ambiguous -> haiku
+        ]
+        mock_haiku.return_value = False  # Haiku says noise
+        mock_classify.return_value = MagicMock(
+            alert_worthy=False, severity=1, entity_name="test",
+            sentiment="neutral", is_new_info=False, claim_summary="",
+            post_id="x", credit_relevance="", source_credibility="low",
+            raw_post="", author="test", posted_at="", classified_at="",
+        )
+
+        from monitors.social_sentiment import run_scan
+        run_scan(entity_filter="INEOS", demo_mode=True)
+
+        # Haiku should be called once (for the ambiguous post)
+        assert mock_haiku.call_count == 1
+        # Sonnet should only be called once (the credit keyword post)
+        assert mock_classify.call_count == 1
