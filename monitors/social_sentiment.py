@@ -275,7 +275,7 @@ def query_sn13(
 
     try:
         import macrocosmos as mc
-        client = mc.Sn13Client(api_key=api_key)
+        client = mc.Sn13Client(api_key=api_key, app_name="apex-s44-monitor")
 
         start_date = (datetime.now() - timedelta(days=days_back)).strftime("%Y-%m-%d")
 
@@ -300,11 +300,14 @@ def query_sn13(
         items = response.get("data", []) if isinstance(response, dict) else []
 
         for item in items:
-            post_id = str(item.get("id", item.get("url", f"sn13_{hash(str(item))}")))
+            # SDK v3.1.0 field mapping
+            tweet_data = item.get("tweet", {})
+            user_data = item.get("user", {})
+            post_id = str(tweet_data.get("id", item.get("id", f"sn13_{hash(str(item))}")))
             content = item.get("text", item.get("content", ""))
-            author = item.get("username", item.get("author", "unknown"))
-            posted_at = item.get("created_at", item.get("timestamp", ""))
-            url = item.get("url", "")
+            author = user_data.get("username", item.get("username", "unknown"))
+            posted_at = item.get("datetime", item.get("created_at", ""))
+            url = item.get("uri", item.get("url", ""))
 
             # Check which credit keywords are present
             content_lower = content.lower()
@@ -335,50 +338,71 @@ def query_sn13_accounts(
     days_back: int = 3,
     limit: int = 100,
 ) -> list[SocialPost]:
-    """Query SN13 for posts from key credit Twitter accounts."""
+    """Query SN13 for posts from key credit Twitter accounts.
+
+    Note: SDK v3.1.0 has intermittent gRPC stream failures.
+    This function retries up to 2 times, using credit-relevant
+    keyword combinations with account names to surface their posts.
+    """
     api_key = os.getenv("MACROCOSMOS_API_KEY")
     if not api_key:
         return []
 
-    try:
-        import macrocosmos as mc
-        client = mc.Sn13Client(api_key=api_key)
+    import macrocosmos as mc
 
-        start_date = (datetime.now() - timedelta(days=days_back)).strftime("%Y-%m-%d")
+    start_date = (datetime.now() - timedelta(days=days_back)).strftime("%Y-%m-%d")
 
-        response = client.sn13.OnDemandData(
-            source="X",
-            usernames=CREDIT_ACCOUNTS,
-            start_date=start_date,
-            limit=limit,
-        )
+    # Search for posts mentioning these accounts + credit keywords
+    # Split into small batches to avoid overloading gRPC stream
+    all_posts = []
+    for batch_start in range(0, len(CREDIT_ACCOUNTS), 3):
+        batch = CREDIT_ACCOUNTS[batch_start:batch_start + 3]
+        keywords = batch  # Account names as keywords
 
-        posts = []
-        items = response.get("data", []) if isinstance(response, dict) else []
+        for attempt in range(2):
+            try:
+                client = mc.Sn13Client(api_key=api_key, app_name="apex-s44-monitor")
+                response = client.sn13.OnDemandData(
+                    source="X",
+                    keywords=keywords,
+                    start_date=start_date,
+                    limit=limit // max(1, len(CREDIT_ACCOUNTS) // 3),
+                    keyword_mode="any",
+                )
 
-        for item in items:
-            post_id = str(item.get("id", item.get("url", f"sn13_{hash(str(item))}")))
-            content = item.get("text", item.get("content", ""))
-            author = item.get("username", item.get("author", "unknown"))
-            posted_at = item.get("created_at", item.get("timestamp", ""))
-            url = item.get("url", "")
+                items = response.get("data", []) if isinstance(response, dict) else []
 
-            posts.append(SocialPost(
-                post_id=post_id,
-                source="X",
-                author=author,
-                content=content,
-                posted_at=posted_at,
-                url=url,
-                entity_name="",  # Will be matched by Claude
-                keywords_matched=[],
-            ))
+                for item in items:
+                    tweet_data = item.get("tweet", {})
+                    user_data = item.get("user", {})
+                    post_id = str(tweet_data.get("id", item.get("id", f"sn13_{hash(str(item))}")))
+                    content = item.get("text", item.get("content", ""))
+                    author = user_data.get("username", item.get("username", "unknown"))
+                    posted_at = item.get("datetime", item.get("created_at", ""))
+                    url = item.get("uri", item.get("url", ""))
 
-        return posts
+                    all_posts.append(SocialPost(
+                        post_id=post_id,
+                        source="X",
+                        author=author,
+                        content=content,
+                        posted_at=posted_at,
+                        url=url,
+                        entity_name="",  # Will be matched by Claude
+                        keywords_matched=[],
+                    ))
 
-    except Exception as e:
-        print(f"  SN13 API error for credit accounts: {e}", file=sys.stderr)
-        return []
+                break  # Success, move to next batch
+
+            except Exception as e:
+                if attempt == 0:
+                    time.sleep(1)  # Brief pause before retry
+                else:
+                    print(f"  SN13 accounts batch {batch}: {e}", file=sys.stderr)
+
+        time.sleep(0.5)  # Rate limit between batches
+
+    return all_posts
 
 
 # ---------------------------------------------------------------------------
@@ -589,7 +613,12 @@ def classify_post(post: SocialPost) -> SentimentSignal | None:
             raw = raw.rsplit("```", 1)[0]
         raw = raw.strip()
 
-        result = json.loads(raw)
+        # Use raw_decode to extract first JSON object, ignoring trailing text
+        decoder = json.JSONDecoder()
+        json_start = raw.find("{")
+        if json_start == -1:
+            raise json.JSONDecodeError("No JSON object found", raw, 0)
+        result, _ = decoder.raw_decode(raw, json_start)
 
         severity = int(result.get("severity", 1))
         sentiment = result.get("sentiment", "neutral")

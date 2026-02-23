@@ -13,6 +13,7 @@ aiosqlite>=0.19.0
 tweepy>=4.14.0
 feedparser>=6.0.0
 yfinance>=0.2.0
+macrocosmos>=3.0.0  # Bittensor SN13 social data API
 
 # Document processing
 pypdf>=3.0.0
