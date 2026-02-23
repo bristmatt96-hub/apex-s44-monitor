@@ -22,15 +22,23 @@ from statistics import median
 from types import ModuleType
 
 # ---------------------------------------------------------------------------
-# Stub heavy optional deps so we can import monitors.social_sentiment
-# without requiring macrocosmos / anthropic / dotenv to be installed.
+# Load .env FIRST (before stubbing), then stub optional deps for import safety
 # ---------------------------------------------------------------------------
+try:
+    from dotenv import load_dotenv
+    load_dotenv(override=False)
+except ImportError:
+    pass  # dotenv not installed, rely on system env vars
+
 for _mod in ["macrocosmos", "anthropic", "dotenv"]:
     if _mod not in sys.modules:
-        _stub = ModuleType(_mod)
-        if _mod == "dotenv":
-            _stub.load_dotenv = lambda **kw: None
-        sys.modules[_mod] = _stub
+        try:
+            __import__(_mod)
+        except ImportError:
+            _stub = ModuleType(_mod)
+            if _mod == "dotenv":
+                _stub.load_dotenv = lambda **kw: None
+            sys.modules[_mod] = _stub
 
 from monitors.social_sentiment import (
     SocialPost,
