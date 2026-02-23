@@ -64,6 +64,37 @@ CREDIT_KEYWORDS = [
     "CDS", "high yield", "junk bond", "fallen angel",
 ]
 
+# Global noise terms -- never credit-relevant for any entity
+NOISE_BLOCKLIST = [
+    # Football / soccer
+    "Manchester United", "Man Utd", "MUFC", "Premier League",
+    "transfer window", "footballer", "signing players", "squad depth",
+    "manager sacked", "Glazers", "Old Trafford", "OGC Nice", "Ligue 1",
+    "Champions League goal", "Europa League",
+    # Cycling
+    "Grenadiers", "cycling", "Tour de France", "Giro d'Italia", "Vuelta",
+    "Algarve", "peloton", "stage race", "GC contender", "domestique",
+    "Vauquelin", "Vlasov",
+    # Other sports / entertainment
+    "Formula 1", "F1 team", "rugby", "sailing", "Americas Cup",
+    "yacht race",
+]
+
+# Per-entity noise -- for names with big non-credit social footprints
+ENTITY_NOISE = {
+    "INEOS": [
+        "Manchester United", "Man Utd", "MUFC", "Grenadiers", "cycling",
+        "Ratcliffe football", "Old Trafford", "OGC Nice", "peloton",
+        "Tour de France", "Algarve", "Americas Cup", "Vivell",
+        "stage race", "Giro", "Vuelta",
+    ],
+    "Nokia": ["phone", "smartphone", "Android", "mobile launch", "handset"],
+    "TUI": [
+        "holiday", "vacation", "flight delayed", "hotel review",
+        "package deal", "all inclusive", "beach resort",
+    ],
+}
+
 # Key credit Twitter accounts to monitor
 CREDIT_ACCOUNTS = [
     "9aborad",
