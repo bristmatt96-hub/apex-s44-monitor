@@ -96,6 +96,56 @@ ENTITY_NOISE = {
         "holiday", "vacation", "flight delayed", "hotel review",
         "package deal", "all inclusive", "beach resort",
     ],
+    "Air France": [
+        "flight delayed", "lost luggage", "luggage", "boarding pass",
+        "seat upgrade", "frequent flyer", "Flying Blue", "meal service",
+        "cabin crew", "check-in", "baggage", "lounge access", "economy class",
+        "business class", "turbulence", "runway", "departure gate",
+    ],
+    "Jaguar": [
+        "car review", "test drive", "horsepower", "SUV", "Range Rover",
+        "Defender", "F-Type", "electric vehicle launch", "showroom",
+        "celebrity", "top speed", "MPG",
+    ],
+    "Renault": [
+        "car review", "test drive", "Megane", "Clio", "Alpine F1",
+        "Formula 1", "Grand Prix", "Dacia", "EV launch", "showroom",
+        "horsepower", "hatchback",
+    ],
+    "Volvo": [
+        "car review", "test drive", "safety rating", "XC90", "XC60",
+        "EX90", "electric vehicle", "self-driving", "crash test",
+        "family car", "SUV review",
+    ],
+    "Virgin Media": [
+        "broadband speed", "wifi down", "router", "customer service",
+        "TV package", "installation", "engineer visit", "buffering",
+        "Branson", "Virgin Atlantic", "Virgin Galactic", "fibre optic",
+    ],
+    "Premier Foods": [
+        "Mr Kipling", "Bisto", "Oxo", "recipe", "baking",
+        "supermarket", "grocery", "cake", "pie", "cooking",
+    ],
+    "Ericsson": [
+        "5G rollout", "network coverage", "cell tower", "antenna",
+        "mobile network", "telecom infrastructure", "base station",
+    ],
+    "Telecom Italia": [
+        "broadband speed", "wifi down", "customer service", "TIM mobile",
+        "phone plan", "data plan", "coverage map", "roaming",
+    ],
+    "Lagardere": [
+        "book launch", "publishing", "magazine", "airport lounge",
+        "duty free", "travel retail", "bookstore", "Hachette",
+    ],
+    "SES": [
+        "satellite TV", "signal lost", "dish alignment", "channel lineup",
+        "set-top box", "Astra satellite", "TV reception",
+    ],
+    "Eutelsat": [
+        "satellite TV", "OneWeb", "satellite broadband", "orbit",
+        "space launch", "Starlink competitor", "dish installation",
+    ],
 }
 
 # Key credit Twitter accounts to monitor
