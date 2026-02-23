@@ -578,6 +578,123 @@ def query_sn13_accounts(
 
 
 # ---------------------------------------------------------------------------
+# SN22 (Desearch) API queries
+# ---------------------------------------------------------------------------
+
+def query_desearch(
+    entity_name: str,
+    search_terms: list[str],
+    days_back: int = 3,
+    limit: int = 50,
+) -> list[SocialPost]:
+    """Query Desearch SN22 API for recent X posts about an entity.
+
+    REST client for https://api.desearch.ai/twitter
+    Auth via DESEARCH_API_KEY env var.
+    Returns list of SocialPost objects, or empty list on error.
+    """
+    api_key = os.getenv("DESEARCH_API_KEY")
+    if not api_key:
+        return []
+
+    try:
+        import requests
+    except ImportError:
+        print("  Warning: requests library not installed, cannot query Desearch",
+              file=sys.stderr)
+        return []
+
+    # Build query: combine aliases with credit keywords using OR
+    aliases = search_terms[:2] if search_terms else [entity_name]
+    query_parts = []
+    for alias in aliases:
+        for kw in list(CREDIT_KEYWORDS)[:8]:
+            query_parts.append(f"{alias} {kw}")
+    query_parts.extend(aliases)
+    query_string = " OR ".join(query_parts)
+
+    end_date = datetime.utcnow()
+    start_date = end_date - timedelta(days=days_back)
+
+    params = {
+        "query": query_string,
+        "start_date": start_date.strftime("%Y-%m-%d"),
+        "end_date": end_date.strftime("%Y-%m-%d"),
+        "count": limit,
+        "sort": "Top",
+        "lang": "en",
+    }
+    headers = {
+        "Authorization": api_key,
+        "Content-Type": "application/json",
+    }
+
+    try:
+        resp = requests.get(
+            "https://api.desearch.ai/twitter",
+            headers=headers,
+            params=params,
+            timeout=30,
+        )
+        resp.raise_for_status()
+        data = resp.json()
+    except Exception as e:
+        print(f"  SN22 API error for {entity_name}: {e}", file=sys.stderr)
+        return []
+
+    # Normalize response to SocialPost objects
+    items = data if isinstance(data, list) else data.get("data", data.get("results", []))
+    posts = []
+    for item in items:
+        post_id = str(item.get("id", item.get("tweet_id", f"sn22_{hash(str(item))}")))
+        content = item.get("text", item.get("content", item.get("full_text", "")))
+        author = item.get("username", item.get("user", {}).get("screen_name", "unknown"))
+        url = item.get("url", item.get("uri", f"https://x.com/{author}/status/{post_id}"))
+
+        # Robust timestamp parsing
+        raw_ts = item.get("created_at", item.get("datetime", item.get("timestamp", "")))
+        posted_at = _parse_desearch_timestamp(raw_ts)
+
+        content_lower = content.lower()
+        matched = [kw for kw in CREDIT_KEYWORDS if kw.lower() in content_lower]
+
+        posts.append(SocialPost(
+            post_id=post_id,
+            source="X",
+            author=author,
+            content=content,
+            posted_at=posted_at,
+            url=url,
+            entity_name=entity_name,
+            keywords_matched=matched,
+        ))
+
+    return posts
+
+
+def _parse_desearch_timestamp(raw: str) -> str:
+    """Parse various timestamp formats into ISO-8601 string."""
+    if not raw:
+        return datetime.utcnow().isoformat() + "Z"
+
+    for fmt in (
+        "%Y-%m-%dT%H:%M:%SZ",
+        "%Y-%m-%dT%H:%M:%S.%fZ",
+        "%Y-%m-%dT%H:%M:%S%z",
+        "%Y-%m-%dT%H:%M:%S",
+        "%Y-%m-%d %H:%M:%S",
+        "%a %b %d %H:%M:%S %z %Y",  # Twitter: "Mon Feb 17 15:45:00 +0000 2026"
+    ):
+        try:
+            dt = datetime.strptime(raw, fmt)
+            return dt.strftime("%Y-%m-%dT%H:%M:%SZ")
+        except ValueError:
+            continue
+
+    return raw  # Return as-is if no format matches
+
+
+# ---------------------------------------------------------------------------
 # Demo mode -- mock data for testing without API key
 # ---------------------------------------------------------------------------
 
@@ -831,16 +948,21 @@ def run_scan(
 ) -> list[SentimentSignal]:
     """Run the full social sentiment scan pipeline.
 
-    1. Fetch posts from SN13 (or demo data)
-    2. De-duplicate against SQLite
-    3. Classify via Claude
-    4. Store results
-    5. Return signals
+    1. Fetch posts from SN13 + SN22 (or demo data)
+    2. Cross-source dedup by post_id
+    3. De-duplicate against SQLite (seen posts)
+    4. 3-tier filter: keyword blocklist → Haiku triage → Sonnet classify
+    5. Store results + return signals
     """
-    has_api_key = bool(os.getenv("MACROCOSMOS_API_KEY"))
-    if not has_api_key:
+    has_sn13_key = bool(os.getenv("MACROCOSMOS_API_KEY"))
+    has_sn22_key = bool(os.getenv("DESEARCH_API_KEY"))
+    if not has_sn13_key and not has_sn22_key:
         demo_mode = True
-        print("  [DEMO MODE] MACROCOSMOS_API_KEY not set -- using mock data")
+        print("  [DEMO MODE] No API keys set -- using mock data")
+    elif not has_sn13_key:
+        print("  [SN22 ONLY] MACROCOSMOS_API_KEY not set -- SN13 disabled")
+    elif not has_sn22_key:
+        print("  [SN13 ONLY] DESEARCH_API_KEY not set -- SN22 disabled")
 
     conn = get_connection()
 
@@ -861,20 +983,54 @@ def run_scan(
         all_posts = get_demo_posts(entity_filter)
         print(f"  Demo posts: {len(all_posts)}")
     else:
-        # Query SN13 per entity
+        sn13_total = 0
+        sn22_total = 0
+
         for entity in entities:
             search_terms = get_search_terms(entity)
-            posts = query_sn13(entity, search_terms)
-            all_posts.extend(posts)
-            if posts:
-                print(f"  {entity[:35]:<35} {len(posts):>3} posts")
-            time.sleep(0.5)  # Rate limit
+            sn13_count = 0
+            sn22_count = 0
 
-        # Also query key credit accounts
-        account_posts = query_sn13_accounts()
-        if account_posts:
-            all_posts.extend(account_posts)
-            print(f"  Credit accounts (@9aborad etc)   {len(account_posts):>3} posts")
+            # SN13 (macrocosmos)
+            if has_sn13_key:
+                posts = query_sn13(entity, search_terms)
+                all_posts.extend(posts)
+                sn13_count = len(posts)
+                sn13_total += sn13_count
+                time.sleep(0.5)  # Rate limit
+
+            # SN22 (Desearch)
+            if has_sn22_key:
+                posts = query_desearch(entity, search_terms)
+                all_posts.extend(posts)
+                sn22_count = len(posts)
+                sn22_total += sn22_count
+                time.sleep(0.3)  # Rate limit
+
+            total = sn13_count + sn22_count
+            if total:
+                print(f"  {entity[:35]:<35} {total:>3} posts (SN13={sn13_count}, SN22={sn22_count})")
+
+        # Also query key credit accounts via SN13
+        if has_sn13_key:
+            account_posts = query_sn13_accounts()
+            if account_posts:
+                all_posts.extend(account_posts)
+                sn13_total += len(account_posts)
+                print(f"  Credit accounts (@9aborad etc)   {len(account_posts):>3} posts")
+
+        print(f"\n  Sources: SN13={sn13_total} | SN22={sn22_total} | Raw total={len(all_posts)}")
+
+        # Deduplicate by post_id (SN13 and SN22 rarely overlap, but safety first)
+        seen_ids: set[str] = set()
+        deduped: list[SocialPost] = []
+        for post in all_posts:
+            if post.post_id not in seen_ids:
+                seen_ids.add(post.post_id)
+                deduped.append(post)
+        if len(deduped) < len(all_posts):
+            print(f"  Cross-source dedup: removed {len(all_posts) - len(deduped)} duplicates")
+        all_posts = deduped
 
     # De-duplicate
     new_posts = []
