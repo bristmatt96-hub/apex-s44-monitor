@@ -87,6 +87,9 @@ ENTITY_NOISE = {
         "Ratcliffe football", "Old Trafford", "OGC Nice", "peloton",
         "Tour de France", "Algarve", "Americas Cup", "Vivell",
         "stage race", "Giro", "Vuelta",
+        # Football-adjacent terms that rarely appear in credit context
+        "transfer", "player", "footballer", "signing", "manager",
+        "Tottenham", "Barcelona", "centre-back", "Maguire",
     ],
     "Nokia": ["phone", "smartphone", "Android", "mobile launch", "handset"],
     "TUI": [
