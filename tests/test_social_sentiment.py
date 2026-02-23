@@ -115,3 +115,22 @@ def test_run_scan_filters_noise_before_classify(tmp_path):
 
         # classify_post should only be called for the 2 non-noise posts
         assert mock_classify.call_count == 2
+
+
+def test_dry_run_does_not_classify(tmp_path):
+    """--dry-run should show filter results without calling Claude."""
+    with patch("monitors.social_sentiment.DB_PATH", tmp_path / "test.db"), \
+         patch("monitors.social_sentiment.get_demo_posts") as mock_demo, \
+         patch("monitors.social_sentiment.classify_post") as mock_classify:
+
+        mock_demo.return_value = [
+            _make_post("INEOS Grenadiers cycling at Algarve"),
+            _make_post("INEOS restructuring debt at holdco"),
+        ]
+
+        from monitors.social_sentiment import run_scan
+        result = run_scan(entity_filter="INEOS", demo_mode=True, dry_run=True)
+
+        # classify_post should never be called in dry-run mode
+        assert mock_classify.call_count == 0
+        assert result == []

@@ -722,6 +722,7 @@ def run_scan(
     entity_filter: str | None = None,
     watchlist_only: bool = False,
     demo_mode: bool = False,
+    dry_run: bool = False,
 ) -> list[SentimentSignal]:
     """Run the full social sentiment scan pipeline.
 
@@ -791,6 +792,17 @@ def run_scan(
     print(f"\n  Total posts: {len(all_posts)} | New: {len(new_posts)} | "
           f"Duplicates skipped: {skipped} | Noise filtered: {noise_count} | "
           f"Sent to Claude: {len(filtered_posts)}")
+
+    if dry_run:
+        print(f"\n  [DRY RUN] Would send {len(filtered_posts)} posts to Claude:")
+        for p in filtered_posts:
+            print(f"    PASS: [{p.entity_name[:25]}] {p.content[:80]}...")
+        print(f"\n  [DRY RUN] Would SKIP {noise_count} noise posts:")
+        for post in new_posts:
+            if is_credit_noise(post):
+                print(f"    SKIP: [{post.entity_name[:25]}] {post.content[:80]}...")
+        conn.close()
+        return []
 
     if not filtered_posts:
         print("  No posts to classify after noise filter.")
@@ -1008,6 +1020,10 @@ def main():
         "--demo", action="store_true",
         help="Force demo mode (use mock data)",
     )
+    parser.add_argument(
+        "--dry-run", action="store_true",
+        help="Show what would be filtered vs sent to Claude (no API calls)",
+    )
     args = parser.parse_args()
 
     if args.status:
@@ -1028,6 +1044,7 @@ def main():
         entity_filter=args.entity,
         watchlist_only=args.watchlist,
         demo_mode=args.demo,
+        dry_run=args.dry_run,
     )
 
     print(f"\n  Scan complete: {len(signals)} signals classified")
