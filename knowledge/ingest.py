@@ -218,9 +218,8 @@ class KnowledgeIngestion:
             'fundamentals': ['earnings', 'revenue', 'valuation', 'p/e', 'balance sheet', 'cash flow', 'fundamental'],
             'market_structure': ['market maker', 'liquidity', 'order flow', 'bid ask', 'spread', 'volume'],
             'strategies': ['strategy', 'setup', 'entry', 'exit', 'trade plan', 'system', 'backtest'],
-            'crypto': ['bitcoin', 'ethereum', 'crypto', 'blockchain', 'defi', 'token'],
-            'forex': ['forex', 'currency', 'pip', 'lot', 'leverage', 'exchange rate'],
-            'macro': ['fed', 'interest rate', 'inflation', 'gdp', 'economic', 'recession', 'monetary']
+            'credit': ['cds', 'itraxx', 'tranche', 'crossover', 'default', 'spread', 'credit default swap'],
+            'macro': ['fed', 'interest rate', 'inflation', 'gdp', 'economic', 'recession', 'monetary', 'ecb']
         }
 
         for topic, keywords in topic_keywords.items():

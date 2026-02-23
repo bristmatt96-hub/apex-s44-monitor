@@ -17,14 +17,6 @@ class IBConfig(BaseModel):
     account: Optional[str] = None
 
 
-class CryptoConfig(BaseModel):
-    """Crypto Exchange Configuration"""
-    exchange: str = "kraken"  # UK-friendly exchange
-    api_key: str = os.getenv("KRAKEN_API_KEY", "")
-    api_secret: str = os.getenv("KRAKEN_API_SECRET", "")
-    testnet: bool = False
-
-
 class RiskConfig(BaseModel):
     """Risk Management Configuration"""
     max_position_pct: float = 0.05  # 5% max per position
@@ -52,7 +44,7 @@ class StrategyConfig(BaseModel):
     proven_strategies: Dict[str, Dict] = {
         'mean_reversion': {
             'enabled': True,
-            'markets': ['crypto', 'equity', 'options', 'etf'],
+            'markets': ['equity', 'options', 'etf'],
             'best_market': 'etf',
             'avg_profit_factor': 2.66,
             'avg_win_rate': 0.599,
@@ -61,8 +53,8 @@ class StrategyConfig(BaseModel):
         },
         'volume_spike': {
             'enabled': True,
-            'markets': ['crypto', 'equity', 'options'],
-            'best_market': 'crypto',
+            'markets': ['equity', 'options'],
+            'best_market': 'equity',
             'avg_profit_factor': 5.30,
             'avg_win_rate': 0.673,
             'score_bonus': 1.20,  # 20% boost (highest edge)
@@ -70,8 +62,8 @@ class StrategyConfig(BaseModel):
         },
         'momentum_breakout': {
             'enabled': True,
-            'markets': ['crypto', 'equity', 'options', 'etf'],
-            'best_market': 'crypto',
+            'markets': ['equity', 'options', 'etf'],
+            'best_market': 'equity',
             'avg_profit_factor': 1.93,
             'avg_win_rate': 0.557,
             'score_bonus': 1.10,  # 10% boost
@@ -79,7 +71,7 @@ class StrategyConfig(BaseModel):
         },
         'bollinger_squeeze': {
             'enabled': True,
-            'markets': ['crypto', 'equity', 'options', 'etf'],
+            'markets': ['equity', 'options', 'etf'],
             'best_market': 'equity',
             'avg_profit_factor': 1.50,  # Estimated pending full backtest
             'avg_win_rate': 0.50,
@@ -111,10 +103,6 @@ class StrategyConfig(BaseModel):
 
     # Priority symbol lists per market (backtest-proven performers)
     priority_symbols: Dict[str, List[str]] = {
-        'crypto': [
-            'BTC-USD', 'ETH-USD', 'SOL-USD', 'DOGE-USD',
-            'ADA-USD', 'XRP-USD', 'AVAX-USD'
-        ],
         'options_stocks': [
             'SPY', 'QQQ', 'TSLA', 'AAPL', 'NVDA', 'AMD',
             'META', 'AMZN', 'MSFT', 'GOOGL', 'NFLX', 'COIN'
@@ -177,26 +165,21 @@ class MarketWeights(BaseModel):
     These are INITIAL weights. The adaptive system will
     adjust them based on actual trading performance.
     """
-    # Priority weights - Equities and Options only
-    crypto: float = 0.0         # Disabled - not in scope
+    # Priority weights — European credit + options/equities overlay
+    credit: float = 1.00        # Core focus — iTraxx Main/Xover
     options: float = 0.90       # High priority - best R:R structure
     equities: float = 0.85      # High priority - mean reversion + volume spike
-    forex: float = 0.0          # Disabled - not in scope
-    spacs: float = 0.0          # Disabled
 
-    # Capital allocation - 100% to equities and options
-    crypto_capital_pct: float = 0.0     # Disabled
-    options_capital_pct: float = 0.50   # 50% to options
-    equities_capital_pct: float = 0.45  # 45% to equities
-    forex_capital_pct: float = 0.0      # Disabled
-    spacs_capital_pct: float = 0.0      # Disabled
+    # Capital allocation
+    credit_capital_pct: float = 0.50    # 50% to credit tranches
+    options_capital_pct: float = 0.25   # 25% to options
+    equities_capital_pct: float = 0.20  # 20% to equities
     reserve_pct: float = 0.05           # 5% cash reserve
 
     # Scan intervals (seconds) - lower = more frequent
+    credit_scan_interval: int = 15      # Every 15s — primary market
     options_scan_interval: int = 30     # Every 30s
-    crypto_scan_interval: int = 30      # Every 30s
     equities_scan_interval: int = 60    # Every 60s
-    forex_scan_interval: int = 60       # Every 60s
 
     # Adaptive learning
     adaptive_enabled: bool = True
@@ -207,22 +190,18 @@ class MarketWeights(BaseModel):
     def get_weight(self, market_type: str) -> float:
         """Get weight for a market type"""
         weights = {
+            'credit': self.credit,
             'options': self.options,
-            'crypto': self.crypto,
             'equity': self.equities,
-            'forex': self.forex,
-            'spac': self.spacs
         }
         return weights.get(market_type, 0.5)
 
     def get_capital_allocation(self, market_type: str, total_capital: float) -> float:
         """Get capital allocated to a market"""
         allocations = {
+            'credit': self.credit_capital_pct,
             'options': self.options_capital_pct,
-            'crypto': self.crypto_capital_pct,
             'equity': self.equities_capital_pct,
-            'forex': self.forex_capital_pct,
-            'spac': self.spacs_capital_pct
         }
         pct = allocations.get(market_type, 0.0)
         return total_capital * pct
@@ -230,10 +209,9 @@ class MarketWeights(BaseModel):
     def get_scan_interval(self, market_type: str) -> int:
         """Get scan interval for a market"""
         intervals = {
+            'credit': self.credit_scan_interval,
             'options': self.options_scan_interval,
-            'crypto': self.crypto_scan_interval,
             'equity': self.equities_scan_interval,
-            'forex': self.forex_scan_interval
         }
         return intervals.get(market_type, 60)
 
@@ -256,17 +234,14 @@ class EdgeLearningConfig(BaseModel):
 class ScannerConfig(BaseModel):
     """Market Scanner Configuration"""
     scan_interval_seconds: int = 60
+    credit_enabled: bool = True    # Core — iTraxx Main/Xover
     equities_enabled: bool = True
-    crypto_enabled: bool = False  # Disabled - not in scope
-    forex_enabled: bool = False   # Disabled - not in scope
     options_enabled: bool = True
-    spacs_enabled: bool = False   # Disabled by default
 
 
 class TradingConfig(BaseModel):
     """Main Trading Configuration"""
     ib: IBConfig = IBConfig()
-    crypto: CryptoConfig = CryptoConfig()
     risk: RiskConfig = RiskConfig()
     signals: SignalConfig = SignalConfig()
     scanner: ScannerConfig = ScannerConfig()

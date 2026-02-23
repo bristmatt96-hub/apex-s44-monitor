@@ -31,7 +31,7 @@ logger.add(
 
 from config.settings import config
 from agents.coordinator import Coordinator
-from agents.scanners import EquityScanner, CryptoScanner, ForexScanner, OptionsScanner, EdgarInsiderScanner, OptionsFlowScanner, SynthScanner
+from agents.scanners import EdgarInsiderScanner, SubstackScanner
 from agents.scanners.credit_options_scanner import CreditOptionsScanner
 from agents.signals import TechnicalAnalyzer, MLPredictor, OpportunityRanker
 from agents.execution import TradeExecutor
@@ -48,29 +48,9 @@ class TradingSystem:
         self._setup_agents()
 
     def _setup_agents(self):
-        """Set up all trading agents"""
-        # Market Scanners
-        if config.scanner.equities_enabled:
-            self.coordinator.register_agent(EquityScanner())
-
-        if config.scanner.crypto_enabled:
-            self.coordinator.register_agent(CryptoScanner())
-
-        if config.scanner.forex_enabled:
-            self.coordinator.register_agent(ForexScanner())
-
-        if config.scanner.options_enabled:
-            self.coordinator.register_agent(OptionsScanner())
-
+        """Set up all trading agents — European macro credit focus"""
         # Event-Driven Scanners
         self.coordinator.register_agent(EdgarInsiderScanner())
-
-        # Flow-Based Scanners
-        if config.scanner.options_enabled:
-            self.coordinator.register_agent(OptionsFlowScanner())
-
-        # Bittensor SN50 Synth API Scanner (liquidation predictions)
-        self.coordinator.register_agent(SynthScanner(use_testnet=True))
 
         # Credit-to-Equity Scanner (THE EDGE - XO S44 credit signals)
         self.coordinator.register_agent(CreditOptionsScanner())
@@ -150,17 +130,8 @@ async def run_scan_only():
     """Run a single market scan without trading"""
     logger.info("Running market scan (no execution)...")
 
-    # Create scanners based on config
-    scanners = []
-    if config.scanner.equities_enabled:
-        scanners.append(EquityScanner())
-    if config.scanner.crypto_enabled:
-        scanners.append(CryptoScanner())
-    if config.scanner.forex_enabled:
-        scanners.append(ForexScanner())
-    if config.scanner.options_enabled:
-        scanners.append(OptionsFlowScanner())
-    scanners.append(EdgarInsiderScanner())  # Always included for insider signals
+    # Create scanners — credit focus only
+    scanners = [EdgarInsiderScanner()]
 
     all_signals = []
 
@@ -197,9 +168,8 @@ def show_config():
     print(f"Min Risk/Reward: {config.signals.min_risk_reward}:1")
     print(f"Min Confidence: {config.signals.min_confidence:.0%}")
     print(f"\nMarkets Enabled:")
+    print(f"  - Credit: True (iTraxx Main/Xover)")
     print(f"  - Equities: {config.scanner.equities_enabled}")
-    print(f"  - Crypto: {config.scanner.crypto_enabled}")
-    print(f"  - Forex: {config.scanner.forex_enabled}")
     print(f"  - Options: {config.scanner.options_enabled}")
     print(f"\nIB Connection:")
     print(f"  - Host: {config.ib.host}")

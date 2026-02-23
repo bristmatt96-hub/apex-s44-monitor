@@ -230,9 +230,8 @@ class KnowledgeRetriever:
 
         # Market type specific queries
         market_queries = {
+            "credit": "credit default swap iTraxx tranche spread",
             "equity": "stock trading equity market",
-            "crypto": "cryptocurrency bitcoin trading",
-            "forex": "forex currency trading",
             "options": "options trading calls puts premium"
         }
 

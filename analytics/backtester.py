@@ -131,14 +131,6 @@ RETAIL_UNIVERSES = {
             'JOBY', 'STEM', 'IONQ', 'RKLB', 'DNA', 'OPEN'
         ]
     },
-    "crypto": {
-        "name": "Crypto (Retail Dominated)",
-        "why": "Most retail of all markets, 24/7 emotional trading, social media driven",
-        "symbols": [
-            'BTC-USD', 'ETH-USD', 'SOL-USD', 'DOGE-USD',
-            'ADA-USD', 'XRP-USD', 'AVAX-USD', 'MATIC-USD'
-        ]
-    },
     "etf_retail": {
         "name": "Popular Retail ETFs",
         "why": "Retail traders use these for broad bets, high options volume",

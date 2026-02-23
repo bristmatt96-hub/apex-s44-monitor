@@ -1,14 +1,7 @@
-# Market Scanners
-from .equity_scanner import EquityScanner
-from .crypto_scanner import CryptoScanner
-from .forex_scanner import ForexScanner
-from .options_scanner import OptionsScanner
+# Market Scanners — European Macro Credit only
 from .base_scanner import BaseScanner
 from .edgar_insider_scanner import EdgarInsiderScanner
-from .options_flow_scanner import OptionsFlowScanner
 from .substack_scanner import SubstackScanner
-from .synth_scanner import SynthScanner
+from .credit_options_scanner import CreditOptionsScanner
 
-__all__ = ['BaseScanner', 'EquityScanner', 'CryptoScanner', 'ForexScanner',
-           'OptionsScanner', 'EdgarInsiderScanner', 'OptionsFlowScanner',
-           'SubstackScanner', 'SynthScanner']
+__all__ = ['BaseScanner', 'EdgarInsiderScanner', 'SubstackScanner', 'CreditOptionsScanner']
