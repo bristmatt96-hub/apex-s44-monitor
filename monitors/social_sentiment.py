@@ -31,6 +31,7 @@ Usage:
 """
 
 import argparse
+import io
 import json
 import os
 import sqlite3
@@ -39,6 +40,17 @@ import time
 from dataclasses import dataclass, field, asdict
 from datetime import datetime, timedelta
 from pathlib import Path
+
+# Force UTF-8 stdout on Windows to avoid cp1252 UnicodeEncodeError on emoji/symbols
+if sys.platform == "win32" and not isinstance(sys.stdout, io.TextIOWrapper):
+    pass  # already wrapped
+if sys.stdout.encoding and sys.stdout.encoding.lower() not in ("utf-8", "utf8"):
+    sys.stdout = io.TextIOWrapper(
+        sys.stdout.buffer, encoding="utf-8", errors="replace", line_buffering=True
+    )
+    sys.stderr = io.TextIOWrapper(
+        sys.stderr.buffer, encoding="utf-8", errors="replace", line_buffering=True
+    )
 
 import anthropic
 from dotenv import load_dotenv
@@ -1266,8 +1278,9 @@ def run_scan(
             severity_icon = {
                 1: ".", 2: "o", 3: "*", 4: "!", 5: "!!",
             }.get(signal.severity, "?")
+            safe_name = signal.entity_name[:30].encode("ascii", "replace").decode()
             print(f"  [{i+1}/{len(filtered_posts)}] {severity_icon} "
-                  f"{signal.entity_name[:30]:<30} "
+                  f"{safe_name:<30} "
                   f"{signal.sentiment:<8} sev={signal.severity} "
                   f"{'NEW' if signal.is_new_info else 'known'}")
 
@@ -1284,12 +1297,17 @@ def run_scan(
         print(f"  ALERT: {len(alerts)} high-severity signals detected!")
         print(f"  {'='*70}")
         for a in alerts:
-            print(f"\n  [{a.severity}/5] {a.entity_name}")
-            print(f"  {a.claim_summary}")
-            print(f"  Sentiment: {a.sentiment} | Source: {a.author} | "
-                  f"Credibility: {a.source_credibility}")
-            if a.credit_relevance:
-                print(f"  Relevance: {a.credit_relevance}")
+            safe_name = a.entity_name.encode("ascii", "replace").decode()
+            safe_summary = a.claim_summary.encode("ascii", "replace").decode() if a.claim_summary else "N/A"
+            safe_author = a.author.encode("ascii", "replace").decode() if a.author else "unknown"
+            safe_cred = str(a.source_credibility).encode("ascii", "replace").decode() if a.source_credibility else "N/A"
+            safe_rel = a.credit_relevance.encode("ascii", "replace").decode() if a.credit_relevance else None
+            print(f"\n  [{a.severity}/5] {safe_name}")
+            print(f"  {safe_summary}")
+            print(f"  Sentiment: {a.sentiment} | Source: {safe_author} | "
+                  f"Credibility: {safe_cred}")
+            if safe_rel:
+                print(f"  Relevance: {safe_rel}")
 
     return signals
 
@@ -1336,11 +1354,14 @@ def show_recent(days: int = 7, entity_filter: str | None = None):
     for r in rows:
         new_str = "NEW" if r["is_new_info"] else ""
         severity_marker = ">>>" if r["severity"] >= 4 else "   "
+        safe_name = r['entity_name'][:32].encode("ascii", "replace").decode()
+        safe_author = (r['author'] or 'unknown')[:18].encode("ascii", "replace").decode()
+        safe_summary = (r['claim_summary'] or '')[:40].encode("ascii", "replace").decode()
         print(f"  {severity_marker}{r['severity']}  "
-              f"{r['entity_name'][:32]:<32} "
+              f"{safe_name:<32} "
               f"{r['sentiment']:<8} {new_str:>3} "
-              f"{r['author'][:18]:<18} "
-              f"{(r['claim_summary'] or '')[:40]}")
+              f"{safe_author:<18} "
+              f"{safe_summary}")
 
     print(f"\n{'='*90}")
 
@@ -1412,7 +1433,8 @@ def show_stats():
     print(f"  {'Entity':<35} {'Posts':>5} {'Avg Sev':>8} {'Bear':>5} {'Bull':>5}")
     print(f"  {'-'*35} {'-'*5} {'-'*8} {'-'*5} {'-'*5}")
     for e in entities:
-        print(f"  {e['entity_name'][:35]:<35} {e['n']:>5} "
+        safe_ent = e['entity_name'][:35].encode("ascii", "replace").decode()
+        print(f"  {safe_ent:<35} {e['n']:>5} "
               f"{e['avg_sev']:>7.1f} {e['bearish']:>5} {e['bullish']:>5}")
 
     print(f"\n{'='*70}")
