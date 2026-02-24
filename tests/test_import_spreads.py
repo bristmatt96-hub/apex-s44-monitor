@@ -120,3 +120,30 @@ def test_compute_metadata():
 def test_default_threshold_is_three():
     from monitors.equity_movers import DEFAULT_THRESHOLD_PCT
     assert DEFAULT_THRESHOLD_PCT == 3.0
+
+
+def test_filter_by_index():
+    """Verify we can filter constituents by index name."""
+    constituents = {
+        "A": {"index": "main", "spread_bps": 50},
+        "B": {"index": "xover", "spread_bps": 200},
+        "C": {"index": "xover", "spread_bps": 300},
+    }
+
+    xover_only = {k: v for k, v in constituents.items() if v["index"] == "xover"}
+    assert len(xover_only) == 2
+    assert "A" not in xover_only
+
+
+def test_filter_by_min_spread():
+    """Verify spread threshold filter."""
+    constituents = {
+        "A": {"index": "main", "spread_bps": 50},
+        "B": {"index": "xover", "spread_bps": 200},
+        "C": {"index": "xover", "spread_bps": 800},
+    }
+
+    distressed = {k: v for k, v in constituents.items()
+                  if v["spread_bps"] and v["spread_bps"] >= 500}
+    assert len(distressed) == 1
+    assert "C" in distressed

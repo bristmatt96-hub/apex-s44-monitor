@@ -364,6 +364,47 @@ async def api_maturity():
     return await api_maturity_wall()
 
 
+@app.get("/api/spreads")
+async def api_spreads(
+    index: str | None = None,
+    min_spread: float | None = None,
+    max_spread: float | None = None,
+    sector: str | None = None,
+    public_only: bool = False,
+):
+    """iTraxx S44 master spread data with optional filters."""
+    master_path = PROJECT_ROOT / "data" / "itraxx_s44_master.json"
+    if not master_path.exists():
+        return {"error": "Master spread file not found. Run scripts/import_spreads.py first."}
+
+    with open(master_path) as f:
+        master = json.load(f)
+
+    constituents = master.get("constituents", {})
+    filtered = {}
+
+    for name, data in constituents.items():
+        if index and data.get("index") != index.lower():
+            continue
+        spread = data.get("spread_bps")
+        if min_spread is not None and (spread is None or spread < min_spread):
+            continue
+        if max_spread is not None and (spread is None or spread > max_spread):
+            continue
+        if sector and data.get("sector", "").lower() != sector.lower():
+            continue
+        if public_only and not data.get("is_public"):
+            continue
+        filtered[name] = data
+
+    return {
+        "metadata": master.get("metadata", {}),
+        "constituents": filtered,
+        "filter_count": len(filtered),
+        "total_count": len(constituents),
+    }
+
+
 @app.get("/api/relative-value")
 async def api_relative_value():
     """Rich/cheap screen from relative value module."""
