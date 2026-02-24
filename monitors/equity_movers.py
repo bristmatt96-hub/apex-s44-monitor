@@ -52,6 +52,13 @@ from dotenv import load_dotenv
 
 load_dotenv(override=True)
 
+# Social buzz (Gopher SN42 + Desearch SN22)
+try:
+    from monitors.social_sentiment import query_gopher, query_desearch, SocialPost
+    SOCIAL_AVAILABLE = True
+except ImportError:
+    SOCIAL_AVAILABLE = False
+
 # ---------------------------------------------------------------------------
 # UTF-8 stdout safety (Windows cp1252 fix)
 # ---------------------------------------------------------------------------
@@ -104,6 +111,19 @@ assess the credit impact.
 
 Respond in strict JSON:
 {"credit_impact":"positive"|"negative"|"neutral","severity":1-5,"explanation":"one sentence on what this means for CDS spreads"}"""
+
+# Sentiment keywords for quick bucketing (no LLM needed)
+BEARISH_KEYWORDS = {
+    "downgrade", "default", "restructuring", "distressed", "bankruptcy",
+    "covenant breach", "widening", "sell", "short", "risk", "warning",
+    "negative", "deteriorating", "junk", "fallen angel", "miss",
+    "loss", "debt", "leverage", "investigation", "probe", "fraud",
+}
+BULLISH_KEYWORDS = {
+    "upgrade", "tightening", "recovery", "refinanced", "improvement",
+    "positive", "beat", "outperform", "buy", "strong",
+    "growth", "profit", "deleveraging", "investment grade",
+}
 
 
 # ---------------------------------------------------------------------------
@@ -484,6 +504,69 @@ def classify_mover(
 
     except Exception:
         return None
+
+
+def fetch_social_buzz(
+    entity_name: str,
+    search_terms: list[str],
+) -> dict:
+    """Quick social buzz scan via Gopher SN42 + Desearch SN22.
+
+    Returns dict with post counts and sentiment bucketing.
+    No per-post LLM classification — just keyword matching.
+    """
+    if not SOCIAL_AVAILABLE:
+        return {"total": 0, "bullish": 0, "bearish": 0, "neutral": 0, "top_post": ""}
+
+    # Query both sources
+    gopher_posts = []
+    desearch_posts = []
+    try:
+        gopher_posts = query_gopher(entity_name, search_terms)
+    except Exception:
+        pass
+    try:
+        desearch_posts = query_desearch(entity_name, search_terms, days_back=1, limit=20)
+    except Exception:
+        pass
+
+    # Dedup by post_id
+    seen_ids = set()
+    all_posts = []
+    for post in gopher_posts + desearch_posts:
+        if post.post_id not in seen_ids:
+            seen_ids.add(post.post_id)
+            all_posts.append(post)
+
+    # Bucket sentiment by keyword
+    bullish = 0
+    bearish = 0
+    neutral = 0
+    for post in all_posts:
+        content_lower = post.content.lower()
+        has_bear = any(kw in content_lower for kw in BEARISH_KEYWORDS)
+        has_bull = any(kw in content_lower for kw in BULLISH_KEYWORDS)
+
+        if has_bear and not has_bull:
+            bearish += 1
+        elif has_bull and not has_bear:
+            bullish += 1
+        else:
+            neutral += 1
+
+    # Pick top post (longest content as proxy for most informative)
+    top_post = ""
+    if all_posts:
+        best = max(all_posts, key=lambda p: len(p.content))
+        top_post = best.content[:120]
+
+    return {
+        "total": len(all_posts),
+        "bullish": bullish,
+        "bearish": bearish,
+        "neutral": neutral,
+        "top_post": top_post,
+    }
 
 
 # ---------------------------------------------------------------------------
