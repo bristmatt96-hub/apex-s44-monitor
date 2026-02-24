@@ -1,6 +1,6 @@
 {
   "entity": "INEOS Finance PLC",
-  "last_updated": "2026-02-20T08:59:01.593034",
+  "last_updated": "2026-02-24T16:22:58.674572",
   "filings": [],
   "news": [
     {
@@ -18,7 +18,184 @@
   ],
   "rating_actions": [],
   "earnings_signals": [],
-  "social_sentiment": [],
+  "social_sentiment": [
+    {
+      "post_id": "2026078648092991891",
+      "sentiment": "bearish",
+      "severity": 2,
+      "is_new_info": false,
+      "claim_summary": "INEOS is hypocritical for blaming immigrants for UK economic issues while being \u00a318 billion in debt and having received significant government support.",
+      "credit_relevance": "Highlights potential reputational risk and leverage concerns, but no new financial or operational data that would directly impact CDS spreads; debt level already well-known in the Xover market.",
+      "author": "althani1991mufc",
+      "posted_at": "2026-02-23T23:36:07Z",
+      "added_at": "2026-02-24T14:51:41.165452"
+    },
+    {
+      "post_id": "2026078606917611919",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "INEOS and Jim Ratcliffe are accused of hypocrisy for allegedly blaming immigrants for the UK's financial issues while receiving significant government support over 20 years.",
+      "credit_relevance": "The post raises a reputational concern but contains no verifiable financial or credit-relevant data impacting INEOS Finance PLC's ability to meet debt obligations; no direct link to cash flow, leverage, or liquidity.",
+      "author": "althani1991mufc",
+      "posted_at": "2026-02-23T23:35:57Z",
+      "added_at": "2026-02-24T14:51:48.579737"
+    },
+    {
+      "post_id": "2026077180602495171",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "Sarcastic comment suggesting someone apply to INEOS to replace Carrick, with no substantive information about the company's creditworthiness.",
+      "credit_relevance": "No impact on CDS spreads; the post is a non-serious, offhand remark with no financial or operational insights.",
+      "author": "Boomarchiever",
+      "posted_at": "2026-02-23T23:30:17Z",
+      "added_at": "2026-02-24T14:51:53.896569"
+    },
+    {
+      "post_id": "2026075222097666446",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "The presence of INEOS and Ratcliffe is cited as a reason for discontent, but no specific credit event or new development is mentioned.",
+      "credit_relevance": "No direct impact on CDS spreads as the post expresses a subjective opinion without providing financial or operational data affecting INEOS Finance PLC's creditworthiness.",
+      "author": "dinscex",
+      "posted_at": "2026-02-23T23:22:30Z",
+      "added_at": "2026-02-24T14:51:59.365320"
+    },
+    {
+      "post_id": "2026066424272507297",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "Speculation about INEOS's next decision without specific details.",
+      "credit_relevance": "The post lacks concrete information on INEOS Finance PLC's credit fundamentals, covenant actions, or financial strategy, making it irrelevant for CDS spread assessment.",
+      "author": "EdilesonMiles",
+      "posted_at": "2026-02-23T22:47:32Z",
+      "added_at": "2026-02-24T14:52:05.019421"
+    },
+    {
+      "post_id": "2026066263491989555",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "INEOS has more ambition than Clearlake, according to the author.",
+      "credit_relevance": "The comment is vague and lacks specific financial or operational details that would impact INEOS Finance PLC's creditworthiness or CDS spreads.",
+      "author": "Okeleko",
+      "posted_at": "2026-02-23T22:46:54Z",
+      "added_at": "2026-02-24T14:52:16.755285"
+    },
+    {
+      "post_id": "2026065158771032300",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "A Twitter user praises INEOS's decision to replace Onana with Lammens, referring to a football-related managerial change.",
+      "credit_relevance": "The post refers to a football team decision, not a financial or credit-relevant event for INEOS Finance PLC; it has no material impact on CDS spreads.",
+      "author": "ValChibuoke",
+      "posted_at": "2026-02-23T22:42:30Z",
+      "added_at": "2026-02-24T14:52:22.937572"
+    },
+    {
+      "post_id": "2026065132736909523",
+      "sentiment": "bearish",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "INEOS is being criticized as 'useless' in a vague, opinion-based comment without specific financial or credit details.",
+      "credit_relevance": "The comment contains no concrete information relevant to INEOS Finance PLC's creditworthiness, liquidity, or capital structure, and thus has no direct impact on CDS spreads.",
+      "author": "philip_szn",
+      "posted_at": "2026-02-23T22:42:24Z",
+      "added_at": "2026-02-24T14:52:29.485229"
+    },
+    {
+      "post_id": "2026062944237154708",
+      "sentiment": "bullish",
+      "severity": 2,
+      "is_new_info": false,
+      "claim_summary": "INEOS Finance PLC has performed well with recent business activities and player acquisitions, with expectations for further improvement.",
+      "credit_relevance": "Positive operational momentum could support credit stability or modest spread tightening, though no concrete financial metrics are provided.",
+      "author": "Mykee070",
+      "posted_at": "2026-02-23T22:33:42Z",
+      "added_at": "2026-02-24T14:52:33.583431"
+    },
+    {
+      "post_id": "2026062730550026333",
+      "sentiment": "bearish",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "INEOS de3 spreads may widen, reflecting potential credit deterioration.",
+      "credit_relevance": "Suggests possible default risk or credit weakening in INEOS Finance PLC's debt, which could lead to CDS spread widening.",
+      "author": "KBadagbor",
+      "posted_at": "2026-02-23T22:32:52Z",
+      "added_at": "2026-02-24T14:52:42.729179"
+    },
+    {
+      "post_id": "2026061894197412046",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "INEOS's signing of Lammens for \u00a318m is portrayed as a positive decision, though no financial or credit-specific implications are detailed.",
+      "credit_relevance": "The post refers to a football transfer and lacks any direct connection to INEOS Finance PLC's financial health, debt obligations, or creditworthiness, making it irrelevant to CDS spread movements.",
+      "author": "UtdActive",
+      "posted_at": "2026-02-23T22:29:32Z",
+      "added_at": "2026-02-24T14:52:53.063834"
+    },
+    {
+      "post_id": "2026061196936585716",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "INEOS sacked a coach for speaking out, and the team still struggles against defensive opponents.",
+      "credit_relevance": "The post contains no material information about INEOS Finance PLC's financial condition, capital structure, or creditworthiness; it is focused on football team performance and management changes with no direct link to credit metrics.",
+      "author": "saivishal1997",
+      "posted_at": "2026-02-23T22:26:46Z",
+      "added_at": "2026-02-24T14:52:59.046950"
+    },
+    {
+      "post_id": "2026075222097666446",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "The post implies that INEOS and its founder Ratcliffe are the reason certain entities or market participants are involved, but does not provide specific credit-relevant information.",
+      "credit_relevance": "No direct impact on CDS spreads as the post lacks concrete financial or operational details about INEOS Finance PLC.",
+      "author": "dinscex",
+      "posted_at": "2026-02-23T23:22:30Z",
+      "added_at": "2026-02-24T16:22:44.881769"
+    },
+    {
+      "post_id": "2026067760866808149",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "INEOS Finance PLC has made good acquisitions that are now generating returns, though the company is not considered best-in-class.",
+      "credit_relevance": "The comment suggests modest operational improvement from past acquisitions, but lacks specific financial or credit metrics that would directly impact CDS spreads.",
+      "author": "CFCSnowy",
+      "posted_at": "2026-02-23T22:52:51Z",
+      "added_at": "2026-02-24T16:22:48.665759"
+    },
+    {
+      "post_id": "2026066263491989555",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "INEOS has more ambition than Clearlake, according to the author.",
+      "credit_relevance": "The comment is speculative and lacks concrete financial or operational details that would impact INEOS Finance PLC's creditworthiness or CDS spreads.",
+      "author": "Okeleko",
+      "posted_at": "2026-02-23T22:46:54Z",
+      "added_at": "2026-02-24T16:22:53.697324"
+    },
+    {
+      "post_id": "2026062436973842739",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "INEOS signed player Sesko, not Amorim.",
+      "credit_relevance": "The claim pertains to a football transfer and has no material impact on INEOS Finance PLC's creditworthiness or CDS spreads.",
+      "author": "Prof_D12",
+      "posted_at": "2026-02-23T22:31:42Z",
+      "added_at": "2026-02-24T16:22:58.674572"
+    }
+  ],
   "analyst_assessments": [],
   "signal_changes": []
 }

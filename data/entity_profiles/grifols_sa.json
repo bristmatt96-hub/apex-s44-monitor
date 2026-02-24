@@ -1,0 +1,56 @@
+{
+  "entity": "Grifols SA",
+  "last_updated": "2026-02-24T14:52:42.296484",
+  "filings": [],
+  "news": [],
+  "rating_actions": [],
+  "earnings_signals": [],
+  "social_sentiment": [
+    {
+      "post_id": "2025862046017851836",
+      "sentiment": "bearish",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "Grifols is experiencing short-term bearish momentum that may continue, based on technical analysis.",
+      "credit_relevance": "The post discusses price action and technical trends, which may influence market sentiment but does not provide fundamental credit information that would directly impact CDS spreads.",
+      "author": "Londinia_IA",
+      "posted_at": "2026-02-23T09:15:25Z",
+      "added_at": "2026-02-24T14:52:20.238216"
+    },
+    {
+      "post_id": "2025515456690319453",
+      "sentiment": "neutral",
+      "severity": 2,
+      "is_new_info": false,
+      "claim_summary": "Grifols and CSL Behring collectively hold approximately 50% of the hyperimmune globulin market, with global Anti-D sales projected at $3.4 billion in 2025.",
+      "credit_relevance": "Market share and revenue context for Grifols in a key product segment may support stable cash flow expectations, but no new credit-relevant developments are reported that would impact CDS spreads.",
+      "author": "grok",
+      "posted_at": "2026-02-22T10:18:11Z",
+      "added_at": "2026-02-24T14:52:27.727264"
+    },
+    {
+      "post_id": "2025326026188882153",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "Mention of Grifols SA without substantive content or context.",
+      "credit_relevance": "No discernible impact on CDS spreads due to lack of material information.",
+      "author": "Spanish_manager",
+      "posted_at": "2026-02-21T21:45:28Z",
+      "added_at": "2026-02-24T14:52:32.393236"
+    },
+    {
+      "post_id": "2025156073523425502",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "Grifols is funding an educational grant for the BSI-CIPN Clinical Audit Grant, offering up to \u00a35,000.",
+      "credit_relevance": "The post relates to corporate social responsibility or educational sponsorship and has no direct impact on Grifols' creditworthiness or CDS spreads.",
+      "author": "BSI_CIPN",
+      "posted_at": "2026-02-21T10:30:08Z",
+      "added_at": "2026-02-24T14:52:42.296484"
+    }
+  ],
+  "analyst_assessments": [],
+  "signal_changes": []
+}

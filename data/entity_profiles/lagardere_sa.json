@@ -1,0 +1,34 @@
+{
+  "entity": "Lagardere SA",
+  "last_updated": "2026-02-24T16:22:21.692404",
+  "filings": [],
+  "news": [],
+  "rating_actions": [],
+  "earnings_signals": [],
+  "social_sentiment": [
+    {
+      "post_id": "2025985031940747548",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "Lagard\u00e8re is listed among French media entities with potential conflicts of interest due to state ties, ownership links, and public contracts.",
+      "credit_relevance": "No direct credit implications; the post is a political commentary with no new financial or operational data affecting Lagard\u00e8re's creditworthiness or CDS spreads.",
+      "author": "Mart1n_67",
+      "posted_at": "2026-02-23T17:24:07Z",
+      "added_at": "2026-02-24T14:51:08.238652"
+    },
+    {
+      "post_id": "2025985031940747548",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "Lagard\u00e8re is highlighted as having potential conflicts of interest due to ties with the French state, media, taxes, and sovereignty, similar to other French corporate groups.",
+      "credit_relevance": "The post raises no specific credit event or financial risk for Lagard\u00e8re; it is a general commentary on corporate-state relationships in France, which is already well-known and priced into CDS spreads.",
+      "author": "Mart1n_67",
+      "posted_at": "2026-02-23T17:24:07Z",
+      "added_at": "2026-02-24T16:22:21.692404"
+    }
+  ],
+  "analyst_assessments": [],
+  "signal_changes": []
+}

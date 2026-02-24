@@ -1,0 +1,78 @@
+{
+  "entity": "TUI AG",
+  "last_updated": "2026-02-24T16:22:38.880039",
+  "filings": [],
+  "news": [],
+  "rating_actions": [],
+  "earnings_signals": [],
+  "social_sentiment": [
+    {
+      "post_id": "2026060664675152333",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "Observability in agent frameworks is critical for operational effectiveness, using TUI as a minor example in a technical discussion.",
+      "credit_relevance": "The post contains no material information relevant to TUI AG's creditworthiness or CDS spreads; it uses 'TUI' in a technical software context, not referring to TUI AG's financial or operational condition.",
+      "author": "shiplogger",
+      "posted_at": "2026-02-23T22:24:39Z",
+      "added_at": "2026-02-24T14:51:21.144309"
+    },
+    {
+      "post_id": "2026052839227933058",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "The post makes a vague political commentary about past government policies without specific reference to TUI AG's financial or operational condition.",
+      "credit_relevance": "There is no discernible link to TUI AG's creditworthiness, liquidity, or solvency in the post, and no mention of financial or operational performance.",
+      "author": "vincristine",
+      "posted_at": "2026-02-23T21:53:33Z",
+      "added_at": "2026-02-24T14:51:30.376638"
+    },
+    {
+      "post_id": "2026051479530840365",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "TUI/CLI apps are seeing a resurgence, according to a general tech commentary.",
+      "credit_relevance": "The post refers to command-line interface (CLI) applications, not TUI AG the company, and has no relevance to the airline and tourism operator's creditworthiness or CDS spreads.",
+      "author": "wgrant",
+      "posted_at": "2026-02-23T21:48:09Z",
+      "added_at": "2026-02-24T14:51:34.915335"
+    },
+    {
+      "post_id": "2026066398251032830",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "Corrects a numerical error in a prior discussion, emphasizing accuracy and rejecting exaggeration.",
+      "credit_relevance": "The post contains no material information relevant to TUI AG's creditworthiness or CDS spreads; it is a commentary on factual accuracy in discussion.",
+      "author": "sustrains",
+      "posted_at": "2026-02-23T22:47:26Z",
+      "added_at": "2026-02-24T16:22:28.662369"
+    },
+    {
+      "post_id": "2026063255328940328",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "User acknowledges using a TUI-themed profile picture in a casual, playful manner.",
+      "credit_relevance": "The post contains no meaningful information relevant to TUI AG's creditworthiness or CDS spreads; it is purely social and non-substantive.",
+      "author": "dusk_and_dawn",
+      "posted_at": "2026-02-23T22:34:57Z",
+      "added_at": "2026-02-24T16:22:32.713442"
+    },
+    {
+      "post_id": "2026051616411947273",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "MegatronLabs announces a new AI platform called AgentQuanta featuring a text-based user interface (TUI), unrelated to TUI AG.",
+      "credit_relevance": "The post refers to a text-based user interface (TUI) in a tech product, not TUI AG the company; there is no relevance to TUI AG's creditworthiness or CDS spreads.",
+      "author": "MegatronLabs",
+      "posted_at": "2026-02-23T21:48:42Z",
+      "added_at": "2026-02-24T16:22:38.880039"
+    }
+  ],
+  "analyst_assessments": [],
+  "signal_changes": []
+}

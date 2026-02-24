@@ -1,0 +1,34 @@
+{
+  "entity": "Zegona Finance PLC",
+  "last_updated": "2026-02-24T16:05:23.139493",
+  "filings": [],
+  "news": [],
+  "rating_actions": [],
+  "earnings_signals": [],
+  "social_sentiment": [
+    {
+      "post_id": "2025855050191348172",
+      "sentiment": "bullish",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "Zegona's stock has increased 5x from \u00a34 to \u00a320 over 1 year and 1 month, including dividends, suggesting prior market assumptions were reasonable.",
+      "credit_relevance": "Equity performance does not directly impact CDS spreads for Zegona Finance PLC, and no fundamental credit metrics or structural changes are mentioned that would affect default risk or recovery expectations.",
+      "author": "alvarogomezolea",
+      "posted_at": "2026-02-23T08:47:37Z",
+      "added_at": "2026-02-24T14:15:05.653178"
+    },
+    {
+      "post_id": "2025855050191348172",
+      "sentiment": "bullish",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "Zegona's stock has increased 5x from \u00a34 to \u00a320 over 1 year and 1 month, including dividends, suggesting prior assumptions were reasonable.",
+      "credit_relevance": "Equity price appreciation may reflect improved market sentiment but does not directly impact CDS spreads without corresponding fundamental credit improvements.",
+      "author": "alvarogomezolea",
+      "posted_at": "2026-02-23T08:47:37Z",
+      "added_at": "2026-02-24T16:05:23.139493"
+    }
+  ],
+  "analyst_assessments": [],
+  "signal_changes": []
+}

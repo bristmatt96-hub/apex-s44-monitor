@@ -1,0 +1,34 @@
+{
+  "entity": "Boparan Finance PLC",
+  "last_updated": "2026-02-24T14:36:12.852316",
+  "filings": [],
+  "news": [],
+  "rating_actions": [],
+  "earnings_signals": [],
+  "social_sentiment": [
+    {
+      "post_id": "2025993415687614465",
+      "sentiment": "neutral",
+      "severity": 2,
+      "is_new_info": true,
+      "claim_summary": "Boparan Finance PLC, the West Midlands-based poultry company, has acquired a German turkey and chicken processor.",
+      "credit_relevance": "The acquisition could imply modest leverage increase or strategic expansion, but without financial details, the impact on credit risk and CDS spreads is limited and speculative.",
+      "author": "ExpressandStar",
+      "posted_at": "2026-02-23T17:57:26Z",
+      "added_at": "2026-02-24T14:36:07.653847"
+    },
+    {
+      "post_id": "2025491515754029060",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": true,
+      "claim_summary": "Boparan Finance PLC, owner of 2 Sisters, has acquired a German turkey and chicken processor.",
+      "credit_relevance": "The acquisition could imply potential leverage increase or strategic expansion, but without financial details, the impact on CDS spreads is negligible.",
+      "author": "FoodcompHQ",
+      "posted_at": "2026-02-22T08:43:03Z",
+      "added_at": "2026-02-24T14:36:12.852316"
+    }
+  ],
+  "analyst_assessments": [],
+  "signal_changes": []
+}

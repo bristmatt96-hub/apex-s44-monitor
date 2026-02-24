@@ -1,6 +1,6 @@
 {
   "entity": "Jaguar Land Rover Automotive PLC",
-  "last_updated": "2026-02-20T09:01:52.877667",
+  "last_updated": "2026-02-24T16:23:07.370368",
   "filings": [],
   "news": [],
   "rating_actions": [
@@ -18,7 +18,96 @@
     }
   ],
   "earnings_signals": [],
-  "social_sentiment": [],
+  "social_sentiment": [
+    {
+      "post_id": "2026077074612711710",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "The post suggests that Jaguar Land Rover may face reputational or commercial backlash in the US for associating with an unpopular spokesperson, Gu, citing other brands like Bud Light and Target as examples.",
+      "credit_relevance": "The post does not provide concrete evidence of financial impact or material developments affecting Jaguar Land Rover's creditworthiness; any link to CDS spreads would be speculative and indirect at best.",
+      "author": "blessedroad702",
+      "posted_at": "2026-02-23T23:29:51Z",
+      "added_at": "2026-02-24T14:53:10.851110"
+    },
+    {
+      "post_id": "2026069562819539049",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "Jaguar's rebrand is mentioned in the context of a general commentary on corporate culture and change, without specific credit implications.",
+      "credit_relevance": "The post does not provide concrete financial or operational information that would directly impact Jaguar Land Rover's CDS spreads; it is a high-level commentary on corporate rebranding and culture.",
+      "author": "novakkevin",
+      "posted_at": "2026-02-23T23:00:00Z",
+      "added_at": "2026-02-24T14:53:17.933405"
+    },
+    {
+      "post_id": "2026064623003476363",
+      "sentiment": "bearish",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "Metaphorical reference to 'Jaguar' implying a quick death, likely alluding to financial distress without specific details.",
+      "credit_relevance": "The comment is vague and lacks concrete information; while 'quick death' could imply default risk, it does not provide actionable or specific credit-relevant data about Jaguar Land Rover's financial condition or performance.",
+      "author": "CarmineWilding",
+      "posted_at": "2026-02-23T22:40:23Z",
+      "added_at": "2026-02-24T14:53:24.769445"
+    },
+    {
+      "post_id": "2026063127226278071",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "User references a nostalgic 'jaguar look' associated with their father, with no substantive information about Jaguar Land Rover Automotive PLC.",
+      "credit_relevance": "The comment is purely anecdotal and contains no financial, operational, or credit-related information relevant to Jaguar Land Rover's CDS spreads.",
+      "author": "Stargzr91",
+      "posted_at": "2026-02-23T22:34:26Z",
+      "added_at": "2026-02-24T14:53:30.801070"
+    },
+    {
+      "post_id": "2026062936599368099",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "The viral footage allegedly showing a leopard attack on a person is real but from 2016 and taken from a sanctuary in Mexico, with no connection to Jaguar Land Rover.",
+      "credit_relevance": "The post is unrelated to Jaguar Land Rover's credit fundamentals or market performance; it addresses a viral social media video misattributed to the company's name, posing no impact on CDS spreads.",
+      "author": "grok",
+      "posted_at": "2026-02-23T22:33:41Z",
+      "added_at": "2026-02-24T14:53:37.507113"
+    },
+    {
+      "post_id": "2026056822944104762",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "The post lists various car model names and animals with no substantive information about Jaguar Land Rover Automotive PLC.",
+      "credit_relevance": "There is no discernible impact on Jaguar Land Rover's creditworthiness or CDS spreads as the post contains no financial or operational information.",
+      "author": "EdwardRybah7dl",
+      "posted_at": "2026-02-23T22:09:23Z",
+      "added_at": "2026-02-24T14:53:44.395843"
+    },
+    {
+      "post_id": "2026064876414664910",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "A stolen Jaguar was involved in a high-speed LAPD pursuit in Los Angeles, with a suspect bailing out mid-chase.",
+      "credit_relevance": "The incident involves a stolen consumer vehicle and law enforcement activity, which has no direct impact on Jaguar Land Rover Automotive PLC's creditworthiness, financial performance, or CDS spreads.",
+      "author": "grok",
+      "posted_at": "2026-02-23T22:41:23Z",
+      "added_at": "2026-02-24T16:23:03.153267"
+    },
+    {
+      "post_id": "2026058245022826761",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "Jaguar Madison Authorized Service promotes its customer service offerings for vehicle maintenance.",
+      "credit_relevance": "The post is unrelated to Jaguar Land Rover Automotive PLC's financial or creditworthiness indicators; it is a local dealership service announcement with no impact on CDS spreads.",
+      "author": "jaguarmadison",
+      "posted_at": "2026-02-23T22:15:02Z",
+      "added_at": "2026-02-24T16:23:07.370368"
+    }
+  ],
   "analyst_assessments": [],
   "signal_changes": []
 }

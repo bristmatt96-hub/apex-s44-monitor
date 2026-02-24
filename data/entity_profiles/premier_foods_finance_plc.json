@@ -1,0 +1,45 @@
+{
+  "entity": "Premier Foods Finance PLC",
+  "last_updated": "2026-02-24T16:22:25.043320",
+  "filings": [],
+  "news": [],
+  "rating_actions": [],
+  "earnings_signals": [],
+  "social_sentiment": [
+    {
+      "post_id": "2026084568927764906",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "Lead flow on Premier Foods Finance PLC's sites may reflect broader marketing trends, and slow lead flow could suggest the need for diversified marketing strategies.",
+      "credit_relevance": "The post offers no direct insight into Premier Foods Finance PLC's creditworthiness, financial performance, or risk factors relevant to CDS spreads; it is a generic marketing observation.",
+      "author": "MichaelFichman",
+      "posted_at": "2026-02-23T23:59:38Z",
+      "added_at": "2026-02-24T14:51:13.939893"
+    },
+    {
+      "post_id": "2026262295572087293",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "Premier League fixtures involving Arsenal, West Ham, Manchester City, and Everton may be rescheduled due to potential clashes with UEFA Champions League knockout dates.",
+      "credit_relevance": "Fixture changes have no direct impact on Premier Foods Finance PLC's creditworthiness or CDS spreads, as the company is not materially linked to Premier League operations or match-day revenues.",
+      "author": "YUNGBIG33",
+      "posted_at": "2026-02-24T11:45:52Z",
+      "added_at": "2026-02-24T15:24:45.131755"
+    },
+    {
+      "post_id": "2026084040529568020",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "The post vaguely references various officials and employers without making a specific claim about Premier Foods Finance PLC.",
+      "credit_relevance": "There is no discernible connection between the post content and the creditworthiness, financial condition, or obligations of Premier Foods Finance PLC; it does not impact CDS spread expectations.",
+      "author": "JamieJames888",
+      "posted_at": "2026-02-23T23:57:32Z",
+      "added_at": "2026-02-24T16:22:25.043320"
+    }
+  ],
+  "analyst_assessments": [],
+  "signal_changes": []
+}

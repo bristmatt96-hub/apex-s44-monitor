@@ -1,6 +1,6 @@
 {
   "entity": "Fibercop SpA",
-  "last_updated": "2026-02-24T13:54:16.274819",
+  "last_updated": "2026-02-24T15:41:37.844054",
   "filings": [],
   "news": [],
   "rating_actions": [],
@@ -27,6 +27,28 @@
       "author": "justjnq",
       "posted_at": "2026-02-23T18:09:26Z",
       "added_at": "2026-02-24T13:54:16.274819"
+    },
+    {
+      "post_id": "2026020008208343100",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "Regulators have closed their investigation into the MSA with FiberCop, related to Telecom Italia.",
+      "credit_relevance": "Closure of regulatory investigations may reduce legal overhang and uncertainty for FiberCop, but no direct financial impact is indicated, limiting immediate relevance to CDS spreads.",
+      "author": "SCMR41",
+      "posted_at": "2026-02-23T19:43:06Z",
+      "added_at": "2026-02-24T15:41:32.515570"
+    },
+    {
+      "post_id": "2025996437817803098",
+      "sentiment": "bullish",
+      "severity": 3,
+      "is_new_info": true,
+      "claim_summary": "Antitrust authorities have accepted FiberCop and TIM's commitments, concluding ongoing proceedings.",
+      "credit_relevance": "Resolution of regulatory uncertainty reduces legal and operational risks, supporting credit stability and potentially tightening CDS spreads.",
+      "author": "justjnq",
+      "posted_at": "2026-02-23T18:09:26Z",
+      "added_at": "2026-02-24T15:41:37.844054"
     }
   ],
   "analyst_assessments": [],

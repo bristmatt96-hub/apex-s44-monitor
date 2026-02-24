@@ -1,55 +1,11 @@
 {
   "entity": "Valeo SE",
-  "last_updated": "2026-02-24T13:52:32.337791",
+  "last_updated": "2026-02-24T15:39:24.954007",
   "filings": [],
   "news": [],
   "rating_actions": [],
   "earnings_signals": [],
   "social_sentiment": [
-    {
-      "post_id": "2026062995118317773",
-      "sentiment": "neutral",
-      "severity": 1,
-      "is_new_info": false,
-      "claim_summary": "Valeo has good technology, mentioned in a crypto-related context with no substantive details.",
-      "credit_relevance": "The post contains no meaningful information relevant to Valeo SE's creditworthiness or CDS spreads; it appears to be a speculative or promotional comment in a crypto context without financial or operational substance.",
-      "author": "roaldthaDegen",
-      "posted_at": "2026-02-23T22:33:55Z",
-      "added_at": "2026-02-24T13:47:31.774414"
-    },
-    {
-      "post_id": "2026056305916493913",
-      "sentiment": "neutral",
-      "severity": 1,
-      "is_new_info": false,
-      "claim_summary": "Mentions Valeo in a list of cryptocurrency tokens related to an airdrop, with no substantive information about the company.",
-      "credit_relevance": "The post is unrelated to Valeo SE's credit fundamentals or corporate credit markets; it appears to be a social media promotion for crypto tokens, which has no bearing on CDS spreads.",
-      "author": "Jens0673",
-      "posted_at": "2026-02-23T22:07:20Z",
-      "added_at": "2026-02-24T13:47:42.002899"
-    },
-    {
-      "post_id": "2026055418103968039",
-      "sentiment": "neutral",
-      "severity": 1,
-      "is_new_info": false,
-      "claim_summary": "Valeo is positioning itself as a compliance layer in the crypto space, according to a degen-style social media post.",
-      "credit_relevance": "The post does not provide material information relevant to Valeo SE's corporate credit risk or CDS spreads, as it appears to reference a cryptocurrency project with the same name rather than the European automotive supplier.",
-      "author": "roaldthaDegen",
-      "posted_at": "2026-02-23T22:03:48Z",
-      "added_at": "2026-02-24T13:47:47.571685"
-    },
-    {
-      "post_id": "2026052437333746050",
-      "sentiment": "neutral",
-      "severity": 1,
-      "is_new_info": false,
-      "claim_summary": "Promotion of various cryptocurrency tokens including a mention of 'Valeo' in the context of Solana-based meme coins and crypto signals.",
-      "credit_relevance": "The post is unrelated to Valeo SE's credit fundamentals or corporate credit risk; it references 'Valeo' as a ticker in a crypto/meme coin context, which has no bearing on the company's CDS spreads.",
-      "author": "Richard61879531",
-      "posted_at": "2026-02-23T21:51:57Z",
-      "added_at": "2026-02-24T13:47:55.100300"
-    },
     {
       "post_id": "2026048827669479424",
       "sentiment": "neutral",
@@ -555,6 +511,50 @@
       "author": "samsondcd",
       "posted_at": "2026-02-23T16:28:54Z",
       "added_at": "2026-02-24T13:52:32.337791"
+    },
+    {
+      "post_id": "2026000575867826546",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "Promotional claim that Valeo SE's market cap surged from $16K to $237K due to early insider access in a Telegram group.",
+      "credit_relevance": "The post refers to a 'memecoin' on Solana, not the European high-yield credit Valeo SE; there is no relevance to the company's CDS spreads.",
+      "author": "SignalLord",
+      "posted_at": "2026-02-23T18:25:53Z",
+      "added_at": "2026-02-24T15:39:03.314089"
+    },
+    {
+      "post_id": "2025991453676081185",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "The post mentions a 'quick $PUNCH airdrop' and lists several cryptocurrency tickers including $Valeo, but provides no substantive information about Valeo SE.",
+      "credit_relevance": "The mention of $Valeo appears to be a cryptocurrency ticker reference, likely unrelated to Valeo SE, and carries no relevance for the company's creditworthiness or CDS spreads.",
+      "author": "_krissypooh_",
+      "posted_at": "2026-02-23T17:49:38Z",
+      "added_at": "2026-02-24T15:39:10.674379"
+    },
+    {
+      "post_id": "2025985723309125929",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "Promotes a one-click claim for a Valeo-related airdrop, likely in a speculative or scam context.",
+      "credit_relevance": "No discernible impact on Valeo SE's creditworthiness or CDS spreads; content appears unrelated to corporate fundamentals or credit events.",
+      "author": "hunnelle",
+      "posted_at": "2026-02-23T17:26:52Z",
+      "added_at": "2026-02-24T15:39:18.492169"
+    },
+    {
+      "post_id": "2025971136563917046",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "Valeo is still at an early stage, according to a vague and unsubstantiated comment.",
+      "credit_relevance": "The statement lacks specific financial or operational context and does not provide actionable information for CDS spread assessment.",
+      "author": "samsondcd",
+      "posted_at": "2026-02-23T16:28:54Z",
+      "added_at": "2026-02-24T15:39:24.954007"
     }
   ],
   "analyst_assessments": [],

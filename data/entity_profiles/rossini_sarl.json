@@ -1,22 +1,11 @@
 {
   "entity": "Rossini Sarl",
-  "last_updated": "2026-02-24T09:49:57.147948",
+  "last_updated": "2026-02-24T15:24:52.965486",
   "filings": [],
   "news": [],
   "rating_actions": [],
   "earnings_signals": [],
   "social_sentiment": [
-    {
-      "post_id": "2025919815534223485",
-      "sentiment": "neutral",
-      "severity": 1,
-      "is_new_info": false,
-      "claim_summary": "Accusation of dishonesty and manipulation in a personal dispute involving genetic traits like blonde hair and blue eyes.",
-      "credit_relevance": "No discernible relevance to Rossini Sarl's creditworthiness, financials, or CDS spreads; the post is a personal attack with no financial or operational context.",
-      "author": "CricketInSand",
-      "posted_at": "2026-02-23T13:04:58Z",
-      "added_at": "2026-02-24T09:45:09.495695"
-    },
     {
       "post_id": "2025915779397357918",
       "sentiment": "neutral",
@@ -555,6 +544,17 @@
       "author": "SMamillio",
       "posted_at": "2026-02-21T16:30:10Z",
       "added_at": "2026-02-24T09:49:57.147948"
+    },
+    {
+      "post_id": "2025245109017870564",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "Speculative comment on the origins of physical traits associated with 'whiteness,' suggesting they may not be exclusive to Europe.",
+      "credit_relevance": "The post contains no information relevant to the creditworthiness, financial performance, or risk factors of Rossini Sarl or any related entity; it is a socio-anthropological speculation with no bearing on CDS spreads.",
+      "author": "Koztradamus1",
+      "posted_at": "2026-02-21T16:23:55Z",
+      "added_at": "2026-02-24T15:24:52.965486"
     }
   ],
   "analyst_assessments": [],

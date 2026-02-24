@@ -1,77 +1,11 @@
 {
   "entity": "test",
-  "last_updated": "2026-02-24T09:21:25.050232",
+  "last_updated": "2026-02-24T15:30:46.360726",
   "filings": [],
   "news": [],
   "rating_actions": [],
   "earnings_signals": [],
   "social_sentiment": [
-    {
-      "post_id": "x",
-      "sentiment": "neutral",
-      "severity": 1,
-      "is_new_info": false,
-      "claim_summary": "",
-      "credit_relevance": "",
-      "author": "test",
-      "posted_at": "",
-      "added_at": "2026-02-23T19:31:06.765118"
-    },
-    {
-      "post_id": "x",
-      "sentiment": "neutral",
-      "severity": 1,
-      "is_new_info": false,
-      "claim_summary": "",
-      "credit_relevance": "",
-      "author": "test",
-      "posted_at": "",
-      "added_at": "2026-02-23T19:31:07.015389"
-    },
-    {
-      "post_id": "x",
-      "sentiment": "neutral",
-      "severity": 1,
-      "is_new_info": false,
-      "claim_summary": "",
-      "credit_relevance": "",
-      "author": "test",
-      "posted_at": "",
-      "added_at": "2026-02-23T19:40:17.430191"
-    },
-    {
-      "post_id": "x",
-      "sentiment": "neutral",
-      "severity": 1,
-      "is_new_info": false,
-      "claim_summary": "",
-      "credit_relevance": "",
-      "author": "test",
-      "posted_at": "",
-      "added_at": "2026-02-23T19:40:17.747220"
-    },
-    {
-      "post_id": "x",
-      "sentiment": "neutral",
-      "severity": 1,
-      "is_new_info": false,
-      "claim_summary": "",
-      "credit_relevance": "",
-      "author": "test",
-      "posted_at": "",
-      "added_at": "2026-02-23T19:40:18.018281"
-    },
-    {
-      "post_id": "x",
-      "sentiment": "neutral",
-      "severity": 1,
-      "is_new_info": false,
-      "claim_summary": "",
-      "credit_relevance": "",
-      "author": "test",
-      "posted_at": "",
-      "added_at": "2026-02-23T19:52:53.072088"
-    },
     {
       "post_id": "x",
       "sentiment": "neutral",
@@ -555,6 +489,72 @@
       "author": "test",
       "posted_at": "",
       "added_at": "2026-02-24T09:21:25.050232"
+    },
+    {
+      "post_id": "x",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "",
+      "credit_relevance": "",
+      "author": "test",
+      "posted_at": "",
+      "added_at": "2026-02-24T15:29:56.438308"
+    },
+    {
+      "post_id": "x",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "",
+      "credit_relevance": "",
+      "author": "test",
+      "posted_at": "",
+      "added_at": "2026-02-24T15:29:56.749241"
+    },
+    {
+      "post_id": "x",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "",
+      "credit_relevance": "",
+      "author": "test",
+      "posted_at": "",
+      "added_at": "2026-02-24T15:29:57.017002"
+    },
+    {
+      "post_id": "x",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "",
+      "credit_relevance": "",
+      "author": "test",
+      "posted_at": "",
+      "added_at": "2026-02-24T15:30:45.775888"
+    },
+    {
+      "post_id": "x",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "",
+      "credit_relevance": "",
+      "author": "test",
+      "posted_at": "",
+      "added_at": "2026-02-24T15:30:46.092400"
+    },
+    {
+      "post_id": "x",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "",
+      "credit_relevance": "",
+      "author": "test",
+      "posted_at": "",
+      "added_at": "2026-02-24T15:30:46.360726"
     }
   ],
   "analyst_assessments": [],

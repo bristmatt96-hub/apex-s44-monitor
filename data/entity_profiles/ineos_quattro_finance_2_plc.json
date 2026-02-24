@@ -1,6 +1,6 @@
 {
   "entity": "INEOS Quattro Finance 2 Plc",
-  "last_updated": "2026-02-20T09:01:52.856056",
+  "last_updated": "2026-02-24T14:53:04.183296",
   "filings": [],
   "news": [
     {
@@ -31,7 +31,19 @@
     }
   ],
   "earnings_signals": [],
-  "social_sentiment": [],
+  "social_sentiment": [
+    {
+      "post_id": "2025268258526437552",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "INEOS Quattro is the most actively traded name in European high-yield, according to market chatter.",
+      "credit_relevance": "Trading activity alone does not imply credit deterioration or improvement, but elevated flows can signal potential spread volatility or emerging concerns/inflows.",
+      "author": "TheCreditStack",
+      "posted_at": "2026-02-21T17:55:55Z",
+      "added_at": "2026-02-24T14:53:04.183296"
+    }
+  ],
   "analyst_assessments": [],
   "signal_changes": []
 }

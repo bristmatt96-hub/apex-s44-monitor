@@ -1,0 +1,210 @@
+{
+  "entity": "Air France-KLM",
+  "last_updated": "2026-02-24T16:22:16.196770",
+  "filings": [],
+  "news": [],
+  "rating_actions": [],
+  "earnings_signals": [],
+  "social_sentiment": [
+    {
+      "post_id": "2026175401819877776",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "The post mentions an airdrop for $PUNCH with no reference to Air France-KLM or credit-relevant developments.",
+      "credit_relevance": "The content is unrelated to Air France-KLM's credit fundamentals, CDS, or the iTraxx Xover universe; it appears to be crypto/meme-related noise.",
+      "author": "ryharris",
+      "posted_at": "2026-02-24T06:00:34Z",
+      "added_at": "2026-02-24T14:18:08.659175"
+    },
+    {
+      "post_id": "2026084262538015215",
+      "sentiment": "bearish",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "User claims Air France-KLM will declare bankruptcy, though context appears hyperbolic and unrelated to actual credit fundamentals.",
+      "credit_relevance": "Bankruptcy mention is relevant to CDS spreads, but the comment is personal opinion with no supporting analysis or evidence, likely not influencing market pricing.",
+      "author": "edward_grbic",
+      "posted_at": "2026-02-23T23:58:25Z",
+      "added_at": "2026-02-24T14:18:13.410434"
+    },
+    {
+      "post_id": "2026200208854696244",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "The post references the 1990 Clean Air Act Amendments and California's regulatory role, with no direct link to Air France-KLM.",
+      "credit_relevance": "The content discusses U.S. environmental legislation from the 1990s and does not provide any material information relevant to Air France-KLM's creditworthiness or CDS spreads.",
+      "author": "@humantransit",
+      "posted_at": "2026-02-24T07:39:09Z",
+      "added_at": "2026-02-24T14:18:19.176965"
+    },
+    {
+      "post_id": "2025722209155645665",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "Alleges that Israeli jets failed to penetrate Iranian airspace due to malware being purged, while claiming Iranian retaliation against Israel.",
+      "credit_relevance": "The post contains no relevant information about Air France-KLM's financial condition, operations, or credit fundamentals; geopolitical commentary lacks direct link to airline's credit risk.",
+      "author": "veniteo",
+      "posted_at": "2026-02-22T23:59:45Z",
+      "added_at": "2026-02-24T14:50:32.598925"
+    },
+    {
+      "post_id": "2025722076347486422",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "The post mentions an unrelated HVAC company and contains no relevant information about Air France-KLM.",
+      "credit_relevance": "There is no discernible connection between the post content and Air France-KLM's creditworthiness or CDS spreads.",
+      "author": "TroyRay222",
+      "posted_at": "2026-02-22T23:59:13Z",
+      "added_at": "2026-02-24T14:50:37.297797"
+    },
+    {
+      "post_id": "2025721897095168392",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "No substantive claim about Air France-KLM; sarcastic comment unrelated to credit fundamentals.",
+      "credit_relevance": "The post contains no relevant information affecting Air France-KLM's creditworthiness or CDS spreads.",
+      "author": "AdamZivo",
+      "posted_at": "2026-02-22T23:58:31Z",
+      "added_at": "2026-02-24T14:50:41.666596"
+    },
+    {
+      "post_id": "2025721807970472207",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "Discussion about poker strategy involving a hand play, with no reference to Air France-KLM's credit fundamentals.",
+      "credit_relevance": "The post is unrelated to Air France-KLM's financial or credit condition; it discusses a poker hand and has no bearing on CDS spreads.",
+      "author": "Mikey5Aces",
+      "posted_at": "2026-02-22T23:58:09Z",
+      "added_at": "2026-02-24T14:50:46.661242"
+    },
+    {
+      "post_id": "2025721769856794851",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "The post is a playful phrase referencing Air France-KLM's name without substantive financial or operational content.",
+      "credit_relevance": "The message contains no relevant information that would impact Air France-KLM's creditworthiness or CDS spreads.",
+      "author": "FcbArtwork",
+      "posted_at": "2026-02-22T23:58:00Z",
+      "added_at": "2026-02-24T14:50:51.817711"
+    },
+    {
+      "post_id": "2025721733483741646",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "The post is a poetic expression of affection for coding and algorithms, with no reference to Air France-KLM or credit-related developments.",
+      "credit_relevance": "There is no discernible information related to Air France-KLM's financial condition, operations, or credit risk; thus, it has no relevance to CDS spreads.",
+      "author": "PaffrathPa",
+      "posted_at": "2026-02-22T23:57:52Z",
+      "added_at": "2026-02-24T14:50:56.486990"
+    },
+    {
+      "post_id": "2025721729008500739",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "Helicopters are seen over Mexico due to increased security following El Mencho, indicating ongoing instability.",
+      "credit_relevance": "The post discusses security developments in Mexico unrelated to Air France-KLM and has no discernible impact on the company's creditworthiness or CDS spreads.",
+      "author": "MindOfNaijaLife",
+      "posted_at": "2026-02-22T23:57:50Z",
+      "added_at": "2026-02-24T14:51:02.090533"
+    },
+    {
+      "post_id": "2026182805684633989",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "No specific claim or information regarding Air France-KLM; generic promotional post for a daily market bulletin.",
+      "credit_relevance": "There is no credit-relevant information provided about Air France-KLM in this post; it does not impact CDS spreads.",
+      "author": "terayatirim",
+      "posted_at": "2026-02-24T06:30:00Z",
+      "added_at": "2026-02-24T16:21:45.135416"
+    },
+    {
+      "post_id": "2026156312564994115",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "The post promotes a cryptocurrency airdrop for $PUNCH and $SPSC tokens with no mention of Air France-KLM fundamentals or credit-related information.",
+      "credit_relevance": "The content is unrelated to Air France-KLM's creditworthiness, financial performance, or market risks; it discusses a DeFi token airdrop, which has no direct impact on CDS spreads.",
+      "author": "ttdomarinho",
+      "posted_at": "2026-02-24T04:44:43Z",
+      "added_at": "2026-02-24T16:21:50.533066"
+    },
+    {
+      "post_id": "2026084561264984251",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "Explanation of fluid dynamics in metal cans versus plastic bottles, using everyday observations.",
+      "credit_relevance": "The post contains no information relevant to Air France-KLM's creditworthiness, financial performance, or risk factors that could impact CDS spreads.",
+      "author": "TejuDuru",
+      "posted_at": "2026-02-23T23:59:36Z",
+      "added_at": "2026-02-24T16:21:54.848885"
+    },
+    {
+      "post_id": "2026084427974267364",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "The post is a light-hearted social media poll asking followers to choose between mountain or beach views for a daydream, with no reference to Air France-KLM's financial or operational status.",
+      "credit_relevance": "This content is unrelated to Air France-KLM's credit fundamentals, financial performance, or market risks and has no bearing on its CDS spreads.",
+      "author": "doriswright1",
+      "posted_at": "2026-02-23T23:59:05Z",
+      "added_at": "2026-02-24T16:21:59.405874"
+    },
+    {
+      "post_id": "2026084320331657410",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "Speculation about a large-scale military operation, with no direct link to Air France-KLM.",
+      "credit_relevance": "The post contains no specific information related to Air France-KLM's financial condition, operations, or credit risk; it is speculative and off-topic regarding credit fundamentals.",
+      "author": "woke8yearold",
+      "posted_at": "2026-02-23T23:58:39Z",
+      "added_at": "2026-02-24T16:22:03.612017"
+    },
+    {
+      "post_id": "2026084304837656752",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "The post comments on the escalation involving the Mexican Army and Air Force, questioning the timing of decisive action.",
+      "credit_relevance": "The post contains no discernible information relevant to Air France-KLM's creditworthiness or CDS spreads, as it discusses an unrelated geopolitical event in Mexico.",
+      "author": "igwe_mackintoch",
+      "posted_at": "2026-02-23T23:58:35Z",
+      "added_at": "2026-02-24T16:22:09.136716"
+    },
+    {
+      "post_id": "2026084235992309966",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "No specific claim or information regarding Air France-KLM; the post is a vague, poetic reflection with no credit-relevant content.",
+      "credit_relevance": "The post contains no actionable or factual information that could impact Air France-KLM's creditworthiness or CDS spreads.",
+      "author": "bonita_gla47824",
+      "posted_at": "2026-02-23T23:58:19Z",
+      "added_at": "2026-02-24T16:22:12.688198"
+    },
+    {
+      "post_id": "2026206570070069530",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "Air France-KLM deserves more credit, according to the author.",
+      "credit_relevance": "The statement is vague and lacks specific credit-related information that would impact CDS spreads, such as financial performance, liquidity, or structural changes.",
+      "author": "@acmi_air",
+      "posted_at": "2026-02-24T08:04:26Z",
+      "added_at": "2026-02-24T16:22:16.196770"
+    }
+  ],
+  "analyst_assessments": [],
+  "signal_changes": []
+}
