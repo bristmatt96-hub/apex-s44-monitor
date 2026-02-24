@@ -1,0 +1,32 @@
+{
+  "entity": "INEOS",
+  "sn13": {
+    "total": 50,
+    "unique": 49,
+    "overlap": 1,
+    "signal_count": 0,
+    "signal_rate": 0.0,
+    "noise_count": 31,
+    "noise_rate": 62.0,
+    "ambiguous_count": 19,
+    "ambiguous_rate": 38.0,
+    "median_freshness_hours": 11.9,
+    "newest_hours": 9.4
+  },
+  "sn22": {
+    "total": 59,
+    "unique": 58,
+    "overlap": 1,
+    "signal_count": 1,
+    "signal_rate": 1.7,
+    "noise_count": 27,
+    "noise_rate": 45.8,
+    "ambiguous_count": 31,
+    "ambiguous_rate": 52.5,
+    "median_freshness_hours": 25.9,
+    "newest_hours": 22.4
+  },
+  "overlap_count": 1,
+  "verdict": "SN22 finds 18% more unique posts,\n           better signal rate, lower noise, SN13 has fresher data",
+  "timestamp": "2026-02-23T21:28:33.834479Z"
+}
