@@ -93,6 +93,13 @@ class MarketWatcher:
             logger.warning(f"  ✗ Product Discovery not available: {e}")
 
         try:
+            from monitors.equity_movers import run_scan as equity_screen_scan
+            self.scanners['equity_screen'] = equity_screen_scan
+            logger.info("  ✓ Equity Screen loaded")
+        except Exception as e:
+            logger.warning(f"  ✗ Equity Screen not available: {e}")
+
+        try:
             from portfolio.stop_monitor import get_stop_monitor
             self.stop_monitor = get_stop_monitor()
             logger.info("  ✓ Stop Monitor loaded")
@@ -156,6 +163,20 @@ class MarketWatcher:
                     logger.info(f"  Discovery alerts: {len(discovery_alerts)}")
             except Exception as e:
                 logger.error(f"Discovery scan failed: {e}")
+
+        # Run equity screen (iTraxx names — alerts via Telegram)
+        if 'equity_screen' in self.scanners:
+            try:
+                equity_movers = self.scanners['equity_screen'](
+                    threshold_pct=3.0,
+                    classify=True,
+                    social=True,
+                    alert=True,
+                )
+                if equity_movers:
+                    logger.info(f"  Equity screen: {len(equity_movers)} movers alerted")
+            except Exception as e:
+                logger.error(f"Equity screen scan failed: {e}")
 
         # Check stops
         if self.stop_monitor:
