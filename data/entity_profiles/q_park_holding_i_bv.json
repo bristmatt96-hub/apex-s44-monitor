@@ -1,0 +1,23 @@
+{
+  "entity": "Q-Park Holding I BV",
+  "last_updated": "2026-02-24T13:35:59.311031",
+  "filings": [],
+  "news": [],
+  "rating_actions": [],
+  "earnings_signals": [],
+  "social_sentiment": [
+    {
+      "post_id": "2025858322448986165",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "Q-Park Dale Street promotes discounted match day parking for Everton FC games with a 10% offer code TOFFEES10.",
+      "credit_relevance": "The post is a routine promotional message for parking services and contains no financial, operational, or credit-related information relevant to Q-Park Holding I BV's CDS spreads.",
+      "author": "QPark_UK",
+      "posted_at": "2026-02-23T09:00:37Z",
+      "added_at": "2026-02-24T13:35:59.311031"
+    }
+  ],
+  "analyst_assessments": [],
+  "signal_changes": []
+}

@@ -1,0 +1,144 @@
+{
+  "entity": "Stena AB",
+  "last_updated": "2026-02-24T13:40:28.848885",
+  "filings": [],
+  "news": [],
+  "rating_actions": [],
+  "earnings_signals": [],
+  "social_sentiment": [
+    {
+      "post_id": "2026018804115862015",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "RMT union representatives met with Stena AB officials for pay negotiations in London.",
+      "credit_relevance": "Industrial relations and potential labor disputes can affect operating costs and service reliability, but no concrete outcome or disruption has been reported that would impact Stena AB's creditworthiness or CDS spreads.",
+      "author": "RMTunion",
+      "posted_at": "2026-02-23T19:38:19Z",
+      "added_at": "2026-02-24T13:39:32.106324"
+    },
+    {
+      "post_id": "2026010500815810962",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "Unclear, non-credit-related statement about Stena AB with no substantive information.",
+      "credit_relevance": "No discernible impact on Stena AB's creditworthiness or CDS spreads due to lack of relevant content.",
+      "author": "LesegoMalapane1",
+      "posted_at": "2026-02-23T19:05:19Z",
+      "added_at": "2026-02-24T13:39:37.020931"
+    },
+    {
+      "post_id": "2025971573270929611",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "Suggests that replicating a vessel like Dilly using existing Stena assets would be feasible, though Argus is less relevant now.",
+      "credit_relevance": "No direct impact on Stena AB's creditworthiness or CDS spreads; the post discusses hypothetical vessel replication with no financial or operational implications.",
+      "author": "Gunbust09696378",
+      "posted_at": "2026-02-23T16:30:38Z",
+      "added_at": "2026-02-24T13:39:42.273686"
+    },
+    {
+      "post_id": "2025951554755334537",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "User shares a personal anecdote about losing internet connectivity on a Stena ferry while trying to watch a sports game, resulting in missing a disappointing outcome.",
+      "credit_relevance": "The post contains no financially material information; it is a personal story about passenger experience with no implications for Stena AB's creditworthiness or CDS spreads.",
+      "author": "pilgrim1889",
+      "posted_at": "2026-02-23T15:11:05Z",
+      "added_at": "2026-02-24T13:39:46.422723"
+    },
+    {
+      "post_id": "2025937615254389075",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "Author mentions being on a Stena ferry on Friday while watching part of a game.",
+      "credit_relevance": "The post contains no financial, operational, or credit-related information about Stena AB; it is a personal anecdote with no impact on CDS spreads.",
+      "author": "wee_doll",
+      "posted_at": "2026-02-23T14:15:42Z",
+      "added_at": "2026-02-24T13:39:52.875358"
+    },
+    {
+      "post_id": "2025826357221986578",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "Driver expresses fatigue and reluctance while traveling to Stena Birkenhead and Southampton, with no substantive information about Stena AB.",
+      "credit_relevance": "The post contains no financial, operational, or strategic information relevant to Stena AB's creditworthiness or CDS spreads.",
+      "author": "Gavjosie",
+      "posted_at": "2026-02-23T06:53:36Z",
+      "added_at": "2026-02-24T13:39:57.194724"
+    },
+    {
+      "post_id": "2025653301220454692",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "The post is a hockey-related pun referencing Stena Line's ferry service, with no financial or credit information.",
+      "credit_relevance": "The content is unrelated to Stena AB's creditworthiness, financial performance, or market risks; it references a sports event and wordplay on 'Kruse' and '5-past'.",
+      "author": "EihlNoCntxt",
+      "posted_at": "2026-02-22T19:25:56Z",
+      "added_at": "2026-02-24T13:40:03.692319"
+    },
+    {
+      "post_id": "2025597109140078593",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "Individuals are traveling on a Stena ferry from Great Britain, as noted in a casual social media comment.",
+      "credit_relevance": "The post contains no financial, operational, or credit-related information relevant to Stena AB's creditworthiness or CDS spreads.",
+      "author": "ReTakeTheUk",
+      "posted_at": "2026-02-22T15:42:39Z",
+      "added_at": "2026-02-24T13:40:09.628710"
+    },
+    {
+      "post_id": "2025430126377533630",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "Post content is irrelevant and nonsensical, with no credit-related information.",
+      "credit_relevance": "No discernible impact on CDS spreads due to absence of meaningful or relevant content.",
+      "author": "Stena_7",
+      "posted_at": "2026-02-22T04:39:07Z",
+      "added_at": "2026-02-24T13:40:13.608154"
+    },
+    {
+      "post_id": "2025186240190898294",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "Stena Drilling's rig is operating with Shell in Egyptian waters, as part of a broader offshore drilling industry update.",
+      "credit_relevance": "The mention of Stena Drilling's activity provides minor operational colour but does not convey new financial or credit-relevant developments such as contract terms, duration, or revenue impact, limiting its relevance to CDS spreads.",
+      "author": "offshoreenergyt",
+      "posted_at": "2026-02-21T12:30:00Z",
+      "added_at": "2026-02-24T13:40:19.048661"
+    },
+    {
+      "post_id": "2025178518322032840",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "No clear claim or relevant information about Stena AB; the message appears to be informal and non-substantive.",
+      "credit_relevance": "The post contains no discernible information relevant to Stena AB's creditworthiness or CDS spreads.",
+      "author": "KamoOyama20938",
+      "posted_at": "2026-02-21T11:59:19Z",
+      "added_at": "2026-02-24T13:40:24.829933"
+    },
+    {
+      "post_id": "2025110870871687352",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "Personal anecdote about refusing to sleep with someone related to Stena AB, resulting in being blocked on social media.",
+      "credit_relevance": "The post contains no financial, operational, or credit-related information relevant to Stena AB's creditworthiness or CDS spreads.",
+      "author": "Milla__K",
+      "posted_at": "2026-02-21T07:30:31Z",
+      "added_at": "2026-02-24T13:40:28.848885"
+    }
+  ],
+  "analyst_assessments": [],
+  "signal_changes": []
+}

@@ -1,0 +1,23 @@
+{
+  "entity": "Renault SA",
+  "last_updated": "2026-02-24T13:36:04.279518",
+  "filings": [],
+  "news": [],
+  "rating_actions": [],
+  "earnings_signals": [],
+  "social_sentiment": [
+    {
+      "post_id": "2026051841411223871",
+      "sentiment": "bearish",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "Renault engine performance is poor, implying negative sentiment about the company's technology or operations.",
+      "credit_relevance": "Negative commentary on Renault's core operations could imply execution or reputational risk, but no concrete financial impact is provided that would directly affect CDS spreads.",
+      "author": "derechaser",
+      "posted_at": "2026-02-23T21:49:35Z",
+      "added_at": "2026-02-24T13:36:04.279518"
+    }
+  ],
+  "analyst_assessments": [],
+  "signal_changes": []
+}

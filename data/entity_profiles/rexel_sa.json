@@ -1,0 +1,89 @@
+{
+  "entity": "Rexel SA",
+  "last_updated": "2026-02-24T13:36:54.653762",
+  "filings": [],
+  "news": [],
+  "rating_actions": [],
+  "earnings_signals": [],
+  "social_sentiment": [
+    {
+      "post_id": "2026046147588964556",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "Expression of affection with no substantive content related to Rexel SA.",
+      "credit_relevance": "No discernible impact on Rexel SA's creditworthiness or CDS spreads due to absence of relevant information.",
+      "author": "rexel_frag",
+      "posted_at": "2026-02-23T21:26:58Z",
+      "added_at": "2026-02-24T13:36:12.008080"
+    },
+    {
+      "post_id": "2025695535743586634",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "No substantive claim or information provided; only an unspecified link with exclamatory comment.",
+      "credit_relevance": "There is no discernible information related to Rexel SA's credit fundamentals, financial performance, or market conditions that would impact CDS spreads.",
+      "author": "rexel_frag",
+      "posted_at": "2026-02-22T22:13:45Z",
+      "added_at": "2026-02-24T13:36:22.712942"
+    },
+    {
+      "post_id": "2025607464289210706",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "User complains about poor performance of a Rexel rechargeable upholstery stapler and inability to return it.",
+      "credit_relevance": "The post is a consumer product complaint with no material implications for Rexel SA's financial condition, creditworthiness, or CDS spreads.",
+      "author": "marktheman2010",
+      "posted_at": "2026-02-22T16:23:48Z",
+      "added_at": "2026-02-24T13:36:27.283055"
+    },
+    {
+      "post_id": "2025517050970435788",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "Rexel UK is a sponsor of Bromyard Town FC, a local football team.",
+      "credit_relevance": "The sponsorship relationship with a local football club does not provide material insight into Rexel SA's financial health, creditworthiness, or fundamental performance, and is unlikely to impact CDS spreads.",
+      "author": "BromyardTownFC",
+      "posted_at": "2026-02-22T10:24:31Z",
+      "added_at": "2026-02-24T13:36:37.751515"
+    },
+    {
+      "post_id": "2025223427947454538",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "The post provides a redeem code for The Forge Roblox game.",
+      "credit_relevance": "The content is unrelated to Rexel SA's financial or credit fundamentals and has no relevance to its CDS spreads.",
+      "author": "rexel_id",
+      "posted_at": "2026-02-21T14:57:46Z",
+      "added_at": "2026-02-24T13:36:42.350489"
+    },
+    {
+      "post_id": "2025137133623935216",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "Rexel positions itself as a key player in the energy transition and electrification markets.",
+      "credit_relevance": "The statement is promotional and lacks concrete financial or operational details that would impact creditworthiness or CDS spreads.",
+      "author": "MultibaggAIEU",
+      "posted_at": "2026-02-21T09:14:52Z",
+      "added_at": "2026-02-24T13:36:46.417453"
+    },
+    {
+      "post_id": "2025122054006300675",
+      "sentiment": "bullish",
+      "severity": 3,
+      "is_new_info": true,
+      "claim_summary": "Rexel SA announces a biannual share buyback program scheduled for 31 December 2025, though size and timing are undisclosed, signaling increased focus on shareholder returns.",
+      "credit_relevance": "Share buybacks can reduce equity flexibility and cash reserves, but in this case, the lack of disclosed size and the biannual nature suggest a measured approach; the market may view this as a sign of confidence in cash flow generation, supporting credit stability and potentially tightening CDS spreads.",
+      "author": "MultibaggAIEU",
+      "posted_at": "2026-02-21T08:14:57Z",
+      "added_at": "2026-02-24T13:36:54.653762"
+    }
+  ],
+  "analyst_assessments": [],
+  "signal_changes": []
+}

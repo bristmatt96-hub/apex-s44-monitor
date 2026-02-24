@@ -1,0 +1,144 @@
+{
+  "entity": "LANXESS AG",
+  "last_updated": "2026-02-24T13:32:18.678854",
+  "filings": [],
+  "news": [],
+  "rating_actions": [],
+  "earnings_signals": [],
+  "social_sentiment": [
+    {
+      "post_id": "2025976398876401750",
+      "sentiment": "bearish",
+      "severity": 3,
+      "is_new_info": true,
+      "claim_summary": "Lanxess plans to stop hexane production at Krefeld-Uerdingen by 2026 due to high energy costs.",
+      "credit_relevance": "Halting production due to structural cost pressures signals margin erosion and potential long-term profitability challenges, which could lead to EBITDA deterioration and higher leverage, negatively impacting CDS spreads.",
+      "author": "935MobyDick78",
+      "posted_at": "2026-02-23T16:49:48Z",
+      "added_at": "2026-02-24T13:31:32.167305"
+    },
+    {
+      "post_id": "2025974818470822038",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "User is selling three J. Cole concert tickets for an event at Lanxess Arena in Cologne, Germany.",
+      "credit_relevance": "The post is unrelated to LANXESS AG's financial or credit fundamentals; it refers only to a venue named Lanxess Arena and has no bearing on the company's creditworthiness or CDS spreads.",
+      "author": "Jenwright122197",
+      "posted_at": "2026-02-23T16:43:32Z",
+      "added_at": "2026-02-24T13:31:36.639776"
+    },
+    {
+      "post_id": "2025924452823748867",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "User is selling concert tickets for 5 Seconds of Summer at the LANXESS Arena in Cologne.",
+      "credit_relevance": "The post is unrelated to LANXESS AG's financial or credit fundamentals; it refers only to the venue name and has no impact on creditworthiness or CDS spreads.",
+      "author": "HS5sosLany_723",
+      "posted_at": "2026-02-23T13:23:24Z",
+      "added_at": "2026-02-24T13:31:40.520879"
+    },
+    {
+      "post_id": "2025900008780783835",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "Offering tickets for a Louis Tomlinson concert at the LANXESS Arena in Cologne.",
+      "credit_relevance": "The post is unrelated to LANXESS AG's financial or credit fundamentals; it pertains to event tickets at a venue sharing the company's name, with no impact on CDS spreads.",
+      "author": "1D_Oelshig",
+      "posted_at": "2026-02-23T11:46:16Z",
+      "added_at": "2026-02-24T13:31:46.371186"
+    },
+    {
+      "post_id": "2025899515614548141",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "User has extra presale concert tickets for The Neighbourhood at LANXESS Arena in Cologne due to a friend's duplicate purchase.",
+      "credit_relevance": "The post is unrelated to LANXESS AG's financial or credit fundamentals; it only references the venue name and has no impact on CDS spreads.",
+      "author": "Rubeeezzey",
+      "posted_at": "2026-02-23T11:44:18Z",
+      "added_at": "2026-02-24T13:31:50.239436"
+    },
+    {
+      "post_id": "2025899343790723250",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "Offering extra concert tickets for sale at the LANXESS Arena in Cologne.",
+      "credit_relevance": "The post is unrelated to LANXESS AG's creditworthiness, financial performance, or market positioning; it concerns concert tickets at a venue sharing the company's name.",
+      "author": "Rubeeezzey",
+      "posted_at": "2026-02-23T11:43:37Z",
+      "added_at": "2026-02-24T13:31:55.458795"
+    },
+    {
+      "post_id": "2025876898803327208",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "User has spare concert tickets for The Neighbourhood at LANXESS Arena in Cologne due to a friend's duplicate purchase.",
+      "credit_relevance": "The post is unrelated to LANXESS AG's financial or creditworthiness indicators; it references the LANXESS Arena as a venue and has no bearing on the company's credit risk or CDS spreads.",
+      "author": "alves_jos1",
+      "posted_at": "2026-02-23T10:14:26Z",
+      "added_at": "2026-02-24T13:32:01.124999"
+    },
+    {
+      "post_id": "2025875523331555798",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "Extra concert tickets for The Neighbourhood's 2026 tour at LANXESS Arena are being offered for free.",
+      "credit_relevance": "The post is unrelated to LANXESS AG's financial or credit fundamentals; it merely references the venue name and has no impact on creditworthiness or CDS spreads.",
+      "author": "nathaliebbxt",
+      "posted_at": "2026-02-23T10:08:58Z",
+      "added_at": "2026-02-24T13:32:05.591435"
+    },
+    {
+      "post_id": "2025849949053685818",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "User is offering tickets for a concert at Lanxess Arena in Cologne.",
+      "credit_relevance": "The post is unrelated to LANXESS AG's financial or credit fundamentals; it only references the venue named after the company.",
+      "author": "putu_sapra",
+      "posted_at": "2026-02-23T08:27:20Z",
+      "added_at": "2026-02-24T13:32:09.172953"
+    },
+    {
+      "post_id": "2025849789296906595",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "User is offering tickets for a concert at Lanxess Arena in Cologne.",
+      "credit_relevance": "The post is unrelated to LANXESS AG's financial or credit fundamentals; it merely references the venue named after the company.",
+      "author": "dramaless_livin",
+      "posted_at": "2026-02-23T08:26:42Z",
+      "added_at": "2026-02-24T13:32:12.707839"
+    },
+    {
+      "post_id": "2025133685289472212",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "LANXESS is presenting biocides, pigments, and additives for coatings at Paint India 2026.",
+      "credit_relevance": "The participation in a trade show is routine business activity and does not convey material developments affecting creditworthiness or CDS spreads.",
+      "author": "TextileValue",
+      "posted_at": "2026-02-21T09:01:10Z",
+      "added_at": "2026-02-24T13:32:15.577080"
+    },
+    {
+      "post_id": "2025039739355570315",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "AI analysis suggests Lanxess, ICL Group, and Albemarle could be potential second sources for a supply chain component, but no confirmation from SEC filings.",
+      "credit_relevance": "Supply chain diversification could marginally affect operational resilience, but absence of concrete evidence or financial impact limits relevance to CDS spreads.",
+      "author": "Bullstkpicks",
+      "posted_at": "2026-02-21T02:47:51Z",
+      "added_at": "2026-02-24T13:32:18.678854"
+    }
+  ],
+  "analyst_assessments": [],
+  "signal_changes": []
+}

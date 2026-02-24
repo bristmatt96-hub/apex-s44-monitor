@@ -1,0 +1,100 @@
+{
+  "entity": "Webuild SpA",
+  "last_updated": "2026-02-24T13:53:35.061239",
+  "filings": [],
+  "news": [],
+  "rating_actions": [],
+  "earnings_signals": [],
+  "social_sentiment": [
+    {
+      "post_id": "2026009111268122701",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "Motivational message with no specific information about Webuild SpA's financial or operational condition.",
+      "credit_relevance": "No direct credit relevance; the post does not provide any information that would impact Webuild SpA's creditworthiness or CDS spreads.",
+      "author": "QuotekingsM",
+      "posted_at": "2026-02-23T18:59:48Z",
+      "added_at": "2026-02-24T13:52:42.741608"
+    },
+    {
+      "post_id": "2025967619472281917",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "Webuild SpA is associated with a promotional message about Solana and a project called SOLCEX building the future.",
+      "credit_relevance": "The post is promotional and references a cryptocurrency project with no apparent connection to Webuild SpA's financial performance, operations, or creditworthiness; thus, it has no direct relevance to CDS spreads.",
+      "author": "Samtee_tee",
+      "posted_at": "2026-02-23T16:14:55Z",
+      "added_at": "2026-02-24T13:52:48.873917"
+    },
+    {
+      "post_id": "2025967319126560799",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "Webuild is associated with a project called SOLCEX on Solana, implying forward momentum in blockchain infrastructure.",
+      "credit_relevance": "The post is speculative and lacks concrete financial or operational details; there is no direct link to Webuild SpA's creditworthiness, cash flow, or capital structure that would impact CDS spreads.",
+      "author": "Samtee_tee",
+      "posted_at": "2026-02-23T16:13:44Z",
+      "added_at": "2026-02-24T13:52:56.043278"
+    },
+    {
+      "post_id": "2025918334202499368",
+      "sentiment": "neutral",
+      "severity": 2,
+      "is_new_info": false,
+      "claim_summary": "Webuild was awarded a $4.8B no-bid contract in 2011 for the GERD project, which Ethiopia largely self-funded and managed domestically.",
+      "credit_relevance": "The post provides background context on Webuild's historical involvement in a major infrastructure project, but offers no new financial or operational impact data that would affect its creditworthiness or CDS spreads.",
+      "author": "grok",
+      "posted_at": "2026-02-23T12:59:05Z",
+      "added_at": "2026-02-24T13:53:04.659291"
+    },
+    {
+      "post_id": "2025917875542688195",
+      "sentiment": "neutral",
+      "severity": 2,
+      "is_new_info": false,
+      "claim_summary": "Webuild was awarded the GERD $4.8B contract in 2011 without competitive bidding, with project funding and oversight led domestically by Ethiopia.",
+      "credit_relevance": "Limited direct credit impact as the contract award is historical and lacks new financial or operational risk disclosures; confirms known exposure to long-term infrastructure projects with sovereign counterparties.",
+      "author": "grok",
+      "posted_at": "2026-02-23T12:57:15Z",
+      "added_at": "2026-02-24T13:53:15.425375"
+    },
+    {
+      "post_id": "2025878273679384925",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "Webuild Group highlights a cultural exhibition celebrating its workforce's talent and contribution to progress through a documentary series by Yuri Ancarani.",
+      "credit_relevance": "The post is promotional and focuses on employer branding and cultural outreach, with no direct implications for financial performance, leverage, liquidity, or credit risk that would affect CDS spreads.",
+      "author": "Webuild_Group",
+      "posted_at": "2026-02-23T10:19:54Z",
+      "added_at": "2026-02-24T13:53:24.476608"
+    },
+    {
+      "post_id": "2025655483592315267",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": true,
+      "claim_summary": "Webuild has installed the 16th caisson of the new Genoa Breakwater.",
+      "credit_relevance": "The progress on infrastructure projects like the Genoa Breakwater may reflect operational activity but does not provide material financial or credit-relevant developments such as cash flow impact, leverage changes, or covenant breaches that would affect CDS spreads.",
+      "author": "DredgingToday",
+      "posted_at": "2026-02-22T19:34:36Z",
+      "added_at": "2026-02-24T13:53:29.925167"
+    },
+    {
+      "post_id": "2025641581332582906",
+      "sentiment": "neutral",
+      "severity": 2,
+      "is_new_info": true,
+      "claim_summary": "Webuild-led consortium completed excavation of the first tunnel for the Messina\u2013Catania railway doubling project in Sicily.",
+      "credit_relevance": "Project progress confirms execution capability and milestone achievement, which supports operational credibility but does not materially alter near-term credit metrics or liquidity outlook.",
+      "author": "tunnel_journal",
+      "posted_at": "2026-02-22T18:39:22Z",
+      "added_at": "2026-02-24T13:53:35.061239"
+    }
+  ],
+  "analyst_assessments": [],
+  "signal_changes": []
+}

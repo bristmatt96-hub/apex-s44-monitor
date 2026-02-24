@@ -1,0 +1,45 @@
+{
+  "entity": "Mundys SpA",
+  "last_updated": "2026-02-24T13:35:54.604487",
+  "filings": [],
+  "news": [],
+  "rating_actions": [],
+  "earnings_signals": [],
+  "social_sentiment": [
+    {
+      "post_id": "2025990403128701279",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "Post contains a link to a high school football player's recruiting profile with no mention of corporate credit information related to Mundys SpA.",
+      "credit_relevance": "No discernible relevance to Mundys SpA's creditworthiness or CDS spreads; the reference to 'Mundys' pertains to a high school, not the company.",
+      "author": "3luhveek",
+      "posted_at": "2026-02-23T17:45:27Z",
+      "added_at": "2026-02-24T13:35:46.408398"
+    },
+    {
+      "post_id": "2025787743012577626",
+      "sentiment": "bullish",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "The post uses hyperbolic and metaphorical language to praise Mundys SpA's strategic positioning, comparing it to a strong 'forward line' in sports.",
+      "credit_relevance": "The post contains no concrete credit fundamentals, financial metrics, or market-moving information relevant to Mundys SpA's CDS spreads; sentiment is purely rhetorical.",
+      "author": "purplereign95",
+      "posted_at": "2026-02-23T04:20:09Z",
+      "added_at": "2026-02-24T13:35:50.893420"
+    },
+    {
+      "post_id": "2025387513968578609",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "The post shares a voice claim related to Mundys SpA without substantive financial or credit-related content.",
+      "credit_relevance": "The content does not provide any material information that would impact Mundys SpA's creditworthiness or CDS spreads.",
+      "author": "Nighthoundcorp",
+      "posted_at": "2026-02-22T01:49:47Z",
+      "added_at": "2026-02-24T13:35:54.604487"
+    }
+  ],
+  "analyst_assessments": [],
+  "signal_changes": []
+}

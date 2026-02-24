@@ -1,0 +1,34 @@
+{
+  "entity": "Forvia SE",
+  "last_updated": "2026-02-24T13:15:52.615612",
+  "filings": [],
+  "news": [],
+  "rating_actions": [],
+  "earnings_signals": [],
+  "social_sentiment": [
+    {
+      "post_id": "2025832768903524722",
+      "sentiment": "neutral",
+      "severity": 2,
+      "is_new_info": true,
+      "claim_summary": "Forvia HELLA reports stable sales in preliminary results for fiscal year 2025.",
+      "credit_relevance": "Stable sales suggest operational resilience, which may support credit stability, though no material change in credit risk is indicated.",
+      "author": "eqsnews_int",
+      "posted_at": "2026-02-23T07:19:04Z",
+      "added_at": "2026-02-24T13:15:46.499174"
+    },
+    {
+      "post_id": "2025812978155614402",
+      "sentiment": "neutral",
+      "severity": 2,
+      "is_new_info": true,
+      "claim_summary": "Forvia HELLA reports stable sales in preliminary results for fiscal year 2025.",
+      "credit_relevance": "Stable sales suggest operational resilience, which may support credit stability, though lack of margin or EBITDA details limits CDS impact.",
+      "author": "eqsnews_int",
+      "posted_at": "2026-02-23T06:00:26Z",
+      "added_at": "2026-02-24T13:15:52.615612"
+    }
+  ],
+  "analyst_assessments": [],
+  "signal_changes": []
+}

@@ -1,0 +1,34 @@
+{
+  "entity": "Loxam SAS",
+  "last_updated": "2026-02-24T13:32:26.732236",
+  "filings": [],
+  "news": [],
+  "rating_actions": [],
+  "earnings_signals": [],
+  "social_sentiment": [
+    {
+      "post_id": "2025954194197528604",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "The post discusses a bail ruling by the Delhi High Court in an unrelated money laundering case involving an app named 'LOXAM' in India, with no connection to Loxam SAS.",
+      "credit_relevance": "The referenced 'LOXAM' app fraud case in India appears unrelated to Loxam SAS, a French equipment rental company; therefore, it has no direct impact on Loxam SAS's creditworthiness or CDS spreads.",
+      "author": "ie_legalnews",
+      "posted_at": "2026-02-23T15:21:34Z",
+      "added_at": "2026-02-24T13:32:24.142814"
+    },
+    {
+      "post_id": "2025847813913846046",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "Mention of Loxam SAS without additional context or information.",
+      "credit_relevance": "No credit-relevant information provided that would impact CDS spreads.",
+      "author": "MakeeyNobhozoyi",
+      "posted_at": "2026-02-23T08:18:51Z",
+      "added_at": "2026-02-24T13:32:26.732236"
+    }
+  ],
+  "analyst_assessments": [],
+  "signal_changes": []
+}
