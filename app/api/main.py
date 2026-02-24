@@ -144,6 +144,15 @@ async def tranches():
     return HTMLResponse(content="<h1>Tranches page not found</h1>", status_code=404)
 
 
+@app.get("/capabilities", response_class=HTMLResponse)
+async def capabilities():
+    """Serve the platform capabilities overview page."""
+    html_path = PROJECT_ROOT / "app" / "web" / "capabilities.html"
+    if html_path.exists():
+        return HTMLResponse(content=html_path.read_text(encoding="utf-8"))
+    return HTMLResponse(content="<h1>Capabilities page not found</h1>", status_code=404)
+
+
 # ---------------------------------------------------------------------------
 # Routes -- API Endpoints
 # ---------------------------------------------------------------------------

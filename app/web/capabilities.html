@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Catalyst | Platform Capabilities</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* ========================================================
+           DESIGN TOKENS (shared with index.html)
+           ======================================================== */
+        :root {
+            --bg-base:     #0a0e17;
+            --bg-card:     #111827;
+            --bg-card-alt: #151d2e;
+            --bg-hover:    #1a2436;
+            --border:      #1e293b;
+            --border-dim:  rgba(30,41,59,0.5);
+
+            --text-primary:   #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-muted:     #64748b;
+            --text-dim:       #475569;
+
+            --accent-green:  #22c55e;
+            --accent-red:    #ef4444;
+            --accent-amber:  #f59e0b;
+            --accent-blue:   #3b82f6;
+            --accent-teal:   #14b8a6;
+            --accent-purple: #a78bfa;
+            --accent-cyan:   #06b6d4;
+            --accent-pink:   #ec4899;
+
+            --green-bg:  rgba(34,197,94,0.10);
+            --green-bdr: rgba(34,197,94,0.25);
+            --red-bg:    rgba(239,68,68,0.10);
+            --red-bdr:   rgba(239,68,68,0.25);
+            --amber-bg:  rgba(245,158,11,0.10);
+            --amber-bdr: rgba(245,158,11,0.25);
+            --blue-bg:   rgba(59,130,246,0.10);
+            --blue-bdr:  rgba(59,130,246,0.25);
+            --teal-bg:   rgba(20,184,166,0.10);
+            --teal-bdr:  rgba(20,184,166,0.25);
+            --purple-bg: rgba(167,139,250,0.10);
+            --purple-bdr:rgba(167,139,250,0.25);
+            --cyan-bg:   rgba(6,182,212,0.10);
+            --cyan-bdr:  rgba(6,182,212,0.25);
+            --pink-bg:   rgba(236,72,153,0.10);
+            --pink-bdr:  rgba(236,72,153,0.25);
+
+            --font-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
+        }
+
+        /* ========================================================
+           RESET & BASE
+           ======================================================== */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+        body {
+            background: var(--bg-base);
+            color: var(--text-primary);
+            font-family: var(--font-sans);
+            font-size: 13px;
+            line-height: 1.5;
+            min-height: 100vh;
+        }
+
+        ::-webkit-scrollbar { width: 5px; height: 5px; }
+        ::-webkit-scrollbar-track { background: var(--bg-base); }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+        a { color: var(--accent-blue); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        /* ========================================================
+           LAYOUT
+           ======================================================== */
+        .container { max-width: 1640px; margin: 0 auto; padding: 0 20px; }
+
+        /* ========================================================
+           HEADER
+           ======================================================== */
+        header {
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+        header .inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            max-width: 1640px;
+            margin: 0 auto;
+        }
+        header .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        header .brand h1 {
+            font-size: 17px;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+        }
+        header .brand h1 em {
+            color: var(--accent-blue);
+            font-style: normal;
+        }
+        header .brand .sep { color: var(--text-dim); font-weight: 300; }
+        header .brand .subtitle {
+            color: var(--text-muted);
+            font-size: 12px;
+            font-weight: 400;
+        }
+        header nav {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        header nav a {
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            transition: all 0.15s;
+        }
+        header nav a:hover {
+            background: var(--bg-hover);
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+        header nav a.active {
+            background: var(--blue-bg);
+            color: var(--accent-blue);
+            border: 1px solid var(--blue-bdr);
+        }
+
+        /* ========================================================
+           HERO STATS
+           ======================================================== */
+        .hero {
+            padding: 32px 0 24px;
+        }
+        .hero h2 {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 6px;
+        }
+        .hero h2 em {
+            color: var(--accent-blue);
+            font-style: normal;
+        }
+        .hero .tagline {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 24px;
+        }
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 12px;
+        }
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+        }
+        .stat-card .number {
+            font-size: 28px;
+            font-weight: 700;
+            font-family: var(--font-mono);
+            line-height: 1.1;
+        }
+        .stat-card .label {
+            font-size: 10px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+            margin-top: 4px;
+            font-family: var(--font-mono);
+        }
+
+        /* ========================================================
+           SECTION
+           ======================================================== */
+        .section {
+            margin-bottom: 28px;
+        }
+        .section-hdr {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 14px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border);
+        }
+        .section-hdr .icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        .section-hdr h3 {
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: -0.2px;
+        }
+        .section-hdr .count {
+            font-size: 10px;
+            font-family: var(--font-mono);
+            color: var(--text-dim);
+            margin-left: auto;
+        }
+
+        /* ========================================================
+           CAPABILITY GRID
+           ======================================================== */
+        .cap-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 10px;
+        }
+        .cap-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 12px 14px;
+            transition: all 0.15s;
+        }
+        .cap-item:hover {
+            background: var(--bg-hover);
+            border-color: var(--border);
+        }
+        .cap-item .cap-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 4px;
+        }
+        .cap-item .cap-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        .cap-item .cap-desc {
+            font-size: 11px;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+        .cap-item .cap-file {
+            font-size: 9px;
+            font-family: var(--font-mono);
+            color: var(--text-dim);
+            margin-top: 6px;
+        }
+
+        /* ========================================================
+           BADGES
+           ======================================================== */
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 9px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+            font-family: var(--font-mono);
+        }
+        .badge-active  { background: var(--green-bg); color: var(--accent-green); border: 1px solid var(--green-bdr); }
+        .badge-ready   { background: var(--blue-bg);  color: var(--accent-blue);  border: 1px solid var(--blue-bdr); }
+        .badge-pending { background: var(--amber-bg); color: var(--accent-amber); border: 1px solid var(--amber-bdr); }
+        .badge-subnet  { background: var(--purple-bg);color: var(--accent-purple);border: 1px solid var(--purple-bdr); }
+        .badge-api     { background: var(--cyan-bg);  color: var(--accent-cyan);  border: 1px solid var(--cyan-bdr); }
+
+        /* ========================================================
+           API TABLE
+           ======================================================== */
+        .api-table { width: 100%; border-collapse: collapse; }
+        .api-table th {
+            text-align: left;
+            padding: 8px 10px;
+            font-size: 10px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-dim);
+            border-bottom: 1px solid var(--border);
+            font-family: var(--font-mono);
+        }
+        .api-table td {
+            padding: 8px 10px;
+            font-size: 12px;
+            border-bottom: 1px solid var(--border-dim);
+        }
+        .api-table tr:hover { background: var(--bg-hover); }
+        .method-badge {
+            display: inline-block;
+            padding: 1px 6px;
+            border-radius: 3px;
+            font-size: 9px;
+            font-weight: 600;
+            font-family: var(--font-mono);
+            background: var(--green-bg);
+            color: var(--accent-green);
+            border: 1px solid var(--green-bdr);
+        }
+        .api-path {
+            font-family: var(--font-mono);
+            color: var(--accent-cyan);
+            font-size: 12px;
+        }
+
+        /* ========================================================
+           BITTENSOR CARDS
+           ======================================================== */
+        .sn-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 10px;
+        }
+        .sn-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 16px;
+            border-left: 3px solid var(--accent-purple);
+        }
+        .sn-card .sn-name {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+        .sn-card .sn-id {
+            font-size: 10px;
+            font-family: var(--font-mono);
+            color: var(--accent-purple);
+            margin-bottom: 6px;
+        }
+        .sn-card .sn-desc {
+            font-size: 11px;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+        .sn-card .sn-use {
+            font-size: 10px;
+            color: var(--text-dim);
+            margin-top: 6px;
+            font-family: var(--font-mono);
+        }
+
+        /* ========================================================
+           DATA UNIVERSE
+           ======================================================== */
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+        }
+        .data-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+        }
+        .data-card .data-num {
+            font-size: 24px;
+            font-weight: 700;
+            font-family: var(--font-mono);
+        }
+        .data-card .data-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+        .data-card .data-detail {
+            font-size: 10px;
+            color: var(--text-dim);
+            font-family: var(--font-mono);
+            margin-top: 6px;
+        }
+
+        /* ========================================================
+           DASHBOARD LINKS
+           ======================================================== */
+        .dash-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 10px;
+        }
+        .dash-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.15s;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+        .dash-card:hover {
+            background: var(--bg-hover);
+            border-color: var(--accent-blue);
+            text-decoration: none;
+        }
+        .dash-card .dash-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+            background: var(--blue-bg);
+        }
+        .dash-card .dash-name {
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .dash-card .dash-desc {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        /* ========================================================
+           FOOTER
+           ======================================================== */
+        footer {
+            border-top: 1px solid var(--border);
+            margin-top: 16px;
+            padding: 10px 0;
+        }
+        footer .inner {
+            max-width: 1640px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            color: var(--text-dim);
+            font-family: var(--font-mono);
+        }
+
+        /* ========================================================
+           UTILITIES
+           ======================================================== */
+        .mono { font-family: var(--font-mono); }
+        .text-green  { color: var(--accent-green); }
+        .text-red    { color: var(--accent-red); }
+        .text-amber  { color: var(--accent-amber); }
+        .text-blue   { color: var(--accent-blue); }
+        .text-teal   { color: var(--accent-teal); }
+        .text-purple { color: var(--accent-purple); }
+        .text-cyan   { color: var(--accent-cyan); }
+        .text-muted  { color: var(--text-muted); }
+        .text-dim    { color: var(--text-dim); }
+    </style>
+</head>
+<body>
+    <!-- ============================================================
+         HEADER
+         ============================================================ -->
+    <header>
+        <div class="inner">
+            <div class="brand">
+                <h1><em>Credit</em> Catalyst</h1>
+                <span class="sep">|</span>
+                <span class="subtitle">Platform Capabilities</span>
+            </div>
+            <nav>
+                <a href="/">Dashboard</a>
+                <a href="/cockpit">Cockpit</a>
+                <a href="/risk-calculator">Risk Calc</a>
+                <a href="/tranches">Tranches</a>
+                <a href="/capabilities" class="active">Capabilities</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container" style="padding-top: 8px; padding-bottom: 8px;">
+
+        <!-- ============================================================
+             HERO STATS
+             ============================================================ -->
+        <div class="hero">
+            <h2>Platform <em>Capabilities</em></h2>
+            <p class="tagline">AI-augmented European credit analytics — 200 iTraxx S44 constituents monitored 24/7</p>
+            <div class="stat-grid">
+                <div class="stat-card">
+                    <div class="number text-green">16</div>
+                    <div class="label">Real-Time Monitors</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number text-blue">30</div>
+                    <div class="label">Analytics Modules</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number text-cyan">14</div>
+                    <div class="label">API Endpoints</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number text-purple">4</div>
+                    <div class="label">Bittensor Subnets</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number text-amber">200</div>
+                    <div class="label">iTraxx Names</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number text-teal">5</div>
+                    <div class="label">Web Dashboards</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================
+             REAL-TIME MONITORS
+             ============================================================ -->
+        <div class="section">
+            <div class="section-hdr">
+                <div class="icon" style="background: var(--green-bg); color: var(--accent-green);">&#9201;</div>
+                <h3>Real-Time Monitors</h3>
+                <span class="count">16 modules</span>
+            </div>
+            <div class="cap-grid">
+                <div class="cap-item">
+                    <div class="cap-top">
+                        <span class="cap-name">Equity Movers</span>
+                        <span class="badge badge-active">Active</span>
+                    </div>
+                    <div class="cap-desc">Stock screen for 175+ iTraxx names. Alerts on &#177;3% moves with news + social + LLM credit analysis via Telegram.</div>
+                    <div class="cap-file">monitors/equity_movers.py</div>
+                </div>
+                <div class="cap-item">
+                    <div class="cap-top">
+                        <span class="cap-name">Social Sentiment</span>
+                        <span class="badge badge-active">Active</span>
+                    </div>
+                    <div class="cap-desc">Deep social media analysis via Bittensor (Gopher SN42, Desearch SN22, Macrocosmos SN13). Per-post LLM sentiment classification.</div>
+                    <div class="cap-file">monitors/social_sentiment.py</div>
+                </div>
+                <div class="cap-item">
+                    <div class="cap-top">
+                        <span class="cap-name">European Monitor</span>
+                        <span class="badge badge-active">Active</span>
+                    </div>
+                    <div class="cap-desc">EU regulatory filings monitor. Tracks Companies House, regulatory announcements, and corporate disclosures for tracked entities.</div>
+                    <div class="cap-file">monitors/european_monitor.py</div>
+                </div>
+                <div class="cap-item">
+                    <div class="cap-top">
+                        <span class="cap-name">Credit Events Monitor</span>
+                        <span class="badge badge-active">Active</span>
+                    </div>
+                    <div class="cap-desc">Tracks ISDA credit events, succession events, and determinations committee rulings for iTraxx constituents.</div>
+                    <div class="cap-file">monitors/credit_events_monitor.py</div>
+                </div>
+                <div class="cap-item">
+                    <div class="cap-top">
+                        <span class="cap-name">Earnings Monitor</span>
+                        <span class="badge badge-active">Active</span>
+                    </div>
+                    <div class="cap-desc">Earnings calendar tracking and surprise analysis for all covered names. Flags reporting dates and consensus misses.</div>
+                    <div class="cap-file">monitors/earnings_monitor.py</div>
+                </div>
+                <div class="cap-item">
+                    <div class="cap-top">
+                        <span class="cap-name">Earnings Sentiment</span>
+                        <span class="badge badge-ready">Ready</span>
+                    </div>
+                    <div class="cap-desc">LLM-powered earnings call sentiment scoring. Extracts credit-relevant language — leverage, covenant, refinancing mentions.</div>
+                    <div class="cap-file">monitors/earnings_sentiment.py</div>
+                </div>
+                <div class="cap-item">
+                    <div class="cap-top">
+                        <span class="cap-name">Earnings Transcript</span>
+                        <span class="badge badge-ready">Ready</span>
+                    </div>
+                    <div class="cap-desc">Full earnings call transcript processing. Extracts management guidance, Q&amp;A highlights, and forward-looking statements.</div>
+                    <div class="cap-file">monitors/earnings_transcript.py</div>
+                </div>
+                <div class="cap-item">
+                    <div class="cap-top">
+                        <span class="cap-name">News Monitor</span>
+                        <span class="badge badge-active">Active</span>
+                    </div>
+                    <div class="cap-desc">Multi-source news aggregation with entity matching. Google News RSS, financial feeds, and credit-specific sources.</div>
+                    <div class="cap-file">monitors/news_monitor.py</div>
+                </div>
+                <div class="cap-item">
+                    <div class="cap-top">
+                        <span class="cap-name">RSS Monitor</span>
+                        <span class="badge badge-active">Active</span>
+                    </div>
+                    <div class="cap-desc">Configurable RSS feed monitoring for custom sources — central bank communications, regulatory feeds, sector news.</div>
+                    <div class="cap-file">monitors/rss_monitor.py</div>
+                </div>
+                <div class="cap-item">
+                    <div class="cap-top">
+                        <span class="cap-name">Rating Actions</span>
+                        <span class="badge badge-active">Active</span>
+                    </div>
+                    <div class="cap-desc">Credit rating change detection across agencies. Tracks upgrades, downgrades, outlook changes, and watch placements.</div>
+                    <div class="cap-file">monitors/rating_actions.py</div>
+                </div>
+                <div class="cap-item">
+                    <div class="cap-top">
+                        <span class="cap-name">ISDA Agent</span>
+                        <span class="badge badge-ready">Ready</span>
+                    </div>
+                    <div class="cap-desc">ISDA documentation monitoring suite — news checker, document analyzer, and agentic ISDA research assistant.</div>
+                    <div class="cap-file">monitors/isda_agent.py</div>
+                </div>
+                <div class="cap-item">
+                    <div class="cap-top">
+                        <span class="cap-name">Credit Twitter</span>
+                        <span class="badge badge-active">Active</span>
+                    </div>
+                    <div class="cap-desc">Credit market social media tracking via Bittensor. Monitors key accounts and trending credit discussions.</div>
+                    <div class="cap-file">monitors/credit_twitter.py</div>
+                </div>
+                <div class="cap-item">
+                    <div class="cap-top">
+                        <span class="cap-name">Market Pulse</span>
+                        <span class="badge badge-active">Active</span>
+                    </div>
+                    <div class="cap-desc">Real-time market regime detection. Tracks index levels, vol surfaces, and cross-asset momentum signals.</div>
+                    <div class="cap-file">monitors/market_pulse.py</div>
+                </div>
+                <div class="cap-item">
+                    <div class="cap-top">
+                        <span class="cap-name">Morning Brief</span>
+                        <span class="badge badge-active">Active</span>
+                    </div>
+                    <div class="cap-desc">Automated daily morning briefing. Aggregates overnight moves, key events, and actionable trade ideas.</div>
+                    <div class="cap-file">monitors/morning_brief.py</div>
+                </div>
+                <div class="cap-item">
+                    <div class="cap-top">
+                        <span class="cap-name">Debtwire Parser</span>
+                        <span class="badge badge-ready">Ready</span>
+                    </div>
+                    <div class="cap-desc">Debt capital markets news parsing. Extracts deal terms, pricing, and credit opinion from financial news.</div>
+                    <div class="cap-file">monitors/debtwire_parser.py</div>
+                </div>
+                <div class="cap-item">
+                    <div class="cap-top">
+                        <span class="cap-name">Live Transcriber</span>
+                        <span class="badge badge-ready">Ready</span>
+                    </div>
+                    <div class="cap-desc">Real-time audio transcription for earnings calls and management presentations. Feeds into sentiment analysis pipeline.</div>
+                    <div class="cap-file">monitors/live_transcriber.py</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================
+             ANALYTICS ENGINE
+             ============================================================ -->
+        <div class="section">
+            <div class="section-hdr">
+                <div class="icon" style="background: var(--blue-bg); color: var(--accent-blue);">&#9881;</div>
+                <h3>Analytics Engine</h3>
+                <span class="count">30 modules</span>
+            </div>
+            <div class="cap-grid">
+                <div class="cap-item">
+                    <div class="cap-top">
+                        <span class="cap-name">Credit-Equity Bridge</span>
+                        <span class="badge badge-active">Active</span>
+                    </div>
+                    <div class="cap-desc">Merton structural model linking CDS spreads to equity prices. Gap scoring identifies equity-credit divergences for trade ideas.</div>
+                    <div class="cap-file">analytics/credit_equity_bridge.py</div>
+                </div>
+                <div class="cap-item">
+                    <div class="cap-top">
+                        <span class="cap-name">Signal Scorer</span>
+                        <span class="badge badge-active">Active</span>
+                    </div>
+                    <div class="cap-desc">Alpha signal aggregation engine. Combines fundamental, technical, sentiment, and flow signals into composite conviction scores.</div>
+                    <div class="cap-file">analytics/signal_scorer.py</div>
+                </div>
+                <div class="cap-item">
+                    <div class="cap-top">
+                        <span class="cap-name">Trade Structurer</span>
+                        <span class="badge badge-active">Active</span>
+                    </div>
+                    <div class="cap-desc">Automated trade recommendation engine. Selects optimal CDS/bond/options structure based on catalyst type and market conditions.</div>
+                    <div class="cap-file">analytics/trade_structurer.py</div>
+                </div>
+                <div class="cap-item">
+                    <div class="cap-top">
+                        <span class="cap-name">Relative Value</span>
+                        <span class="badge badge-active">Active</span>
+                    </div>
+                    <div class="cap-desc">Rich/cheap screen using sector and rating z-scores. Identifies relative mispricing across the iTraxx universe.</div>
+                    <div class="cap-file">analytics/relative_value.py</div>
+                </div>
+                <div class="cap-item">
+                    <div class="cap-top">
+                        <span class="cap-name">CDS Pricer</span>
+                        <span class="badge badge-active">Active</span>
+                    </div>
+                    <div class="cap-desc">CDS pricing, DV01, CS01, and Jump-to-Default calculations. ISDA Standard Model implementation for European credit.</div>
+                    <div class="cap-file">analytics/cds_pricer.py</div>
+                </div>
+                <div class="cap-item">
+                    <div class="cap-top">
+                        <span class="cap-name">Scenario Analysis</span>
+                        <span class="badge badge-active">Active</span>
+                    </div>
+                    <div class="cap-desc">Portfolio stress testing across macro scenarios. Calculates P&amp;L impact, hedge effectiveness, and worst-case positions.</div>
+                    <div class="cap-file">analytics/scenario_analysis.py</div>
+                </div>
+                <div class="cap-item">
+                    <div class="cap-top">
+                        <span class="cap-name">Dispersion</span>
+                        <span class="badge badge-active">Active</span>
+                    </div>
+                    <div class="cap-desc">Spread dispersion regime analysis. Identifies high/low/normal regimes for optimal alpha-harvesting strategy selection.</div>
+                    <div class="cap-file">analytics/dispersion.py</div>
+                </div>
+                <div class="cap-item">
+                    <div class="cap-top">
+                        <span class="cap-name">Maturity Wall</span>
+                        <span class="badge badge-active">Active</span>
+                    </div>
+                    <div class="cap-desc">Refinancing risk analysis. Maps upcoming debt maturities against current spreads to identify names with highest refi risk.</div>
+                    <div class="cap-file">analytics/maturity_wall.py</div>
+                </div>
+                <div class="cap-item">
+                    <div class="cap-top">
+                        <span class="cap-name">Tranche Pricer</span>
+                        <span class="badge badge-active">Active</span>
+                    </div>
+                    <div class="cap-desc">iTraxx tranche pricing engine. Prices equity, mezzanine, and senior tranches using base correlation framework.</div>
+                    <div class="cap-file">analytics/tranche_pricer.py</div>
+                </div>
+                <div class="cap-item">
+                    <div class="cap-top">
+                        <span class="cap-name">Tranche Scenarios</span>
+                        <span class="badge badge-active">Active</span>
+                    </div>
+                    <div class="cap-desc">Tranche scenario tables with calibrated real-market data for Xover and Main indices. Sensitivity analysis across spread scenarios.</div>
+                    <div class="cap-file">analytics/tranche_scenario_table.py</div>
+                </div>
+                <div class="cap-item">
+                    <div class="cap-top">
+                        <span class="cap-name">Tranche Strategy</span>
+                        <span class="badge badge-active">Active</span>
+                    </div>
+                    <div class="cap-desc">Tranche strategy recommendation engine. Matches market regime to optimal tranche positioning and hedge overlays.</div>
+                    <div class="cap-file">analytics/tranche_strategy_engine.py</div>
+                </div>
+                <div class="cap-item">
+                    <div class="cap-top">
+                        <span class="cap-name">Fallen Angels</span>
+                        <span class="badge badge-active">Active</span>
+                    </div>
+                    <div class="cap-desc">Fallen angel risk detection. Monitors BBB- names for downgrade triggers — leverage, coverage, outlook changes.</div>
+                    <div class="cap-file">analytics/fallen_angels.py</div>
+                </div>
+                <div class="cap-item">
+                    <div class="cap-top">
+                        <span class="cap-name">Covenant Risk</span>
+                        <span class="badge badge-active">Active</span>
+                    </div>
+                    <div class="cap-desc">Covenant breach probability analysis. Monitors maintenance and incurrence covenants for HY credits.</div>
+                    <div class="cap-file">analytics/covenant_risk.py</div>
+                </div>
+                <div class="cap-item">
+                    <div class="cap-top">
+                        <span class="cap-name">Credit Cycle</span>
+                        <span class="badge badge-active">Active</span>
+                    </div>
+                    <div class="cap-desc">Credit cycle positioning model. Combines spread levels, defaults, issuance, and lending conditions for regime classification.</div>
+                    <div class="cap-file">analytics/credit_cycle.py</div>
+                </div>
+                <div class="cap-item">
+                    <div class="cap-top">
+                        <span class="cap-name">Risk Metrics</span>
+                        <span class="badge badge-active">Active</span>
+                    </div>
+                    <div class="cap-desc">Portfolio risk metrics engine. Computes DV01, CS01, JTD, sector concentration, and traffic-light limit monitoring.</div>
+                    <div class="cap-file">analytics/risk_metrics.py</div>
+                </div>
+                <div class="cap-item">
+                    <div class="cap-top">
+                        <span class="cap-name">HY Fair Value</span>
+                        <span class="badge badge-active">Active</span>
+                    </div>
+                    <div class="cap-desc">High yield fair value model. Estimates theoretical spread from fundamentals — leverage, interest coverage, sector, rating.</div>
+                    <div class="cap-file">analytics/hy_fair_value_model.py</div>
+                </div>
+                <div class="cap-item">
+                    <div class="cap-top">
+                        <span class="cap-name">Merton Single Name</span>
+                        <span class="badge badge-active">Active</span>
+                    </div>
+                    <div class="cap-desc">Merton structural credit model. Uses equity price and vol to estimate default probability and theoretical CDS spread.</div>
+                    <div class="cap-file">analytics/merton_single_name.py</div>
+                </div>
+                <div class="cap-item">
+                    <div class="cap-top">
+                        <span class="cap-name">Cross-Asset Signals</span>
+                        <span class="badge badge-active">Active</span>
+                    </div>
+                    <div class="cap-desc">Multi-asset credit signal engine. Incorporates rates, equities, FX, and commodities into credit spread forecasts.</div>
+                    <div class="cap-file">analytics/cross_asset_credit_signals.py</div>
+                </div>
+                <div class="cap-item">
+                    <div class="cap-top">
+                        <span class="cap-name">ECB Lending Conditions</span>
+                        <span class="badge badge-active">Active</span>
+                    </div>
+                    <div class="cap-desc">ECB Bank Lending Survey analysis. Tracks credit standards tightening/easing and demand conditions for macro overlay.</div>
+                    <div class="cap-file">analytics/ecb_lending_conditions.py</div>
+                </div>
+                <div class="cap-item">
+                    <div class="cap-top">
+                        <span class="cap-name">Fundamental Analysis</span>
+                        <span class="badge badge-active">Active</span>
+                    </div>
+                    <div class="cap-desc">Bottom-up fundamental credit analysis. Evaluates leverage, coverage, liquidity, and business risk per issuer.</div>
+                    <div class="cap-file">analytics/fundamental_credit_analysis.py</div>
+                </div>
+                <div class="cap-item">
+                    <div class="cap-top">
+                        <span class="cap-name">Equity-Credit Signals</span>
+                        <span class="badge badge-active">Active</span>
+                    </div>
+                    <div class="cap-desc">Equity market signals for credit trading. Tracks implied vol, skew, insider activity, and equity momentum per name.</div>
+                    <div class="cap-file">analytics/equity_credit_signals.py</div>
+                </div>
+                <div class="cap-item">
+                    <div class="cap-top">
+                        <span class="cap-name">News Sentiment</span>
+                        <span class="badge badge-active">Active</span>
+                    </div>
+                    <div class="cap-desc">News sentiment scoring engine. Classifies headlines by credit impact — positive, negative, neutral with severity scoring.</div>
+                    <div class="cap-file">analytics/news_sentiment_monitor.py</div>
+                </div>
+                <div class="cap-item">
+                    <div class="cap-top">
+                        <span class="cap-name">Insider Flow Tracker</span>
+                        <span class="badge badge-active">Active</span>
+                    </div>
+                    <div class="cap-desc">Insider trading signal detection. Monitors director dealings and significant shareholder activity for credit-relevant names.</div>
+                    <div class="cap-file">analytics/insider_flow_tracker.py</div>
+                </div>
+                <div class="cap-item">
+                    <div class="cap-top">
+                        <span class="cap-name">Distressed Monitor</span>
+                        <span class="badge badge-active">Active</span>
+                    </div>
+                    <div class="cap-desc">Distressed situations tracking. Monitors names with spreads &gt;1000bp, negative catalysts, or restructuring indicators.</div>
+                    <div class="cap-file">analytics/distressed_monitor.py</div>
+                </div>
+                <div class="cap-item">
+                    <div class="cap-top">
+                        <span class="cap-name">Backtester</span>
+                        <span class="badge badge-active">Active</span>
+                    </div>
+                    <div class="cap-desc">Strategy backtesting framework. Tests signal combinations, entry/exit rules, and portfolio construction on historical data.</div>
+                    <div class="cap-file">analytics/backtester.py</div>
+                </div>
+                <div class="cap-item">
+                    <div class="cap-top">
+                        <span class="cap-name">Situation Classifier</span>
+                        <span class="badge badge-active">Active</span>
+                    </div>
+                    <div class="cap-desc">Credit situation type classification. Categorizes: LBO, refinancing, M&amp;A, spin-off, restructuring, capital return, etc.</div>
+                    <div class="cap-file">analytics/situation_classifier.py</div>
+                </div>
+                <div class="cap-item">
+                    <div class="cap-top">
+                        <span class="cap-name">Portfolio Risk Pitch</span>
+                        <span class="badge badge-active">Active</span>
+                    </div>
+                    <div class="cap-desc">Portfolio construction and risk allocation. Generates pitch-ready position sizing and risk attribution analysis.</div>
+                    <div class="cap-file">analytics/portfolio_risk_pitch.py</div>
+                </div>
+                <div class="cap-item">
+                    <div class="cap-top">
+                        <span class="cap-name">Equity-CDS Lag</span>
+                        <span class="badge badge-active">Active</span>
+                    </div>
+                    <div class="cap-desc">Equity-CDS lead-lag analysis. Detects when equity moves precede CDS repricing (typically 1-2 day window).</div>
+                    <div class="cap-file">monitors/equity_cds_lag.py</div>
+                </div>
+                <div class="cap-item">
+                    <div class="cap-top">
+                        <span class="cap-name">Trading Tools</span>
+                        <span class="badge badge-ready">Ready</span>
+                    </div>
+                    <div class="cap-desc">Trade execution toolkit — workbench, blotter, and position management utilities for CDS and options trades.</div>
+                    <div class="cap-file">monitors/trading_tools.py</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================
+             BITTENSOR / AI INTEGRATION
+             ============================================================ -->
+        <div class="section">
+            <div class="section-hdr">
+                <div class="icon" style="background: var(--purple-bg); color: var(--accent-purple);">&#9889;</div>
+                <h3>AI / Bittensor Integration</h3>
+                <span class="count">4 subnets</span>
+            </div>
+            <div class="sn-grid">
+                <div class="sn-card">
+                    <div class="sn-name">Chutes</div>
+                    <div class="sn-id">Subnet 64 (SN64)</div>
+                    <div class="sn-desc">LLM inference at ~$0.08/call. Powers credit classification, sentiment analysis, and situation categorization across all monitors.</div>
+                    <div class="sn-use">Used by: equity_movers, social_sentiment, earnings_sentiment, situation_classifier</div>
+                </div>
+                <div class="sn-card">
+                    <div class="sn-name">Gopher</div>
+                    <div class="sn-id">Subnet 42 (SN42)</div>
+                    <div class="sn-desc">Social data aggregation from X/Twitter, Reddit, and forums. Async job-based API with polling for results.</div>
+                    <div class="sn-use">Used by: social_sentiment, equity_movers, credit_twitter</div>
+                </div>
+                <div class="sn-card">
+                    <div class="sn-name">Desearch</div>
+                    <div class="sn-id">Subnet 22 (SN22)</div>
+                    <div class="sn-desc">Decentralized search engine. Queries social platforms and web for entity-specific intelligence and sentiment data.</div>
+                    <div class="sn-use">Used by: social_sentiment, equity_movers</div>
+                </div>
+                <div class="sn-card">
+                    <div class="sn-name">Macrocosmos</div>
+                    <div class="sn-id">Subnet 13 (SN13)</div>
+                    <div class="sn-desc">Social media data mining and analytics. Provides structured social data feeds for credit entity monitoring.</div>
+                    <div class="sn-use">Used by: social_sentiment</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================
+             DATA UNIVERSE
+             ============================================================ -->
+        <div class="section">
+            <div class="section-hdr">
+                <div class="icon" style="background: var(--amber-bg); color: var(--accent-amber);">&#128202;</div>
+                <h3>Data Universe</h3>
+            </div>
+            <div class="data-grid">
+                <div class="data-card">
+                    <div class="data-num text-amber">200</div>
+                    <div class="data-label">iTraxx S44 Constituents</div>
+                    <div class="data-detail">75 Xover + 125 Main</div>
+                </div>
+                <div class="data-card">
+                    <div class="data-num text-blue">175+</div>
+                    <div class="data-label">Equity Ticker Mappings</div>
+                    <div class="data-detail">yfinance live prices</div>
+                </div>
+                <div class="data-card">
+                    <div class="data-num text-teal">3</div>
+                    <div class="data-label">SQLite Databases</div>
+                    <div class="data-detail">equity_movers, social, filings</div>
+                </div>
+                <div class="data-card">
+                    <div class="data-num text-green">24/7</div>
+                    <div class="data-label">Market Watcher</div>
+                    <div class="data-detail">5-min scan cycles (EU hours)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================
+             ALERTS & DELIVERY
+             ============================================================ -->
+        <div class="section">
+            <div class="section-hdr">
+                <div class="icon" style="background: var(--red-bg); color: var(--accent-red);">&#128276;</div>
+                <h3>Alerts &amp; Delivery</h3>
+            </div>
+            <div class="cap-grid">
+                <div class="cap-item">
+                    <div class="cap-top">
+                        <span class="cap-name">Telegram Notifier</span>
+                        <span class="badge badge-pending">Pending Config</span>
+                    </div>
+                    <div class="cap-desc">Rich HTML alerts via Telegram Bot API. Supports async (aiohttp) and sync (requests) delivery modes. Dedup and cooldown built-in.</div>
+                    <div class="cap-file">alerts/telegram_notifier.py</div>
+                </div>
+                <div class="cap-item">
+                    <div class="cap-top">
+                        <span class="cap-name">Signal Changes Log</span>
+                        <span class="badge badge-active">Active</span>
+                    </div>
+                    <div class="cap-desc">Persistent signal change tracking. Logs all equity movers, rating actions, and credit event detections to flat file.</div>
+                    <div class="cap-file">outputs/signal_changes.txt</div>
+                </div>
+                <div class="cap-item">
+                    <div class="cap-top">
+                        <span class="cap-name">Market Watcher Service</span>
+                        <span class="badge badge-active">Active</span>
+                    </div>
+                    <div class="cap-desc">24/7 async scan orchestrator. Coordinates all monitors with market-aware scheduling (EU hours for equity, always-on for credit events).</div>
+                    <div class="cap-file">services/market_watcher.py</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================
+             WEB DASHBOARDS
+             ============================================================ -->
+        <div class="section">
+            <div class="section-hdr">
+                <div class="icon" style="background: var(--teal-bg); color: var(--accent-teal);">&#128187;</div>
+                <h3>Web Dashboards</h3>
+                <span class="count">5 pages</span>
+            </div>
+            <div class="dash-grid">
+                <a class="dash-card" href="/">
+                    <div class="dash-icon">&#128200;</div>
+                    <div>
+                        <div class="dash-name">Dashboard</div>
+                        <div class="dash-desc">Main credit overview — top ideas, portfolio, risk, filings, relative value</div>
+                    </div>
+                </a>
+                <a class="dash-card" href="/cockpit">
+                    <div class="dash-icon">&#127918;</div>
+                    <div>
+                        <div class="dash-name">Cockpit</div>
+                        <div class="dash-desc">Command center — tabbed navigation, real-time controls</div>
+                    </div>
+                </a>
+                <a class="dash-card" href="/risk-calculator">
+                    <div class="dash-icon">&#9878;</div>
+                    <div>
+                        <div class="dash-name">Risk Calculator</div>
+                        <div class="dash-desc">Portfolio risk calculator — DV01, JTD, position sizing</div>
+                    </div>
+                </a>
+                <a class="dash-card" href="/tranches">
+                    <div class="dash-icon">&#128209;</div>
+                    <div>
+                        <div class="dash-name">Tranches</div>
+                        <div class="dash-desc">Tranche scenario tables — Xover and Main index calibrations</div>
+                    </div>
+                </a>
+                <a class="dash-card" href="/capabilities">
+                    <div class="dash-icon">&#9889;</div>
+                    <div>
+                        <div class="dash-name">Capabilities</div>
+                        <div class="dash-desc">This page — full platform capability overview</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- ============================================================
+             API ENDPOINTS
+             ============================================================ -->
+        <div class="section">
+            <div class="section-hdr">
+                <div class="icon" style="background: var(--cyan-bg); color: var(--accent-cyan);">&#128268;</div>
+                <h3>API Endpoints</h3>
+                <span class="count">14 endpoints</span>
+            </div>
+            <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; overflow: hidden;">
+                <table class="api-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 8%">Method</th>
+                            <th style="width: 24%">Path</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="method-badge">GET</span></td>
+                            <td class="api-path">/api/universe</td>
+                            <td class="text-muted">Full universe screen — 200 names with spreads, conviction, thesis</td>
+                        </tr>
+                        <tr>
+                            <td><span class="method-badge">GET</span></td>
+                            <td class="api-path">/api/portfolio</td>
+                            <td class="text-muted">Current portfolio positions, hedges, risk summary, stress P&amp;L</td>
+                        </tr>
+                        <tr>
+                            <td><span class="method-badge">GET</span></td>
+                            <td class="api-path">/api/risk</td>
+                            <td class="text-muted">Risk metrics — DV01, CS01, JTD, sector concentration, limits</td>
+                        </tr>
+                        <tr>
+                            <td><span class="method-badge">GET</span></td>
+                            <td class="api-path">/api/filings</td>
+                            <td class="text-muted">Latest filing alerts from European regulatory monitor</td>
+                        </tr>
+                        <tr>
+                            <td><span class="method-badge">GET</span></td>
+                            <td class="api-path">/api/relative-value</td>
+                            <td class="text-muted">Rich/cheap screen — z-scores, composite scores, pair opportunities</td>
+                        </tr>
+                        <tr>
+                            <td><span class="method-badge">GET</span></td>
+                            <td class="api-path">/api/maturity-wall</td>
+                            <td class="text-muted">Top refinancing risk names — maturity dates vs current spreads</td>
+                        </tr>
+                        <tr>
+                            <td><span class="method-badge">GET</span></td>
+                            <td class="api-path">/api/dispersion</td>
+                            <td class="text-muted">Spread dispersion regime — CV, sector stats, regime classification</td>
+                        </tr>
+                        <tr>
+                            <td><span class="method-badge">GET</span></td>
+                            <td class="api-path">/api/scenarios</td>
+                            <td class="text-muted">Stress scenario P&amp;L — portfolio, hedge, combined impact per scenario</td>
+                        </tr>
+                        <tr>
+                            <td><span class="method-badge">GET</span></td>
+                            <td class="api-path">/api/equity-bridge</td>
+                            <td class="text-muted">Credit-equity bridge — all scored public names with gap signals</td>
+                        </tr>
+                        <tr>
+                            <td><span class="method-badge">GET</span></td>
+                            <td class="api-path">/api/equity-bridge/{name}</td>
+                            <td class="text-muted">Detailed equity bridge view for a single entity</td>
+                        </tr>
+                        <tr>
+                            <td><span class="method-badge">GET</span></td>
+                            <td class="api-path">/api/trade-structure/{name}</td>
+                            <td class="text-muted">Trade structure recommendation — catalyst type, optimal instrument, sizing</td>
+                        </tr>
+                        <tr>
+                            <td><span class="method-badge">GET</span></td>
+                            <td class="api-path">/api/tranche-scenarios</td>
+                            <td class="text-muted">Tranche scenario tables — Xover and Main with real calibrations</td>
+                        </tr>
+                        <tr>
+                            <td><span class="method-badge">GET</span></td>
+                            <td class="api-path">/api/screen</td>
+                            <td class="text-muted">Top ideas data (alias for /api/universe)</td>
+                        </tr>
+                        <tr>
+                            <td><span class="method-badge">GET</span></td>
+                            <td class="api-path">/api/rv</td>
+                            <td class="text-muted">Relative value (alias for /api/relative-value)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- ============================================================
+         FOOTER
+         ============================================================ -->
+    <footer>
+        <div class="inner">
+            <span>Credit Catalyst v1.0 — iTraxx S44 Platform</span>
+            <span>46 modules | 14 APIs | 4 Bittensor subnets</span>
+        </div>
+    </footer>
+</body>
+</html>
