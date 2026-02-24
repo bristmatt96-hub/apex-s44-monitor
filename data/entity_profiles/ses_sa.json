@@ -1,0 +1,56 @@
+{
+  "entity": "SES SA",
+  "last_updated": "2026-02-24T14:03:52.329867",
+  "filings": [],
+  "news": [],
+  "rating_actions": [],
+  "earnings_signals": [],
+  "social_sentiment": [
+    {
+      "post_id": "2026198803234054511",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "Author submitted an academic legal opinion to the UK CMA regarding the assessment of innovation-driven efficiencies in merger reviews.",
+      "credit_relevance": "The post discusses a general legal/academic contribution to UK merger policy and does not contain any company-specific operational, financial, or strategic developments relevant to SES SA's credit risk or CDS spreads.",
+      "author": "GurkaynakGonenc",
+      "posted_at": "2026-02-24T07:33:34Z",
+      "added_at": "2026-02-24T14:03:30.607685"
+    },
+    {
+      "post_id": "2026120369682124850",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "Tariffs are being used as leverage to force Chinese trade concessions, indirectly benefiting U.S. deficit reduction and reshoring, with no direct link to SES SA.",
+      "credit_relevance": "The post discusses macro trade policy and U.S.-China relations with no specific impact on SES SA's financials, leverage, or creditworthiness; no direct CDS spread implication.",
+      "author": "dogeai_gov",
+      "posted_at": "2026-02-24T02:21:54Z",
+      "added_at": "2026-02-24T14:03:39.017128"
+    },
+    {
+      "post_id": "2026101042157359413",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "Harness Engineering uses AI agents, including OpenAI's Codex, to automate software development tasks.",
+      "credit_relevance": "The post discusses AI tools in software development and does not provide any meaningful information about SES SA's financial leverage, credit profile, or industry positioning; thus, it has no direct relevance to SES SA's CDS spreads.",
+      "author": "InfoQ",
+      "posted_at": "2026-02-24T01:05:06Z",
+      "added_at": "2026-02-24T14:03:46.092750"
+    },
+    {
+      "post_id": "2026069058987131051",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "The post criticizes Palm Beach Police for lacking knowledge of constitutional amendments and calls for them to be recorded.",
+      "credit_relevance": "The mention of 'amendment' refers to a constitutional/legal context unrelated to SES SA's creditworthiness or any financial covenant amendment; thus, it has no relevance to CDS spreads.",
+      "author": "RC43_H",
+      "posted_at": "2026-02-23T22:58:00Z",
+      "added_at": "2026-02-24T14:03:52.329867"
+    }
+  ],
+  "analyst_assessments": [],
+  "signal_changes": []
+}

@@ -1,6 +1,6 @@
 {
   "entity": "Webuild SpA",
-  "last_updated": "2026-02-24T13:53:35.061239",
+  "last_updated": "2026-02-24T13:54:07.372286",
   "filings": [],
   "news": [],
   "rating_actions": [],
@@ -93,6 +93,72 @@
       "author": "tunnel_journal",
       "posted_at": "2026-02-22T18:39:22Z",
       "added_at": "2026-02-24T13:53:35.061239"
+    },
+    {
+      "post_id": "2025625156341649757",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "Motivational message referencing resilience and recovery with no specific financial or operational details about Webuild SpA.",
+      "credit_relevance": "The post contains no concrete information relevant to Webuild SpA's creditworthiness, liquidity, leverage, or project execution, and therefore has no discernible impact on CDS spreads.",
+      "author": "QuotekingsM",
+      "posted_at": "2026-02-22T17:34:06Z",
+      "added_at": "2026-02-24T13:53:41.350559"
+    },
+    {
+      "post_id": "2025330949353767318",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": true,
+      "claim_summary": "Webuild, via Clough, has achieved major milestones in the St Marys section of the Parklife Metro project in Sydney, including starting precast beam and platform works.",
+      "credit_relevance": "Progress on a key infrastructure project may support Webuild's operational execution narrative, but no financial or credit metrics are mentioned that would directly impact CDS spreads.",
+      "author": "CloughGroup",
+      "posted_at": "2026-02-21T22:05:01Z",
+      "added_at": "2026-02-24T13:53:49.217203"
+    },
+    {
+      "post_id": "2025246638768550104",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "Webuild highlights the successful inauguration of Milan\u2019s M4 Metro Line in 2023, emphasizing sustainability and its role in urban mobility.",
+      "credit_relevance": "The post is promotional and retrospective, with no new financial or operational data impacting Webuild's creditworthiness or CDS spreads.",
+      "author": "Webuild_Group",
+      "posted_at": "2026-02-21T16:30:00Z",
+      "added_at": "2026-02-24T13:53:54.115579"
+    },
+    {
+      "post_id": "2025167610443120778",
+      "sentiment": "neutral",
+      "severity": 2,
+      "is_new_info": false,
+      "claim_summary": "Webuild was awarded the GERD contract in 2011 without competitive bidding due to prior experience on Ethiopian projects.",
+      "credit_relevance": "Lack of competitive bidding may imply political or execution risks, but this is historical context and does not directly impact current leverage or creditworthiness.",
+      "author": "grok",
+      "posted_at": "2026-02-21T11:15:58Z",
+      "added_at": "2026-02-24T13:53:58.487687"
+    },
+    {
+      "post_id": "2025163808398803208",
+      "sentiment": "neutral",
+      "severity": 2,
+      "is_new_info": false,
+      "claim_summary": "Webuild was the main constructor of the Grand Ethiopian Renaissance Dam, awarded without bidding, with project ownership and financing primarily Ethiopian.",
+      "credit_relevance": "Confirms Webuild's involvement in a large, non-recourse infrastructure project with sovereign counterparty risk, but adds no new financial or credit risk developments.",
+      "author": "grok",
+      "posted_at": "2026-02-21T11:00:52Z",
+      "added_at": "2026-02-24T13:54:02.915347"
+    },
+    {
+      "post_id": "2025133397321154886",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "Webuild Group promotes a historical book on Italy's infrastructure development linked to the company's legacy.",
+      "credit_relevance": "The post is promotional and historical in nature, with no direct impact on Webuild SpA's creditworthiness or CDS spread drivers such as leverage, cash flow, or covenant risks.",
+      "author": "Webuild_Group",
+      "posted_at": "2026-02-21T09:00:01Z",
+      "added_at": "2026-02-24T13:54:07.372286"
     }
   ],
   "analyst_assessments": [],

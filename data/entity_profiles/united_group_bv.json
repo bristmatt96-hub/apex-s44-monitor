@@ -1,0 +1,100 @@
+{
+  "entity": "United Group BV",
+  "last_updated": "2026-02-24T14:04:52.307897",
+  "filings": [],
+  "news": [],
+  "rating_actions": [],
+  "earnings_signals": [],
+  "social_sentiment": [
+    {
+      "post_id": "2026168261394694325",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "Call for broad systemic reforms including ending corporate personhood and transfer pricing, and overturning major U.S. legal rulings.",
+      "credit_relevance": "The post discusses abstract, macro-level U.S. policy changes with no direct link to United Group BV's financial or credit fundamentals, and does not impact its CDS spread.",
+      "author": "DavidFMills",
+      "posted_at": "2026-02-24T05:32:12Z",
+      "added_at": "2026-02-24T14:04:01.726485"
+    },
+    {
+      "post_id": "2026116132822814769",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "Someone near the author's city hosted a conference about Charlie Kirk\u2019s legacy, which the author finds disorienting.",
+      "credit_relevance": "The post contains no information relevant to United Group BV's creditworthiness, financial performance, or market positioning; it is a personal commentary on a political event with no clear link to the company's credit risk.",
+      "author": "f4micom",
+      "posted_at": "2026-02-24T02:05:04Z",
+      "added_at": "2026-02-24T14:04:06.928532"
+    },
+    {
+      "post_id": "2026102196002046268",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "The post lists the most active ETFs in the United States on a given day, with no mention of United Group BV or any credit-related developments.",
+      "credit_relevance": "The content is unrelated to United Group BV's creditworthiness, financial performance, or market sentiment; it focuses on U.S. ETF trading activity, which has no direct impact on the company's CDS spreads.",
+      "author": "TheETFTracker",
+      "posted_at": "2026-02-24T01:09:41Z",
+      "added_at": "2026-02-24T14:04:15.780004"
+    },
+    {
+      "post_id": "2026101025958953046",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "The U.S. President's daily schedule includes the State of the Union Address on February 24, 2026.",
+      "credit_relevance": "The post contains no information relevant to United Group BV's creditworthiness or CDS spreads, as it pertains solely to the U.S. presidential schedule.",
+      "author": "WHPressPool",
+      "posted_at": "2026-02-24T01:05:02Z",
+      "added_at": "2026-02-24T14:04:23.868242"
+    },
+    {
+      "post_id": "2026100037898338499",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "The post outlines a plan to rank ECNL and ECNLRL clubs based on D1 player recruitments in the Class of 2026, with methodology based on club affiliation at time of verbal commitment.",
+      "credit_relevance": "This content is unrelated to United Group BV's creditworthiness, financial performance, or risk factors; it pertains to youth soccer recruiting data and has no impact on CDS spreads.",
+      "author": "ImYouthSoccer",
+      "posted_at": "2026-02-24T01:01:06Z",
+      "added_at": "2026-02-24T14:04:29.466597"
+    },
+    {
+      "post_id": "2026080681697182021",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "Major League Soccer had a record-breaking kickoff weekend in the United States.",
+      "credit_relevance": "The post discusses Major League Soccer and contains no relevant information about United Group BV's creditworthiness, financial performance, or risk factors that could impact CDS spreads.",
+      "author": "SportsLover1517",
+      "posted_at": "2026-02-23T23:44:11Z",
+      "added_at": "2026-02-24T14:04:37.193316"
+    },
+    {
+      "post_id": "2026080407549002120",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "David Moyes praised Senne Lammens' performance for Manchester United in a post-match comment.",
+      "credit_relevance": "The post is unrelated to United Group BV's creditworthiness, financials, or operating environment; it refers to a football player and Manchester United, creating no impact on CDS spreads.",
+      "author": "FabrizioRomano",
+      "posted_at": "2026-02-23T23:43:06Z",
+      "added_at": "2026-02-24T14:04:45.053311"
+    },
+    {
+      "post_id": "2026077361456767039",
+      "sentiment": "neutral",
+      "severity": 1,
+      "is_new_info": false,
+      "claim_summary": "Drogheda United chairperson Joanna Byrne, a Sinn Fein politician, is resisting calls to resign over her stance against Ireland playing Israel in the Nations League, prompting sponsor review.",
+      "credit_relevance": "The post discusses a local football club governance and sponsorship issue with no direct link to United Group BV's creditworthiness, operations, or financials.",
+      "author": "TheAthleticFC",
+      "posted_at": "2026-02-23T23:31:00Z",
+      "added_at": "2026-02-24T14:04:52.307897"
+    }
+  ],
+  "analyst_assessments": [],
+  "signal_changes": []
+}
