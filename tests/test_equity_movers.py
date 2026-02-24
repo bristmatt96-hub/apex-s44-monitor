@@ -33,7 +33,7 @@ _ss_stub.query_gopher = MagicMock(return_value=[])
 _ss_stub.query_desearch = MagicMock(return_value=[])
 sys.modules["monitors.social_sentiment"] = _ss_stub
 
-from monitors.equity_movers import fetch_social_buzz
+from monitors.equity_movers import fetch_social_buzz, send_equity_alert, EquityMover
 
 # Restore original social_sentiment module entry so other tests are not affected
 if _ss_orig is not None:
@@ -93,3 +93,58 @@ def test_fetch_social_buzz_sentiment_bucketing():
     assert result["bearish"] >= 1  # "default" is bearish
     assert result["bullish"] >= 1  # "upgrade" is bullish
     assert result["total"] == 3
+
+
+def test_send_equity_alert_formats_html_message():
+    """send_equity_alert returns an HTML string with key fields."""
+    mover = EquityMover(
+        entity_name="Grifols SA",
+        index="xover",
+        ticker="GRF.MC",
+        sector="Healthcare",
+        previous_close=7.82,
+        current_price=7.45,
+        change_pct=-4.73,
+        volume=5000000,
+        avg_volume=2200000,
+        volume_ratio=2.27,
+        news_headlines=[
+            {"title": "Grifols faces new accounting probe", "source": "Reuters", "link": ""},
+            {"title": "Short seller renews attack", "source": "FT", "link": ""},
+        ],
+        credit_impact="negative",
+        severity=4,
+        explanation="CDS spreads likely to widen on accounting concerns",
+        detected_at="2026-02-24T10:30:00",
+    )
+    social = {"total": 12, "bullish": 2, "bearish": 8, "neutral": 2, "top_post": ""}
+
+    html = send_equity_alert(mover, social_buzz=social, send=False)
+
+    assert "Grifols SA" in html
+    assert "GRF.MC" in html
+    assert "-4.7%" in html
+    assert "2.3x" in html
+    assert "Healthcare" in html
+    assert "Xover" in html
+    assert "accounting probe" in html
+    assert "12 posts" in html
+    assert "NEGATIVE" in html
+    assert "4/5" in html
+
+
+def test_send_equity_alert_gainer_uses_green():
+    """Positive movers get green emoji."""
+    mover = EquityMover(
+        entity_name="Test Corp",
+        index="main",
+        ticker="TST.L",
+        sector="Industrials",
+        previous_close=10.0,
+        current_price=10.50,
+        change_pct=5.0,
+        detected_at="2026-02-24T10:30:00",
+    )
+    html = send_equity_alert(mover, send=False)
+    assert "Test Corp" in html
+    assert "+5.0%" in html

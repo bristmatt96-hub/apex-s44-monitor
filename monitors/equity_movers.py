@@ -570,6 +570,113 @@ def fetch_social_buzz(
 
 
 # ---------------------------------------------------------------------------
+# Telegram alerts (synchronous)
+# ---------------------------------------------------------------------------
+
+def send_equity_alert(
+    mover: EquityMover,
+    social_buzz: dict | None = None,
+    send: bool = True,
+) -> str:
+    """Format and optionally send a Telegram alert for an equity mover.
+
+    Args:
+        mover: The EquityMover to alert on.
+        social_buzz: Output from fetch_social_buzz(), or None.
+        send: If True, actually send via Telegram. If False, just return HTML.
+
+    Returns:
+        The formatted HTML message string.
+    """
+    is_decline = mover.change_pct < 0
+    emoji = "\U0001f534" if is_decline else "\U0001f7e2"  # red / green circle
+    idx_label = "Xover" if mover.index == "xover" else "Main"
+
+    # Format change with sign
+    change_str = f"{mover.change_pct:+.1f}%"
+
+    # Volume string
+    vol_str = f"{mover.volume_ratio:.1f}x average" if mover.volume_ratio > 0 else "N/A"
+
+    lines = [
+        f"{emoji} <b>EQUITY ALERT: {mover.entity_name}</b>",
+        "\u2501" * 28,
+        f"\U0001f4c9 <b>{mover.ticker}</b>  {change_str}  "
+        f"({mover.previous_close:.2f} \u2192 {mover.current_price:.2f})",
+        f"\U0001f4ca Volume: {vol_str}",
+        f"\U0001f3f7 Sector: {mover.sector or 'N/A'} | Index: {idx_label}",
+    ]
+
+    # News section
+    if mover.news_headlines:
+        lines.append("")
+        lines.append("\U0001f4f0 <b>News:</b>")
+        for h in mover.news_headlines[:3]:
+            title = h.get("title", "")[:80]
+            source = h.get("source", "")
+            src_str = f" \u2014 {source}" if source else ""
+            lines.append(f"\u2022 {title}{src_str}")
+
+    # Social buzz section
+    if social_buzz and social_buzz.get("total", 0) > 0:
+        sb = social_buzz
+        lines.append("")
+        lines.append(
+            f"\U0001f4ac <b>Social:</b> {sb['total']} posts "
+            f"({sb['bearish']} bearish, {sb['bullish']} bullish, "
+            f"{sb['neutral']} neutral)"
+        )
+
+    # Credit impact section
+    if mover.credit_impact:
+        lines.append("")
+        impact_upper = mover.credit_impact.upper()
+        sev_emoji = "\u26a0\ufe0f" if impact_upper == "NEGATIVE" else "\u2139\ufe0f"
+        lines.append(
+            f"{sev_emoji} <b>Credit Impact: {impact_upper}</b> "
+            f"(severity {mover.severity}/5)"
+        )
+        if mover.explanation:
+            lines.append(f"<i>\"{mover.explanation[:150]}\"</i>")
+
+    html = "\n".join(lines)
+
+    if send:
+        _send_telegram_sync(html)
+
+    return html
+
+
+def _send_telegram_sync(html: str) -> bool:
+    """Send a Telegram message synchronously (for use from non-async context)."""
+    bot_token = os.getenv("TELEGRAM_BOT_TOKEN", "")
+    chat_id = os.getenv("TELEGRAM_CHAT_ID", "")
+    if not bot_token or not chat_id:
+        print("  TELEGRAM: not configured (missing TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID)")
+        return False
+
+    try:
+        resp = requests.post(
+            f"https://api.telegram.org/bot{bot_token}/sendMessage",
+            json={
+                "chat_id": chat_id,
+                "text": html,
+                "parse_mode": "HTML",
+                "disable_web_page_preview": True,
+            },
+            timeout=10,
+        )
+        if resp.status_code == 200:
+            return True
+        else:
+            print(f"  TELEGRAM error: {resp.status_code} {resp.text[:100]}")
+            return False
+    except Exception as e:
+        print(f"  TELEGRAM send failed: {e}")
+        return False
+
+
+# ---------------------------------------------------------------------------
 # SQLite database
 # ---------------------------------------------------------------------------
 
