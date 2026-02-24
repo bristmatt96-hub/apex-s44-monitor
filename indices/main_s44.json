@@ -1,0 +1,206 @@
+{
+  "name": "iTraxx Europe Main Series 44",
+  "short_name": "Main S44",
+  "total_names": 133,
+  "note": "125 names matching iTraxx Main IG constituent data. Names use common entity format. Sector mapping from analytics/itraxx_main_constituents.py.",
+  "sectors": {
+    "Banks": [
+      "BNP Paribas",
+      "Societe Generale",
+      "Credit Agricole",
+      "Deutsche Bank",
+      "Commerzbank",
+      "Barclays",
+      "HSBC",
+      "Lloyds Banking Group",
+      "Standard Chartered",
+      "NatWest Group",
+      "UBS Group",
+      "Intesa Sanpaolo",
+      "UniCredit",
+      "Banco Santander",
+      "BBVA",
+      "CaixaBank",
+      "ING Group",
+      "ABN AMRO",
+      "Danske Bank",
+      "Nordea",
+      "Svenska Handelsbanken",
+      "DNB Bank"
+    ],
+    "Insurance": [
+      "AXA",
+      "Allianz",
+      "Zurich Insurance",
+      "Aviva",
+      "Legal & General",
+      "Prudential",
+      "Swiss Re",
+      "Munich Re",
+      "Generali",
+      "Hannover Rueck"
+    ],
+    "Autos": [
+      "Volkswagen",
+      "BMW",
+      "Daimler Truck",
+      "Mercedes-Benz",
+      "Volvo",
+      "Continental"
+    ],
+    "Telecoms": [
+      "Deutsche Telekom",
+      "Orange",
+      "Telefonica",
+      "Vodafone",
+      "BT Group",
+      "KPN",
+      "Swisscom",
+      "Telia",
+      "Telenor"
+    ],
+    "Utilities": [
+      "Enel",
+      "Iberdrola",
+      "Engie",
+      "E.ON",
+      "RWE",
+      "EDP",
+      "National Grid",
+      "SSE",
+      "Fortum",
+      "Veolia",
+      "Orsted"
+    ],
+    "Energy": [
+      "Shell",
+      "BP",
+      "TotalEnergies",
+      "Eni",
+      "Repsol",
+      "Equinor"
+    ],
+    "Industrials": [
+      "Siemens",
+      "Schneider Electric",
+      "ABB",
+      "Siemens Energy",
+      "Atlas Copco",
+      "Sandvik",
+      "SKF",
+      "Thales",
+      "BAE Systems",
+      "Smiths Group"
+    ],
+    "Consumer": [
+      "Unilever",
+      "Nestle",
+      "Danone",
+      "Pernod Ricard",
+      "Diageo",
+      "AB InBev",
+      "Heineken",
+      "British American Tobacco",
+      "Imperial Brands",
+      "Henkel",
+      "Adidas",
+      "LVMH",
+      "Kering",
+      "Essity"
+    ],
+    "Healthcare": [
+      "Roche",
+      "Novartis",
+      "AstraZeneca",
+      "GSK",
+      "Sanofi",
+      "Bayer",
+      "Novo Nordisk",
+      "Fresenius",
+      "Smith & Nephew"
+    ],
+    "Chemicals": [
+      "BASF",
+      "Linde",
+      "Air Liquide",
+      "Akzo Nobel",
+      "Solvay",
+      "DSM-Firmenich",
+      "Evonik"
+    ],
+    "Technology": [
+      "SAP",
+      "ASML",
+      "Nokia",
+      "Ericsson"
+    ],
+    "Real Estate": [
+      "Vonovia",
+      "Unibail-Rodamco",
+      "British Land",
+      "Land Securities"
+    ],
+    "Retail": [
+      "Tesco",
+      "Carrefour",
+      "Ahold Delhaize"
+    ],
+    "Media": [
+      "WPP",
+      "Pearson",
+      "Publicis"
+    ],
+    "Mining": [
+      "Anglo American",
+      "Glencore",
+      "Rio Tinto",
+      "CRH",
+      "Saint-Gobain",
+      "LafargeHolcim"
+    ],
+    "Transport": [
+      "Maersk",
+      "Deutsche Post DHL",
+      "DSV Panalpina"
+    ],
+    "Paper": [
+      "UPM-Kymmene",
+      "Stora Enso",
+      "Mondi"
+    ],
+    "Food": [
+      "Associated British Foods",
+      "Kerry Group",
+      "Jeronimo Martins"
+    ]
+  },
+  "search_aliases": {
+    "Societe Generale": ["SocGen"],
+    "Credit Agricole": ["CASA", "Credit Agricole SA"],
+    "Lloyds Banking Group": ["Lloyds Bank", "Lloyds"],
+    "Standard Chartered": ["StanChart"],
+    "NatWest Group": ["NatWest", "Royal Bank of Scotland"],
+    "Intesa Sanpaolo": ["Intesa"],
+    "Banco Santander": ["Santander"],
+    "Svenska Handelsbanken": ["Handelsbanken"],
+    "Zurich Insurance": ["Zurich"],
+    "Legal & General": ["L&G", "Legal and General"],
+    "Hannover Rueck": ["Hannover Re"],
+    "Daimler Truck": ["Daimler"],
+    "Mercedes-Benz": ["Mercedes", "Daimler AG"],
+    "Deutsche Telekom": ["T-Mobile parent", "DT"],
+    "AB InBev": ["Anheuser-Busch", "InBev"],
+    "British American Tobacco": ["BAT"],
+    "Imperial Brands": ["Imperial Tobacco"],
+    "DSM-Firmenich": ["DSM", "Firmenich"],
+    "Smith & Nephew": ["Smith Nephew"],
+    "Unibail-Rodamco": ["URW", "Westfield"],
+    "Deutsche Post DHL": ["DHL", "Deutsche Post"],
+    "DSV Panalpina": ["DSV"],
+    "UPM-Kymmene": ["UPM"],
+    "Associated British Foods": ["ABF", "Primark parent"],
+    "LafargeHolcim": ["Holcim", "Lafarge"],
+    "TotalEnergies": ["Total"],
+    "AstraZeneca": ["AZN"]
+  }
+}
