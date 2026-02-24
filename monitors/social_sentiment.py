@@ -1,13 +1,14 @@
 """
-Social Sentiment Monitor -- Bittensor SN13+SN22 + LLM Credit Classifier
+Social Sentiment Monitor -- Bittensor SN13+SN22+SN42 + LLM Credit Classifier
 
 Monitors Twitter/X for credit-relevant social media posts about iTraxx
-Xover names using dual data sources (SN13 macrocosmos + SN22 Desearch),
-then classifies each post through LLM with a credit-specific lens.
+Xover names using triple data sources (SN13 macrocosmos + SN22 Desearch
++ SN42 Gopher), then classifies each post through LLM with a credit lens.
 
 Data Sources:
     SN13 (macrocosmos) — Bittensor subnet 13, gRPC API
     SN22 (Desearch)    — Bittensor subnet 22, REST API
+    SN42 (Gopher)      — Bittensor subnet 42, REST API (async job)
 
 LLM Providers:
     anthropic (default) — Haiku triage + Sonnet classify (~$2.37/scan)
@@ -15,7 +16,7 @@ LLM Providers:
     Set LLM_PROVIDER=chutes in .env to switch.
 
 Pipeline:
-    1. Query SN13 + SN22 for recent X posts per entity
+    1. Query SN13 + SN22 + SN42 for recent X posts per entity
     2. Cross-source dedup by post_id
     3. De-duplicate against SQLite history
     4. 3-tier filter: keyword blocklist -> LLM triage -> LLM classify
@@ -73,6 +74,12 @@ CHUTES_BASE_URL = "https://llm.chutes.ai/v1"
 CHUTES_CLASSIFY_MODEL = "Qwen/Qwen3-235B-A22B-Instruct-2507-TEE"
 CHUTES_TRIAGE_MODEL = "unsloth/Mistral-Nemo-Instruct-2407"
 LLM_PROVIDER = os.getenv("LLM_PROVIDER", "anthropic").lower()  # "anthropic" or "chutes"
+
+# Gopher (Bittensor SN42) — Real-time social + web scraper
+# Set GOPHER_API_KEY to enable as additional data source
+GOPHER_BASE_URL = "https://data.gopher-ai.com/api/v1"
+GOPHER_POLL_INTERVAL = 3  # seconds between result polls
+GOPHER_MAX_POLLS = 20     # max poll attempts (~60s timeout)
 
 # Credit-specific search keywords
 CREDIT_KEYWORDS = [
@@ -749,6 +756,135 @@ def _parse_desearch_timestamp(raw: str) -> str:
 
 
 # ---------------------------------------------------------------------------
+# Data Source 3: Gopher (Bittensor SN42)
+# ---------------------------------------------------------------------------
+
+def query_gopher(entity_name: str, search_terms: list[str]) -> list[SocialPost]:
+    """
+    Query Gopher SN42 for Twitter/X posts about an entity.
+
+    Gopher uses an async job model: POST to submit, poll GET for results.
+    Returns SocialPost objects normalised to the same schema as SN13/SN22.
+    """
+    import requests
+
+    api_key = os.getenv("GOPHER_API_KEY")
+    if not api_key:
+        return []
+
+    headers = {
+        "Authorization": f"Bearer {api_key}",
+        "Content-Type": "application/json",
+    }
+
+    # Build query string — use entity short name + credit keywords
+    # Gopher search works best with concise OR-style queries
+    short_name = search_terms[0] if search_terms else entity_name.split()[0]
+    query = f"{short_name} credit OR debt OR bond OR downgrade OR restructuring"
+
+    try:
+        # Submit async search job
+        resp = requests.post(
+            f"{GOPHER_BASE_URL}/search/live",
+            headers=headers,
+            json={
+                "type": "twitter",
+                "arguments": {
+                    "type": "searchbyquery",
+                    "query": query,
+                    "max_results": 20,
+                },
+            },
+            timeout=30,
+        )
+        resp.raise_for_status()
+        job = resp.json()
+        uuid = job.get("uuid")
+        if not uuid:
+            err = job.get("error", "no UUID returned")
+            print(f"  SN42 job error for {entity_name}: {err}", file=sys.stderr)
+            return []
+
+        # Poll for results
+        for _ in range(GOPHER_MAX_POLLS):
+            time.sleep(GOPHER_POLL_INTERVAL)
+            r = requests.get(
+                f"{GOPHER_BASE_URL}/search/live/result/{uuid}",
+                headers=headers,
+                timeout=15,
+            )
+            if r.status_code == 404:
+                continue  # Still processing
+            if r.status_code != 200:
+                continue
+
+            data = r.json()
+            # In-progress response is a dict with status
+            if isinstance(data, dict):
+                status = data.get("status", "")
+                if "progress" in status or "processing" in status:
+                    continue
+                if "error" in status:
+                    print(f"  SN42 job failed for {entity_name}: {data.get('error')}", file=sys.stderr)
+                    return []
+                # "done(not saved)" means data was returned but not persisted
+                # — sometimes the response IS the data as a dict, break out
+                break
+
+            # If it's a list, we have results
+            if isinstance(data, list):
+                return _parse_gopher_posts(data, entity_name, search_terms)
+
+        return []
+
+    except Exception as e:
+        print(f"  SN42 API error for {entity_name}: {e}", file=sys.stderr)
+        return []
+
+
+def _parse_gopher_posts(
+    items: list[dict], entity_name: str, search_terms: list[str]
+) -> list[SocialPost]:
+    """Normalise Gopher SN42 response items to SocialPost objects."""
+    posts = []
+    for item in items:
+        post_id = str(item.get("id", f"sn42_{hash(str(item))}"))
+        content = item.get("content", "")
+        metadata = item.get("metadata", {})
+        if not isinstance(metadata, dict):
+            metadata = {}
+
+        # Author: Gopher doesn't always return structured user info
+        # Extract from content if it starts with @username pattern
+        author = "unknown"
+        if content.startswith("@"):
+            parts = content.split(" ", 1)
+            author = parts[0] if parts else "unknown"
+
+        url = f"https://x.com/i/status/{post_id}"
+
+        # Timestamp from metadata
+        raw_ts = metadata.get("created_at", "")
+        posted_at = _parse_desearch_timestamp(raw_ts) if raw_ts else datetime.utcnow().isoformat() + "Z"
+
+        content_lower = content.lower()
+        matched = [kw for kw in CREDIT_KEYWORDS if kw.lower() in content_lower]
+
+        posts.append(SocialPost(
+            post_id=post_id,
+            source="X",
+            author=author,
+            content=content,
+            posted_at=posted_at,
+            url=url,
+            entity_name=entity_name,
+            keywords_matched=matched,
+        ))
+
+    return posts
+
+
+# ---------------------------------------------------------------------------
 # Demo mode -- mock data for testing without API key
 # ---------------------------------------------------------------------------
 
@@ -1091,13 +1227,17 @@ def run_scan(
     """
     has_sn13_key = bool(os.getenv("MACROCOSMOS_API_KEY"))
     has_sn22_key = bool(os.getenv("DESEARCH_API_KEY"))
-    if not has_sn13_key and not has_sn22_key:
+    has_sn42_key = bool(os.getenv("GOPHER_API_KEY"))
+    has_any = has_sn13_key or has_sn22_key or has_sn42_key
+    if not has_any:
         demo_mode = True
         print("  [DEMO MODE] No API keys set -- using mock data")
-    elif not has_sn13_key:
-        print("  [SN22 ONLY] MACROCOSMOS_API_KEY not set -- SN13 disabled")
-    elif not has_sn22_key:
-        print("  [SN13 ONLY] DESEARCH_API_KEY not set -- SN22 disabled")
+    else:
+        sources = []
+        if has_sn13_key: sources.append("SN13")
+        if has_sn22_key: sources.append("SN22")
+        if has_sn42_key: sources.append("SN42")
+        print(f"  Data sources: {' + '.join(sources)}")
 
     # LLM provider selection: "anthropic" (default) or "chutes" (Bittensor SN64)
     provider = (provider_override or LLM_PROVIDER).lower()
@@ -1136,11 +1276,13 @@ def run_scan(
     else:
         sn13_total = 0
         sn22_total = 0
+        sn42_total = 0
 
         for entity in entities:
             search_terms = get_search_terms(entity)
             sn13_count = 0
             sn22_count = 0
+            sn42_count = 0
 
             # SN13 (macrocosmos)
             if has_sn13_key:
@@ -1158,9 +1300,21 @@ def run_scan(
                 sn22_total += sn22_count
                 time.sleep(0.3)  # Rate limit
 
-            total = sn13_count + sn22_count
+            # SN42 (Gopher)
+            if has_sn42_key:
+                posts = query_gopher(entity, search_terms)
+                all_posts.extend(posts)
+                sn42_count = len(posts)
+                sn42_total += sn42_count
+                # No extra sleep — Gopher already waits during poll
+
+            total = sn13_count + sn22_count + sn42_count
             if total:
-                print(f"  {entity[:35]:<35} {total:>3} posts (SN13={sn13_count}, SN22={sn22_count})")
+                parts = []
+                if has_sn13_key: parts.append(f"SN13={sn13_count}")
+                if has_sn22_key: parts.append(f"SN22={sn22_count}")
+                if has_sn42_key: parts.append(f"SN42={sn42_count}")
+                print(f"  {entity[:35]:<35} {total:>3} posts ({', '.join(parts)})")
 
         # Also query key credit accounts via SN13
         if has_sn13_key:
@@ -1170,7 +1324,11 @@ def run_scan(
                 sn13_total += len(account_posts)
                 print(f"  Credit accounts (@9aborad etc)   {len(account_posts):>3} posts")
 
-        print(f"\n  Sources: SN13={sn13_total} | SN22={sn22_total} | Raw total={len(all_posts)}")
+        parts = []
+        if has_sn13_key: parts.append(f"SN13={sn13_total}")
+        if has_sn22_key: parts.append(f"SN22={sn22_total}")
+        if has_sn42_key: parts.append(f"SN42={sn42_total}")
+        print(f"\n  Sources: {' | '.join(parts)} | Raw total={len(all_posts)}")
 
         # Deduplicate by post_id (SN13 and SN22 rarely overlap, but safety first)
         seen_ids: set[str] = set()
