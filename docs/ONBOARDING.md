@@ -85,7 +85,7 @@ apex-s44-monitor/
 |   |-- signal_scorer.py       # Gap score engine (credit - equity repricing)
 |   |-- trade_structurer.py    # Options structure recommender
 |   |-- credit_equity_bridge.py # Orchestrator: credit data + equity + scoring
-|   |-- tranche_pricer.py      # iTraxx tranche pricing (0-3%, 3-6%, etc.)
+|   |-- tranche_pricer.py      # iTraxx tranche pricing (Main: 0-3/3-6/6-12/12-100, Xover: 0-10/10-20/20-35/35-100)
 |   |-- relative_value.py      # Rich/cheap screen
 |   |-- maturity_wall.py       # Refinancing risk analysis
 |   |-- dispersion.py          # Spread dispersion regime

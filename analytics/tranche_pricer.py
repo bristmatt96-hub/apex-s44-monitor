@@ -20,8 +20,8 @@ The model:
     Default if asset_i < Phi^{-1}(PD_i).
 
 Standard tranche structures:
-    iTraxx Main:     0-3% equity, 3-6% mezz, 6-9% junior sr, 9-12% sr, 12-22% super sr, 22-100%
-    iTraxx Crossover: 0-10% equity (upfront+500bp running), 10-25% mezz, 25-100% senior
+    iTraxx Main S44:      0-3% equity, 3-6% mezz, 6-12% senior, 12-100% super senior
+    iTraxx Crossover S44: 0-10% equity (upfront+500bp running), 10-20% mezz, 20-35% senior, 35-100% super sr
 
 Usage:
     python -m analytics.tranche_pricer --index-spread 350
@@ -93,27 +93,25 @@ MATURITY_YEARS = 5.0
 
 # Standard iTraxx Xover tranche structure (backward compat)
 STANDARD_TRANCHES = {
-    "equity":    {"attachment": 0.00, "detachment": 0.10, "coupon_bps": 500,  "traded_upfront": True},
-    "mezzanine": {"attachment": 0.10, "detachment": 0.25, "coupon_bps": 0,    "traded_upfront": False},
-    "senior":    {"attachment": 0.25, "detachment": 1.00, "coupon_bps": 0,    "traded_upfront": False},
+    "equity":      {"attachment": 0.00, "detachment": 0.10, "coupon_bps": 500,  "traded_upfront": True},
+    "mezzanine":   {"attachment": 0.10, "detachment": 0.20, "coupon_bps": 0,    "traded_upfront": False},
+    "senior":      {"attachment": 0.20, "detachment": 0.35, "coupon_bps": 0,    "traded_upfront": False},
+    "super_senior": {"attachment": 0.35, "detachment": 1.00, "coupon_bps": 0,   "traded_upfront": False},
 }
 
-# Full Main tranche structure
+# iTraxx Main S44 standard tranche structure
 MAIN_TRANCHES = [
-    {"label": "0-3%",   "attach": 0.00, "detach": 0.03},
-    {"label": "3-6%",   "attach": 0.03, "detach": 0.06},
-    {"label": "6-9%",   "attach": 0.06, "detach": 0.09},
-    {"label": "9-12%",  "attach": 0.09, "detach": 0.12},
-    {"label": "12-22%", "attach": 0.12, "detach": 0.22},
-    {"label": "22-100%", "attach": 0.22, "detach": 1.00},
+    {"label": "0-3%",    "attach": 0.00, "detach": 0.03},
+    {"label": "3-6%",    "attach": 0.03, "detach": 0.06},
+    {"label": "6-12%",   "attach": 0.06, "detach": 0.12},
+    {"label": "12-100%", "attach": 0.12, "detach": 1.00},
 ]
 
-# Full Crossover tranche structure
+# iTraxx Crossover S44 standard tranche structure
 CROSSOVER_TRANCHES = [
-    {"label": "0-10%",  "attach": 0.00, "detach": 0.10},
-    {"label": "10-15%", "attach": 0.10, "detach": 0.15},
-    {"label": "15-25%", "attach": 0.15, "detach": 0.25},
-    {"label": "25-35%", "attach": 0.25, "detach": 0.35},
+    {"label": "0-10%",   "attach": 0.00, "detach": 0.10},
+    {"label": "10-20%",  "attach": 0.10, "detach": 0.20},
+    {"label": "20-35%",  "attach": 0.20, "detach": 0.35},
     {"label": "35-100%", "attach": 0.35, "detach": 1.00},
 ]
 
@@ -620,33 +618,27 @@ def fetch_ecb_index_data() -> Dict:
 
 def _parametric_base_correlation(detach: float, index_name: str) -> float:
     """Parametric base correlation smile — monotonically increasing with detachment.
-    Main:      equity ~22%, junior mezz ~38%, mezz ~52%, senior ~62%, super ~72%, ultra ~85%
-    Crossover: equity ~28%, mezz ~45%, senior ~58%, super ~70%, ultra ~85%
+    Main S44:      0-3% equity ~22%, 3-6% mezz ~38%, 6-12% senior ~55%, 12-100% super ~75%
+    Crossover S44: 0-10% equity ~28%, 10-20% mezz ~48%, 20-35% senior ~65%, 35-100% super ~80%
     """
     if index_name == "Main":
         if detach <= 0.03:
             return 0.22
         elif detach <= 0.06:
             return 0.38
-        elif detach <= 0.09:
-            return 0.52
         elif detach <= 0.12:
-            return 0.62
-        elif detach <= 0.22:
-            return 0.72
+            return 0.55
         else:
-            return 0.85
+            return 0.75
     else:  # Crossover
         if detach <= 0.10:
             return 0.28
-        elif detach <= 0.15:
-            return 0.45
-        elif detach <= 0.25:
-            return 0.58
+        elif detach <= 0.20:
+            return 0.48
         elif detach <= 0.35:
-            return 0.70
+            return 0.65
         else:
-            return 0.85
+            return 0.80
 
 
 # ===========================================================================
@@ -1491,9 +1483,10 @@ def cmd_index_spread(args):
     print(f"  Expected Portfolio Loss (LHP):  {pd*(1-ISDA_RECOVERY):.1%}")
 
     tranches = [
-        ("0-10% Equity",    0.00, 0.10, rho_equity, 500),
-        ("10-25% Mezzanine", 0.10, 0.25, rho_mezz,   0),
-        ("25-100% Senior",   0.25, 1.00, rho_senior,  0),
+        ("0-10% Equity",       0.00, 0.10, rho_equity, 500),
+        ("10-20% Mezzanine",   0.10, 0.20, rho_mezz,   0),
+        ("20-35% Senior",      0.20, 0.35, rho_senior,  0),
+        ("35-100% Super Senior", 0.35, 1.00, 0.80,      0),
     ]
 
     analytics_list = []

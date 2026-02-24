@@ -144,6 +144,15 @@ async def tranches():
     return HTMLResponse(content="<h1>Tranches page not found</h1>", status_code=404)
 
 
+@app.get("/swaptions", response_class=HTMLResponse)
+async def swaptions():
+    """Serve the CDS swaption pricer page."""
+    html_path = PROJECT_ROOT / "app" / "web" / "swaptions.html"
+    if html_path.exists():
+        return HTMLResponse(content=html_path.read_text(encoding="utf-8"))
+    return HTMLResponse(content="<h1>Swaptions page not found</h1>", status_code=404)
+
+
 @app.get("/capabilities", response_class=HTMLResponse)
 async def capabilities():
     """Serve the platform capabilities overview page."""
@@ -545,6 +554,22 @@ async def api_tranche_scenarios(index: str = "both"):
             results[key] = [dict(row) for row in reader]
 
     return results
+
+
+@app.get("/api/swaption-pricing")
+async def api_swaption_pricing(index: str = "Both", expiry: int = 3):
+    """CDS swaption pricing, strategies, and scenario stress test.
+
+    Args:
+        index: "Both", "Crossover", or "Main"
+        expiry: default strategy expiry in months (1, 3, 6, 12)
+    """
+    try:
+        from analytics.swaption_pricer import run_analysis
+        result = run_analysis(index=index, expiry_months=expiry, output_json=True)
+        return result
+    except Exception as e:
+        return {"error": str(e)}
 
 
 @app.get("/api/scenarios")
