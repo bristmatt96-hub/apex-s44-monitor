@@ -33,7 +33,7 @@ _ss_stub.query_gopher = MagicMock(return_value=[])
 _ss_stub.query_desearch = MagicMock(return_value=[])
 sys.modules["monitors.social_sentiment"] = _ss_stub
 
-from monitors.equity_movers import fetch_social_buzz, send_equity_alert, EquityMover
+from monitors.equity_movers import fetch_social_buzz, send_equity_alert, EquityMover, DEFAULT_THRESHOLD_PCT
 
 # Restore original social_sentiment module entry so other tests are not affected
 if _ss_orig is not None:
@@ -148,3 +148,8 @@ def test_send_equity_alert_gainer_uses_green():
     html = send_equity_alert(mover, send=False)
     assert "Test Corp" in html
     assert "+5.0%" in html
+
+
+def test_default_threshold_is_3_percent():
+    """Default threshold should be 3.0% not 2.0%."""
+    assert DEFAULT_THRESHOLD_PCT == 3.0

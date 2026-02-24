@@ -82,7 +82,7 @@ XOVER_INDEX_PATH = Path("indices/xover_s44.json")
 SIGNAL_CHANGES_PATH = Path("outputs/signal_changes.txt")
 
 # Default move threshold
-DEFAULT_THRESHOLD_PCT = 2.0
+DEFAULT_THRESHOLD_PCT = 3.0
 
 # yfinance batch size (avoid rate limits)
 BATCH_SIZE = 20
@@ -792,6 +792,8 @@ def run_scan(
     threshold_pct: float = DEFAULT_THRESHOLD_PCT,
     fetch_news: bool = True,
     classify: bool = False,
+    social: bool = False,
+    alert: bool = False,
 ) -> list[EquityMover]:
     """Run the equity movers scan.
 
@@ -801,6 +803,8 @@ def run_scan(
         threshold_pct: Minimum absolute % change to flag.
         fetch_news: Whether to fetch news for movers.
         classify: Whether to classify credit impact via LLM.
+        social: Whether to fetch social buzz for movers.
+        alert: Whether to send Telegram alerts for new movers.
     """
     print()
     print("=" * 70)
@@ -873,6 +877,25 @@ def run_scan(
 
             time.sleep(0.5)
 
+    # Fetch social buzz for movers
+    if social:
+        print(f"\n  Fetching social buzz for {len(movers)} movers...")
+        for mover in movers:
+            ticker_info = next(
+                (t for t in tickers if t.ticker == mover.ticker), None
+            )
+            search_terms = [ticker_info.search_name] if ticker_info else [mover.entity_name.split()[0]]
+            buzz = fetch_social_buzz(mover.entity_name, search_terms)
+            mover._social_buzz = buzz
+            if buzz["total"] > 0:
+                safe_name = mover.entity_name[:25].encode("ascii", "replace").decode()
+                print(f"    {safe_name}: {buzz['total']} posts "
+                      f"({buzz['bearish']}B/{buzz['bullish']}L/{buzz['neutral']}N)")
+
+    # When alerting, always classify credit impact
+    if alert and not classify:
+        classify = True
+
     # Optionally classify
     if classify:
         print(f"\n  Classifying credit impact for {len(movers)} movers...")
@@ -900,6 +923,13 @@ def run_scan(
         if is_new:
             new_count += 1
             log_signal_change(mover)
+
+            # Send Telegram alert for new movers
+            if alert:
+                social_buzz = getattr(mover, "_social_buzz", None)
+                send_equity_alert(mover, social_buzz=social_buzz, send=True)
+                safe_name = mover.entity_name[:25].encode("ascii", "replace").decode()
+                print(f"    ALERTED: {safe_name}")
 
     conn.close()
 
@@ -1155,6 +1185,10 @@ def main():
                         help="Skip news lookup for movers")
     parser.add_argument("--classify", action="store_true",
                         help="Classify credit impact via LLM")
+    parser.add_argument("--social", action="store_true",
+                        help="Include social buzz lookup (Gopher + Desearch)")
+    parser.add_argument("--alert", action="store_true",
+                        help="Send Telegram alerts for detected movers")
     args = parser.parse_args()
 
     if args.stats:
@@ -1176,6 +1210,8 @@ def main():
         threshold_pct=args.threshold,
         fetch_news=not args.no_news,
         classify=args.classify,
+        social=args.social,
+        alert=args.alert,
     )
 
 
