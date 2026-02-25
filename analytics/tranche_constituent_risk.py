@@ -881,6 +881,16 @@ def run_single_name_blowout(
         norm.ppf(max(1e-10, min(1 - 1e-10, pd))) for pd in pd_base
     ])
 
+    # Precompute +1bp parallel thresholds for CS01 calculation
+    thresholds_1bp = np.array([
+        norm.ppf(max(1e-10, min(1 - 1e-10,
+            default_probability(
+                hazard_rate_from_spread(c.spread_5y_bps + 1.0, c.recovery_rate),
+                MATURITY_YEARS
+            ))))
+        for c in curves_base
+    ])
+
     def _fast_el_vec(thresh_vec):
         total = 0.0
         for k in range(len(nodes)):
@@ -892,6 +902,8 @@ def run_single_name_blowout(
         return max(0.0, total)
 
     el_base = _fast_el_vec(thresholds_base)
+    el_base_1bp = _fast_el_vec(thresholds_1bp)
+    cs01_base_total = (el_base_1bp - el_base) * notional
 
     # Header
     print(f"\n{'='*100}")
@@ -901,13 +913,15 @@ def run_single_name_blowout(
     print(f"{'='*100}")
 
     for bump in bumps_bps:
-        print(f"\n  {'':->100}")
-        print(f"  SINGLE NAME +{bump}bp")
-        print(f"  {'':->100}")
+        print(f"\n  {'':->120}")
+        print(f"  SINGLE NAME +{bump}bp    |    Base total CS01: EUR {cs01_base_total:,.0f}")
+        print(f"  {'':->120}")
         print(f"  {'#':>4}  {'Name':<20} {'Sector':<12} {'Rtg':>4} {'Base Spd':>9} "
-              f"{'Shocked':>9} {'P&L':>14} {'%% Notional':>11} {'vs JTD':>9}")
+              f"{'Shocked':>9} {'P&L':>14} {'CS01 From':>12} {'CS01 To':>12} "
+              f"{'CS01 Chg':>10} {'vs JTD':>9}")
         print(f"  {'':->4}  {'':->20} {'':->12} {'':->4} {'':->9} "
-              f"{'':->9} {'':->14} {'':->11} {'':->9}")
+              f"{'':->9} {'':->14} {'':->12} {'':->12} "
+              f"{'':->10} {'':->9}")
 
         # Fast: bump one name's PD in the threshold vector, reprice 5Y EL
         all_pnl = []
@@ -915,12 +929,25 @@ def run_single_name_blowout(
             new_spread = max(1.0, c.spread_5y_bps + bump)
             new_hr = hazard_rate_from_spread(new_spread, c.recovery_rate)
             new_pd = default_probability(new_hr, MATURITY_YEARS)
+            new_thresh = norm.ppf(max(1e-10, min(1 - 1e-10, new_pd)))
 
+            # EL after single-name blowout
             thresh_bumped = thresholds_base.copy()
-            thresh_bumped[i] = norm.ppf(max(1e-10, min(1 - 1e-10, new_pd)))
-
+            thresh_bumped[i] = new_thresh
             el_bumped = _fast_el_vec(thresh_bumped)
             pnl = (el_bumped - el_base) * notional
+
+            # CS01 after blowout: parallel +1bp on top of the shocked state
+            # Non-shocked names use precomputed thresholds_1bp
+            # Shocked name i: bump from (base+X) to (base+X+1)
+            thresh_shocked_1bp = thresholds_1bp.copy()
+            new_spread_1bp = new_spread + 1.0
+            new_hr_1bp = hazard_rate_from_spread(new_spread_1bp, c.recovery_rate)
+            new_pd_1bp = default_probability(new_hr_1bp, MATURITY_YEARS)
+            thresh_shocked_1bp[i] = norm.ppf(max(1e-10, min(1 - 1e-10, new_pd_1bp)))
+
+            el_bumped_1bp = _fast_el_vec(thresh_shocked_1bp)
+            cs01_shocked = (el_bumped_1bp - el_bumped) * notional
 
             # JTD for comparison
             w_i = 1.0 / n
@@ -934,6 +961,8 @@ def run_single_name_blowout(
                 "base_spread": c.spread_5y_bps, "shocked_spread": new_spread,
                 "pnl": pnl, "pct_notional": pnl / notional * 100, "jtd": jtd,
                 "pnl_vs_jtd": pnl / jtd * 100 if jtd > 0 else 0,
+                "cs01_from": cs01_base_total, "cs01_to": cs01_shocked,
+                "cs01_chg": cs01_shocked - cs01_base_total,
             })
 
         all_pnl.sort(key=lambda x: x["pnl"], reverse=True)
@@ -942,16 +971,18 @@ def run_single_name_blowout(
         for rank, r in enumerate(all_pnl[:top_n], 1):
             print(f"  {rank:>4}  {r['name']:<20} {r['sector']:<12} {r['rating']:>4} "
                   f"{r['base_spread']:>8.0f}bp {r['shocked_spread']:>8.0f}bp "
-                  f"{r['pnl']:>+13,.0f} {r['pct_notional']:>+10.2f}% "
-                  f"{r['pnl_vs_jtd']:>8.1f}%")
+                  f"{r['pnl']:>+13,.0f} {r['cs01_from']:>11,.0f} {r['cs01_to']:>11,.0f} "
+                  f"{r['cs01_chg']:>+9,.0f} {r['pnl_vs_jtd']:>8.1f}%")
 
-        # Averages
+        # Summary
         avg_pnl = np.mean([r["pnl"] for r in all_pnl])
+        avg_cs01_to = np.mean([r["cs01_to"] for r in all_pnl])
         max_pnl = all_pnl[0]["pnl"]
         min_pnl = all_pnl[-1]["pnl"]
-        print(f"\n  Worst single-name P&L:  EUR {max_pnl:>+13,.0f}  ({all_pnl[0]['name']})")
-        print(f"  Best single-name P&L:   EUR {min_pnl:>+13,.0f}  ({all_pnl[-1]['name']})")
+        print(f"\n  Worst single-name P&L:   EUR {max_pnl:>+13,.0f}  ({all_pnl[0]['name']})")
+        print(f"  Best single-name P&L:    EUR {min_pnl:>+13,.0f}  ({all_pnl[-1]['name']})")
         print(f"  Average across {n} names: EUR {avg_pnl:>+13,.0f}")
+        print(f"  Avg CS01 after blowout:  EUR {avg_cs01_to:>13,.0f}  (base: {cs01_base_total:,.0f})")
 
     print(f"\n  {'':->100}")
     print(f"  Notes:")
