@@ -1,4 +1,4 @@
-# Getting Started — APEX S44 Monitor
+# Getting Started — Macro Credit Monitor
 
 ## Quick Start (5 minutes)
 

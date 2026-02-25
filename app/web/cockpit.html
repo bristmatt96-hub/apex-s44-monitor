@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cockpit | Strategies in Credit</title>
+    <title>Cockpit | Macro Credit Monitor</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -79,14 +79,14 @@
 
         /* Table */
         table{width:100%;border-collapse:collapse}
-        th{text-align:left;padding:6px 8px;font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.5px;color:var(--text-dim);border-bottom:1px solid var(--border);font-family:var(--font-mono)}
+        th{text-align:left;padding:6px 8px;font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.5px;color:var(--text-dim);border-bottom:1px solid var(--border);font-family:var(--font-mono);background:var(--bg-card-alt)}
         td{padding:6px 8px;font-size:12px;border-bottom:1px solid var(--border-dim)}
-        tr:hover td{background:var(--bg-hover)}
+        tr:hover td{background:rgba(59,130,246,0.04)}
 
         /* Metric Box */
         .mbox{background:var(--bg-base);border-radius:6px;padding:10px 12px}
-        .mbox .lbl{font-size:10px;font-weight:500;color:var(--text-dim);text-transform:uppercase;letter-spacing:.4px;font-family:var(--font-mono);margin-bottom:4px}
-        .mbox .val{font-size:18px;font-weight:700;font-family:var(--font-mono);line-height:1.1}
+        .mbox .lbl{font-size:9px;font-weight:500;color:var(--text-dim);text-transform:uppercase;letter-spacing:.6px;font-family:var(--font-mono);margin-bottom:4px}
+        .mbox .val{font-size:24px;font-weight:700;font-family:var(--font-mono);line-height:1.1}
         .mbox .sub{font-size:10px;color:var(--text-muted);font-family:var(--font-mono);margin-top:2px}
 
         /* Risk bar */
@@ -204,6 +204,45 @@ const pnlCls2 = n => { const v=Number(n); return v>0?'pnl-pos':v<0?'pnl-neg':'pn
 const trunc = (s,n=80) => { const t=s||''; return t.length>n?t.substring(0,n)+'\u2026':t; };
 const convDots = c => Array.from({length:5},(_,i) => <span key={i} className={i<c?'on':'off'}>{'\u25CF'}</span>);
 
+/* Heatmap utility — returns style object for React */
+function heatBg(value, min, max, r, g, b) {
+    if (value == null || value === 0) return {};
+    const clamped = Math.max(min, Math.min(max, Math.abs(value)));
+    const ratio = (clamped - min) / (max - min);
+    const opacity = 0.05 + ratio * 0.20;
+    return {background: `rgba(${r},${g},${b},${opacity.toFixed(2)})`};
+}
+function heatGap(gap) {
+    if (gap >= 50) return heatBg(gap, 50, 100, 239, 68, 68);
+    if (gap >= 25) return heatBg(gap, 25, 50, 245, 158, 11);
+    if (gap >= 10) return heatBg(gap, 10, 25, 59, 130, 246);
+    return {};
+}
+function heatScore(score, r, g, b) {
+    return heatBg(score, 20, 80, r, g, b);
+}
+function heatPnl(pnl) {
+    if (pnl > 0) return heatBg(pnl, 0, 500000, 34, 197, 94);
+    if (pnl < 0) return heatBg(-pnl, 0, 500000, 239, 68, 68);
+    return {};
+}
+function heatMisprc(bps) {
+    if (bps > 0) return heatBg(bps, 0, 100, 34, 197, 94);
+    if (bps < 0) return heatBg(-bps, 0, 100, 239, 68, 68);
+    return {};
+}
+function heatRV(score) {
+    if (score > 0) return heatBg(score, 0, 3, 34, 197, 94);
+    if (score < 0) return heatBg(-score, 0, 3, 239, 68, 68);
+    return {};
+}
+function heatRiskLimit(current, limit) {
+    const ratio = Math.abs(current) / limit;
+    if (ratio > 0.9) return heatBg(ratio, 0.9, 1.1, 239, 68, 68);
+    if (ratio > 0.7) return heatBg(ratio, 0.7, 0.9, 245, 158, 11);
+    return {};
+}
+
 async function fetchJSON(url) {
     try { const r = await fetch(API+url); if(!r.ok) throw new Error(r.status); return await r.json(); }
     catch(e) { console.error('Fetch:',url,e); return null; }
@@ -269,7 +308,7 @@ function TopIdeasPanel({screen}) {
             <td className="tac"><span className="dots">{convDots(n.conviction)}</span></td>
             <td className="tar mono tw">{fmt(n.current_spread)}<span className="td">bp</span></td>
             <td className="tar mono ts">{fmt(n.fair_spread)}</td>
-            <td className={`tar mono fm ${n.mispricing_bps>0?'tg':'tr'}`}>{n.mispricing_bps>0?'+':''}{fmt(n.mispricing_bps)}</td>
+            <td className={`tar mono fm ${n.mispricing_bps>0?'tg':'tr'}`} style={heatMisprc(n.mispricing_bps)}>{n.mispricing_bps>0?'+':''}{fmt(n.mispricing_bps)}</td>
             <td className="tm" style={{fontSize:11}}>{trunc(n.thesis,50)}</td>
         </tr>
     );
@@ -329,7 +368,7 @@ function RVPanel({rv}) {
     const RVName = ({n,type}) => {
         const cls = type==='cheap'?'tg':'tr';
         return (
-            <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',padding:'4px 0',borderBottom:'1px solid var(--border-dim)'}}>
+            <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',padding:'4px 0',borderBottom:'1px solid var(--border-dim)', ...heatRV(n.composite_score)}}>
                 <div><span className="tw" style={{fontSize:12}}>{trunc(n.entity_name,22)}</span>
                     <span className="td" style={{fontSize:10,marginLeft:4}}>{n.sector}</span></div>
                 <div className="mono tar" style={{fontSize:11}}>
@@ -410,7 +449,7 @@ function ScenariosPanel({scenarios}) {
                             <td className="tw">{s.name}</td>
                             <td className={`tar mono ${pnlCls(s.portfolio_pnl)}`}>{fmtK(s.portfolio_pnl)}</td>
                             <td className={`tar mono ${pnlCls(s.hedge_pnl)}`}>{fmtK(s.hedge_pnl)}</td>
-                            <td className={`tar mono fb ${pnlCls(s.combined_pnl)}`}>{fmtK(s.combined_pnl)}</td>
+                            <td className={`tar mono fb ${pnlCls(s.combined_pnl)}`} style={heatPnl(s.combined_pnl)}>{fmtK(s.combined_pnl)}</td>
                             <td className={`tar mono ${pnlCls(s.combined_pnl)}`}>{s.pct_nav>0?'+':''}{s.pct_nav}%</td>
                             <td className="tm" style={{fontSize:11}}>{trunc(s.worst_position,32)}</td>
                         </tr>
@@ -524,7 +563,7 @@ function PortfolioRiskTab({d}) {
                             const val = typeof lim.current==='number'?(lim.unit==='$'?'$'+fmt(lim.current):fmt(lim.current,1)+'%'):String(lim.current);
                             const limVal = lim.unit==='$'?'$'+fmt(lim.limit):fmt(lim.limit)+'%';
                             return (
-                                <div key={i} style={{padding:'6px 0',borderBottom:'1px solid var(--border-dim)'}}>
+                                <div key={i} style={{padding:'6px 0',borderBottom:'1px solid var(--border-dim)', ...heatRiskLimit(lim.current, lim.limit)}}>
                                     <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:4}}>
                                         <div style={{display:'flex',alignItems:'center',gap:6}}>
                                             <TrafficDot status={lim.status} />
@@ -909,17 +948,17 @@ function EquityBridgeTab() {
                                         <td className="mono ts" style={{fontSize:11}}>{n.equity_ticker || <span className="td">private</span>}</td>
                                         <td className="td" style={{fontSize:11}}>{n.sector}</td>
                                         <td className="tar mono tw">{n.cds_spread ? fmt(n.cds_spread)+'bp' : '--'}</td>
-                                        <td className="tar mono">
+                                        <td className="tar mono" style={heatScore(n.credit_signal_score, 239, 68, 68)}>
                                             <span style={{color:n.credit_signal_score>=60?'var(--accent-red)':n.credit_signal_score>=40?'var(--accent-amber)':'var(--text-secondary)'}}>
                                                 {n.credit_signal_score!=null ? n.credit_signal_score.toFixed(1) : '--'}
                                             </span>
                                         </td>
-                                        <td className="tar mono">
+                                        <td className="tar mono" style={heatScore(n.equity_repricing_score, 34, 197, 94)}>
                                             <span style={{color:n.equity_repricing_score!=null?(n.equity_repricing_score>=60?'var(--accent-green)':n.equity_repricing_score>=40?'var(--accent-amber)':'var(--text-dim)'):'var(--text-dim)'}}>
                                                 {n.equity_repricing_score != null ? n.equity_repricing_score.toFixed(1) : '--'}
                                             </span>
                                         </td>
-                                        <td className="tar mono fb" style={{color:gapColor(n.gap_score||0)}}>
+                                        <td className="tar mono fb" style={{color:gapColor(n.gap_score||0), ...heatGap(n.gap_score||0)}}>
                                             {n.gap_score != null ? n.gap_score.toFixed(1) : '--'}
                                         </td>
                                         <td className="tac"><Badge type={signalBadge(n.gap_signal)}>{n.gap_signal}</Badge></td>
@@ -1070,14 +1109,15 @@ function App() {
             {/* HEADER */}
             <header className="ck-header">
                 <div className="ck-brand">
-                    <h1><em>Strategies</em> in Credit</h1>
+                    <h1><em>Macro Credit</em> Monitor</h1>
                     <span className="sep">|</span>
                     <span className="sub">Cockpit</span>
                 </div>
                 <div className="ck-status">
                     <div className="nav-links">
-                        <a href="/" className="nav-link">Screen</a>
+                        <a href="/" className="nav-link">Dashboard</a>
                         <a href="/tranches" className="nav-link">Tranches</a>
+                        <a href="/swaptions" className="nav-link">Swaptions</a>
                         <a href="/risk-calculator" className="nav-link">Risk Calc</a>
                     </div>
                     {d.dispersion && d.dispersion.regime &&
@@ -1121,7 +1161,7 @@ function App() {
             {/* FOOTER */}
             <footer className="ck-footer">
                 <div className="inner">
-                    <span>Strategies in Credit v2.0 &mdash; iTraxx Xover S44 Cockpit</span>
+                    <span>Macro Credit Monitor v2.0 &mdash; iTraxx S44 Cockpit</span>
                     <span>Updated {lastUpdated}</span>
                 </div>
             </footer>

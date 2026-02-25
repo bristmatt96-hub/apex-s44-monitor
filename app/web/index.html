@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Strategies in Credit | European Credit Relative Value</title>
+    <title>Dashboard | Macro Credit Monitor</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -194,13 +194,14 @@
             color: var(--text-dim);
             border-bottom: 1px solid var(--border);
             font-family: var(--font-mono);
+            background: var(--bg-card-alt);
         }
         td {
             padding: 7px 8px;
             font-size: 12px;
             border-bottom: 1px solid var(--border-dim);
         }
-        tr.row:hover { background: var(--bg-hover); }
+        tr.row:hover { background: rgba(59,130,246,0.04); }
 
         /* ========================================================
            CONVICTION DOTS
@@ -261,16 +262,16 @@
             padding: 10px 12px;
         }
         .metric-box .label {
-            font-size: 10px;
+            font-size: 9px;
             font-weight: 500;
             color: var(--text-dim);
             text-transform: uppercase;
-            letter-spacing: 0.4px;
+            letter-spacing: 0.6px;
             font-family: var(--font-mono);
             margin-bottom: 4px;
         }
         .metric-box .value {
-            font-size: 20px;
+            font-size: 24px;
             font-weight: 700;
             font-family: var(--font-mono);
             line-height: 1.1;
@@ -379,11 +380,18 @@
     <header>
         <div class="inner">
             <div class="brand">
-                <h1><em>Credit</em> Catalyst</h1>
+                <h1><em>Macro Credit</em> Monitor</h1>
                 <span class="sep">|</span>
-                <span class="subtitle">European Credit Relative Value</span>
+                <span class="subtitle">iTraxx S44 Dashboard</span>
             </div>
             <div class="status">
+                <nav style="display:flex;gap:6px;margin-right:14px;">
+                    <a href="/" style="font-size:10px;font-family:var(--font-mono);padding:4px 10px;border-radius:4px;color:var(--accent-blue);text-decoration:none;border:1px solid var(--accent-blue);background:var(--blue-bg);">Dashboard</a>
+                    <a href="/cockpit" style="font-size:10px;font-family:var(--font-mono);padding:4px 10px;border-radius:4px;color:var(--text-muted);text-decoration:none;border:1px solid var(--border);">Cockpit</a>
+                    <a href="/tranches" style="font-size:10px;font-family:var(--font-mono);padding:4px 10px;border-radius:4px;color:var(--text-muted);text-decoration:none;border:1px solid var(--border);">Tranches</a>
+                    <a href="/swaptions" style="font-size:10px;font-family:var(--font-mono);padding:4px 10px;border-radius:4px;color:var(--text-muted);text-decoration:none;border:1px solid var(--border);">Swaptions</a>
+                    <a href="/risk-calculator" style="font-size:10px;font-family:var(--font-mono);padding:4px 10px;border-radius:4px;color:var(--text-muted);text-decoration:none;border:1px solid var(--border);">Risk Calc</a>
+                </nav>
                 <span id="regime-badge" class="badge badge-regime">--</span>
                 <span id="header-stats" class="stat-line">Loading...</span>
                 <span id="header-date" class="stat-line"></span>
@@ -537,7 +545,7 @@
          ============================================================ -->
     <footer>
         <div class="inner">
-            <span>Strategies in Credit v1.0 &mdash; iTraxx Xover S44</span>
+            <span>Macro Credit Monitor v2.0 &mdash; iTraxx S44</span>
             <span id="last-updated"></span>
         </div>
     </footer>
@@ -558,6 +566,36 @@
     const pnlClass = (n) => n > 0 ? 'text-green' : n < 0 ? 'text-red' : 'text-sec';
     const esc = (s) => { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; };
     const trunc = (s, n=80) => { const t = s || ''; return t.length > n ? t.substring(0, n) + '\u2026' : t; };
+
+    /* Heatmap utility — returns inline style string */
+    function heatBg(value, min, max, r, g, b) {
+        if (value == null || value === 0) return '';
+        var clamped = Math.max(min, Math.min(max, Math.abs(value)));
+        var ratio = (clamped - min) / (max - min);
+        var opacity = 0.05 + ratio * 0.20;
+        return 'background:rgba(' + r + ',' + g + ',' + b + ',' + opacity.toFixed(2) + ');';
+    }
+    function heatPnl(pnl) {
+        if (pnl > 0) return heatBg(pnl, 0, 500000, 34, 197, 94);
+        if (pnl < 0) return heatBg(-pnl, 0, 500000, 239, 68, 68);
+        return '';
+    }
+    function heatMisprc(bps) {
+        if (bps > 0) return heatBg(bps, 0, 100, 34, 197, 94);
+        if (bps < 0) return heatBg(-bps, 0, 100, 239, 68, 68);
+        return '';
+    }
+    function heatRV(score) {
+        if (score > 0) return heatBg(score, 0, 3, 34, 197, 94);
+        if (score < 0) return heatBg(-score, 0, 3, 239, 68, 68);
+        return '';
+    }
+    function heatRiskLimit(current, limit) {
+        var ratio = Math.abs(current) / limit;
+        if (ratio > 0.9) return heatBg(ratio, 0.9, 1.1, 239, 68, 68);
+        if (ratio > 0.7) return heatBg(ratio, 0.7, 0.9, 245, 158, 11);
+        return '';
+    }
 
     function safe(el, html) {
         el.innerHTML = DOMPurify.sanitize(html, {
@@ -627,7 +665,7 @@
             '<td class="text-center">' + convDots(n.conviction) + '</td>' +
             '<td class="text-right mono text-w">' + fmt(n.current_spread) + '<span class="text-dim">bp</span></td>' +
             '<td class="text-right mono text-sec">' + fmt(n.fair_spread) + '</td>' +
-            '<td class="text-right mono font-medium ' + (n.mispricing_bps > 0 ? 'text-green' : 'text-red') + '">' +
+            '<td class="text-right mono font-medium ' + (n.mispricing_bps > 0 ? 'text-green' : 'text-red') + '" style="' + heatMisprc(n.mispricing_bps) + '">' +
                 (n.mispricing_bps > 0 ? '+' : '') + fmt(n.mispricing_bps) + '</td>' +
             '<td class="text-muted" style="font-size:11px">' + esc(trunc(n.thesis, 55)) + '</td></tr>';
         safe(document.getElementById('top-longs'), (data.top_longs || []).map(row).join(''));
@@ -698,7 +736,7 @@
                     ? (lim.unit === '$' ? '$' + fmt(lim.current) : fmt(lim.current, 1) + '%')
                     : String(lim.current);
                 var limVal = lim.unit === '$' ? '$' + fmt(lim.limit) : fmt(lim.limit) + '%';
-                return '<div style="padding:6px 0; border-bottom:1px solid ' + 'var(--border-dim)' + ';">' +
+                return '<div style="padding:6px 0; border-bottom:1px solid var(--border-dim);' + heatRiskLimit(lim.current, lim.limit) + '">' +
                     '<div class="flex items-center justify-between" style="margin-bottom:4px;">' +
                     '<div class="flex items-center gap-6">' + trafficDot(lim.status) +
                     '<span class="text-sec" style="font-size:12px;">' + esc(lim.metric) + '</span></div>' +
@@ -743,7 +781,7 @@
 
         var renderName = function(n, type) {
             var cls = type === 'cheap' ? 'text-green' : 'text-red';
-            return '<div class="flex items-center justify-between" style="padding:4px 0; border-bottom:1px solid var(--border-dim);">' +
+            return '<div class="flex items-center justify-between" style="padding:4px 0; border-bottom:1px solid var(--border-dim);' + heatRV(n.composite_score) + '">' +
                 '<div><span class="text-w" style="font-size:12px;">' + esc(trunc(n.entity_name, 22)) + '</span>' +
                 '<span class="text-dim" style="font-size:10px; margin-left:4px;">' + esc(n.sector) + '</span></div>' +
                 '<div class="mono text-right" style="font-size:11px;">' +
@@ -785,7 +823,7 @@
                 '<td class="text-w">' + esc(s.name) + '</td>' +
                 '<td class="text-right mono ' + pnlClass(s.portfolio_pnl) + '">' + fmtPnl(s.portfolio_pnl) + '</td>' +
                 '<td class="text-right mono ' + pnlClass(s.hedge_pnl) + '">' + fmtPnl(s.hedge_pnl) + '</td>' +
-                '<td class="text-right mono font-bold ' + cls + '">' + fmtPnl(s.combined_pnl) + '</td>' +
+                '<td class="text-right mono font-bold ' + cls + '" style="' + heatPnl(s.combined_pnl) + '">' + fmtPnl(s.combined_pnl) + '</td>' +
                 '<td class="text-right mono ' + cls + '">' + (s.pct_nav > 0 ? '+' : '') + s.pct_nav + '%</td>' +
                 '<td class="text-muted" style="font-size:11px;">' + esc(trunc(s.worst_position, 32)) + '</td></tr>';
         }).join('');

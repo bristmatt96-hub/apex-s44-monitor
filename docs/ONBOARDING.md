@@ -1,4 +1,4 @@
-# Apex S44 Monitor — Onboarding Guide
+# Macro Credit Monitor — Onboarding Guide
 
 **Last updated**: 2026-02-24
 **Branch**: `credit-catalyst`

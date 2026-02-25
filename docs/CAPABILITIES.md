@@ -1,4 +1,4 @@
-# APEX S44 Monitor — Capabilities
+# Macro Credit Monitor — Capabilities
 
 AI-powered European credit relative value platform. Monitors 75 iTraxx Crossover S44 + 125 Main S44 names across regulatory filings, news, social media, ratings, and earnings. Scores credit signals against equity repricing to find tradeable gaps. Targets $500M NAV, 10-position portfolio.
 

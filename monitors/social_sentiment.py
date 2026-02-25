@@ -502,7 +502,7 @@ def query_sn13(
 
     try:
         import macrocosmos as mc
-        client = mc.Sn13Client(api_key=api_key, app_name="apex-s44-monitor")
+        client = mc.Sn13Client(api_key=api_key, app_name="macro-credit-monitor")
 
         start_date = (datetime.now() - timedelta(days=days_back)).strftime("%Y-%m-%d")
 
@@ -588,7 +588,7 @@ def query_sn13_accounts(
 
         for attempt in range(2):
             try:
-                client = mc.Sn13Client(api_key=api_key, app_name="apex-s44-monitor")
+                client = mc.Sn13Client(api_key=api_key, app_name="macro-credit-monitor")
                 response = client.sn13.OnDemandData(
                     source="X",
                     keywords=keywords,
