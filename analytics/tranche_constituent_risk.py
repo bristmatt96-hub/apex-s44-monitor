@@ -646,6 +646,322 @@ def run_report(
     print(f"{'='*100}\n")
 
 
+# ─── Scenario Analysis ────────────────────────────────────────────────
+
+def _build_vectors(curves):
+    """Extract PD, LGD, weight vectors from curve list."""
+    n = len(curves)
+    pd_vec = np.array([c.default_prob_5y for c in curves])
+    lgd_vec = np.array([1.0 - c.recovery_rate for c in curves])
+    w_vec = np.ones(n) / n
+    return pd_vec, lgd_vec, w_vec
+
+
+def _parallel_shift_curves(curves, shift_bps: float):
+    """Return new curve list with all spreads shifted by shift_bps."""
+    shifted = []
+    for c in curves:
+        new_spread = max(1.0, c.spread_5y_bps + shift_bps)
+        new_rec = c.recovery_rate  # keep recovery fixed for scenario
+        new_hr = hazard_rate_from_spread(new_spread, new_rec)
+        shifted.append(CDSCurve(
+            name=c.name, ticker=c.ticker, sector=c.sector, rating=c.rating,
+            spread_5y_bps=new_spread,
+            hazard_rate=new_hr,
+            survival_prob_5y=survival_probability(new_hr, MATURITY_YEARS),
+            default_prob_5y=default_probability(new_hr, MATURITY_YEARS),
+            recovery_rate=new_rec,
+            source=c.source, weight=c.weight,
+        ))
+    return shifted
+
+
+def _fast_total_cs01(curves, attach, detach, corr, notional, running_coupon_bps):
+    """Total CS01 via 1bp parallel bump (O(N_quad), not O(N * N_quad))."""
+    base_mtm = _tranche_mtm(
+        attach, detach, *_build_vectors(curves), corr, notional, running_coupon_bps
+    )
+    bumped = _parallel_shift_curves(curves, 1.0)
+    bumped_mtm = _tranche_mtm(
+        attach, detach, *_build_vectors(bumped), corr, notional, running_coupon_bps
+    )
+    return bumped_mtm - base_mtm
+
+
+def run_scenario_analysis(
+    scenarios_bps: list = None,
+    index_name: str = "Main",
+    tranche_label: str = "0-3%",
+    notional_mm: float = 10.0,
+    index_spread_bps: float = None,
+):
+    """Run spread scenario analysis with full reprice P&L.
+
+    Scenarios are parallel shifts to all constituent spreads.
+    Base correlation held FIXED (market convention).
+    Shows full-reprice P&L, first-order estimate, and convexity.
+    """
+    if scenarios_bps is None:
+        scenarios_bps = [-5, +10, +25]
+
+    notional = notional_mm * 1_000_000
+    ref_spread = index_spread_bps or S44_MARKET["ref_spread_bps"]
+    running_coupon = S44_MARKET["running_coupon_bps"] if index_name == "Main" else 0.0
+
+    # Tranche definition
+    tranches = MAIN_TRANCHES if index_name == "Main" else CROSSOVER_TRANCHES
+    tranche_def = None
+    for t in tranches:
+        if t["label"] == tranche_label:
+            tranche_def = t
+            break
+    if not tranche_def:
+        print(f"  ERROR: Tranche {tranche_label} not found")
+        return
+
+    attach = tranche_def["attach"]
+    detach = tranche_def["detach"]
+
+    # Calibrate base correlation (held fixed across scenarios)
+    corr = calibrate_s44_base_correlation(
+        tranche_label=tranche_label,
+        ref_spread=ref_spread,
+        running_coupon=running_coupon,
+        verbose=True,
+    )
+    if corr is None:
+        corr = _parametric_base_correlation(detach, index_name)
+
+    # Generate base curves
+    curves_base = generate_main_curves(125, ref_spread, 25)
+    pd_base, lgd_base, w_base = _build_vectors(curves_base)
+
+    # Base case MTM and risk
+    mtm_base = _tranche_mtm(attach, detach, pd_base, lgd_base, w_base, corr, notional, running_coupon)
+    cs01_base = _fast_total_cs01(curves_base, attach, detach, corr, notional, running_coupon)
+    bc01_base = compute_bc01(curves_base, attach, detach, corr, notional, running_coupon)
+
+    avg_hr = hazard_rate_from_spread(ref_spread, ISDA_RECOVERY)
+    index_rpv01 = risky_duration_approx(avg_hr)
+    index_cs01 = index_rpv01 * (1.0 / 10_000) * notional
+    delta_base = cs01_base / index_cs01 if index_cs01 > 0 else 0.0
+
+    # Header
+    print(f"\n{'='*100}")
+    print(f"  SCENARIO ANALYSIS -- iTraxx {index_name} S44 {tranche_label} 5Y")
+    print(f"  Notional: EUR {notional:,.0f}  |  Base correlation: {corr:.1%} (FIXED)")
+    print(f"  Protection buyer perspective (long protection = long credit risk)")
+    print(f"{'='*100}")
+
+    # Base case row
+    print(f"\n  {'':->100}")
+    print(f"  {'Scenario':<16} {'Index':>7} {'MTM':>16} {'P&L Full':>14} {'P&L Linear':>14} "
+          f"{'Convexity':>12} {'CS01':>12} {'Delta':>8} {'BC01':>12}")
+    print(f"  {'':->16} {'':->7} {'':->16} {'':->14} {'':->14} "
+          f"{'':->12} {'':->12} {'':->8} {'':->12}")
+    print(f"  {'BASE':<16} {ref_spread:>6.0f}bp {mtm_base:>15,.0f} {'--':>14} {'--':>14} "
+          f"{'--':>12} {cs01_base:>11,.0f} {delta_base:>7.2f}x {bc01_base['bc01_eur']:>11,.0f}")
+
+    # Scenario rows
+    for shift in sorted(scenarios_bps):
+        new_spread = ref_spread + shift
+        curves_scen = _parallel_shift_curves(curves_base, shift)
+        pd_scen, lgd_scen, w_scen = _build_vectors(curves_scen)
+
+        # Full reprice
+        mtm_scen = _tranche_mtm(attach, detach, pd_scen, lgd_scen, w_scen, corr, notional, running_coupon)
+        pnl_full = mtm_scen - mtm_base
+
+        # First-order (linear) P&L
+        pnl_linear = cs01_base * shift
+
+        # Convexity = full - linear
+        convexity = pnl_full - pnl_linear
+
+        # Risk at scenario level
+        cs01_scen = _fast_total_cs01(curves_scen, attach, detach, corr, notional, running_coupon)
+        bc01_scen = compute_bc01(curves_scen, attach, detach, corr, notional, running_coupon)
+
+        avg_hr_scen = hazard_rate_from_spread(new_spread, ISDA_RECOVERY)
+        idx_rpv01_scen = risky_duration_approx(avg_hr_scen)
+        idx_cs01_scen = idx_rpv01_scen * (1.0 / 10_000) * notional
+        delta_scen = cs01_scen / idx_cs01_scen if idx_cs01_scen > 0 else 0.0
+
+        sign = "+" if shift >= 0 else ""
+        label = f"Main {sign}{shift}bp"
+        print(f"  {label:<16} {new_spread:>6.0f}bp {mtm_scen:>15,.0f} {pnl_full:>+13,.0f} {pnl_linear:>+13,.0f} "
+              f"{convexity:>+11,.0f} {cs01_scen:>11,.0f} {delta_scen:>7.2f}x {bc01_scen['bc01_eur']:>11,.0f}")
+
+    # P&L summary
+    print(f"\n  {'':->100}")
+    print(f"  Notes:")
+    print(f"    - P&L Full:    full model reprice at shocked spreads (captures convexity)")
+    print(f"    - P&L Linear:  CS01 x spread move (first-order only)")
+    print(f"    - Convexity:   Full - Linear (positive = equity tranche convexity benefit)")
+    print(f"    - Correlation held fixed at {corr:.1%} across all scenarios")
+    print(f"    - Parallel shift applied to all 125 constituents")
+    print(f"{'='*100}\n")
+
+
+# ─── Single-Name Blowout Scenarios ────────────────────────────────────
+
+def _single_name_bump(curves, name_idx: int, bump_bps: float):
+    """Return new curve list with only name_idx spread bumped."""
+    shifted = []
+    for i, c in enumerate(curves):
+        if i == name_idx:
+            new_spread = max(1.0, c.spread_5y_bps + bump_bps)
+            new_hr = hazard_rate_from_spread(new_spread, c.recovery_rate)
+            shifted.append(CDSCurve(
+                name=c.name, ticker=c.ticker, sector=c.sector, rating=c.rating,
+                spread_5y_bps=new_spread, hazard_rate=new_hr,
+                survival_prob_5y=survival_probability(new_hr, MATURITY_YEARS),
+                default_prob_5y=default_probability(new_hr, MATURITY_YEARS),
+                recovery_rate=c.recovery_rate, source=c.source, weight=c.weight,
+            ))
+        else:
+            shifted.append(c)
+    return shifted
+
+
+def run_single_name_blowout(
+    bumps_bps: list = None,
+    index_name: str = "Main",
+    tranche_label: str = "0-3%",
+    notional_mm: float = 10.0,
+    index_spread_bps: float = None,
+    top_n: int = 5,
+):
+    """Single-name blowout scenario: one name widens, rest unchanged.
+
+    For each bump size, shows P&L impact for the top_n most impactful names
+    plus the average across all names.
+    """
+    if bumps_bps is None:
+        bumps_bps = [100, 250, 500]
+
+    notional = notional_mm * 1_000_000
+    ref_spread = index_spread_bps or S44_MARKET["ref_spread_bps"]
+    running_coupon = S44_MARKET["running_coupon_bps"] if index_name == "Main" else 0.0
+
+    tranches = MAIN_TRANCHES if index_name == "Main" else CROSSOVER_TRANCHES
+    tranche_def = None
+    for t in tranches:
+        if t["label"] == tranche_label:
+            tranche_def = t
+            break
+    if not tranche_def:
+        print(f"  ERROR: Tranche {tranche_label} not found")
+        return
+
+    attach = tranche_def["attach"]
+    detach = tranche_def["detach"]
+
+    # Calibrate
+    corr = calibrate_s44_base_correlation(
+        tranche_label=tranche_label, ref_spread=ref_spread,
+        running_coupon=running_coupon, verbose=True,
+    )
+    if corr is None:
+        corr = _parametric_base_correlation(detach, index_name)
+
+    # Base curves and MTM
+    curves_base = generate_main_curves(125, ref_spread, 25)
+    pd_base, lgd_base, w_base = _build_vectors(curves_base)
+    mtm_base = _tranche_mtm(attach, detach, pd_base, lgd_base, w_base, corr, notional, running_coupon)
+    n = len(curves_base)
+
+    # Precompute GH nodes/weights and base EL for fast single-name repricing
+    pd_base, lgd_base, w_base = _build_vectors(curves_base)
+    nodes, weights = _gauss_hermite_nodes_weights(N_QUADRATURE)
+    width = detach - attach
+    sqrt_rho = np.sqrt(max(0.001, corr))
+    sqrt_1mr = np.sqrt(max(0.001, 1.0 - corr))
+    thresholds_base = np.array([
+        norm.ppf(max(1e-10, min(1 - 1e-10, pd))) for pd in pd_base
+    ])
+
+    def _fast_el_vec(thresh_vec):
+        total = 0.0
+        for k in range(len(nodes)):
+            M = nodes[k]
+            cond_pds = norm.cdf((thresh_vec - sqrt_rho * M) / sqrt_1mr)
+            cond_loss = np.sum(w_base * lgd_base * cond_pds)
+            tranche_loss = (min(cond_loss, detach) - min(cond_loss, attach)) / width
+            total += weights[k] * tranche_loss
+        return max(0.0, total)
+
+    el_base = _fast_el_vec(thresholds_base)
+
+    # Header
+    print(f"\n{'='*100}")
+    print(f"  SINGLE-NAME BLOWOUT SCENARIOS -- iTraxx {index_name} S44 {tranche_label} 5Y")
+    print(f"  Notional: EUR {notional:,.0f}  |  Base corr: {corr:.1%} (FIXED)")
+    print(f"  One name widens, rest of portfolio unchanged")
+    print(f"{'='*100}")
+
+    for bump in bumps_bps:
+        print(f"\n  {'':->100}")
+        print(f"  SINGLE NAME +{bump}bp")
+        print(f"  {'':->100}")
+        print(f"  {'#':>4}  {'Name':<20} {'Sector':<12} {'Rtg':>4} {'Base Spd':>9} "
+              f"{'Shocked':>9} {'P&L':>14} {'%% Notional':>11} {'vs JTD':>9}")
+        print(f"  {'':->4}  {'':->20} {'':->12} {'':->4} {'':->9} "
+              f"{'':->9} {'':->14} {'':->11} {'':->9}")
+
+        # Fast: bump one name's PD in the threshold vector, reprice 5Y EL
+        all_pnl = []
+        for i, c in enumerate(curves_base):
+            new_spread = max(1.0, c.spread_5y_bps + bump)
+            new_hr = hazard_rate_from_spread(new_spread, c.recovery_rate)
+            new_pd = default_probability(new_hr, MATURITY_YEARS)
+
+            thresh_bumped = thresholds_base.copy()
+            thresh_bumped[i] = norm.ppf(max(1e-10, min(1 - 1e-10, new_pd)))
+
+            el_bumped = _fast_el_vec(thresh_bumped)
+            pnl = (el_bumped - el_base) * notional
+
+            # JTD for comparison
+            w_i = 1.0 / n
+            lgd_i = 1.0 - c.recovery_rate
+            port_loss = w_i * lgd_i
+            tranche_hit = (min(port_loss, detach) - min(port_loss, attach)) / width
+            jtd = tranche_hit * notional
+
+            all_pnl.append({
+                "idx": i, "name": c.name, "sector": c.sector, "rating": c.rating,
+                "base_spread": c.spread_5y_bps, "shocked_spread": new_spread,
+                "pnl": pnl, "pct_notional": pnl / notional * 100, "jtd": jtd,
+                "pnl_vs_jtd": pnl / jtd * 100 if jtd > 0 else 0,
+            })
+
+        all_pnl.sort(key=lambda x: x["pnl"], reverse=True)
+
+        # Top N worst
+        for rank, r in enumerate(all_pnl[:top_n], 1):
+            print(f"  {rank:>4}  {r['name']:<20} {r['sector']:<12} {r['rating']:>4} "
+                  f"{r['base_spread']:>8.0f}bp {r['shocked_spread']:>8.0f}bp "
+                  f"{r['pnl']:>+13,.0f} {r['pct_notional']:>+10.2f}% "
+                  f"{r['pnl_vs_jtd']:>8.1f}%")
+
+        # Averages
+        avg_pnl = np.mean([r["pnl"] for r in all_pnl])
+        max_pnl = all_pnl[0]["pnl"]
+        min_pnl = all_pnl[-1]["pnl"]
+        print(f"\n  Worst single-name P&L:  EUR {max_pnl:>+13,.0f}  ({all_pnl[0]['name']})")
+        print(f"  Best single-name P&L:   EUR {min_pnl:>+13,.0f}  ({all_pnl[-1]['name']})")
+        print(f"  Average across {n} names: EUR {avg_pnl:>+13,.0f}")
+
+    print(f"\n  {'':->100}")
+    print(f"  Notes:")
+    print(f"    - P&L is full model reprice (one name shocked, 124 unchanged)")
+    print(f"    - vs JTD = P&L as %% of instantaneous jump-to-default loss")
+    print(f"    - At +500bp a name approaches distressed; P&L converges toward JTD")
+    print(f"    - Correlation held fixed at {corr:.1%}")
+    print(f"{'='*100}\n")
+
+
 def main():
     parser = argparse.ArgumentParser(
         description="Per-constituent JTD, CS01, and BC01 for iTraxx tranches"
