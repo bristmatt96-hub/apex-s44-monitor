@@ -28,6 +28,34 @@ from portfolio.earnings_calendar import get_earnings_calendar
 from portfolio.options_greeks import get_options_greeks
 from portfolio.performance_analytics import get_performance_analytics
 
+import numpy as np
+from scipy.stats import norm as scipy_norm
+from analytics.tranche_constituent_risk import (
+    S44_MARKET,
+    generate_main_curves,
+    calibrate_s44_base_correlation,
+    compute_per_name_jtd,
+    compute_per_name_cs01,
+    compute_bc01,
+    _build_vectors,
+    _tranche_mtm,
+    _parallel_shift_curves,
+    _fast_total_cs01,
+)
+from analytics.tranche_pricer import (
+    MAIN_TRANCHES,
+    CROSSOVER_TRANCHES,
+    ISDA_RECOVERY,
+    MATURITY_YEARS,
+    N_QUADRATURE,
+    _parametric_base_correlation,
+    _gauss_hermite_nodes_weights,
+    hazard_rate_from_spread,
+    risky_duration_approx,
+    default_probability,
+    generate_synthetic_cds_curves,
+)
+
 # Page config
 st.set_page_config(
     page_title="Trading Dashboard",
@@ -519,8 +547,9 @@ def main():
                     st.success("✅ Passcode changed successfully!")
 
     # Main content tabs
-    tab1, tab2, tab3, tab4, tab5 = st.tabs([
-        "📊 Portfolio", "📝 New Trade", "📜 Trade History", "📈 Analytics", "🧠 Market Brain"
+    tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
+        "📊 Portfolio", "📝 New Trade", "📜 Trade History",
+        "📈 Analytics", "🧠 Market Brain", "🔬 Tranche Risk"
     ])
 
     # TAB 1: Portfolio Overview
@@ -542,6 +571,10 @@ def main():
     # TAB 5: Market Brain
     with tab5:
         render_brain_tab()
+
+    # TAB 6: Tranche Risk
+    with tab6:
+        render_tranche_risk_tab()
 
 
 def render_portfolio_tab():
@@ -1025,6 +1058,399 @@ def render_brain_tab():
     3. **Disciplined Execution** - A stop is a rule, not a suggestion
     4. **Know Your Edge** - If you don't know why you're in a trade, get out
     """)
+
+
+def _compute_tranche_analysis(index_name, tranche_label, notional_mm, spread_override):
+    """Compute all tranche risk metrics. Returns dict of results or None."""
+    notional = notional_mm * 1_000_000
+
+    # Tranche definition
+    tranches = MAIN_TRANCHES if index_name == "Main" else CROSSOVER_TRANCHES
+    tranche_def = next((t for t in tranches if t["label"] == tranche_label), None)
+    if not tranche_def:
+        return None
+
+    attach = tranche_def["attach"]
+    detach = tranche_def["detach"]
+    width = detach - attach
+    is_equity = attach == 0.0
+
+    # Reference spread
+    if spread_override and spread_override > 0:
+        ref_spread = spread_override
+    elif index_name == "Main":
+        ref_spread = S44_MARKET["ref_spread_bps"]
+    else:
+        ref_spread = 300.0
+
+    # Running coupon
+    if index_name == "Main":
+        running_coupon = S44_MARKET["running_coupon_bps"]
+    else:
+        running_coupon = 500.0 if is_equity else 0.0
+
+    # Calibrate base correlation
+    if index_name == "Main" and tranche_label in S44_MARKET["tranches"]:
+        corr = calibrate_s44_base_correlation(
+            tranche_label, ref_spread, running_coupon, verbose=False
+        )
+        if corr is None:
+            corr = _parametric_base_correlation(detach, index_name)
+    else:
+        corr = _parametric_base_correlation(detach, index_name)
+
+    # Generate CDS curves
+    if index_name == "Main":
+        n_names = 125
+        curves = generate_main_curves(n_names, ref_spread, 25)
+    else:
+        n_names = 75
+        curves = generate_synthetic_cds_curves("Crossover", n_names, ref_spread, 150, 0.35)
+
+    avg_spread = float(np.mean([c.spread_5y_bps for c in curves]))
+    recoveries = [c.recovery_rate for c in curves]
+
+    # ── Core risk metrics ──
+    jtd_results = compute_per_name_jtd(curves, attach, detach, notional)
+    cs01_results, total_cs01 = compute_per_name_cs01(
+        curves, attach, detach, corr, notional, running_coupon
+    )
+    bc01 = compute_bc01(curves, attach, detach, corr, notional, running_coupon)
+
+    # Delta validation
+    avg_hr = hazard_rate_from_spread(avg_spread, ISDA_RECOVERY)
+    index_rpv01 = risky_duration_approx(avg_hr)
+    index_cs01 = index_rpv01 * (1.0 / 10_000) * notional
+    model_delta = total_cs01 / index_cs01 if index_cs01 > 0 else 0.0
+    mkt_delta = None
+    if index_name == "Main" and tranche_label in S44_MARKET["tranches"]:
+        mkt_delta = S44_MARKET["tranches"][tranche_label]["delta"]
+
+    # Sector CS01 aggregation
+    sector_cs01 = {}
+    for r in cs01_results:
+        sector_cs01[r["sector"]] = sector_cs01.get(r["sector"], 0.0) + r["cs01_eur"]
+
+    # ── Scenario analysis (parallel shifts) ──
+    scenario_shifts = [-10, -5, +5, +10, +25, +50]
+    pd_base, lgd_base, w_base = _build_vectors(curves)
+    mtm_base = _tranche_mtm(
+        attach, detach, pd_base, lgd_base, w_base, corr, notional, running_coupon
+    )
+    cs01_parallel = _fast_total_cs01(curves, attach, detach, corr, notional, running_coupon)
+
+    scenarios = []
+    for shift in scenario_shifts:
+        curves_scen = _parallel_shift_curves(curves, shift)
+        pd_s, lgd_s, w_s = _build_vectors(curves_scen)
+        mtm_s = _tranche_mtm(
+            attach, detach, pd_s, lgd_s, w_s, corr, notional, running_coupon
+        )
+        pnl_full = mtm_s - mtm_base
+        pnl_linear = cs01_parallel * shift
+        scenarios.append({
+            "shift": shift,
+            "index_spread": ref_spread + shift,
+            "mtm": mtm_s,
+            "pnl_full": pnl_full,
+            "pnl_linear": pnl_linear,
+            "convexity": pnl_full - pnl_linear,
+        })
+
+    # ── Single-name blowout ──
+    nodes, weights = _gauss_hermite_nodes_weights(N_QUADRATURE)
+    sqrt_rho = np.sqrt(max(0.001, corr))
+    sqrt_1mr = np.sqrt(max(0.001, 1.0 - corr))
+    thresholds = np.array([
+        scipy_norm.ppf(max(1e-10, min(1 - 1e-10, c.default_prob_5y)))
+        for c in curves
+    ])
+
+    def _fast_el(thresh_vec):
+        total = 0.0
+        for k in range(len(nodes)):
+            M = nodes[k]
+            cond_pds = scipy_norm.cdf((thresh_vec - sqrt_rho * M) / sqrt_1mr)
+            cond_loss = np.sum(w_base * lgd_base * cond_pds)
+            tl = (min(cond_loss, detach) - min(cond_loss, attach)) / width
+            total += weights[k] * tl
+        return max(0.0, total)
+
+    el_base = _fast_el(thresholds)
+
+    blowouts = {}
+    for bump in [100, 250, 500]:
+        all_pnl = []
+        for i, c in enumerate(curves):
+            new_spd = max(1.0, c.spread_5y_bps + bump)
+            new_hr = hazard_rate_from_spread(new_spd, c.recovery_rate)
+            new_pd = default_probability(new_hr, MATURITY_YEARS)
+            new_th = scipy_norm.ppf(max(1e-10, min(1 - 1e-10, new_pd)))
+
+            th_bumped = thresholds.copy()
+            th_bumped[i] = new_th
+            pnl = (_fast_el(th_bumped) - el_base) * notional
+
+            # JTD for comparison
+            w_i = 1.0 / n_names
+            lgd_i = 1.0 - c.recovery_rate
+            port_loss = w_i * lgd_i
+            tranche_hit = (min(port_loss, detach) - min(port_loss, attach)) / width
+            jtd = tranche_hit * notional
+
+            all_pnl.append({
+                "Name": c.name, "Sector": c.sector, "Rating": c.rating,
+                "Base Spread": c.spread_5y_bps, "Shocked": new_spd,
+                "P&L": pnl, "JTD": jtd,
+                "vs JTD %": pnl / jtd * 100 if jtd > 0 else 0,
+            })
+
+        all_pnl.sort(key=lambda x: x["P&L"], reverse=True)
+        blowouts[bump] = all_pnl
+
+    return {
+        "index_name": index_name,
+        "tranche_label": tranche_label,
+        "notional": notional,
+        "notional_mm": notional_mm,
+        "n_names": n_names,
+        "attach": attach,
+        "detach": detach,
+        "correlation": corr,
+        "running_coupon": running_coupon,
+        "ref_spread": ref_spread,
+        "avg_spread": avg_spread,
+        "recovery_range": (min(recoveries), max(recoveries), float(np.mean(recoveries))),
+        "jtd_results": jtd_results,
+        "cs01_results": cs01_results,
+        "total_cs01": total_cs01,
+        "bc01": bc01,
+        "model_delta": model_delta,
+        "mkt_delta": mkt_delta,
+        "index_cs01": index_cs01,
+        "mtm_base": mtm_base,
+        "sector_cs01": sector_cs01,
+        "scenarios": scenarios,
+        "blowouts": blowouts,
+    }
+
+
+def render_tranche_risk_tab():
+    """Render tranche constituent risk analysis tab."""
+    st.subheader("Tranche Constituent Risk")
+
+    # ── Configuration ──
+    col1, col2, col3, col4 = st.columns(4)
+    with col1:
+        index_name = st.selectbox("Index", ["Main", "Crossover"], key="tr_index")
+    with col2:
+        tranche_labels = [
+            t["label"] for t in
+            (MAIN_TRANCHES if index_name == "Main" else CROSSOVER_TRANCHES)
+        ]
+        tranche_label = st.selectbox("Tranche", tranche_labels, key="tr_tranche")
+    with col3:
+        notional_mm = st.number_input(
+            "Notional (EUR mm)", min_value=1.0, value=10.0, step=1.0, key="tr_notional"
+        )
+    with col4:
+        spread_override = st.number_input(
+            "Spread Override (bps)", min_value=0.0, value=0.0, step=1.0,
+            key="tr_spread", help="0 = use S44 market default"
+        )
+
+    if st.button("Run Analysis", type="primary", key="tr_run"):
+        with st.spinner("Computing tranche risk (JTD, CS01, BC01, scenarios, blowouts)..."):
+            results = _compute_tranche_analysis(
+                index_name, tranche_label, notional_mm, spread_override
+            )
+            if results:
+                st.session_state.tranche_results = results
+            else:
+                st.error(f"Tranche {tranche_label} not found for {index_name}")
+                return
+
+    if "tranche_results" not in st.session_state:
+        st.info("Configure parameters above and click **Run Analysis**.")
+        return
+
+    res = st.session_state.tranche_results
+
+    # Stale results warning
+    if (res["index_name"] != index_name or res["tranche_label"] != tranche_label
+            or res["notional_mm"] != notional_mm):
+        st.warning("Configuration changed since last run. Click **Run Analysis** to update.")
+
+    # ── Header ──
+    rec_lo, rec_hi, rec_avg = res["recovery_range"]
+    st.caption(
+        f"iTraxx {res['index_name']} S44 {res['tranche_label']} "
+        f"({res['attach']*100:.0f}%-{res['detach']*100:.0f}%) | "
+        f"EUR {res['notional']:,.0f} | {res['n_names']} names | "
+        f"Avg spread {res['avg_spread']:.0f}bps | "
+        f"Corr {res['correlation']:.1%} | "
+        f"Recovery {rec_lo:.0%}-{rec_hi:.0%} (avg {rec_avg:.0%}) | "
+        f"Coupon {res['running_coupon']:.0f}bps"
+    )
+
+    # ── Key Metrics ──
+    col1, col2, col3, col4, col5 = st.columns(5)
+    with col1:
+        st.metric("Base Correlation", f"{res['correlation']:.1%}")
+    with col2:
+        st.metric("Total CS01", f"EUR {res['total_cs01']:,.0f}")
+    with col3:
+        delta_str = f"{res['model_delta']:.2f}x"
+        if res["mkt_delta"]:
+            st.metric("Model Delta", delta_str,
+                      delta=f"Mkt {res['mkt_delta']:.2f}x")
+        else:
+            st.metric("Model Delta", delta_str)
+    with col4:
+        st.metric("BC01", f"EUR {res['bc01']['bc01_eur']:,.0f}")
+    with col5:
+        worst_jtd = res["jtd_results"][0]
+        st.metric("Worst JTD", f"EUR {worst_jtd['jtd_eur']:,.0f}",
+                  delta=f"{worst_jtd['jtd_pct_of_tranche']:.1f}% of tranche")
+
+    st.divider()
+
+    # ── JTD ──
+    st.subheader("Jump-to-Default (JTD)")
+    st.caption("Loss to tranche if a single name defaults immediately")
+
+    jtd_top = pd.DataFrame(res["jtd_results"][:20])
+    jtd_top.index = range(1, len(jtd_top) + 1)
+    jtd_show = jtd_top[["name", "sector", "rating", "spread_bps", "recovery",
+                         "jtd_pct_of_tranche", "jtd_eur"]].copy()
+    jtd_show.columns = ["Name", "Sector", "Rating", "Spread", "Recovery",
+                         "JTD (% tranche)", "JTD (EUR)"]
+    jtd_show["Spread"] = jtd_show["Spread"].apply(lambda x: f"{x:.0f}bp")
+    jtd_show["Recovery"] = jtd_show["Recovery"].apply(lambda x: f"{x:.0%}")
+    jtd_show["JTD (% tranche)"] = jtd_show["JTD (% tranche)"].apply(lambda x: f"{x:.2f}%")
+    jtd_show["JTD (EUR)"] = jtd_show["JTD (EUR)"].apply(lambda x: f"{x:,.0f}")
+    st.dataframe(jtd_show, use_container_width=True)
+
+    total_jtd = sum(r["jtd_eur"] for r in res["jtd_results"])
+    st.caption(f"Avg JTD per name: EUR {total_jtd / res['n_names']:,.0f}")
+
+    with st.expander(f"All {res['n_names']} constituents"):
+        full_jtd = pd.DataFrame(res["jtd_results"])
+        full_jtd.index = range(1, len(full_jtd) + 1)
+        full_show = full_jtd[["name", "sector", "rating", "spread_bps", "recovery",
+                               "jtd_pct_of_tranche", "jtd_eur"]].copy()
+        full_show.columns = ["Name", "Sector", "Rating", "Spread", "Recovery",
+                              "JTD (% tranche)", "JTD (EUR)"]
+        full_show["Spread"] = full_show["Spread"].apply(lambda x: f"{x:.0f}bp")
+        full_show["Recovery"] = full_show["Recovery"].apply(lambda x: f"{x:.0%}")
+        full_show["JTD (% tranche)"] = full_show["JTD (% tranche)"].apply(lambda x: f"{x:.2f}%")
+        full_show["JTD (EUR)"] = full_show["JTD (EUR)"].apply(lambda x: f"{x:,.0f}")
+        st.dataframe(full_show, use_container_width=True)
+
+    st.divider()
+
+    # ── CS01 ──
+    st.subheader("Per-Name CS01")
+    st.caption("MTM change for +1bp widening in each name's CDS spread")
+
+    col1, col2 = st.columns([3, 2])
+    with col1:
+        cs01_top = pd.DataFrame(res["cs01_results"][:20])
+        cs01_top.index = range(1, len(cs01_top) + 1)
+        cs01_show = cs01_top[["name", "sector", "rating", "spread_bps", "cs01_eur"]].copy()
+        cs01_show.columns = ["Name", "Sector", "Rating", "Spread", "CS01 (EUR)"]
+        cs01_show["Spread"] = cs01_show["Spread"].apply(lambda x: f"{x:.0f}bp")
+        cs01_show["CS01 (EUR)"] = cs01_show["CS01 (EUR)"].apply(lambda x: f"{x:,.2f}")
+        st.dataframe(cs01_show, use_container_width=True)
+
+    with col2:
+        st.markdown("**CS01 by Sector**")
+        sector_data = pd.DataFrame([
+            {"Sector": s, "CS01": abs(v)}
+            for s, v in sorted(
+                res["sector_cs01"].items(), key=lambda x: abs(x[1]), reverse=True
+            )
+        ])
+        st.bar_chart(sector_data.set_index("Sector"))
+
+    st.caption(
+        f"Total CS01: EUR {res['total_cs01']:,.2f} | "
+        f"CS01 per EUR 1mm: EUR {res['total_cs01'] / res['notional_mm']:,.2f}"
+    )
+
+    st.divider()
+
+    # ── BC01 ──
+    st.subheader("Base Correlation Sensitivity (BC01)")
+    bc = res["bc01"]
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        st.metric("BC01", f"EUR {bc['bc01_eur']:,.0f}")
+        st.metric("BC01 (% notional)", f"{bc['bc01_pct_notional']:.4f}%")
+    with col2:
+        st.metric("MTM (base)", f"EUR {bc['mtm_base']:,.0f}")
+        st.metric("MTM (corr +1%)", f"EUR {bc['mtm_corr_up']:,.0f}")
+    with col3:
+        st.metric("MTM (corr -1%)", f"EUR {bc['mtm_corr_dn']:,.0f}")
+        st.metric("BC01 per EUR 1mm", f"EUR {bc['bc01_eur'] / res['notional_mm']:,.0f}")
+
+    st.divider()
+
+    # ── Scenario Analysis ──
+    st.subheader("Scenario Analysis (Parallel Shift)")
+    st.caption(
+        f"Correlation held fixed at {res['correlation']:.1%}. "
+        f"Protection buyer perspective."
+    )
+
+    scen_df = pd.DataFrame(res["scenarios"])
+    scen_show = pd.DataFrame({
+        "Scenario": scen_df["shift"].apply(lambda x: f"{'+'if x > 0 else ''}{x}bp"),
+        "Index (bps)": scen_df["index_spread"].apply(lambda x: f"{x:.0f}"),
+        "MTM (EUR)": scen_df["mtm"].apply(lambda x: f"{x:,.0f}"),
+        "P&L Full": scen_df["pnl_full"].apply(lambda x: f"{x:+,.0f}"),
+        "P&L Linear": scen_df["pnl_linear"].apply(lambda x: f"{x:+,.0f}"),
+        "Convexity": scen_df["convexity"].apply(lambda x: f"{x:+,.0f}"),
+    })
+    st.dataframe(scen_show, use_container_width=True, hide_index=True)
+
+    # P&L chart
+    chart_data = pd.DataFrame({
+        "Shift (bp)": [s["shift"] for s in res["scenarios"]],
+        "Full Reprice": [s["pnl_full"] for s in res["scenarios"]],
+        "Linear": [s["pnl_linear"] for s in res["scenarios"]],
+    }).set_index("Shift (bp)")
+    st.line_chart(chart_data)
+
+    st.divider()
+
+    # ── Single-Name Blowout ──
+    st.subheader("Single-Name Blowout Stress Test")
+    st.caption("One name widens, rest unchanged. Top 5 most impactful names per bump.")
+
+    for bump, data in res["blowouts"].items():
+        st.markdown(f"**+{bump}bp single-name shock**")
+        top5 = data[:5]
+        blow_df = pd.DataFrame(top5)
+        blow_df.index = range(1, len(blow_df) + 1)
+        blow_show = pd.DataFrame({
+            "Name": blow_df["Name"],
+            "Sector": blow_df["Sector"],
+            "Rating": blow_df["Rating"],
+            "Base": blow_df["Base Spread"].apply(lambda x: f"{x:.0f}bp"),
+            "Shocked": blow_df["Shocked"].apply(lambda x: f"{x:.0f}bp"),
+            "P&L (EUR)": blow_df["P&L"].apply(lambda x: f"{x:+,.0f}"),
+            "JTD (EUR)": blow_df["JTD"].apply(lambda x: f"{x:,.0f}"),
+            "vs JTD": blow_df["vs JTD %"].apply(lambda x: f"{x:.1f}%"),
+        })
+        st.dataframe(blow_show, use_container_width=True)
+
+        avg_pnl = np.mean([r["P&L"] for r in data])
+        worst = data[0]
+        st.caption(
+            f"Worst: EUR {worst['P&L']:+,.0f} ({worst['Name']}) | "
+            f"Avg across {res['n_names']} names: EUR {avg_pnl:+,.0f}"
+        )
 
 
 if __name__ == "__main__":
