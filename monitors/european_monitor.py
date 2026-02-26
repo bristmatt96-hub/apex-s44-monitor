@@ -1,10 +1,11 @@
 """
 European Regulatory Filing Monitor
 
-Three working data sources:
+Four working data sources:
 1. Companies House (UK) — REST API for filing history
 2. Investegate (UK RNS) — scrapes public announcements page
 3. EQS News (Germany DGAP) — scrapes ad-hoc disclosures page
+4. AMF (France) — scrapes Autorite des Marches Financiers disclosures
 
 Each new filing is classified for credit impact via Claude API,
 logged to SQLite, and optionally sent as a Telegram alert.
@@ -14,6 +15,7 @@ Usage:
     python -m monitors.european_monitor --source ch         # Companies House only
     python -m monitors.european_monitor --source investegate # Investegate only
     python -m monitors.european_monitor --source eqs        # EQS News only
+    python -m monitors.european_monitor --source amf        # AMF only
     python -m monitors.european_monitor --days 3            # Look back 3 days
 """
 
@@ -385,6 +387,87 @@ class EQSNewsSource:
 
 
 # ---------------------------------------------------------------------------
+# Source 4: AMF (Autorite des Marches Financiers — France)
+# ---------------------------------------------------------------------------
+
+class AMFSource:
+    """Scrapes AMF (French financial regulator) for corporate disclosures.
+
+    Monitors the AMF decisions and disclosures feed for ad-hoc announcements
+    from French-domiciled iTraxx constituents.
+    """
+
+    BASE_URL = "https://www.amf-france.org"
+    DECISIONS_URL = f"{BASE_URL}/en/news-publications/news-releases/amf-news-releases"
+
+    def __init__(self):
+        self.session = requests.Session()
+        self.session.headers.update({
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+            "Accept": "text/html,application/xhtml+xml",
+        })
+
+    def scan(self, since_days: int = 1, name_index: dict = None) -> list[Filing]:
+        """Scrape recent AMF disclosures and match to iTraxx universe."""
+        if name_index is None:
+            name_index = {}
+
+        filings: list[Filing] = []
+
+        try:
+            resp = self.session.get(self.DECISIONS_URL, timeout=20)
+            resp.raise_for_status()
+        except requests.RequestException as e:
+            logger.error(f"AMF fetch failed: {e}")
+            return []
+
+        soup = BeautifulSoup(resp.text, "html.parser")
+
+        # AMF uses article/card-style elements for news items
+        for item in soup.select(
+            "article, .views-row, .node--type-news, [class*='news'], .view-content .item-list li"
+        ):
+            # Extract headline and date
+            headline_el = item.select_one("h2, h3, [class*='title'], a")
+            date_el = item.select_one("time, [class*='date'], .field--name-created")
+
+            headline_text = headline_el.get_text(strip=True) if headline_el else ""
+            date_text = date_el.get_text(strip=True) if date_el else ""
+
+            if not headline_text:
+                all_text = item.get_text(strip=True)
+                if len(all_text) > 10:
+                    headline_text = all_text[:200]
+                else:
+                    continue
+
+            # Extract link
+            link_tag = item.find("a", href=True)
+            url = ""
+            if link_tag:
+                href = link_tag["href"]
+                url = href if href.startswith("http") else f"{self.BASE_URL}{href}"
+
+            # Match to universe
+            matched = match_to_universe(headline_text, name_index)
+
+            if matched:
+                filings.append(Filing(
+                    company_name=matched,
+                    source="amf",
+                    filing_type="amf_disclosure",
+                    headline=headline_text[:200],
+                    date=date_text or datetime.now().strftime("%Y-%m-%d"),
+                    url=url,
+                    country="FR",
+                    matched_entity=matched,
+                ))
+
+        logger.info(f"AMF: found {len(filings)} matched announcements")
+        return filings
+
+
+# ---------------------------------------------------------------------------
 # Claude credit impact classifier
 # ---------------------------------------------------------------------------
 
@@ -590,7 +673,7 @@ def run_scan(sources: list[str] | None = None, since_days: int = 7,
     logger.info(f"Loaded {len(universe['names'])} Xover names, {len(name_index)} search keywords")
 
     if sources is None:
-        sources = ["ch", "investegate", "eqs"]
+        sources = ["ch", "investegate", "eqs", "amf"]
 
     all_filings: list[Filing] = []
 
@@ -608,6 +691,11 @@ def run_scan(sources: list[str] | None = None, since_days: int = 7,
     if "eqs" in sources:
         eqs = EQSNewsSource()
         all_filings.extend(eqs.scan(since_days=since_days, name_index=name_index))
+
+    # --- AMF (France) ---
+    if "amf" in sources:
+        amf = AMFSource()
+        all_filings.extend(amf.scan(since_days=since_days, name_index=name_index))
 
     # Deduplicate against DB
     new_filings = [f for f in all_filings if not is_duplicate(f)]
@@ -655,7 +743,7 @@ def main():
     parser.add_argument(
         "--source",
         type=str,
-        choices=["ch", "investegate", "eqs"],
+        choices=["ch", "investegate", "eqs", "amf"],
         default=None,
         help="Scan specific source only (default: all)",
     )

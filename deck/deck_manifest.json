@@ -1,6 +1,6 @@
 {
   "_README": "This file lives in your credit-catalyst project. Update it whenever you add a capability. The pitch deck reads from this file so it always reflects what the system actually does.",
-  "_LAST_UPDATED": "2026-02-22",
+  "_LAST_UPDATED": "2026-02-26",
   "_HOW_TO_REGENERATE_DECK": "Copy this file next to deck.js, then run: node deck.js",
   "system_status": {
     "companies_monitored": 200,
@@ -10,11 +10,12 @@
       "Crossover (75 names)"
     ],
     "sec_filers_covered": 14,
-    "european_filers_covered": 0,
+    "european_filers_covered": 13,
+    "aum": 250000000,
     "uptime": "24/7 on DigitalOcean VPS",
     "alert_channel": "Telegram",
     "database": "SQLite with 6 tables",
-    "ai_engine": "Claude API for filing analysis",
+    "ai_engine": "Claude API for filing analysis + documentation scrubbing",
     "spread_data_date": "2026-02-18"
   },
   "capabilities": {
@@ -22,113 +23,161 @@
       {
         "name": "SEC Filing Monitor",
         "description": "Scans SEC EDGAR every 1-10 minutes for 10-K, 10-Q, 8-K filings from iTraxx watchlist companies",
-        "detail": "Covers 14 US-listed companies from the 202-name universe. Auto-restarts on reboot.",
+        "detail": "Covers 14 US-listed companies from the 200-name universe. Auto-restarts on reboot.",
         "since": "2025-12"
+      },
+      {
+        "name": "European Filing Monitor",
+        "description": "Monitors Companies House (UK), Investegate RNS (UK), EQS News/DGAP (Germany), and AMF (France) for regulatory filings",
+        "detail": "Covers 13 UK companies via Companies House API + scrapes Investegate and EQS. Each filing classified for credit impact via Claude API. AMF source added for French disclosures.",
+        "since": "2026-02"
       },
       {
         "name": "AI Filing Analysis",
         "description": "Claude API summarises each filing and flags credit-relevant language, covenant triggers, and management red flags",
-        "detail": "Basic analysis \u2014 scores severity and extracts key phrases",
+        "detail": "Scores severity 1-5, classifies impact (positive/negative/neutral), and extracts key credit phrases",
         "since": "2025-12"
       },
       {
         "name": "Telegram Alerts",
-        "description": "Real-time alerts sent to phone when a monitored company files with the SEC",
-        "detail": "Includes filing type, AI summary, and severity flag",
+        "description": "Real-time alerts sent to phone for SEC filings, European filings, equity movers, and social sentiment signals",
+        "detail": "Severity-based filtering — only material alerts (severity >= 2) trigger notifications",
         "since": "2025-12"
       },
       {
         "name": "Company Watchlist Database",
-        "description": "202 companies tracked with ticker, CIK, credit rating, and priority scoring",
-        "detail": "Covers full iTraxx Main and Crossover indices",
+        "description": "200 companies tracked with CDS spreads, credit rating, sector, and priority scoring",
+        "detail": "Covers full iTraxx Main (125) and Crossover (75) indices with entity profiles",
         "since": "2025-12"
+      },
+      {
+        "name": "CDS Pricer",
+        "description": "CDS pricing with spread interpolation, risky annuity, and upfront/running conversion",
+        "detail": "HY convention (500bp running), IG convention (100bp running). Used across scenario analysis and trade structuring.",
+        "since": "2026-01"
+      },
+      {
+        "name": "Tranche Pricer & Scenario Engine",
+        "description": "Index tranche pricing with constituent-level risk decomposition and scenario stress testing",
+        "detail": "Full reprice P&L with convexity across 8 macro scenarios. Per-name CS01_i, JTD, and correlation (rho01) sensitivities.",
+        "since": "2026-02"
+      },
+      {
+        "name": "8 Macro Scenario Stress Tester",
+        "description": "Non-uniform spread shocks by rating, sector, and name across ECB cuts/hikes, recession, China crisis, sovereign stress, LME wave, fallen angel cascade, and risk-on squeeze",
+        "detail": "Exact re-pricing (not DV01 approximation). Sector heatmap, direction breakdown, hedge effectiveness.",
+        "since": "2026-02"
+      },
+      {
+        "name": "Portfolio Risk Manager",
+        "description": "Aggregate Greeks (CS01, rho01, theta), JTD, parametric VaR, and risk limit traffic light system",
+        "detail": "$250m AUM. Stop-loss cascade: 1% daily, 2% weekly, 3.5% monthly, 5% max P2T. 5% single-name concentration hard limit. 90% liquidatable in 5 days.",
+        "since": "2026-02"
+      },
+      {
+        "name": "Relative Value Engine",
+        "description": "Rich/cheap screening across CDS, bonds, and tranches with sector z-scores and basis tracking",
+        "detail": "Composite scores from spread level, momentum, sector RV, and documentation risk",
+        "since": "2026-01"
+      },
+      {
+        "name": "Credit-Equity Bridge",
+        "description": "Gap score engine — credit signal strength minus equity repricing score identifies mispriced equity options",
+        "detail": "7 credit dimensions, 4 equity dimensions. Trade structurer decision tree recommends optimal instrument.",
+        "since": "2026-01"
+      },
+      {
+        "name": "Social Sentiment Monitor",
+        "description": "Multi-source social data from Bittensor subnets (SN13, SN22, SN42) for early warning signals",
+        "detail": "Wired into equity movers scan pipeline with Telegram alerts",
+        "since": "2026-02"
+      },
+      {
+        "name": "Covenant Risk Tracker",
+        "description": "Covenant headroom monitoring across iTraxx universe with restricted payment baskets and portability analysis",
+        "detail": "Profiles stored per entity with breach alerts",
+        "since": "2026-01"
+      },
+      {
+        "name": "Maturity Wall Analyser",
+        "description": "Refinancing risk analysis — upcoming maturities cross-referenced with leverage and market conditions",
+        "detail": "Identifies names with near-term maturity walls at stressed spread levels",
+        "since": "2026-01"
+      },
+      {
+        "name": "Streamlit Dashboard",
+        "description": "Interactive dashboard with tranche scenarios, single-name blowout stress, sector heatmaps, and spread distribution",
+        "detail": "Live data from API endpoints. Includes CS01 from/to on blowout scenarios.",
+        "since": "2026-02"
       }
     ],
     "in_progress": [
       {
-        "name": "FCA/European Filing Monitor",
-        "description": "Extend monitoring to European regulatory filings for the 188 non-US companies",
-        "status": "planned"
-      },
-      {
         "name": "Documentation Analysis Engine",
-        "description": "AI-powered scrubbing of credit agreements, indentures, and restricted payment baskets",
-        "status": "planned"
+        "description": "AI-powered deep scrubbing of credit agreements, indentures, and restricted payment baskets across 200 names",
+        "status": "building — covenant profiles exist, full doc parsing in progress"
       },
       {
         "name": "Liquidity Regime Dashboard",
         "description": "Howell-inspired global liquidity framework for regime-based position sizing",
         "status": "planned"
-      },
-      {
-        "name": "Bittensor Subnet Integration",
-        "description": "Alternative data from decentralised AI network for sentiment and early signals",
-        "status": "exploring"
-      },
-      {
-        "name": "Covenant Status Tracking",
-        "description": "Headroom monitoring across all watched companies with breach alerts",
-        "status": "planned"
-      },
-      {
-        "name": "Credit Rating History",
-        "description": "Track rating changes over time with fallen angel detection",
-        "status": "schema exists, not populated"
       }
     ],
     "future": [
       {
         "name": "IBKR API Integration",
         "description": "Automated trade execution via Interactive Brokers",
-        "status": "account exists, API not connected"
-      },
-      {
-        "name": "Options Scanner",
-        "description": "Find mispriced equity puts on names showing credit deterioration",
-        "status": "not started"
-      },
-      {
-        "name": "Risk Manager Agent",
-        "description": "Automated position sizing, exposure limits, and pre-mortems",
-        "status": "not started"
+        "status": "account exists, API connection built, needs live testing"
       }
     ]
   },
   "architecture": {
-    "current": "Single monitor script + Claude API analysis on VPS",
-    "target": "3-agent system: Analyst, Strategist, Briefer",
+    "current": "Multi-agent system with 24 monitors, 34 analytics modules, FastAPI + Streamlit dashboards, VPS deployment",
+    "target": "Full autonomous monitoring + structured trade recommendations",
     "agents": [
       {
         "name": "Analyst (The Watcher)",
-        "role": "Monitors filings, ratings, spreads \u2014 generates signals",
+        "role": "Monitors filings, ratings, spreads — generates signals",
         "status": "running"
       },
       {
         "name": "Strategist",
         "role": "Evaluates signals, cross-references with docs and regime, sizes positions",
-        "status": "planned"
+        "status": "running"
       },
       {
         "name": "Briefer",
-        "role": "Produces daily briefing with actionable trade ideas",
-        "status": "planned"
+        "role": "Produces daily briefing with actionable trade ideas and key insights",
+        "status": "running"
+      },
+      {
+        "name": "Risk Manager",
+        "role": "Pre-trade risk limits, portfolio stress tests, stop-loss monitoring",
+        "status": "running"
       }
     ]
   },
   "infrastructure": {
     "vps": {
       "provider": "DigitalOcean",
-      "purpose": "24/7 production monitoring",
+      "ip": "143.198.56.117",
+      "purpose": "24/7 production monitoring + FastAPI on port 8000",
       "status": "running"
     },
-    "dev": {
-      "device": "Mac Mini M4 Pro",
-      "purpose": "Development and agent orchestration",
-      "status": "setting up"
-    },
     "github": {
-      "synced": false,
-      "note": "Will become source of truth once synced"
+      "repo": "bristmatt96-hub/apex-s44-monitor",
+      "synced": true
+    }
+  },
+  "risk_framework": {
+    "aum": 250000000,
+    "limits": {
+      "daily_stop_loss": {"pct": 0.01, "action": "Flatten all positions; review before resuming"},
+      "weekly_stop_loss": {"pct": 0.02, "action": "50% risk reduction; regime reassessment"},
+      "monthly_drawdown": {"pct": 0.035, "action": "Reduce to 25% risk; CIO approval to rebuild"},
+      "max_peak_to_trough": {"pct": 0.05, "action": "Full de-risk; strategy review with risk committee"},
+      "single_name_concentration": {"pct": 0.05, "action": "Hard limit — no exceptions"},
+      "liquidity_test": {"pct": 0.90, "days": 5, "action": "Ongoing monitoring — portfolio must be liquidatable"}
     }
   },
   "spread_snapshot": {
@@ -140,26 +189,11 @@
       "min_spread_bp": 20,
       "max_spread_bp": 167,
       "widest_5": [
-        {
-          "name": "Suedzucker AG",
-          "spread": 167
-        },
-        {
-          "name": "Stellantis NV",
-          "spread": 150
-        },
-        {
-          "name": "WPP 2005 Ltd",
-          "spread": 149
-        },
-        {
-          "name": "PostNL NV",
-          "spread": 147
-        },
-        {
-          "name": "Electrolux AB",
-          "spread": 110
-        }
+        {"name": "Suedzucker AG", "spread": 167},
+        {"name": "Stellantis NV", "spread": 150},
+        {"name": "WPP 2005 Ltd", "spread": 149},
+        {"name": "PostNL NV", "spread": 147},
+        {"name": "Electrolux AB", "spread": 110}
       ],
       "distribution": {
         "under_30bp": 26,
@@ -177,29 +211,11 @@
       "min_spread_bp": 50,
       "max_spread_bp": 1224,
       "widest_5": [
-        {
-          "name": "INEOS Quattro Finance 2 Plc",
-          "spread": 1224,
-          "pts_upfront": 20.8
-        },
-        {
-          "name": "Worldline SA/France",
-          "spread": 1027,
-          "pts_upfront": 15.95
-        },
-        {
-          "name": "INEOS Finance PLC",
-          "spread": 908,
-          "pts_upfront": 12.95
-        },
-        {
-          "name": "Bellis Acquisition Co PLC",
-          "spread": 650
-        },
-        {
-          "name": "Sherwood Financing PLC",
-          "spread": 585
-        }
+        {"name": "INEOS Quattro Finance 2 Plc", "spread": 1224, "pts_upfront": 20.8},
+        {"name": "Worldline SA/France", "spread": 1027, "pts_upfront": 15.95},
+        {"name": "INEOS Finance PLC", "spread": 908, "pts_upfront": 12.95},
+        {"name": "Bellis Acquisition Co PLC", "spread": 650},
+        {"name": "Sherwood Financing PLC", "spread": 585}
       ],
       "names_trading_upfront": 4,
       "distribution": {

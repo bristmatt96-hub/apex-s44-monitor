@@ -53,13 +53,29 @@ OUTPUTS_DIR.mkdir(parents=True, exist_ok=True)
 # CONFIGURATION
 # =============================================================================
 
-DEFAULT_AUM = 100_000_000
+DEFAULT_AUM = 250_000_000  # $250m — matches Brummer pitch
 
-# Risk limits
+# Risk limits — institutional credit portfolio
 RISK_LIMITS = {
-    "max_cs01_pct_aum":         {"limit": 0.005,  "unit": "% of AUM per 1bp",   "label": "Max CS01"},
-    "max_jtd_single_pct":       {"limit": 0.02,   "unit": "% of AUM",           "label": "Max JTD Single Name"},
-    "max_jtd_total_pct":        {"limit": 0.10,   "unit": "% of AUM",           "label": "Max JTD Total"},
+    # Stop-loss cascade
+    "daily_stop_loss_pct":      {"limit": 0.01,    "unit": "% of NAV",           "label": "Daily Stop-Loss",
+                                 "action": "Flatten all positions; review before resuming"},
+    "weekly_stop_loss_pct":     {"limit": 0.02,    "unit": "% of NAV",           "label": "Weekly Stop-Loss",
+                                 "action": "50% risk reduction; regime reassessment"},
+    "monthly_drawdown_pct":     {"limit": 0.035,   "unit": "% of NAV",           "label": "Monthly Drawdown",
+                                 "action": "Reduce to 25% risk; CIO approval to rebuild"},
+    "max_peak_to_trough_pct":   {"limit": 0.05,    "unit": "% of NAV",           "label": "Max Peak-to-Trough",
+                                 "action": "Full de-risk; strategy review with risk committee"},
+    # Concentration
+    "max_single_name_pct":      {"limit": 0.05,    "unit": "% per name",         "label": "Single-Name Conc.",
+                                 "action": "Hard limit — no exceptions"},
+    # Liquidity
+    "liquidity_test_pct":       {"limit": 0.90,    "unit": "% in 5 days",        "label": "Liquidity Test",
+                                 "action": "Ongoing monitoring — portfolio must be liquidatable"},
+    # Greeks limits (retained)
+    "max_cs01_pct_aum":         {"limit": 0.005,   "unit": "% of AUM per 1bp",   "label": "Max CS01"},
+    "max_jtd_single_pct":       {"limit": 0.02,    "unit": "% of AUM",           "label": "Max JTD Single Name"},
+    "max_jtd_total_pct":        {"limit": 0.10,    "unit": "% of AUM",           "label": "Max JTD Total"},
     "max_leverage":             {"limit": 10.0,    "unit": "x gross/AUM",        "label": "Max Leverage"},
     "max_var99_pct":            {"limit": 0.05,    "unit": "% of AUM",           "label": "Max VaR 99%"},
     "max_rho01_pct":            {"limit": 0.01,    "unit": "% of AUM per 1%corr","label": "Max Rho01"},

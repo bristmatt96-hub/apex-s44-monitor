@@ -18,11 +18,31 @@ class IBConfig(BaseModel):
 
 
 class RiskConfig(BaseModel):
-    """Risk Management Configuration"""
-    max_position_pct: float = 0.05  # 5% max per position
-    max_daily_loss_pct: float = 0.10  # 10% max daily loss
-    max_positions: int = 10
-    starting_capital: float = 3000.0
+    """Risk Management Configuration — Institutional Credit Portfolio
+
+    Calibrated for $250m AUM European macro credit book.
+    Limits match the Brummer & Partners risk framework.
+    """
+    starting_capital: float = 250_000_000.0  # $250m AUM
+
+    # Stop-loss cascade (% of NAV)
+    daily_stop_loss_pct: float = 0.01       # 1.0% — flatten all, review before resuming
+    weekly_stop_loss_pct: float = 0.02      # 2.0% — 50% risk reduction, regime reassessment
+    monthly_drawdown_pct: float = 0.035     # 3.5% — reduce to 25% risk, CIO approval
+    max_peak_to_trough_pct: float = 0.05    # 5.0% — full de-risk, strategy review
+
+    # Concentration limits
+    max_single_name_pct: float = 0.05       # 5% per name — hard limit, no exceptions
+    max_sector_pct: float = 0.25            # 25% max sector concentration
+    max_positions: int = 40                 # Max concurrent positions
+
+    # Liquidity
+    liquidation_days: int = 5               # 90% of portfolio liquidatable in 5 days
+    min_liquidity_pct: float = 0.90         # 90% liquidity test — ongoing monitoring
+
+    # Legacy compatibility
+    max_position_pct: float = 0.05
+    max_daily_loss_pct: float = 0.01
 
 
 class SignalConfig(BaseModel):
@@ -34,98 +54,66 @@ class SignalConfig(BaseModel):
 
 class StrategyConfig(BaseModel):
     """
-    Strategy configuration based on backtest results.
+    European Macro Credit Trading Strategies.
 
-    Only strategies with proven statistical edge are enabled.
-    Backtest criteria: Profit Factor > 1.2 AND Win Rate > 40%
+    CDS | Tranches | Bonds | Credit Options
+    Focused on iTraxx Main (125 names) and Crossover (75 names).
     """
 
-    # Proven strategies and their backtest performance
+    # Credit trading strategies — each maps to the process pipeline
     proven_strategies: Dict[str, Dict] = {
-        'mean_reversion': {
+        'documentation_mispricing': {
             'enabled': True,
-            'markets': ['equity', 'options', 'etf'],
-            'best_market': 'etf',
-            'avg_profit_factor': 2.66,
-            'avg_win_rate': 0.599,
-            'score_bonus': 1.15,  # 15% score boost
-            'description': 'Buy RSI oversold panic dips, exit on bounce'
+            'instruments': ['cds', 'bonds'],
+            'description': 'Covenant analysis reveals mispriced credit risk — weak RP baskets, portability, J.Crew blockers',
+            'edge': 'information_gap',
         },
-        'volume_spike': {
+        'credit_catalyst': {
             'enabled': True,
-            'markets': ['equity', 'options'],
-            'best_market': 'equity',
-            'avg_profit_factor': 5.30,
-            'avg_win_rate': 0.673,
-            'score_bonus': 1.20,  # 20% boost (highest edge)
-            'description': 'Buy when retail panic-sells on huge red volume'
+            'instruments': ['cds', 'tranches', 'bonds'],
+            'description': 'Filing anomalies, rating actions, earnings misses — identify catalysts before spread moves',
+            'edge': 'speed_and_analysis',
         },
-        'momentum_breakout': {
+        'basis_trade': {
             'enabled': True,
-            'markets': ['equity', 'options', 'etf'],
-            'best_market': 'equity',
-            'avg_profit_factor': 1.93,
-            'avg_win_rate': 0.557,
-            'score_bonus': 1.10,  # 10% boost
-            'description': 'Breakout above 20-day high with volume confirmation'
+            'instruments': ['cds', 'bonds'],
+            'description': 'CDS-bond basis trades — exploit dislocations between cash and synthetic markets',
+            'edge': 'relative_value',
         },
-        'bollinger_squeeze': {
+        'tranche_technical': {
             'enabled': True,
-            'markets': ['equity', 'options', 'etf'],
-            'best_market': 'equity',
-            'avg_profit_factor': 1.50,  # Estimated pending full backtest
-            'avg_win_rate': 0.50,
-            'score_bonus': 1.05,  # Small boost until validated
-            'description': 'Low volatility squeeze breakout'
+            'instruments': ['tranches'],
+            'description': 'Index tranche mispricings from hedger/yield-seeker imbalances — equity/mezzanine/senior',
+            'edge': 'structural_technical',
         },
-        'insider_buying': {
+        'correlation_dispersion': {
             'enabled': True,
-            'markets': ['equity'],
-            'best_market': 'equity',
-            'avg_profit_factor': 2.50,  # Academic studies show ~2-3x edge
-            'avg_win_rate': 0.60,
-            'score_bonus': 1.25,  # 25% boost - strongest fundamental signal
-            'description': 'SEC Form 4 insider purchases (CEO/CFO/Directors)'
+            'instruments': ['tranches', 'cds'],
+            'description': 'Single-name vs index correlation trades — tranches adjust slower than constituent changes',
+            'edge': 'structural_technical',
         },
-        'unusual_options_flow': {
+        'relative_value': {
             'enabled': True,
-            'markets': ['equity', 'options'],
-            'best_market': 'options',
-            'avg_profit_factor': 2.00,  # Based on academic flow studies
-            'avg_win_rate': 0.55,
-            'score_bonus': 1.18,  # 18% boost - strong informed money signal
-            'description': 'Unusual options V/OI ratio, sweeps, and premium concentration'
+            'instruments': ['cds', 'bonds'],
+            'description': 'Rich/cheap screening — sector z-scores, cross-currency, maturity curve',
+            'edge': 'quantitative',
         },
     }
 
-    # Disabled strategies (no proven edge)
-    disabled_strategies: List[str] = ['rsi_divergence', 'gap_fade']
+    # Disabled strategies
+    disabled_strategies: List[str] = []
 
-    # Priority symbol lists per market (backtest-proven performers)
+    # iTraxx universe — not equity symbols
     priority_symbols: Dict[str, List[str]] = {
-        'options_stocks': [
-            'SPY', 'QQQ', 'TSLA', 'AAPL', 'NVDA', 'AMD',
-            'META', 'AMZN', 'MSFT', 'GOOGL', 'NFLX', 'COIN'
+        'main_widest': [
+            'Suedzucker AG', 'Stellantis NV', 'WPP 2005 Ltd',
+            'PostNL NV', 'Electrolux AB',
         ],
-        'meme_stocks': [
-            'GME', 'AMC', 'PLTR', 'SOFI', 'BB',
-            'HOOD', 'RIVN', 'LCID', 'MARA', 'RIOT'
+        'xover_distressed': [
+            'INEOS Quattro Finance 2 Plc', 'Worldline SA/France',
+            'INEOS Finance PLC', 'Bellis Acquisition Co PLC',
+            'Sherwood Financing PLC',
         ],
-        'etfs': [
-            # Index ETFs (for market sentiment/hedging)
-            'SPY', 'QQQ', 'IWM',
-            # Sector ETFs with behavioral patterns
-            'XLK', 'XLF', 'XLE',  # Tech, Financials, Energy sectors
-            'ARKK',  # Innovation/growth (high retail activity)
-            # Retail macro plays - LOOK macro but actually retail-heavy
-            'GLD', 'SLV',  # Precious metals (fear trade - retail piles in)
-            'TQQQ', 'SQQQ',  # Leveraged (pure retail speculation)
-            # NO TLT, bonds - truly Fed/rates driven, no behavioral edge
-        ],
-        'small_cap': [
-            'SOFI', 'PLTR', 'MARA', 'RIOT', 'JOBY',
-            'IONQ', 'RKLB', 'DNA', 'OPEN'
-        ]
     }
 
     def is_strategy_enabled(self, strategy_name: str) -> bool:
@@ -154,66 +142,70 @@ class StrategyConfig(BaseModel):
 
 class MarketWeights(BaseModel):
     """
-    Market priority weights and capital allocation.
-    FOCUSED on Equities and Options only.
+    Capital allocation across European macro credit instruments.
 
-    Weights determine:
-    - Scanner priority (higher = scanned more frequently)
-    - Ranker bonus (higher weight = boosted score)
-    - Capital allocation (% of total capital for that market)
-
-    These are INITIAL weights. The adaptive system will
-    adjust them based on actual trading performance.
+    $250m book — CDS, tranches, bonds, credit options.
     """
-    # Priority weights — European credit + options/equities overlay
-    credit: float = 1.00        # Core focus — iTraxx Main/Xover
-    options: float = 0.90       # High priority - best R:R structure
-    equities: float = 0.85      # High priority - mean reversion + volume spike
+    # Priority weights by instrument
+    cds: float = 1.00           # Core — single-name and index CDS
+    tranches: float = 0.95      # Index tranches (equity, mezzanine, senior)
+    bonds: float = 0.85         # Cash bonds — basis trades, RV
+    credit_options: float = 0.80  # CDS swaptions, credit options
 
     # Capital allocation
-    credit_capital_pct: float = 0.50    # 50% to credit tranches
-    options_capital_pct: float = 0.25   # 25% to options
-    equities_capital_pct: float = 0.20  # 20% to equities
+    cds_capital_pct: float = 0.40       # 40% to CDS
+    tranches_capital_pct: float = 0.30  # 30% to tranches
+    bonds_capital_pct: float = 0.20     # 20% to cash bonds
+    options_capital_pct: float = 0.05   # 5% to credit options
     reserve_pct: float = 0.05           # 5% cash reserve
 
-    # Scan intervals (seconds) - lower = more frequent
+    # Scan intervals (seconds) — all credit focused
     credit_scan_interval: int = 15      # Every 15s — primary market
-    options_scan_interval: int = 30     # Every 30s
-    equities_scan_interval: int = 60    # Every 60s
+    filing_scan_interval: int = 60      # Every 60s — regulatory filings
+    news_scan_interval: int = 30        # Every 30s — news/sentiment
 
     # Adaptive learning
     adaptive_enabled: bool = True
-    adapt_interval_hours: int = 24      # Re-evaluate weights daily
-    min_trades_to_adapt: int = 10       # Need 10 trades before adapting
-    max_weight_shift: float = 0.15      # Max 15% shift per adaptation
+    adapt_interval_hours: int = 24
+    min_trades_to_adapt: int = 10
+    max_weight_shift: float = 0.15
 
-    def get_weight(self, market_type: str) -> float:
-        """Get weight for a market type"""
+    def get_weight(self, instrument_type: str) -> float:
+        """Get weight for an instrument type"""
         weights = {
-            'credit': self.credit,
-            'options': self.options,
-            'equity': self.equities,
+            'cds': self.cds,
+            'tranches': self.tranches,
+            'bonds': self.bonds,
+            'credit_options': self.credit_options,
+            # Legacy aliases
+            'credit': self.cds,
+            'options': self.credit_options,
+            'equity': self.bonds,
         }
-        return weights.get(market_type, 0.5)
+        return weights.get(instrument_type, 0.5)
 
-    def get_capital_allocation(self, market_type: str, total_capital: float) -> float:
-        """Get capital allocated to a market"""
+    def get_capital_allocation(self, instrument_type: str, total_capital: float) -> float:
+        """Get capital allocated to an instrument type"""
         allocations = {
-            'credit': self.credit_capital_pct,
+            'cds': self.cds_capital_pct,
+            'tranches': self.tranches_capital_pct,
+            'bonds': self.bonds_capital_pct,
+            'credit_options': self.options_capital_pct,
+            # Legacy aliases
+            'credit': self.cds_capital_pct,
             'options': self.options_capital_pct,
-            'equity': self.equities_capital_pct,
         }
-        pct = allocations.get(market_type, 0.0)
+        pct = allocations.get(instrument_type, 0.0)
         return total_capital * pct
 
-    def get_scan_interval(self, market_type: str) -> int:
-        """Get scan interval for a market"""
+    def get_scan_interval(self, scan_type: str) -> int:
+        """Get scan interval for a scan type"""
         intervals = {
             'credit': self.credit_scan_interval,
-            'options': self.options_scan_interval,
-            'equity': self.equities_scan_interval,
+            'filing': self.filing_scan_interval,
+            'news': self.news_scan_interval,
         }
-        return intervals.get(market_type, 60)
+        return intervals.get(scan_type, 60)
 
 
 class EdgeLearningConfig(BaseModel):
@@ -248,10 +240,6 @@ class TradingConfig(BaseModel):
     market_weights: MarketWeights = MarketWeights()
     strategies: StrategyConfig = StrategyConfig()
     edge_learning: EdgeLearningConfig = EdgeLearningConfig()
-
-    # PDT Rule - limited day trades for accounts under $25k
-    pdt_restricted: bool = True
-    day_trades_remaining: int = 3
 
     # Environment
     live_trading: bool = True
