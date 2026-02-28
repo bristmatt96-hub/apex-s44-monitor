@@ -82,8 +82,8 @@
       },
       {
         "name": "Credit-Equity Bridge",
-        "description": "Gap score engine — credit signal strength minus equity repricing score identifies mispriced equity options",
-        "detail": "7 credit dimensions, 4 equity dimensions. Trade structurer decision tree recommends optimal instrument.",
+        "description": "Cross-asset signal tool — detects where equity hasn't repriced relative to credit stress. One input to RV decisions, not the core alpha",
+        "detail": "7 credit dimensions, 4 equity dimensions. Supplements the primary long/short CDS, basis, and tranche strategies.",
         "since": "2026-01"
       },
       {

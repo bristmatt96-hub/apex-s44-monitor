@@ -8,9 +8,11 @@
 
 ## What This System Does
 
-AI-augmented European credit analysis platform. Monitors 200 iTraxx Europe Series 44 constituents (125 Main investment-grade + 75 Crossover high-yield) for credit deterioration signals, then identifies equity put opportunities where credit stress hasn't repriced into equity options.
+AI-augmented European credit relative value platform. Monitors 200 iTraxx Europe Series 44 constituents (125 Main investment-grade + 75 Crossover high-yield) for tradeable dislocations across CDS, bonds, and tranches.
 
-The core alpha is the **gap score**: credit signal strength minus equity repricing. When credit markets are screaming and equity options are cheap, this system finds those mismatches and structures trades.
+**Strategy**: Long/short CDS, bond-CDS basis, delta-hedged tranches (primarily 0-3% equity tranche). The system enables relative value selection across the full 200-name universe — what to be long, what to be short, and when basis or tranche convexity offers better expression.
+
+**AI edge**: Decentralized AI (Bittensor subnets) provides speed — first to receive relevant information (filings, news, equity moves +/-2%, documentation situations like Ardagh/Altice France) so positions can be adjusted quickly. The LLM determines relevance, filtering noise from actionable signal across all 200 names simultaneously.
 
 **Owner**: Matt
 **Repo**: `github.com/bristmatt96-hub/apex-s44-monitor`
@@ -82,7 +84,7 @@ apex-s44-monitor/
 |-- app/web/                   # Frontend HTML pages (vanilla HTML/CSS/JS)
 |
 |-- analytics/                 # 30+ analysis modules (the brain)
-|   |-- signal_scorer.py       # Gap score engine (credit - equity repricing)
+|   |-- signal_scorer.py       # Credit signal scoring (one cross-asset input)
 |   |-- trade_structurer.py    # Options structure recommender
 |   |-- credit_equity_bridge.py # Orchestrator: credit data + equity + scoring
 |   |-- tranche_pricer.py      # iTraxx tranche pricing (Main: 0-3/3-6/6-12/12-100, Xover: 0-10/10-20/20-35/35-100)
@@ -132,43 +134,26 @@ apex-s44-monitor/
 
 ---
 
-## The Alpha Engine (Must-Read Files)
+## The Strategy Engine (Must-Read Files)
 
-These 3 files ARE the core strategy. Read them before touching anything:
+### Core — Credit RV & Tranche Positioning
 
 | File | Purpose |
 |------|---------|
-| `analytics/signal_scorer.py` | Computes credit_signal_score (0-100), equity_repricing_score (0-100), and **gap_score**. 7 credit dimensions + 4 equity dimensions. |
-| `analytics/trade_structurer.py` | Decision tree: catalyst type x IV percentile x gap strength -> OTM_PUT, ATM_PUT_SPREAD, STRADDLE, CALENDAR_PUT, FAR_OTM_PUT, or SKIP |
-| `analytics/credit_equity_bridge.py` | Orchestrator: loads credit data, fetches live equity (yfinance, 15-min cache), runs scorer + structurer, returns ranked opportunities |
+| `analytics/relative_value.py` | Rich/cheap screener — sector z-scores, rating z-scores, momentum, composite score, pair trades. Primary long/short CDS selection tool. |
+| `analytics/tranche_pricer.py` | Gaussian copula CDO pricer — CS01, CS02, rho01, JTD, base correlation calibration. Core for 0-3% tranche positioning. |
+| `analytics/tranche_strategy_engine.py` | Dispersion trades, delta hedging, P&L attribution (carry + spread + correlation + theta + default). |
+| `analytics/cds_pricer.py` | ISDA Standard CDS Model — spread/upfront, DV01, CS01, JTD, implied PD. |
+| `analytics/scenario_analysis.py` | 8 macro stress scenarios with exact P&L repricing across all strategies. |
+| `analytics/risk_metrics.py` | Single-name + portfolio risk: DV01, CS01, JTD, VaR 95/99%, CVaR, concentration HHI. |
 
-### Signal Scorer — How Gap Score Works
+### Supplementary — Cross-Asset Signals
 
-**Credit Signal Score** (7 dimensions, weighted):
-- Spread level (20%) — absolute CDS spread -> implied PD
-- Spread momentum (15%) — widening/tightening trend
-- RV composite (15%) — relative value vs peers
-- Filing severity (15%) — restructuring, downgrade filings
-- Maturity wall (15%) — refinancing risk
-- Conviction direction (10%) — analyst sentiment
-- Sector contagion (10%) — industry-level stress
-
-**Equity Repricing Score** (4 dimensions):
-- 5-day price change (30%), 20-day price change (20%), IV percentile (30%), put/call ratio (20%)
-
-**Gap Score** = credit_signal_score - equity_repricing_score
-- STRONG (>50), MODERATE (30-50), WEAK (10-30), NONE (<10)
-
-### Trade Structurer — What Gets Recommended
-
-| Gap Signal | IV Percentile | Structure |
-|------------|---------------|-----------|
-| STRONG | < 25th | OTM_PUT (cheap vol, buy it) |
-| STRONG | 25-50th | ATM_PUT_SPREAD |
-| STRONG | 50-75th | CALENDAR_PUT or STRADDLE |
-| STRONG | > 75th | FAR_OTM_PUT (go cheap) |
-| MODERATE | any | Narrower spreads or MONITOR |
-| WEAK/NONE | any | SKIP |
+| File | Purpose |
+|------|---------|
+| `analytics/signal_scorer.py` | Credit signal score (0-100) and equity repricing score (0-100). The gap score is one cross-asset signal, not the core alpha. |
+| `analytics/trade_structurer.py` | Options structure recommender — used when equity put expression is chosen. |
+| `analytics/credit_equity_bridge.py` | Credit-equity gap detection. Useful for identifying where equity hasn't repriced but is just one input to RV decisions. |
 
 ---
 

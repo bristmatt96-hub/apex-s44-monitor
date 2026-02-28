@@ -16,8 +16,8 @@
 - An option ceases to exist after exercise — it converts into an underlying position at the strike price
 - In-the-money options at expiry are typically auto-exercised by the exchange
 
-## Application to Credit-Equity Bridge Strategy
-- **Put options are the core instrument**: When our gap score signals credit stress ahead of equity repricing, we buy puts — the right to sell the equity at a fixed price. This chapter's foundation on puts as the right to take a short position at a fixed price is the building block
-- **European vs American**: Most European equity options (Eurex, Euronext) are European-style — no early exercise. This simplifies our pricing models in the trade structurer
-- **Cash settlement awareness**: Index options (e.g., sector ETF puts for sector_stress catalyst) settle in cash, simplifying exit
-- **Assignment risk on short legs**: When our trade_structurer recommends put spreads (selling a lower-strike put), we carry assignment risk on the short leg — relevant for ATM_PUT_SPREAD and CALENDAR_PUT structures
+## Application to Credit Strategy
+- **Options as one trade expression**: The primary strategy is long/short CDS, bond-CDS basis, and delta-hedged tranches (0-3%). Equity puts are one possible expression when credit-equity divergence is the chosen angle — not the core instrument
+- **European vs American**: Most European equity options (Eurex, Euronext) are European-style — no early exercise. Relevant when options expression is selected
+- **Cash settlement awareness**: Index options settle in cash — relevant for iTraxx swaptions and index-level hedging
+- **Assignment risk on short legs**: When put spreads are part of the expression, assignment risk applies on the short leg

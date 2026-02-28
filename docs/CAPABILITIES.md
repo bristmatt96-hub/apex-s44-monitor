@@ -1,6 +1,6 @@
 # Macro Credit Monitor v2.0 — Capabilities & Daily Operations
 
-AI-augmented European credit relative value platform. Monitors 200 iTraxx S44 constituents (75 Crossover + 125 Main) across regulatory filings, news, social media, ratings, earnings, and cross-asset signals. Scores credit signals against equity repricing to find tradeable gaps. Targets $500M NAV, concentrated 10-position portfolio.
+AI-augmented European credit relative value platform. Monitors 200 iTraxx S44 constituents (75 Crossover + 125 Main) across regulatory filings, news, social media, ratings, earnings, and cross-asset signals. Enables long/short CDS selection, bond-CDS basis trades, and delta-hedged tranche positioning (primarily 0-3%). Decentralised AI (Bittensor) provides speed edge — first to receive relevant information so positions can be adjusted quickly. Heavy on analysis, risk, and process — not marketing.
 
 **Stack**: Python 3.10.9 | FastAPI | React (Babel CDN) | Dark theme
 **Run**: `python -m app.api.main` (port 8000)
@@ -121,7 +121,7 @@ All pages include cross-navigation (Dashboard / Cockpit / Tranches / Swaptions /
 
 | Endpoint | Method | Returns |
 |----------|--------|---------|
-| `/api/universe` | GET | 75 Xover names — conviction, spreads, gap score, thesis |
+| `/api/universe` | GET | 75 Xover names — conviction, spreads, RV scores, thesis |
 | `/api/portfolio` | GET | 10 current positions — notional, P&L, hedges, stress scenarios |
 | `/api/risk` | GET | Risk snapshot — DV01, CS01, JTD, concentration HHI, risk limit traffic lights |
 | `/api/filings` | GET | European regulatory filing alerts (7-day window from SQLite) |
@@ -158,7 +158,7 @@ Real-time scanning and alerting. Most write to SQLite (`filings.db`) + send Tele
 | `news_monitor` | Google News RSS per Xover name; severity 1-5 via Claude | ~5 min |
 | `rating_actions` | S&P, Moody's, Fitch RSS — upgrades, downgrades, outlook, CreditWatch | Daily EOD |
 | `rss_monitor` | General RSS feed aggregator across credit-relevant sources | Hourly |
-| `credit_events_monitor` | Earnings, covenants, maturities — alpha catalyst tracking | Event-driven |
+| `credit_events_monitor` | Earnings, covenants, maturities — credit catalyst tracking | Event-driven |
 
 ### Social & Sentiment
 
@@ -205,7 +205,7 @@ All modules use dataclasses, plain functions, argparse CLI, loguru logging, type
 
 | Module | What it does | CLI |
 |--------|-------------|-----|
-| `signal_scorer` | Two independent 0-100 scores: credit signal + equity repricing; gap = alpha opportunity | `--test` |
+| `signal_scorer` | Two independent 0-100 scores: credit signal + equity repricing; gap score is one cross-asset signal among many | `--test` |
 | `trade_structurer` | Options structure recommender (puts, spreads, straddles) from catalyst type + IV + gap + CDS level | `--test` |
 | `credit_equity_bridge` | Orchestrator — loads credit + equity data, scores via signal_scorer, recommends trades | `--top N`, `--name`, `--no-equity` |
 

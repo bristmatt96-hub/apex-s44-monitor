@@ -78,20 +78,21 @@ Strategy selection matrix by direction view x IV regime:
 - Box market = present value of (difference between exercise prices)
 - Jelly roll market = carry costs on exercise price between expirations - expected dividends
 
-## Application to Credit-Equity Bridge Strategy
+## Application to Credit Strategy
 
-### The Strategy Selection Matrix Maps Directly to Our trade_structurer
-Our decision tree already encodes Appendix D's logic:
-- **Gap Score STRONG + IV Percentile < 25th** = "Bearish + Low IV" → straight put purchase (matches Natenberg: "buy naked puts")
-- **Gap Score STRONG + IV Percentile 25-50th** = "Bearish + Moderate IV" → bear put spread (matches: "bear vertical spreads")
-- **Gap Score STRONG + IV Percentile 50-75th** = "Bearish + Moderate-High IV" → put ratio backspread (matches: "ratio vertical spreads")
-- **Gap Score MODERATE** = More nuanced → calendar put spreads or narrower verticals
+### Strategy Selection Matrix — When Options Are the Expression
+When the trade expression includes equity options (not always — primary instruments are CDS, basis, tranches):
+- **Bearish + Low IV** → straight put purchase
+- **Bearish + Moderate IV** → bear put spread
+- **Bearish + Moderate-High IV** → put ratio backspread
+- **Moderate conviction** → calendar put spreads or narrower verticals
+- The trade_structurer encodes this logic for the subset of trades using options
 
-### Volatility Spread Table Validates Our Greek Exposure
-When we buy puts (long gamma, long vega, short theta):
-- A large move in the underlying **helps** us (positive gamma)
-- An increase in IV **helps** us (positive vega) — this is the vol repricing we expect
-- Time passing **hurts** us (negative theta) — this is our cost of carry
+### Volatility Spread Greeks
+When long puts (one possible expression):
+- A large move in the underlying **helps** (positive gamma)
+- An increase in IV **helps** (positive vega)
+- Time passing **hurts** (negative theta) — the cost of carry on this expression
 
 ### Synthetic Relationships for Advanced Structures
 Understanding that a long put = short underlying + long call means we could alternatively express our bearish view via:

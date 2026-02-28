@@ -1,7 +1,7 @@
 # Option Book Summaries — Master Index
 
 **Source**: Sheldon Natenberg, *Option Volatility and Pricing* (2nd Edition)
-**Purpose**: Structured summaries mapping options theory to our CDS-Equity Options Bridge strategy
+**Purpose**: Structured summaries mapping options theory to our credit RV strategy (long/short CDS, basis, tranches, and options when applicable)
 
 ---
 
@@ -47,20 +47,20 @@
 
 ---
 
-## Quick Reference: Credit-Equity Bridge Strategy Mapping
+## Quick Reference: Strategy Mapping
 
 ### When to use which chapter:
 
 | Strategy Decision | Relevant Chapters |
 |---|---|
-| **Gap score interpretation** | Ch 4 (vol basics), Ch 14 (vol forecasting), Ch 18 (fat tails) |
-| **IV percentile thresholds** | Ch 4, Ch 8 (vol spreads), Ch 14 (vol cones), App D (strategy matrix) |
-| **Put structure selection** | Ch 2 (elementary), Ch 10 (verticals), Ch 13 (hedging), App D |
+| **Volatility analysis** | Ch 4 (vol basics), Ch 14 (vol forecasting), Ch 18 (fat tails) |
+| **IV regime assessment** | Ch 4, Ch 8 (vol spreads), Ch 14 (vol cones), App D (strategy matrix) |
+| **Options structure selection** | Ch 2 (elementary), Ch 10 (verticals), Ch 13 (hedging), App D |
 | **Strike selection** | Ch 6 (delta/gamma), Ch 18 (skew, ln(E/U)/sqrt(t) normalisation) |
 | **Expiry selection** | Ch 8 (time spreads), Ch 14 (term structure), Ch 12 (early exercise) |
 | **Position sizing** | Ch 6 (Greeks), Ch 9 (risk), Ch 13 (delta-based hedge sizing) |
 | **Risk management** | Ch 5 (hedging), Ch 9 (portfolio risk), Ch 18 (gap risk, model limits) |
 | **Synthetic alternatives** | Ch 11 (arbitrage), App E (synthetics), Ch 15 (index substitutes) |
 
-### Core Insight
-The entire Natenberg framework supports our thesis: **buy puts when credit signals (CDS widening, filing alerts, maturity walls) indicate stress BEFORE equity volatility reprices**. The gap score captures the divergence between credit-implied risk and equity-implied risk. Chapters 4, 14, and 18 provide the theoretical foundation; Chapters 8, 10, and 13 provide the structural toolkit; Appendix D provides the decision matrix.
+### How This Fits the Strategy
+Options theory from Natenberg applies when equity options are used as a trade expression within the broader credit RV framework. The primary strategy is long/short CDS, bond-CDS basis, and delta-hedged tranches (0-3%). When credit-equity divergence offers an options angle, Chapters 4, 14, and 18 inform vol analysis; Chapters 8, 10, and 13 inform structure selection; Appendix D provides the strategy matrix. The gap score is one cross-asset signal that can identify these opportunities — it is not the core alpha.

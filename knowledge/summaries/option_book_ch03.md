@@ -14,8 +14,8 @@
 - **Time is always working against long options**: Time value decays constantly — the option buyer fights the clock
 - **The model is a guide, not gospel**: All models make simplifying assumptions about distributions that may not hold in reality. Use them as frameworks, not truth
 
-## Application to Credit-Equity Bridge Strategy
-- **Our edge comes from information asymmetry in timing**: Credit signals (CDS widening, filings) give us advance warning of equity repricing. This timing advantage is how we can buy puts below their eventual realised value — we know the speed component before the equity market does
-- **The gap score IS the edge calculation**: When gap_score is high (credit signal >> equity repricing), puts are mispriced because the market hasn't factored in the credit deterioration signal. We're buying theoretical value cheaply
-- **Time-to-expiry selection is critical**: Being right about direction (equity will fall) but wrong about timing (it takes 6 months not 3) destroys put trades. The trade_structurer must match expiry to expected catalyst timing — maturity_wall catalysts need 6-9 month puts, not 3-month
-- **Forward price matters for European options**: Our European equity puts (Eurex) are priced off forward prices. High dividend-paying stocks have lower forward prices, making puts relatively cheaper — relevant for Consumer sector names paying dividends
+## Application to Credit Strategy
+- **Theoretical value framework applies to all instruments**: Whether pricing CDS, basis trades, or tranches, the core principle is the same — compare price to theoretical value and exploit the gap. This applies to long/short CDS selection, bond-CDS basis, and tranche positioning, not just options
+- **The gap score is one cross-asset signal**: When credit signals lead equity repricing, it can inform options positioning as one possible trade expression. But the primary strategy is long/short CDS, basis, and tranches — not equity puts
+- **Time-to-expiry selection matters when using options**: When equity put expression is chosen, match expiry to catalyst timing — maturity wall catalysts need 6-9 month puts, not 3-month
+- **Forward price matters for European options**: European equity puts (Eurex) are priced off forward prices — relevant when options are the chosen expression

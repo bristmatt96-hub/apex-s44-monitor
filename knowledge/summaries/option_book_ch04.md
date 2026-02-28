@@ -15,8 +15,8 @@
 - **High vol = expensive options = use spreads**: When implied vol is high, outright put purchases are expensive. Use put spreads or calendar spreads to reduce vega exposure
 - **Vol of vol matters**: Volatility itself is volatile — it can spike suddenly (credit events, earnings) or compress slowly (complacency). Fat tails in the vol distribution create opportunities
 
-## Application to Credit-Equity Bridge Strategy
-- **IV percentile is the key decision variable**: Our trade_structurer uses IV percentile to switch between structures. This chapter explains WHY: low IV percentile means the distribution is priced too narrow — if credit signals suggest a wider distribution ahead, puts are cheap
-- **Strike selection via standard deviations**: For a maturity_wall catalyst with 6-month puts, 80% strike on a 30%-vol stock is roughly 1.3 SD OTM. If credit stress suggests 2+ SD moves are coming, this gives excellent risk/reward
-- **The credit signal IS a volatility forecast**: When CDS widens sharply but equity IV stays low, the credit market is forecasting higher future volatility that equity options haven't priced. The gap score quantifies this disconnect
-- **Sector volatility clustering**: The chapter's discussion of different markets having inherent volatility levels maps to our sector spread heuristics — Energy names (inherently higher vol) vs TMT names (potentially lower vol) need different strike selections
+## Application to Credit Strategy
+- **Volatility framework informs multiple instruments**: The SD framework applies to CDS spread moves (not just equity). A 2σ CDS widening vs 0.5σ equity move is a cross-asset signal — one input among many for RV decisions
+- **IV percentile informs options expression**: When equity options are the chosen trade expression, IV percentile determines structure selection (puts vs spreads vs calendars)
+- **Credit signals can inform vol forecasts**: CDS widening with flat equity IV suggests the distribution is mispriced — relevant when options are part of the expression
+- **Sector volatility clustering**: Different sectors have inherent volatility levels — Energy names (higher vol) vs TMT names — which affects both CDS spread behaviour and any associated options positioning
