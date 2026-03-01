@@ -104,14 +104,14 @@ def main():
     args = parser.parse_args()
 
     print(f"\n  {'='*60}")
-    print(f"  APEX S44 PIPELINE RUNNER")
+    print("  APEX S44 PIPELINE RUNNER")
     print(f"  {datetime.now():%Y-%m-%d %H:%M:%S}")
     print(f"  {'='*60}")
 
     if args.watch:
         import time
         print(f"  Mode: WATCH (every {args.interval}s)")
-        print(f"  Press Ctrl+C to stop.\n")
+        print("  Press Ctrl+C to stop.\n")
         try:
             while True:
                 run_capture(both=args.both)

@@ -37,27 +37,23 @@ import argparse
 import json
 import os
 import sqlite3
-import sys
 import time
-from dataclasses import dataclass, field, asdict
+from dataclasses import dataclass
 from datetime import datetime, timedelta
 from pathlib import Path
-from typing import Optional
 
 import requests
 
 from data.spread_snapshots import (
     get_latest_spreads,
     get_spread_change,
-    get_spread_on_date,
     capture_snapshot,
 )
 from data.market_data_loader import load_market_data
 from analytics.signal_scorer import (
     compute_credit_signal_score,
-    CreditSignalResult,
 )
-from analytics.risk_metrics import compute_name_risk, NameRiskMetrics
+from analytics.risk_metrics import compute_name_risk
 from data.entity_profile_manager import load_profile, update_profile
 
 
@@ -715,7 +711,7 @@ def run_pipeline(
     print(f"  Unique entities: {len(unique_signals)}")
 
     # Step 2: Load spread context
-    print(f"\n  [2/4] Loading spread context...")
+    print("\n  [2/4] Loading spread context...")
     spread_data = get_latest_spreads(index="xover")
     if not spread_data:
         # Fallback to market data Excel
@@ -724,7 +720,7 @@ def run_pipeline(
     print(f"  Spread data for {len(spread_data)} names")
 
     # Step 3: Enrich and score
-    print(f"\n  [3/4] Enriching and scoring...")
+    print("\n  [3/4] Enriching and scoring...")
     pipeline_signals: list[PipelineSignal] = []
     for sig in unique_signals:
         enriched = enrich_and_score(sig, spread_data)
@@ -738,7 +734,7 @@ def run_pipeline(
     print(f"  Alert-worthy: {len(alert_worthy)}")
 
     # Step 4: Alert and store
-    print(f"\n  [4/4] Alerting and storing...")
+    print("\n  [4/4] Alerting and storing...")
     pipeline_conn = get_pipeline_db()
     alerts_sent = 0
 
@@ -774,7 +770,7 @@ def run_pipeline(
 
     # Summary
     print(f"\n  {'='*60}")
-    print(f"  PIPELINE SUMMARY")
+    print("  PIPELINE SUMMARY")
     print(f"  {'='*60}")
     print(f"  Signals ingested:  {len(raw_signals)}")
     print(f"  Entities scored:   {len(pipeline_signals)}")
@@ -869,7 +865,7 @@ def main():
 
     if args.watch:
         print(f"  Starting pipeline in watch mode (every {args.interval}s)...")
-        print(f"  Press Ctrl+C to stop.\n")
+        print("  Press Ctrl+C to stop.\n")
         try:
             while True:
                 run_pipeline(

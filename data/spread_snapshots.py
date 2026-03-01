@@ -32,12 +32,9 @@ Programmatic:
 """
 
 import argparse
-import json
 import sqlite3
-import sys
 from datetime import datetime, timedelta
 from pathlib import Path
-from typing import Optional
 
 from data.market_data_loader import load_market_data, find_latest_market_data
 
@@ -372,7 +369,7 @@ def main():
 
     if args.stats:
         stats = get_stats()
-        print(f"\n  Spread Snapshot Database")
+        print("\n  Spread Snapshot Database")
         print(f"  {'='*40}")
         print(f"  Total rows:    {stats['total_rows']:,}")
         print(f"  Unique names:  {stats['unique_names']}")

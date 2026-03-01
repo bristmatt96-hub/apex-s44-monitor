@@ -28,21 +28,17 @@ Programmatic:
 
 import argparse
 import json
-import math
-import sys
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta
 from pathlib import Path
 from statistics import mean, median, stdev
 
 from data.spread_snapshots import (
-    get_connection as get_snap_connection,
     get_spread_history,
     get_latest_spreads,
-    get_snapshot_dates,
     get_stats,
 )
-from analytics.cds_pricer import cds_dv01, spread_to_upfront
+from analytics.cds_pricer import cds_dv01
 
 
 # ---------------------------------------------------------------------------
