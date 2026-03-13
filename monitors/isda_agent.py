@@ -3,7 +3,6 @@ ISDA Credit Event Agent - LLM-powered analysis with DC precedent knowledge
 Ingests real Credit Derivatives Determinations Committee rulings and case law
 """
 
-import streamlit as st
 import os
 import json
 from pathlib import Path
@@ -26,21 +25,8 @@ try:
 except ImportError:
     pass
 
-# Load API keys from secrets
-def get_secret(key, default=""):
-    try:
-        return st.secrets.get(key, os.environ.get(key, default))
-    except Exception:
-        return os.environ.get(key, default)
-
-def get_secret(key, default=""):
-    try:
-        return st.secrets.get(key, os.environ.get(key, default))
-    except Exception:
-        return os.environ.get(key, default)
-
-OPENAI_API_KEY = get_secret("OPENAI_API_KEY", "")
-ANTHROPIC_API_KEY = get_secret("ANTHROPIC_API_KEY", "")
+OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY", "")
+ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 
 
 
@@ -657,149 +643,23 @@ def query_isda_agent(question: str, article_text: str = "", provider: str = "aut
         return query_isda_agent_openai(question, article_text)
 
 
-# ============== STREAMLIT UI ==============
-
-def render_isda_agent():
-    """Render the ISDA Agent UI"""
-
-    st.subheader("ISDA Credit Event Agent")
-    st.caption("LLM-powered analysis with DC precedent knowledge")
-
-    # Check for API keys
-    has_openai = OPENAI_AVAILABLE and OPENAI_API_KEY
-    has_anthropic = ANTHROPIC_AVAILABLE and ANTHROPIC_API_KEY
-
-    if not has_openai and not has_anthropic:
-        st.error("No LLM provider configured. Add OPENAI_API_KEY or ANTHROPIC_API_KEY to Streamlit secrets.")
-        st.info("This agent requires an LLM to provide nuanced ISDA analysis based on DC precedents.")
-
-        # Still show precedent database
-        st.markdown("---")
-        render_precedent_browser()
-        return
-
-    # Provider selection
-    col1, col2 = st.columns([1, 3])
-    with col1:
-        providers = []
-        if has_anthropic:
-            providers.append("Anthropic (Claude)")
-        if has_openai:
-            providers.append("OpenAI (GPT-4)")
-
-        selected_provider = st.selectbox("LLM Provider", providers)
-        provider = "anthropic" if "Anthropic" in selected_provider else "openai"
-
-    with col2:
-        st.markdown(f"✅ Using {selected_provider}")
-
-    st.markdown("---")
-
-    tab1, tab2, tab3 = st.tabs(["Ask Agent", "Analyze Article", "DC Precedents"])
-
-    with tab1:
-        render_agent_query(provider)
-
-    with tab2:
-        render_article_analysis(provider)
-
-    with tab3:
-        render_precedent_browser()
+def get_precedent(name: str) -> Optional[Dict]:
+    """Look up a specific ISDA precedent by name."""
+    for key, data in ISDA_PRECEDENTS.items():
+        if name.lower() in key.lower():
+            return {"name": key, **data}
+    return None
 
 
-def render_agent_query(provider: str):
-    """Free-form query to the ISDA agent"""
-
-    st.markdown("### Ask the ISDA Agent")
-    st.caption("Ask any question about ISDA Credit Events, DC precedents, or how to interpret a situation")
-
-    # Example questions
-    with st.expander("Example questions"):
-        st.markdown("""
-        - "If a company does a voluntary exchange offer at 80 cents, is that a Restructuring Credit Event?"
-        - "How did the DC rule on Intrum's LME? What made it different from a binding restructuring?"
-        - "What's the difference between Mod-R and Mod-Mod-R for restructuring?"
-        - "If a Spanish company enters concurso, does that trigger Bankruptcy or Restructuring?"
-        - "Can a covenant breach trigger a Credit Event?"
-        - "What happened with Codere and why does it matter for manufactured defaults?"
-        """)
-
-    question = st.text_area(
-        "Your question",
-        height=100,
-        placeholder="Ask about ISDA Credit Events, DC rulings, or how to analyze a specific situation..."
-    )
-
-    if st.button("Ask Agent", type="primary", key="ask_agent"):
-        if question:
-            with st.spinner("Analyzing with DC precedent knowledge..."):
-                response = query_isda_agent(question, provider=provider)
-
-            st.markdown("### Agent Response")
-            st.markdown(response)
-        else:
-            st.warning("Please enter a question")
-
-
-def render_article_analysis(provider: str):
-    """Analyze an article or press release"""
-
-    st.markdown("### Analyze Article for ISDA Implications")
-    st.caption("Paste a news article, press release, or any text for detailed ISDA analysis")
-
-    article_text = st.text_area(
-        "Paste article or text",
-        height=250,
-        placeholder="Paste the full article, press release, or relevant text here..."
-    )
-
-    specific_question = st.text_input(
-        "Specific question (optional)",
-        placeholder="e.g., 'Does this trigger a Restructuring CE under Mod-R?'"
-    )
-
-    if st.button("Analyze", type="primary", key="analyze_article"):
-        if article_text:
-            question = specific_question if specific_question else "Analyze this for ISDA Credit Event implications. What type of event might this be? What are the key questions? What precedents are relevant?"
-
-            with st.spinner("Performing detailed ISDA analysis..."):
-                response = query_isda_agent(question, article_text, provider=provider)
-
-            st.markdown("### ISDA Analysis")
-            st.markdown(response)
-        else:
-            st.warning("Please paste an article or text to analyze")
-
-
-def render_precedent_browser():
-    """Browse the DC precedent database"""
-
-    st.markdown("### DC Precedent Database")
-    st.caption("Key Credit Derivatives Determinations Committee rulings")
-
-    # Filter by event type
-    all_events = set()
-    for data in ISDA_PRECEDENTS.values():
-        all_events.update(data["events"])
-
-    event_filter = st.multiselect(
-        "Filter by event type",
-        sorted(all_events),
-        default=[]
-    )
-
-    for name, data in sorted(ISDA_PRECEDENTS.items(), key=lambda x: x[1]["year"], reverse=True):
-        # Apply filter
-        if event_filter and not any(e in data["events"] for e in event_filter):
+def search_precedents(event_type: str = None, keyword: str = None) -> List[Dict]:
+    """Search precedents by event type or keyword."""
+    results = []
+    for name, data in ISDA_PRECEDENTS.items():
+        if event_type and not any(event_type.lower() in e.lower() for e in data["events"]):
             continue
-
-        with st.expander(f"**{name}** ({data['year']}) - {', '.join(data['events'])}"):
-            st.markdown(f"**Summary:** {data['summary']}")
-
-            st.markdown("**Key Rulings:**")
-            for ruling in data["key_rulings"]:
-                st.markdown(f"- {ruling}")
-
-            st.markdown("**Lessons for Future Cases:**")
-            for lesson in data["lessons"]:
-                st.markdown(f"- {lesson}")
+        if keyword:
+            text = json.dumps(data).lower()
+            if keyword.lower() not in text:
+                continue
+        results.append({"name": name, **data})
+    return sorted(results, key=lambda x: x["year"], reverse=True)

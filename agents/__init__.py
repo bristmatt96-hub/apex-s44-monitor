@@ -1,16 +1,14 @@
-# Trading Agents
-from .scanners.equity_scanner import EquityScanner
-from .scanners.crypto_scanner import CryptoScanner
-from .scanners.forex_scanner import ForexScanner
-from .scanners.options_scanner import OptionsScanner
-from .signals.technical_analyzer import TechnicalAnalyzer
-from .signals.ml_predictor import MLPredictor
-from .execution.trade_executor import TradeExecutor
-from .coordinator import Coordinator
+"""
+Credit Catalyst - AI Agent Layer
 
-__all__ = [
-    'EquityScanner', 'CryptoScanner', 'ForexScanner', 'OptionsScanner',
-    'TechnicalAnalyzer', 'MLPredictor',
-    'TradeExecutor',
-    'Coordinator'
-]
+Three-agent architecture for credit analysis:
+- Analyst: Credit assessment per name using Claude API + knowledge base
+- Strategist: Portfolio-level recommendations and relative value
+- Briefing: Morning briefs, real-time alerts, weekly summaries
+"""
+
+from agents.analyst import CreditAnalyst
+from agents.strategist import PortfolioStrategist
+from agents.briefing import BriefingAgent
+
+__all__ = ["CreditAnalyst", "PortfolioStrategist", "BriefingAgent"]
